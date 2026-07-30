@@ -1,11 +1,18 @@
-### ⚠️ Archived  
-This repository is no longer maintained.
-
-I am no longer interested in **Dart** and don’t have time to continue development or provide support.
+> **Note:** The original author stopped maintaining this repository, so I fixed the code generation, set up a daily check against the latest Telegram protocol scheme, and automated source code updates.
 
 # tdlib-dart
 
-A Dart wrapper for [tdlib](https://github.com/tdlib/td). Contains generated([generator](https://github.com/ivk1800/tdlib-generator?tab=readme-ov-file)) schema classes of [td_api.tl](https://github.com/tdlib/td/blob/master/td/generate/scheme/td_api.tl) and a client that interacts with lib through [ffi](https://dart.dev/guides/libraries/c-interop). 
+A Dart wrapper for [tdlib](https://github.com/tdlib/td). Contains generated ([generator](generator/)) schema classes of [td_api.tl](https://github.com/tdlib/td/blob/master/td/generate/scheme/td_api.tl) and a client that interacts with lib through [ffi](https://dart.dev/guides/libraries/c-interop).
+
+The current scheme file is located at [`data/td_api.tl`](data/td_api.tl), and its version is specified in [`TDLIB_VERSION.md`](TDLIB_VERSION.md).
+
+### Code Generation
+
+To rebuild the generated Dart classes, run:
+
+```bash
+dart run generator/lib/src/main.dart && dart format lib
+```
 
 | Version |                         tdlib commit                          |                                                                 td_api.tl revision |
 |---------|:-------------------------------------------------------------:|-----------------------------------------------------------------------------------:|
@@ -29,6 +36,7 @@ A Dart wrapper for [tdlib](https://github.com/tdlib/td). Contains generated([gen
 
 ### Table of Contents
 
+- [Code Generation](#code-generation)
 - [Example](#example)
 - [Getting started with flutter example](#getting-started-with-flutter-example)
 - [Prebuilt binaries](#prebuilt-binaries)
