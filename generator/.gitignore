@@ -1,0 +1,5 @@
+.packages
+pubspec.lock
+.dart_tool/
+.idea
+data/td_api.tl
