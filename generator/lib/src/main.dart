@@ -7,7 +7,7 @@ void main() {
   final List<Class> classes = Parser().parse();
   print('generate...');
   Generator(
-    root: 'generated',
+    root: '',
     classes: classes,
   ).generate();
 }
