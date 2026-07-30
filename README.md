@@ -72,14 +72,19 @@ Future<void> main() async {
 
 ### Getting started with flutter example
 1. Obtain `api_id` and `api_hash` at https://my.telegram.org
-2. Build tdlib for your operating system following the [instruction](https://github.com/tdlib/td#building) or download [prebuild](https://github.com/ivk1800/td-json-client-prebuilt/releases) binaries. Following the instraction below for setup tdlib.
+2. Build tdlib for your operating system following the [instruction](https://github.com/tdlib/td#building) or download prebuilt binaries (see [Prebuilt binaries](#prebuilt-binaries) section below).
 3. Open `example/lib/main.dart` and place obtained `api_id` and `api_hash` to appropriate methods `getApiId` and `getApiHash`.
 4. Specify phone number and code in `getPhoneNumber` and `getCode` methods. Attention, the phone number must be specified from the test DC. If you don't want to use the test DC and want to authenticate with your account, change `useTestDc` to `false` in `TdlibParameters`.
 5. cd `<repo folder>/example`
 6. `flutter run`
 
 ### Prebuilt binaries
-The tdlib binaries are built automatically using GitHub Actions and published on the [releases page](https://github.com/ivk1800/td-json-client-prebuilt/releases/). Additional prebuilt native binaries can also be found at [tdlib.native releases](https://github.com/ForNeVeR/tdlib.native/releases), Android binaries at [android-libtdjson releases](https://github.com/up9cloud/android-libtdjson/releases), and iOS/macOS binaries at [ios-libtdjson releases](https://github.com/up9cloud/ios-libtdjson/releases). Follow the instructions below for each platform to configure flutter project to use tdlib.
+The original author stopped updating prebuilt binaries in 2024 (previously published on the [releases page](https://github.com/ivk1800/td-json-client-prebuilt/releases/)). For updated native binaries, please refer to the following repositories:
+- [tdlib.native releases](https://github.com/ForNeVeR/tdlib.native/releases)
+- Android binaries: [android-libtdjson releases](https://github.com/up9cloud/android-libtdjson/releases)
+- iOS/macOS binaries: [ios-libtdjson releases](https://github.com/up9cloud/ios-libtdjson/releases)
+
+Follow the instructions below for each platform to configure your Flutter project to use tdlib.
 
 ### Android
 Copy `.so` files from archive to `example/android/app/main/jniLibs`:
