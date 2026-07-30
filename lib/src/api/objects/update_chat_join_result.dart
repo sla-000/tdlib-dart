@@ -14,7 +14,7 @@ class UpdateChatJoinResult extends Update {
 
   /// [queryId] Identifier of the join request query as received in
   /// chatJoinResultGuardBotApprovalRequired. If the corresponding Web App is
-  /// stiil open, then it must be closed
+  /// still open, then it must be closed
   final int queryId;
 
   /// [chatId] Identifier of the joined chat, or 0 if the request wasn't

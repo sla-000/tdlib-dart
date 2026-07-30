@@ -10,8 +10,8 @@ class MessageStakeDice extends MessageContent {
     this.initialState,
     this.finalState,
     required this.value,
-    required this.stakeToncoinAmount,
-    required this.prizeToncoinAmount,
+    required this.stakeGramAmount,
+    required this.prizeGramAmount,
   });
 
   /// [initialState] The animated stickers with the initial dice animation; may
@@ -28,14 +28,14 @@ class MessageStakeDice extends MessageContent {
   /// state yet
   final int value;
 
-  /// [stakeToncoinAmount] The Toncoin amount that was staked; in the smallest
+  /// [stakeGramAmount] The TON Gram amount that was staked; in the smallest
   /// units of the currency
-  final int stakeToncoinAmount;
+  final int stakeGramAmount;
 
-  /// [prizeToncoinAmount] The Toncoin amount that was gained from the roll; in
+  /// [prizeGramAmount] The TON Gram amount that was gained from the roll; in
   /// the smallest units of the currency; -1 if the dice don't have final state
   /// yet
-  final int prizeToncoinAmount;
+  final int prizeGramAmount;
 
   static const String constructor = 'messageStakeDice';
 
@@ -50,8 +50,8 @@ class MessageStakeDice extends MessageContent {
       finalState:
           DiceStickers.fromJson(json['final_state'] as Map<String, dynamic>?),
       value: (json['value'] as int?) ?? 0,
-      stakeToncoinAmount: (json['stake_toncoin_amount'] as int?) ?? 0,
-      prizeToncoinAmount: (json['prize_toncoin_amount'] as int?) ?? 0,
+      stakeGramAmount: (json['stake_gram_amount'] as int?) ?? 0,
+      prizeGramAmount: (json['prize_gram_amount'] as int?) ?? 0,
     );
   }
 
@@ -63,8 +63,8 @@ class MessageStakeDice extends MessageContent {
         'initial_state': initialState?.toJson(),
         'final_state': finalState?.toJson(),
         'value': value,
-        'stake_toncoin_amount': stakeToncoinAmount,
-        'prize_toncoin_amount': prizeToncoinAmount,
+        'stake_gram_amount': stakeGramAmount,
+        'prize_gram_amount': prizeGramAmount,
         '@type': constructor,
       };
 
@@ -78,9 +78,9 @@ class MessageStakeDice extends MessageContent {
           const DeepCollectionEquality().equals(other.finalState, finalState) &&
           const DeepCollectionEquality().equals(other.value, value) &&
           const DeepCollectionEquality()
-              .equals(other.stakeToncoinAmount, stakeToncoinAmount) &&
+              .equals(other.stakeGramAmount, stakeGramAmount) &&
           const DeepCollectionEquality()
-              .equals(other.prizeToncoinAmount, prizeToncoinAmount));
+              .equals(other.prizeGramAmount, prizeGramAmount));
 
   @override
   int get hashCode => Object.hashAll([
@@ -88,7 +88,7 @@ class MessageStakeDice extends MessageContent {
         const DeepCollectionEquality().hash(initialState),
         const DeepCollectionEquality().hash(finalState),
         const DeepCollectionEquality().hash(value),
-        const DeepCollectionEquality().hash(stakeToncoinAmount),
-        const DeepCollectionEquality().hash(prizeToncoinAmount)
+        const DeepCollectionEquality().hash(stakeGramAmount),
+        const DeepCollectionEquality().hash(prizeGramAmount)
       ]);
 }

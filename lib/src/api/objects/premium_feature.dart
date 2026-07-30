@@ -33,6 +33,7 @@ abstract class PremiumFeature extends TdObject {
   /// [PremiumFeatureProfileBadge]
   /// [PremiumFeatureProtectPrivateChatContent]
   /// [PremiumFeatureRealTimeChatTranslation]
+  /// [PremiumFeatureRichMessages]
   /// [PremiumFeatureSavedMessagesTags]
   /// [PremiumFeatureTextComposition]
   /// [PremiumFeatureUniqueReactions]
@@ -89,6 +90,8 @@ abstract class PremiumFeature extends TdObject {
         return PremiumFeatureProtectPrivateChatContent.fromJson(json);
       case PremiumFeatureRealTimeChatTranslation.constructor:
         return PremiumFeatureRealTimeChatTranslation.fromJson(json);
+      case PremiumFeatureRichMessages.constructor:
+        return PremiumFeatureRichMessages.fromJson(json);
       case PremiumFeatureSavedMessagesTags.constructor:
         return PremiumFeatureSavedMessagesTags.fromJson(json);
       case PremiumFeatureTextComposition.constructor:

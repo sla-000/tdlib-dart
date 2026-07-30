@@ -124,7 +124,7 @@ class ReceivedGift extends TdObject {
   final String prepaidUpgradeHash;
 
   /// [craftDate] Point in time (Unix timestamp) when the gift can be used to
-  /// craft another gift can be in the past; only for the receiver of the gift
+  /// craft another gift; can be in the past; only for the receiver of the gift
   final int craftDate;
 
   static const String constructor = 'receivedGift';

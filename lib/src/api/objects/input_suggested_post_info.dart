@@ -13,8 +13,8 @@ class InputSuggestedPostInfo extends TdObject {
 
   /// [price] Price of the suggested post; pass null to suggest a post without
   /// payment. If the current user isn't an administrator of the channel direct
-  /// messages chat and has no enough funds to pay for the post, then the error
-  /// "BALANCE_TOO_LOW" will be returned immediately
+  /// messages chat and doesn't have enough funds to pay for the post, then the
+  /// error "BALANCE_TOO_LOW" will be returned immediately
   final SuggestedPostPrice? price;
 
   /// [sendDate] Point in time (Unix timestamp) when the post is expected to be

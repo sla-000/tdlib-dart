@@ -3,7 +3,7 @@ import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
 import '../tdapi.dart';
 
-/// The transaction is a withdrawal of earned Toncoins to Fragment
+/// The transaction is a withdrawal of earned Grams to Fragment
 @immutable
 class TonTransactionTypeFragmentWithdrawal extends TonTransactionType {
   const TonTransactionTypeFragmentWithdrawal({

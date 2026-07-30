@@ -13,7 +13,7 @@ class GetConnectedAffiliatePrograms extends TdFunction {
     required this.limit,
   });
 
-  /// [affiliate] The affiliate to which the affiliate program were connected
+  /// [affiliate] The affiliate to which the affiliate programs were connected
   final AffiliateType affiliate;
 
   /// [offset] Offset of the first affiliate program to return as received from

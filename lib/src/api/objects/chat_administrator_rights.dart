@@ -69,7 +69,8 @@ class ChatAdministratorRights extends TdObject {
 
   /// [canPromoteMembers] True, if the administrator can add new administrators
   /// with a subset of their own privileges or demote administrators that were
-  /// directly or indirectly promoted by them
+  /// directly or indirectly promoted by them; applicable to supergroups and
+  /// channels only
   final bool canPromoteMembers;
 
   /// [canManageVideoChats] True, if the administrator can manage video chats

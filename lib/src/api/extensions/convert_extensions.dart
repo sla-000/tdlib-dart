@@ -887,6 +887,24 @@ extension ConvertExtensions on Map<String, dynamic> {
         return CollectibleItemTypePhoneNumber.fromJson(this);
       case 'collectibleItemTypeUsername':
         return CollectibleItemTypeUsername.fromJson(this);
+      case 'community':
+        return Community.fromJson(this);
+      case 'communityAdministratorRights':
+        return CommunityAdministratorRights.fromJson(this);
+      case 'communityMemberStatus':
+        return CommunityMemberStatus.fromJson(this);
+      case 'communityMemberStatusAdministrator':
+        return CommunityMemberStatusAdministrator.fromJson(this);
+      case 'communityMemberStatusBanned':
+        return CommunityMemberStatusBanned.fromJson(this);
+      case 'communityMemberStatusCreator':
+        return CommunityMemberStatusCreator.fromJson(this);
+      case 'communityMemberStatusLeft':
+        return CommunityMemberStatusLeft.fromJson(this);
+      case 'communityMemberStatusMember':
+        return CommunityMemberStatusMember.fromJson(this);
+      case 'communityPermissions':
+        return CommunityPermissions.fromJson(this);
       case 'connectedAffiliateProgram':
         return ConnectedAffiliateProgram.fromJson(this);
       case 'connectedAffiliatePrograms':
@@ -1247,10 +1265,10 @@ extension ConvertExtensions on Map<String, dynamic> {
         return GiftResaleParameters.fromJson(this);
       case 'giftResalePrice':
         return GiftResalePrice.fromJson(this);
+      case 'giftResalePriceGram':
+        return GiftResalePriceGram.fromJson(this);
       case 'giftResalePriceStar':
         return GiftResalePriceStar.fromJson(this);
-      case 'giftResalePriceTon':
-        return GiftResalePriceTon.fromJson(this);
       case 'giftResaleResult':
         return GiftResaleResult.fromJson(this);
       case 'giftResaleResultOk':
@@ -1295,6 +1313,10 @@ extension ConvertExtensions on Map<String, dynamic> {
         return GiveawayPrizePremium.fromJson(this);
       case 'giveawayPrizeStars':
         return GiveawayPrizeStars.fromJson(this);
+      case 'gramRevenueStatistics':
+        return GramRevenueStatistics.fromJson(this);
+      case 'gramRevenueStatus':
+        return GramRevenueStatus.fromJson(this);
       case 'groupCall':
         return GroupCall.fromJson(this);
       case 'groupCallDataChannel':
@@ -1545,6 +1567,8 @@ extension ConvertExtensions on Map<String, dynamic> {
         return InputMessagePoll.fromJson(this);
       case 'inputMessageReplyTo':
         return InputMessageReplyTo.fromJson(this);
+      case 'inputMessageReplyToEphemeralMessage':
+        return InputMessageReplyToEphemeralMessage.fromJson(this);
       case 'inputMessageReplyToExternalMessage':
         return InputMessageReplyToExternalMessage.fromJson(this);
       case 'inputMessageReplyToMessage':
@@ -1569,6 +1593,52 @@ extension ConvertExtensions on Map<String, dynamic> {
         return InputMessageVideoNote.fromJson(this);
       case 'inputMessageVoiceNote':
         return InputMessageVoiceNote.fromJson(this);
+      case 'inputPageBlock':
+        return InputPageBlock.fromJson(this);
+      case 'inputPageBlockAnchor':
+        return InputPageBlockAnchor.fromJson(this);
+      case 'inputPageBlockAnimation':
+        return InputPageBlockAnimation.fromJson(this);
+      case 'inputPageBlockAudio':
+        return InputPageBlockAudio.fromJson(this);
+      case 'inputPageBlockBlockQuote':
+        return InputPageBlockBlockQuote.fromJson(this);
+      case 'inputPageBlockCollage':
+        return InputPageBlockCollage.fromJson(this);
+      case 'inputPageBlockDetails':
+        return InputPageBlockDetails.fromJson(this);
+      case 'inputPageBlockDivider':
+        return InputPageBlockDivider.fromJson(this);
+      case 'inputPageBlockFooter':
+        return InputPageBlockFooter.fromJson(this);
+      case 'inputPageBlockList':
+        return InputPageBlockList.fromJson(this);
+      case 'inputPageBlockListItem':
+        return InputPageBlockListItem.fromJson(this);
+      case 'inputPageBlockMap':
+        return InputPageBlockMap.fromJson(this);
+      case 'inputPageBlockMathematicalExpression':
+        return InputPageBlockMathematicalExpression.fromJson(this);
+      case 'inputPageBlockParagraph':
+        return InputPageBlockParagraph.fromJson(this);
+      case 'inputPageBlockPhoto':
+        return InputPageBlockPhoto.fromJson(this);
+      case 'inputPageBlockPreformatted':
+        return InputPageBlockPreformatted.fromJson(this);
+      case 'inputPageBlockPullQuote':
+        return InputPageBlockPullQuote.fromJson(this);
+      case 'inputPageBlockSectionHeading':
+        return InputPageBlockSectionHeading.fromJson(this);
+      case 'inputPageBlockSlideshow':
+        return InputPageBlockSlideshow.fromJson(this);
+      case 'inputPageBlockTable':
+        return InputPageBlockTable.fromJson(this);
+      case 'inputPageBlockThinking':
+        return InputPageBlockThinking.fromJson(this);
+      case 'inputPageBlockVideo':
+        return InputPageBlockVideo.fromJson(this);
+      case 'inputPageBlockVoiceNote':
+        return InputPageBlockVoiceNote.fromJson(this);
       case 'inputPaidMedia':
         return InputPaidMedia.fromJson(this);
       case 'inputPaidMediaType':
@@ -1661,6 +1731,8 @@ extension ConvertExtensions on Map<String, dynamic> {
         return InputPollTypeRegular.fromJson(this);
       case 'inputRichMessage':
         return InputRichMessage.fromJson(this);
+      case 'inputRichMessageMedia':
+        return InputRichMessageMedia.fromJson(this);
       case 'inputSticker':
         return InputSticker.fromJson(this);
       case 'inputStoryArea':
@@ -1699,6 +1771,10 @@ extension ConvertExtensions on Map<String, dynamic> {
         return InputThumbnail.fromJson(this);
       case 'inputVideo':
         return InputVideo.fromJson(this);
+      case 'inputVideoNote':
+        return InputVideoNote.fromJson(this);
+      case 'inputVoiceNote':
+        return InputVoiceNote.fromJson(this);
       case 'internalLinkType':
         return InternalLinkType.fromJson(this);
       case 'internalLinkTypeAttachmentMenuBot':
@@ -2053,6 +2129,8 @@ extension ConvertExtensions on Map<String, dynamic> {
         return MessageCall.fromJson(this);
       case 'messageChatAddMembers':
         return MessageChatAddMembers.fromJson(this);
+      case 'messageChatAddedToCommunity':
+        return MessageChatAddedToCommunity.fromJson(this);
       case 'messageChatBoost':
         return MessageChatBoost.fromJson(this);
       case 'messageChatChangePhoto':
@@ -2075,6 +2153,8 @@ extension ConvertExtensions on Map<String, dynamic> {
         return MessageChatOwnerChanged.fromJson(this);
       case 'messageChatOwnerLeft':
         return MessageChatOwnerLeft.fromJson(this);
+      case 'messageChatRemovedFromCommunity':
+        return MessageChatRemovedFromCommunity.fromJson(this);
       case 'messageChatSetBackground':
         return MessageChatSetBackground.fromJson(this);
       case 'messageChatSetMessageAutoDeleteTime':
@@ -2411,6 +2491,8 @@ extension ConvertExtensions on Map<String, dynamic> {
         return NetworkTypeWiFi.fromJson(this);
       case 'newChatPrivacySettings':
         return NewChatPrivacySettings.fromJson(this);
+      case 'newSticker':
+        return NewSticker.fromJson(this);
       case 'notification':
         return Notification.fromJson(this);
       case 'notificationGroup':
@@ -2821,6 +2903,8 @@ extension ConvertExtensions on Map<String, dynamic> {
         return PremiumFeatureProtectPrivateChatContent.fromJson(this);
       case 'premiumFeatureRealTimeChatTranslation':
         return PremiumFeatureRealTimeChatTranslation.fromJson(this);
+      case 'premiumFeatureRichMessages':
+        return PremiumFeatureRichMessages.fromJson(this);
       case 'premiumFeatureSavedMessagesTags':
         return PremiumFeatureSavedMessagesTags.fromJson(this);
       case 'premiumFeatureTextComposition':
@@ -3222,6 +3306,8 @@ extension ConvertExtensions on Map<String, dynamic> {
         return RichMessage.fromJson(this);
       case 'richMessageSource':
         return RichMessageSource.fromJson(this);
+      case 'richMessageSourceBlocks':
+        return RichMessageSourceBlocks.fromJson(this);
       case 'richMessageSourceHtml':
         return RichMessageSourceHtml.fromJson(this);
       case 'richMessageSourceMarkdown':
@@ -3244,6 +3330,8 @@ extension ConvertExtensions on Map<String, dynamic> {
         return RichTextCustomEmoji.fromJson(this);
       case 'richTextDateTime':
         return RichTextDateTime.fromJson(this);
+      case 'richTextDiff':
+        return RichTextDiff.fromJson(this);
       case 'richTextEmailAddress':
         return RichTextEmailAddress.fromJson(this);
       case 'richTextFixed':
@@ -3448,10 +3536,10 @@ extension ConvertExtensions on Map<String, dynamic> {
         return SettingsSectionInAppBrowser.fromJson(this);
       case 'settingsSectionLanguage':
         return SettingsSectionLanguage.fromJson(this);
+      case 'settingsSectionMyGrams':
+        return SettingsSectionMyGrams.fromJson(this);
       case 'settingsSectionMyStars':
         return SettingsSectionMyStars.fromJson(this);
-      case 'settingsSectionMyToncoins':
-        return SettingsSectionMyToncoins.fromJson(this);
       case 'settingsSectionNotifications':
         return SettingsSectionNotifications.fromJson(this);
       case 'settingsSectionPowerSaving':
@@ -3832,10 +3920,10 @@ extension ConvertExtensions on Map<String, dynamic> {
         return SuggestedPostInfo.fromJson(this);
       case 'suggestedPostPrice':
         return SuggestedPostPrice.fromJson(this);
+      case 'suggestedPostPriceGram':
+        return SuggestedPostPriceGram.fromJson(this);
       case 'suggestedPostPriceStar':
         return SuggestedPostPriceStar.fromJson(this);
-      case 'suggestedPostPriceTon':
-        return SuggestedPostPriceTon.fromJson(this);
       case 'suggestedPostRefundReason':
         return SuggestedPostRefundReason.fromJson(this);
       case 'suggestedPostRefundReasonPaymentRefunded':
@@ -4022,10 +4110,6 @@ extension ConvertExtensions on Map<String, dynamic> {
         return TimeZone.fromJson(this);
       case 'timeZones':
         return TimeZones.fromJson(this);
-      case 'tonRevenueStatistics':
-        return TonRevenueStatistics.fromJson(this);
-      case 'tonRevenueStatus':
-        return TonRevenueStatus.fromJson(this);
       case 'tonTransaction':
         return TonTransaction.fromJson(this);
       case 'tonTransactionType':
@@ -4206,6 +4290,8 @@ extension ConvertExtensions on Map<String, dynamic> {
         return UpdateChatVideoChat.fromJson(this);
       case 'updateChatViewAsTopics':
         return UpdateChatViewAsTopics.fromJson(this);
+      case 'updateCommunity':
+        return UpdateCommunity.fromJson(this);
       case 'updateConnectionState':
         return UpdateConnectionState.fromJson(this);
       case 'updateContactCloseBirthdays':
@@ -4248,6 +4334,8 @@ extension ConvertExtensions on Map<String, dynamic> {
         return UpdateFreezeState.fromJson(this);
       case 'updateGiftAuctionState':
         return UpdateGiftAuctionState.fromJson(this);
+      case 'updateGramRevenueStatus':
+        return UpdateGramRevenueStatus.fromJson(this);
       case 'updateGroupCall':
         return UpdateGroupCall.fromJson(this);
       case 'updateGroupCallMessageLevels':
@@ -4346,10 +4434,10 @@ extension ConvertExtensions on Map<String, dynamic> {
         return UpdateNotificationGroup.fromJson(this);
       case 'updateOption':
         return UpdateOption.fromJson(this);
+      case 'updateOwnedGramCount':
+        return UpdateOwnedGramCount.fromJson(this);
       case 'updateOwnedStarCount':
         return UpdateOwnedStarCount.fromJson(this);
-      case 'updateOwnedTonCount':
-        return UpdateOwnedTonCount.fromJson(this);
       case 'updatePaidMediaPurchased':
         return UpdatePaidMediaPurchased.fromJson(this);
       case 'updatePendingMessage':
@@ -4420,8 +4508,6 @@ extension ConvertExtensions on Map<String, dynamic> {
         return UpdateTermsOfService.fromJson(this);
       case 'updateTextCompositionStyles':
         return UpdateTextCompositionStyles.fromJson(this);
-      case 'updateTonRevenueStatus':
-        return UpdateTonRevenueStatus.fromJson(this);
       case 'updateTopicMessageCount':
         return UpdateTopicMessageCount.fromJson(this);
       case 'updateTrendingStickerSets':
@@ -4442,6 +4528,8 @@ extension ConvertExtensions on Map<String, dynamic> {
         return UpdateUserPrivacySettingRules.fromJson(this);
       case 'updateUserStatus':
         return UpdateUserStatus.fromJson(this);
+      case 'updateUserSubscription':
+        return UpdateUserSubscription.fromJson(this);
       case 'updateVideoPublished':
         return UpdateVideoPublished.fromJson(this);
       case 'updateWebAppMessageSent':

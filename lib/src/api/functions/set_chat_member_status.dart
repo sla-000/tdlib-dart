@@ -9,7 +9,7 @@ import '../tdapi.dart';
 /// administrator right to change restrictions of a user. This function is
 /// currently not suitable for transferring chat ownership; use
 /// transferChatOwnership instead. Use addChatMember or banChatMember if some
-/// additional parameters needs to be passed
+/// additional parameters need to be passed
 /// Returns [Ok]
 @immutable
 class SetChatMemberStatus extends TdFunction {

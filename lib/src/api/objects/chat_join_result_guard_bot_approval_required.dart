@@ -9,18 +9,14 @@ import '../tdapi.dart';
 class ChatJoinResultGuardBotApprovalRequired extends ChatJoinResult {
   const ChatJoinResultGuardBotApprovalRequired({
     required this.botUserId,
-    required this.url,
     required this.queryId,
   });
 
   /// [botUserId] Identifier of the guard bot
   final int botUserId;
 
-  /// [url] The URL of the Web App to open
-  final WebAppUrl url;
-
   /// [queryId] Unique identifier of the join request, which will be used in
-  /// updateChatJoinResult
+  /// getGuardBotWebAppUrl and updateChatJoinResult
   final int queryId;
 
   static const String constructor = 'chatJoinResultGuardBotApprovalRequired';
@@ -33,8 +29,10 @@ class ChatJoinResultGuardBotApprovalRequired extends ChatJoinResult {
 
     return ChatJoinResultGuardBotApprovalRequired(
       botUserId: (json['bot_user_id'] as int?) ?? 0,
-      url: WebAppUrl.fromJson(json['url'] as Map<String, dynamic>?)!,
-      queryId: (json['query_id'] as int?) ?? 0,
+      queryId: (json['query_id'] is int
+              ? json['query_id'] as int
+              : int.tryParse(json['query_id']?.toString() ?? '')) ??
+          0,
     );
   }
 
@@ -44,8 +42,7 @@ class ChatJoinResultGuardBotApprovalRequired extends ChatJoinResult {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'bot_user_id': botUserId,
-        'url': url.toJson(),
-        'query_id': queryId,
+        'query_id': queryId.toString(),
         '@type': constructor,
       };
 
@@ -55,14 +52,12 @@ class ChatJoinResultGuardBotApprovalRequired extends ChatJoinResult {
       (other.runtimeType == runtimeType &&
           other is ChatJoinResultGuardBotApprovalRequired &&
           const DeepCollectionEquality().equals(other.botUserId, botUserId) &&
-          const DeepCollectionEquality().equals(other.url, url) &&
           const DeepCollectionEquality().equals(other.queryId, queryId));
 
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
         const DeepCollectionEquality().hash(botUserId),
-        const DeepCollectionEquality().hash(url),
         const DeepCollectionEquality().hash(queryId)
       ]);
 }

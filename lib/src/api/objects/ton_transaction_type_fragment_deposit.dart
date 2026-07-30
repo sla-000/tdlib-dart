@@ -3,7 +3,7 @@ import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
 import '../tdapi.dart';
 
-/// The transaction is a deposit of Toncoins from Fragment
+/// The transaction is a deposit of Grams from Fragment
 @immutable
 class TonTransactionTypeFragmentDeposit extends TonTransactionType {
   const TonTransactionTypeFragmentDeposit({

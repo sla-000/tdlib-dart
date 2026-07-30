@@ -8,7 +8,7 @@ import '../tdapi.dart';
 class InputMessageStakeDice extends InputMessageContent {
   const InputMessageStakeDice({
     required this.stateHash,
-    required this.stakeToncoinAmount,
+    required this.stakeGramAmount,
     required this.clearDraft,
   });
 
@@ -17,10 +17,10 @@ class InputMessageStakeDice extends InputMessageContent {
   /// requested using getStakeDiceState
   final String stateHash;
 
-  /// [stakeToncoinAmount] The Toncoin amount that will be staked; in the
-  /// smallest units of the currency. Must be in the range
+  /// [stakeGramAmount] The TON Gram amount that will be staked; in the smallest
+  /// units of the currency. Must be in the range
   /// getOption("stake_dice_stake_amount_min")-getOption("stake_dice_stake_amount_max")
-  final int stakeToncoinAmount;
+  final int stakeGramAmount;
 
   /// [clearDraft] Pass true to delete message draft in the chat
   final bool clearDraft;
@@ -34,7 +34,7 @@ class InputMessageStakeDice extends InputMessageContent {
 
     return InputMessageStakeDice(
       stateHash: (json['state_hash'] as String?) ?? '',
-      stakeToncoinAmount: (json['stake_toncoin_amount'] as int?) ?? 0,
+      stakeGramAmount: (json['stake_gram_amount'] as int?) ?? 0,
       clearDraft: (json['clear_draft'] as bool?) ?? false,
     );
   }
@@ -45,7 +45,7 @@ class InputMessageStakeDice extends InputMessageContent {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'state_hash': stateHash,
-        'stake_toncoin_amount': stakeToncoinAmount,
+        'stake_gram_amount': stakeGramAmount,
         'clear_draft': clearDraft,
         '@type': constructor,
       };
@@ -57,14 +57,14 @@ class InputMessageStakeDice extends InputMessageContent {
           other is InputMessageStakeDice &&
           const DeepCollectionEquality().equals(other.stateHash, stateHash) &&
           const DeepCollectionEquality()
-              .equals(other.stakeToncoinAmount, stakeToncoinAmount) &&
+              .equals(other.stakeGramAmount, stakeGramAmount) &&
           const DeepCollectionEquality().equals(other.clearDraft, clearDraft));
 
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
         const DeepCollectionEquality().hash(stateHash),
-        const DeepCollectionEquality().hash(stakeToncoinAmount),
+        const DeepCollectionEquality().hash(stakeGramAmount),
         const DeepCollectionEquality().hash(clearDraft)
       ]);
 }

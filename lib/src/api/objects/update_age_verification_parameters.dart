@@ -3,7 +3,7 @@ import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
 import '../tdapi.dart';
 
-/// The parameters for age verification of the current user's account has
+/// The parameters for age verification of the current user's account have
 /// changed
 @immutable
 class UpdateAgeVerificationParameters extends Update {
