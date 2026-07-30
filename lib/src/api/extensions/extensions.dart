@@ -1,4 +1,5 @@
 import '../tdapi.dart';
+
 extension TdErrorExtensions on TdError {
   TdError copyWith({
     int? code,

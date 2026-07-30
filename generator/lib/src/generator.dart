@@ -91,9 +91,7 @@ class Generator {
 
     extensionsFile.create();
 
-    final List<String> extenisonsLines = <String>[
-      "import '../tdapi.dart';"
-    ];
+    final List<String> extenisonsLines = <String>["import '../tdapi.dart';"];
 
     for (final Class tdClass in classes) {
       final cb.Extension extension =

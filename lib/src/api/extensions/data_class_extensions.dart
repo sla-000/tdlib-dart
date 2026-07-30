@@ -1,5 +1,6 @@
 import '../tdapi.dart';
 import 'package:collection/collection.dart';
+
 extension TdErrorDataClassExtensions on TdError {
   bool overriddenEquality(Object other) =>
       identical(this, other) ||
