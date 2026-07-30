@@ -596,53 +596,79 @@ class Generator {
     Variable variable, [
     String? overrideJsonKey,
   ]) {
+    final String jsonKey = overrideJsonKey ?? "json['${variable.name}']";
     if (variable.type.isDartType) {
-      if (variable.type.rawType == 'int64') {
-        return "int.tryParse(json['${variable.name}']) ?? 0";
+      switch (variable.type.rawType) {
+        case 'int64':
+          {
+            if (overrideJsonKey != null) {
+              return "(item is int ? item : int.tryParse(item.toString()) ?? 0)";
+            }
+            return variable.isNullable
+                ? "($jsonKey is int ? $jsonKey as int : int.tryParse($jsonKey?.toString() ?? ''))"
+                : "($jsonKey is int ? $jsonKey as int : int.tryParse($jsonKey?.toString() ?? '')) ?? 0";
+          }
+        case 'int32':
+        case 'int53':
+        case 'int':
+          {
+            if (overrideJsonKey != null) {
+              return "(item is int ? item : int.tryParse(item.toString()) ?? 0)";
+            }
+            return variable.isNullable
+                ? "$jsonKey as int?"
+                : "($jsonKey as int?) ?? 0";
+          }
+        case 'double':
+          {
+            if (overrideJsonKey != null) {
+              return "($overrideJsonKey as num).toDouble()";
+            }
+            return variable.isNullable
+                ? "($jsonKey as num?)?.toDouble()"
+                : "($jsonKey as num?)?.toDouble() ?? 0.0";
+          }
+        case 'Bool':
+          {
+            if (overrideJsonKey != null) {
+              return "$overrideJsonKey as bool";
+            }
+            return variable.isNullable
+                ? "$jsonKey as bool?"
+                : "($jsonKey as bool?) ?? false";
+          }
+        case 'bytes':
+        case 'String':
+        case 'string':
+          {
+            if (overrideJsonKey != null) {
+              return "$overrideJsonKey as String";
+            }
+            return variable.isNullable
+                ? "$jsonKey as String?"
+                : "($jsonKey as String?) ?? ''";
+          }
       }
-
-      if (overrideJsonKey != null) {
-        return overrideJsonKey;
-      } else {
-        switch (variable.type.rawType) {
-          case 'int32':
-          case 'int53':
-          case 'int64':
-            {
-              return "json['${variable.name}'] as int${variable.isNullable ? '?' : ''}";
-            }
-          case 'double':
-            {
-              return "(json['${variable.name}'] as num)${variable.isNullable ? '?' : ''}.toDouble()";
-            }
-          case 'Bool':
-            {
-              return "json['${variable.name}'] as bool${variable.isNullable ? '?' : ''}";
-            }
-          case 'bytes':
-          case 'String':
-          case 'string':
-            {
-              return "json['${variable.name}'] as String${variable.isNullable ? '?' : ''}";
-            }
-        }
-        return "json['${variable.name}']";
-      }
+      return jsonKey;
     } else if (variable.type.isListType) {
       final String genericType = variable.type.type.substring(
         variable.type.type.indexOf('<') + 1,
         variable.type.type.lastIndexOf('>'),
       );
 
+      final String subRawType = variable.type.rawType.startsWith('vector<')
+          ? variable.type.rawType.substring(7, variable.type.rawType.length - 1)
+          : genericType;
+
       final Variable genericVariable = Variable(
         name: genericType,
-        type: VariableType.fromRawType(rawType: genericType),
+        type: VariableType.fromRawType(rawType: subRawType),
         description: '',
         isNullable: false,
       );
 
       final List<String> list = <String>[
-        "List<$genericType>.from(((json['${variable.name}'] as List<dynamic>?) ?? <dynamic>[]).map((item) => "
+        "List<$genericType>.from((($jsonKey as List<dynamic>?) ?? <dynamic>[]).map((item) => "
       ];
 
       list.add(_createInitializer(genericVariable, 'item'));
@@ -650,7 +676,7 @@ class Generator {
       return list.join();
     }
     if (overrideJsonKey != null) {
-      return '${variable.type}.fromJson($overrideJsonKey)';
+      return '${variable.type}.fromJson($overrideJsonKey as Map<String, dynamic>?)';
     }
     return "${variable.type}.fromJson(json['${variable.name}'] as Map<String, dynamic>?)${!variable.isNullable ? '!' : ''}";
   }
@@ -661,11 +687,12 @@ class Generator {
     String? overrideVariableName,
   ]) {
     if (variable.type.isDartType) {
-      if (overrideVariableName != null) {
+      if (variable.type.rawType == 'int64') {
+        final String varName =
+            overrideVariableName ?? variable.name.toVariableName();
+        return '$varName.toString()';
+      } else if (overrideVariableName != null) {
         return overrideVariableName;
-      }
-      if (group != Group.functions && variable.type.rawType == 'int64') {
-        return '${variable.name.toVariableName()}.toString()';
       } else {
         return variable.name.toVariableName();
       }
@@ -675,9 +702,13 @@ class Generator {
         variable.type.type.lastIndexOf('>'),
       );
 
+      final String subRawType = variable.type.rawType.startsWith('vector<')
+          ? variable.type.rawType.substring(7, variable.type.rawType.length - 1)
+          : genericType;
+
       final Variable genericVariable = Variable(
         name: genericType,
-        type: VariableType.fromRawType(rawType: genericType),
+        type: VariableType.fromRawType(rawType: subRawType),
         description: '',
         isNullable: false,
       );
