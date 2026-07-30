@@ -327,6 +327,7 @@ class Generator {
 
   cb.Class _createClass(Class c) {
     return cb.Class((cb.ClassBuilder b) {
+      b.docs.add("// ignore: unused_import");
       b.docs.add("import 'package:collection/collection.dart';");
       b.docs.add("import 'package:meta/meta.dart';");
       b.docs.add("import '../tdapi.dart';");
