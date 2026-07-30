@@ -11,18 +11,18 @@ abstract class SuggestedPostPrice extends TdObject {
   static const String constructor = 'suggestedPostPrice';
 
   /// Inherited by:
-  /// [SuggestedPostPriceGram]
   /// [SuggestedPostPriceStar]
+  /// [SuggestedPostPriceTon]
   static SuggestedPostPrice? fromJson(Map<String, dynamic>? json) {
     if (json == null) {
       return null;
     }
 
     switch (json['@type']) {
-      case SuggestedPostPriceGram.constructor:
-        return SuggestedPostPriceGram.fromJson(json);
       case SuggestedPostPriceStar.constructor:
         return SuggestedPostPriceStar.fromJson(json);
+      case SuggestedPostPriceTon.constructor:
+        return SuggestedPostPriceTon.fromJson(json);
       default:
         return null;
     }

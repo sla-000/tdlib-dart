@@ -22,8 +22,8 @@ abstract class SettingsSection extends TdObject {
   /// [SettingsSectionFeatures]
   /// [SettingsSectionInAppBrowser]
   /// [SettingsSectionLanguage]
-  /// [SettingsSectionMyGrams]
   /// [SettingsSectionMyStars]
+  /// [SettingsSectionMyToncoins]
   /// [SettingsSectionNotifications]
   /// [SettingsSectionPowerSaving]
   /// [SettingsSectionPremium]
@@ -60,10 +60,10 @@ abstract class SettingsSection extends TdObject {
         return SettingsSectionInAppBrowser.fromJson(json);
       case SettingsSectionLanguage.constructor:
         return SettingsSectionLanguage.fromJson(json);
-      case SettingsSectionMyGrams.constructor:
-        return SettingsSectionMyGrams.fromJson(json);
       case SettingsSectionMyStars.constructor:
         return SettingsSectionMyStars.fromJson(json);
+      case SettingsSectionMyToncoins.constructor:
+        return SettingsSectionMyToncoins.fromJson(json);
       case SettingsSectionNotifications.constructor:
         return SettingsSectionNotifications.fromJson(json);
       case SettingsSectionPowerSaving.constructor:

@@ -440,26 +440,12 @@ extension RichMessageExtensions on RichMessage {
       );
 }
 
-extension InputRichMessageMediaExtensions on InputRichMessageMedia {
-  InputRichMessageMedia copyWith({
-    String? id,
-    InputMessageContent? media,
-  }) =>
-      InputRichMessageMedia(
-        id: id ?? this.id,
-        media: media ?? this.media,
-      );
-}
-
 extension RichMessageSourceExtensions on RichMessageSource {
   TResult map<TResult extends Object?>({
-    required TResult Function(RichMessageSourceBlocks value) blocks,
     required TResult Function(RichMessageSourceMarkdown value) markdown,
     required TResult Function(RichMessageSourceHtml value) html,
   }) {
     switch (getConstructor()) {
-      case RichMessageSourceBlocks.constructor:
-        return blocks.call(this as RichMessageSourceBlocks);
       case RichMessageSourceMarkdown.constructor:
         return markdown.call(this as RichMessageSourceMarkdown);
       case RichMessageSourceHtml.constructor:
@@ -469,17 +455,11 @@ extension RichMessageSourceExtensions on RichMessageSource {
   }
 
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(RichMessageSourceBlocks value)? blocks,
     TResult Function(RichMessageSourceMarkdown value)? markdown,
     TResult Function(RichMessageSourceHtml value)? html,
     required TResult Function() orElse,
   }) {
     switch (getConstructor()) {
-      case RichMessageSourceBlocks.constructor:
-        if (blocks != null) {
-          return blocks.call(this as RichMessageSourceBlocks);
-        }
-        break;
       case RichMessageSourceMarkdown.constructor:
         if (markdown != null) {
           return markdown.call(this as RichMessageSourceMarkdown);
@@ -495,34 +475,21 @@ extension RichMessageSourceExtensions on RichMessageSource {
   }
 }
 
-extension RichMessageSourceBlocksExtensions on RichMessageSourceBlocks {
-  RichMessageSourceBlocks copyWith({
-    List<InputPageBlock>? blocks,
-  }) =>
-      RichMessageSourceBlocks(
-        blocks: blocks ?? this.blocks,
-      );
-}
-
 extension RichMessageSourceMarkdownExtensions on RichMessageSourceMarkdown {
   RichMessageSourceMarkdown copyWith({
     String? text,
-    List<InputRichMessageMedia>? media,
   }) =>
       RichMessageSourceMarkdown(
         text: text ?? this.text,
-        media: media ?? this.media,
       );
 }
 
 extension RichMessageSourceHtmlExtensions on RichMessageSourceHtml {
   RichMessageSourceHtml copyWith({
     String? text,
-    List<InputRichMessageMedia>? media,
   }) =>
       RichMessageSourceHtml(
         text: text ?? this.text,
-        media: media ?? this.media,
       );
 }
 
@@ -2132,17 +2099,17 @@ extension GameExtensions on Game {
 extension StakeDiceStateExtensions on StakeDiceState {
   StakeDiceState copyWith({
     String? stateHash,
-    int? stakeGramAmount,
-    List<int>? suggestedStakeGramAmounts,
+    int? stakeToncoinAmount,
+    List<int>? suggestedStakeToncoinAmounts,
     int? currentStreak,
     List<int>? prizePerMille,
     int? streakPrizePerMille,
   }) =>
       StakeDiceState(
         stateHash: stateHash ?? this.stateHash,
-        stakeGramAmount: stakeGramAmount ?? this.stakeGramAmount,
-        suggestedStakeGramAmounts:
-            suggestedStakeGramAmounts ?? this.suggestedStakeGramAmounts,
+        stakeToncoinAmount: stakeToncoinAmount ?? this.stakeToncoinAmount,
+        suggestedStakeToncoinAmounts:
+            suggestedStakeToncoinAmounts ?? this.suggestedStakeToncoinAmounts,
         currentStreak: currentStreak ?? this.currentStreak,
         prizePerMille: prizePerMille ?? this.prizePerMille,
         streakPrizePerMille: streakPrizePerMille ?? this.streakPrizePerMille,
@@ -2507,12 +2474,10 @@ extension BotCommandExtensions on BotCommand {
   BotCommand copyWith({
     String? command,
     String? description,
-    bool? isEphemeral,
   }) =>
       BotCommand(
         command: command ?? this.command,
         description: description ?? this.description,
-        isEphemeral: isEphemeral ?? this.isEphemeral,
       );
 }
 
@@ -3373,20 +3338,20 @@ extension WebAppOpenParametersExtensions on WebAppOpenParameters {
 extension GiftResalePriceExtensions on GiftResalePrice {
   TResult map<TResult extends Object?>({
     required TResult Function(GiftResalePriceStar value) star,
-    required TResult Function(GiftResalePriceGram value) gram,
+    required TResult Function(GiftResalePriceTon value) ton,
   }) {
     switch (getConstructor()) {
       case GiftResalePriceStar.constructor:
         return star.call(this as GiftResalePriceStar);
-      case GiftResalePriceGram.constructor:
-        return gram.call(this as GiftResalePriceGram);
+      case GiftResalePriceTon.constructor:
+        return ton.call(this as GiftResalePriceTon);
     }
     throw StateError('not handled type Generator');
   }
 
   TResult maybeMap<TResult extends Object?>({
     TResult Function(GiftResalePriceStar value)? star,
-    TResult Function(GiftResalePriceGram value)? gram,
+    TResult Function(GiftResalePriceTon value)? ton,
     required TResult Function() orElse,
   }) {
     switch (getConstructor()) {
@@ -3395,9 +3360,9 @@ extension GiftResalePriceExtensions on GiftResalePrice {
           return star.call(this as GiftResalePriceStar);
         }
         break;
-      case GiftResalePriceGram.constructor:
-        if (gram != null) {
-          return gram.call(this as GiftResalePriceGram);
+      case GiftResalePriceTon.constructor:
+        if (ton != null) {
+          return ton.call(this as GiftResalePriceTon);
         }
         break;
     }
@@ -3414,12 +3379,12 @@ extension GiftResalePriceStarExtensions on GiftResalePriceStar {
       );
 }
 
-extension GiftResalePriceGramExtensions on GiftResalePriceGram {
-  GiftResalePriceGram copyWith({
-    int? gramCentCount,
+extension GiftResalePriceTonExtensions on GiftResalePriceTon {
+  GiftResalePriceTon copyWith({
+    int? toncoinCentCount,
   }) =>
-      GiftResalePriceGram(
-        gramCentCount: gramCentCount ?? this.gramCentCount,
+      GiftResalePriceTon(
+        toncoinCentCount: toncoinCentCount ?? this.toncoinCentCount,
       );
 }
 
@@ -3470,20 +3435,20 @@ extension GiftPurchaseOfferStateExtensions on GiftPurchaseOfferState {
 extension SuggestedPostPriceExtensions on SuggestedPostPrice {
   TResult map<TResult extends Object?>({
     required TResult Function(SuggestedPostPriceStar value) star,
-    required TResult Function(SuggestedPostPriceGram value) gram,
+    required TResult Function(SuggestedPostPriceTon value) ton,
   }) {
     switch (getConstructor()) {
       case SuggestedPostPriceStar.constructor:
         return star.call(this as SuggestedPostPriceStar);
-      case SuggestedPostPriceGram.constructor:
-        return gram.call(this as SuggestedPostPriceGram);
+      case SuggestedPostPriceTon.constructor:
+        return ton.call(this as SuggestedPostPriceTon);
     }
     throw StateError('not handled type Generator');
   }
 
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SuggestedPostPriceStar value)? star,
-    TResult Function(SuggestedPostPriceGram value)? gram,
+    TResult Function(SuggestedPostPriceTon value)? ton,
     required TResult Function() orElse,
   }) {
     switch (getConstructor()) {
@@ -3492,9 +3457,9 @@ extension SuggestedPostPriceExtensions on SuggestedPostPrice {
           return star.call(this as SuggestedPostPriceStar);
         }
         break;
-      case SuggestedPostPriceGram.constructor:
-        if (gram != null) {
-          return gram.call(this as SuggestedPostPriceGram);
+      case SuggestedPostPriceTon.constructor:
+        if (ton != null) {
+          return ton.call(this as SuggestedPostPriceTon);
         }
         break;
     }
@@ -3511,12 +3476,12 @@ extension SuggestedPostPriceStarExtensions on SuggestedPostPriceStar {
       );
 }
 
-extension SuggestedPostPriceGramExtensions on SuggestedPostPriceGram {
-  SuggestedPostPriceGram copyWith({
-    int? gramCentCount,
+extension SuggestedPostPriceTonExtensions on SuggestedPostPriceTon {
+  SuggestedPostPriceTon copyWith({
+    int? toncoinCentCount,
   }) =>
-      SuggestedPostPriceGram(
-        gramCentCount: gramCentCount ?? this.gramCentCount,
+      SuggestedPostPriceTon(
+        toncoinCentCount: toncoinCentCount ?? this.toncoinCentCount,
       );
 }
 
@@ -4228,13 +4193,13 @@ extension GiftPurchaseLimitsExtensions on GiftPurchaseLimits {
 extension GiftResaleParametersExtensions on GiftResaleParameters {
   GiftResaleParameters copyWith({
     int? starCount,
-    int? gramCentCount,
-    bool? gramOnly,
+    int? toncoinCentCount,
+    bool? toncoinOnly,
   }) =>
       GiftResaleParameters(
         starCount: starCount ?? this.starCount,
-        gramCentCount: gramCentCount ?? this.gramCentCount,
-        gramOnly: gramOnly ?? this.gramOnly,
+        toncoinCentCount: toncoinCentCount ?? this.toncoinCentCount,
+        toncoinOnly: toncoinOnly ?? this.toncoinOnly,
       );
 }
 
@@ -6754,14 +6719,15 @@ extension TonTransactionTypeUpgradedGiftSaleExtensions
     int? userId,
     UpgradedGift? gift,
     int? commissionPerMille,
-    int? commissionGramAmount,
+    int? commissionToncoinAmount,
     bool? viaOffer,
   }) =>
       TonTransactionTypeUpgradedGiftSale(
         userId: userId ?? this.userId,
         gift: gift ?? this.gift,
         commissionPerMille: commissionPerMille ?? this.commissionPerMille,
-        commissionGramAmount: commissionGramAmount ?? this.commissionGramAmount,
+        commissionToncoinAmount:
+            commissionToncoinAmount ?? this.commissionToncoinAmount,
         viaOffer: viaOffer ?? this.viaOffer,
       );
 }
@@ -6769,14 +6735,14 @@ extension TonTransactionTypeUpgradedGiftSaleExtensions
 extension TonTransactionExtensions on TonTransaction {
   TonTransaction copyWith({
     String? id,
-    int? gramAmount,
+    int? tonAmount,
     bool? isRefund,
     int? date,
     TonTransactionType? type,
   }) =>
       TonTransaction(
         id: id ?? this.id,
-        gramAmount: gramAmount ?? this.gramAmount,
+        tonAmount: tonAmount ?? this.tonAmount,
         isRefund: isRefund ?? this.isRefund,
         date: date ?? this.date,
         type: type ?? this.type,
@@ -6785,12 +6751,12 @@ extension TonTransactionExtensions on TonTransaction {
 
 extension TonTransactionsExtensions on TonTransactions {
   TonTransactions copyWith({
-    int? gramAmount,
+    int? tonAmount,
     List<TonTransaction>? transactions,
     String? nextOffset,
   }) =>
       TonTransactions(
-        gramAmount: gramAmount ?? this.gramAmount,
+        tonAmount: tonAmount ?? this.tonAmount,
         transactions: transactions ?? this.transactions,
         nextOffset: nextOffset ?? this.nextOffset,
       );
@@ -7149,129 +7115,6 @@ extension ProfileAccentColorExtensions on ProfileAccentColor {
       );
 }
 
-extension CommunityPermissionsExtensions on CommunityPermissions {
-  CommunityPermissions copyWith({
-    bool? canEditChatList,
-  }) =>
-      CommunityPermissions(
-        canEditChatList: canEditChatList ?? this.canEditChatList,
-      );
-}
-
-extension CommunityAdministratorRightsExtensions
-    on CommunityAdministratorRights {
-  CommunityAdministratorRights copyWith({
-    bool? canManageCommunity,
-    bool? canChangeInfo,
-    bool? canEditChatList,
-    bool? canPromoteMembers,
-    bool? canBanMembers,
-  }) =>
-      CommunityAdministratorRights(
-        canManageCommunity: canManageCommunity ?? this.canManageCommunity,
-        canChangeInfo: canChangeInfo ?? this.canChangeInfo,
-        canEditChatList: canEditChatList ?? this.canEditChatList,
-        canPromoteMembers: canPromoteMembers ?? this.canPromoteMembers,
-        canBanMembers: canBanMembers ?? this.canBanMembers,
-      );
-}
-
-extension CommunityMemberStatusExtensions on CommunityMemberStatus {
-  TResult map<TResult extends Object?>({
-    required TResult Function(CommunityMemberStatusCreator value) creator,
-    required TResult Function(CommunityMemberStatusAdministrator value)
-        administrator,
-    required TResult Function(CommunityMemberStatusMember value) member,
-    required TResult Function(CommunityMemberStatusLeft value) left,
-    required TResult Function(CommunityMemberStatusBanned value) banned,
-  }) {
-    switch (getConstructor()) {
-      case CommunityMemberStatusCreator.constructor:
-        return creator.call(this as CommunityMemberStatusCreator);
-      case CommunityMemberStatusAdministrator.constructor:
-        return administrator.call(this as CommunityMemberStatusAdministrator);
-      case CommunityMemberStatusMember.constructor:
-        return member.call(this as CommunityMemberStatusMember);
-      case CommunityMemberStatusLeft.constructor:
-        return left.call(this as CommunityMemberStatusLeft);
-      case CommunityMemberStatusBanned.constructor:
-        return banned.call(this as CommunityMemberStatusBanned);
-    }
-    throw StateError('not handled type Generator');
-  }
-
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(CommunityMemberStatusCreator value)? creator,
-    TResult Function(CommunityMemberStatusAdministrator value)? administrator,
-    TResult Function(CommunityMemberStatusMember value)? member,
-    TResult Function(CommunityMemberStatusLeft value)? left,
-    TResult Function(CommunityMemberStatusBanned value)? banned,
-    required TResult Function() orElse,
-  }) {
-    switch (getConstructor()) {
-      case CommunityMemberStatusCreator.constructor:
-        if (creator != null) {
-          return creator.call(this as CommunityMemberStatusCreator);
-        }
-        break;
-      case CommunityMemberStatusAdministrator.constructor:
-        if (administrator != null) {
-          return administrator.call(this as CommunityMemberStatusAdministrator);
-        }
-        break;
-      case CommunityMemberStatusMember.constructor:
-        if (member != null) {
-          return member.call(this as CommunityMemberStatusMember);
-        }
-        break;
-      case CommunityMemberStatusLeft.constructor:
-        if (left != null) {
-          return left.call(this as CommunityMemberStatusLeft);
-        }
-        break;
-      case CommunityMemberStatusBanned.constructor:
-        if (banned != null) {
-          return banned.call(this as CommunityMemberStatusBanned);
-        }
-        break;
-    }
-    return orElse.call();
-  }
-}
-
-extension CommunityMemberStatusAdministratorExtensions
-    on CommunityMemberStatusAdministrator {
-  CommunityMemberStatusAdministrator copyWith({
-    bool? canBeEdited,
-    CommunityAdministratorRights? rights,
-  }) =>
-      CommunityMemberStatusAdministrator(
-        canBeEdited: canBeEdited ?? this.canBeEdited,
-        rights: rights ?? this.rights,
-      );
-}
-
-extension CommunityExtensions on Community {
-  Community copyWith({
-    int? id,
-    bool? haveAccess,
-    String? name,
-    ChatPhotoInfo? photo,
-    int? date,
-    CommunityMemberStatus? status,
-    CommunityPermissions? permissions,
-  }) =>
-      Community(
-        id: id ?? this.id,
-        haveAccess: haveAccess ?? this.haveAccess,
-        name: name ?? this.name,
-        photo: photo ?? this.photo,
-        date: date ?? this.date,
-        status: status ?? this.status,
-        permissions: permissions ?? this.permissions,
-      );
-}
-
 extension UserRatingExtensions on UserRating {
   UserRating copyWith({
     int? level,
@@ -7539,7 +7382,6 @@ extension UserFullInfoExtensions on UserFullInfo {
     ChatPhoto? personalPhoto,
     ChatPhoto? photo,
     ChatPhoto? publicPhoto,
-    int? communityId,
     BlockList? blockList,
     bool? canBeCalled,
     bool? supportsVideoCalls,
@@ -7573,7 +7415,6 @@ extension UserFullInfoExtensions on UserFullInfo {
         personalPhoto: personalPhoto ?? this.personalPhoto,
         photo: photo ?? this.photo,
         publicPhoto: publicPhoto ?? this.publicPhoto,
-        communityId: communityId ?? this.communityId,
         blockList: blockList ?? this.blockList,
         canBeCalled: canBeCalled ?? this.canBeCalled,
         supportsVideoCalls: supportsVideoCalls ?? this.supportsVideoCalls,
@@ -8118,10 +7959,12 @@ extension ChatJoinResultGuardBotApprovalRequiredExtensions
     on ChatJoinResultGuardBotApprovalRequired {
   ChatJoinResultGuardBotApprovalRequired copyWith({
     int? botUserId,
+    WebAppUrl? url,
     int? queryId,
   }) =>
       ChatJoinResultGuardBotApprovalRequired(
         botUserId: botUserId ?? this.botUserId,
+        url: url ?? this.url,
         queryId: queryId ?? this.queryId,
       );
 }
@@ -8499,7 +8342,6 @@ extension SupergroupExtensions on Supergroup {
 extension SupergroupFullInfoExtensions on SupergroupFullInfo {
   SupergroupFullInfo copyWith({
     ChatPhoto? photo,
-    int? communityId,
     String? description,
     int? memberCount,
     int? administratorCount,
@@ -8543,7 +8385,6 @@ extension SupergroupFullInfoExtensions on SupergroupFullInfo {
   }) =>
       SupergroupFullInfo(
         photo: photo ?? this.photo,
-        communityId: communityId ?? this.communityId,
         description: description ?? this.description,
         memberCount: memberCount ?? this.memberCount,
         administratorCount: administratorCount ?? this.administratorCount,
@@ -9581,8 +9422,6 @@ extension InputMessageReplyToExtensions on InputMessageReplyTo {
     required TResult Function(InputMessageReplyToExternalMessage value)
         externalMessage,
     required TResult Function(InputMessageReplyToStory value) story,
-    required TResult Function(InputMessageReplyToEphemeralMessage value)
-        ephemeralMessage,
   }) {
     switch (getConstructor()) {
       case InputMessageReplyToMessage.constructor:
@@ -9591,9 +9430,6 @@ extension InputMessageReplyToExtensions on InputMessageReplyTo {
         return externalMessage.call(this as InputMessageReplyToExternalMessage);
       case InputMessageReplyToStory.constructor:
         return story.call(this as InputMessageReplyToStory);
-      case InputMessageReplyToEphemeralMessage.constructor:
-        return ephemeralMessage
-            .call(this as InputMessageReplyToEphemeralMessage);
     }
     throw StateError('not handled type Generator');
   }
@@ -9602,8 +9438,6 @@ extension InputMessageReplyToExtensions on InputMessageReplyTo {
     TResult Function(InputMessageReplyToMessage value)? message,
     TResult Function(InputMessageReplyToExternalMessage value)? externalMessage,
     TResult Function(InputMessageReplyToStory value)? story,
-    TResult Function(InputMessageReplyToEphemeralMessage value)?
-        ephemeralMessage,
     required TResult Function() orElse,
   }) {
     switch (getConstructor()) {
@@ -9621,12 +9455,6 @@ extension InputMessageReplyToExtensions on InputMessageReplyTo {
       case InputMessageReplyToStory.constructor:
         if (story != null) {
           return story.call(this as InputMessageReplyToStory);
-        }
-        break;
-      case InputMessageReplyToEphemeralMessage.constructor:
-        if (ephemeralMessage != null) {
-          return ephemeralMessage
-              .call(this as InputMessageReplyToEphemeralMessage);
         }
         break;
     }
@@ -9678,16 +9506,6 @@ extension InputMessageReplyToStoryExtensions on InputMessageReplyToStory {
       );
 }
 
-extension InputMessageReplyToEphemeralMessageExtensions
-    on InputMessageReplyToEphemeralMessage {
-  InputMessageReplyToEphemeralMessage copyWith({
-    int? ephemeralMessageId,
-  }) =>
-      InputMessageReplyToEphemeralMessage(
-        ephemeralMessageId: ephemeralMessageId ?? this.ephemeralMessageId,
-      );
-}
-
 extension FactCheckExtensions on FactCheck {
   FactCheck copyWith({
     FormattedText? text,
@@ -9703,7 +9521,6 @@ extension MessageExtensions on Message {
   Message copyWith({
     int? id,
     MessageSender? senderId,
-    MessageSender? receiverId,
     int? chatId,
     MessageSendingState? sendingState,
     MessageSchedulingState? schedulingState,
@@ -9714,7 +9531,7 @@ extension MessageExtensions on Message {
     bool? hasTimestampedMedia,
     bool? isChannelPost,
     bool? isPaidStarSuggestedPost,
-    bool? isPaidGramSuggestedPost,
+    bool? isPaidTonSuggestedPost,
     bool? containsUnreadMention,
     bool? containsUnreadPollVotes,
     int? date,
@@ -9743,12 +9560,10 @@ extension MessageExtensions on Message {
     String? summaryLanguageCode,
     MessageContent? content,
     ReplyMarkup? replyMarkup,
-    int? ephemeralMessageId,
   }) =>
       Message(
         id: id ?? this.id,
         senderId: senderId ?? this.senderId,
-        receiverId: receiverId ?? this.receiverId,
         chatId: chatId ?? this.chatId,
         sendingState: sendingState ?? this.sendingState,
         schedulingState: schedulingState ?? this.schedulingState,
@@ -9760,8 +9575,8 @@ extension MessageExtensions on Message {
         isChannelPost: isChannelPost ?? this.isChannelPost,
         isPaidStarSuggestedPost:
             isPaidStarSuggestedPost ?? this.isPaidStarSuggestedPost,
-        isPaidGramSuggestedPost:
-            isPaidGramSuggestedPost ?? this.isPaidGramSuggestedPost,
+        isPaidTonSuggestedPost:
+            isPaidTonSuggestedPost ?? this.isPaidTonSuggestedPost,
         containsUnreadMention:
             containsUnreadMention ?? this.containsUnreadMention,
         containsUnreadPollVotes:
@@ -9793,7 +9608,6 @@ extension MessageExtensions on Message {
         summaryLanguageCode: summaryLanguageCode ?? this.summaryLanguageCode,
         content: content ?? this.content,
         replyMarkup: replyMarkup ?? this.replyMarkup,
-        ephemeralMessageId: ephemeralMessageId ?? this.ephemeralMessageId,
       );
 }
 
@@ -12466,25 +12280,24 @@ extension RichTextExtensions on RichText {
     required TResult Function(RichTextUnderline value) underline,
     required TResult Function(RichTextStrikethrough value) strikethrough,
     required TResult Function(RichTextSpoiler value) spoiler,
-    required TResult Function(RichTextSubscript value) subscript,
-    required TResult Function(RichTextSuperscript value) superscript,
-    required TResult Function(RichTextMarked value) marked,
     required TResult Function(RichTextDateTime value) dateTime,
     required TResult Function(RichTextMention value) mention,
     required TResult Function(RichTextHashtag value) hashtag,
     required TResult Function(RichTextCashtag value) cashtag,
-    required TResult Function(RichTextBankCardNumber value) bankCardNumber,
     required TResult Function(RichTextBotCommand value) botCommand,
     required TResult Function(RichTextFixed value) fixed,
     required TResult Function(RichTextMentionName value) mentionName,
     required TResult Function(RichTextUrl value) url,
     required TResult Function(RichTextEmailAddress value) emailAddress,
+    required TResult Function(RichTextBankCardNumber value) bankCardNumber,
+    required TResult Function(RichTextSubscript value) subscript,
+    required TResult Function(RichTextSuperscript value) superscript,
+    required TResult Function(RichTextMarked value) marked,
     required TResult Function(RichTextPhoneNumber value) phoneNumber,
     required TResult Function(RichTextCustomEmoji value) customEmoji,
     required TResult Function(RichTextIcon value) icon,
     required TResult Function(RichTextMathematicalExpression value)
         mathematicalExpression,
-    required TResult Function(RichTextDiff value) diff,
     required TResult Function(RichTextReference value) reference,
     required TResult Function(RichTextReferenceLink value) referenceLink,
     required TResult Function(RichTextAnchor value) anchor,
@@ -12504,12 +12317,6 @@ extension RichTextExtensions on RichText {
         return strikethrough.call(this as RichTextStrikethrough);
       case RichTextSpoiler.constructor:
         return spoiler.call(this as RichTextSpoiler);
-      case RichTextSubscript.constructor:
-        return subscript.call(this as RichTextSubscript);
-      case RichTextSuperscript.constructor:
-        return superscript.call(this as RichTextSuperscript);
-      case RichTextMarked.constructor:
-        return marked.call(this as RichTextMarked);
       case RichTextDateTime.constructor:
         return dateTime.call(this as RichTextDateTime);
       case RichTextMention.constructor:
@@ -12518,8 +12325,6 @@ extension RichTextExtensions on RichText {
         return hashtag.call(this as RichTextHashtag);
       case RichTextCashtag.constructor:
         return cashtag.call(this as RichTextCashtag);
-      case RichTextBankCardNumber.constructor:
-        return bankCardNumber.call(this as RichTextBankCardNumber);
       case RichTextBotCommand.constructor:
         return botCommand.call(this as RichTextBotCommand);
       case RichTextFixed.constructor:
@@ -12530,6 +12335,14 @@ extension RichTextExtensions on RichText {
         return url.call(this as RichTextUrl);
       case RichTextEmailAddress.constructor:
         return emailAddress.call(this as RichTextEmailAddress);
+      case RichTextBankCardNumber.constructor:
+        return bankCardNumber.call(this as RichTextBankCardNumber);
+      case RichTextSubscript.constructor:
+        return subscript.call(this as RichTextSubscript);
+      case RichTextSuperscript.constructor:
+        return superscript.call(this as RichTextSuperscript);
+      case RichTextMarked.constructor:
+        return marked.call(this as RichTextMarked);
       case RichTextPhoneNumber.constructor:
         return phoneNumber.call(this as RichTextPhoneNumber);
       case RichTextCustomEmoji.constructor:
@@ -12539,8 +12352,6 @@ extension RichTextExtensions on RichText {
       case RichTextMathematicalExpression.constructor:
         return mathematicalExpression
             .call(this as RichTextMathematicalExpression);
-      case RichTextDiff.constructor:
-        return diff.call(this as RichTextDiff);
       case RichTextReference.constructor:
         return reference.call(this as RichTextReference);
       case RichTextReferenceLink.constructor:
@@ -12562,25 +12373,24 @@ extension RichTextExtensions on RichText {
     TResult Function(RichTextUnderline value)? underline,
     TResult Function(RichTextStrikethrough value)? strikethrough,
     TResult Function(RichTextSpoiler value)? spoiler,
-    TResult Function(RichTextSubscript value)? subscript,
-    TResult Function(RichTextSuperscript value)? superscript,
-    TResult Function(RichTextMarked value)? marked,
     TResult Function(RichTextDateTime value)? dateTime,
     TResult Function(RichTextMention value)? mention,
     TResult Function(RichTextHashtag value)? hashtag,
     TResult Function(RichTextCashtag value)? cashtag,
-    TResult Function(RichTextBankCardNumber value)? bankCardNumber,
     TResult Function(RichTextBotCommand value)? botCommand,
     TResult Function(RichTextFixed value)? fixed,
     TResult Function(RichTextMentionName value)? mentionName,
     TResult Function(RichTextUrl value)? url,
     TResult Function(RichTextEmailAddress value)? emailAddress,
+    TResult Function(RichTextBankCardNumber value)? bankCardNumber,
+    TResult Function(RichTextSubscript value)? subscript,
+    TResult Function(RichTextSuperscript value)? superscript,
+    TResult Function(RichTextMarked value)? marked,
     TResult Function(RichTextPhoneNumber value)? phoneNumber,
     TResult Function(RichTextCustomEmoji value)? customEmoji,
     TResult Function(RichTextIcon value)? icon,
     TResult Function(RichTextMathematicalExpression value)?
         mathematicalExpression,
-    TResult Function(RichTextDiff value)? diff,
     TResult Function(RichTextReference value)? reference,
     TResult Function(RichTextReferenceLink value)? referenceLink,
     TResult Function(RichTextAnchor value)? anchor,
@@ -12619,21 +12429,6 @@ extension RichTextExtensions on RichText {
           return spoiler.call(this as RichTextSpoiler);
         }
         break;
-      case RichTextSubscript.constructor:
-        if (subscript != null) {
-          return subscript.call(this as RichTextSubscript);
-        }
-        break;
-      case RichTextSuperscript.constructor:
-        if (superscript != null) {
-          return superscript.call(this as RichTextSuperscript);
-        }
-        break;
-      case RichTextMarked.constructor:
-        if (marked != null) {
-          return marked.call(this as RichTextMarked);
-        }
-        break;
       case RichTextDateTime.constructor:
         if (dateTime != null) {
           return dateTime.call(this as RichTextDateTime);
@@ -12652,11 +12447,6 @@ extension RichTextExtensions on RichText {
       case RichTextCashtag.constructor:
         if (cashtag != null) {
           return cashtag.call(this as RichTextCashtag);
-        }
-        break;
-      case RichTextBankCardNumber.constructor:
-        if (bankCardNumber != null) {
-          return bankCardNumber.call(this as RichTextBankCardNumber);
         }
         break;
       case RichTextBotCommand.constructor:
@@ -12684,6 +12474,26 @@ extension RichTextExtensions on RichText {
           return emailAddress.call(this as RichTextEmailAddress);
         }
         break;
+      case RichTextBankCardNumber.constructor:
+        if (bankCardNumber != null) {
+          return bankCardNumber.call(this as RichTextBankCardNumber);
+        }
+        break;
+      case RichTextSubscript.constructor:
+        if (subscript != null) {
+          return subscript.call(this as RichTextSubscript);
+        }
+        break;
+      case RichTextSuperscript.constructor:
+        if (superscript != null) {
+          return superscript.call(this as RichTextSuperscript);
+        }
+        break;
+      case RichTextMarked.constructor:
+        if (marked != null) {
+          return marked.call(this as RichTextMarked);
+        }
+        break;
       case RichTextPhoneNumber.constructor:
         if (phoneNumber != null) {
           return phoneNumber.call(this as RichTextPhoneNumber);
@@ -12703,11 +12513,6 @@ extension RichTextExtensions on RichText {
         if (mathematicalExpression != null) {
           return mathematicalExpression
               .call(this as RichTextMathematicalExpression);
-        }
-        break;
-      case RichTextDiff.constructor:
-        if (diff != null) {
-          return diff.call(this as RichTextDiff);
         }
         break;
       case RichTextReference.constructor:
@@ -12794,33 +12599,6 @@ extension RichTextSpoilerExtensions on RichTextSpoiler {
       );
 }
 
-extension RichTextSubscriptExtensions on RichTextSubscript {
-  RichTextSubscript copyWith({
-    RichText? text,
-  }) =>
-      RichTextSubscript(
-        text: text ?? this.text,
-      );
-}
-
-extension RichTextSuperscriptExtensions on RichTextSuperscript {
-  RichTextSuperscript copyWith({
-    RichText? text,
-  }) =>
-      RichTextSuperscript(
-        text: text ?? this.text,
-      );
-}
-
-extension RichTextMarkedExtensions on RichTextMarked {
-  RichTextMarked copyWith({
-    RichText? text,
-  }) =>
-      RichTextMarked(
-        text: text ?? this.text,
-      );
-}
-
 extension RichTextDateTimeExtensions on RichTextDateTime {
   RichTextDateTime copyWith({
     RichText? text,
@@ -12864,17 +12642,6 @@ extension RichTextCashtagExtensions on RichTextCashtag {
       RichTextCashtag(
         text: text ?? this.text,
         cashtag: cashtag ?? this.cashtag,
-      );
-}
-
-extension RichTextBankCardNumberExtensions on RichTextBankCardNumber {
-  RichTextBankCardNumber copyWith({
-    RichText? text,
-    String? bankCardNumber,
-  }) =>
-      RichTextBankCardNumber(
-        text: text ?? this.text,
-        bankCardNumber: bankCardNumber ?? this.bankCardNumber,
       );
 }
 
@@ -12933,6 +12700,44 @@ extension RichTextEmailAddressExtensions on RichTextEmailAddress {
       );
 }
 
+extension RichTextBankCardNumberExtensions on RichTextBankCardNumber {
+  RichTextBankCardNumber copyWith({
+    RichText? text,
+    String? bankCardNumber,
+  }) =>
+      RichTextBankCardNumber(
+        text: text ?? this.text,
+        bankCardNumber: bankCardNumber ?? this.bankCardNumber,
+      );
+}
+
+extension RichTextSubscriptExtensions on RichTextSubscript {
+  RichTextSubscript copyWith({
+    RichText? text,
+  }) =>
+      RichTextSubscript(
+        text: text ?? this.text,
+      );
+}
+
+extension RichTextSuperscriptExtensions on RichTextSuperscript {
+  RichTextSuperscript copyWith({
+    RichText? text,
+  }) =>
+      RichTextSuperscript(
+        text: text ?? this.text,
+      );
+}
+
+extension RichTextMarkedExtensions on RichTextMarked {
+  RichTextMarked copyWith({
+    RichText? text,
+  }) =>
+      RichTextMarked(
+        text: text ?? this.text,
+      );
+}
+
 extension RichTextPhoneNumberExtensions on RichTextPhoneNumber {
   RichTextPhoneNumber copyWith({
     RichText? text,
@@ -12975,17 +12780,6 @@ extension RichTextMathematicalExpressionExtensions
   }) =>
       RichTextMathematicalExpression(
         expression: expression ?? this.expression,
-      );
-}
-
-extension RichTextDiffExtensions on RichTextDiff {
-  RichTextDiff copyWith({
-    RichText? text,
-    RichText? oldText,
-  }) =>
-      RichTextDiff(
-        text: text ?? this.text,
-        oldText: oldText ?? this.oldText,
       );
 }
 
@@ -13066,23 +12860,6 @@ extension PageBlockListItemExtensions on PageBlockListItem {
   }) =>
       PageBlockListItem(
         label: label ?? this.label,
-        blocks: blocks ?? this.blocks,
-        hasCheckbox: hasCheckbox ?? this.hasCheckbox,
-        isChecked: isChecked ?? this.isChecked,
-        value: value ?? this.value,
-        type: type ?? this.type,
-      );
-}
-
-extension InputPageBlockListItemExtensions on InputPageBlockListItem {
-  InputPageBlockListItem copyWith({
-    List<InputPageBlock>? blocks,
-    bool? hasCheckbox,
-    bool? isChecked,
-    int? value,
-    String? type,
-  }) =>
-      InputPageBlockListItem(
         blocks: blocks ?? this.blocks,
         hasCheckbox: hasCheckbox ?? this.hasCheckbox,
         isChecked: isChecked ?? this.isChecked,
@@ -14788,7 +14565,6 @@ extension CountryInfoExtensions on CountryInfo {
     String? countryCode,
     String? name,
     String? englishName,
-    String? flagEmoji,
     bool? isHidden,
     List<String>? callingCodes,
   }) =>
@@ -14796,7 +14572,6 @@ extension CountryInfoExtensions on CountryInfo {
         countryCode: countryCode ?? this.countryCode,
         name: name ?? this.name,
         englishName: englishName ?? this.englishName,
-        flagEmoji: flagEmoji ?? this.flagEmoji,
         isHidden: isHidden ?? this.isHidden,
         callingCodes: callingCodes ?? this.callingCodes,
       );
@@ -17184,10 +16959,6 @@ extension MessageContentExtensions on MessageContent {
         messageChatJoinByRequest,
     required TResult Function(MessageChatDeleteMember value)
         messageChatDeleteMember,
-    required TResult Function(MessageChatAddedToCommunity value)
-        messageChatAddedToCommunity,
-    required TResult Function(MessageChatRemovedFromCommunity value)
-        messageChatRemovedFromCommunity,
     required TResult Function(MessageChatUpgradeTo value) messageChatUpgradeTo,
     required TResult Function(MessageChatUpgradeFrom value)
         messageChatUpgradeFrom,
@@ -17386,12 +17157,6 @@ extension MessageContentExtensions on MessageContent {
         return messageChatJoinByRequest.call(this as MessageChatJoinByRequest);
       case MessageChatDeleteMember.constructor:
         return messageChatDeleteMember.call(this as MessageChatDeleteMember);
-      case MessageChatAddedToCommunity.constructor:
-        return messageChatAddedToCommunity
-            .call(this as MessageChatAddedToCommunity);
-      case MessageChatRemovedFromCommunity.constructor:
-        return messageChatRemovedFromCommunity
-            .call(this as MessageChatRemovedFromCommunity);
       case MessageChatUpgradeTo.constructor:
         return messageChatUpgradeTo.call(this as MessageChatUpgradeTo);
       case MessageChatUpgradeFrom.constructor:
@@ -17582,10 +17347,6 @@ extension MessageContentExtensions on MessageContent {
     TResult Function(MessageChatJoinByLink value)? messageChatJoinByLink,
     TResult Function(MessageChatJoinByRequest value)? messageChatJoinByRequest,
     TResult Function(MessageChatDeleteMember value)? messageChatDeleteMember,
-    TResult Function(MessageChatAddedToCommunity value)?
-        messageChatAddedToCommunity,
-    TResult Function(MessageChatRemovedFromCommunity value)?
-        messageChatRemovedFromCommunity,
     TResult Function(MessageChatUpgradeTo value)? messageChatUpgradeTo,
     TResult Function(MessageChatUpgradeFrom value)? messageChatUpgradeFrom,
     TResult Function(MessagePinMessage value)? messagePinMessage,
@@ -17912,18 +17673,6 @@ extension MessageContentExtensions on MessageContent {
       case MessageChatDeleteMember.constructor:
         if (messageChatDeleteMember != null) {
           return messageChatDeleteMember.call(this as MessageChatDeleteMember);
-        }
-        break;
-      case MessageChatAddedToCommunity.constructor:
-        if (messageChatAddedToCommunity != null) {
-          return messageChatAddedToCommunity
-              .call(this as MessageChatAddedToCommunity);
-        }
-        break;
-      case MessageChatRemovedFromCommunity.constructor:
-        if (messageChatRemovedFromCommunity != null) {
-          return messageChatRemovedFromCommunity
-              .call(this as MessageChatRemovedFromCommunity);
         }
         break;
       case MessageChatUpgradeTo.constructor:
@@ -18488,15 +18237,15 @@ extension MessageStakeDiceExtensions on MessageStakeDice {
     DiceStickers? initialState,
     DiceStickers? finalState,
     int? value,
-    int? stakeGramAmount,
-    int? prizeGramAmount,
+    int? stakeToncoinAmount,
+    int? prizeToncoinAmount,
   }) =>
       MessageStakeDice(
         initialState: initialState ?? this.initialState,
         finalState: finalState ?? this.finalState,
         value: value ?? this.value,
-        stakeGramAmount: stakeGramAmount ?? this.stakeGramAmount,
-        prizeGramAmount: prizeGramAmount ?? this.prizeGramAmount,
+        stakeToncoinAmount: stakeToncoinAmount ?? this.stakeToncoinAmount,
+        prizeToncoinAmount: prizeToncoinAmount ?? this.prizeToncoinAmount,
       );
 }
 
@@ -18745,15 +18494,6 @@ extension MessageChatDeleteMemberExtensions on MessageChatDeleteMember {
   }) =>
       MessageChatDeleteMember(
         userId: userId ?? this.userId,
-      );
-}
-
-extension MessageChatAddedToCommunityExtensions on MessageChatAddedToCommunity {
-  MessageChatAddedToCommunity copyWith({
-    int? communityId,
-  }) =>
-      MessageChatAddedToCommunity(
-        communityId: communityId ?? this.communityId,
       );
 }
 
@@ -19158,14 +18898,14 @@ extension MessageGiftedTonExtensions on MessageGiftedTon {
   MessageGiftedTon copyWith({
     int? gifterUserId,
     int? receiverUserId,
-    int? gramAmount,
+    int? tonAmount,
     String? transactionId,
     Sticker? sticker,
   }) =>
       MessageGiftedTon(
         gifterUserId: gifterUserId ?? this.gifterUserId,
         receiverUserId: receiverUserId ?? this.receiverUserId,
-        gramAmount: gramAmount ?? this.gramAmount,
+        tonAmount: tonAmount ?? this.tonAmount,
         transactionId: transactionId ?? this.transactionId,
         sticker: sticker ?? this.sticker,
       );
@@ -19423,13 +19163,13 @@ extension MessageSuggestedPostPaidExtensions on MessageSuggestedPostPaid {
   MessageSuggestedPostPaid copyWith({
     int? suggestedPostMessageId,
     StarAmount? starAmount,
-    int? gramAmount,
+    int? tonAmount,
   }) =>
       MessageSuggestedPostPaid(
         suggestedPostMessageId:
             suggestedPostMessageId ?? this.suggestedPostMessageId,
         starAmount: starAmount ?? this.starAmount,
-        gramAmount: gramAmount ?? this.gramAmount,
+        tonAmount: tonAmount ?? this.tonAmount,
       );
 }
 
@@ -20047,21 +19787,6 @@ extension InputPhotoExtensions on InputPhoto {
       );
 }
 
-extension InputStickerExtensions on InputSticker {
-  InputSticker copyWith({
-    InputFile? sticker,
-    InputThumbnail? thumbnail,
-    int? width,
-    int? height,
-  }) =>
-      InputSticker(
-        sticker: sticker ?? this.sticker,
-        thumbnail: thumbnail ?? this.thumbnail,
-        width: width ?? this.width,
-        height: height ?? this.height,
-      );
-}
-
 extension InputVideoExtensions on InputVideo {
   InputVideo copyWith({
     InputFile? video,
@@ -20084,34 +19809,6 @@ extension InputVideoExtensions on InputVideo {
         width: width ?? this.width,
         height: height ?? this.height,
         supportsStreaming: supportsStreaming ?? this.supportsStreaming,
-      );
-}
-
-extension InputVideoNoteExtensions on InputVideoNote {
-  InputVideoNote copyWith({
-    InputFile? videoNote,
-    InputThumbnail? thumbnail,
-    int? duration,
-    int? length,
-  }) =>
-      InputVideoNote(
-        videoNote: videoNote ?? this.videoNote,
-        thumbnail: thumbnail ?? this.thumbnail,
-        duration: duration ?? this.duration,
-        length: length ?? this.length,
-      );
-}
-
-extension InputVoiceNoteExtensions on InputVoiceNote {
-  InputVoiceNote copyWith({
-    InputFile? voiceNote,
-    int? duration,
-    String? waveform,
-  }) =>
-      InputVoiceNote(
-        voiceNote: voiceNote ?? this.voiceNote,
-        duration: duration ?? this.duration,
-        waveform: waveform ?? this.waveform,
       );
 }
 
@@ -20515,10 +20212,16 @@ extension InputPollMediaPhotoExtensions on InputPollMediaPhoto {
 
 extension InputPollMediaStickerExtensions on InputPollMediaSticker {
   InputPollMediaSticker copyWith({
-    InputSticker? sticker,
+    InputFile? sticker,
+    InputThumbnail? thumbnail,
+    int? width,
+    int? height,
   }) =>
       InputPollMediaSticker(
         sticker: sticker ?? this.sticker,
+        thumbnail: thumbnail ?? this.thumbnail,
+        width: width ?? this.width,
+        height: height ?? this.height,
       );
 }
 
@@ -20537,445 +20240,6 @@ extension InputPollMediaVideoExtensions on InputPollMediaVideo {
   }) =>
       InputPollMediaVideo(
         video: video ?? this.video,
-      );
-}
-
-extension InputPageBlockExtensions on InputPageBlock {
-  TResult map<TResult extends Object?>({
-    required TResult Function(InputPageBlockSectionHeading value)
-        sectionHeading,
-    required TResult Function(InputPageBlockParagraph value) paragraph,
-    required TResult Function(InputPageBlockPreformatted value) preformatted,
-    required TResult Function(InputPageBlockFooter value) footer,
-    required TResult Function(InputPageBlockThinking value) thinking,
-    required TResult Function(InputPageBlockDivider value) divider,
-    required TResult Function(InputPageBlockMathematicalExpression value)
-        mathematicalExpression,
-    required TResult Function(InputPageBlockAnchor value) anchor,
-    required TResult Function(InputPageBlockList value) list,
-    required TResult Function(InputPageBlockBlockQuote value) blockQuote,
-    required TResult Function(InputPageBlockPullQuote value) pullQuote,
-    required TResult Function(InputPageBlockAnimation value) animation,
-    required TResult Function(InputPageBlockAudio value) audio,
-    required TResult Function(InputPageBlockPhoto value) photo,
-    required TResult Function(InputPageBlockVideo value) video,
-    required TResult Function(InputPageBlockVoiceNote value) voiceNote,
-    required TResult Function(InputPageBlockCollage value) collage,
-    required TResult Function(InputPageBlockSlideshow value) slideshow,
-    required TResult Function(InputPageBlockTable value) table,
-    required TResult Function(InputPageBlockDetails value) details,
-    required TResult Function(InputPageBlockMap value) map,
-  }) {
-    switch (getConstructor()) {
-      case InputPageBlockSectionHeading.constructor:
-        return sectionHeading.call(this as InputPageBlockSectionHeading);
-      case InputPageBlockParagraph.constructor:
-        return paragraph.call(this as InputPageBlockParagraph);
-      case InputPageBlockPreformatted.constructor:
-        return preformatted.call(this as InputPageBlockPreformatted);
-      case InputPageBlockFooter.constructor:
-        return footer.call(this as InputPageBlockFooter);
-      case InputPageBlockThinking.constructor:
-        return thinking.call(this as InputPageBlockThinking);
-      case InputPageBlockDivider.constructor:
-        return divider.call(this as InputPageBlockDivider);
-      case InputPageBlockMathematicalExpression.constructor:
-        return mathematicalExpression
-            .call(this as InputPageBlockMathematicalExpression);
-      case InputPageBlockAnchor.constructor:
-        return anchor.call(this as InputPageBlockAnchor);
-      case InputPageBlockList.constructor:
-        return list.call(this as InputPageBlockList);
-      case InputPageBlockBlockQuote.constructor:
-        return blockQuote.call(this as InputPageBlockBlockQuote);
-      case InputPageBlockPullQuote.constructor:
-        return pullQuote.call(this as InputPageBlockPullQuote);
-      case InputPageBlockAnimation.constructor:
-        return animation.call(this as InputPageBlockAnimation);
-      case InputPageBlockAudio.constructor:
-        return audio.call(this as InputPageBlockAudio);
-      case InputPageBlockPhoto.constructor:
-        return photo.call(this as InputPageBlockPhoto);
-      case InputPageBlockVideo.constructor:
-        return video.call(this as InputPageBlockVideo);
-      case InputPageBlockVoiceNote.constructor:
-        return voiceNote.call(this as InputPageBlockVoiceNote);
-      case InputPageBlockCollage.constructor:
-        return collage.call(this as InputPageBlockCollage);
-      case InputPageBlockSlideshow.constructor:
-        return slideshow.call(this as InputPageBlockSlideshow);
-      case InputPageBlockTable.constructor:
-        return table.call(this as InputPageBlockTable);
-      case InputPageBlockDetails.constructor:
-        return details.call(this as InputPageBlockDetails);
-      case InputPageBlockMap.constructor:
-        return map.call(this as InputPageBlockMap);
-    }
-    throw StateError('not handled type Generator');
-  }
-
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(InputPageBlockSectionHeading value)? sectionHeading,
-    TResult Function(InputPageBlockParagraph value)? paragraph,
-    TResult Function(InputPageBlockPreformatted value)? preformatted,
-    TResult Function(InputPageBlockFooter value)? footer,
-    TResult Function(InputPageBlockThinking value)? thinking,
-    TResult Function(InputPageBlockDivider value)? divider,
-    TResult Function(InputPageBlockMathematicalExpression value)?
-        mathematicalExpression,
-    TResult Function(InputPageBlockAnchor value)? anchor,
-    TResult Function(InputPageBlockList value)? list,
-    TResult Function(InputPageBlockBlockQuote value)? blockQuote,
-    TResult Function(InputPageBlockPullQuote value)? pullQuote,
-    TResult Function(InputPageBlockAnimation value)? animation,
-    TResult Function(InputPageBlockAudio value)? audio,
-    TResult Function(InputPageBlockPhoto value)? photo,
-    TResult Function(InputPageBlockVideo value)? video,
-    TResult Function(InputPageBlockVoiceNote value)? voiceNote,
-    TResult Function(InputPageBlockCollage value)? collage,
-    TResult Function(InputPageBlockSlideshow value)? slideshow,
-    TResult Function(InputPageBlockTable value)? table,
-    TResult Function(InputPageBlockDetails value)? details,
-    TResult Function(InputPageBlockMap value)? map,
-    required TResult Function() orElse,
-  }) {
-    switch (getConstructor()) {
-      case InputPageBlockSectionHeading.constructor:
-        if (sectionHeading != null) {
-          return sectionHeading.call(this as InputPageBlockSectionHeading);
-        }
-        break;
-      case InputPageBlockParagraph.constructor:
-        if (paragraph != null) {
-          return paragraph.call(this as InputPageBlockParagraph);
-        }
-        break;
-      case InputPageBlockPreformatted.constructor:
-        if (preformatted != null) {
-          return preformatted.call(this as InputPageBlockPreformatted);
-        }
-        break;
-      case InputPageBlockFooter.constructor:
-        if (footer != null) {
-          return footer.call(this as InputPageBlockFooter);
-        }
-        break;
-      case InputPageBlockThinking.constructor:
-        if (thinking != null) {
-          return thinking.call(this as InputPageBlockThinking);
-        }
-        break;
-      case InputPageBlockDivider.constructor:
-        if (divider != null) {
-          return divider.call(this as InputPageBlockDivider);
-        }
-        break;
-      case InputPageBlockMathematicalExpression.constructor:
-        if (mathematicalExpression != null) {
-          return mathematicalExpression
-              .call(this as InputPageBlockMathematicalExpression);
-        }
-        break;
-      case InputPageBlockAnchor.constructor:
-        if (anchor != null) {
-          return anchor.call(this as InputPageBlockAnchor);
-        }
-        break;
-      case InputPageBlockList.constructor:
-        if (list != null) {
-          return list.call(this as InputPageBlockList);
-        }
-        break;
-      case InputPageBlockBlockQuote.constructor:
-        if (blockQuote != null) {
-          return blockQuote.call(this as InputPageBlockBlockQuote);
-        }
-        break;
-      case InputPageBlockPullQuote.constructor:
-        if (pullQuote != null) {
-          return pullQuote.call(this as InputPageBlockPullQuote);
-        }
-        break;
-      case InputPageBlockAnimation.constructor:
-        if (animation != null) {
-          return animation.call(this as InputPageBlockAnimation);
-        }
-        break;
-      case InputPageBlockAudio.constructor:
-        if (audio != null) {
-          return audio.call(this as InputPageBlockAudio);
-        }
-        break;
-      case InputPageBlockPhoto.constructor:
-        if (photo != null) {
-          return photo.call(this as InputPageBlockPhoto);
-        }
-        break;
-      case InputPageBlockVideo.constructor:
-        if (video != null) {
-          return video.call(this as InputPageBlockVideo);
-        }
-        break;
-      case InputPageBlockVoiceNote.constructor:
-        if (voiceNote != null) {
-          return voiceNote.call(this as InputPageBlockVoiceNote);
-        }
-        break;
-      case InputPageBlockCollage.constructor:
-        if (collage != null) {
-          return collage.call(this as InputPageBlockCollage);
-        }
-        break;
-      case InputPageBlockSlideshow.constructor:
-        if (slideshow != null) {
-          return slideshow.call(this as InputPageBlockSlideshow);
-        }
-        break;
-      case InputPageBlockTable.constructor:
-        if (table != null) {
-          return table.call(this as InputPageBlockTable);
-        }
-        break;
-      case InputPageBlockDetails.constructor:
-        if (details != null) {
-          return details.call(this as InputPageBlockDetails);
-        }
-        break;
-      case InputPageBlockMap.constructor:
-        if (map != null) {
-          return map.call(this as InputPageBlockMap);
-        }
-        break;
-    }
-    return orElse.call();
-  }
-}
-
-extension InputPageBlockSectionHeadingExtensions
-    on InputPageBlockSectionHeading {
-  InputPageBlockSectionHeading copyWith({
-    RichText? text,
-    int? size,
-  }) =>
-      InputPageBlockSectionHeading(
-        text: text ?? this.text,
-        size: size ?? this.size,
-      );
-}
-
-extension InputPageBlockParagraphExtensions on InputPageBlockParagraph {
-  InputPageBlockParagraph copyWith({
-    RichText? text,
-  }) =>
-      InputPageBlockParagraph(
-        text: text ?? this.text,
-      );
-}
-
-extension InputPageBlockPreformattedExtensions on InputPageBlockPreformatted {
-  InputPageBlockPreformatted copyWith({
-    RichText? text,
-    String? language,
-  }) =>
-      InputPageBlockPreformatted(
-        text: text ?? this.text,
-        language: language ?? this.language,
-      );
-}
-
-extension InputPageBlockFooterExtensions on InputPageBlockFooter {
-  InputPageBlockFooter copyWith({
-    RichText? footer,
-  }) =>
-      InputPageBlockFooter(
-        footer: footer ?? this.footer,
-      );
-}
-
-extension InputPageBlockThinkingExtensions on InputPageBlockThinking {
-  InputPageBlockThinking copyWith({
-    RichText? text,
-  }) =>
-      InputPageBlockThinking(
-        text: text ?? this.text,
-      );
-}
-
-extension InputPageBlockMathematicalExpressionExtensions
-    on InputPageBlockMathematicalExpression {
-  InputPageBlockMathematicalExpression copyWith({
-    String? expression,
-  }) =>
-      InputPageBlockMathematicalExpression(
-        expression: expression ?? this.expression,
-      );
-}
-
-extension InputPageBlockAnchorExtensions on InputPageBlockAnchor {
-  InputPageBlockAnchor copyWith({
-    String? name,
-  }) =>
-      InputPageBlockAnchor(
-        name: name ?? this.name,
-      );
-}
-
-extension InputPageBlockListExtensions on InputPageBlockList {
-  InputPageBlockList copyWith({
-    List<InputPageBlockListItem>? items,
-  }) =>
-      InputPageBlockList(
-        items: items ?? this.items,
-      );
-}
-
-extension InputPageBlockBlockQuoteExtensions on InputPageBlockBlockQuote {
-  InputPageBlockBlockQuote copyWith({
-    List<InputPageBlock>? blocks,
-    RichText? credit,
-  }) =>
-      InputPageBlockBlockQuote(
-        blocks: blocks ?? this.blocks,
-        credit: credit ?? this.credit,
-      );
-}
-
-extension InputPageBlockPullQuoteExtensions on InputPageBlockPullQuote {
-  InputPageBlockPullQuote copyWith({
-    RichText? text,
-    RichText? credit,
-  }) =>
-      InputPageBlockPullQuote(
-        text: text ?? this.text,
-        credit: credit ?? this.credit,
-      );
-}
-
-extension InputPageBlockAnimationExtensions on InputPageBlockAnimation {
-  InputPageBlockAnimation copyWith({
-    InputAnimation? animation,
-    PageBlockCaption? caption,
-    bool? hasSpoiler,
-  }) =>
-      InputPageBlockAnimation(
-        animation: animation ?? this.animation,
-        caption: caption ?? this.caption,
-        hasSpoiler: hasSpoiler ?? this.hasSpoiler,
-      );
-}
-
-extension InputPageBlockAudioExtensions on InputPageBlockAudio {
-  InputPageBlockAudio copyWith({
-    InputAudio? audio,
-    PageBlockCaption? caption,
-  }) =>
-      InputPageBlockAudio(
-        audio: audio ?? this.audio,
-        caption: caption ?? this.caption,
-      );
-}
-
-extension InputPageBlockPhotoExtensions on InputPageBlockPhoto {
-  InputPageBlockPhoto copyWith({
-    InputPhoto? photo,
-    PageBlockCaption? caption,
-    bool? hasSpoiler,
-  }) =>
-      InputPageBlockPhoto(
-        photo: photo ?? this.photo,
-        caption: caption ?? this.caption,
-        hasSpoiler: hasSpoiler ?? this.hasSpoiler,
-      );
-}
-
-extension InputPageBlockVideoExtensions on InputPageBlockVideo {
-  InputPageBlockVideo copyWith({
-    InputVideo? video,
-    PageBlockCaption? caption,
-    bool? hasSpoiler,
-  }) =>
-      InputPageBlockVideo(
-        video: video ?? this.video,
-        caption: caption ?? this.caption,
-        hasSpoiler: hasSpoiler ?? this.hasSpoiler,
-      );
-}
-
-extension InputPageBlockVoiceNoteExtensions on InputPageBlockVoiceNote {
-  InputPageBlockVoiceNote copyWith({
-    InputVoiceNote? voiceNote,
-    PageBlockCaption? caption,
-  }) =>
-      InputPageBlockVoiceNote(
-        voiceNote: voiceNote ?? this.voiceNote,
-        caption: caption ?? this.caption,
-      );
-}
-
-extension InputPageBlockCollageExtensions on InputPageBlockCollage {
-  InputPageBlockCollage copyWith({
-    List<InputPageBlock>? blocks,
-    PageBlockCaption? caption,
-  }) =>
-      InputPageBlockCollage(
-        blocks: blocks ?? this.blocks,
-        caption: caption ?? this.caption,
-      );
-}
-
-extension InputPageBlockSlideshowExtensions on InputPageBlockSlideshow {
-  InputPageBlockSlideshow copyWith({
-    List<InputPageBlock>? blocks,
-    PageBlockCaption? caption,
-  }) =>
-      InputPageBlockSlideshow(
-        blocks: blocks ?? this.blocks,
-        caption: caption ?? this.caption,
-      );
-}
-
-extension InputPageBlockTableExtensions on InputPageBlockTable {
-  InputPageBlockTable copyWith({
-    RichText? caption,
-    List<List<PageBlockTableCell>>? cells,
-    bool? isBordered,
-    bool? isStriped,
-  }) =>
-      InputPageBlockTable(
-        caption: caption ?? this.caption,
-        cells: cells ?? this.cells,
-        isBordered: isBordered ?? this.isBordered,
-        isStriped: isStriped ?? this.isStriped,
-      );
-}
-
-extension InputPageBlockDetailsExtensions on InputPageBlockDetails {
-  InputPageBlockDetails copyWith({
-    RichText? header,
-    List<InputPageBlock>? blocks,
-    bool? isOpen,
-  }) =>
-      InputPageBlockDetails(
-        header: header ?? this.header,
-        blocks: blocks ?? this.blocks,
-        isOpen: isOpen ?? this.isOpen,
-      );
-}
-
-extension InputPageBlockMapExtensions on InputPageBlockMap {
-  InputPageBlockMap copyWith({
-    Location? location,
-    int? zoom,
-    int? width,
-    int? height,
-    PageBlockCaption? caption,
-  }) =>
-      InputPageBlockMap(
-        location: location ?? this.location,
-        zoom: zoom ?? this.zoom,
-        width: width ?? this.width,
-        height: height ?? this.height,
-        caption: caption ?? this.caption,
       );
 }
 
@@ -21313,11 +20577,17 @@ extension InputMessagePhotoExtensions on InputMessagePhoto {
 
 extension InputMessageStickerExtensions on InputMessageSticker {
   InputMessageSticker copyWith({
-    InputSticker? sticker,
+    InputFile? sticker,
+    InputThumbnail? thumbnail,
+    int? width,
+    int? height,
     String? emoji,
   }) =>
       InputMessageSticker(
         sticker: sticker ?? this.sticker,
+        thumbnail: thumbnail ?? this.thumbnail,
+        width: width ?? this.width,
+        height: height ?? this.height,
         emoji: emoji ?? this.emoji,
       );
 }
@@ -21342,23 +20612,33 @@ extension InputMessageVideoExtensions on InputMessageVideo {
 
 extension InputMessageVideoNoteExtensions on InputMessageVideoNote {
   InputMessageVideoNote copyWith({
-    InputVideoNote? videoNote,
+    InputFile? videoNote,
+    InputThumbnail? thumbnail,
+    int? duration,
+    int? length,
     MessageSelfDestructType? selfDestructType,
   }) =>
       InputMessageVideoNote(
         videoNote: videoNote ?? this.videoNote,
+        thumbnail: thumbnail ?? this.thumbnail,
+        duration: duration ?? this.duration,
+        length: length ?? this.length,
         selfDestructType: selfDestructType ?? this.selfDestructType,
       );
 }
 
 extension InputMessageVoiceNoteExtensions on InputMessageVoiceNote {
   InputMessageVoiceNote copyWith({
-    InputVoiceNote? voiceNote,
+    InputFile? voiceNote,
+    int? duration,
+    String? waveform,
     FormattedText? caption,
     MessageSelfDestructType? selfDestructType,
   }) =>
       InputMessageVoiceNote(
         voiceNote: voiceNote ?? this.voiceNote,
+        duration: duration ?? this.duration,
+        waveform: waveform ?? this.waveform,
         caption: caption ?? this.caption,
         selfDestructType: selfDestructType ?? this.selfDestructType,
       );
@@ -21497,12 +20777,12 @@ extension InputMessagePollExtensions on InputMessagePoll {
 extension InputMessageStakeDiceExtensions on InputMessageStakeDice {
   InputMessageStakeDice copyWith({
     String? stateHash,
-    int? stakeGramAmount,
+    int? stakeToncoinAmount,
     bool? clearDraft,
   }) =>
       InputMessageStakeDice(
         stateHash: stateHash ?? this.stateHash,
-        stakeGramAmount: stakeGramAmount ?? this.stakeGramAmount,
+        stakeToncoinAmount: stakeToncoinAmount ?? this.stakeToncoinAmount,
         clearDraft: clearDraft ?? this.clearDraft,
       );
 }
@@ -28352,7 +27632,6 @@ extension PremiumFeatureExtensions on PremiumFeature {
         protectPrivateChatContent,
     required TResult Function(PremiumFeatureTextComposition value)
         textComposition,
-    required TResult Function(PremiumFeatureRichMessages value) richMessages,
   }) {
     switch (getConstructor()) {
       case PremiumFeatureIncreasedLimits.constructor:
@@ -28417,8 +27696,6 @@ extension PremiumFeatureExtensions on PremiumFeature {
             .call(this as PremiumFeatureProtectPrivateChatContent);
       case PremiumFeatureTextComposition.constructor:
         return textComposition.call(this as PremiumFeatureTextComposition);
-      case PremiumFeatureRichMessages.constructor:
-        return richMessages.call(this as PremiumFeatureRichMessages);
     }
     throw StateError('not handled type Generator');
   }
@@ -28458,7 +27735,6 @@ extension PremiumFeatureExtensions on PremiumFeature {
     TResult Function(PremiumFeatureProtectPrivateChatContent value)?
         protectPrivateChatContent,
     TResult Function(PremiumFeatureTextComposition value)? textComposition,
-    TResult Function(PremiumFeatureRichMessages value)? richMessages,
     required TResult Function() orElse,
   }) {
     switch (getConstructor()) {
@@ -28608,11 +27884,6 @@ extension PremiumFeatureExtensions on PremiumFeature {
       case PremiumFeatureTextComposition.constructor:
         if (textComposition != null) {
           return textComposition.call(this as PremiumFeatureTextComposition);
-        }
-        break;
-      case PremiumFeatureRichMessages.constructor:
-        if (richMessages != null) {
-          return richMessages.call(this as PremiumFeatureRichMessages);
         }
         break;
     }
@@ -33233,7 +32504,7 @@ extension SettingsSectionExtensions on SettingsSection {
     required TResult Function(SettingsSectionInAppBrowser value) inAppBrowser,
     required TResult Function(SettingsSectionLanguage value) language,
     required TResult Function(SettingsSectionMyStars value) myStars,
-    required TResult Function(SettingsSectionMyGrams value) myGrams,
+    required TResult Function(SettingsSectionMyToncoins value) myToncoins,
     required TResult Function(SettingsSectionNotifications value) notifications,
     required TResult Function(SettingsSectionPowerSaving value) powerSaving,
     required TResult Function(SettingsSectionPremium value) premium,
@@ -33269,8 +32540,8 @@ extension SettingsSectionExtensions on SettingsSection {
         return language.call(this as SettingsSectionLanguage);
       case SettingsSectionMyStars.constructor:
         return myStars.call(this as SettingsSectionMyStars);
-      case SettingsSectionMyGrams.constructor:
-        return myGrams.call(this as SettingsSectionMyGrams);
+      case SettingsSectionMyToncoins.constructor:
+        return myToncoins.call(this as SettingsSectionMyToncoins);
       case SettingsSectionNotifications.constructor:
         return notifications.call(this as SettingsSectionNotifications);
       case SettingsSectionPowerSaving.constructor:
@@ -33305,7 +32576,7 @@ extension SettingsSectionExtensions on SettingsSection {
     TResult Function(SettingsSectionInAppBrowser value)? inAppBrowser,
     TResult Function(SettingsSectionLanguage value)? language,
     TResult Function(SettingsSectionMyStars value)? myStars,
-    TResult Function(SettingsSectionMyGrams value)? myGrams,
+    TResult Function(SettingsSectionMyToncoins value)? myToncoins,
     TResult Function(SettingsSectionNotifications value)? notifications,
     TResult Function(SettingsSectionPowerSaving value)? powerSaving,
     TResult Function(SettingsSectionPremium value)? premium,
@@ -33378,9 +32649,9 @@ extension SettingsSectionExtensions on SettingsSection {
           return myStars.call(this as SettingsSectionMyStars);
         }
         break;
-      case SettingsSectionMyGrams.constructor:
-        if (myGrams != null) {
-          return myGrams.call(this as SettingsSectionMyGrams);
+      case SettingsSectionMyToncoins.constructor:
+        if (myToncoins != null) {
+          return myToncoins.call(this as SettingsSectionMyToncoins);
         }
         break;
       case SettingsSectionNotifications.constructor:
@@ -36219,15 +35490,15 @@ extension AddedProxiesExtensions on AddedProxies {
       );
 }
 
-extension NewStickerExtensions on NewSticker {
-  NewSticker copyWith({
+extension InputStickerExtensions on InputSticker {
+  InputSticker copyWith({
     InputFile? sticker,
     StickerFormat? format,
     String? emojis,
     MaskPosition? maskPosition,
     List<String>? keywords,
   }) =>
-      NewSticker(
+      InputSticker(
         sticker: sticker ?? this.sticker,
         format: format ?? this.format,
         emojis: emojis ?? this.emojis,
@@ -36842,12 +36113,12 @@ extension ChatRevenueTransactionExtensions on ChatRevenueTransaction {
 
 extension ChatRevenueTransactionsExtensions on ChatRevenueTransactions {
   ChatRevenueTransactions copyWith({
-    int? gramAmount,
+    int? tonAmount,
     List<ChatRevenueTransaction>? transactions,
     String? nextOffset,
   }) =>
       ChatRevenueTransactions(
-        gramAmount: gramAmount ?? this.gramAmount,
+        tonAmount: tonAmount ?? this.tonAmount,
         transactions: transactions ?? this.transactions,
         nextOffset: nextOffset ?? this.nextOffset,
       );
@@ -36883,14 +36154,14 @@ extension StarRevenueStatisticsExtensions on StarRevenueStatistics {
       );
 }
 
-extension GramRevenueStatusExtensions on GramRevenueStatus {
-  GramRevenueStatus copyWith({
+extension TonRevenueStatusExtensions on TonRevenueStatus {
+  TonRevenueStatus copyWith({
     int? totalAmount,
     int? balanceAmount,
     int? availableAmount,
     bool? withdrawalEnabled,
   }) =>
-      GramRevenueStatus(
+      TonRevenueStatus(
         totalAmount: totalAmount ?? this.totalAmount,
         balanceAmount: balanceAmount ?? this.balanceAmount,
         availableAmount: availableAmount ?? this.availableAmount,
@@ -36898,13 +36169,13 @@ extension GramRevenueStatusExtensions on GramRevenueStatus {
       );
 }
 
-extension GramRevenueStatisticsExtensions on GramRevenueStatistics {
-  GramRevenueStatistics copyWith({
+extension TonRevenueStatisticsExtensions on TonRevenueStatistics {
+  TonRevenueStatistics copyWith({
     StatisticalGraph? revenueByDayGraph,
-    GramRevenueStatus? status,
+    TonRevenueStatus? status,
     double? usdRate,
   }) =>
-      GramRevenueStatistics(
+      TonRevenueStatistics(
         revenueByDayGraph: revenueByDayGraph ?? this.revenueByDayGraph,
         status: status ?? this.status,
         usdRate: usdRate ?? this.usdRate,
@@ -37269,7 +36540,6 @@ extension UpdateExtensions on Update {
     required TResult Function(UpdateDeleteMessages value) deleteMessages,
     required TResult Function(UpdateChatAction value) chatAction,
     required TResult Function(UpdatePendingMessage value) pendingMessage,
-    required TResult Function(UpdateCommunity value) community,
     required TResult Function(UpdateUserStatus value) userStatus,
     required TResult Function(UpdateUser value) user,
     required TResult Function(UpdateBasicGroup value) basicGroup,
@@ -37381,10 +36651,10 @@ extension UpdateExtensions on Update {
     required TResult Function(UpdateActiveLiveLocationMessages value)
         activeLiveLocationMessages,
     required TResult Function(UpdateOwnedStarCount value) ownedStarCount,
-    required TResult Function(UpdateOwnedGramCount value) ownedGramCount,
+    required TResult Function(UpdateOwnedTonCount value) ownedTonCount,
     required TResult Function(UpdateChatRevenueAmount value) chatRevenueAmount,
     required TResult Function(UpdateStarRevenueStatus value) starRevenueStatus,
-    required TResult Function(UpdateGramRevenueStatus value) gramRevenueStatus,
+    required TResult Function(UpdateTonRevenueStatus value) tonRevenueStatus,
     required TResult Function(UpdateSpeechRecognitionTrial value)
         speechRecognitionTrial,
     required TResult Function(UpdateGroupCallMessageLevels value)
@@ -37425,7 +36695,6 @@ extension UpdateExtensions on Update {
         newPreCheckoutQuery,
     required TResult Function(UpdateNewCustomEvent value) newCustomEvent,
     required TResult Function(UpdateNewCustomQuery value) newCustomQuery,
-    required TResult Function(UpdateUserSubscription value) userSubscription,
     required TResult Function(UpdatePoll value) poll,
     required TResult Function(UpdatePollAnswer value) pollAnswer,
     required TResult Function(UpdateManagedBot value) managedBot,
@@ -37607,8 +36876,6 @@ extension UpdateExtensions on Update {
         return chatAction.call(this as UpdateChatAction);
       case UpdatePendingMessage.constructor:
         return pendingMessage.call(this as UpdatePendingMessage);
-      case UpdateCommunity.constructor:
-        return community.call(this as UpdateCommunity);
       case UpdateUserStatus.constructor:
         return userStatus.call(this as UpdateUserStatus);
       case UpdateUser.constructor:
@@ -37766,14 +37033,14 @@ extension UpdateExtensions on Update {
             .call(this as UpdateActiveLiveLocationMessages);
       case UpdateOwnedStarCount.constructor:
         return ownedStarCount.call(this as UpdateOwnedStarCount);
-      case UpdateOwnedGramCount.constructor:
-        return ownedGramCount.call(this as UpdateOwnedGramCount);
+      case UpdateOwnedTonCount.constructor:
+        return ownedTonCount.call(this as UpdateOwnedTonCount);
       case UpdateChatRevenueAmount.constructor:
         return chatRevenueAmount.call(this as UpdateChatRevenueAmount);
       case UpdateStarRevenueStatus.constructor:
         return starRevenueStatus.call(this as UpdateStarRevenueStatus);
-      case UpdateGramRevenueStatus.constructor:
-        return gramRevenueStatus.call(this as UpdateGramRevenueStatus);
+      case UpdateTonRevenueStatus.constructor:
+        return tonRevenueStatus.call(this as UpdateTonRevenueStatus);
       case UpdateSpeechRecognitionTrial.constructor:
         return speechRecognitionTrial
             .call(this as UpdateSpeechRecognitionTrial);
@@ -37832,8 +37099,6 @@ extension UpdateExtensions on Update {
         return newCustomEvent.call(this as UpdateNewCustomEvent);
       case UpdateNewCustomQuery.constructor:
         return newCustomQuery.call(this as UpdateNewCustomQuery);
-      case UpdateUserSubscription.constructor:
-        return userSubscription.call(this as UpdateUserSubscription);
       case UpdatePoll.constructor:
         return poll.call(this as UpdatePoll);
       case UpdatePollAnswer.constructor:
@@ -37953,7 +37218,6 @@ extension UpdateExtensions on Update {
     TResult Function(UpdateDeleteMessages value)? deleteMessages,
     TResult Function(UpdateChatAction value)? chatAction,
     TResult Function(UpdatePendingMessage value)? pendingMessage,
-    TResult Function(UpdateCommunity value)? community,
     TResult Function(UpdateUserStatus value)? userStatus,
     TResult Function(UpdateUser value)? user,
     TResult Function(UpdateBasicGroup value)? basicGroup,
@@ -38039,10 +37303,10 @@ extension UpdateExtensions on Update {
     TResult Function(UpdateActiveLiveLocationMessages value)?
         activeLiveLocationMessages,
     TResult Function(UpdateOwnedStarCount value)? ownedStarCount,
-    TResult Function(UpdateOwnedGramCount value)? ownedGramCount,
+    TResult Function(UpdateOwnedTonCount value)? ownedTonCount,
     TResult Function(UpdateChatRevenueAmount value)? chatRevenueAmount,
     TResult Function(UpdateStarRevenueStatus value)? starRevenueStatus,
-    TResult Function(UpdateGramRevenueStatus value)? gramRevenueStatus,
+    TResult Function(UpdateTonRevenueStatus value)? tonRevenueStatus,
     TResult Function(UpdateSpeechRecognitionTrial value)?
         speechRecognitionTrial,
     TResult Function(UpdateGroupCallMessageLevels value)?
@@ -38076,7 +37340,6 @@ extension UpdateExtensions on Update {
     TResult Function(UpdateNewPreCheckoutQuery value)? newPreCheckoutQuery,
     TResult Function(UpdateNewCustomEvent value)? newCustomEvent,
     TResult Function(UpdateNewCustomQuery value)? newCustomQuery,
-    TResult Function(UpdateUserSubscription value)? userSubscription,
     TResult Function(UpdatePoll value)? poll,
     TResult Function(UpdatePollAnswer value)? pollAnswer,
     TResult Function(UpdateManagedBot value)? managedBot,
@@ -38474,11 +37737,6 @@ extension UpdateExtensions on Update {
           return pendingMessage.call(this as UpdatePendingMessage);
         }
         break;
-      case UpdateCommunity.constructor:
-        if (community != null) {
-          return community.call(this as UpdateCommunity);
-        }
-        break;
       case UpdateUserStatus.constructor:
         if (userStatus != null) {
           return userStatus.call(this as UpdateUserStatus);
@@ -38853,9 +38111,9 @@ extension UpdateExtensions on Update {
           return ownedStarCount.call(this as UpdateOwnedStarCount);
         }
         break;
-      case UpdateOwnedGramCount.constructor:
-        if (ownedGramCount != null) {
-          return ownedGramCount.call(this as UpdateOwnedGramCount);
+      case UpdateOwnedTonCount.constructor:
+        if (ownedTonCount != null) {
+          return ownedTonCount.call(this as UpdateOwnedTonCount);
         }
         break;
       case UpdateChatRevenueAmount.constructor:
@@ -38868,9 +38126,9 @@ extension UpdateExtensions on Update {
           return starRevenueStatus.call(this as UpdateStarRevenueStatus);
         }
         break;
-      case UpdateGramRevenueStatus.constructor:
-        if (gramRevenueStatus != null) {
-          return gramRevenueStatus.call(this as UpdateGramRevenueStatus);
+      case UpdateTonRevenueStatus.constructor:
+        if (tonRevenueStatus != null) {
+          return tonRevenueStatus.call(this as UpdateTonRevenueStatus);
         }
         break;
       case UpdateSpeechRecognitionTrial.constructor:
@@ -39008,11 +38266,6 @@ extension UpdateExtensions on Update {
       case UpdateNewCustomQuery.constructor:
         if (newCustomQuery != null) {
           return newCustomQuery.call(this as UpdateNewCustomQuery);
-        }
-        break;
-      case UpdateUserSubscription.constructor:
-        if (userSubscription != null) {
-          return userSubscription.call(this as UpdateUserSubscription);
         }
         break;
       case UpdatePoll.constructor:
@@ -39954,15 +39207,6 @@ extension UpdatePendingMessageExtensions on UpdatePendingMessage {
       );
 }
 
-extension UpdateCommunityExtensions on UpdateCommunity {
-  UpdateCommunity copyWith({
-    Community? community,
-  }) =>
-      UpdateCommunity(
-        community: community ?? this.community,
-      );
-}
-
 extension UpdateUserStatusExtensions on UpdateUserStatus {
   UpdateUserStatus copyWith({
     int? userId,
@@ -40758,12 +40002,12 @@ extension UpdateOwnedStarCountExtensions on UpdateOwnedStarCount {
       );
 }
 
-extension UpdateOwnedGramCountExtensions on UpdateOwnedGramCount {
-  UpdateOwnedGramCount copyWith({
-    int? gramAmount,
+extension UpdateOwnedTonCountExtensions on UpdateOwnedTonCount {
+  UpdateOwnedTonCount copyWith({
+    int? tonAmount,
   }) =>
-      UpdateOwnedGramCount(
-        gramAmount: gramAmount ?? this.gramAmount,
+      UpdateOwnedTonCount(
+        tonAmount: tonAmount ?? this.tonAmount,
       );
 }
 
@@ -40789,11 +40033,11 @@ extension UpdateStarRevenueStatusExtensions on UpdateStarRevenueStatus {
       );
 }
 
-extension UpdateGramRevenueStatusExtensions on UpdateGramRevenueStatus {
-  UpdateGramRevenueStatus copyWith({
-    GramRevenueStatus? status,
+extension UpdateTonRevenueStatusExtensions on UpdateTonRevenueStatus {
+  UpdateTonRevenueStatus copyWith({
+    TonRevenueStatus? status,
   }) =>
-      UpdateGramRevenueStatus(
+      UpdateTonRevenueStatus(
         status: status ?? this.status,
       );
 }
@@ -41124,23 +40368,6 @@ extension UpdateNewCustomQueryExtensions on UpdateNewCustomQuery {
         id: id ?? this.id,
         data: data ?? this.data,
         timeout: timeout ?? this.timeout,
-      );
-}
-
-extension UpdateUserSubscriptionExtensions on UpdateUserSubscription {
-  UpdateUserSubscription copyWith({
-    int? userId,
-    String? payload,
-    bool? isCanceled,
-    bool? isRestored,
-    bool? isPaymentFailed,
-  }) =>
-      UpdateUserSubscription(
-        userId: userId ?? this.userId,
-        payload: payload ?? this.payload,
-        isCanceled: isCanceled ?? this.isCanceled,
-        isRestored: isRestored ?? this.isRestored,
-        isPaymentFailed: isPaymentFailed ?? this.isPaymentFailed,
       );
 }
 
@@ -43151,19 +42378,6 @@ extension TranslateTextExtensions on TranslateText {
       );
 }
 
-extension TranslateRichMessageExtensions on TranslateRichMessage {
-  TranslateRichMessage copyWith({
-    InputRichMessage? message,
-    String? toLanguageCode,
-    String? tone,
-  }) =>
-      TranslateRichMessage(
-        message: message ?? this.message,
-        toLanguageCode: toLanguageCode ?? this.toLanguageCode,
-        tone: tone ?? this.tone,
-      );
-}
-
 extension TranslateMessageTextExtensions on TranslateMessageText {
   TranslateMessageText copyWith({
     int? chatId,
@@ -43172,21 +42386,6 @@ extension TranslateMessageTextExtensions on TranslateMessageText {
     String? tone,
   }) =>
       TranslateMessageText(
-        chatId: chatId ?? this.chatId,
-        messageId: messageId ?? this.messageId,
-        toLanguageCode: toLanguageCode ?? this.toLanguageCode,
-        tone: tone ?? this.tone,
-      );
-}
-
-extension TranslateMessageRichMessageExtensions on TranslateMessageRichMessage {
-  TranslateMessageRichMessage copyWith({
-    int? chatId,
-    int? messageId,
-    String? toLanguageCode,
-    String? tone,
-  }) =>
-      TranslateMessageRichMessage(
         chatId: chatId ?? this.chatId,
         messageId: messageId ?? this.messageId,
         toLanguageCode: toLanguageCode ?? this.toLanguageCode,
@@ -43226,52 +42425,12 @@ extension ComposeTextWithAiExtensions on ComposeTextWithAi {
       );
 }
 
-extension ComposeRichMessageWithAiExtensions on ComposeRichMessageWithAi {
-  ComposeRichMessageWithAi copyWith({
-    InputRichMessage? message,
-    String? translateToLanguageCode,
-    String? styleName,
-    String? customPrompt,
-    bool? addEmojis,
-  }) =>
-      ComposeRichMessageWithAi(
-        message: message ?? this.message,
-        translateToLanguageCode:
-            translateToLanguageCode ?? this.translateToLanguageCode,
-        styleName: styleName ?? this.styleName,
-        customPrompt: customPrompt ?? this.customPrompt,
-        addEmojis: addEmojis ?? this.addEmojis,
-      );
-}
-
-extension CreateRichMessageWithAiExtensions on CreateRichMessageWithAi {
-  CreateRichMessageWithAi copyWith({
-    String? prompt,
-    String? languageCode,
-    bool? addEmojis,
-  }) =>
-      CreateRichMessageWithAi(
-        prompt: prompt ?? this.prompt,
-        languageCode: languageCode ?? this.languageCode,
-        addEmojis: addEmojis ?? this.addEmojis,
-      );
-}
-
 extension FixTextWithAiExtensions on FixTextWithAi {
   FixTextWithAi copyWith({
     FormattedText? text,
   }) =>
       FixTextWithAi(
         text: text ?? this.text,
-      );
-}
-
-extension FixRichMessageWithAiExtensions on FixRichMessageWithAi {
-  FixRichMessageWithAi copyWith({
-    InputRichMessage? message,
-  }) =>
-      FixRichMessageWithAi(
-        message: message ?? this.message,
       );
 }
 
@@ -43441,31 +42600,6 @@ extension ResendMessagesExtensions on ResendMessages {
       );
 }
 
-extension SendEphemeralMessageExtensions on SendEphemeralMessage {
-  SendEphemeralMessage copyWith({
-    int? chatId,
-    MessageTopic? topicId,
-    int? receiverUserId,
-    int? callbackQueryId,
-    InputMessageReplyTo? replyTo,
-    int? sendingId,
-    bool? onlyPreview,
-    ReplyMarkup? replyMarkup,
-    InputMessageContent? inputMessageContent,
-  }) =>
-      SendEphemeralMessage(
-        chatId: chatId ?? this.chatId,
-        topicId: topicId ?? this.topicId,
-        receiverUserId: receiverUserId ?? this.receiverUserId,
-        callbackQueryId: callbackQueryId ?? this.callbackQueryId,
-        replyTo: replyTo ?? this.replyTo,
-        sendingId: sendingId ?? this.sendingId,
-        onlyPreview: onlyPreview ?? this.onlyPreview,
-        replyMarkup: replyMarkup ?? this.replyMarkup,
-        inputMessageContent: inputMessageContent ?? this.inputMessageContent,
-      );
-}
-
 extension AddLocalMessageExtensions on AddLocalMessage {
   AddLocalMessage copyWith({
     int? chatId,
@@ -43493,19 +42627,6 @@ extension DeleteMessagesExtensions on DeleteMessages {
         chatId: chatId ?? this.chatId,
         messageIds: messageIds ?? this.messageIds,
         revoke: revoke ?? this.revoke,
-      );
-}
-
-extension DeleteEphemeralMessageExtensions on DeleteEphemeralMessage {
-  DeleteEphemeralMessage copyWith({
-    int? chatId,
-    int? receiverUserId,
-    int? ephemeralMessageId,
-  }) =>
-      DeleteEphemeralMessage(
-        chatId: chatId ?? this.chatId,
-        receiverUserId: receiverUserId ?? this.receiverUserId,
-        ephemeralMessageId: ephemeralMessageId ?? this.ephemeralMessageId,
       );
 }
 
@@ -43691,23 +42812,6 @@ extension EditInlineMessageReplyMarkupExtensions
       EditInlineMessageReplyMarkup(
         inlineMessageId: inlineMessageId ?? this.inlineMessageId,
         replyMarkup: replyMarkup ?? this.replyMarkup,
-      );
-}
-
-extension EditEphemeralMessageExtensions on EditEphemeralMessage {
-  EditEphemeralMessage copyWith({
-    int? chatId,
-    int? receiverUserId,
-    int? ephemeralMessageId,
-    ReplyMarkup? replyMarkup,
-    InputMessageContent? inputMessageContent,
-  }) =>
-      EditEphemeralMessage(
-        chatId: chatId ?? this.chatId,
-        receiverUserId: receiverUserId ?? this.receiverUserId,
-        ephemeralMessageId: ephemeralMessageId ?? this.ephemeralMessageId,
-        replyMarkup: replyMarkup ?? this.replyMarkup,
-        inputMessageContent: inputMessageContent ?? this.inputMessageContent,
       );
 }
 
@@ -45111,17 +44215,6 @@ extension GetWebAppUrlExtensions on GetWebAppUrl {
       GetWebAppUrl(
         botUserId: botUserId ?? this.botUserId,
         url: url ?? this.url,
-        parameters: parameters ?? this.parameters,
-      );
-}
-
-extension GetGuardBotWebAppUrlExtensions on GetGuardBotWebAppUrl {
-  GetGuardBotWebAppUrl copyWith({
-    int? queryId,
-    WebAppOpenParameters? parameters,
-  }) =>
-      GetGuardBotWebAppUrl(
-        queryId: queryId ?? this.queryId,
         parameters: parameters ?? this.parameters,
       );
 }
@@ -48491,10 +47584,16 @@ extension IsProfileAudioExtensions on IsProfileAudio {
 
 extension AddProfileAudioExtensions on AddProfileAudio {
   AddProfileAudio copyWith({
-    InputAudio? audio,
+    InputFile? audio,
+    int? duration,
+    String? title,
+    String? performer,
   }) =>
       AddProfileAudio(
         audio: audio ?? this.audio,
+        duration: duration ?? this.duration,
+        title: title ?? this.title,
+        performer: performer ?? this.performer,
       );
 }
 
@@ -50991,20 +50090,20 @@ extension GetStarAdAccountUrlExtensions on GetStarAdAccountUrl {
       );
 }
 
-extension GetGramRevenueStatisticsExtensions on GetGramRevenueStatistics {
-  GetGramRevenueStatistics copyWith({
+extension GetTonRevenueStatisticsExtensions on GetTonRevenueStatistics {
+  GetTonRevenueStatistics copyWith({
     bool? isDark,
   }) =>
-      GetGramRevenueStatistics(
+      GetTonRevenueStatistics(
         isDark: isDark ?? this.isDark,
       );
 }
 
-extension GetGramWithdrawalUrlExtensions on GetGramWithdrawalUrl {
-  GetGramWithdrawalUrl copyWith({
+extension GetTonWithdrawalUrlExtensions on GetTonWithdrawalUrl {
+  GetTonWithdrawalUrl copyWith({
     String? password,
   }) =>
-      GetGramWithdrawalUrl(
+      GetTonWithdrawalUrl(
         password: password ?? this.password,
       );
 }
@@ -51369,7 +50468,7 @@ extension CreateNewStickerSetExtensions on CreateNewStickerSet {
     String? name,
     StickerType? stickerType,
     bool? needsRepainting,
-    List<NewSticker>? stickers,
+    List<InputSticker>? stickers,
     String? source,
   }) =>
       CreateNewStickerSet(
@@ -51387,7 +50486,7 @@ extension AddStickerToSetExtensions on AddStickerToSet {
   AddStickerToSet copyWith({
     int? userId,
     String? name,
-    NewSticker? sticker,
+    InputSticker? sticker,
   }) =>
       AddStickerToSet(
         userId: userId ?? this.userId,
@@ -51401,7 +50500,7 @@ extension ReplaceStickerInSetExtensions on ReplaceStickerInSet {
     int? userId,
     String? name,
     InputFile? oldSticker,
-    NewSticker? newSticker,
+    InputSticker? newSticker,
   }) =>
       ReplaceStickerInSet(
         userId: userId ?? this.userId,

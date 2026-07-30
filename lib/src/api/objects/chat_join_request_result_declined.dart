@@ -3,7 +3,7 @@ import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
 import '../tdapi.dart';
 
-/// The request was declined
+/// The request was decline
 @immutable
 class ChatJoinRequestResultDeclined extends ChatJoinRequestResult {
   const ChatJoinRequestResultDeclined();

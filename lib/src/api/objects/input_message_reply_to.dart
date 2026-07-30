@@ -11,7 +11,6 @@ abstract class InputMessageReplyTo extends TdObject {
   static const String constructor = 'inputMessageReplyTo';
 
   /// Inherited by:
-  /// [InputMessageReplyToEphemeralMessage]
   /// [InputMessageReplyToExternalMessage]
   /// [InputMessageReplyToMessage]
   /// [InputMessageReplyToStory]
@@ -21,8 +20,6 @@ abstract class InputMessageReplyTo extends TdObject {
     }
 
     switch (json['@type']) {
-      case InputMessageReplyToEphemeralMessage.constructor:
-        return InputMessageReplyToEphemeralMessage.fromJson(json);
       case InputMessageReplyToExternalMessage.constructor:
         return InputMessageReplyToExternalMessage.fromJson(json);
       case InputMessageReplyToMessage.constructor:

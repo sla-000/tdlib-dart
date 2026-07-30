@@ -25,7 +25,7 @@ class UpgradeGift extends TdFunction {
   /// receiver in the upgraded gift
   final bool keepOriginalDetails;
 
-  /// [starCount] The Telegram Star amount required to pay for the upgrade. If
+  /// [starCount] The Telegram Star amount required to pay for the upgrade. It
   /// the gift has prepaid_upgrade_star_count
   final int starCount;
 

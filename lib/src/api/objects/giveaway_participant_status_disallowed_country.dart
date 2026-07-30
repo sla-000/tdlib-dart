@@ -3,7 +3,7 @@ import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
 import '../tdapi.dart';
 
-/// The user can't participate in the giveaway, because their phone number is
+/// The user can't participate in the giveaway, because they phone number is
 /// from a disallowed country
 @immutable
 class GiveawayParticipantStatusDisallowedCountry

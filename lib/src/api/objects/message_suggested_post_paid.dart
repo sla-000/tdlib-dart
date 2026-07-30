@@ -11,7 +11,7 @@ class MessageSuggestedPostPaid extends MessageContent {
   const MessageSuggestedPostPaid({
     required this.suggestedPostMessageId,
     required this.starAmount,
-    required this.gramAmount,
+    required this.tonAmount,
   });
 
   /// [suggestedPostMessageId] Identifier of the message with the suggested
@@ -21,9 +21,9 @@ class MessageSuggestedPostPaid extends MessageContent {
   /// [starAmount] The amount of received Telegram Stars
   final StarAmount starAmount;
 
-  /// [gramAmount] The amount of received TON Grams; in the smallest units of
-  /// the cryptocurrency
-  final int gramAmount;
+  /// [tonAmount] The amount of received Toncoins; in the smallest units of the
+  /// cryptocurrency
+  final int tonAmount;
 
   static const String constructor = 'messageSuggestedPostPaid';
 
@@ -36,7 +36,7 @@ class MessageSuggestedPostPaid extends MessageContent {
       suggestedPostMessageId: json['suggested_post_message_id'] as int,
       starAmount:
           StarAmount.fromJson(json['star_amount'] as Map<String, dynamic>?)!,
-      gramAmount: json['gram_amount'] as int,
+      tonAmount: json['ton_amount'] as int,
     );
   }
 
@@ -47,7 +47,7 @@ class MessageSuggestedPostPaid extends MessageContent {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'suggested_post_message_id': suggestedPostMessageId,
         'star_amount': starAmount.toJson(),
-        'gram_amount': gramAmount,
+        'ton_amount': tonAmount,
         '@type': constructor,
       };
 
@@ -59,13 +59,13 @@ class MessageSuggestedPostPaid extends MessageContent {
           const DeepCollectionEquality()
               .equals(other.suggestedPostMessageId, suggestedPostMessageId) &&
           const DeepCollectionEquality().equals(other.starAmount, starAmount) &&
-          const DeepCollectionEquality().equals(other.gramAmount, gramAmount));
+          const DeepCollectionEquality().equals(other.tonAmount, tonAmount));
 
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
         const DeepCollectionEquality().hash(suggestedPostMessageId),
         const DeepCollectionEquality().hash(starAmount),
-        const DeepCollectionEquality().hash(gramAmount)
+        const DeepCollectionEquality().hash(tonAmount)
       ]);
 }

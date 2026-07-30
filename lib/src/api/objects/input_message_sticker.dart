@@ -8,11 +8,23 @@ import '../tdapi.dart';
 class InputMessageSticker extends InputMessageContent {
   const InputMessageSticker({
     required this.sticker,
+    this.thumbnail,
+    required this.width,
+    required this.height,
     required this.emoji,
   });
 
   /// [sticker] Sticker to be sent
-  final InputSticker sticker;
+  final InputFile sticker;
+
+  /// [thumbnail] Sticker thumbnail; pass null to skip thumbnail uploading
+  final InputThumbnail? thumbnail;
+
+  /// [width] Sticker width
+  final int width;
+
+  /// [height] Sticker height
+  final int height;
 
   /// [emoji] Emoji used to choose the sticker
   final String emoji;
@@ -25,7 +37,11 @@ class InputMessageSticker extends InputMessageContent {
     }
 
     return InputMessageSticker(
-      sticker: InputSticker.fromJson(json['sticker'] as Map<String, dynamic>?)!,
+      sticker: InputFile.fromJson(json['sticker'] as Map<String, dynamic>?)!,
+      thumbnail:
+          InputThumbnail.fromJson(json['thumbnail'] as Map<String, dynamic>?),
+      width: json['width'] as int,
+      height: json['height'] as int,
       emoji: json['emoji'] as String,
     );
   }
@@ -36,6 +52,9 @@ class InputMessageSticker extends InputMessageContent {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'sticker': sticker.toJson(),
+        'thumbnail': thumbnail?.toJson(),
+        'width': width,
+        'height': height,
         'emoji': emoji,
         '@type': constructor,
       };
@@ -46,12 +65,18 @@ class InputMessageSticker extends InputMessageContent {
       (other.runtimeType == runtimeType &&
           other is InputMessageSticker &&
           const DeepCollectionEquality().equals(other.sticker, sticker) &&
+          const DeepCollectionEquality().equals(other.thumbnail, thumbnail) &&
+          const DeepCollectionEquality().equals(other.width, width) &&
+          const DeepCollectionEquality().equals(other.height, height) &&
           const DeepCollectionEquality().equals(other.emoji, emoji));
 
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
         const DeepCollectionEquality().hash(sticker),
+        const DeepCollectionEquality().hash(thumbnail),
+        const DeepCollectionEquality().hash(width),
+        const DeepCollectionEquality().hash(height),
         const DeepCollectionEquality().hash(emoji)
       ]);
 }

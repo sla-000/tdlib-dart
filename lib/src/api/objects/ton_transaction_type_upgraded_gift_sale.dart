@@ -10,7 +10,7 @@ class TonTransactionTypeUpgradedGiftSale extends TonTransactionType {
     required this.userId,
     required this.gift,
     required this.commissionPerMille,
-    required this.commissionGramAmount,
+    required this.commissionToncoinAmount,
     required this.viaOffer,
   });
 
@@ -20,13 +20,13 @@ class TonTransactionTypeUpgradedGiftSale extends TonTransactionType {
   /// [gift] The gift
   final UpgradedGift gift;
 
-  /// [commissionPerMille] The number of Grams received by the Telegram for each
-  /// 1000 Grams received by the seller of the gift
+  /// [commissionPerMille] The number of Toncoins received by the Telegram for
+  /// each 1000 Toncoins received by the seller of the gift
   final int commissionPerMille;
 
-  /// [commissionGramAmount] The Gram amount that was received by the Telegram;
-  /// in the smallest units of the currency
-  final int commissionGramAmount;
+  /// [commissionToncoinAmount] The Toncoin amount that was received by the
+  /// Telegram; in the smallest units of the currency
+  final int commissionToncoinAmount;
 
   /// [viaOffer] True, if the gift was sold through a purchase offer
   final bool viaOffer;
@@ -43,7 +43,7 @@ class TonTransactionTypeUpgradedGiftSale extends TonTransactionType {
       userId: json['user_id'] as int,
       gift: UpgradedGift.fromJson(json['gift'] as Map<String, dynamic>?)!,
       commissionPerMille: json['commission_per_mille'] as int,
-      commissionGramAmount: json['commission_gram_amount'] as int,
+      commissionToncoinAmount: json['commission_toncoin_amount'] as int,
       viaOffer: json['via_offer'] as bool,
     );
   }
@@ -56,7 +56,7 @@ class TonTransactionTypeUpgradedGiftSale extends TonTransactionType {
         'user_id': userId,
         'gift': gift.toJson(),
         'commission_per_mille': commissionPerMille,
-        'commission_gram_amount': commissionGramAmount,
+        'commission_toncoin_amount': commissionToncoinAmount,
         'via_offer': viaOffer,
         '@type': constructor,
       };
@@ -71,7 +71,7 @@ class TonTransactionTypeUpgradedGiftSale extends TonTransactionType {
           const DeepCollectionEquality()
               .equals(other.commissionPerMille, commissionPerMille) &&
           const DeepCollectionEquality()
-              .equals(other.commissionGramAmount, commissionGramAmount) &&
+              .equals(other.commissionToncoinAmount, commissionToncoinAmount) &&
           const DeepCollectionEquality().equals(other.viaOffer, viaOffer));
 
   @override
@@ -80,7 +80,7 @@ class TonTransactionTypeUpgradedGiftSale extends TonTransactionType {
         const DeepCollectionEquality().hash(userId),
         const DeepCollectionEquality().hash(gift),
         const DeepCollectionEquality().hash(commissionPerMille),
-        const DeepCollectionEquality().hash(commissionGramAmount),
+        const DeepCollectionEquality().hash(commissionToncoinAmount),
         const DeepCollectionEquality().hash(viaOffer)
       ]);
 }
