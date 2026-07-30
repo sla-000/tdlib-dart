@@ -3,7 +3,7 @@ import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
 import '../tdapi.dart';
 
-/// Telegram Stars were received by the current user from a giveaway
+/// A Telegram Stars were received by the current user from a giveaway
 @immutable
 class MessageGiveawayPrizeStars extends MessageContent {
   const MessageGiveawayPrizeStars({

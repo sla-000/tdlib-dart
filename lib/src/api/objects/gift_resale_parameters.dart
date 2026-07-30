@@ -8,18 +8,18 @@ import '../tdapi.dart';
 class GiftResaleParameters extends TdObject {
   const GiftResaleParameters({
     required this.starCount,
-    required this.gramCentCount,
-    required this.gramOnly,
+    required this.toncoinCentCount,
+    required this.toncoinOnly,
   });
 
   /// [starCount] Resale price of the gift in Telegram Stars
   final int starCount;
 
-  /// [gramCentCount] Resale price of the gift in 1/100 of TON Gram
-  final int gramCentCount;
+  /// [toncoinCentCount] Resale price of the gift in 1/100 of Toncoin
+  final int toncoinCentCount;
 
-  /// [gramOnly] True, if the gift can be bought only using Grams
-  final bool gramOnly;
+  /// [toncoinOnly] True, if the gift can be bought only using Toncoins
+  final bool toncoinOnly;
 
   static const String constructor = 'giftResaleParameters';
 
@@ -30,8 +30,8 @@ class GiftResaleParameters extends TdObject {
 
     return GiftResaleParameters(
       starCount: json['star_count'] as int,
-      gramCentCount: json['gram_cent_count'] as int,
-      gramOnly: json['gram_only'] as bool,
+      toncoinCentCount: json['toncoin_cent_count'] as int,
+      toncoinOnly: json['toncoin_only'] as bool,
     );
   }
 
@@ -41,8 +41,8 @@ class GiftResaleParameters extends TdObject {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'star_count': starCount,
-        'gram_cent_count': gramCentCount,
-        'gram_only': gramOnly,
+        'toncoin_cent_count': toncoinCentCount,
+        'toncoin_only': toncoinOnly,
         '@type': constructor,
       };
 
@@ -53,14 +53,15 @@ class GiftResaleParameters extends TdObject {
           other is GiftResaleParameters &&
           const DeepCollectionEquality().equals(other.starCount, starCount) &&
           const DeepCollectionEquality()
-              .equals(other.gramCentCount, gramCentCount) &&
-          const DeepCollectionEquality().equals(other.gramOnly, gramOnly));
+              .equals(other.toncoinCentCount, toncoinCentCount) &&
+          const DeepCollectionEquality()
+              .equals(other.toncoinOnly, toncoinOnly));
 
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
         const DeepCollectionEquality().hash(starCount),
-        const DeepCollectionEquality().hash(gramCentCount),
-        const DeepCollectionEquality().hash(gramOnly)
+        const DeepCollectionEquality().hash(toncoinCentCount),
+        const DeepCollectionEquality().hash(toncoinOnly)
       ]);
 }

@@ -3,19 +3,19 @@ import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
 import '../tdapi.dart';
 
-/// The TON Gram balance and transaction section
+/// The Toncoin balance and transaction section
 @immutable
-class SettingsSectionMyGrams extends SettingsSection {
-  const SettingsSectionMyGrams();
+class SettingsSectionMyToncoins extends SettingsSection {
+  const SettingsSectionMyToncoins();
 
-  static const String constructor = 'settingsSectionMyGrams';
+  static const String constructor = 'settingsSectionMyToncoins';
 
-  static SettingsSectionMyGrams? fromJson(Map<String, dynamic>? json) {
+  static SettingsSectionMyToncoins? fromJson(Map<String, dynamic>? json) {
     if (json == null) {
       return null;
     }
 
-    return const SettingsSectionMyGrams();
+    return const SettingsSectionMyToncoins();
   }
 
   @override
@@ -29,7 +29,7 @@ class SettingsSectionMyGrams extends SettingsSection {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      (other.runtimeType == runtimeType && other is SettingsSectionMyGrams);
+      (other.runtimeType == runtimeType && other is SettingsSectionMyToncoins);
 
   @override
   int get hashCode => runtimeType.hashCode;

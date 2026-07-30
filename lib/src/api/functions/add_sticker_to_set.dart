@@ -22,7 +22,7 @@ class AddStickerToSet extends TdFunction {
   final String name;
 
   /// [sticker] Sticker to add to the set
-  final NewSticker sticker;
+  final InputSticker sticker;
 
   static const String constructor = 'addStickerToSet';
 

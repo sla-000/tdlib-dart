@@ -101,8 +101,7 @@ class MessageProperties extends TdObject {
   final bool canBePinned;
 
   /// [canBeReplied] True, if the message can be replied in the same chat and
-  /// forum topic using inputMessageReplyToMessage. Ephemeral messages can be
-  /// replied only by other ephemeral messages
+  /// forum topic using inputMessageReplyToMessage
   final bool canBeReplied;
 
   /// [canBeRepliedInAnotherChat] True, if the message can be replied in another

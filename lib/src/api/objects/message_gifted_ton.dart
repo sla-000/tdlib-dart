@@ -3,30 +3,30 @@ import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
 import '../tdapi.dart';
 
-/// TON Grams were gifted to a user
+/// Toncoins were gifted to a user
 @immutable
 class MessageGiftedTon extends MessageContent {
   const MessageGiftedTon({
     required this.gifterUserId,
     required this.receiverUserId,
-    required this.gramAmount,
+    required this.tonAmount,
     required this.transactionId,
     this.sticker,
   });
 
-  /// [gifterUserId] The identifier of a user who gifted Grams; 0 if the gift
+  /// [gifterUserId] The identifier of a user who gifted Toncoins; 0 if the gift
   /// was anonymous or is outgoing
   final int gifterUserId;
 
-  /// [receiverUserId] The identifier of a user who received Grams; 0 if the
+  /// [receiverUserId] The identifier of a user who received Toncoins; 0 if the
   /// gift is incoming
   final int receiverUserId;
 
-  /// [gramAmount] The received Gram amount, in the smallest units of the
+  /// [tonAmount] The received Toncoin amount, in the smallest units of the
   /// cryptocurrency
-  final int gramAmount;
+  final int tonAmount;
 
-  /// [transactionId] Identifier of the transaction for Gram credit; for
+  /// [transactionId] Identifier of the transaction for Toncoin credit; for
   /// receiver only
   final String transactionId;
 
@@ -43,7 +43,7 @@ class MessageGiftedTon extends MessageContent {
     return MessageGiftedTon(
       gifterUserId: json['gifter_user_id'] as int,
       receiverUserId: json['receiver_user_id'] as int,
-      gramAmount: json['gram_amount'] as int,
+      tonAmount: json['ton_amount'] as int,
       transactionId: json['transaction_id'] as String,
       sticker: Sticker.fromJson(json['sticker'] as Map<String, dynamic>?),
     );
@@ -56,7 +56,7 @@ class MessageGiftedTon extends MessageContent {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'gifter_user_id': gifterUserId,
         'receiver_user_id': receiverUserId,
-        'gram_amount': gramAmount,
+        'ton_amount': tonAmount,
         'transaction_id': transactionId,
         'sticker': sticker?.toJson(),
         '@type': constructor,
@@ -71,7 +71,7 @@ class MessageGiftedTon extends MessageContent {
               .equals(other.gifterUserId, gifterUserId) &&
           const DeepCollectionEquality()
               .equals(other.receiverUserId, receiverUserId) &&
-          const DeepCollectionEquality().equals(other.gramAmount, gramAmount) &&
+          const DeepCollectionEquality().equals(other.tonAmount, tonAmount) &&
           const DeepCollectionEquality()
               .equals(other.transactionId, transactionId) &&
           const DeepCollectionEquality().equals(other.sticker, sticker));
@@ -81,7 +81,7 @@ class MessageGiftedTon extends MessageContent {
         runtimeType,
         const DeepCollectionEquality().hash(gifterUserId),
         const DeepCollectionEquality().hash(receiverUserId),
-        const DeepCollectionEquality().hash(gramAmount),
+        const DeepCollectionEquality().hash(tonAmount),
         const DeepCollectionEquality().hash(transactionId),
         const DeepCollectionEquality().hash(sticker)
       ]);

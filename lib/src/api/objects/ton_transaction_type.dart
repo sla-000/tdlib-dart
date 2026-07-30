@@ -3,7 +3,7 @@ import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
 import '../tdapi.dart';
 
-/// Describes type of transaction with TON Grams
+/// Describes type of transaction with Toncoins
 @immutable
 abstract class TonTransactionType extends TdObject {
   const TonTransactionType();

@@ -4,8 +4,10 @@ import 'package:meta/meta.dart';
 import '../tdapi.dart';
 
 /// The user is a member of the chat and has some additional privileges. In
-/// basic groups, administrators have all applicable rights. In supergroups
-/// and channels, any subset of the rights can be chosen for an administrator
+/// basic groups, administrators can edit and delete messages sent by others,
+/// add new members, ban unprivileged members, and manage video chats. In
+/// supergroups and channels, there are more detailed options for
+/// administrator privileges
 @immutable
 class ChatMemberStatusAdministrator extends ChatMemberStatus {
   const ChatMemberStatusAdministrator({
