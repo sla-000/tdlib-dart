@@ -16,11 +16,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Dart
-        uses: dart-lang/setup-dart@v1
-        with:
-          sdk: '3.12.2'
-
       - name: Check TDLib version
         id: check_version
         run: |
@@ -48,6 +43,12 @@ jobs:
             echo "need_update=true" >> $GITHUB_OUTPUT
             echo "latest_version=${LATEST_VERSION}" >> $GITHUB_OUTPUT
           fi
+
+      - name: Setup Dart
+        if: steps.check_version.outputs.need_update == 'true'
+        uses: dart-lang/setup-dart@v1
+        with:
+          sdk: '3.12.2'
 
       - name: Download TL Scheme and Update Version
         if: steps.check_version.outputs.need_update == 'true'
