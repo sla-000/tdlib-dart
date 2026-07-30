@@ -32,8 +32,9 @@ class InputRichMessage extends TdObject {
     return InputRichMessage(
       source:
           RichMessageSource.fromJson(json['source'] as Map<String, dynamic>?)!,
-      isRtl: json['is_rtl'] as bool,
-      detectAutomaticBlocks: json['detect_automatic_blocks'] as bool,
+      isRtl: (json['is_rtl'] as bool?) ?? false,
+      detectAutomaticBlocks:
+          (json['detect_automatic_blocks'] as bool?) ?? false,
     );
   }
 

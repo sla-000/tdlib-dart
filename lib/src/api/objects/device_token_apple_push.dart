@@ -25,8 +25,8 @@ class DeviceTokenApplePush extends DeviceToken {
     }
 
     return DeviceTokenApplePush(
-      deviceToken: json['device_token'] as String,
-      isAppSandbox: json['is_app_sandbox'] as bool,
+      deviceToken: (json['device_token'] as String?) ?? '',
+      isAppSandbox: (json['is_app_sandbox'] as bool?) ?? false,
     );
   }
 

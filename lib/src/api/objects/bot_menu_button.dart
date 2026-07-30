@@ -27,8 +27,8 @@ class BotMenuButton extends TdObject {
     }
 
     return BotMenuButton(
-      text: json['text'] as String,
-      url: json['url'] as String,
+      text: (json['text'] as String?) ?? '',
+      url: (json['url'] as String?) ?? '',
     );
   }
 

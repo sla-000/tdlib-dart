@@ -26,8 +26,8 @@ class ChatMemberStatusCreator extends ChatMemberStatus {
     }
 
     return ChatMemberStatusCreator(
-      isAnonymous: json['is_anonymous'] as bool,
-      isMember: json['is_member'] as bool,
+      isAnonymous: (json['is_anonymous'] as bool?) ?? false,
+      isMember: (json['is_member'] as bool?) ?? false,
     );
   }
 

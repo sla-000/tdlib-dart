@@ -22,7 +22,7 @@ class PushMessageContentPollOptionAdded extends PushMessageContent {
     }
 
     return PushMessageContentPollOptionAdded(
-      text: json['text'] as String,
+      text: (json['text'] as String?) ?? '',
     );
   }
 

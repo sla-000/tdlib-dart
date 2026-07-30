@@ -58,7 +58,7 @@ class SendBusinessMessageAlbum extends TdFunction {
         'reply_to': replyTo?.toJson(),
         'disable_notification': disableNotification,
         'protect_content': protectContent,
-        'effect_id': effectId,
+        'effect_id': effectId.toString(),
         'input_message_contents':
             inputMessageContents.map((item) => item.toJson()).toList(),
         '@type': constructor,

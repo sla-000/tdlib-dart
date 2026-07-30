@@ -29,7 +29,7 @@ class ChatEventVideoChatParticipantIsMutedToggled extends ChatEventAction {
     return ChatEventVideoChatParticipantIsMutedToggled(
       participantId: MessageSender.fromJson(
           json['participant_id'] as Map<String, dynamic>?)!,
-      isMuted: json['is_muted'] as bool,
+      isMuted: (json['is_muted'] as bool?) ?? false,
     );
   }
 

@@ -25,7 +25,7 @@ class InlineQueryResultGame extends InlineQueryResult {
     }
 
     return InlineQueryResultGame(
-      id: json['id'] as String,
+      id: (json['id'] as String?) ?? '',
       game: Game.fromJson(json['game'] as Map<String, dynamic>?)!,
     );
   }

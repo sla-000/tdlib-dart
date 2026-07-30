@@ -21,7 +21,7 @@ class Count extends TdObject {
     }
 
     return Count(
-      count: json['count'] as int,
+      count: (json['count'] as int?) ?? 0,
     );
   }
 

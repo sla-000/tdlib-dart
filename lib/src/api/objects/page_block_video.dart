@@ -41,9 +41,9 @@ class PageBlockVideo extends PageBlock {
       video: Video.fromJson(json['video'] as Map<String, dynamic>?),
       caption:
           PageBlockCaption.fromJson(json['caption'] as Map<String, dynamic>?),
-      needAutoplay: json['need_autoplay'] as bool,
-      isLooped: json['is_looped'] as bool,
-      hasSpoiler: json['has_spoiler'] as bool,
+      needAutoplay: (json['need_autoplay'] as bool?) ?? false,
+      isLooped: (json['is_looped'] as bool?) ?? false,
+      hasSpoiler: (json['has_spoiler'] as bool?) ?? false,
     );
   }
 

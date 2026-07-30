@@ -21,10 +21,10 @@ class ChatBoostSlots extends TdObject {
     }
 
     return ChatBoostSlots(
-      slots: List<ChatBoostSlot>.from(
-          ((json['slots'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => ChatBoostSlot.fromJson(item))
-              .toList()),
+      slots: List<ChatBoostSlot>.from(((json['slots'] as List<dynamic>?) ??
+              <dynamic>[])
+          .map((item) => ChatBoostSlot.fromJson(item as Map<String, dynamic>?))
+          .toList()),
     );
   }
 

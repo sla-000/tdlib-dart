@@ -27,8 +27,8 @@ class StoryContentLive extends StoryContent {
     }
 
     return StoryContentLive(
-      groupCallId: json['group_call_id'] as int,
-      isRtmpStream: json['is_rtmp_stream'] as bool,
+      groupCallId: (json['group_call_id'] as int?) ?? 0,
+      isRtmpStream: (json['is_rtmp_stream'] as bool?) ?? false,
     );
   }
 

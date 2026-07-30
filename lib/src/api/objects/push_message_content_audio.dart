@@ -27,7 +27,7 @@ class PushMessageContentAudio extends PushMessageContent {
 
     return PushMessageContentAudio(
       audio: Audio.fromJson(json['audio'] as Map<String, dynamic>?),
-      isPinned: json['is_pinned'] as bool,
+      isPinned: (json['is_pinned'] as bool?) ?? false,
     );
   }
 

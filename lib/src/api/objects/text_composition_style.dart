@@ -57,14 +57,17 @@ class TextCompositionStyle extends TdObject {
     }
 
     return TextCompositionStyle(
-      name: json['name'] as String,
-      customEmojiId: int.tryParse(json['custom_emoji_id']) ?? 0,
-      title: json['title'] as String,
-      isCustom: json['is_custom'] as bool,
-      isCreator: json['is_creator'] as bool,
-      installCount: json['install_count'] as int,
-      prompt: json['prompt'] as String,
-      creatorUserId: json['creator_user_id'] as int,
+      name: (json['name'] as String?) ?? '',
+      customEmojiId: (json['custom_emoji_id'] is int
+              ? json['custom_emoji_id'] as int
+              : int.tryParse(json['custom_emoji_id']?.toString() ?? '')) ??
+          0,
+      title: (json['title'] as String?) ?? '',
+      isCustom: (json['is_custom'] as bool?) ?? false,
+      isCreator: (json['is_creator'] as bool?) ?? false,
+      installCount: (json['install_count'] as int?) ?? 0,
+      prompt: (json['prompt'] as String?) ?? '',
+      creatorUserId: (json['creator_user_id'] as int?) ?? 0,
       englishExample: TextCompositionStyleExample.fromJson(
           json['english_example'] as Map<String, dynamic>?),
     );

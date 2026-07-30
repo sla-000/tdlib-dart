@@ -23,7 +23,7 @@ class ChatAvailableReactionsAll extends ChatAvailableReactions {
     }
 
     return ChatAvailableReactionsAll(
-      maxReactionCount: json['max_reaction_count'] as int,
+      maxReactionCount: (json['max_reaction_count'] as int?) ?? 0,
     );
   }
 

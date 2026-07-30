@@ -43,11 +43,12 @@ class AccountInfo extends TdObject {
     }
 
     return AccountInfo(
-      registrationMonth: json['registration_month'] as int,
-      registrationYear: json['registration_year'] as int,
-      phoneNumberCountryCode: json['phone_number_country_code'] as String,
-      lastNameChangeDate: json['last_name_change_date'] as int,
-      lastPhotoChangeDate: json['last_photo_change_date'] as int,
+      registrationMonth: (json['registration_month'] as int?) ?? 0,
+      registrationYear: (json['registration_year'] as int?) ?? 0,
+      phoneNumberCountryCode:
+          (json['phone_number_country_code'] as String?) ?? '',
+      lastNameChangeDate: (json['last_name_change_date'] as int?) ?? 0,
+      lastPhotoChangeDate: (json['last_photo_change_date'] as int?) ?? 0,
     );
   }
 

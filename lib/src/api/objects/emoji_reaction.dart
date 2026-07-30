@@ -58,9 +58,9 @@ class EmojiReaction extends TdObject {
     }
 
     return EmojiReaction(
-      emoji: json['emoji'] as String,
-      title: json['title'] as String,
-      isActive: json['is_active'] as bool,
+      emoji: (json['emoji'] as String?) ?? '',
+      title: (json['title'] as String?) ?? '',
+      isActive: (json['is_active'] as bool?) ?? false,
       staticIcon:
           Sticker.fromJson(json['static_icon'] as Map<String, dynamic>?)!,
       appearAnimation:

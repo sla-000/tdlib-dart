@@ -23,7 +23,8 @@ class SavedMessagesTags extends TdObject {
     return SavedMessagesTags(
       tags: List<SavedMessagesTag>.from(
           ((json['tags'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => SavedMessagesTag.fromJson(item))
+              .map((item) =>
+                  SavedMessagesTag.fromJson(item as Map<String, dynamic>?))
               .toList()),
     );
   }

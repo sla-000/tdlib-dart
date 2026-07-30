@@ -29,11 +29,14 @@ class UpdateNewGuestQuery extends Update {
     }
 
     return UpdateNewGuestQuery(
-      id: int.tryParse(json['id']) ?? 0,
+      id: (json['id'] is int
+              ? json['id'] as int
+              : int.tryParse(json['id']?.toString() ?? '')) ??
+          0,
       message: Message.fromJson(json['message'] as Map<String, dynamic>?)!,
       referenceMessages: List<Message>.from(
           ((json['reference_messages'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => Message.fromJson(item))
+              .map((item) => Message.fromJson(item as Map<String, dynamic>?))
               .toList()),
     );
   }

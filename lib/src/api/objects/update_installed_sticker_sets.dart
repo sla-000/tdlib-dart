@@ -29,7 +29,8 @@ class UpdateInstalledStickerSets extends Update {
           StickerType.fromJson(json['sticker_type'] as Map<String, dynamic>?)!,
       stickerSetIds: List<int>.from(
           ((json['sticker_set_ids'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => item)
+              .map((item) =>
+                  (item is int ? item : int.tryParse(item.toString()) ?? 0))
               .toList()),
     );
   }
@@ -40,7 +41,8 @@ class UpdateInstalledStickerSets extends Update {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'sticker_type': stickerType.toJson(),
-        'sticker_set_ids': stickerSetIds.map((item) => item).toList(),
+        'sticker_set_ids':
+            stickerSetIds.map((item) => item.toString()).toList(),
         '@type': constructor,
       };
 

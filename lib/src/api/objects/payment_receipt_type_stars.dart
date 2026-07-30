@@ -26,8 +26,8 @@ class PaymentReceiptTypeStars extends PaymentReceiptType {
     }
 
     return PaymentReceiptTypeStars(
-      starCount: json['star_count'] as int,
-      transactionId: json['transaction_id'] as String,
+      starCount: (json['star_count'] as int?) ?? 0,
+      transactionId: (json['transaction_id'] as String?) ?? '',
     );
   }
 

@@ -59,16 +59,16 @@ class PersonalDetails extends TdObject {
     }
 
     return PersonalDetails(
-      firstName: json['first_name'] as String,
-      middleName: json['middle_name'] as String,
-      lastName: json['last_name'] as String,
-      nativeFirstName: json['native_first_name'] as String,
-      nativeMiddleName: json['native_middle_name'] as String,
-      nativeLastName: json['native_last_name'] as String,
+      firstName: (json['first_name'] as String?) ?? '',
+      middleName: (json['middle_name'] as String?) ?? '',
+      lastName: (json['last_name'] as String?) ?? '',
+      nativeFirstName: (json['native_first_name'] as String?) ?? '',
+      nativeMiddleName: (json['native_middle_name'] as String?) ?? '',
+      nativeLastName: (json['native_last_name'] as String?) ?? '',
       birthdate: Date.fromJson(json['birthdate'] as Map<String, dynamic>?)!,
-      gender: json['gender'] as String,
-      countryCode: json['country_code'] as String,
-      residenceCountryCode: json['residence_country_code'] as String,
+      gender: (json['gender'] as String?) ?? '',
+      countryCode: (json['country_code'] as String?) ?? '',
+      residenceCountryCode: (json['residence_country_code'] as String?) ?? '',
     );
   }
 

@@ -32,9 +32,9 @@ class ChatJoinResultGuardBotApprovalRequired extends ChatJoinResult {
     }
 
     return ChatJoinResultGuardBotApprovalRequired(
-      botUserId: json['bot_user_id'] as int,
+      botUserId: (json['bot_user_id'] as int?) ?? 0,
       url: WebAppUrl.fromJson(json['url'] as Map<String, dynamic>?)!,
-      queryId: json['query_id'] as int,
+      queryId: (json['query_id'] as int?) ?? 0,
     );
   }
 

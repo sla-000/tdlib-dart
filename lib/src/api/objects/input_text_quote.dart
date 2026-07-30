@@ -29,7 +29,7 @@ class InputTextQuote extends TdObject {
 
     return InputTextQuote(
       text: FormattedText.fromJson(json['text'] as Map<String, dynamic>?)!,
-      position: json['position'] as int,
+      position: (json['position'] as int?) ?? 0,
     );
   }
 

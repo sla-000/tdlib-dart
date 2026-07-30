@@ -26,8 +26,8 @@ class KeyboardButtonSourceWebApp extends KeyboardButtonSource {
     }
 
     return KeyboardButtonSourceWebApp(
-      botUserId: json['bot_user_id'] as int,
-      preparedButtonId: json['prepared_button_id'] as String,
+      botUserId: (json['bot_user_id'] as int?) ?? 0,
+      preparedButtonId: (json['prepared_button_id'] as String?) ?? '',
     );
   }
 

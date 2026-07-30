@@ -26,7 +26,7 @@ class RichTextEmailAddress extends RichText {
 
     return RichTextEmailAddress(
       text: RichText.fromJson(json['text'] as Map<String, dynamic>?)!,
-      emailAddress: json['email_address'] as String,
+      emailAddress: (json['email_address'] as String?) ?? '',
     );
   }
 

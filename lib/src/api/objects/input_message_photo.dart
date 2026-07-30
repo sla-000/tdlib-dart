@@ -44,10 +44,11 @@ class InputMessagePhoto extends InputMessageContent {
     return InputMessagePhoto(
       photo: InputPhoto.fromJson(json['photo'] as Map<String, dynamic>?)!,
       caption: FormattedText.fromJson(json['caption'] as Map<String, dynamic>?),
-      showCaptionAboveMedia: json['show_caption_above_media'] as bool,
+      showCaptionAboveMedia:
+          (json['show_caption_above_media'] as bool?) ?? false,
       selfDestructType: MessageSelfDestructType.fromJson(
           json['self_destruct_type'] as Map<String, dynamic>?),
-      hasSpoiler: json['has_spoiler'] as bool,
+      hasSpoiler: (json['has_spoiler'] as bool?) ?? false,
     );
   }
 

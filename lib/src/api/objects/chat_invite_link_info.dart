@@ -77,22 +77,23 @@ class ChatInviteLinkInfo extends TdObject {
     }
 
     return ChatInviteLinkInfo(
-      chatId: json['chat_id'] as int,
-      accessibleFor: json['accessible_for'] as int,
+      chatId: (json['chat_id'] as int?) ?? 0,
+      accessibleFor: (json['accessible_for'] as int?) ?? 0,
       type: InviteLinkChatType.fromJson(json['type'] as Map<String, dynamic>?)!,
-      title: json['title'] as String,
+      title: (json['title'] as String?) ?? '',
       photo: ChatPhotoInfo.fromJson(json['photo'] as Map<String, dynamic>?),
-      accentColorId: json['accent_color_id'] as int,
-      description: json['description'] as String,
-      memberCount: json['member_count'] as int,
+      accentColorId: (json['accent_color_id'] as int?) ?? 0,
+      description: (json['description'] as String?) ?? '',
+      memberCount: (json['member_count'] as int?) ?? 0,
       memberUserIds: List<int>.from(
           ((json['member_user_ids'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => item)
+              .map((item) =>
+                  (item is int ? item : int.tryParse(item.toString()) ?? 0))
               .toList()),
       subscriptionInfo: ChatInviteLinkSubscriptionInfo.fromJson(
           json['subscription_info'] as Map<String, dynamic>?),
-      createsJoinRequest: json['creates_join_request'] as bool,
-      isPublic: json['is_public'] as bool,
+      createsJoinRequest: (json['creates_join_request'] as bool?) ?? false,
+      isPublic: (json['is_public'] as bool?) ?? false,
       verificationStatus: VerificationStatus.fromJson(
           json['verification_status'] as Map<String, dynamic>?),
     );

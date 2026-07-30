@@ -32,7 +32,7 @@ class UnreadReaction extends TdObject {
       type: ReactionType.fromJson(json['type'] as Map<String, dynamic>?)!,
       senderId:
           MessageSender.fromJson(json['sender_id'] as Map<String, dynamic>?)!,
-      isBig: json['is_big'] as bool,
+      isBig: (json['is_big'] as bool?) ?? false,
     );
   }
 

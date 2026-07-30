@@ -34,7 +34,7 @@ class ChatActionBarReportAddBlock extends ChatActionBar {
     }
 
     return ChatActionBarReportAddBlock(
-      canUnarchive: json['can_unarchive'] as bool,
+      canUnarchive: (json['can_unarchive'] as bool?) ?? false,
       accountInfo:
           AccountInfo.fromJson(json['account_info'] as Map<String, dynamic>?),
     );

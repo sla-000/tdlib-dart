@@ -21,7 +21,7 @@ class KeyboardButtonTypeWebApp extends KeyboardButtonType {
     }
 
     return KeyboardButtonTypeWebApp(
-      url: json['url'] as String,
+      url: (json['url'] as String?) ?? '',
     );
   }
 

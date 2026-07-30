@@ -29,10 +29,10 @@ class InlineQueryResultAnimation extends InlineQueryResult {
     }
 
     return InlineQueryResultAnimation(
-      id: json['id'] as String,
+      id: (json['id'] as String?) ?? '',
       animation:
           Animation.fromJson(json['animation'] as Map<String, dynamic>?)!,
-      title: json['title'] as String,
+      title: (json['title'] as String?) ?? '',
     );
   }
 

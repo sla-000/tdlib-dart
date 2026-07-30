@@ -33,10 +33,10 @@ class BusinessGreetingMessageSettings extends TdObject {
     }
 
     return BusinessGreetingMessageSettings(
-      shortcutId: json['shortcut_id'] as int,
+      shortcutId: (json['shortcut_id'] as int?) ?? 0,
       recipients: BusinessRecipients.fromJson(
           json['recipients'] as Map<String, dynamic>?)!,
-      inactivityDays: json['inactivity_days'] as int,
+      inactivityDays: (json['inactivity_days'] as int?) ?? 0,
     );
   }
 

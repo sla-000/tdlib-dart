@@ -21,7 +21,7 @@ class InputGroupCallLink extends InputGroupCall {
     }
 
     return InputGroupCallLink(
-      link: json['link'] as String,
+      link: (json['link'] as String?) ?? '',
     );
   }
 

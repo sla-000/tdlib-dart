@@ -29,8 +29,8 @@ class UpdateChatOnlineMemberCount extends Update {
     }
 
     return UpdateChatOnlineMemberCount(
-      chatId: json['chat_id'] as int,
-      onlineMemberCount: json['online_member_count'] as int,
+      chatId: (json['chat_id'] as int?) ?? 0,
+      onlineMemberCount: (json['online_member_count'] as int?) ?? 0,
     );
   }
 

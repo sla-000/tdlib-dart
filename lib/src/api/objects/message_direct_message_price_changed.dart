@@ -30,8 +30,8 @@ class MessageDirectMessagePriceChanged extends MessageContent {
     }
 
     return MessageDirectMessagePriceChanged(
-      isEnabled: json['is_enabled'] as bool,
-      paidMessageStarCount: json['paid_message_star_count'] as int,
+      isEnabled: (json['is_enabled'] as bool?) ?? false,
+      paidMessageStarCount: (json['paid_message_star_count'] as int?) ?? 0,
     );
   }
 

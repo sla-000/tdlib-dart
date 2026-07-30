@@ -42,14 +42,14 @@ class PaymentReceiptTypeRegular extends PaymentReceiptType {
     }
 
     return PaymentReceiptTypeRegular(
-      paymentProviderUserId: json['payment_provider_user_id'] as int,
+      paymentProviderUserId: (json['payment_provider_user_id'] as int?) ?? 0,
       invoice: Invoice.fromJson(json['invoice'] as Map<String, dynamic>?)!,
       orderInfo:
           OrderInfo.fromJson(json['order_info'] as Map<String, dynamic>?),
       shippingOption: ShippingOption.fromJson(
           json['shipping_option'] as Map<String, dynamic>?),
-      credentialsTitle: json['credentials_title'] as String,
-      tipAmount: json['tip_amount'] as int,
+      credentialsTitle: (json['credentials_title'] as String?) ?? '',
+      tipAmount: (json['tip_amount'] as int?) ?? 0,
     );
   }
 

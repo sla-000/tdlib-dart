@@ -27,8 +27,8 @@ class StarTransactionTypePaidMessageSend extends StarTransactionType {
     }
 
     return StarTransactionTypePaidMessageSend(
-      chatId: json['chat_id'] as int,
-      messageCount: json['message_count'] as int,
+      chatId: (json['chat_id'] as int?) ?? 0,
+      messageCount: (json['message_count'] as int?) ?? 0,
     );
   }
 

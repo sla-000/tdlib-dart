@@ -21,7 +21,7 @@ class TestInt extends TdObject {
     }
 
     return TestInt(
-      value: json['value'] as int,
+      value: (json['value'] as int?) ?? 0,
     );
   }
 

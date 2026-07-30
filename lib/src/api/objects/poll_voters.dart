@@ -25,10 +25,10 @@ class PollVoters extends TdObject {
     }
 
     return PollVoters(
-      totalCount: json['total_count'] as int,
+      totalCount: (json['total_count'] as int?) ?? 0,
       voters: List<PollVoter>.from(
           ((json['voters'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => PollVoter.fromJson(item))
+              .map((item) => PollVoter.fromJson(item as Map<String, dynamic>?))
               .toList()),
     );
   }

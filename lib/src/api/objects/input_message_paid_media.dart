@@ -42,14 +42,16 @@ class InputMessagePaidMedia extends InputMessageContent {
     }
 
     return InputMessagePaidMedia(
-      starCount: json['star_count'] as int,
-      paidMedia: List<InputPaidMedia>.from(
-          ((json['paid_media'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => InputPaidMedia.fromJson(item))
-              .toList()),
+      starCount: (json['star_count'] as int?) ?? 0,
+      paidMedia: List<InputPaidMedia>.from(((json['paid_media']
+                  as List<dynamic>?) ??
+              <dynamic>[])
+          .map((item) => InputPaidMedia.fromJson(item as Map<String, dynamic>?))
+          .toList()),
       caption: FormattedText.fromJson(json['caption'] as Map<String, dynamic>?),
-      showCaptionAboveMedia: json['show_caption_above_media'] as bool,
-      payload: json['payload'] as String,
+      showCaptionAboveMedia:
+          (json['show_caption_above_media'] as bool?) ?? false,
+      payload: (json['payload'] as String?) ?? '',
     );
   }
 

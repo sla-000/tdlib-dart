@@ -59,15 +59,16 @@ class KeyboardButtonTypeRequestUsers extends KeyboardButtonType {
     }
 
     return KeyboardButtonTypeRequestUsers(
-      id: json['id'] as int,
-      restrictUserIsBot: json['restrict_user_is_bot'] as bool,
-      userIsBot: json['user_is_bot'] as bool,
-      restrictUserIsPremium: json['restrict_user_is_premium'] as bool,
-      userIsPremium: json['user_is_premium'] as bool,
-      maxQuantity: json['max_quantity'] as int,
-      requestName: json['request_name'] as bool,
-      requestUsername: json['request_username'] as bool,
-      requestPhoto: json['request_photo'] as bool,
+      id: (json['id'] as int?) ?? 0,
+      restrictUserIsBot: (json['restrict_user_is_bot'] as bool?) ?? false,
+      userIsBot: (json['user_is_bot'] as bool?) ?? false,
+      restrictUserIsPremium:
+          (json['restrict_user_is_premium'] as bool?) ?? false,
+      userIsPremium: (json['user_is_premium'] as bool?) ?? false,
+      maxQuantity: (json['max_quantity'] as int?) ?? 0,
+      requestName: (json['request_name'] as bool?) ?? false,
+      requestUsername: (json['request_username'] as bool?) ?? false,
+      requestPhoto: (json['request_photo'] as bool?) ?? false,
     );
   }
 

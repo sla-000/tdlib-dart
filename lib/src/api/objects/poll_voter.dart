@@ -27,7 +27,7 @@ class PollVoter extends TdObject {
     return PollVoter(
       voterId:
           MessageSender.fromJson(json['voter_id'] as Map<String, dynamic>?)!,
-      date: json['date'] as int,
+      date: (json['date'] as int?) ?? 0,
     );
   }
 

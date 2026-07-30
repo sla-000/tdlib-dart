@@ -23,7 +23,7 @@ class PushMessageContentPremiumGiftCode extends PushMessageContent {
     }
 
     return PushMessageContentPremiumGiftCode(
-      monthCount: json['month_count'] as int,
+      monthCount: (json['month_count'] as int?) ?? 0,
     );
   }
 

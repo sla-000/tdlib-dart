@@ -21,7 +21,7 @@ class AffiliateTypeBot extends AffiliateType {
     }
 
     return AffiliateTypeBot(
-      userId: json['user_id'] as int,
+      userId: (json['user_id'] as int?) ?? 0,
     );
   }
 

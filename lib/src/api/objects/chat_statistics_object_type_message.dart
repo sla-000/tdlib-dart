@@ -21,7 +21,7 @@ class ChatStatisticsObjectTypeMessage extends ChatStatisticsObjectType {
     }
 
     return ChatStatisticsObjectTypeMessage(
-      messageId: json['message_id'] as int,
+      messageId: (json['message_id'] as int?) ?? 0,
     );
   }
 

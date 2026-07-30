@@ -21,7 +21,7 @@ class StarCount extends TdObject {
     }
 
     return StarCount(
-      starCount: json['star_count'] as int,
+      starCount: (json['star_count'] as int?) ?? 0,
     );
   }
 

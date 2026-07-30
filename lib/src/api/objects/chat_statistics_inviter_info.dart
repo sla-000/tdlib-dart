@@ -25,8 +25,8 @@ class ChatStatisticsInviterInfo extends TdObject {
     }
 
     return ChatStatisticsInviterInfo(
-      userId: json['user_id'] as int,
-      addedMemberCount: json['added_member_count'] as int,
+      userId: (json['user_id'] as int?) ?? 0,
+      addedMemberCount: (json['added_member_count'] as int?) ?? 0,
     );
   }
 

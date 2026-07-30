@@ -22,7 +22,7 @@ class UpdateOwnedTonCount extends Update {
     }
 
     return UpdateOwnedTonCount(
-      tonAmount: json['ton_amount'] as int,
+      tonAmount: (json['ton_amount'] as int?) ?? 0,
     );
   }
 

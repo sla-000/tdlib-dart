@@ -39,12 +39,15 @@ class Passkey extends TdObject {
     }
 
     return Passkey(
-      id: json['id'] as String,
-      name: json['name'] as String,
-      additionDate: json['addition_date'] as int,
-      lastUsageDate: json['last_usage_date'] as int,
-      softwareIconCustomEmojiId:
-          int.tryParse(json['software_icon_custom_emoji_id']) ?? 0,
+      id: (json['id'] as String?) ?? '',
+      name: (json['name'] as String?) ?? '',
+      additionDate: (json['addition_date'] as int?) ?? 0,
+      lastUsageDate: (json['last_usage_date'] as int?) ?? 0,
+      softwareIconCustomEmojiId: (json['software_icon_custom_emoji_id'] is int
+              ? json['software_icon_custom_emoji_id'] as int
+              : int.tryParse(
+                  json['software_icon_custom_emoji_id']?.toString() ?? '')) ??
+          0,
     );
   }
 

@@ -21,7 +21,7 @@ class EmailAddressAuthenticationCode extends EmailAddressAuthentication {
     }
 
     return EmailAddressAuthenticationCode(
-      code: json['code'] as String,
+      code: (json['code'] as String?) ?? '',
     );
   }
 

@@ -35,8 +35,8 @@ class RestrictionInfo extends TdObject {
     }
 
     return RestrictionInfo(
-      restrictionReason: json['restriction_reason'] as String,
-      hasSensitiveContent: json['has_sensitive_content'] as bool,
+      restrictionReason: (json['restriction_reason'] as String?) ?? '',
+      hasSensitiveContent: (json['has_sensitive_content'] as bool?) ?? false,
     );
   }
 

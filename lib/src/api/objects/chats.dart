@@ -25,10 +25,11 @@ class Chats extends TdObject {
     }
 
     return Chats(
-      totalCount: json['total_count'] as int,
+      totalCount: (json['total_count'] as int?) ?? 0,
       chatIds: List<int>.from(
           ((json['chat_ids'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => item)
+              .map((item) =>
+                  (item is int ? item : int.tryParse(item.toString()) ?? 0))
               .toList()),
     );
   }

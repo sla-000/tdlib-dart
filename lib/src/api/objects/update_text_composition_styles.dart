@@ -23,7 +23,8 @@ class UpdateTextCompositionStyles extends Update {
     return UpdateTextCompositionStyles(
       styles: List<TextCompositionStyle>.from(
           ((json['styles'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => TextCompositionStyle.fromJson(item))
+              .map((item) =>
+                  TextCompositionStyle.fromJson(item as Map<String, dynamic>?))
               .toList()),
     );
   }

@@ -29,9 +29,9 @@ class TimeZone extends TdObject {
     }
 
     return TimeZone(
-      id: json['id'] as String,
-      name: json['name'] as String,
-      utcTimeOffset: json['utc_time_offset'] as int,
+      id: (json['id'] as String?) ?? '',
+      name: (json['name'] as String?) ?? '',
+      utcTimeOffset: (json['utc_time_offset'] as int?) ?? 0,
     );
   }
 

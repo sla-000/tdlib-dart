@@ -26,8 +26,8 @@ class StoryFullId extends TdObject {
     }
 
     return StoryFullId(
-      posterChatId: json['poster_chat_id'] as int,
-      storyId: json['story_id'] as int,
+      posterChatId: (json['poster_chat_id'] as int?) ?? 0,
+      storyId: (json['story_id'] as int?) ?? 0,
     );
   }
 

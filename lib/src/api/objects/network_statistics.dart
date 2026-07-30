@@ -26,11 +26,13 @@ class NetworkStatistics extends TdObject {
     }
 
     return NetworkStatistics(
-      sinceDate: json['since_date'] as int,
-      entries: List<NetworkStatisticsEntry>.from(
-          ((json['entries'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => NetworkStatisticsEntry.fromJson(item))
-              .toList()),
+      sinceDate: (json['since_date'] as int?) ?? 0,
+      entries: List<NetworkStatisticsEntry>.from(((json['entries']
+                  as List<dynamic>?) ??
+              <dynamic>[])
+          .map((item) =>
+              NetworkStatisticsEntry.fromJson(item as Map<String, dynamic>?))
+          .toList()),
     );
   }
 

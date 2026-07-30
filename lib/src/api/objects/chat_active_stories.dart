@@ -51,14 +51,14 @@ class ChatActiveStories extends TdObject {
     }
 
     return ChatActiveStories(
-      chatId: json['chat_id'] as int,
+      chatId: (json['chat_id'] as int?) ?? 0,
       list: StoryList.fromJson(json['list'] as Map<String, dynamic>?),
-      order: json['order'] as int,
-      canBeArchived: json['can_be_archived'] as bool,
-      maxReadStoryId: json['max_read_story_id'] as int,
+      order: (json['order'] as int?) ?? 0,
+      canBeArchived: (json['can_be_archived'] as bool?) ?? false,
+      maxReadStoryId: (json['max_read_story_id'] as int?) ?? 0,
       stories: List<StoryInfo>.from(
           ((json['stories'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => StoryInfo.fromJson(item))
+              .map((item) => StoryInfo.fromJson(item as Map<String, dynamic>?))
               .toList()),
     );
   }

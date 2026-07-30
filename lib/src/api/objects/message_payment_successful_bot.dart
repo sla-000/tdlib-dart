@@ -60,17 +60,19 @@ class MessagePaymentSuccessfulBot extends MessageContent {
     }
 
     return MessagePaymentSuccessfulBot(
-      currency: json['currency'] as String,
-      totalAmount: json['total_amount'] as int,
-      subscriptionUntilDate: json['subscription_until_date'] as int,
-      isRecurring: json['is_recurring'] as bool,
-      isFirstRecurring: json['is_first_recurring'] as bool,
-      invoicePayload: json['invoice_payload'] as String,
+      currency: (json['currency'] as String?) ?? '',
+      totalAmount: (json['total_amount'] as int?) ?? 0,
+      subscriptionUntilDate: (json['subscription_until_date'] as int?) ?? 0,
+      isRecurring: (json['is_recurring'] as bool?) ?? false,
+      isFirstRecurring: (json['is_first_recurring'] as bool?) ?? false,
+      invoicePayload: (json['invoice_payload'] as String?) ?? '',
       shippingOptionId: json['shipping_option_id'] as String?,
       orderInfo:
           OrderInfo.fromJson(json['order_info'] as Map<String, dynamic>?),
-      telegramPaymentChargeId: json['telegram_payment_charge_id'] as String,
-      providerPaymentChargeId: json['provider_payment_charge_id'] as String,
+      telegramPaymentChargeId:
+          (json['telegram_payment_charge_id'] as String?) ?? '',
+      providerPaymentChargeId:
+          (json['provider_payment_charge_id'] as String?) ?? '',
     );
   }
 

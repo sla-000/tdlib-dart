@@ -32,7 +32,7 @@ class GetCallbackQueryMessage extends TdFunction {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'chat_id': chatId,
         'message_id': messageId,
-        'callback_query_id': callbackQueryId,
+        'callback_query_id': callbackQueryId.toString(),
         '@type': constructor,
       };
 

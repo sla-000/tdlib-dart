@@ -90,29 +90,32 @@ class Invoice extends TdObject {
     }
 
     return Invoice(
-      currency: json['currency'] as String,
+      currency: (json['currency'] as String?) ?? '',
       priceParts: List<LabeledPricePart>.from(
           ((json['price_parts'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => LabeledPricePart.fromJson(item))
+              .map((item) =>
+                  LabeledPricePart.fromJson(item as Map<String, dynamic>?))
               .toList()),
-      subscriptionPeriod: json['subscription_period'] as int,
-      maxTipAmount: json['max_tip_amount'] as int,
+      subscriptionPeriod: (json['subscription_period'] as int?) ?? 0,
+      maxTipAmount: (json['max_tip_amount'] as int?) ?? 0,
       suggestedTipAmounts: List<int>.from(
           ((json['suggested_tip_amounts'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => item)
+              .map((item) =>
+                  (item is int ? item : int.tryParse(item.toString()) ?? 0))
               .toList()),
       recurringPaymentTermsOfServiceUrl:
-          json['recurring_payment_terms_of_service_url'] as String,
-      termsOfServiceUrl: json['terms_of_service_url'] as String,
-      isTest: json['is_test'] as bool,
-      needName: json['need_name'] as bool,
-      needPhoneNumber: json['need_phone_number'] as bool,
-      needEmailAddress: json['need_email_address'] as bool,
-      needShippingAddress: json['need_shipping_address'] as bool,
-      sendPhoneNumberToProvider: json['send_phone_number_to_provider'] as bool,
+          (json['recurring_payment_terms_of_service_url'] as String?) ?? '',
+      termsOfServiceUrl: (json['terms_of_service_url'] as String?) ?? '',
+      isTest: (json['is_test'] as bool?) ?? false,
+      needName: (json['need_name'] as bool?) ?? false,
+      needPhoneNumber: (json['need_phone_number'] as bool?) ?? false,
+      needEmailAddress: (json['need_email_address'] as bool?) ?? false,
+      needShippingAddress: (json['need_shipping_address'] as bool?) ?? false,
+      sendPhoneNumberToProvider:
+          (json['send_phone_number_to_provider'] as bool?) ?? false,
       sendEmailAddressToProvider:
-          json['send_email_address_to_provider'] as bool,
-      isFlexible: json['is_flexible'] as bool,
+          (json['send_email_address_to_provider'] as bool?) ?? false,
+      isFlexible: (json['is_flexible'] as bool?) ?? false,
     );
   }
 

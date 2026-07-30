@@ -38,11 +38,12 @@ class StorageStatisticsFast extends TdObject {
     }
 
     return StorageStatisticsFast(
-      filesSize: json['files_size'] as int,
-      fileCount: json['file_count'] as int,
-      databaseSize: json['database_size'] as int,
-      languagePackDatabaseSize: json['language_pack_database_size'] as int,
-      logSize: json['log_size'] as int,
+      filesSize: (json['files_size'] as int?) ?? 0,
+      fileCount: (json['file_count'] as int?) ?? 0,
+      databaseSize: (json['database_size'] as int?) ?? 0,
+      languagePackDatabaseSize:
+          (json['language_pack_database_size'] as int?) ?? 0,
+      logSize: (json['log_size'] as int?) ?? 0,
     );
   }
 

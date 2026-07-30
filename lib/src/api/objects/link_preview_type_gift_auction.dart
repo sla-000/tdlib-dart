@@ -27,7 +27,7 @@ class LinkPreviewTypeGiftAuction extends LinkPreviewType {
 
     return LinkPreviewTypeGiftAuction(
       gift: Gift.fromJson(json['gift'] as Map<String, dynamic>?)!,
-      auctionEndDate: json['auction_end_date'] as int,
+      auctionEndDate: (json['auction_end_date'] as int?) ?? 0,
     );
   }
 

@@ -32,12 +32,14 @@ class ConnectedAffiliatePrograms extends TdObject {
     }
 
     return ConnectedAffiliatePrograms(
-      totalCount: json['total_count'] as int,
-      programs: List<ConnectedAffiliateProgram>.from(
-          ((json['programs'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => ConnectedAffiliateProgram.fromJson(item))
-              .toList()),
-      nextOffset: json['next_offset'] as String,
+      totalCount: (json['total_count'] as int?) ?? 0,
+      programs: List<ConnectedAffiliateProgram>.from(((json['programs']
+                  as List<dynamic>?) ??
+              <dynamic>[])
+          .map((item) =>
+              ConnectedAffiliateProgram.fromJson(item as Map<String, dynamic>?))
+          .toList()),
+      nextOffset: (json['next_offset'] as String?) ?? '',
     );
   }
 

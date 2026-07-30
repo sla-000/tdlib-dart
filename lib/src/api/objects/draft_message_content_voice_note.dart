@@ -34,9 +34,9 @@ class DraftMessageContentVoiceNote extends DraftMessageContent {
     }
 
     return DraftMessageContentVoiceNote(
-      filePath: json['file_path'] as String,
-      duration: json['duration'] as int,
-      waveform: json['waveform'] as String,
+      filePath: (json['file_path'] as String?) ?? '',
+      duration: (json['duration'] as int?) ?? 0,
+      waveform: (json['waveform'] as String?) ?? '',
       selfDestructType: MessageSelfDestructType.fromJson(
           json['self_destruct_type'] as Map<String, dynamic>?),
     );

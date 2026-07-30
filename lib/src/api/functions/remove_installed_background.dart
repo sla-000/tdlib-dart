@@ -21,7 +21,7 @@ class RemoveInstalledBackground extends TdFunction {
 
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'background_id': backgroundId,
+        'background_id': backgroundId.toString(),
         '@type': constructor,
       };
 

@@ -21,7 +21,7 @@ class InputFileLocal extends InputFile {
     }
 
     return InputFileLocal(
-      path: json['path'] as String,
+      path: (json['path'] as String?) ?? '',
     );
   }
 

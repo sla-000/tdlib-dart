@@ -21,7 +21,7 @@ class PaidReactionTypeChat extends PaidReactionType {
     }
 
     return PaidReactionTypeChat(
-      chatId: json['chat_id'] as int,
+      chatId: (json['chat_id'] as int?) ?? 0,
     );
   }
 

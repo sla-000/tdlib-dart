@@ -26,8 +26,8 @@ class PreparedInlineMessageId extends TdObject {
     }
 
     return PreparedInlineMessageId(
-      id: json['id'] as String,
-      expirationDate: json['expiration_date'] as int,
+      id: (json['id'] as String?) ?? '',
+      expirationDate: (json['expiration_date'] as int?) ?? 0,
     );
   }
 

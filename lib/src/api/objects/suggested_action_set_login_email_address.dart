@@ -26,7 +26,7 @@ class SuggestedActionSetLoginEmailAddress extends SuggestedAction {
     }
 
     return SuggestedActionSetLoginEmailAddress(
-      canBeHidden: json['can_be_hidden'] as bool,
+      canBeHidden: (json['can_be_hidden'] as bool?) ?? false,
     );
   }
 

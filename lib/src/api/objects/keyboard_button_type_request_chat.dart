@@ -81,21 +81,22 @@ class KeyboardButtonTypeRequestChat extends KeyboardButtonType {
     }
 
     return KeyboardButtonTypeRequestChat(
-      id: json['id'] as int,
-      chatIsChannel: json['chat_is_channel'] as bool,
-      restrictChatIsForum: json['restrict_chat_is_forum'] as bool,
-      chatIsForum: json['chat_is_forum'] as bool,
-      restrictChatHasUsername: json['restrict_chat_has_username'] as bool,
-      chatHasUsername: json['chat_has_username'] as bool,
-      chatIsCreated: json['chat_is_created'] as bool,
+      id: (json['id'] as int?) ?? 0,
+      chatIsChannel: (json['chat_is_channel'] as bool?) ?? false,
+      restrictChatIsForum: (json['restrict_chat_is_forum'] as bool?) ?? false,
+      chatIsForum: (json['chat_is_forum'] as bool?) ?? false,
+      restrictChatHasUsername:
+          (json['restrict_chat_has_username'] as bool?) ?? false,
+      chatHasUsername: (json['chat_has_username'] as bool?) ?? false,
+      chatIsCreated: (json['chat_is_created'] as bool?) ?? false,
       userAdministratorRights: ChatAdministratorRights.fromJson(
           json['user_administrator_rights'] as Map<String, dynamic>?),
       botAdministratorRights: ChatAdministratorRights.fromJson(
           json['bot_administrator_rights'] as Map<String, dynamic>?),
-      botIsMember: json['bot_is_member'] as bool,
-      requestTitle: json['request_title'] as bool,
-      requestUsername: json['request_username'] as bool,
-      requestPhoto: json['request_photo'] as bool,
+      botIsMember: (json['bot_is_member'] as bool?) ?? false,
+      requestTitle: (json['request_title'] as bool?) ?? false,
+      requestUsername: (json['request_username'] as bool?) ?? false,
+      requestPhoto: (json['request_photo'] as bool?) ?? false,
     );
   }
 

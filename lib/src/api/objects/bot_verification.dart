@@ -32,8 +32,11 @@ class BotVerification extends TdObject {
     }
 
     return BotVerification(
-      botUserId: json['bot_user_id'] as int,
-      iconCustomEmojiId: int.tryParse(json['icon_custom_emoji_id']) ?? 0,
+      botUserId: (json['bot_user_id'] as int?) ?? 0,
+      iconCustomEmojiId: (json['icon_custom_emoji_id'] is int
+              ? json['icon_custom_emoji_id'] as int
+              : int.tryParse(json['icon_custom_emoji_id']?.toString() ?? '')) ??
+          0,
       customDescription: FormattedText.fromJson(
           json['custom_description'] as Map<String, dynamic>?)!,
     );

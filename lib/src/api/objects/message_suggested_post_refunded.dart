@@ -26,7 +26,7 @@ class MessageSuggestedPostRefunded extends MessageContent {
     }
 
     return MessageSuggestedPostRefunded(
-      suggestedPostMessageId: json['suggested_post_message_id'] as int,
+      suggestedPostMessageId: (json['suggested_post_message_id'] as int?) ?? 0,
       reason: SuggestedPostRefundReason.fromJson(
           json['reason'] as Map<String, dynamic>?)!,
     );

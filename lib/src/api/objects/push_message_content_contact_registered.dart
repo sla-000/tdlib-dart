@@ -23,7 +23,7 @@ class PushMessageContentContactRegistered extends PushMessageContent {
     }
 
     return PushMessageContentContactRegistered(
-      asPremiumAccount: json['as_premium_account'] as bool,
+      asPremiumAccount: (json['as_premium_account'] as bool?) ?? false,
     );
   }
 

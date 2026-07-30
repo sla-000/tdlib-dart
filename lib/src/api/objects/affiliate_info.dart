@@ -32,8 +32,8 @@ class AffiliateInfo extends TdObject {
     }
 
     return AffiliateInfo(
-      commissionPerMille: json['commission_per_mille'] as int,
-      affiliateChatId: json['affiliate_chat_id'] as int,
+      commissionPerMille: (json['commission_per_mille'] as int?) ?? 0,
+      affiliateChatId: (json['affiliate_chat_id'] as int?) ?? 0,
       starAmount:
           StarAmount.fromJson(json['star_amount'] as Map<String, dynamic>?)!,
     );

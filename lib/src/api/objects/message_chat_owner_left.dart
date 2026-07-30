@@ -22,7 +22,7 @@ class MessageChatOwnerLeft extends MessageContent {
     }
 
     return MessageChatOwnerLeft(
-      newOwnerUserId: json['new_owner_user_id'] as int,
+      newOwnerUserId: (json['new_owner_user_id'] as int?) ?? 0,
     );
   }
 

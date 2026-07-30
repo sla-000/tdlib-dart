@@ -34,9 +34,9 @@ class InternalLinkTypeUserPhoneNumber extends InternalLinkType {
     }
 
     return InternalLinkTypeUserPhoneNumber(
-      phoneNumber: json['phone_number'] as String,
-      draftText: json['draft_text'] as String,
-      openProfile: json['open_profile'] as bool,
+      phoneNumber: (json['phone_number'] as String?) ?? '',
+      draftText: (json['draft_text'] as String?) ?? '',
+      openProfile: (json['open_profile'] as bool?) ?? false,
     );
   }
 

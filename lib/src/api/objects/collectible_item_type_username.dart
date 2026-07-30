@@ -21,7 +21,7 @@ class CollectibleItemTypeUsername extends CollectibleItemType {
     }
 
     return CollectibleItemTypeUsername(
-      username: json['username'] as String,
+      username: (json['username'] as String?) ?? '',
     );
   }
 

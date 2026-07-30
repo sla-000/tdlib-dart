@@ -25,8 +25,8 @@ class ChatBoostLink extends TdObject {
     }
 
     return ChatBoostLink(
-      link: json['link'] as String,
-      isPublic: json['is_public'] as bool,
+      link: (json['link'] as String?) ?? '',
+      isPublic: (json['is_public'] as bool?) ?? false,
     );
   }
 

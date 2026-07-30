@@ -23,7 +23,8 @@ class GroupCallStreams extends TdObject {
     return GroupCallStreams(
       streams: List<GroupCallStream>.from(
           ((json['streams'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => GroupCallStream.fromJson(item))
+              .map((item) =>
+                  GroupCallStream.fromJson(item as Map<String, dynamic>?))
               .toList()),
     );
   }

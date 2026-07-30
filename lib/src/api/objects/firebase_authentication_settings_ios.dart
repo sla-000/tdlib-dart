@@ -26,8 +26,8 @@ class FirebaseAuthenticationSettingsIos extends FirebaseAuthenticationSettings {
     }
 
     return FirebaseAuthenticationSettingsIos(
-      deviceToken: json['device_token'] as String,
-      isAppSandbox: json['is_app_sandbox'] as bool,
+      deviceToken: (json['device_token'] as String?) ?? '',
+      isAppSandbox: (json['is_app_sandbox'] as bool?) ?? false,
     );
   }
 

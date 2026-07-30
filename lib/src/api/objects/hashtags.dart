@@ -23,7 +23,7 @@ class Hashtags extends TdObject {
     return Hashtags(
       hashtags: List<String>.from(
           ((json['hashtags'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => item)
+              .map((item) => item as String)
               .toList()),
     );
   }

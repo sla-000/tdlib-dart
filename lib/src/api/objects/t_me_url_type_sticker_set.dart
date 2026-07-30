@@ -21,7 +21,10 @@ class TMeUrlTypeStickerSet extends TMeUrlType {
     }
 
     return TMeUrlTypeStickerSet(
-      stickerSetId: int.tryParse(json['sticker_set_id']) ?? 0,
+      stickerSetId: (json['sticker_set_id'] is int
+              ? json['sticker_set_id'] as int
+              : int.tryParse(json['sticker_set_id']?.toString() ?? '')) ??
+          0,
     );
   }
 

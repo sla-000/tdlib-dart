@@ -26,7 +26,7 @@ class MessageSticker extends MessageContent {
 
     return MessageSticker(
       sticker: Sticker.fromJson(json['sticker'] as Map<String, dynamic>?)!,
-      isPremium: json['is_premium'] as bool,
+      isPremium: (json['is_premium'] as bool?) ?? false,
     );
   }
 

@@ -22,7 +22,7 @@ class TonTransactionTypeSuggestedPostPayment extends TonTransactionType {
     }
 
     return TonTransactionTypeSuggestedPostPayment(
-      chatId: json['chat_id'] as int,
+      chatId: (json['chat_id'] as int?) ?? 0,
     );
   }
 

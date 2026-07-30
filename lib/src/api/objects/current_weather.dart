@@ -25,8 +25,8 @@ class CurrentWeather extends TdObject {
     }
 
     return CurrentWeather(
-      temperature: (json['temperature'] as num).toDouble(),
-      emoji: json['emoji'] as String,
+      temperature: (json['temperature'] as num?)?.toDouble() ?? 0.0,
+      emoji: (json['emoji'] as String?) ?? '',
     );
   }
 

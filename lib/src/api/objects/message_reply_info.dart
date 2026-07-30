@@ -43,14 +43,16 @@ class MessageReplyInfo extends TdObject {
     }
 
     return MessageReplyInfo(
-      replyCount: json['reply_count'] as int,
-      recentReplierIds: List<MessageSender>.from(
-          ((json['recent_replier_ids'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => MessageSender.fromJson(item))
-              .toList()),
-      lastReadInboxMessageId: json['last_read_inbox_message_id'] as int,
-      lastReadOutboxMessageId: json['last_read_outbox_message_id'] as int,
-      lastMessageId: json['last_message_id'] as int,
+      replyCount: (json['reply_count'] as int?) ?? 0,
+      recentReplierIds: List<MessageSender>.from(((json['recent_replier_ids']
+                  as List<dynamic>?) ??
+              <dynamic>[])
+          .map((item) => MessageSender.fromJson(item as Map<String, dynamic>?))
+          .toList()),
+      lastReadInboxMessageId: (json['last_read_inbox_message_id'] as int?) ?? 0,
+      lastReadOutboxMessageId:
+          (json['last_read_outbox_message_id'] as int?) ?? 0,
+      lastMessageId: (json['last_message_id'] as int?) ?? 0,
     );
   }
 

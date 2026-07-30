@@ -25,7 +25,7 @@ class UpdateOption extends Update {
     }
 
     return UpdateOption(
-      name: json['name'] as String,
+      name: (json['name'] as String?) ?? '',
       value: OptionValue.fromJson(json['value'] as Map<String, dynamic>?)!,
     );
   }

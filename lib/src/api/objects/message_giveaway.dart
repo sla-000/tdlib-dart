@@ -36,7 +36,7 @@ class MessageGiveaway extends MessageContent {
     return MessageGiveaway(
       parameters: GiveawayParameters.fromJson(
           json['parameters'] as Map<String, dynamic>?)!,
-      winnerCount: json['winner_count'] as int,
+      winnerCount: (json['winner_count'] as int?) ?? 0,
       prize: GiveawayPrize.fromJson(json['prize'] as Map<String, dynamic>?)!,
       sticker: Sticker.fromJson(json['sticker'] as Map<String, dynamic>?),
     );

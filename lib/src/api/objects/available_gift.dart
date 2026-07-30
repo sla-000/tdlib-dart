@@ -36,9 +36,9 @@ class AvailableGift extends TdObject {
 
     return AvailableGift(
       gift: Gift.fromJson(json['gift'] as Map<String, dynamic>?)!,
-      resaleCount: json['resale_count'] as int,
-      minResaleStarCount: json['min_resale_star_count'] as int,
-      title: json['title'] as String,
+      resaleCount: (json['resale_count'] as int?) ?? 0,
+      minResaleStarCount: (json['min_resale_star_count'] as int?) ?? 0,
+      title: (json['title'] as String?) ?? '',
     );
   }
 

@@ -26,7 +26,7 @@ class InputPassportElementErrorSourceTranslationFile
     }
 
     return InputPassportElementErrorSourceTranslationFile(
-      fileHash: json['file_hash'] as String,
+      fileHash: (json['file_hash'] as String?) ?? '',
     );
   }
 

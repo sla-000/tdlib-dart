@@ -60,14 +60,15 @@ class UpdateForumTopic extends Update {
     }
 
     return UpdateForumTopic(
-      chatId: json['chat_id'] as int,
-      forumTopicId: json['forum_topic_id'] as int,
-      isPinned: json['is_pinned'] as bool,
-      lastReadInboxMessageId: json['last_read_inbox_message_id'] as int,
-      lastReadOutboxMessageId: json['last_read_outbox_message_id'] as int,
-      unreadMentionCount: json['unread_mention_count'] as int,
-      unreadReactionCount: json['unread_reaction_count'] as int,
-      unreadPollVoteCount: json['unread_poll_vote_count'] as int,
+      chatId: (json['chat_id'] as int?) ?? 0,
+      forumTopicId: (json['forum_topic_id'] as int?) ?? 0,
+      isPinned: (json['is_pinned'] as bool?) ?? false,
+      lastReadInboxMessageId: (json['last_read_inbox_message_id'] as int?) ?? 0,
+      lastReadOutboxMessageId:
+          (json['last_read_outbox_message_id'] as int?) ?? 0,
+      unreadMentionCount: (json['unread_mention_count'] as int?) ?? 0,
+      unreadReactionCount: (json['unread_reaction_count'] as int?) ?? 0,
+      unreadPollVoteCount: (json['unread_poll_vote_count'] as int?) ?? 0,
       notificationSettings: ChatNotificationSettings.fromJson(
           json['notification_settings'] as Map<String, dynamic>?)!,
       draftMessage:

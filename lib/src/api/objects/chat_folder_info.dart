@@ -43,12 +43,12 @@ class ChatFolderInfo extends TdObject {
     }
 
     return ChatFolderInfo(
-      id: json['id'] as int,
+      id: (json['id'] as int?) ?? 0,
       name: ChatFolderName.fromJson(json['name'] as Map<String, dynamic>?)!,
       icon: ChatFolderIcon.fromJson(json['icon'] as Map<String, dynamic>?)!,
-      colorId: json['color_id'] as int,
-      isShareable: json['is_shareable'] as bool,
-      hasMyInviteLinks: json['has_my_invite_links'] as bool,
+      colorId: (json['color_id'] as int?) ?? 0,
+      isShareable: (json['is_shareable'] as bool?) ?? false,
+      hasMyInviteLinks: (json['has_my_invite_links'] as bool?) ?? false,
     );
   }
 

@@ -34,7 +34,7 @@ class LaunchPrepaidGiveaway extends TdFunction {
 
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'giveaway_id': giveawayId,
+        'giveaway_id': giveawayId.toString(),
         'parameters': parameters.toJson(),
         'winner_count': winnerCount,
         'star_count': starCount,

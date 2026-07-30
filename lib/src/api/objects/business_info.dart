@@ -67,8 +67,8 @@ class BusinessInfo extends TdObject {
           json['opening_hours'] as Map<String, dynamic>?),
       localOpeningHours: BusinessOpeningHours.fromJson(
           json['local_opening_hours'] as Map<String, dynamic>?),
-      nextOpenIn: json['next_open_in'] as int,
-      nextCloseIn: json['next_close_in'] as int,
+      nextOpenIn: (json['next_open_in'] as int?) ?? 0,
+      nextCloseIn: (json['next_close_in'] as int?) ?? 0,
       greetingMessageSettings: BusinessGreetingMessageSettings.fromJson(
           json['greeting_message_settings'] as Map<String, dynamic>?),
       awayMessageSettings: BusinessAwayMessageSettings.fromJson(

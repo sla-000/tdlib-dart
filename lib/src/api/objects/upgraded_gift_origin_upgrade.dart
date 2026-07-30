@@ -22,7 +22,7 @@ class UpgradedGiftOriginUpgrade extends UpgradedGiftOrigin {
     }
 
     return UpgradedGiftOriginUpgrade(
-      giftMessageId: json['gift_message_id'] as int,
+      giftMessageId: (json['gift_message_id'] as int?) ?? 0,
     );
   }
 

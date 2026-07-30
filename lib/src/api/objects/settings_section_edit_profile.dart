@@ -27,7 +27,7 @@ class SettingsSectionEditProfile extends SettingsSection {
     }
 
     return SettingsSectionEditProfile(
-      subsection: json['subsection'] as String,
+      subsection: (json['subsection'] as String?) ?? '',
     );
   }
 

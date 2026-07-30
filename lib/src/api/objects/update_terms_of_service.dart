@@ -27,7 +27,7 @@ class UpdateTermsOfService extends Update {
     }
 
     return UpdateTermsOfService(
-      termsOfServiceId: json['terms_of_service_id'] as String,
+      termsOfServiceId: (json['terms_of_service_id'] as String?) ?? '',
       termsOfService: TermsOfService.fromJson(
           json['terms_of_service'] as Map<String, dynamic>?)!,
     );

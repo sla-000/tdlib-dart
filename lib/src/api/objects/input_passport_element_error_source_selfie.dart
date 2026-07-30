@@ -24,7 +24,7 @@ class InputPassportElementErrorSourceSelfie
     }
 
     return InputPassportElementErrorSourceSelfie(
-      fileHash: json['file_hash'] as String,
+      fileHash: (json['file_hash'] as String?) ?? '',
     );
   }
 

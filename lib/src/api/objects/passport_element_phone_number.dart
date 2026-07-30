@@ -21,7 +21,7 @@ class PassportElementPhoneNumber extends PassportElement {
     }
 
     return PassportElementPhoneNumber(
-      phoneNumber: json['phone_number'] as String,
+      phoneNumber: (json['phone_number'] as String?) ?? '',
     );
   }
 

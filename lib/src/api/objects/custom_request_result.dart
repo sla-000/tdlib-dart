@@ -21,7 +21,7 @@ class CustomRequestResult extends TdObject {
     }
 
     return CustomRequestResult(
-      result: json['result'] as String,
+      result: (json['result'] as String?) ?? '',
     );
   }
 

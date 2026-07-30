@@ -24,7 +24,8 @@ class FailedToAddMembers extends TdObject {
     return FailedToAddMembers(
       failedToAddMembers: List<FailedToAddMember>.from(
           ((json['failed_to_add_members'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => FailedToAddMember.fromJson(item))
+              .map((item) =>
+                  FailedToAddMember.fromJson(item as Map<String, dynamic>?))
               .toList()),
     );
   }

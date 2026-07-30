@@ -43,10 +43,13 @@ class Background extends TdObject {
     }
 
     return Background(
-      id: int.tryParse(json['id']) ?? 0,
-      isDefault: json['is_default'] as bool,
-      isDark: json['is_dark'] as bool,
-      name: json['name'] as String,
+      id: (json['id'] is int
+              ? json['id'] as int
+              : int.tryParse(json['id']?.toString() ?? '')) ??
+          0,
+      isDefault: (json['is_default'] as bool?) ?? false,
+      isDark: (json['is_dark'] as bool?) ?? false,
+      name: (json['name'] as String?) ?? '',
       document: Document.fromJson(json['document'] as Map<String, dynamic>?),
       type: BackgroundType.fromJson(json['type'] as Map<String, dynamic>?)!,
     );

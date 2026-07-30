@@ -26,8 +26,8 @@ class PushMessageContentChecklist extends PushMessageContent {
     }
 
     return PushMessageContentChecklist(
-      title: json['title'] as String,
-      isPinned: json['is_pinned'] as bool,
+      title: (json['title'] as String?) ?? '',
+      isPinned: (json['is_pinned'] as bool?) ?? false,
     );
   }
 

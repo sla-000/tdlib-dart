@@ -40,11 +40,11 @@ class StarPaymentOption extends TdObject {
     }
 
     return StarPaymentOption(
-      currency: json['currency'] as String,
-      amount: json['amount'] as int,
-      starCount: json['star_count'] as int,
-      storeProductId: json['store_product_id'] as String,
-      isAdditional: json['is_additional'] as bool,
+      currency: (json['currency'] as String?) ?? '',
+      amount: (json['amount'] as int?) ?? 0,
+      starCount: (json['star_count'] as int?) ?? 0,
+      storeProductId: (json['store_product_id'] as String?) ?? '',
+      isAdditional: (json['is_additional'] as bool?) ?? false,
     );
   }
 

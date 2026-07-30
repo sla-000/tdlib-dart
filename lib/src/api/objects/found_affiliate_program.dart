@@ -25,7 +25,7 @@ class FoundAffiliateProgram extends TdObject {
     }
 
     return FoundAffiliateProgram(
-      botUserId: json['bot_user_id'] as int,
+      botUserId: (json['bot_user_id'] as int?) ?? 0,
       info:
           AffiliateProgramInfo.fromJson(json['info'] as Map<String, dynamic>?)!,
     );

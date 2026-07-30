@@ -23,7 +23,7 @@ class MessageSelfDestructTypeTimer extends MessageSelfDestructType {
     }
 
     return MessageSelfDestructTypeTimer(
-      selfDestructTime: json['self_destruct_time'] as int,
+      selfDestructTime: (json['self_destruct_time'] as int?) ?? 0,
     );
   }
 

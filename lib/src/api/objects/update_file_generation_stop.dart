@@ -21,7 +21,10 @@ class UpdateFileGenerationStop extends Update {
     }
 
     return UpdateFileGenerationStop(
-      generationId: int.tryParse(json['generation_id']) ?? 0,
+      generationId: (json['generation_id'] is int
+              ? json['generation_id'] as int
+              : int.tryParse(json['generation_id']?.toString() ?? '')) ??
+          0,
     );
   }
 

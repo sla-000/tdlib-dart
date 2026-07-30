@@ -49,7 +49,7 @@ class GetChatEventLog extends TdFunction {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'chat_id': chatId,
         'query': query,
-        'from_event_id': fromEventId,
+        'from_event_id': fromEventId.toString(),
         'limit': limit,
         'filters': filters?.toJson(),
         'user_ids': userIds.map((item) => item).toList(),

@@ -23,7 +23,7 @@ class InternalLinkTypeMessage extends InternalLinkType {
     }
 
     return InternalLinkTypeMessage(
-      url: json['url'] as String,
+      url: (json['url'] as String?) ?? '',
     );
   }
 

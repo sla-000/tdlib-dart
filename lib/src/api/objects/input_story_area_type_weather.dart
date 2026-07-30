@@ -29,9 +29,9 @@ class InputStoryAreaTypeWeather extends InputStoryAreaType {
     }
 
     return InputStoryAreaTypeWeather(
-      temperature: (json['temperature'] as num).toDouble(),
-      emoji: json['emoji'] as String,
-      backgroundColor: json['background_color'] as int,
+      temperature: (json['temperature'] as num?)?.toDouble() ?? 0.0,
+      emoji: (json['emoji'] as String?) ?? '',
+      backgroundColor: (json['background_color'] as int?) ?? 0,
     );
   }
 

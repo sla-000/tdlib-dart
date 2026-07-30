@@ -34,11 +34,16 @@ class VerificationStatus extends TdObject {
     }
 
     return VerificationStatus(
-      isVerified: json['is_verified'] as bool,
-      isScam: json['is_scam'] as bool,
-      isFake: json['is_fake'] as bool,
+      isVerified: (json['is_verified'] as bool?) ?? false,
+      isScam: (json['is_scam'] as bool?) ?? false,
+      isFake: (json['is_fake'] as bool?) ?? false,
       botVerificationIconCustomEmojiId:
-          int.tryParse(json['bot_verification_icon_custom_emoji_id']) ?? 0,
+          (json['bot_verification_icon_custom_emoji_id'] is int
+                  ? json['bot_verification_icon_custom_emoji_id'] as int
+                  : int.tryParse(json['bot_verification_icon_custom_emoji_id']
+                          ?.toString() ??
+                      '')) ??
+              0,
     );
   }
 

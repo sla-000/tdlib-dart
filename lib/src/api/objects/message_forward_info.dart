@@ -38,10 +38,10 @@ class MessageForwardInfo extends TdObject {
 
     return MessageForwardInfo(
       origin: MessageOrigin.fromJson(json['origin'] as Map<String, dynamic>?)!,
-      date: json['date'] as int,
+      date: (json['date'] as int?) ?? 0,
       source: ForwardSource.fromJson(json['source'] as Map<String, dynamic>?),
       publicServiceAnnouncementType:
-          json['public_service_announcement_type'] as String,
+          (json['public_service_announcement_type'] as String?) ?? '',
     );
   }
 

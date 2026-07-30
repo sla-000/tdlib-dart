@@ -23,7 +23,7 @@ class GiftResalePriceTon extends GiftResalePrice {
     }
 
     return GiftResalePriceTon(
-      toncoinCentCount: json['toncoin_cent_count'] as int,
+      toncoinCentCount: (json['toncoin_cent_count'] as int?) ?? 0,
     );
   }
 

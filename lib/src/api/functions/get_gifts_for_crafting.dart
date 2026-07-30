@@ -34,7 +34,7 @@ class GetGiftsForCrafting extends TdFunction {
 
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'regular_gift_id': regularGiftId,
+        'regular_gift_id': regularGiftId.toString(),
         'offset': offset,
         'limit': limit,
         '@type': constructor,

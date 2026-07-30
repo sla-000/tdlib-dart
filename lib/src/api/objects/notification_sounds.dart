@@ -23,7 +23,8 @@ class NotificationSounds extends TdObject {
     return NotificationSounds(
       notificationSounds: List<NotificationSound>.from(
           ((json['notification_sounds'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => NotificationSound.fromJson(item))
+              .map((item) =>
+                  NotificationSound.fromJson(item as Map<String, dynamic>?))
               .toList()),
     );
   }

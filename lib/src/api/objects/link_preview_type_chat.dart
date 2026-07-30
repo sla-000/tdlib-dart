@@ -31,7 +31,7 @@ class LinkPreviewTypeChat extends LinkPreviewType {
     return LinkPreviewTypeChat(
       type: InviteLinkChatType.fromJson(json['type'] as Map<String, dynamic>?)!,
       photo: ChatPhoto.fromJson(json['photo'] as Map<String, dynamic>?),
-      createsJoinRequest: json['creates_join_request'] as bool,
+      createsJoinRequest: (json['creates_join_request'] as bool?) ?? false,
     );
   }
 

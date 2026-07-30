@@ -25,7 +25,7 @@ class UpdateChatActionBar extends Update {
     }
 
     return UpdateChatActionBar(
-      chatId: json['chat_id'] as int,
+      chatId: (json['chat_id'] as int?) ?? 0,
       actionBar:
           ChatActionBar.fromJson(json['action_bar'] as Map<String, dynamic>?),
     );

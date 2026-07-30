@@ -100,27 +100,30 @@ class Gift extends TdObject {
     }
 
     return Gift(
-      id: int.tryParse(json['id']) ?? 0,
-      publisherChatId: json['publisher_chat_id'] as int,
+      id: (json['id'] is int
+              ? json['id'] as int
+              : int.tryParse(json['id']?.toString() ?? '')) ??
+          0,
+      publisherChatId: (json['publisher_chat_id'] as int?) ?? 0,
       sticker: Sticker.fromJson(json['sticker'] as Map<String, dynamic>?)!,
-      starCount: json['star_count'] as int,
-      defaultSellStarCount: json['default_sell_star_count'] as int,
-      upgradeStarCount: json['upgrade_star_count'] as int,
-      upgradeVariantCount: json['upgrade_variant_count'] as int,
-      hasColors: json['has_colors'] as bool,
-      isForBirthday: json['is_for_birthday'] as bool,
-      isPremium: json['is_premium'] as bool,
+      starCount: (json['star_count'] as int?) ?? 0,
+      defaultSellStarCount: (json['default_sell_star_count'] as int?) ?? 0,
+      upgradeStarCount: (json['upgrade_star_count'] as int?) ?? 0,
+      upgradeVariantCount: (json['upgrade_variant_count'] as int?) ?? 0,
+      hasColors: (json['has_colors'] as bool?) ?? false,
+      isForBirthday: (json['is_for_birthday'] as bool?) ?? false,
+      isPremium: (json['is_premium'] as bool?) ?? false,
       auctionInfo:
           GiftAuction.fromJson(json['auction_info'] as Map<String, dynamic>?),
-      nextSendDate: json['next_send_date'] as int,
+      nextSendDate: (json['next_send_date'] as int?) ?? 0,
       userLimits: GiftPurchaseLimits.fromJson(
           json['user_limits'] as Map<String, dynamic>?),
       overallLimits: GiftPurchaseLimits.fromJson(
           json['overall_limits'] as Map<String, dynamic>?),
       background:
           GiftBackground.fromJson(json['background'] as Map<String, dynamic>?)!,
-      firstSendDate: json['first_send_date'] as int,
-      lastSendDate: json['last_send_date'] as int,
+      firstSendDate: (json['first_send_date'] as int?) ?? 0,
+      lastSendDate: (json['last_send_date'] as int?) ?? 0,
     );
   }
 

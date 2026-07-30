@@ -56,17 +56,17 @@ class CallStateReady extends CallState {
           CallProtocol.fromJson(json['protocol'] as Map<String, dynamic>?)!,
       servers: List<CallServer>.from(
           ((json['servers'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => CallServer.fromJson(item))
+              .map((item) => CallServer.fromJson(item as Map<String, dynamic>?))
               .toList()),
-      config: json['config'] as String,
-      encryptionKey: json['encryption_key'] as String,
+      config: (json['config'] as String?) ?? '',
+      encryptionKey: (json['encryption_key'] as String?) ?? '',
       emojis: List<String>.from(
           ((json['emojis'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => item)
+              .map((item) => item as String)
               .toList()),
-      allowP2p: json['allow_p2p'] as bool,
-      isGroupCallSupported: json['is_group_call_supported'] as bool,
-      customParameters: json['custom_parameters'] as String,
+      allowP2p: (json['allow_p2p'] as bool?) ?? false,
+      isGroupCallSupported: (json['is_group_call_supported'] as bool?) ?? false,
+      customParameters: (json['custom_parameters'] as String?) ?? '',
     );
   }
 

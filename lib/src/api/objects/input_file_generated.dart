@@ -36,9 +36,9 @@ class InputFileGenerated extends InputFile {
     }
 
     return InputFileGenerated(
-      originalPath: json['original_path'] as String,
-      conversion: json['conversion'] as String,
-      expectedSize: json['expected_size'] as int,
+      originalPath: (json['original_path'] as String?) ?? '',
+      conversion: (json['conversion'] as String?) ?? '',
+      expectedSize: (json['expected_size'] as int?) ?? 0,
     );
   }
 

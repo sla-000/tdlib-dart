@@ -29,10 +29,10 @@ class InlineQueryResultVoiceNote extends InlineQueryResult {
     }
 
     return InlineQueryResultVoiceNote(
-      id: json['id'] as String,
+      id: (json['id'] as String?) ?? '',
       voiceNote:
           VoiceNote.fromJson(json['voice_note'] as Map<String, dynamic>?)!,
-      title: json['title'] as String,
+      title: (json['title'] as String?) ?? '',
     );
   }
 

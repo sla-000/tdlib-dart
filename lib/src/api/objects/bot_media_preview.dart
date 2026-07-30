@@ -27,7 +27,7 @@ class BotMediaPreview extends TdObject {
     }
 
     return BotMediaPreview(
-      date: json['date'] as int,
+      date: (json['date'] as int?) ?? 0,
       content: StoryContent.fromJson(json['content'] as Map<String, dynamic>?)!,
     );
   }

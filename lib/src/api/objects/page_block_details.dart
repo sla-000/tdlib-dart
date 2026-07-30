@@ -32,9 +32,9 @@ class PageBlockDetails extends PageBlock {
       header: RichText.fromJson(json['header'] as Map<String, dynamic>?)!,
       blocks: List<PageBlock>.from(
           ((json['blocks'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => PageBlock.fromJson(item))
+              .map((item) => PageBlock.fromJson(item as Map<String, dynamic>?))
               .toList()),
-      isOpen: json['is_open'] as bool,
+      isOpen: (json['is_open'] as bool?) ?? false,
     );
   }
 

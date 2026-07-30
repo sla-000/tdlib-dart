@@ -39,11 +39,11 @@ class FileDownload extends TdObject {
     }
 
     return FileDownload(
-      fileId: json['file_id'] as int,
+      fileId: (json['file_id'] as int?) ?? 0,
       message: Message.fromJson(json['message'] as Map<String, dynamic>?)!,
-      addDate: json['add_date'] as int,
-      completeDate: json['complete_date'] as int,
-      isPaused: json['is_paused'] as bool,
+      addDate: (json['add_date'] as int?) ?? 0,
+      completeDate: (json['complete_date'] as int?) ?? 0,
+      isPaused: (json['is_paused'] as bool?) ?? false,
     );
   }
 

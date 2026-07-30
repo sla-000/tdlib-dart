@@ -68,20 +68,22 @@ class MessageGiveawayWinners extends MessageContent {
     }
 
     return MessageGiveawayWinners(
-      boostedChatId: json['boosted_chat_id'] as int,
-      giveawayMessageId: json['giveaway_message_id'] as int,
-      additionalChatCount: json['additional_chat_count'] as int,
-      actualWinnersSelectionDate: json['actual_winners_selection_date'] as int,
-      onlyNewMembers: json['only_new_members'] as bool,
-      wasRefunded: json['was_refunded'] as bool,
+      boostedChatId: (json['boosted_chat_id'] as int?) ?? 0,
+      giveawayMessageId: (json['giveaway_message_id'] as int?) ?? 0,
+      additionalChatCount: (json['additional_chat_count'] as int?) ?? 0,
+      actualWinnersSelectionDate:
+          (json['actual_winners_selection_date'] as int?) ?? 0,
+      onlyNewMembers: (json['only_new_members'] as bool?) ?? false,
+      wasRefunded: (json['was_refunded'] as bool?) ?? false,
       prize: GiveawayPrize.fromJson(json['prize'] as Map<String, dynamic>?)!,
-      prizeDescription: json['prize_description'] as String,
-      winnerCount: json['winner_count'] as int,
+      prizeDescription: (json['prize_description'] as String?) ?? '',
+      winnerCount: (json['winner_count'] as int?) ?? 0,
       winnerUserIds: List<int>.from(
           ((json['winner_user_ids'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => item)
+              .map((item) =>
+                  (item is int ? item : int.tryParse(item.toString()) ?? 0))
               .toList()),
-      unclaimedPrizeCount: json['unclaimed_prize_count'] as int,
+      unclaimedPrizeCount: (json['unclaimed_prize_count'] as int?) ?? 0,
     );
   }
 

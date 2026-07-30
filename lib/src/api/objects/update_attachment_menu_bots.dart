@@ -24,7 +24,8 @@ class UpdateAttachmentMenuBots extends Update {
     return UpdateAttachmentMenuBots(
       bots: List<AttachmentMenuBot>.from(
           ((json['bots'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => AttachmentMenuBot.fromJson(item))
+              .map((item) =>
+                  AttachmentMenuBot.fromJson(item as Map<String, dynamic>?))
               .toList()),
     );
   }

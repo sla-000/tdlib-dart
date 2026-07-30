@@ -44,11 +44,13 @@ class InputStoryContentVideo extends InputStoryContent {
       video: InputFile.fromJson(json['video'] as Map<String, dynamic>?)!,
       addedStickerFileIds: List<int>.from(
           ((json['added_sticker_file_ids'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => item)
+              .map((item) =>
+                  (item is int ? item : int.tryParse(item.toString()) ?? 0))
               .toList()),
-      duration: (json['duration'] as num).toDouble(),
-      coverFrameTimestamp: (json['cover_frame_timestamp'] as num).toDouble(),
-      isAnimation: json['is_animation'] as bool,
+      duration: (json['duration'] as num?)?.toDouble() ?? 0.0,
+      coverFrameTimestamp:
+          (json['cover_frame_timestamp'] as num?)?.toDouble() ?? 0.0,
+      isAnimation: (json['is_animation'] as bool?) ?? false,
     );
   }
 

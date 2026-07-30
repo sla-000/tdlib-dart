@@ -25,8 +25,8 @@ class UpdateChatIsMarkedAsUnread extends Update {
     }
 
     return UpdateChatIsMarkedAsUnread(
-      chatId: json['chat_id'] as int,
-      isMarkedAsUnread: json['is_marked_as_unread'] as bool,
+      chatId: (json['chat_id'] as int?) ?? 0,
+      isMarkedAsUnread: (json['is_marked_as_unread'] as bool?) ?? false,
     );
   }
 

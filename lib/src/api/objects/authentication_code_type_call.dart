@@ -22,7 +22,7 @@ class AuthenticationCodeTypeCall extends AuthenticationCodeType {
     }
 
     return AuthenticationCodeTypeCall(
-      length: json['length'] as int,
+      length: (json['length'] as int?) ?? 0,
     );
   }
 

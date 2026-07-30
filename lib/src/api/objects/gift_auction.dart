@@ -29,9 +29,9 @@ class GiftAuction extends TdObject {
     }
 
     return GiftAuction(
-      id: json['id'] as String,
-      giftsPerRound: json['gifts_per_round'] as int,
-      startDate: json['start_date'] as int,
+      id: (json['id'] as String?) ?? '',
+      giftsPerRound: (json['gifts_per_round'] as int?) ?? 0,
+      startDate: (json['start_date'] as int?) ?? 0,
     );
   }
 

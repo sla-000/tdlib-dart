@@ -26,7 +26,7 @@ class MessageChatShared extends MessageContent {
 
     return MessageChatShared(
       chat: SharedChat.fromJson(json['chat'] as Map<String, dynamic>?)!,
-      buttonId: json['button_id'] as int,
+      buttonId: (json['button_id'] as int?) ?? 0,
     );
   }
 

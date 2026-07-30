@@ -48,19 +48,21 @@ class StakeDiceState extends TdObject {
     }
 
     return StakeDiceState(
-      stateHash: json['state_hash'] as String,
-      stakeToncoinAmount: json['stake_toncoin_amount'] as int,
+      stateHash: (json['state_hash'] as String?) ?? '',
+      stakeToncoinAmount: (json['stake_toncoin_amount'] as int?) ?? 0,
       suggestedStakeToncoinAmounts: List<int>.from(
           ((json['suggested_stake_toncoin_amounts'] as List<dynamic>?) ??
                   <dynamic>[])
-              .map((item) => item)
+              .map((item) =>
+                  (item is int ? item : int.tryParse(item.toString()) ?? 0))
               .toList()),
-      currentStreak: json['current_streak'] as int,
+      currentStreak: (json['current_streak'] as int?) ?? 0,
       prizePerMille: List<int>.from(
           ((json['prize_per_mille'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => item)
+              .map((item) =>
+                  (item is int ? item : int.tryParse(item.toString()) ?? 0))
               .toList()),
-      streakPrizePerMille: json['streak_prize_per_mille'] as int,
+      streakPrizePerMille: (json['streak_prize_per_mille'] as int?) ?? 0,
     );
   }
 

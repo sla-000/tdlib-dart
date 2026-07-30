@@ -34,13 +34,14 @@ class UpdateMessageUnreadReactions extends Update {
     }
 
     return UpdateMessageUnreadReactions(
-      chatId: json['chat_id'] as int,
-      messageId: json['message_id'] as int,
-      unreadReactions: List<UnreadReaction>.from(
-          ((json['unread_reactions'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => UnreadReaction.fromJson(item))
-              .toList()),
-      unreadReactionCount: json['unread_reaction_count'] as int,
+      chatId: (json['chat_id'] as int?) ?? 0,
+      messageId: (json['message_id'] as int?) ?? 0,
+      unreadReactions: List<UnreadReaction>.from(((json['unread_reactions']
+                  as List<dynamic>?) ??
+              <dynamic>[])
+          .map((item) => UnreadReaction.fromJson(item as Map<String, dynamic>?))
+          .toList()),
+      unreadReactionCount: (json['unread_reaction_count'] as int?) ?? 0,
     );
   }
 

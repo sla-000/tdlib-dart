@@ -53,14 +53,14 @@ class MessagePaymentSuccessful extends MessageContent {
     }
 
     return MessagePaymentSuccessful(
-      invoiceChatId: json['invoice_chat_id'] as int,
-      invoiceMessageId: json['invoice_message_id'] as int,
-      currency: json['currency'] as String,
-      totalAmount: json['total_amount'] as int,
-      subscriptionUntilDate: json['subscription_until_date'] as int,
-      isRecurring: json['is_recurring'] as bool,
-      isFirstRecurring: json['is_first_recurring'] as bool,
-      invoiceName: json['invoice_name'] as String,
+      invoiceChatId: (json['invoice_chat_id'] as int?) ?? 0,
+      invoiceMessageId: (json['invoice_message_id'] as int?) ?? 0,
+      currency: (json['currency'] as String?) ?? '',
+      totalAmount: (json['total_amount'] as int?) ?? 0,
+      subscriptionUntilDate: (json['subscription_until_date'] as int?) ?? 0,
+      isRecurring: (json['is_recurring'] as bool?) ?? false,
+      isFirstRecurring: (json['is_first_recurring'] as bool?) ?? false,
+      invoiceName: (json['invoice_name'] as String?) ?? '',
     );
   }
 

@@ -31,8 +31,8 @@ class PushMessageContentSticker extends PushMessageContent {
 
     return PushMessageContentSticker(
       sticker: Sticker.fromJson(json['sticker'] as Map<String, dynamic>?),
-      emoji: json['emoji'] as String,
-      isPinned: json['is_pinned'] as bool,
+      emoji: (json['emoji'] as String?) ?? '',
+      isPinned: (json['is_pinned'] as bool?) ?? false,
     );
   }
 

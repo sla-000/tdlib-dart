@@ -24,7 +24,8 @@ class UpdateGroupCallMessageLevels extends Update {
     return UpdateGroupCallMessageLevels(
       levels: List<GroupCallMessageLevel>.from(
           ((json['levels'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => GroupCallMessageLevel.fromJson(item))
+              .map((item) =>
+                  GroupCallMessageLevel.fromJson(item as Map<String, dynamic>?))
               .toList()),
     );
   }

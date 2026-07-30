@@ -28,8 +28,9 @@ class InternalLinkTypeStoryAlbum extends InternalLinkType {
     }
 
     return InternalLinkTypeStoryAlbum(
-      storyAlbumOwnerUsername: json['story_album_owner_username'] as String,
-      storyAlbumId: json['story_album_id'] as int,
+      storyAlbumOwnerUsername:
+          (json['story_album_owner_username'] as String?) ?? '',
+      storyAlbumId: (json['story_album_id'] as int?) ?? 0,
     );
   }
 

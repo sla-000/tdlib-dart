@@ -21,7 +21,7 @@ class TestBytes extends TdObject {
     }
 
     return TestBytes(
-      value: json['value'] as String,
+      value: (json['value'] as String?) ?? '',
     );
   }
 

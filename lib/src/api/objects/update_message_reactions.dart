@@ -34,12 +34,13 @@ class UpdateMessageReactions extends Update {
     }
 
     return UpdateMessageReactions(
-      chatId: json['chat_id'] as int,
-      messageId: json['message_id'] as int,
-      date: json['date'] as int,
+      chatId: (json['chat_id'] as int?) ?? 0,
+      messageId: (json['message_id'] as int?) ?? 0,
+      date: (json['date'] as int?) ?? 0,
       reactions: List<MessageReaction>.from(
           ((json['reactions'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => MessageReaction.fromJson(item))
+              .map((item) =>
+                  MessageReaction.fromJson(item as Map<String, dynamic>?))
               .toList()),
     );
   }

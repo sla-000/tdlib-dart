@@ -141,27 +141,29 @@ class Story extends TdObject {
     }
 
     return Story(
-      id: json['id'] as int,
-      posterChatId: json['poster_chat_id'] as int,
+      id: (json['id'] as int?) ?? 0,
+      posterChatId: (json['poster_chat_id'] as int?) ?? 0,
       posterId:
           MessageSender.fromJson(json['poster_id'] as Map<String, dynamic>?),
-      date: json['date'] as int,
-      isBeingPosted: json['is_being_posted'] as bool,
-      isBeingEdited: json['is_being_edited'] as bool,
-      isEdited: json['is_edited'] as bool,
-      isPostedToChatPage: json['is_posted_to_chat_page'] as bool,
-      isVisibleOnlyForSelf: json['is_visible_only_for_self'] as bool,
-      canBeAddedToAlbum: json['can_be_added_to_album'] as bool,
-      canBeDeleted: json['can_be_deleted'] as bool,
-      canBeEdited: json['can_be_edited'] as bool,
-      canBeForwarded: json['can_be_forwarded'] as bool,
-      canBeReplied: json['can_be_replied'] as bool,
-      canSetPrivacySettings: json['can_set_privacy_settings'] as bool,
+      date: (json['date'] as int?) ?? 0,
+      isBeingPosted: (json['is_being_posted'] as bool?) ?? false,
+      isBeingEdited: (json['is_being_edited'] as bool?) ?? false,
+      isEdited: (json['is_edited'] as bool?) ?? false,
+      isPostedToChatPage: (json['is_posted_to_chat_page'] as bool?) ?? false,
+      isVisibleOnlyForSelf:
+          (json['is_visible_only_for_self'] as bool?) ?? false,
+      canBeAddedToAlbum: (json['can_be_added_to_album'] as bool?) ?? false,
+      canBeDeleted: (json['can_be_deleted'] as bool?) ?? false,
+      canBeEdited: (json['can_be_edited'] as bool?) ?? false,
+      canBeForwarded: (json['can_be_forwarded'] as bool?) ?? false,
+      canBeReplied: (json['can_be_replied'] as bool?) ?? false,
+      canSetPrivacySettings:
+          (json['can_set_privacy_settings'] as bool?) ?? false,
       canToggleIsPostedToChatPage:
-          json['can_toggle_is_posted_to_chat_page'] as bool,
-      canGetStatistics: json['can_get_statistics'] as bool,
-      canGetInteractions: json['can_get_interactions'] as bool,
-      hasExpiredViewers: json['has_expired_viewers'] as bool,
+          (json['can_toggle_is_posted_to_chat_page'] as bool?) ?? false,
+      canGetStatistics: (json['can_get_statistics'] as bool?) ?? false,
+      canGetInteractions: (json['can_get_interactions'] as bool?) ?? false,
+      hasExpiredViewers: (json['has_expired_viewers'] as bool?) ?? false,
       repostInfo: StoryRepostInfo.fromJson(
           json['repost_info'] as Map<String, dynamic>?),
       interactionInfo: StoryInteractionInfo.fromJson(
@@ -173,13 +175,14 @@ class Story extends TdObject {
       content: StoryContent.fromJson(json['content'] as Map<String, dynamic>?)!,
       areas: List<StoryArea>.from(
           ((json['areas'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => StoryArea.fromJson(item))
+              .map((item) => StoryArea.fromJson(item as Map<String, dynamic>?))
               .toList()),
       caption:
           FormattedText.fromJson(json['caption'] as Map<String, dynamic>?)!,
       albumIds: List<int>.from(
           ((json['album_ids'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => item)
+              .map((item) =>
+                  (item is int ? item : int.tryParse(item.toString()) ?? 0))
               .toList()),
     );
   }

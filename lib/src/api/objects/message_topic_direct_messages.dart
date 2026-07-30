@@ -21,7 +21,8 @@ class MessageTopicDirectMessages extends MessageTopic {
     }
 
     return MessageTopicDirectMessages(
-      directMessagesChatTopicId: json['direct_messages_chat_topic_id'] as int,
+      directMessagesChatTopicId:
+          (json['direct_messages_chat_topic_id'] as int?) ?? 0,
     );
   }
 

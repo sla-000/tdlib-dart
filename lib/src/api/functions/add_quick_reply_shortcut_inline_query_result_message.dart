@@ -49,7 +49,7 @@ class AddQuickReplyShortcutInlineQueryResultMessage extends TdFunction {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'shortcut_name': shortcutName,
         'reply_to_message_id': replyToMessageId,
-        'query_id': queryId,
+        'query_id': queryId.toString(),
         'result_id': resultId,
         'hide_via_bot': hideViaBot,
         '@type': constructor,

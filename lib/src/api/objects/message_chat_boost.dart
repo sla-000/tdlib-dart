@@ -21,7 +21,7 @@ class MessageChatBoost extends MessageContent {
     }
 
     return MessageChatBoost(
-      boostCount: json['boost_count'] as int,
+      boostCount: (json['boost_count'] as int?) ?? 0,
     );
   }
 

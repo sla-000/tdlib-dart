@@ -33,9 +33,9 @@ class AuthenticationCodeTypeFirebaseIos extends AuthenticationCodeType {
     }
 
     return AuthenticationCodeTypeFirebaseIos(
-      receipt: json['receipt'] as String,
-      pushTimeout: json['push_timeout'] as int,
-      length: json['length'] as int,
+      receipt: (json['receipt'] as String?) ?? '',
+      pushTimeout: (json['push_timeout'] as int?) ?? 0,
+      length: (json['length'] as int?) ?? 0,
     );
   }
 

@@ -25,7 +25,7 @@ class InlineKeyboardButtonTypeCallbackWithPassword
     }
 
     return InlineKeyboardButtonTypeCallbackWithPassword(
-      data: json['data'] as String,
+      data: (json['data'] as String?) ?? '',
     );
   }
 

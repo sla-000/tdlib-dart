@@ -25,7 +25,7 @@ class StarTransactionTypeSuggestedPostPaymentReceive
     }
 
     return StarTransactionTypeSuggestedPostPaymentReceive(
-      userId: json['user_id'] as int,
+      userId: (json['user_id'] as int?) ?? 0,
     );
   }
 

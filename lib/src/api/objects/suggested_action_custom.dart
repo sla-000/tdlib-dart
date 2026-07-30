@@ -33,11 +33,11 @@ class SuggestedActionCustom extends SuggestedAction {
     }
 
     return SuggestedActionCustom(
-      name: json['name'] as String,
+      name: (json['name'] as String?) ?? '',
       title: FormattedText.fromJson(json['title'] as Map<String, dynamic>?)!,
       description:
           FormattedText.fromJson(json['description'] as Map<String, dynamic>?)!,
-      url: json['url'] as String,
+      url: (json['url'] as String?) ?? '',
     );
   }
 

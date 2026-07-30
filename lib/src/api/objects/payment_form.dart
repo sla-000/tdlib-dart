@@ -33,9 +33,12 @@ class PaymentForm extends TdObject {
     }
 
     return PaymentForm(
-      id: int.tryParse(json['id']) ?? 0,
+      id: (json['id'] is int
+              ? json['id'] as int
+              : int.tryParse(json['id']?.toString() ?? '')) ??
+          0,
       type: PaymentFormType.fromJson(json['type'] as Map<String, dynamic>?)!,
-      sellerBotUserId: json['seller_bot_user_id'] as int,
+      sellerBotUserId: (json['seller_bot_user_id'] as int?) ?? 0,
       productInfo:
           ProductInfo.fromJson(json['product_info'] as Map<String, dynamic>?)!,
     );

@@ -22,7 +22,7 @@ class GiveawayPrizePremium extends GiveawayPrize {
     }
 
     return GiveawayPrizePremium(
-      monthCount: json['month_count'] as int,
+      monthCount: (json['month_count'] as int?) ?? 0,
     );
   }
 

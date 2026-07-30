@@ -30,8 +30,8 @@ class StarTransactionTypeChannelSubscriptionPurchase
     }
 
     return StarTransactionTypeChannelSubscriptionPurchase(
-      chatId: json['chat_id'] as int,
-      subscriptionPeriod: json['subscription_period'] as int,
+      chatId: (json['chat_id'] as int?) ?? 0,
+      subscriptionPeriod: (json['subscription_period'] as int?) ?? 0,
     );
   }
 

@@ -40,11 +40,12 @@ class PublicPostSearchLimits extends TdObject {
     }
 
     return PublicPostSearchLimits(
-      dailyFreeQueryCount: json['daily_free_query_count'] as int,
-      remainingFreeQueryCount: json['remaining_free_query_count'] as int,
-      nextFreeQueryIn: json['next_free_query_in'] as int,
-      starCount: json['star_count'] as int,
-      isCurrentQueryFree: json['is_current_query_free'] as bool,
+      dailyFreeQueryCount: (json['daily_free_query_count'] as int?) ?? 0,
+      remainingFreeQueryCount:
+          (json['remaining_free_query_count'] as int?) ?? 0,
+      nextFreeQueryIn: (json['next_free_query_in'] as int?) ?? 0,
+      starCount: (json['star_count'] as int?) ?? 0,
+      isCurrentQueryFree: (json['is_current_query_free'] as bool?) ?? false,
     );
   }
 

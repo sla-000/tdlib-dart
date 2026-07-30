@@ -34,8 +34,8 @@ class StarTransactionTypeBotSubscriptionPurchase extends StarTransactionType {
     }
 
     return StarTransactionTypeBotSubscriptionPurchase(
-      userId: json['user_id'] as int,
-      subscriptionPeriod: json['subscription_period'] as int,
+      userId: (json['user_id'] as int?) ?? 0,
+      subscriptionPeriod: (json['subscription_period'] as int?) ?? 0,
       productInfo:
           ProductInfo.fromJson(json['product_info'] as Map<String, dynamic>?)!,
     );

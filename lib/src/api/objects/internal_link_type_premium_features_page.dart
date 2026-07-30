@@ -24,7 +24,7 @@ class InternalLinkTypePremiumFeaturesPage extends InternalLinkType {
     }
 
     return InternalLinkTypePremiumFeaturesPage(
-      referrer: json['referrer'] as String,
+      referrer: (json['referrer'] as String?) ?? '',
     );
   }
 

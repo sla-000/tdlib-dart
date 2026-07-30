@@ -22,7 +22,7 @@ class DeviceTokenWindowsPush extends DeviceToken {
     }
 
     return DeviceTokenWindowsPush(
-      accessToken: json['access_token'] as String,
+      accessToken: (json['access_token'] as String?) ?? '',
     );
   }
 

@@ -37,10 +37,11 @@ class PollOptionProperties extends TdObject {
     }
 
     return PollOptionProperties(
-      canBeDeleted: json['can_be_deleted'] as bool,
-      canBeReplied: json['can_be_replied'] as bool,
-      canBeRepliedInAnotherChat: json['can_be_replied_in_another_chat'] as bool,
-      canGetLink: json['can_get_link'] as bool,
+      canBeDeleted: (json['can_be_deleted'] as bool?) ?? false,
+      canBeReplied: (json['can_be_replied'] as bool?) ?? false,
+      canBeRepliedInAnotherChat:
+          (json['can_be_replied_in_another_chat'] as bool?) ?? false,
+      canGetLink: (json['can_get_link'] as bool?) ?? false,
     );
   }
 

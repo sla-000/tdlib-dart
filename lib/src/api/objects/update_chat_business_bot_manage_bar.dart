@@ -26,7 +26,7 @@ class UpdateChatBusinessBotManageBar extends Update {
     }
 
     return UpdateChatBusinessBotManageBar(
-      chatId: json['chat_id'] as int,
+      chatId: (json['chat_id'] as int?) ?? 0,
       businessBotManageBar: BusinessBotManageBar.fromJson(
           json['business_bot_manage_bar'] as Map<String, dynamic>?),
     );

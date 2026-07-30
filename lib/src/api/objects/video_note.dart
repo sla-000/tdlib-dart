@@ -49,9 +49,9 @@ class VideoNote extends TdObject {
     }
 
     return VideoNote(
-      duration: json['duration'] as int,
-      waveform: json['waveform'] as String,
-      length: json['length'] as int,
+      duration: (json['duration'] as int?) ?? 0,
+      waveform: (json['waveform'] as String?) ?? '',
+      length: (json['length'] as int?) ?? 0,
       minithumbnail: Minithumbnail.fromJson(
           json['minithumbnail'] as Map<String, dynamic>?),
       thumbnail: Thumbnail.fromJson(json['thumbnail'] as Map<String, dynamic>?),

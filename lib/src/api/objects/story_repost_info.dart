@@ -27,7 +27,7 @@ class StoryRepostInfo extends TdObject {
 
     return StoryRepostInfo(
       origin: StoryOrigin.fromJson(json['origin'] as Map<String, dynamic>?)!,
-      isContentModified: json['is_content_modified'] as bool,
+      isContentModified: (json['is_content_modified'] as bool?) ?? false,
     );
   }
 

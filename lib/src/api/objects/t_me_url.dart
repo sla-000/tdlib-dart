@@ -25,7 +25,7 @@ class TMeUrl extends TdObject {
     }
 
     return TMeUrl(
-      url: json['url'] as String,
+      url: (json['url'] as String?) ?? '',
       type: TMeUrlType.fromJson(json['type'] as Map<String, dynamic>?)!,
     );
   }

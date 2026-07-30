@@ -24,7 +24,8 @@ class PremiumGiveawayPaymentOptions extends TdObject {
     return PremiumGiveawayPaymentOptions(
       options: List<PremiumGiveawayPaymentOption>.from(
           ((json['options'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => PremiumGiveawayPaymentOption.fromJson(item))
+              .map((item) => PremiumGiveawayPaymentOption.fromJson(
+                  item as Map<String, dynamic>?))
               .toList()),
     );
   }

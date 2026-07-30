@@ -49,13 +49,15 @@ class AuctionStateFinished extends AuctionState {
     }
 
     return AuctionStateFinished(
-      startDate: json['start_date'] as int,
-      endDate: json['end_date'] as int,
-      averagePrice: json['average_price'] as int,
-      acquiredItemCount: json['acquired_item_count'] as int,
-      telegramListedItemCount: json['telegram_listed_item_count'] as int,
-      fragmentListedItemCount: json['fragment_listed_item_count'] as int,
-      fragmentUrl: json['fragment_url'] as String,
+      startDate: (json['start_date'] as int?) ?? 0,
+      endDate: (json['end_date'] as int?) ?? 0,
+      averagePrice: (json['average_price'] as int?) ?? 0,
+      acquiredItemCount: (json['acquired_item_count'] as int?) ?? 0,
+      telegramListedItemCount:
+          (json['telegram_listed_item_count'] as int?) ?? 0,
+      fragmentListedItemCount:
+          (json['fragment_listed_item_count'] as int?) ?? 0,
+      fragmentUrl: (json['fragment_url'] as String?) ?? '',
     );
   }
 

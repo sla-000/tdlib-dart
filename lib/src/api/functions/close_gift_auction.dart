@@ -21,7 +21,7 @@ class CloseGiftAuction extends TdFunction {
 
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'gift_id': giftId,
+        'gift_id': giftId.toString(),
         '@type': constructor,
       };
 

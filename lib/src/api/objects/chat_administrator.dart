@@ -34,10 +34,10 @@ class ChatAdministrator extends TdObject {
     }
 
     return ChatAdministrator(
-      userId: json['user_id'] as int,
-      customTitle: json['custom_title'] as String,
-      isOwner: json['is_owner'] as bool,
-      canBeEdited: json['can_be_edited'] as bool,
+      userId: (json['user_id'] as int?) ?? 0,
+      customTitle: (json['custom_title'] as String?) ?? '',
+      isOwner: (json['is_owner'] as bool?) ?? false,
+      canBeEdited: (json['can_be_edited'] as bool?) ?? false,
     );
   }
 

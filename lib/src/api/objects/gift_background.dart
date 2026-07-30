@@ -29,9 +29,9 @@ class GiftBackground extends TdObject {
     }
 
     return GiftBackground(
-      centerColor: json['center_color'] as int,
-      edgeColor: json['edge_color'] as int,
-      textColor: json['text_color'] as int,
+      centerColor: (json['center_color'] as int?) ?? 0,
+      edgeColor: (json['edge_color'] as int?) ?? 0,
+      textColor: (json['text_color'] as int?) ?? 0,
     );
   }
 

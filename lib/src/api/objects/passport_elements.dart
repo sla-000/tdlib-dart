@@ -23,7 +23,8 @@ class PassportElements extends TdObject {
     return PassportElements(
       elements: List<PassportElement>.from(
           ((json['elements'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => PassportElement.fromJson(item))
+              .map((item) =>
+                  PassportElement.fromJson(item as Map<String, dynamic>?))
               .toList()),
     );
   }

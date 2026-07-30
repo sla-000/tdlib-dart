@@ -26,7 +26,7 @@ class UpdateStoryPostSucceeded extends Update {
 
     return UpdateStoryPostSucceeded(
       story: Story.fromJson(json['story'] as Map<String, dynamic>?)!,
-      oldStoryId: json['old_story_id'] as int,
+      oldStoryId: (json['old_story_id'] as int?) ?? 0,
     );
   }
 

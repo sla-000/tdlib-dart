@@ -24,7 +24,8 @@ class UpdateContactCloseBirthdays extends Update {
     return UpdateContactCloseBirthdays(
       closeBirthdayUsers: List<CloseBirthdayUser>.from(
           ((json['close_birthday_users'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => CloseBirthdayUser.fromJson(item))
+              .map((item) =>
+                  CloseBirthdayUser.fromJson(item as Map<String, dynamic>?))
               .toList()),
     );
   }

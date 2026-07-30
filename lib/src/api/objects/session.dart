@@ -101,25 +101,29 @@ class Session extends TdObject {
     }
 
     return Session(
-      id: int.tryParse(json['id']) ?? 0,
-      isCurrent: json['is_current'] as bool,
-      isPasswordPending: json['is_password_pending'] as bool,
-      isUnconfirmed: json['is_unconfirmed'] as bool,
-      canAcceptSecretChats: json['can_accept_secret_chats'] as bool,
-      canAcceptCalls: json['can_accept_calls'] as bool,
+      id: (json['id'] is int
+              ? json['id'] as int
+              : int.tryParse(json['id']?.toString() ?? '')) ??
+          0,
+      isCurrent: (json['is_current'] as bool?) ?? false,
+      isPasswordPending: (json['is_password_pending'] as bool?) ?? false,
+      isUnconfirmed: (json['is_unconfirmed'] as bool?) ?? false,
+      canAcceptSecretChats: (json['can_accept_secret_chats'] as bool?) ?? false,
+      canAcceptCalls: (json['can_accept_calls'] as bool?) ?? false,
       deviceType: SessionDeviceType.fromJson(
           json['device_type'] as Map<String, dynamic>?)!,
-      apiId: json['api_id'] as int,
-      applicationName: json['application_name'] as String,
-      applicationVersion: json['application_version'] as String,
-      isOfficialApplication: json['is_official_application'] as bool,
-      deviceModel: json['device_model'] as String,
-      platform: json['platform'] as String,
-      systemVersion: json['system_version'] as String,
-      logInDate: json['log_in_date'] as int,
-      lastActiveDate: json['last_active_date'] as int,
-      ipAddress: json['ip_address'] as String,
-      location: json['location'] as String,
+      apiId: (json['api_id'] as int?) ?? 0,
+      applicationName: (json['application_name'] as String?) ?? '',
+      applicationVersion: (json['application_version'] as String?) ?? '',
+      isOfficialApplication:
+          (json['is_official_application'] as bool?) ?? false,
+      deviceModel: (json['device_model'] as String?) ?? '',
+      platform: (json['platform'] as String?) ?? '',
+      systemVersion: (json['system_version'] as String?) ?? '',
+      logInDate: (json['log_in_date'] as int?) ?? 0,
+      lastActiveDate: (json['last_active_date'] as int?) ?? 0,
+      ipAddress: (json['ip_address'] as String?) ?? '',
+      location: (json['location'] as String?) ?? '',
     );
   }
 

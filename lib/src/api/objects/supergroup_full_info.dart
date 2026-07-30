@@ -228,59 +228,73 @@ class SupergroupFullInfo extends TdObject {
 
     return SupergroupFullInfo(
       photo: ChatPhoto.fromJson(json['photo'] as Map<String, dynamic>?),
-      description: json['description'] as String,
-      memberCount: json['member_count'] as int,
-      administratorCount: json['administrator_count'] as int,
-      restrictedCount: json['restricted_count'] as int,
-      bannedCount: json['banned_count'] as int,
-      linkedChatId: json['linked_chat_id'] as int,
-      directMessagesChatId: json['direct_messages_chat_id'] as int,
-      slowModeDelay: json['slow_mode_delay'] as int,
+      description: (json['description'] as String?) ?? '',
+      memberCount: (json['member_count'] as int?) ?? 0,
+      administratorCount: (json['administrator_count'] as int?) ?? 0,
+      restrictedCount: (json['restricted_count'] as int?) ?? 0,
+      bannedCount: (json['banned_count'] as int?) ?? 0,
+      linkedChatId: (json['linked_chat_id'] as int?) ?? 0,
+      directMessagesChatId: (json['direct_messages_chat_id'] as int?) ?? 0,
+      slowModeDelay: (json['slow_mode_delay'] as int?) ?? 0,
       slowModeDelayExpiresIn:
-          (json['slow_mode_delay_expires_in'] as num).toDouble(),
-      canEnablePaidMessages: json['can_enable_paid_messages'] as bool,
-      canEnablePaidReaction: json['can_enable_paid_reaction'] as bool,
-      canGetMembers: json['can_get_members'] as bool,
-      hasHiddenMembers: json['has_hidden_members'] as bool,
-      canHideMembers: json['can_hide_members'] as bool,
-      canSetStickerSet: json['can_set_sticker_set'] as bool,
-      canSetLocation: json['can_set_location'] as bool,
-      canGetStatistics: json['can_get_statistics'] as bool,
-      canGetRevenueStatistics: json['can_get_revenue_statistics'] as bool,
+          (json['slow_mode_delay_expires_in'] as num?)?.toDouble() ?? 0.0,
+      canEnablePaidMessages:
+          (json['can_enable_paid_messages'] as bool?) ?? false,
+      canEnablePaidReaction:
+          (json['can_enable_paid_reaction'] as bool?) ?? false,
+      canGetMembers: (json['can_get_members'] as bool?) ?? false,
+      hasHiddenMembers: (json['has_hidden_members'] as bool?) ?? false,
+      canHideMembers: (json['can_hide_members'] as bool?) ?? false,
+      canSetStickerSet: (json['can_set_sticker_set'] as bool?) ?? false,
+      canSetLocation: (json['can_set_location'] as bool?) ?? false,
+      canGetStatistics: (json['can_get_statistics'] as bool?) ?? false,
+      canGetRevenueStatistics:
+          (json['can_get_revenue_statistics'] as bool?) ?? false,
       canGetStarRevenueStatistics:
-          json['can_get_star_revenue_statistics'] as bool,
-      canSendGift: json['can_send_gift'] as bool,
+          (json['can_get_star_revenue_statistics'] as bool?) ?? false,
+      canSendGift: (json['can_send_gift'] as bool?) ?? false,
       canToggleAggressiveAntiSpam:
-          json['can_toggle_aggressive_anti_spam'] as bool,
-      isAllHistoryAvailable: json['is_all_history_available'] as bool,
-      canHaveSponsoredMessages: json['can_have_sponsored_messages'] as bool,
+          (json['can_toggle_aggressive_anti_spam'] as bool?) ?? false,
+      isAllHistoryAvailable:
+          (json['is_all_history_available'] as bool?) ?? false,
+      canHaveSponsoredMessages:
+          (json['can_have_sponsored_messages'] as bool?) ?? false,
       hasAggressiveAntiSpamEnabled:
-          json['has_aggressive_anti_spam_enabled'] as bool,
-      hasPaidMediaAllowed: json['has_paid_media_allowed'] as bool,
-      hasPinnedStories: json['has_pinned_stories'] as bool,
-      giftCount: json['gift_count'] as int,
-      myBoostCount: json['my_boost_count'] as int,
-      unrestrictBoostCount: json['unrestrict_boost_count'] as int,
+          (json['has_aggressive_anti_spam_enabled'] as bool?) ?? false,
+      hasPaidMediaAllowed: (json['has_paid_media_allowed'] as bool?) ?? false,
+      hasPinnedStories: (json['has_pinned_stories'] as bool?) ?? false,
+      giftCount: (json['gift_count'] as int?) ?? 0,
+      myBoostCount: (json['my_boost_count'] as int?) ?? 0,
+      unrestrictBoostCount: (json['unrestrict_boost_count'] as int?) ?? 0,
       outgoingPaidMessageStarCount:
-          json['outgoing_paid_message_star_count'] as int,
-      stickerSetId: int.tryParse(json['sticker_set_id']) ?? 0,
-      customEmojiStickerSetId:
-          int.tryParse(json['custom_emoji_sticker_set_id']) ?? 0,
+          (json['outgoing_paid_message_star_count'] as int?) ?? 0,
+      stickerSetId: (json['sticker_set_id'] is int
+              ? json['sticker_set_id'] as int
+              : int.tryParse(json['sticker_set_id']?.toString() ?? '')) ??
+          0,
+      customEmojiStickerSetId: (json['custom_emoji_sticker_set_id'] is int
+              ? json['custom_emoji_sticker_set_id'] as int
+              : int.tryParse(
+                  json['custom_emoji_sticker_set_id']?.toString() ?? '')) ??
+          0,
       location:
           ChatLocation.fromJson(json['location'] as Map<String, dynamic>?),
       inviteLink:
           ChatInviteLink.fromJson(json['invite_link'] as Map<String, dynamic>?),
-      guardBotUserId: json['guard_bot_user_id'] as int,
-      botCommands: List<BotCommands>.from(
-          ((json['bot_commands'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => BotCommands.fromJson(item))
-              .toList()),
+      guardBotUserId: (json['guard_bot_user_id'] as int?) ?? 0,
+      botCommands: List<BotCommands>.from(((json['bot_commands']
+                  as List<dynamic>?) ??
+              <dynamic>[])
+          .map((item) => BotCommands.fromJson(item as Map<String, dynamic>?))
+          .toList()),
       botVerification: BotVerification.fromJson(
           json['bot_verification'] as Map<String, dynamic>?),
       mainProfileTab: ProfileTab.fromJson(
           json['main_profile_tab'] as Map<String, dynamic>?),
-      upgradedFromBasicGroupId: json['upgraded_from_basic_group_id'] as int,
-      upgradedFromMaxMessageId: json['upgraded_from_max_message_id'] as int,
+      upgradedFromBasicGroupId:
+          (json['upgraded_from_basic_group_id'] as int?) ?? 0,
+      upgradedFromMaxMessageId:
+          (json['upgraded_from_max_message_id'] as int?) ?? 0,
     );
   }
 

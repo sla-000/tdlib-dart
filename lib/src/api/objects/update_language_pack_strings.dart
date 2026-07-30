@@ -31,11 +31,12 @@ class UpdateLanguagePackStrings extends Update {
     }
 
     return UpdateLanguagePackStrings(
-      localizationTarget: json['localization_target'] as String,
-      languagePackId: json['language_pack_id'] as String,
+      localizationTarget: (json['localization_target'] as String?) ?? '',
+      languagePackId: (json['language_pack_id'] as String?) ?? '',
       strings: List<LanguagePackString>.from(
           ((json['strings'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => LanguagePackString.fromJson(item))
+              .map((item) =>
+                  LanguagePackString.fromJson(item as Map<String, dynamic>?))
               .toList()),
     );
   }

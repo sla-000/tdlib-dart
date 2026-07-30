@@ -21,7 +21,7 @@ class PaymentFormTypeStars extends PaymentFormType {
     }
 
     return PaymentFormTypeStars(
-      starCount: json['star_count'] as int,
+      starCount: (json['star_count'] as int?) ?? 0,
     );
   }
 

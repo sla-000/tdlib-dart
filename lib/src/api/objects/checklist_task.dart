@@ -37,11 +37,11 @@ class ChecklistTask extends TdObject {
     }
 
     return ChecklistTask(
-      id: json['id'] as int,
+      id: (json['id'] as int?) ?? 0,
       text: FormattedText.fromJson(json['text'] as Map<String, dynamic>?)!,
       completedBy:
           MessageSender.fromJson(json['completed_by'] as Map<String, dynamic>?),
-      completionDate: json['completion_date'] as int,
+      completionDate: (json['completion_date'] as int?) ?? 0,
     );
   }
 

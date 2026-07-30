@@ -24,7 +24,7 @@ class TestVectorStringObject extends TdObject {
     return TestVectorStringObject(
       value: List<TestString>.from(
           ((json['value'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => TestString.fromJson(item))
+              .map((item) => TestString.fromJson(item as Map<String, dynamic>?))
               .toList()),
     );
   }

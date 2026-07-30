@@ -57,13 +57,13 @@ class PremiumGiftCodeInfo extends TdObject {
     return PremiumGiftCodeInfo(
       creatorId:
           MessageSender.fromJson(json['creator_id'] as Map<String, dynamic>?),
-      creationDate: json['creation_date'] as int,
-      isFromGiveaway: json['is_from_giveaway'] as bool,
-      giveawayMessageId: json['giveaway_message_id'] as int,
-      monthCount: json['month_count'] as int,
-      dayCount: json['day_count'] as int,
-      userId: json['user_id'] as int,
-      useDate: json['use_date'] as int,
+      creationDate: (json['creation_date'] as int?) ?? 0,
+      isFromGiveaway: (json['is_from_giveaway'] as bool?) ?? false,
+      giveawayMessageId: (json['giveaway_message_id'] as int?) ?? 0,
+      monthCount: (json['month_count'] as int?) ?? 0,
+      dayCount: (json['day_count'] as int?) ?? 0,
+      userId: (json['user_id'] as int?) ?? 0,
+      useDate: (json['use_date'] as int?) ?? 0,
     );
   }
 

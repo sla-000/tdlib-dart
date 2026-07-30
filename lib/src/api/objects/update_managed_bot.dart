@@ -26,8 +26,8 @@ class UpdateManagedBot extends Update {
     }
 
     return UpdateManagedBot(
-      userId: json['user_id'] as int,
-      botUserId: json['bot_user_id'] as int,
+      userId: (json['user_id'] as int?) ?? 0,
+      botUserId: (json['bot_user_id'] as int?) ?? 0,
     );
   }
 

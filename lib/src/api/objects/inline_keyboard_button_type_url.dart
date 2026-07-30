@@ -22,7 +22,7 @@ class InlineKeyboardButtonTypeUrl extends InlineKeyboardButtonType {
     }
 
     return InlineKeyboardButtonTypeUrl(
-      url: json['url'] as String,
+      url: (json['url'] as String?) ?? '',
     );
   }
 

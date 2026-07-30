@@ -26,8 +26,8 @@ class WebAppUrl extends TdObject {
     }
 
     return WebAppUrl(
-      url: json['url'] as String,
-      requireSameOrigin: json['require_same_origin'] as bool,
+      url: (json['url'] as String?) ?? '',
+      requireSameOrigin: (json['require_same_origin'] as bool?) ?? false,
     );
   }
 

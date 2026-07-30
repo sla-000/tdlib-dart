@@ -26,7 +26,7 @@ class ChatMemberStatusBanned extends ChatMemberStatus {
     }
 
     return ChatMemberStatusBanned(
-      bannedUntilDate: json['banned_until_date'] as int,
+      bannedUntilDate: (json['banned_until_date'] as int?) ?? 0,
     );
   }
 

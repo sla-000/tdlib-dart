@@ -36,9 +36,9 @@ class StorePaymentPurposePremiumGift extends StorePaymentPurpose {
     }
 
     return StorePaymentPurposePremiumGift(
-      currency: json['currency'] as String,
-      amount: json['amount'] as int,
-      userId: json['user_id'] as int,
+      currency: (json['currency'] as String?) ?? '',
+      amount: (json['amount'] as int?) ?? 0,
+      userId: (json['user_id'] as int?) ?? 0,
       text: FormattedText.fromJson(json['text'] as Map<String, dynamic>?)!,
     );
   }

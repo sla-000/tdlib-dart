@@ -37,10 +37,10 @@ class InlineQueryResultArticle extends InlineQueryResult {
     }
 
     return InlineQueryResultArticle(
-      id: json['id'] as String,
-      url: json['url'] as String,
-      title: json['title'] as String,
-      description: json['description'] as String,
+      id: (json['id'] as String?) ?? '',
+      url: (json['url'] as String?) ?? '',
+      title: (json['title'] as String?) ?? '',
+      description: (json['description'] as String?) ?? '',
       thumbnail: Thumbnail.fromJson(json['thumbnail'] as Map<String, dynamic>?),
     );
   }

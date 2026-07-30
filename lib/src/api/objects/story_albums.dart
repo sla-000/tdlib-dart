@@ -23,7 +23,7 @@ class StoryAlbums extends TdObject {
     return StoryAlbums(
       albums: List<StoryAlbum>.from(
           ((json['albums'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => StoryAlbum.fromJson(item))
+              .map((item) => StoryAlbum.fromJson(item as Map<String, dynamic>?))
               .toList()),
     );
   }

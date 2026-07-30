@@ -25,8 +25,8 @@ class ChatEventDescriptionChanged extends ChatEventAction {
     }
 
     return ChatEventDescriptionChanged(
-      oldDescription: json['old_description'] as String,
-      newDescription: json['new_description'] as String,
+      oldDescription: (json['old_description'] as String?) ?? '',
+      newDescription: (json['new_description'] as String?) ?? '',
     );
   }
 

@@ -38,10 +38,10 @@ class TonTransaction extends TdObject {
     }
 
     return TonTransaction(
-      id: json['id'] as String,
-      tonAmount: json['ton_amount'] as int,
-      isRefund: json['is_refund'] as bool,
-      date: json['date'] as int,
+      id: (json['id'] as String?) ?? '',
+      tonAmount: (json['ton_amount'] as int?) ?? 0,
+      isRefund: (json['is_refund'] as bool?) ?? false,
+      date: (json['date'] as int?) ?? 0,
       type: TonTransactionType.fromJson(json['type'] as Map<String, dynamic>?)!,
     );
   }

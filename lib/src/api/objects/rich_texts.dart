@@ -23,7 +23,7 @@ class RichTexts extends RichText {
     return RichTexts(
       texts: List<RichText>.from(
           ((json['texts'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => RichText.fromJson(item))
+              .map((item) => RichText.fromJson(item as Map<String, dynamic>?))
               .toList()),
     );
   }

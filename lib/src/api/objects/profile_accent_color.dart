@@ -40,14 +40,15 @@ class ProfileAccentColor extends TdObject {
     }
 
     return ProfileAccentColor(
-      id: json['id'] as int,
+      id: (json['id'] as int?) ?? 0,
       lightThemeColors: ProfileAccentColors.fromJson(
           json['light_theme_colors'] as Map<String, dynamic>?)!,
       darkThemeColors: ProfileAccentColors.fromJson(
           json['dark_theme_colors'] as Map<String, dynamic>?)!,
       minSupergroupChatBoostLevel:
-          json['min_supergroup_chat_boost_level'] as int,
-      minChannelChatBoostLevel: json['min_channel_chat_boost_level'] as int,
+          (json['min_supergroup_chat_boost_level'] as int?) ?? 0,
+      minChannelChatBoostLevel:
+          (json['min_channel_chat_boost_level'] as int?) ?? 0,
     );
   }
 

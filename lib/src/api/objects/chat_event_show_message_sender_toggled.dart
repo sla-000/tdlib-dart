@@ -22,7 +22,7 @@ class ChatEventShowMessageSenderToggled extends ChatEventAction {
     }
 
     return ChatEventShowMessageSenderToggled(
-      showMessageSender: json['show_message_sender'] as bool,
+      showMessageSender: (json['show_message_sender'] as bool?) ?? false,
     );
   }
 

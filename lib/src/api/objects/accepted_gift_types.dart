@@ -39,11 +39,11 @@ class AcceptedGiftTypes extends TdObject {
     }
 
     return AcceptedGiftTypes(
-      unlimitedGifts: json['unlimited_gifts'] as bool,
-      limitedGifts: json['limited_gifts'] as bool,
-      upgradedGifts: json['upgraded_gifts'] as bool,
-      giftsFromChannels: json['gifts_from_channels'] as bool,
-      premiumSubscription: json['premium_subscription'] as bool,
+      unlimitedGifts: (json['unlimited_gifts'] as bool?) ?? false,
+      limitedGifts: (json['limited_gifts'] as bool?) ?? false,
+      upgradedGifts: (json['upgraded_gifts'] as bool?) ?? false,
+      giftsFromChannels: (json['gifts_from_channels'] as bool?) ?? false,
+      premiumSubscription: (json['premium_subscription'] as bool?) ?? false,
     );
   }
 

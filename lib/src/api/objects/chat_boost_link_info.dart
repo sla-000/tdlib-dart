@@ -26,8 +26,8 @@ class ChatBoostLinkInfo extends TdObject {
     }
 
     return ChatBoostLinkInfo(
-      isPublic: json['is_public'] as bool,
-      chatId: json['chat_id'] as int,
+      isPublic: (json['is_public'] as bool?) ?? false,
+      chatId: (json['chat_id'] as int?) ?? 0,
     );
   }
 

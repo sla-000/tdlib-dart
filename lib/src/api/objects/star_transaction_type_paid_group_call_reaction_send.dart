@@ -24,7 +24,7 @@ class StarTransactionTypePaidGroupCallReactionSend extends StarTransactionType {
     }
 
     return StarTransactionTypePaidGroupCallReactionSend(
-      chatId: json['chat_id'] as int,
+      chatId: (json['chat_id'] as int?) ?? 0,
     );
   }
 

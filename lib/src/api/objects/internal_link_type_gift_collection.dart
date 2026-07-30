@@ -28,8 +28,8 @@ class InternalLinkTypeGiftCollection extends InternalLinkType {
     }
 
     return InternalLinkTypeGiftCollection(
-      giftOwnerUsername: json['gift_owner_username'] as String,
-      collectionId: json['collection_id'] as int,
+      giftOwnerUsername: (json['gift_owner_username'] as String?) ?? '',
+      collectionId: (json['collection_id'] as int?) ?? 0,
     );
   }
 

@@ -26,7 +26,7 @@ class StarTransactionTypeGiftSale extends StarTransactionType {
     }
 
     return StarTransactionTypeGiftSale(
-      userId: json['user_id'] as int,
+      userId: (json['user_id'] as int?) ?? 0,
       gift: Gift.fromJson(json['gift'] as Map<String, dynamic>?)!,
     );
   }

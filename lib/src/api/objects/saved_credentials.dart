@@ -25,8 +25,8 @@ class SavedCredentials extends TdObject {
     }
 
     return SavedCredentials(
-      id: json['id'] as String,
-      title: json['title'] as String,
+      id: (json['id'] as String?) ?? '',
+      title: (json['title'] as String?) ?? '',
     );
   }
 

@@ -29,10 +29,10 @@ class InputStoryAreas extends TdObject {
     }
 
     return InputStoryAreas(
-      areas: List<InputStoryArea>.from(
-          ((json['areas'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => InputStoryArea.fromJson(item))
-              .toList()),
+      areas: List<InputStoryArea>.from(((json['areas'] as List<dynamic>?) ??
+              <dynamic>[])
+          .map((item) => InputStoryArea.fromJson(item as Map<String, dynamic>?))
+          .toList()),
     );
   }
 

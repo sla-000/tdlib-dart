@@ -36,9 +36,9 @@ class ImportedContact extends TdObject {
     }
 
     return ImportedContact(
-      phoneNumber: json['phone_number'] as String,
-      firstName: json['first_name'] as String,
-      lastName: json['last_name'] as String,
+      phoneNumber: (json['phone_number'] as String?) ?? '',
+      firstName: (json['first_name'] as String?) ?? '',
+      lastName: (json['last_name'] as String?) ?? '',
       note: FormattedText.fromJson(json['note'] as Map<String, dynamic>?),
     );
   }

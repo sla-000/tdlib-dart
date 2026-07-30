@@ -27,7 +27,7 @@ class InputChecklistTask extends TdObject {
     }
 
     return InputChecklistTask(
-      id: json['id'] as int,
+      id: (json['id'] as int?) ?? 0,
       text: FormattedText.fromJson(json['text'] as Map<String, dynamic>?)!,
     );
   }

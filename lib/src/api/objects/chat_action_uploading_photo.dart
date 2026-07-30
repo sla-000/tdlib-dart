@@ -21,7 +21,7 @@ class ChatActionUploadingPhoto extends ChatAction {
     }
 
     return ChatActionUploadingPhoto(
-      progress: json['progress'] as int,
+      progress: (json['progress'] as int?) ?? 0,
     );
   }
 

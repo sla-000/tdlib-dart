@@ -38,11 +38,12 @@ class UserRating extends TdObject {
     }
 
     return UserRating(
-      level: json['level'] as int,
-      isMaximumLevelReached: json['is_maximum_level_reached'] as bool,
-      rating: json['rating'] as int,
-      currentLevelRating: json['current_level_rating'] as int,
-      nextLevelRating: json['next_level_rating'] as int,
+      level: (json['level'] as int?) ?? 0,
+      isMaximumLevelReached:
+          (json['is_maximum_level_reached'] as bool?) ?? false,
+      rating: (json['rating'] as int?) ?? 0,
+      currentLevelRating: (json['current_level_rating'] as int?) ?? 0,
+      nextLevelRating: (json['next_level_rating'] as int?) ?? 0,
     );
   }
 

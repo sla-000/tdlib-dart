@@ -25,10 +25,10 @@ class Audios extends TdObject {
     }
 
     return Audios(
-      totalCount: json['total_count'] as int,
+      totalCount: (json['total_count'] as int?) ?? 0,
       audios: List<Audio>.from(
           ((json['audios'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => Audio.fromJson(item))
+              .map((item) => Audio.fromJson(item as Map<String, dynamic>?))
               .toList()),
     );
   }

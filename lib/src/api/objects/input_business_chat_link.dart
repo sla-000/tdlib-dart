@@ -26,7 +26,7 @@ class InputBusinessChatLink extends TdObject {
 
     return InputBusinessChatLink(
       text: FormattedText.fromJson(json['text'] as Map<String, dynamic>?)!,
-      title: json['title'] as String,
+      title: (json['title'] as String?) ?? '',
     );
   }
 

@@ -33,8 +33,8 @@ class UpgradedGiftBackdrop extends TdObject {
     }
 
     return UpgradedGiftBackdrop(
-      id: json['id'] as int,
-      name: json['name'] as String,
+      id: (json['id'] as int?) ?? 0,
+      name: (json['name'] as String?) ?? '',
       colors: UpgradedGiftBackdropColors.fromJson(
           json['colors'] as Map<String, dynamic>?)!,
       rarity: UpgradedGiftAttributeRarity.fromJson(

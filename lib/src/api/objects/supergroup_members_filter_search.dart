@@ -21,7 +21,7 @@ class SupergroupMembersFilterSearch extends SupergroupMembersFilter {
     }
 
     return SupergroupMembersFilterSearch(
-      query: json['query'] as String,
+      query: (json['query'] as String?) ?? '',
     );
   }
 

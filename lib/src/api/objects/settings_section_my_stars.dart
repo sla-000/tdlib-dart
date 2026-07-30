@@ -22,7 +22,7 @@ class SettingsSectionMyStars extends SettingsSection {
     }
 
     return SettingsSectionMyStars(
-      subsection: json['subsection'] as String,
+      subsection: (json['subsection'] as String?) ?? '',
     );
   }
 

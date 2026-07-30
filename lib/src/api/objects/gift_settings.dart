@@ -27,7 +27,7 @@ class GiftSettings extends TdObject {
     }
 
     return GiftSettings(
-      showGiftButton: json['show_gift_button'] as bool,
+      showGiftButton: (json['show_gift_button'] as bool?) ?? false,
       acceptedGiftTypes: AcceptedGiftTypes.fromJson(
           json['accepted_gift_types'] as Map<String, dynamic>?)!,
     );

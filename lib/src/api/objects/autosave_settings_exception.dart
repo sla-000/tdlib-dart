@@ -26,7 +26,7 @@ class AutosaveSettingsException extends TdObject {
     }
 
     return AutosaveSettingsException(
-      chatId: json['chat_id'] as int,
+      chatId: (json['chat_id'] as int?) ?? 0,
       settings: ScopeAutosaveSettings.fromJson(
           json['settings'] as Map<String, dynamic>?)!,
     );

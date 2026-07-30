@@ -33,8 +33,8 @@ class InputThumbnail extends TdObject {
     return InputThumbnail(
       thumbnail:
           InputFile.fromJson(json['thumbnail'] as Map<String, dynamic>?)!,
-      width: json['width'] as int,
-      height: json['height'] as int,
+      width: (json['width'] as int?) ?? 0,
+      height: (json['height'] as int?) ?? 0,
     );
   }
 

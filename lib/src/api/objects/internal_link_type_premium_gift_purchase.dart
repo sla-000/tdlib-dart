@@ -24,7 +24,7 @@ class InternalLinkTypePremiumGiftPurchase extends InternalLinkType {
     }
 
     return InternalLinkTypePremiumGiftPurchase(
-      referrer: json['referrer'] as String,
+      referrer: (json['referrer'] as String?) ?? '',
     );
   }
 

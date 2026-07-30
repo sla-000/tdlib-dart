@@ -23,7 +23,7 @@ class CanPostStoryResultWeeklyLimitExceeded extends CanPostStoryResult {
     }
 
     return CanPostStoryResultWeeklyLimitExceeded(
-      retryAfter: json['retry_after'] as int,
+      retryAfter: (json['retry_after'] as int?) ?? 0,
     );
   }
 

@@ -25,8 +25,8 @@ class StarSubscriptionPricing extends TdObject {
     }
 
     return StarSubscriptionPricing(
-      period: json['period'] as int,
-      starCount: json['star_count'] as int,
+      period: (json['period'] as int?) ?? 0,
+      starCount: (json['star_count'] as int?) ?? 0,
     );
   }
 

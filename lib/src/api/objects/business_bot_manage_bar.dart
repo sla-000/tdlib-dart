@@ -34,10 +34,10 @@ class BusinessBotManageBar extends TdObject {
     }
 
     return BusinessBotManageBar(
-      botUserId: json['bot_user_id'] as int,
-      manageUrl: json['manage_url'] as String,
-      isBotPaused: json['is_bot_paused'] as bool,
-      canBotReply: json['can_bot_reply'] as bool,
+      botUserId: (json['bot_user_id'] as int?) ?? 0,
+      manageUrl: (json['manage_url'] as String?) ?? '',
+      isBotPaused: (json['is_bot_paused'] as bool?) ?? false,
+      canBotReply: (json['can_bot_reply'] as bool?) ?? false,
     );
   }
 

@@ -27,7 +27,7 @@ class PageBlockAuthorDate extends PageBlock {
 
     return PageBlockAuthorDate(
       author: RichText.fromJson(json['author'] as Map<String, dynamic>?)!,
-      publishDate: json['publish_date'] as int,
+      publishDate: (json['publish_date'] as int?) ?? 0,
     );
   }
 

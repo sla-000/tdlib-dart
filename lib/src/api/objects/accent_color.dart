@@ -42,17 +42,20 @@ class AccentColor extends TdObject {
     }
 
     return AccentColor(
-      id: json['id'] as int,
-      builtInAccentColorId: json['built_in_accent_color_id'] as int,
+      id: (json['id'] as int?) ?? 0,
+      builtInAccentColorId: (json['built_in_accent_color_id'] as int?) ?? 0,
       lightThemeColors: List<int>.from(
           ((json['light_theme_colors'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => item)
+              .map((item) =>
+                  (item is int ? item : int.tryParse(item.toString()) ?? 0))
               .toList()),
       darkThemeColors: List<int>.from(
           ((json['dark_theme_colors'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => item)
+              .map((item) =>
+                  (item is int ? item : int.tryParse(item.toString()) ?? 0))
               .toList()),
-      minChannelChatBoostLevel: json['min_channel_chat_boost_level'] as int,
+      minChannelChatBoostLevel:
+          (json['min_channel_chat_boost_level'] as int?) ?? 0,
     );
   }
 

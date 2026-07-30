@@ -37,12 +37,12 @@ class UpdateNewChosenInlineResult extends Update {
     }
 
     return UpdateNewChosenInlineResult(
-      senderUserId: json['sender_user_id'] as int,
+      senderUserId: (json['sender_user_id'] as int?) ?? 0,
       userLocation:
           Location.fromJson(json['user_location'] as Map<String, dynamic>?),
-      query: json['query'] as String,
-      resultId: json['result_id'] as String,
-      inlineMessageId: json['inline_message_id'] as String,
+      query: (json['query'] as String?) ?? '',
+      resultId: (json['result_id'] as String?) ?? '',
+      inlineMessageId: (json['inline_message_id'] as String?) ?? '',
     );
   }
 

@@ -23,7 +23,8 @@ class BotMediaPreviews extends TdObject {
     return BotMediaPreviews(
       previews: List<BotMediaPreview>.from(
           ((json['previews'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => BotMediaPreview.fromJson(item))
+              .map((item) =>
+                  BotMediaPreview.fromJson(item as Map<String, dynamic>?))
               .toList()),
     );
   }

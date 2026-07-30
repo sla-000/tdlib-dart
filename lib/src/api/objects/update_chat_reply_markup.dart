@@ -26,7 +26,7 @@ class UpdateChatReplyMarkup extends Update {
     }
 
     return UpdateChatReplyMarkup(
-      chatId: json['chat_id'] as int,
+      chatId: (json['chat_id'] as int?) ?? 0,
       replyMarkupMessage: Message.fromJson(
           json['reply_markup_message'] as Map<String, dynamic>?),
     );

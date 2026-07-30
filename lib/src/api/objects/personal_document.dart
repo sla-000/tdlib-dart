@@ -28,11 +28,11 @@ class PersonalDocument extends TdObject {
     return PersonalDocument(
       files: List<DatedFile>.from(
           ((json['files'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => DatedFile.fromJson(item))
+              .map((item) => DatedFile.fromJson(item as Map<String, dynamic>?))
               .toList()),
       translation: List<DatedFile>.from(
           ((json['translation'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => DatedFile.fromJson(item))
+              .map((item) => DatedFile.fromJson(item as Map<String, dynamic>?))
               .toList()),
     );
   }

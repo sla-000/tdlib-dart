@@ -25,8 +25,8 @@ class UpdateChatHasProtectedContent extends Update {
     }
 
     return UpdateChatHasProtectedContent(
-      chatId: json['chat_id'] as int,
-      hasProtectedContent: json['has_protected_content'] as bool,
+      chatId: (json['chat_id'] as int?) ?? 0,
+      hasProtectedContent: (json['has_protected_content'] as bool?) ?? false,
     );
   }
 

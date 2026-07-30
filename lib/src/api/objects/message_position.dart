@@ -29,9 +29,9 @@ class MessagePosition extends TdObject {
     }
 
     return MessagePosition(
-      position: json['position'] as int,
-      messageId: json['message_id'] as int,
-      date: json['date'] as int,
+      position: (json['position'] as int?) ?? 0,
+      messageId: (json['message_id'] as int?) ?? 0,
+      date: (json['date'] as int?) ?? 0,
     );
   }
 

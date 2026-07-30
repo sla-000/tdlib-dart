@@ -24,7 +24,7 @@ class ChatRevenueTransactionTypeFragmentRefund
     }
 
     return ChatRevenueTransactionTypeFragmentRefund(
-      refundDate: json['refund_date'] as int,
+      refundDate: (json['refund_date'] as int?) ?? 0,
     );
   }
 

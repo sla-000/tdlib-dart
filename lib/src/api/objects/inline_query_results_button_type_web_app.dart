@@ -22,7 +22,7 @@ class InlineQueryResultsButtonTypeWebApp extends InlineQueryResultsButtonType {
     }
 
     return InlineQueryResultsButtonTypeWebApp(
-      url: json['url'] as String,
+      url: (json['url'] as String?) ?? '',
     );
   }
 

@@ -26,11 +26,11 @@ class ReportStoryResultOptionRequired extends ReportStoryResult {
     }
 
     return ReportStoryResultOptionRequired(
-      title: json['title'] as String,
-      options: List<ReportOption>.from(
-          ((json['options'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => ReportOption.fromJson(item))
-              .toList()),
+      title: (json['title'] as String?) ?? '',
+      options: List<ReportOption>.from(((json['options'] as List<dynamic>?) ??
+              <dynamic>[])
+          .map((item) => ReportOption.fromJson(item as Map<String, dynamic>?))
+          .toList()),
     );
   }
 

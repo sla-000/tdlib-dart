@@ -34,9 +34,9 @@ class UpdateApplicationRecaptchaVerificationRequired extends Update {
     }
 
     return UpdateApplicationRecaptchaVerificationRequired(
-      verificationId: json['verification_id'] as int,
-      action: json['action'] as String,
-      recaptchaKeyId: json['recaptcha_key_id'] as String,
+      verificationId: (json['verification_id'] as int?) ?? 0,
+      action: (json['action'] as String?) ?? '',
+      recaptchaKeyId: (json['recaptcha_key_id'] as String?) ?? '',
     );
   }
 

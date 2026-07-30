@@ -35,10 +35,10 @@ class MessageGiveawayCompleted extends MessageContent {
     }
 
     return MessageGiveawayCompleted(
-      giveawayMessageId: json['giveaway_message_id'] as int,
-      winnerCount: json['winner_count'] as int,
-      isStarGiveaway: json['is_star_giveaway'] as bool,
-      unclaimedPrizeCount: json['unclaimed_prize_count'] as int,
+      giveawayMessageId: (json['giveaway_message_id'] as int?) ?? 0,
+      winnerCount: (json['winner_count'] as int?) ?? 0,
+      isStarGiveaway: (json['is_star_giveaway'] as bool?) ?? false,
+      unclaimedPrizeCount: (json['unclaimed_prize_count'] as int?) ?? 0,
     );
   }
 

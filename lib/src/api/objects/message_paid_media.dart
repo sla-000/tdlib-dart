@@ -35,14 +35,15 @@ class MessagePaidMedia extends MessageContent {
     }
 
     return MessagePaidMedia(
-      starCount: json['star_count'] as int,
+      starCount: (json['star_count'] as int?) ?? 0,
       media: List<PaidMedia>.from(
           ((json['media'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => PaidMedia.fromJson(item))
+              .map((item) => PaidMedia.fromJson(item as Map<String, dynamic>?))
               .toList()),
       caption:
           FormattedText.fromJson(json['caption'] as Map<String, dynamic>?)!,
-      showCaptionAboveMedia: json['show_caption_above_media'] as bool,
+      showCaptionAboveMedia:
+          (json['show_caption_above_media'] as bool?) ?? false,
     );
   }
 

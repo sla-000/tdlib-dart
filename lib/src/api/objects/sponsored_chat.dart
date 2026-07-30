@@ -35,10 +35,10 @@ class SponsoredChat extends TdObject {
     }
 
     return SponsoredChat(
-      uniqueId: json['unique_id'] as int,
-      chatId: json['chat_id'] as int,
+      uniqueId: (json['unique_id'] as int?) ?? 0,
+      chatId: (json['chat_id'] as int?) ?? 0,
       sponsorInfo: json['sponsor_info'] as String?,
-      additionalInfo: json['additional_info'] as String,
+      additionalInfo: (json['additional_info'] as String?) ?? '',
     );
   }
 

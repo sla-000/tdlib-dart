@@ -75,16 +75,20 @@ class MessagePremiumGiftCode extends MessageContent {
       creatorId:
           MessageSender.fromJson(json['creator_id'] as Map<String, dynamic>?),
       text: FormattedText.fromJson(json['text'] as Map<String, dynamic>?)!,
-      isFromGiveaway: json['is_from_giveaway'] as bool,
-      isUnclaimed: json['is_unclaimed'] as bool,
-      currency: json['currency'] as String,
-      amount: json['amount'] as int,
-      cryptocurrency: json['cryptocurrency'] as String,
-      cryptocurrencyAmount: int.tryParse(json['cryptocurrency_amount']) ?? 0,
-      monthCount: json['month_count'] as int,
-      dayCount: json['day_count'] as int,
+      isFromGiveaway: (json['is_from_giveaway'] as bool?) ?? false,
+      isUnclaimed: (json['is_unclaimed'] as bool?) ?? false,
+      currency: (json['currency'] as String?) ?? '',
+      amount: (json['amount'] as int?) ?? 0,
+      cryptocurrency: (json['cryptocurrency'] as String?) ?? '',
+      cryptocurrencyAmount: (json['cryptocurrency_amount'] is int
+              ? json['cryptocurrency_amount'] as int
+              : int.tryParse(
+                  json['cryptocurrency_amount']?.toString() ?? '')) ??
+          0,
+      monthCount: (json['month_count'] as int?) ?? 0,
+      dayCount: (json['day_count'] as int?) ?? 0,
       sticker: Sticker.fromJson(json['sticker'] as Map<String, dynamic>?),
-      code: json['code'] as String,
+      code: (json['code'] as String?) ?? '',
     );
   }
 

@@ -37,11 +37,15 @@ class BotVerificationParameters extends TdObject {
     }
 
     return BotVerificationParameters(
-      iconCustomEmojiId: int.tryParse(json['icon_custom_emoji_id']) ?? 0,
-      organizationName: json['organization_name'] as String,
+      iconCustomEmojiId: (json['icon_custom_emoji_id'] is int
+              ? json['icon_custom_emoji_id'] as int
+              : int.tryParse(json['icon_custom_emoji_id']?.toString() ?? '')) ??
+          0,
+      organizationName: (json['organization_name'] as String?) ?? '',
       defaultCustomDescription: FormattedText.fromJson(
           json['default_custom_description'] as Map<String, dynamic>?),
-      canSetCustomDescription: json['can_set_custom_description'] as bool,
+      canSetCustomDescription:
+          (json['can_set_custom_description'] as bool?) ?? false,
     );
   }
 

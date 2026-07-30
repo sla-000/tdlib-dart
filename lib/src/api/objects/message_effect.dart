@@ -40,11 +40,14 @@ class MessageEffect extends TdObject {
     }
 
     return MessageEffect(
-      id: int.tryParse(json['id']) ?? 0,
+      id: (json['id'] is int
+              ? json['id'] as int
+              : int.tryParse(json['id']?.toString() ?? '')) ??
+          0,
       staticIcon:
           Sticker.fromJson(json['static_icon'] as Map<String, dynamic>?),
-      emoji: json['emoji'] as String,
-      isPremium: json['is_premium'] as bool,
+      emoji: (json['emoji'] as String?) ?? '',
+      isPremium: (json['is_premium'] as bool?) ?? false,
       type: MessageEffectType.fromJson(json['type'] as Map<String, dynamic>?)!,
     );
   }

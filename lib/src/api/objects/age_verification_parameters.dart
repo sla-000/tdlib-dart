@@ -32,9 +32,10 @@ class AgeVerificationParameters extends TdObject {
     }
 
     return AgeVerificationParameters(
-      minAge: json['min_age'] as int,
-      verificationBotUsername: json['verification_bot_username'] as String,
-      country: json['country'] as String,
+      minAge: (json['min_age'] as int?) ?? 0,
+      verificationBotUsername:
+          (json['verification_bot_username'] as String?) ?? '',
+      country: (json['country'] as String?) ?? '',
     );
   }
 

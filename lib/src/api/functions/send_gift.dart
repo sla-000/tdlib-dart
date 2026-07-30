@@ -44,7 +44,7 @@ class SendGift extends TdFunction {
 
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'gift_id': giftId,
+        'gift_id': giftId.toString(),
         'owner_id': ownerId.toJson(),
         'text': text.toJson(),
         'is_private': isPrivate,

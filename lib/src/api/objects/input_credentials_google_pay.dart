@@ -21,7 +21,7 @@ class InputCredentialsGooglePay extends InputCredentials {
     }
 
     return InputCredentialsGooglePay(
-      data: json['data'] as String,
+      data: (json['data'] as String?) ?? '',
     );
   }
 

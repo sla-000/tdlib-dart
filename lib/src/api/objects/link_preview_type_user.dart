@@ -26,7 +26,7 @@ class LinkPreviewTypeUser extends LinkPreviewType {
 
     return LinkPreviewTypeUser(
       photo: ChatPhoto.fromJson(json['photo'] as Map<String, dynamic>?),
-      isBot: json['is_bot'] as bool,
+      isBot: (json['is_bot'] as bool?) ?? false,
     );
   }
 

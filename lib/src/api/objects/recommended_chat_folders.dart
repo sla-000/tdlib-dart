@@ -23,7 +23,8 @@ class RecommendedChatFolders extends TdObject {
     return RecommendedChatFolders(
       chatFolders: List<RecommendedChatFolder>.from(
           ((json['chat_folders'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => RecommendedChatFolder.fromJson(item))
+              .map((item) =>
+                  RecommendedChatFolder.fromJson(item as Map<String, dynamic>?))
               .toList()),
     );
   }

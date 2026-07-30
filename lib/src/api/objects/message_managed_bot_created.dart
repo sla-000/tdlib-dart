@@ -21,7 +21,7 @@ class MessageManagedBotCreated extends MessageContent {
     }
 
     return MessageManagedBotCreated(
-      botUserId: json['bot_user_id'] as int,
+      botUserId: (json['bot_user_id'] as int?) ?? 0,
     );
   }
 

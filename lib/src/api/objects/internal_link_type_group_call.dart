@@ -24,7 +24,7 @@ class InternalLinkTypeGroupCall extends InternalLinkType {
     }
 
     return InternalLinkTypeGroupCall(
-      inviteLink: json['invite_link'] as String,
+      inviteLink: (json['invite_link'] as String?) ?? '',
     );
   }
 

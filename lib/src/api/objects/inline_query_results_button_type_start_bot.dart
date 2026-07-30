@@ -24,7 +24,7 @@ class InlineQueryResultsButtonTypeStartBot
     }
 
     return InlineQueryResultsButtonTypeStartBot(
-      parameter: json['parameter'] as String,
+      parameter: (json['parameter'] as String?) ?? '',
     );
   }
 

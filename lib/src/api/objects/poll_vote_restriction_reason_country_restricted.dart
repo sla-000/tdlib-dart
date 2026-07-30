@@ -25,7 +25,7 @@ class PollVoteRestrictionReasonCountryRestricted
     }
 
     return PollVoteRestrictionReasonCountryRestricted(
-      countryCode: json['country_code'] as String,
+      countryCode: (json['country_code'] as String?) ?? '',
     );
   }
 

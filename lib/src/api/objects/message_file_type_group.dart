@@ -21,7 +21,7 @@ class MessageFileTypeGroup extends MessageFileType {
     }
 
     return MessageFileTypeGroup(
-      title: json['title'] as String,
+      title: (json['title'] as String?) ?? '',
     );
   }
 

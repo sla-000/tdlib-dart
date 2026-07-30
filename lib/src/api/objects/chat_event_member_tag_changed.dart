@@ -29,9 +29,9 @@ class ChatEventMemberTagChanged extends ChatEventAction {
     }
 
     return ChatEventMemberTagChanged(
-      userId: json['user_id'] as int,
-      oldTag: json['old_tag'] as String,
-      newTag: json['new_tag'] as String,
+      userId: (json['user_id'] as int?) ?? 0,
+      oldTag: (json['old_tag'] as String?) ?? '',
+      newTag: (json['new_tag'] as String?) ?? '',
     );
   }
 

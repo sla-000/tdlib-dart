@@ -23,7 +23,7 @@ class UpdateDiceEmojis extends Update {
     return UpdateDiceEmojis(
       emojis: List<String>.from(
           ((json['emojis'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => item)
+              .map((item) => item as String)
               .toList()),
     );
   }

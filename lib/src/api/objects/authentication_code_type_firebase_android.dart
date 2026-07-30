@@ -31,7 +31,7 @@ class AuthenticationCodeTypeFirebaseAndroid extends AuthenticationCodeType {
       deviceVerificationParameters:
           FirebaseDeviceVerificationParameters.fromJson(
               json['device_verification_parameters'] as Map<String, dynamic>?)!,
-      length: json['length'] as int,
+      length: (json['length'] as int?) ?? 0,
     );
   }
 

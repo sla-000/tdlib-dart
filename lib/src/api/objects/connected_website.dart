@@ -57,15 +57,18 @@ class ConnectedWebsite extends TdObject {
     }
 
     return ConnectedWebsite(
-      id: int.tryParse(json['id']) ?? 0,
-      domainName: json['domain_name'] as String,
-      botUserId: json['bot_user_id'] as int,
-      browser: json['browser'] as String,
-      platform: json['platform'] as String,
-      logInDate: json['log_in_date'] as int,
-      lastActiveDate: json['last_active_date'] as int,
-      ipAddress: json['ip_address'] as String,
-      location: json['location'] as String,
+      id: (json['id'] is int
+              ? json['id'] as int
+              : int.tryParse(json['id']?.toString() ?? '')) ??
+          0,
+      domainName: (json['domain_name'] as String?) ?? '',
+      botUserId: (json['bot_user_id'] as int?) ?? 0,
+      browser: (json['browser'] as String?) ?? '',
+      platform: (json['platform'] as String?) ?? '',
+      logInDate: (json['log_in_date'] as int?) ?? 0,
+      lastActiveDate: (json['last_active_date'] as int?) ?? 0,
+      ipAddress: (json['ip_address'] as String?) ?? '',
+      location: (json['location'] as String?) ?? '',
     );
   }
 

@@ -28,11 +28,13 @@ class PassportElementsWithErrors extends TdObject {
     return PassportElementsWithErrors(
       elements: List<PassportElement>.from(
           ((json['elements'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => PassportElement.fromJson(item))
+              .map((item) =>
+                  PassportElement.fromJson(item as Map<String, dynamic>?))
               .toList()),
       errors: List<PassportElementError>.from(
           ((json['errors'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => PassportElementError.fromJson(item))
+              .map((item) =>
+                  PassportElementError.fromJson(item as Map<String, dynamic>?))
               .toList()),
     );
   }

@@ -41,12 +41,12 @@ class Address extends TdObject {
     }
 
     return Address(
-      countryCode: json['country_code'] as String,
-      state: json['state'] as String,
-      city: json['city'] as String,
-      streetLine1: json['street_line1'] as String,
-      streetLine2: json['street_line2'] as String,
-      postalCode: json['postal_code'] as String,
+      countryCode: (json['country_code'] as String?) ?? '',
+      state: (json['state'] as String?) ?? '',
+      city: (json['city'] as String?) ?? '',
+      streetLine1: (json['street_line1'] as String?) ?? '',
+      streetLine2: (json['street_line2'] as String?) ?? '',
+      postalCode: (json['postal_code'] as String?) ?? '',
     );
   }
 

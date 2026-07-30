@@ -52,7 +52,7 @@ class SearchGiftsForResale extends TdFunction {
 
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'gift_id': giftId,
+        'gift_id': giftId.toString(),
         'order': order.toJson(),
         'for_crafting': forCrafting,
         'for_stars': forStars,

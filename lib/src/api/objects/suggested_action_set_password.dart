@@ -24,7 +24,7 @@ class SuggestedActionSetPassword extends SuggestedAction {
     }
 
     return SuggestedActionSetPassword(
-      authorizationDelay: json['authorization_delay'] as int,
+      authorizationDelay: (json['authorization_delay'] as int?) ?? 0,
     );
   }
 

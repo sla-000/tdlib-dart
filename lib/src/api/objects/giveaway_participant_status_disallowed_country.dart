@@ -26,7 +26,7 @@ class GiveawayParticipantStatusDisallowedCountry
     }
 
     return GiveawayParticipantStatusDisallowedCountry(
-      userCountryCode: json['user_country_code'] as String,
+      userCountryCode: (json['user_country_code'] as String?) ?? '',
     );
   }
 

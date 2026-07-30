@@ -43,12 +43,18 @@ class UpdateNewBusinessCallbackQuery extends Update {
     }
 
     return UpdateNewBusinessCallbackQuery(
-      id: int.tryParse(json['id']) ?? 0,
-      senderUserId: json['sender_user_id'] as int,
-      connectionId: json['connection_id'] as String,
+      id: (json['id'] is int
+              ? json['id'] as int
+              : int.tryParse(json['id']?.toString() ?? '')) ??
+          0,
+      senderUserId: (json['sender_user_id'] as int?) ?? 0,
+      connectionId: (json['connection_id'] as String?) ?? '',
       message:
           BusinessMessage.fromJson(json['message'] as Map<String, dynamic>?)!,
-      chatInstance: int.tryParse(json['chat_instance']) ?? 0,
+      chatInstance: (json['chat_instance'] is int
+              ? json['chat_instance'] as int
+              : int.tryParse(json['chat_instance']?.toString() ?? '')) ??
+          0,
       payload: CallbackQueryPayload.fromJson(
           json['payload'] as Map<String, dynamic>?)!,
     );

@@ -22,7 +22,7 @@ class ChatThemeEmoji extends ChatTheme {
     }
 
     return ChatThemeEmoji(
-      name: json['name'] as String,
+      name: (json['name'] as String?) ?? '',
     );
   }
 

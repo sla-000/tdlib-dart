@@ -35,10 +35,10 @@ class AuctionRound extends TdObject {
     }
 
     return AuctionRound(
-      number: json['number'] as int,
-      duration: json['duration'] as int,
-      extendTime: json['extend_time'] as int,
-      topWinnerCount: json['top_winner_count'] as int,
+      number: (json['number'] as int?) ?? 0,
+      duration: (json['duration'] as int?) ?? 0,
+      extendTime: (json['extend_time'] as int?) ?? 0,
+      topWinnerCount: (json['top_winner_count'] as int?) ?? 0,
     );
   }
 

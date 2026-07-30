@@ -26,8 +26,8 @@ class CallStatePending extends CallState {
     }
 
     return CallStatePending(
-      isCreated: json['is_created'] as bool,
-      isReceived: json['is_received'] as bool,
+      isCreated: (json['is_created'] as bool?) ?? false,
+      isReceived: (json['is_received'] as bool?) ?? false,
     );
   }
 

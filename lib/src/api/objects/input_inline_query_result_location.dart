@@ -58,13 +58,13 @@ class InputInlineQueryResultLocation extends InputInlineQueryResult {
     }
 
     return InputInlineQueryResultLocation(
-      id: json['id'] as String,
+      id: (json['id'] as String?) ?? '',
       location: Location.fromJson(json['location'] as Map<String, dynamic>?)!,
-      livePeriod: json['live_period'] as int,
-      title: json['title'] as String,
-      thumbnailUrl: json['thumbnail_url'] as String,
-      thumbnailWidth: json['thumbnail_width'] as int,
-      thumbnailHeight: json['thumbnail_height'] as int,
+      livePeriod: (json['live_period'] as int?) ?? 0,
+      title: (json['title'] as String?) ?? '',
+      thumbnailUrl: (json['thumbnail_url'] as String?) ?? '',
+      thumbnailWidth: (json['thumbnail_width'] as int?) ?? 0,
+      thumbnailHeight: (json['thumbnail_height'] as int?) ?? 0,
       replyMarkup:
           ReplyMarkup.fromJson(json['reply_markup'] as Map<String, dynamic>?),
       inputMessageContent: InputMessageContent.fromJson(

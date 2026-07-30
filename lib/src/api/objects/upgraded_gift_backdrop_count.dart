@@ -27,7 +27,7 @@ class UpgradedGiftBackdropCount extends TdObject {
     return UpgradedGiftBackdropCount(
       backdrop: UpgradedGiftBackdrop.fromJson(
           json['backdrop'] as Map<String, dynamic>?)!,
-      totalCount: json['total_count'] as int,
+      totalCount: (json['total_count'] as int?) ?? 0,
     );
   }
 

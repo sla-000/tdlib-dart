@@ -25,7 +25,7 @@ class BusinessChatLinkInfo extends TdObject {
     }
 
     return BusinessChatLinkInfo(
-      chatId: json['chat_id'] as int,
+      chatId: (json['chat_id'] as int?) ?? 0,
       text: FormattedText.fromJson(json['text'] as Map<String, dynamic>?)!,
     );
   }

@@ -37,10 +37,13 @@ class CallServer extends TdObject {
     }
 
     return CallServer(
-      id: int.tryParse(json['id']) ?? 0,
-      ipAddress: json['ip_address'] as String,
-      ipv6Address: json['ipv6_address'] as String,
-      port: json['port'] as int,
+      id: (json['id'] is int
+              ? json['id'] as int
+              : int.tryParse(json['id']?.toString() ?? '')) ??
+          0,
+      ipAddress: (json['ip_address'] as String?) ?? '',
+      ipv6Address: (json['ipv6_address'] as String?) ?? '',
+      port: (json['port'] as int?) ?? 0,
       type: CallServerType.fromJson(json['type'] as Map<String, dynamic>?)!,
     );
   }

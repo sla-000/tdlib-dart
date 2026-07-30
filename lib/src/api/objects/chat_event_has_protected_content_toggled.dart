@@ -22,7 +22,7 @@ class ChatEventHasProtectedContentToggled extends ChatEventAction {
     }
 
     return ChatEventHasProtectedContentToggled(
-      hasProtectedContent: json['has_protected_content'] as bool,
+      hasProtectedContent: (json['has_protected_content'] as bool?) ?? false,
     );
   }
 

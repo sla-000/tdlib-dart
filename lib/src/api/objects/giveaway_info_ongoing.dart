@@ -30,10 +30,10 @@ class GiveawayInfoOngoing extends GiveawayInfo {
     }
 
     return GiveawayInfoOngoing(
-      creationDate: json['creation_date'] as int,
+      creationDate: (json['creation_date'] as int?) ?? 0,
       status: GiveawayParticipantStatus.fromJson(
           json['status'] as Map<String, dynamic>?)!,
-      isEnded: json['is_ended'] as bool,
+      isEnded: (json['is_ended'] as bool?) ?? false,
     );
   }
 

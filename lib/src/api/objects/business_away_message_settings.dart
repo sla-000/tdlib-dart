@@ -35,12 +35,12 @@ class BusinessAwayMessageSettings extends TdObject {
     }
 
     return BusinessAwayMessageSettings(
-      shortcutId: json['shortcut_id'] as int,
+      shortcutId: (json['shortcut_id'] as int?) ?? 0,
       recipients: BusinessRecipients.fromJson(
           json['recipients'] as Map<String, dynamic>?)!,
       schedule: BusinessAwayMessageSchedule.fromJson(
           json['schedule'] as Map<String, dynamic>?)!,
-      offlineOnly: json['offline_only'] as bool,
+      offlineOnly: (json['offline_only'] as bool?) ?? false,
     );
   }
 

@@ -29,8 +29,8 @@ class BusinessOpeningHoursInterval extends TdObject {
     }
 
     return BusinessOpeningHoursInterval(
-      startMinute: json['start_minute'] as int,
-      endMinute: json['end_minute'] as int,
+      startMinute: (json['start_minute'] as int?) ?? 0,
+      endMinute: (json['end_minute'] as int?) ?? 0,
     );
   }
 

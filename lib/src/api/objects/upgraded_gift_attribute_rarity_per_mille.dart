@@ -23,7 +23,7 @@ class UpgradedGiftAttributeRarityPerMille extends UpgradedGiftAttributeRarity {
     }
 
     return UpgradedGiftAttributeRarityPerMille(
-      perMille: json['per_mille'] as int,
+      perMille: (json['per_mille'] as int?) ?? 0,
     );
   }
 

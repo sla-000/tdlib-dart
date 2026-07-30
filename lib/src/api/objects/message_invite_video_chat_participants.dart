@@ -27,10 +27,11 @@ class MessageInviteVideoChatParticipants extends MessageContent {
     }
 
     return MessageInviteVideoChatParticipants(
-      groupCallId: json['group_call_id'] as int,
+      groupCallId: (json['group_call_id'] as int?) ?? 0,
       userIds: List<int>.from(
           ((json['user_ids'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => item)
+              .map((item) =>
+                  (item is int ? item : int.tryParse(item.toString()) ?? 0))
               .toList()),
     );
   }

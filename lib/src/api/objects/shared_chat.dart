@@ -33,7 +33,7 @@ class SharedChat extends TdObject {
     }
 
     return SharedChat(
-      chatId: json['chat_id'] as int,
+      chatId: (json['chat_id'] as int?) ?? 0,
       title: json['title'] as String?,
       username: json['username'] as String?,
       photo: Photo.fromJson(json['photo'] as Map<String, dynamic>?),

@@ -35,8 +35,11 @@ class ChatInviteLinkSubscriptionInfo extends TdObject {
     return ChatInviteLinkSubscriptionInfo(
       pricing: StarSubscriptionPricing.fromJson(
           json['pricing'] as Map<String, dynamic>?)!,
-      canReuse: json['can_reuse'] as bool,
-      formId: int.tryParse(json['form_id']) ?? 0,
+      canReuse: (json['can_reuse'] as bool?) ?? false,
+      formId: (json['form_id'] is int
+              ? json['form_id'] as int
+              : int.tryParse(json['form_id']?.toString() ?? '')) ??
+          0,
     );
   }
 

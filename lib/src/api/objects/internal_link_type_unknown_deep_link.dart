@@ -21,7 +21,7 @@ class InternalLinkTypeUnknownDeepLink extends InternalLinkType {
     }
 
     return InternalLinkTypeUnknownDeepLink(
-      link: json['link'] as String,
+      link: (json['link'] as String?) ?? '',
     );
   }
 

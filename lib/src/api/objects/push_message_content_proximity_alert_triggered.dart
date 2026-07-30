@@ -22,7 +22,7 @@ class PushMessageContentProximityAlertTriggered extends PushMessageContent {
     }
 
     return PushMessageContentProximityAlertTriggered(
-      distance: json['distance'] as int,
+      distance: (json['distance'] as int?) ?? 0,
     );
   }
 

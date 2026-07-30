@@ -25,7 +25,7 @@ class InputPassportElementErrorSourceUnspecified
     }
 
     return InputPassportElementErrorSourceUnspecified(
-      elementHash: json['element_hash'] as String,
+      elementHash: (json['element_hash'] as String?) ?? '',
     );
   }
 

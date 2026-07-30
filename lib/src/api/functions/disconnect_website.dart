@@ -21,7 +21,7 @@ class DisconnectWebsite extends TdFunction {
 
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'website_id': websiteId,
+        'website_id': websiteId.toString(),
         '@type': constructor,
       };
 

@@ -38,11 +38,11 @@ class Contact extends TdObject {
     }
 
     return Contact(
-      phoneNumber: json['phone_number'] as String,
-      firstName: json['first_name'] as String,
-      lastName: json['last_name'] as String,
-      vcard: json['vcard'] as String,
-      userId: json['user_id'] as int,
+      phoneNumber: (json['phone_number'] as String?) ?? '',
+      firstName: (json['first_name'] as String?) ?? '',
+      lastName: (json['last_name'] as String?) ?? '',
+      vcard: (json['vcard'] as String?) ?? '',
+      userId: (json['user_id'] as int?) ?? 0,
     );
   }
 

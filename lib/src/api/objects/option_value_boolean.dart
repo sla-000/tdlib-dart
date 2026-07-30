@@ -21,7 +21,7 @@ class OptionValueBoolean extends OptionValue {
     }
 
     return OptionValueBoolean(
-      value: json['value'] as bool,
+      value: (json['value'] as bool?) ?? false,
     );
   }
 

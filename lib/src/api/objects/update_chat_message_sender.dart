@@ -26,7 +26,7 @@ class UpdateChatMessageSender extends Update {
     }
 
     return UpdateChatMessageSender(
-      chatId: json['chat_id'] as int,
+      chatId: (json['chat_id'] as int?) ?? 0,
       messageSenderId: MessageSender.fromJson(
           json['message_sender_id'] as Map<String, dynamic>?),
     );

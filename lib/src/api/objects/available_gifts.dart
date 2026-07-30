@@ -21,10 +21,10 @@ class AvailableGifts extends TdObject {
     }
 
     return AvailableGifts(
-      gifts: List<AvailableGift>.from(
-          ((json['gifts'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => AvailableGift.fromJson(item))
-              .toList()),
+      gifts: List<AvailableGift>.from(((json['gifts'] as List<dynamic>?) ??
+              <dynamic>[])
+          .map((item) => AvailableGift.fromJson(item as Map<String, dynamic>?))
+          .toList()),
     );
   }
 

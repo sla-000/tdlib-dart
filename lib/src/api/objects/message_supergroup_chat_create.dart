@@ -21,7 +21,7 @@ class MessageSupergroupChatCreate extends MessageContent {
     }
 
     return MessageSupergroupChatCreate(
-      title: json['title'] as String,
+      title: (json['title'] as String?) ?? '',
     );
   }
 

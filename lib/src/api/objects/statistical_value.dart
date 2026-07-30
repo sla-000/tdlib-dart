@@ -29,9 +29,10 @@ class StatisticalValue extends TdObject {
     }
 
     return StatisticalValue(
-      value: (json['value'] as num).toDouble(),
-      previousValue: (json['previous_value'] as num).toDouble(),
-      growthRatePercentage: (json['growth_rate_percentage'] as num).toDouble(),
+      value: (json['value'] as num?)?.toDouble() ?? 0.0,
+      previousValue: (json['previous_value'] as num?)?.toDouble() ?? 0.0,
+      growthRatePercentage:
+          (json['growth_rate_percentage'] as num?)?.toDouble() ?? 0.0,
     );
   }
 

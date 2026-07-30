@@ -21,7 +21,7 @@ class InputBackgroundPrevious extends InputBackground {
     }
 
     return InputBackgroundPrevious(
-      messageId: json['message_id'] as int,
+      messageId: (json['message_id'] as int?) ?? 0,
     );
   }
 

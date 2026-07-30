@@ -31,10 +31,10 @@ class UpdateTopicMessageCount extends Update {
     }
 
     return UpdateTopicMessageCount(
-      chatId: json['chat_id'] as int,
+      chatId: (json['chat_id'] as int?) ?? 0,
       topicId:
           MessageTopic.fromJson(json['topic_id'] as Map<String, dynamic>?)!,
-      messageCount: json['message_count'] as int,
+      messageCount: (json['message_count'] as int?) ?? 0,
     );
   }
 

@@ -48,11 +48,11 @@ class StarSubscription extends TdObject {
     }
 
     return StarSubscription(
-      id: json['id'] as String,
-      chatId: json['chat_id'] as int,
-      expirationDate: json['expiration_date'] as int,
-      isCanceled: json['is_canceled'] as bool,
-      isExpiring: json['is_expiring'] as bool,
+      id: (json['id'] as String?) ?? '',
+      chatId: (json['chat_id'] as int?) ?? 0,
+      expirationDate: (json['expiration_date'] as int?) ?? 0,
+      isCanceled: (json['is_canceled'] as bool?) ?? false,
+      isExpiring: (json['is_expiring'] as bool?) ?? false,
       pricing: StarSubscriptionPricing.fromJson(
           json['pricing'] as Map<String, dynamic>?)!,
       type:

@@ -22,7 +22,7 @@ class EmailAddressAuthenticationGoogleId extends EmailAddressAuthentication {
     }
 
     return EmailAddressAuthenticationGoogleId(
-      token: json['token'] as String,
+      token: (json['token'] as String?) ?? '',
     );
   }
 

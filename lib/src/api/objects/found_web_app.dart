@@ -33,8 +33,8 @@ class FoundWebApp extends TdObject {
 
     return FoundWebApp(
       webApp: WebApp.fromJson(json['web_app'] as Map<String, dynamic>?)!,
-      requestWriteAccess: json['request_write_access'] as bool,
-      skipConfirmation: json['skip_confirmation'] as bool,
+      requestWriteAccess: (json['request_write_access'] as bool?) ?? false,
+      skipConfirmation: (json['skip_confirmation'] as bool?) ?? false,
     );
   }
 

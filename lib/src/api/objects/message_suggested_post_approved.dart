@@ -31,10 +31,10 @@ class MessageSuggestedPostApproved extends MessageContent {
     }
 
     return MessageSuggestedPostApproved(
-      suggestedPostMessageId: json['suggested_post_message_id'] as int,
+      suggestedPostMessageId: (json['suggested_post_message_id'] as int?) ?? 0,
       price:
           SuggestedPostPrice.fromJson(json['price'] as Map<String, dynamic>?),
-      sendDate: json['send_date'] as int,
+      sendDate: (json['send_date'] as int?) ?? 0,
     );
   }
 

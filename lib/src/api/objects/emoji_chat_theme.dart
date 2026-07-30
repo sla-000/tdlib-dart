@@ -29,7 +29,7 @@ class EmojiChatTheme extends TdObject {
     }
 
     return EmojiChatTheme(
-      name: json['name'] as String,
+      name: (json['name'] as String?) ?? '',
       lightSettings: ThemeSettings.fromJson(
           json['light_settings'] as Map<String, dynamic>?)!,
       darkSettings: ThemeSettings.fromJson(

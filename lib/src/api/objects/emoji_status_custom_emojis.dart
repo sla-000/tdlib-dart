@@ -23,7 +23,8 @@ class EmojiStatusCustomEmojis extends TdObject {
     return EmojiStatusCustomEmojis(
       customEmojiIds: List<int>.from(
           ((json['custom_emoji_ids'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => item)
+              .map((item) =>
+                  (item is int ? item : int.tryParse(item.toString()) ?? 0))
               .toList()),
     );
   }
@@ -33,7 +34,8 @@ class EmojiStatusCustomEmojis extends TdObject {
 
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'custom_emoji_ids': customEmojiIds.map((item) => item).toList(),
+        'custom_emoji_ids':
+            customEmojiIds.map((item) => item.toString()).toList(),
         '@type': constructor,
       };
 

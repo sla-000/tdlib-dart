@@ -25,10 +25,11 @@ class FoundPositions extends TdObject {
     }
 
     return FoundPositions(
-      totalCount: json['total_count'] as int,
+      totalCount: (json['total_count'] as int?) ?? 0,
       positions: List<int>.from(
           ((json['positions'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => item)
+              .map((item) =>
+                  (item is int ? item : int.tryParse(item.toString()) ?? 0))
               .toList()),
     );
   }

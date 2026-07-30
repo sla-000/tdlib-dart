@@ -27,7 +27,7 @@ class UpdateChatRevenueAmount extends Update {
     }
 
     return UpdateChatRevenueAmount(
-      chatId: json['chat_id'] as int,
+      chatId: (json['chat_id'] as int?) ?? 0,
       revenueAmount: ChatRevenueAmount.fromJson(
           json['revenue_amount'] as Map<String, dynamic>?)!,
     );

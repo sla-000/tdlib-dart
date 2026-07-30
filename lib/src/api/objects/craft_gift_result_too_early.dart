@@ -22,7 +22,7 @@ class CraftGiftResultTooEarly extends CraftGiftResult {
     }
 
     return CraftGiftResultTooEarly(
-      retryAfter: json['retry_after'] as int,
+      retryAfter: (json['retry_after'] as int?) ?? 0,
     );
   }
 

@@ -28,9 +28,9 @@ class Sessions extends TdObject {
     return Sessions(
       sessions: List<Session>.from(
           ((json['sessions'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => Session.fromJson(item))
+              .map((item) => Session.fromJson(item as Map<String, dynamic>?))
               .toList()),
-      inactiveSessionTtlDays: json['inactive_session_ttl_days'] as int,
+      inactiveSessionTtlDays: (json['inactive_session_ttl_days'] as int?) ?? 0,
     );
   }
 

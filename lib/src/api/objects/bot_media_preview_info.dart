@@ -29,11 +29,12 @@ class BotMediaPreviewInfo extends TdObject {
     return BotMediaPreviewInfo(
       previews: List<BotMediaPreview>.from(
           ((json['previews'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => BotMediaPreview.fromJson(item))
+              .map((item) =>
+                  BotMediaPreview.fromJson(item as Map<String, dynamic>?))
               .toList()),
       languageCodes: List<String>.from(
           ((json['language_codes'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => item)
+              .map((item) => item as String)
               .toList()),
     );
   }

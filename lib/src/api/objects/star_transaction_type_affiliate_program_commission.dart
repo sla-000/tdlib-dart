@@ -30,8 +30,8 @@ class StarTransactionTypeAffiliateProgramCommission
     }
 
     return StarTransactionTypeAffiliateProgramCommission(
-      chatId: json['chat_id'] as int,
-      commissionPerMille: json['commission_per_mille'] as int,
+      chatId: (json['chat_id'] as int?) ?? 0,
+      commissionPerMille: (json['commission_per_mille'] as int?) ?? 0,
     );
   }
 

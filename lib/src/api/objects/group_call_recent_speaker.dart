@@ -27,7 +27,7 @@ class GroupCallRecentSpeaker extends TdObject {
     return GroupCallRecentSpeaker(
       participantId: MessageSender.fromJson(
           json['participant_id'] as Map<String, dynamic>?)!,
-      isSpeaking: json['is_speaking'] as bool,
+      isSpeaking: (json['is_speaking'] as bool?) ?? false,
     );
   }
 

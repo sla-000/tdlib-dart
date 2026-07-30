@@ -23,7 +23,7 @@ class Passkeys extends TdObject {
     return Passkeys(
       passkeys: List<Passkey>.from(
           ((json['passkeys'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => Passkey.fromJson(item))
+              .map((item) => Passkey.fromJson(item as Map<String, dynamic>?))
               .toList()),
     );
   }

@@ -51,22 +51,23 @@ class PaymentFormTypeRegular extends PaymentFormType {
 
     return PaymentFormTypeRegular(
       invoice: Invoice.fromJson(json['invoice'] as Map<String, dynamic>?)!,
-      paymentProviderUserId: json['payment_provider_user_id'] as int,
+      paymentProviderUserId: (json['payment_provider_user_id'] as int?) ?? 0,
       paymentProvider: PaymentProvider.fromJson(
           json['payment_provider'] as Map<String, dynamic>?)!,
-      additionalPaymentOptions: List<PaymentOption>.from(
-          ((json['additional_payment_options'] as List<dynamic>?) ??
-                  <dynamic>[])
-              .map((item) => PaymentOption.fromJson(item))
-              .toList()),
+      additionalPaymentOptions: List<PaymentOption>.from(((json[
+                  'additional_payment_options'] as List<dynamic>?) ??
+              <dynamic>[])
+          .map((item) => PaymentOption.fromJson(item as Map<String, dynamic>?))
+          .toList()),
       savedOrderInfo:
           OrderInfo.fromJson(json['saved_order_info'] as Map<String, dynamic>?),
       savedCredentials: List<SavedCredentials>.from(
           ((json['saved_credentials'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => SavedCredentials.fromJson(item))
+              .map((item) =>
+                  SavedCredentials.fromJson(item as Map<String, dynamic>?))
               .toList()),
-      canSaveCredentials: json['can_save_credentials'] as bool,
-      needPassword: json['need_password'] as bool,
+      canSaveCredentials: (json['can_save_credentials'] as bool?) ?? false,
+      needPassword: (json['need_password'] as bool?) ?? false,
     );
   }
 

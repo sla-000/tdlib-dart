@@ -22,7 +22,7 @@ class GetMessageEffect extends TdFunction {
 
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'effect_id': effectId,
+        'effect_id': effectId.toString(),
         '@type': constructor,
       };
 

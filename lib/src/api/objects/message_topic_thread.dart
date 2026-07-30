@@ -21,7 +21,7 @@ class MessageTopicThread extends MessageTopic {
     }
 
     return MessageTopicThread(
-      messageThreadId: json['message_thread_id'] as int,
+      messageThreadId: (json['message_thread_id'] as int?) ?? 0,
     );
   }
 

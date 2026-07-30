@@ -23,7 +23,7 @@ class PhoneNumberCodeTypeConfirmOwnership extends PhoneNumberCodeType {
     }
 
     return PhoneNumberCodeTypeConfirmOwnership(
-      hash: json['hash'] as String,
+      hash: (json['hash'] as String?) ?? '',
     );
   }
 

@@ -26,8 +26,8 @@ class UpdateChatUnreadPollVoteCount extends Update {
     }
 
     return UpdateChatUnreadPollVoteCount(
-      chatId: json['chat_id'] as int,
-      unreadPollVoteCount: json['unread_poll_vote_count'] as int,
+      chatId: (json['chat_id'] as int?) ?? 0,
+      unreadPollVoteCount: (json['unread_poll_vote_count'] as int?) ?? 0,
     );
   }
 

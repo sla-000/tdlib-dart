@@ -31,9 +31,12 @@ class MessageGameScore extends MessageContent {
     }
 
     return MessageGameScore(
-      gameMessageId: json['game_message_id'] as int,
-      gameId: int.tryParse(json['game_id']) ?? 0,
-      score: json['score'] as int,
+      gameMessageId: (json['game_message_id'] as int?) ?? 0,
+      gameId: (json['game_id'] is int
+              ? json['game_id'] as int
+              : int.tryParse(json['game_id']?.toString() ?? '')) ??
+          0,
+      score: (json['score'] as int?) ?? 0,
     );
   }
 

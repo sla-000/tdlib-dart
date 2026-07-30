@@ -24,7 +24,7 @@ class InternalLinkTypeLanguagePack extends InternalLinkType {
     }
 
     return InternalLinkTypeLanguagePack(
-      languagePackId: json['language_pack_id'] as String,
+      languagePackId: (json['language_pack_id'] as String?) ?? '',
     );
   }
 

@@ -38,9 +38,9 @@ class PremiumStatePaymentOption extends TdObject {
     return PremiumStatePaymentOption(
       paymentOption: PremiumPaymentOption.fromJson(
           json['payment_option'] as Map<String, dynamic>?)!,
-      isCurrent: json['is_current'] as bool,
-      isUpgrade: json['is_upgrade'] as bool,
-      lastTransactionId: json['last_transaction_id'] as String,
+      isCurrent: (json['is_current'] as bool?) ?? false,
+      isUpgrade: (json['is_upgrade'] as bool?) ?? false,
+      lastTransactionId: (json['last_transaction_id'] as String?) ?? '',
     );
   }
 

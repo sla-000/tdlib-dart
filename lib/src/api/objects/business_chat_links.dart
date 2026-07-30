@@ -23,7 +23,8 @@ class BusinessChatLinks extends TdObject {
     return BusinessChatLinks(
       links: List<BusinessChatLink>.from(
           ((json['links'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => BusinessChatLink.fromJson(item))
+              .map((item) =>
+                  BusinessChatLink.fromJson(item as Map<String, dynamic>?))
               .toList()),
     );
   }

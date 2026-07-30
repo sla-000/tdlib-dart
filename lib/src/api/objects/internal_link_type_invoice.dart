@@ -22,7 +22,7 @@ class InternalLinkTypeInvoice extends InternalLinkType {
     }
 
     return InternalLinkTypeInvoice(
-      invoiceName: json['invoice_name'] as String,
+      invoiceName: (json['invoice_name'] as String?) ?? '',
     );
   }
 

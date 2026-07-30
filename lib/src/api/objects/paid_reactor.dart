@@ -41,10 +41,10 @@ class PaidReactor extends TdObject {
     return PaidReactor(
       senderId:
           MessageSender.fromJson(json['sender_id'] as Map<String, dynamic>?),
-      starCount: json['star_count'] as int,
-      isTop: json['is_top'] as bool,
-      isMe: json['is_me'] as bool,
-      isAnonymous: json['is_anonymous'] as bool,
+      starCount: (json['star_count'] as int?) ?? 0,
+      isTop: (json['is_top'] as bool?) ?? false,
+      isMe: (json['is_me'] as bool?) ?? false,
+      isAnonymous: (json['is_anonymous'] as bool?) ?? false,
     );
   }
 

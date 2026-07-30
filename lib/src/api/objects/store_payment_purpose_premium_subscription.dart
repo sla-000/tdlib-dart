@@ -28,8 +28,8 @@ class StorePaymentPurposePremiumSubscription extends StorePaymentPurpose {
     }
 
     return StorePaymentPurposePremiumSubscription(
-      isRestore: json['is_restore'] as bool,
-      isUpgrade: json['is_upgrade'] as bool,
+      isRestore: (json['is_restore'] as bool?) ?? false,
+      isUpgrade: (json['is_upgrade'] as bool?) ?? false,
     );
   }
 

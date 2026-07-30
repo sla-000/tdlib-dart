@@ -21,7 +21,7 @@ class StoreTransactionAppStore extends StoreTransaction {
     }
 
     return StoreTransactionAppStore(
-      receipt: json['receipt'] as String,
+      receipt: (json['receipt'] as String?) ?? '',
     );
   }
 

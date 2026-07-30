@@ -26,8 +26,11 @@ class ForumTopicIcon extends TdObject {
     }
 
     return ForumTopicIcon(
-      color: json['color'] as int,
-      customEmojiId: int.tryParse(json['custom_emoji_id']) ?? 0,
+      color: (json['color'] as int?) ?? 0,
+      customEmojiId: (json['custom_emoji_id'] is int
+              ? json['custom_emoji_id'] as int
+              : int.tryParse(json['custom_emoji_id']?.toString() ?? '')) ??
+          0,
     );
   }
 

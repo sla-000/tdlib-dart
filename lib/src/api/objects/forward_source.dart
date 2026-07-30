@@ -47,13 +47,13 @@ class ForwardSource extends TdObject {
     }
 
     return ForwardSource(
-      chatId: json['chat_id'] as int,
-      messageId: json['message_id'] as int,
+      chatId: (json['chat_id'] as int?) ?? 0,
+      messageId: (json['message_id'] as int?) ?? 0,
       senderId:
           MessageSender.fromJson(json['sender_id'] as Map<String, dynamic>?),
-      senderName: json['sender_name'] as String,
-      date: json['date'] as int,
-      isOutgoing: json['is_outgoing'] as bool,
+      senderName: (json['sender_name'] as String?) ?? '',
+      date: (json['date'] as int?) ?? 0,
+      isOutgoing: (json['is_outgoing'] as bool?) ?? false,
     );
   }
 

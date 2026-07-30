@@ -47,11 +47,12 @@ class InputMessageForwarded extends InputMessageContent {
     }
 
     return InputMessageForwarded(
-      fromChatId: json['from_chat_id'] as int,
-      messageId: json['message_id'] as int,
-      inGameShare: json['in_game_share'] as bool,
-      replaceVideoStartTimestamp: json['replace_video_start_timestamp'] as bool,
-      newVideoStartTimestamp: json['new_video_start_timestamp'] as int,
+      fromChatId: (json['from_chat_id'] as int?) ?? 0,
+      messageId: (json['message_id'] as int?) ?? 0,
+      inGameShare: (json['in_game_share'] as bool?) ?? false,
+      replaceVideoStartTimestamp:
+          (json['replace_video_start_timestamp'] as bool?) ?? false,
+      newVideoStartTimestamp: (json['new_video_start_timestamp'] as int?) ?? 0,
       copyOptions: MessageCopyOptions.fromJson(
           json['copy_options'] as Map<String, dynamic>?),
     );

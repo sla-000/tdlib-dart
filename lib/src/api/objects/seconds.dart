@@ -21,7 +21,7 @@ class Seconds extends TdObject {
     }
 
     return Seconds(
-      seconds: (json['seconds'] as num).toDouble(),
+      seconds: (json['seconds'] as num?)?.toDouble() ?? 0.0,
     );
   }
 

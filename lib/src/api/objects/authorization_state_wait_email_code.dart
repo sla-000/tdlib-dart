@@ -35,8 +35,8 @@ class AuthorizationStateWaitEmailCode extends AuthorizationState {
     }
 
     return AuthorizationStateWaitEmailCode(
-      allowAppleId: json['allow_apple_id'] as bool,
-      allowGoogleId: json['allow_google_id'] as bool,
+      allowAppleId: (json['allow_apple_id'] as bool?) ?? false,
+      allowGoogleId: (json['allow_google_id'] as bool?) ?? false,
       codeInfo: EmailAddressAuthenticationCodeInfo.fromJson(
           json['code_info'] as Map<String, dynamic>?)!,
       emailAddressResetState: EmailAddressResetState.fromJson(

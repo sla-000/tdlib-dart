@@ -23,7 +23,7 @@ class TimeZones extends TdObject {
     return TimeZones(
       timeZones: List<TimeZone>.from(
           ((json['time_zones'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => TimeZone.fromJson(item))
+              .map((item) => TimeZone.fromJson(item as Map<String, dynamic>?))
               .toList()),
     );
   }

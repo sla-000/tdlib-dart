@@ -39,8 +39,8 @@ class StarTransactionTypePaidMessageReceive extends StarTransactionType {
     return StarTransactionTypePaidMessageReceive(
       senderId:
           MessageSender.fromJson(json['sender_id'] as Map<String, dynamic>?)!,
-      messageCount: json['message_count'] as int,
-      commissionPerMille: json['commission_per_mille'] as int,
+      messageCount: (json['message_count'] as int?) ?? 0,
+      commissionPerMille: (json['commission_per_mille'] as int?) ?? 0,
       commissionStarAmount: StarAmount.fromJson(
           json['commission_star_amount'] as Map<String, dynamic>?)!,
     );

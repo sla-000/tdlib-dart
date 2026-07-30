@@ -33,10 +33,10 @@ class BusinessChatLink extends TdObject {
     }
 
     return BusinessChatLink(
-      link: json['link'] as String,
+      link: (json['link'] as String?) ?? '',
       text: FormattedText.fromJson(json['text'] as Map<String, dynamic>?)!,
-      title: json['title'] as String,
-      viewCount: json['view_count'] as int,
+      title: (json['title'] as String?) ?? '',
+      viewCount: (json['view_count'] as int?) ?? 0,
     );
   }
 

@@ -34,9 +34,9 @@ class NewChatPrivacySettings extends TdObject {
 
     return NewChatPrivacySettings(
       allowNewChatsFromUnknownUsers:
-          json['allow_new_chats_from_unknown_users'] as bool,
+          (json['allow_new_chats_from_unknown_users'] as bool?) ?? false,
       incomingPaidMessageStarCount:
-          json['incoming_paid_message_star_count'] as int,
+          (json['incoming_paid_message_star_count'] as int?) ?? 0,
     );
   }
 

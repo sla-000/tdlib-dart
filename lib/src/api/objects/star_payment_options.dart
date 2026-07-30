@@ -23,7 +23,8 @@ class StarPaymentOptions extends TdObject {
     return StarPaymentOptions(
       options: List<StarPaymentOption>.from(
           ((json['options'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => StarPaymentOption.fromJson(item))
+              .map((item) =>
+                  StarPaymentOption.fromJson(item as Map<String, dynamic>?))
               .toList()),
     );
   }

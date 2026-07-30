@@ -22,7 +22,7 @@ class CallDiscardReasonUpgradeToGroupCall extends CallDiscardReason {
     }
 
     return CallDiscardReasonUpgradeToGroupCall(
-      inviteLink: json['invite_link'] as String,
+      inviteLink: (json['invite_link'] as String?) ?? '',
     );
   }
 

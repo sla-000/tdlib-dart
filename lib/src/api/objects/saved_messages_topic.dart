@@ -42,11 +42,14 @@ class SavedMessagesTopic extends TdObject {
     }
 
     return SavedMessagesTopic(
-      id: json['id'] as int,
+      id: (json['id'] as int?) ?? 0,
       type: SavedMessagesTopicType.fromJson(
           json['type'] as Map<String, dynamic>?)!,
-      isPinned: json['is_pinned'] as bool,
-      order: int.tryParse(json['order']) ?? 0,
+      isPinned: (json['is_pinned'] as bool?) ?? false,
+      order: (json['order'] is int
+              ? json['order'] as int
+              : int.tryParse(json['order']?.toString() ?? '')) ??
+          0,
       lastMessage:
           Message.fromJson(json['last_message'] as Map<String, dynamic>?),
       draftMessage:

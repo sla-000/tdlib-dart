@@ -129,18 +129,19 @@ class AttachmentMenuBot extends TdObject {
     }
 
     return AttachmentMenuBot(
-      botUserId: json['bot_user_id'] as int,
-      supportsSelfChat: json['supports_self_chat'] as bool,
-      supportsUserChats: json['supports_user_chats'] as bool,
-      supportsBotChats: json['supports_bot_chats'] as bool,
-      supportsGroupChats: json['supports_group_chats'] as bool,
-      supportsChannelChats: json['supports_channel_chats'] as bool,
-      requestWriteAccess: json['request_write_access'] as bool,
-      isAdded: json['is_added'] as bool,
-      showInAttachmentMenu: json['show_in_attachment_menu'] as bool,
-      showInSideMenu: json['show_in_side_menu'] as bool,
-      showDisclaimerInSideMenu: json['show_disclaimer_in_side_menu'] as bool,
-      name: json['name'] as String,
+      botUserId: (json['bot_user_id'] as int?) ?? 0,
+      supportsSelfChat: (json['supports_self_chat'] as bool?) ?? false,
+      supportsUserChats: (json['supports_user_chats'] as bool?) ?? false,
+      supportsBotChats: (json['supports_bot_chats'] as bool?) ?? false,
+      supportsGroupChats: (json['supports_group_chats'] as bool?) ?? false,
+      supportsChannelChats: (json['supports_channel_chats'] as bool?) ?? false,
+      requestWriteAccess: (json['request_write_access'] as bool?) ?? false,
+      isAdded: (json['is_added'] as bool?) ?? false,
+      showInAttachmentMenu: (json['show_in_attachment_menu'] as bool?) ?? false,
+      showInSideMenu: (json['show_in_side_menu'] as bool?) ?? false,
+      showDisclaimerInSideMenu:
+          (json['show_disclaimer_in_side_menu'] as bool?) ?? false,
+      name: (json['name'] as String?) ?? '',
       nameColor: AttachmentMenuBotColor.fromJson(
           json['name_color'] as Map<String, dynamic>?),
       defaultIcon: File.fromJson(json['default_icon'] as Map<String, dynamic>?),

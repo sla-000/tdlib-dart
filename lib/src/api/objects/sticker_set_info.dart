@@ -86,26 +86,29 @@ class StickerSetInfo extends TdObject {
     }
 
     return StickerSetInfo(
-      id: int.tryParse(json['id']) ?? 0,
-      title: json['title'] as String,
-      name: json['name'] as String,
+      id: (json['id'] is int
+              ? json['id'] as int
+              : int.tryParse(json['id']?.toString() ?? '')) ??
+          0,
+      title: (json['title'] as String?) ?? '',
+      name: (json['name'] as String?) ?? '',
       thumbnail: Thumbnail.fromJson(json['thumbnail'] as Map<String, dynamic>?),
       thumbnailOutline:
           Outline.fromJson(json['thumbnail_outline'] as Map<String, dynamic>?),
-      isOwned: json['is_owned'] as bool,
-      isInstalled: json['is_installed'] as bool,
-      isArchived: json['is_archived'] as bool,
-      isOfficial: json['is_official'] as bool,
+      isOwned: (json['is_owned'] as bool?) ?? false,
+      isInstalled: (json['is_installed'] as bool?) ?? false,
+      isArchived: (json['is_archived'] as bool?) ?? false,
+      isOfficial: (json['is_official'] as bool?) ?? false,
       stickerType:
           StickerType.fromJson(json['sticker_type'] as Map<String, dynamic>?)!,
-      needsRepainting: json['needs_repainting'] as bool,
+      needsRepainting: (json['needs_repainting'] as bool?) ?? false,
       isAllowedAsChatEmojiStatus:
-          json['is_allowed_as_chat_emoji_status'] as bool,
-      isViewed: json['is_viewed'] as bool,
-      size: json['size'] as int,
+          (json['is_allowed_as_chat_emoji_status'] as bool?) ?? false,
+      isViewed: (json['is_viewed'] as bool?) ?? false,
+      size: (json['size'] as int?) ?? 0,
       covers: List<Sticker>.from(
           ((json['covers'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => Sticker.fromJson(item))
+              .map((item) => Sticker.fromJson(item as Map<String, dynamic>?))
               .toList()),
     );
   }

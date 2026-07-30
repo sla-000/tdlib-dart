@@ -28,10 +28,10 @@ class StarTransactionTypeBotPaidMediaPurchase extends StarTransactionType {
     }
 
     return StarTransactionTypeBotPaidMediaPurchase(
-      userId: json['user_id'] as int,
+      userId: (json['user_id'] as int?) ?? 0,
       media: List<PaidMedia>.from(
           ((json['media'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => PaidMedia.fromJson(item))
+              .map((item) => PaidMedia.fromJson(item as Map<String, dynamic>?))
               .toList()),
     );
   }

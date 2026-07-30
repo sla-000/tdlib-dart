@@ -55,20 +55,27 @@ class UpdateNotificationGroup extends Update {
     }
 
     return UpdateNotificationGroup(
-      notificationGroupId: json['notification_group_id'] as int,
+      notificationGroupId: (json['notification_group_id'] as int?) ?? 0,
       type: NotificationGroupType.fromJson(
           json['type'] as Map<String, dynamic>?)!,
-      chatId: json['chat_id'] as int,
-      notificationSettingsChatId: json['notification_settings_chat_id'] as int,
-      notificationSoundId: int.tryParse(json['notification_sound_id']) ?? 0,
-      totalCount: json['total_count'] as int,
-      addedNotifications: List<Notification>.from(
-          ((json['added_notifications'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => Notification.fromJson(item))
-              .toList()),
+      chatId: (json['chat_id'] as int?) ?? 0,
+      notificationSettingsChatId:
+          (json['notification_settings_chat_id'] as int?) ?? 0,
+      notificationSoundId: (json['notification_sound_id'] is int
+              ? json['notification_sound_id'] as int
+              : int.tryParse(
+                  json['notification_sound_id']?.toString() ?? '')) ??
+          0,
+      totalCount: (json['total_count'] as int?) ?? 0,
+      addedNotifications: List<Notification>.from(((json['added_notifications']
+                  as List<dynamic>?) ??
+              <dynamic>[])
+          .map((item) => Notification.fromJson(item as Map<String, dynamic>?))
+          .toList()),
       removedNotificationIds: List<int>.from(
           ((json['removed_notification_ids'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => item)
+              .map((item) =>
+                  (item is int ? item : int.tryParse(item.toString()) ?? 0))
               .toList()),
     );
   }

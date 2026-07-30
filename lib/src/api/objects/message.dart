@@ -222,36 +222,41 @@ class Message extends TdObject {
     }
 
     return Message(
-      id: json['id'] as int,
+      id: (json['id'] as int?) ?? 0,
       senderId:
           MessageSender.fromJson(json['sender_id'] as Map<String, dynamic>?)!,
-      chatId: json['chat_id'] as int,
+      chatId: (json['chat_id'] as int?) ?? 0,
       sendingState: MessageSendingState.fromJson(
           json['sending_state'] as Map<String, dynamic>?),
       schedulingState: MessageSchedulingState.fromJson(
           json['scheduling_state'] as Map<String, dynamic>?),
-      isOutgoing: json['is_outgoing'] as bool,
-      isPinned: json['is_pinned'] as bool,
-      isFromOffline: json['is_from_offline'] as bool,
-      canBeSaved: json['can_be_saved'] as bool,
-      hasTimestampedMedia: json['has_timestamped_media'] as bool,
-      isChannelPost: json['is_channel_post'] as bool,
-      isPaidStarSuggestedPost: json['is_paid_star_suggested_post'] as bool,
-      isPaidTonSuggestedPost: json['is_paid_ton_suggested_post'] as bool,
-      containsUnreadMention: json['contains_unread_mention'] as bool,
-      containsUnreadPollVotes: json['contains_unread_poll_votes'] as bool,
-      date: json['date'] as int,
-      editDate: json['edit_date'] as int,
+      isOutgoing: (json['is_outgoing'] as bool?) ?? false,
+      isPinned: (json['is_pinned'] as bool?) ?? false,
+      isFromOffline: (json['is_from_offline'] as bool?) ?? false,
+      canBeSaved: (json['can_be_saved'] as bool?) ?? false,
+      hasTimestampedMedia: (json['has_timestamped_media'] as bool?) ?? false,
+      isChannelPost: (json['is_channel_post'] as bool?) ?? false,
+      isPaidStarSuggestedPost:
+          (json['is_paid_star_suggested_post'] as bool?) ?? false,
+      isPaidTonSuggestedPost:
+          (json['is_paid_ton_suggested_post'] as bool?) ?? false,
+      containsUnreadMention:
+          (json['contains_unread_mention'] as bool?) ?? false,
+      containsUnreadPollVotes:
+          (json['contains_unread_poll_votes'] as bool?) ?? false,
+      date: (json['date'] as int?) ?? 0,
+      editDate: (json['edit_date'] as int?) ?? 0,
       forwardInfo: MessageForwardInfo.fromJson(
           json['forward_info'] as Map<String, dynamic>?),
       importInfo: MessageImportInfo.fromJson(
           json['import_info'] as Map<String, dynamic>?),
       interactionInfo: MessageInteractionInfo.fromJson(
           json['interaction_info'] as Map<String, dynamic>?),
-      unreadReactions: List<UnreadReaction>.from(
-          ((json['unread_reactions'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => UnreadReaction.fromJson(item))
-              .toList()),
+      unreadReactions: List<UnreadReaction>.from(((json['unread_reactions']
+                  as List<dynamic>?) ??
+              <dynamic>[])
+          .map((item) => UnreadReaction.fromJson(item as Map<String, dynamic>?))
+          .toList()),
       factCheck:
           FactCheck.fromJson(json['fact_check'] as Map<String, dynamic>?),
       suggestedPostInfo: SuggestedPostInfo.fromJson(
@@ -261,21 +266,28 @@ class Message extends TdObject {
       topicId: MessageTopic.fromJson(json['topic_id'] as Map<String, dynamic>?),
       selfDestructType: MessageSelfDestructType.fromJson(
           json['self_destruct_type'] as Map<String, dynamic>?),
-      selfDestructIn: (json['self_destruct_in'] as num).toDouble(),
-      autoDeleteIn: (json['auto_delete_in'] as num).toDouble(),
-      viaBotUserId: json['via_bot_user_id'] as int,
+      selfDestructIn: (json['self_destruct_in'] as num?)?.toDouble() ?? 0.0,
+      autoDeleteIn: (json['auto_delete_in'] as num?)?.toDouble() ?? 0.0,
+      viaBotUserId: (json['via_bot_user_id'] as int?) ?? 0,
       guestBotCallerId: MessageSender.fromJson(
           json['guest_bot_caller_id'] as Map<String, dynamic>?),
-      senderBusinessBotUserId: json['sender_business_bot_user_id'] as int,
-      senderBoostCount: json['sender_boost_count'] as int,
-      senderTag: json['sender_tag'] as String,
-      paidMessageStarCount: json['paid_message_star_count'] as int,
+      senderBusinessBotUserId:
+          (json['sender_business_bot_user_id'] as int?) ?? 0,
+      senderBoostCount: (json['sender_boost_count'] as int?) ?? 0,
+      senderTag: (json['sender_tag'] as String?) ?? '',
+      paidMessageStarCount: (json['paid_message_star_count'] as int?) ?? 0,
       authorSignature: json['author_signature'] as String?,
-      mediaAlbumId: int.tryParse(json['media_album_id']) ?? 0,
-      effectId: int.tryParse(json['effect_id']) ?? 0,
+      mediaAlbumId: (json['media_album_id'] is int
+              ? json['media_album_id'] as int
+              : int.tryParse(json['media_album_id']?.toString() ?? '')) ??
+          0,
+      effectId: (json['effect_id'] is int
+              ? json['effect_id'] as int
+              : int.tryParse(json['effect_id']?.toString() ?? '')) ??
+          0,
       restrictionInfo: RestrictionInfo.fromJson(
           json['restriction_info'] as Map<String, dynamic>?),
-      summaryLanguageCode: json['summary_language_code'] as String,
+      summaryLanguageCode: (json['summary_language_code'] as String?) ?? '',
       content:
           MessageContent.fromJson(json['content'] as Map<String, dynamic>?)!,
       replyMarkup:

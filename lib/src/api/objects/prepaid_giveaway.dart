@@ -38,11 +38,14 @@ class PrepaidGiveaway extends TdObject {
     }
 
     return PrepaidGiveaway(
-      id: int.tryParse(json['id']) ?? 0,
-      winnerCount: json['winner_count'] as int,
+      id: (json['id'] is int
+              ? json['id'] as int
+              : int.tryParse(json['id']?.toString() ?? '')) ??
+          0,
+      winnerCount: (json['winner_count'] as int?) ?? 0,
       prize: GiveawayPrize.fromJson(json['prize'] as Map<String, dynamic>?)!,
-      boostCount: json['boost_count'] as int,
-      paymentDate: json['payment_date'] as int,
+      boostCount: (json['boost_count'] as int?) ?? 0,
+      paymentDate: (json['payment_date'] as int?) ?? 0,
     );
   }
 

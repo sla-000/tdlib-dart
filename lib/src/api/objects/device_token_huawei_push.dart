@@ -25,8 +25,8 @@ class DeviceTokenHuaweiPush extends DeviceToken {
     }
 
     return DeviceTokenHuaweiPush(
-      token: json['token'] as String,
-      encrypt: json['encrypt'] as bool,
+      token: (json['token'] as String?) ?? '',
+      encrypt: (json['encrypt'] as bool?) ?? false,
     );
   }
 

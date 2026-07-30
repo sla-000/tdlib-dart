@@ -76,16 +76,16 @@ class InputMessageInvoice extends InputMessageContent {
 
     return InputMessageInvoice(
       invoice: Invoice.fromJson(json['invoice'] as Map<String, dynamic>?)!,
-      title: json['title'] as String,
-      description: json['description'] as String,
+      title: (json['title'] as String?) ?? '',
+      description: (json['description'] as String?) ?? '',
       photoUrl: json['photo_url'] as String?,
-      photoSize: json['photo_size'] as int,
-      photoWidth: json['photo_width'] as int,
-      photoHeight: json['photo_height'] as int,
-      payload: json['payload'] as String,
-      providerToken: json['provider_token'] as String,
-      providerData: json['provider_data'] as String,
-      startParameter: json['start_parameter'] as String,
+      photoSize: (json['photo_size'] as int?) ?? 0,
+      photoWidth: (json['photo_width'] as int?) ?? 0,
+      photoHeight: (json['photo_height'] as int?) ?? 0,
+      payload: (json['payload'] as String?) ?? '',
+      providerToken: (json['provider_token'] as String?) ?? '',
+      providerData: (json['provider_data'] as String?) ?? '',
+      startParameter: (json['start_parameter'] as String?) ?? '',
       paidMedia:
           InputPaidMedia.fromJson(json['paid_media'] as Map<String, dynamic>?),
       paidMediaCaption: FormattedText.fromJson(

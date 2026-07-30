@@ -34,7 +34,7 @@ class UpdateChatAction extends Update {
     }
 
     return UpdateChatAction(
-      chatId: json['chat_id'] as int,
+      chatId: (json['chat_id'] as int?) ?? 0,
       topicId: MessageTopic.fromJson(json['topic_id'] as Map<String, dynamic>?),
       senderId:
           MessageSender.fromJson(json['sender_id'] as Map<String, dynamic>?)!,

@@ -42,11 +42,14 @@ class Call extends TdObject {
     }
 
     return Call(
-      id: json['id'] as int,
-      uniqueId: int.tryParse(json['unique_id']) ?? 0,
-      userId: json['user_id'] as int,
-      isOutgoing: json['is_outgoing'] as bool,
-      isVideo: json['is_video'] as bool,
+      id: (json['id'] as int?) ?? 0,
+      uniqueId: (json['unique_id'] is int
+              ? json['unique_id'] as int
+              : int.tryParse(json['unique_id']?.toString() ?? '')) ??
+          0,
+      userId: (json['user_id'] as int?) ?? 0,
+      isOutgoing: (json['is_outgoing'] as bool?) ?? false,
+      isVideo: (json['is_video'] as bool?) ?? false,
       state: CallState.fromJson(json['state'] as Map<String, dynamic>?)!,
     );
   }

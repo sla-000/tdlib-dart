@@ -32,7 +32,7 @@ class PaidMediaVideo extends PaidMedia {
     return PaidMediaVideo(
       video: Video.fromJson(json['video'] as Map<String, dynamic>?)!,
       cover: Photo.fromJson(json['cover'] as Map<String, dynamic>?),
-      startTimestamp: json['start_timestamp'] as int,
+      startTimestamp: (json['start_timestamp'] as int?) ?? 0,
     );
   }
 

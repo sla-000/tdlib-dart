@@ -21,7 +21,7 @@ class TelegramPaymentPurposeJoinChat extends TelegramPaymentPurpose {
     }
 
     return TelegramPaymentPurposeJoinChat(
-      inviteLink: json['invite_link'] as String,
+      inviteLink: (json['invite_link'] as String?) ?? '',
     );
   }
 

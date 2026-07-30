@@ -38,10 +38,10 @@ class InputMessageReplyToMessage extends InputMessageReplyTo {
     }
 
     return InputMessageReplyToMessage(
-      messageId: json['message_id'] as int,
+      messageId: (json['message_id'] as int?) ?? 0,
       quote: InputTextQuote.fromJson(json['quote'] as Map<String, dynamic>?),
-      checklistTaskId: json['checklist_task_id'] as int,
-      pollOptionId: json['poll_option_id'] as String,
+      checklistTaskId: (json['checklist_task_id'] as int?) ?? 0,
+      pollOptionId: (json['poll_option_id'] as String?) ?? '',
     );
   }
 

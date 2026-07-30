@@ -30,7 +30,7 @@ class ChatMemberStatusAdministrator extends ChatMemberStatus {
     }
 
     return ChatMemberStatusAdministrator(
-      canBeEdited: json['can_be_edited'] as bool,
+      canBeEdited: (json['can_be_edited'] as bool?) ?? false,
       rights: ChatAdministratorRights.fromJson(
           json['rights'] as Map<String, dynamic>?)!,
     );

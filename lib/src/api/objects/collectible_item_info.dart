@@ -42,12 +42,16 @@ class CollectibleItemInfo extends TdObject {
     }
 
     return CollectibleItemInfo(
-      purchaseDate: json['purchase_date'] as int,
-      currency: json['currency'] as String,
-      amount: json['amount'] as int,
-      cryptocurrency: json['cryptocurrency'] as String,
-      cryptocurrencyAmount: int.tryParse(json['cryptocurrency_amount']) ?? 0,
-      url: json['url'] as String,
+      purchaseDate: (json['purchase_date'] as int?) ?? 0,
+      currency: (json['currency'] as String?) ?? '',
+      amount: (json['amount'] as int?) ?? 0,
+      cryptocurrency: (json['cryptocurrency'] as String?) ?? '',
+      cryptocurrencyAmount: (json['cryptocurrency_amount'] is int
+              ? json['cryptocurrency_amount'] as int
+              : int.tryParse(
+                  json['cryptocurrency_amount']?.toString() ?? '')) ??
+          0,
+      url: (json['url'] as String?) ?? '',
     );
   }
 

@@ -55,13 +55,13 @@ class GiftAuctionAcquiredGift extends TdObject {
     return GiftAuctionAcquiredGift(
       receiverId:
           MessageSender.fromJson(json['receiver_id'] as Map<String, dynamic>?)!,
-      date: json['date'] as int,
-      starCount: json['star_count'] as int,
-      auctionRoundNumber: json['auction_round_number'] as int,
-      auctionRoundPosition: json['auction_round_position'] as int,
-      uniqueGiftNumber: json['unique_gift_number'] as int,
+      date: (json['date'] as int?) ?? 0,
+      starCount: (json['star_count'] as int?) ?? 0,
+      auctionRoundNumber: (json['auction_round_number'] as int?) ?? 0,
+      auctionRoundPosition: (json['auction_round_position'] as int?) ?? 0,
+      uniqueGiftNumber: (json['unique_gift_number'] as int?) ?? 0,
       text: FormattedText.fromJson(json['text'] as Map<String, dynamic>?)!,
-      isPrivate: json['is_private'] as bool,
+      isPrivate: (json['is_private'] as bool?) ?? false,
     );
   }
 

@@ -31,12 +31,14 @@ class ChatRevenueTransactions extends TdObject {
     }
 
     return ChatRevenueTransactions(
-      tonAmount: json['ton_amount'] as int,
-      transactions: List<ChatRevenueTransaction>.from(
-          ((json['transactions'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => ChatRevenueTransaction.fromJson(item))
-              .toList()),
-      nextOffset: json['next_offset'] as String,
+      tonAmount: (json['ton_amount'] as int?) ?? 0,
+      transactions: List<ChatRevenueTransaction>.from(((json['transactions']
+                  as List<dynamic>?) ??
+              <dynamic>[])
+          .map((item) =>
+              ChatRevenueTransaction.fromJson(item as Map<String, dynamic>?))
+          .toList()),
+      nextOffset: (json['next_offset'] as String?) ?? '',
     );
   }
 

@@ -21,7 +21,7 @@ class RichMessageSourceHtml extends RichMessageSource {
     }
 
     return RichMessageSourceHtml(
-      text: json['text'] as String,
+      text: (json['text'] as String?) ?? '',
     );
   }
 

@@ -26,7 +26,7 @@ class ChatEventMemberJoinedByRequest extends ChatEventAction {
     }
 
     return ChatEventMemberJoinedByRequest(
-      approverUserId: json['approver_user_id'] as int,
+      approverUserId: (json['approver_user_id'] as int?) ?? 0,
       inviteLink:
           ChatInviteLink.fromJson(json['invite_link'] as Map<String, dynamic>?),
     );

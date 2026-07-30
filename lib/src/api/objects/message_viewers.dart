@@ -21,10 +21,10 @@ class MessageViewers extends TdObject {
     }
 
     return MessageViewers(
-      viewers: List<MessageViewer>.from(
-          ((json['viewers'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => MessageViewer.fromJson(item))
-              .toList()),
+      viewers: List<MessageViewer>.from(((json['viewers'] as List<dynamic>?) ??
+              <dynamic>[])
+          .map((item) => MessageViewer.fromJson(item as Map<String, dynamic>?))
+          .toList()),
     );
   }
 

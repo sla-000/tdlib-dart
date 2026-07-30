@@ -36,15 +36,18 @@ class ProfileAccentColors extends TdObject {
     return ProfileAccentColors(
       paletteColors: List<int>.from(
           ((json['palette_colors'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => item)
+              .map((item) =>
+                  (item is int ? item : int.tryParse(item.toString()) ?? 0))
               .toList()),
       backgroundColors: List<int>.from(
           ((json['background_colors'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => item)
+              .map((item) =>
+                  (item is int ? item : int.tryParse(item.toString()) ?? 0))
               .toList()),
       storyColors: List<int>.from(
           ((json['story_colors'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => item)
+              .map((item) =>
+                  (item is int ? item : int.tryParse(item.toString()) ?? 0))
               .toList()),
     );
   }

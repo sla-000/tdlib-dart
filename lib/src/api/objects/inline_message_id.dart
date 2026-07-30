@@ -21,7 +21,7 @@ class InlineMessageId extends TdObject {
     }
 
     return InlineMessageId(
-      id: json['id'] as String,
+      id: (json['id'] as String?) ?? '',
     );
   }
 

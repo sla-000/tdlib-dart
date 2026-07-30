@@ -27,7 +27,7 @@ class PageBlockBlockQuote extends PageBlock {
     return PageBlockBlockQuote(
       blocks: List<PageBlock>.from(
           ((json['blocks'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => PageBlock.fromJson(item))
+              .map((item) => PageBlock.fromJson(item as Map<String, dynamic>?))
               .toList()),
       credit: RichText.fromJson(json['credit'] as Map<String, dynamic>?),
     );

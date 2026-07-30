@@ -32,8 +32,8 @@ class SavedMessagesTag extends TdObject {
 
     return SavedMessagesTag(
       tag: ReactionType.fromJson(json['tag'] as Map<String, dynamic>?)!,
-      label: json['label'] as String,
-      count: json['count'] as int,
+      label: (json['label'] as String?) ?? '',
+      count: (json['count'] as int?) ?? 0,
     );
   }
 

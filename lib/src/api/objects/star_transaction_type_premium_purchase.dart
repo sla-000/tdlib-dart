@@ -34,8 +34,8 @@ class StarTransactionTypePremiumPurchase extends StarTransactionType {
     }
 
     return StarTransactionTypePremiumPurchase(
-      userId: json['user_id'] as int,
-      monthCount: json['month_count'] as int,
+      userId: (json['user_id'] as int?) ?? 0,
+      monthCount: (json['month_count'] as int?) ?? 0,
       sticker: Sticker.fromJson(json['sticker'] as Map<String, dynamic>?),
     );
   }

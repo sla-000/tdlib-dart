@@ -35,9 +35,9 @@ class InputPaidMediaTypeVideo extends InputPaidMediaType {
 
     return InputPaidMediaTypeVideo(
       cover: InputFile.fromJson(json['cover'] as Map<String, dynamic>?),
-      startTimestamp: json['start_timestamp'] as int,
-      duration: json['duration'] as int,
-      supportsStreaming: json['supports_streaming'] as bool,
+      startTimestamp: (json['start_timestamp'] as int?) ?? 0,
+      duration: (json['duration'] as int?) ?? 0,
+      supportsStreaming: (json['supports_streaming'] as bool?) ?? false,
     );
   }
 

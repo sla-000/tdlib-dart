@@ -23,7 +23,7 @@ class AuthenticationCodeTypeSmsPhrase extends AuthenticationCodeType {
     }
 
     return AuthenticationCodeTypeSmsPhrase(
-      firstWord: json['first_word'] as String,
+      firstWord: (json['first_word'] as String?) ?? '',
     );
   }
 

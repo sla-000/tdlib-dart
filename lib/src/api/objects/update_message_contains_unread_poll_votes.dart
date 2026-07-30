@@ -36,10 +36,11 @@ class UpdateMessageContainsUnreadPollVotes extends Update {
     }
 
     return UpdateMessageContainsUnreadPollVotes(
-      chatId: json['chat_id'] as int,
-      messageId: json['message_id'] as int,
-      containsUnreadPollVotes: json['contains_unread_poll_votes'] as bool,
-      unreadPollVoteCount: json['unread_poll_vote_count'] as int,
+      chatId: (json['chat_id'] as int?) ?? 0,
+      messageId: (json['message_id'] as int?) ?? 0,
+      containsUnreadPollVotes:
+          (json['contains_unread_poll_votes'] as bool?) ?? false,
+      unreadPollVoteCount: (json['unread_poll_vote_count'] as int?) ?? 0,
     );
   }
 

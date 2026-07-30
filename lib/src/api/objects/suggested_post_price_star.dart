@@ -22,7 +22,7 @@ class SuggestedPostPriceStar extends SuggestedPostPrice {
     }
 
     return SuggestedPostPriceStar(
-      starCount: json['star_count'] as int,
+      starCount: (json['star_count'] as int?) ?? 0,
     );
   }
 

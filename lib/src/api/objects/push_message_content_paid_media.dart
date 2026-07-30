@@ -27,8 +27,8 @@ class PushMessageContentPaidMedia extends PushMessageContent {
     }
 
     return PushMessageContentPaidMedia(
-      starCount: json['star_count'] as int,
-      isPinned: json['is_pinned'] as bool,
+      starCount: (json['star_count'] as int?) ?? 0,
+      isPinned: (json['is_pinned'] as bool?) ?? false,
     );
   }
 

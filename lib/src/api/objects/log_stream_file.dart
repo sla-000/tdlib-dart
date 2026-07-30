@@ -31,9 +31,9 @@ class LogStreamFile extends LogStream {
     }
 
     return LogStreamFile(
-      path: json['path'] as String,
-      maxFileSize: json['max_file_size'] as int,
-      redirectStderr: json['redirect_stderr'] as bool,
+      path: (json['path'] as String?) ?? '',
+      maxFileSize: (json['max_file_size'] as int?) ?? 0,
+      redirectStderr: (json['redirect_stderr'] as bool?) ?? false,
     );
   }
 

@@ -21,7 +21,7 @@ class StoryAreaTypeLink extends StoryAreaType {
     }
 
     return StoryAreaTypeLink(
-      url: json['url'] as String,
+      url: (json['url'] as String?) ?? '',
     );
   }
 

@@ -25,7 +25,7 @@ class EmojiCategorySourceSearch extends EmojiCategorySource {
     return EmojiCategorySourceSearch(
       emojis: List<String>.from(
           ((json['emojis'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => item)
+              .map((item) => item as String)
               .toList()),
     );
   }

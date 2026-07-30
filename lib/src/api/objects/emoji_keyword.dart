@@ -25,8 +25,8 @@ class EmojiKeyword extends TdObject {
     }
 
     return EmojiKeyword(
-      emoji: json['emoji'] as String,
-      keyword: json['keyword'] as String,
+      emoji: (json['emoji'] as String?) ?? '',
+      keyword: (json['keyword'] as String?) ?? '',
     );
   }
 

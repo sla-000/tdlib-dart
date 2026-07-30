@@ -57,13 +57,13 @@ class InputInlineQueryResultPhoto extends InputInlineQueryResult {
     }
 
     return InputInlineQueryResultPhoto(
-      id: json['id'] as String,
-      title: json['title'] as String,
-      description: json['description'] as String,
-      thumbnailUrl: json['thumbnail_url'] as String,
-      photoUrl: json['photo_url'] as String,
-      photoWidth: json['photo_width'] as int,
-      photoHeight: json['photo_height'] as int,
+      id: (json['id'] as String?) ?? '',
+      title: (json['title'] as String?) ?? '',
+      description: (json['description'] as String?) ?? '',
+      thumbnailUrl: (json['thumbnail_url'] as String?) ?? '',
+      photoUrl: (json['photo_url'] as String?) ?? '',
+      photoWidth: (json['photo_width'] as int?) ?? 0,
+      photoHeight: (json['photo_height'] as int?) ?? 0,
       replyMarkup:
           ReplyMarkup.fromJson(json['reply_markup'] as Map<String, dynamic>?),
       inputMessageContent: InputMessageContent.fromJson(

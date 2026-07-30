@@ -28,7 +28,7 @@ class StarTransactionTypeUserDeposit extends StarTransactionType {
     }
 
     return StarTransactionTypeUserDeposit(
-      userId: json['user_id'] as int,
+      userId: (json['user_id'] as int?) ?? 0,
       sticker: Sticker.fromJson(json['sticker'] as Map<String, dynamic>?),
     );
   }

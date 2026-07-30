@@ -23,7 +23,7 @@ class MessageForumTopicIsClosedToggled extends MessageContent {
     }
 
     return MessageForumTopicIsClosedToggled(
-      isClosed: json['is_closed'] as bool,
+      isClosed: (json['is_closed'] as bool?) ?? false,
     );
   }
 

@@ -26,7 +26,8 @@ class UpdateActiveNotifications extends Update {
     return UpdateActiveNotifications(
       groups: List<NotificationGroup>.from(
           ((json['groups'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => NotificationGroup.fromJson(item))
+              .map((item) =>
+                  NotificationGroup.fromJson(item as Map<String, dynamic>?))
               .toList()),
     );
   }

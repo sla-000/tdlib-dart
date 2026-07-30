@@ -57,7 +57,7 @@ class SendBusinessMessage extends TdFunction {
         'reply_to': replyTo?.toJson(),
         'disable_notification': disableNotification,
         'protect_content': protectContent,
-        'effect_id': effectId,
+        'effect_id': effectId.toString(),
         'reply_markup': replyMarkup?.toJson(),
         'input_message_content': inputMessageContent.toJson(),
         '@type': constructor,

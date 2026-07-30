@@ -76,27 +76,28 @@ class AuctionStateActive extends AuctionState {
     }
 
     return AuctionStateActive(
-      startDate: json['start_date'] as int,
-      endDate: json['end_date'] as int,
-      minBid: json['min_bid'] as int,
+      startDate: (json['start_date'] as int?) ?? 0,
+      endDate: (json['end_date'] as int?) ?? 0,
+      minBid: (json['min_bid'] as int?) ?? 0,
       bidLevels: List<AuctionBid>.from(
           ((json['bid_levels'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => AuctionBid.fromJson(item))
+              .map((item) => AuctionBid.fromJson(item as Map<String, dynamic>?))
               .toList()),
       topBidderUserIds: List<int>.from(
           ((json['top_bidder_user_ids'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => item)
+              .map((item) =>
+                  (item is int ? item : int.tryParse(item.toString()) ?? 0))
               .toList()),
-      rounds: List<AuctionRound>.from(
-          ((json['rounds'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => AuctionRound.fromJson(item))
-              .toList()),
-      currentRoundEndDate: json['current_round_end_date'] as int,
-      currentRoundNumber: json['current_round_number'] as int,
-      totalRoundCount: json['total_round_count'] as int,
-      distributedItemCount: json['distributed_item_count'] as int,
-      leftItemCount: json['left_item_count'] as int,
-      acquiredItemCount: json['acquired_item_count'] as int,
+      rounds: List<AuctionRound>.from(((json['rounds'] as List<dynamic>?) ??
+              <dynamic>[])
+          .map((item) => AuctionRound.fromJson(item as Map<String, dynamic>?))
+          .toList()),
+      currentRoundEndDate: (json['current_round_end_date'] as int?) ?? 0,
+      currentRoundNumber: (json['current_round_number'] as int?) ?? 0,
+      totalRoundCount: (json['total_round_count'] as int?) ?? 0,
+      distributedItemCount: (json['distributed_item_count'] as int?) ?? 0,
+      leftItemCount: (json['left_item_count'] as int?) ?? 0,
+      acquiredItemCount: (json['acquired_item_count'] as int?) ?? 0,
       userBid:
           UserAuctionBid.fromJson(json['user_bid'] as Map<String, dynamic>?),
     );

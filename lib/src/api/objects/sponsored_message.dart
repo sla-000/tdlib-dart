@@ -66,19 +66,22 @@ class SponsoredMessage extends TdObject {
     }
 
     return SponsoredMessage(
-      messageId: json['message_id'] as int,
-      isRecommended: json['is_recommended'] as bool,
-      canBeReported: json['can_be_reported'] as bool,
+      messageId: (json['message_id'] as int?) ?? 0,
+      isRecommended: (json['is_recommended'] as bool?) ?? false,
+      canBeReported: (json['can_be_reported'] as bool?) ?? false,
       content:
           MessageContent.fromJson(json['content'] as Map<String, dynamic>?)!,
       sponsor: AdvertisementSponsor.fromJson(
           json['sponsor'] as Map<String, dynamic>?)!,
-      title: json['title'] as String,
-      buttonText: json['button_text'] as String,
-      accentColorId: json['accent_color_id'] as int,
-      backgroundCustomEmojiId:
-          int.tryParse(json['background_custom_emoji_id']) ?? 0,
-      additionalInfo: json['additional_info'] as String,
+      title: (json['title'] as String?) ?? '',
+      buttonText: (json['button_text'] as String?) ?? '',
+      accentColorId: (json['accent_color_id'] as int?) ?? 0,
+      backgroundCustomEmojiId: (json['background_custom_emoji_id'] is int
+              ? json['background_custom_emoji_id'] as int
+              : int.tryParse(
+                  json['background_custom_emoji_id']?.toString() ?? '')) ??
+          0,
+      additionalInfo: (json['additional_info'] as String?) ?? '',
     );
   }
 

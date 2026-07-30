@@ -27,7 +27,7 @@ class UpdateGroupCallParticipant extends Update {
     }
 
     return UpdateGroupCallParticipant(
-      groupCallId: json['group_call_id'] as int,
+      groupCallId: (json['group_call_id'] as int?) ?? 0,
       participant: GroupCallParticipant.fromJson(
           json['participant'] as Map<String, dynamic>?)!,
     );

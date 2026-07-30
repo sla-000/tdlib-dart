@@ -25,7 +25,7 @@ class UpdateUserStatus extends Update {
     }
 
     return UpdateUserStatus(
-      userId: json['user_id'] as int,
+      userId: (json['user_id'] as int?) ?? 0,
       status: UserStatus.fromJson(json['status'] as Map<String, dynamic>?)!,
     );
   }

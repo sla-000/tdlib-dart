@@ -47,13 +47,13 @@ class StoryAreaPosition extends TdObject {
     }
 
     return StoryAreaPosition(
-      xPercentage: (json['x_percentage'] as num).toDouble(),
-      yPercentage: (json['y_percentage'] as num).toDouble(),
-      widthPercentage: (json['width_percentage'] as num).toDouble(),
-      heightPercentage: (json['height_percentage'] as num).toDouble(),
-      rotationAngle: (json['rotation_angle'] as num).toDouble(),
+      xPercentage: (json['x_percentage'] as num?)?.toDouble() ?? 0.0,
+      yPercentage: (json['y_percentage'] as num?)?.toDouble() ?? 0.0,
+      widthPercentage: (json['width_percentage'] as num?)?.toDouble() ?? 0.0,
+      heightPercentage: (json['height_percentage'] as num?)?.toDouble() ?? 0.0,
+      rotationAngle: (json['rotation_angle'] as num?)?.toDouble() ?? 0.0,
       cornerRadiusPercentage:
-          (json['corner_radius_percentage'] as num).toDouble(),
+          (json['corner_radius_percentage'] as num?)?.toDouble() ?? 0.0,
     );
   }
 

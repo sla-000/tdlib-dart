@@ -29,9 +29,12 @@ class UpdateNewCustomQuery extends Update {
     }
 
     return UpdateNewCustomQuery(
-      id: int.tryParse(json['id']) ?? 0,
-      data: json['data'] as String,
-      timeout: json['timeout'] as int,
+      id: (json['id'] is int
+              ? json['id'] as int
+              : int.tryParse(json['id']?.toString() ?? '')) ??
+          0,
+      data: (json['data'] as String?) ?? '',
+      timeout: (json['timeout'] as int?) ?? 0,
     );
   }
 

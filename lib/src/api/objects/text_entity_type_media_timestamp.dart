@@ -24,7 +24,7 @@ class TextEntityTypeMediaTimestamp extends TextEntityType {
     }
 
     return TextEntityTypeMediaTimestamp(
-      mediaTimestamp: json['media_timestamp'] as int,
+      mediaTimestamp: (json['media_timestamp'] as int?) ?? 0,
     );
   }
 

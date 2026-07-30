@@ -22,7 +22,7 @@ class PushMessageContentChecklistTasksDone extends PushMessageContent {
     }
 
     return PushMessageContentChecklistTasksDone(
-      taskCount: json['task_count'] as int,
+      taskCount: (json['task_count'] as int?) ?? 0,
     );
   }
 

@@ -22,7 +22,7 @@ class BackgroundTypeChatTheme extends BackgroundType {
     }
 
     return BackgroundTypeChatTheme(
-      themeName: json['theme_name'] as String,
+      themeName: (json['theme_name'] as String?) ?? '',
     );
   }
 

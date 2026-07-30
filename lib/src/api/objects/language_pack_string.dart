@@ -26,7 +26,7 @@ class LanguagePackString extends TdObject {
     }
 
     return LanguagePackString(
-      key: json['key'] as String,
+      key: (json['key'] as String?) ?? '',
       value: LanguagePackStringValue.fromJson(
           json['value'] as Map<String, dynamic>?),
     );

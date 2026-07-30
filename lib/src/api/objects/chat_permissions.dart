@@ -86,22 +86,22 @@ class ChatPermissions extends TdObject {
     }
 
     return ChatPermissions(
-      canSendBasicMessages: json['can_send_basic_messages'] as bool,
-      canSendAudios: json['can_send_audios'] as bool,
-      canSendDocuments: json['can_send_documents'] as bool,
-      canSendPhotos: json['can_send_photos'] as bool,
-      canSendVideos: json['can_send_videos'] as bool,
-      canSendVideoNotes: json['can_send_video_notes'] as bool,
-      canSendVoiceNotes: json['can_send_voice_notes'] as bool,
-      canSendPolls: json['can_send_polls'] as bool,
-      canSendOtherMessages: json['can_send_other_messages'] as bool,
-      canAddLinkPreviews: json['can_add_link_previews'] as bool,
-      canReactToMessages: json['can_react_to_messages'] as bool,
-      canEditTag: json['can_edit_tag'] as bool,
-      canChangeInfo: json['can_change_info'] as bool,
-      canInviteUsers: json['can_invite_users'] as bool,
-      canPinMessages: json['can_pin_messages'] as bool,
-      canCreateTopics: json['can_create_topics'] as bool,
+      canSendBasicMessages: (json['can_send_basic_messages'] as bool?) ?? false,
+      canSendAudios: (json['can_send_audios'] as bool?) ?? false,
+      canSendDocuments: (json['can_send_documents'] as bool?) ?? false,
+      canSendPhotos: (json['can_send_photos'] as bool?) ?? false,
+      canSendVideos: (json['can_send_videos'] as bool?) ?? false,
+      canSendVideoNotes: (json['can_send_video_notes'] as bool?) ?? false,
+      canSendVoiceNotes: (json['can_send_voice_notes'] as bool?) ?? false,
+      canSendPolls: (json['can_send_polls'] as bool?) ?? false,
+      canSendOtherMessages: (json['can_send_other_messages'] as bool?) ?? false,
+      canAddLinkPreviews: (json['can_add_link_previews'] as bool?) ?? false,
+      canReactToMessages: (json['can_react_to_messages'] as bool?) ?? false,
+      canEditTag: (json['can_edit_tag'] as bool?) ?? false,
+      canChangeInfo: (json['can_change_info'] as bool?) ?? false,
+      canInviteUsers: (json['can_invite_users'] as bool?) ?? false,
+      canPinMessages: (json['can_pin_messages'] as bool?) ?? false,
+      canCreateTopics: (json['can_create_topics'] as bool?) ?? false,
     );
   }
 

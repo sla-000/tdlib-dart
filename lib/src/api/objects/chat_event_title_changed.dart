@@ -25,8 +25,8 @@ class ChatEventTitleChanged extends ChatEventAction {
     }
 
     return ChatEventTitleChanged(
-      oldTitle: json['old_title'] as String,
-      newTitle: json['new_title'] as String,
+      oldTitle: (json['old_title'] as String?) ?? '',
+      newTitle: (json['new_title'] as String?) ?? '',
     );
   }
 

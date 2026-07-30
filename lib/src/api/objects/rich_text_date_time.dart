@@ -31,7 +31,7 @@ class RichTextDateTime extends RichText {
 
     return RichTextDateTime(
       text: RichText.fromJson(json['text'] as Map<String, dynamic>?)!,
-      unixTime: json['unix_time'] as int,
+      unixTime: (json['unix_time'] as int?) ?? 0,
       formattingType: DateTimeFormattingType.fromJson(
           json['formatting_type'] as Map<String, dynamic>?),
     );

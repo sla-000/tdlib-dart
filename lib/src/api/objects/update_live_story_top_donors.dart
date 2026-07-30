@@ -25,7 +25,7 @@ class UpdateLiveStoryTopDonors extends Update {
     }
 
     return UpdateLiveStoryTopDonors(
-      groupCallId: json['group_call_id'] as int,
+      groupCallId: (json['group_call_id'] as int?) ?? 0,
       donors:
           LiveStoryDonors.fromJson(json['donors'] as Map<String, dynamic>?)!,
     );

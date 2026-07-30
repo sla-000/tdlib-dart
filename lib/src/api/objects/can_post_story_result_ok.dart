@@ -21,7 +21,7 @@ class CanPostStoryResultOk extends CanPostStoryResult {
     }
 
     return CanPostStoryResultOk(
-      storyCount: json['story_count'] as int,
+      storyCount: (json['story_count'] as int?) ?? 0,
     );
   }
 

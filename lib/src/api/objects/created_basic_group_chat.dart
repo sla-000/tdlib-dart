@@ -25,7 +25,7 @@ class CreatedBasicGroupChat extends TdObject {
     }
 
     return CreatedBasicGroupChat(
-      chatId: json['chat_id'] as int,
+      chatId: (json['chat_id'] as int?) ?? 0,
       failedToAddMembers: FailedToAddMembers.fromJson(
           json['failed_to_add_members'] as Map<String, dynamic>?)!,
     );

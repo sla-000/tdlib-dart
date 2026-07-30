@@ -37,9 +37,9 @@ class BusinessConnectedBotInfo extends TdObject {
 
     return BusinessConnectedBotInfo(
       bot: BusinessConnectedBot.fromJson(json['bot'] as Map<String, dynamic>?)!,
-      connectionDate: json['connection_date'] as int,
-      deviceModel: json['device_model'] as String,
-      location: json['location'] as String,
+      connectionDate: (json['connection_date'] as int?) ?? 0,
+      deviceModel: (json['device_model'] as String?) ?? '',
+      location: (json['location'] as String?) ?? '',
     );
   }
 

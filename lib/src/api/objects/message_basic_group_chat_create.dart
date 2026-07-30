@@ -25,10 +25,11 @@ class MessageBasicGroupChatCreate extends MessageContent {
     }
 
     return MessageBasicGroupChatCreate(
-      title: json['title'] as String,
+      title: (json['title'] as String?) ?? '',
       memberUserIds: List<int>.from(
           ((json['member_user_ids'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => item)
+              .map((item) =>
+                  (item is int ? item : int.tryParse(item.toString()) ?? 0))
               .toList()),
     );
   }

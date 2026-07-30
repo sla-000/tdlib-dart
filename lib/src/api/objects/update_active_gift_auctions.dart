@@ -23,7 +23,8 @@ class UpdateActiveGiftAuctions extends Update {
     return UpdateActiveGiftAuctions(
       states: List<GiftAuctionState>.from(
           ((json['states'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => GiftAuctionState.fromJson(item))
+              .map((item) =>
+                  GiftAuctionState.fromJson(item as Map<String, dynamic>?))
               .toList()),
     );
   }

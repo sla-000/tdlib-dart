@@ -37,9 +37,9 @@ class InternalLinkTypeRequestManagedBot extends InternalLinkType {
     }
 
     return InternalLinkTypeRequestManagedBot(
-      managerBotUsername: json['manager_bot_username'] as String,
-      suggestedBotUsername: json['suggested_bot_username'] as String,
-      suggestedBotName: json['suggested_bot_name'] as String,
+      managerBotUsername: (json['manager_bot_username'] as String?) ?? '',
+      suggestedBotUsername: (json['suggested_bot_username'] as String?) ?? '',
+      suggestedBotName: (json['suggested_bot_name'] as String?) ?? '',
     );
   }
 

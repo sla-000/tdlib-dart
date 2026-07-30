@@ -24,7 +24,7 @@ class AuthorizationStateWaitOtherDeviceConfirmation extends AuthorizationState {
     }
 
     return AuthorizationStateWaitOtherDeviceConfirmation(
-      link: json['link'] as String,
+      link: (json['link'] as String?) ?? '',
     );
   }
 

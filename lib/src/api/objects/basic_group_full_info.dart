@@ -58,21 +58,22 @@ class BasicGroupFullInfo extends TdObject {
 
     return BasicGroupFullInfo(
       photo: ChatPhoto.fromJson(json['photo'] as Map<String, dynamic>?),
-      description: json['description'] as String,
-      creatorUserId: json['creator_user_id'] as int,
+      description: (json['description'] as String?) ?? '',
+      creatorUserId: (json['creator_user_id'] as int?) ?? 0,
       members: List<ChatMember>.from(
           ((json['members'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => ChatMember.fromJson(item))
+              .map((item) => ChatMember.fromJson(item as Map<String, dynamic>?))
               .toList()),
-      canHideMembers: json['can_hide_members'] as bool,
+      canHideMembers: (json['can_hide_members'] as bool?) ?? false,
       canToggleAggressiveAntiSpam:
-          json['can_toggle_aggressive_anti_spam'] as bool,
+          (json['can_toggle_aggressive_anti_spam'] as bool?) ?? false,
       inviteLink:
           ChatInviteLink.fromJson(json['invite_link'] as Map<String, dynamic>?),
-      botCommands: List<BotCommands>.from(
-          ((json['bot_commands'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => BotCommands.fromJson(item))
-              .toList()),
+      botCommands: List<BotCommands>.from(((json['bot_commands']
+                  as List<dynamic>?) ??
+              <dynamic>[])
+          .map((item) => BotCommands.fromJson(item as Map<String, dynamic>?))
+          .toList()),
     );
   }
 

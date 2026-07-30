@@ -24,7 +24,7 @@ class InternalLinkTypeLiveStory extends InternalLinkType {
     }
 
     return InternalLinkTypeLiveStory(
-      storyPosterUsername: json['story_poster_username'] as String,
+      storyPosterUsername: (json['story_poster_username'] as String?) ?? '',
     );
   }
 

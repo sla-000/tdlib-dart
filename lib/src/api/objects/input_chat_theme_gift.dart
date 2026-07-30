@@ -23,7 +23,7 @@ class InputChatThemeGift extends InputChatTheme {
     }
 
     return InputChatThemeGift(
-      name: json['name'] as String,
+      name: (json['name'] as String?) ?? '',
     );
   }
 

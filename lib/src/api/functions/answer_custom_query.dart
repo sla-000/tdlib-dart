@@ -25,7 +25,7 @@ class AnswerCustomQuery extends TdFunction {
 
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'custom_query_id': customQueryId,
+        'custom_query_id': customQueryId.toString(),
         'data': data,
         '@type': constructor,
       };

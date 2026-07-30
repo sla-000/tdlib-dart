@@ -42,19 +42,21 @@ class UpdateMessageReaction extends Update {
     }
 
     return UpdateMessageReaction(
-      chatId: json['chat_id'] as int,
-      messageId: json['message_id'] as int,
+      chatId: (json['chat_id'] as int?) ?? 0,
+      messageId: (json['message_id'] as int?) ?? 0,
       actorId:
           MessageSender.fromJson(json['actor_id'] as Map<String, dynamic>?)!,
-      date: json['date'] as int,
-      oldReactionTypes: List<ReactionType>.from(
-          ((json['old_reaction_types'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => ReactionType.fromJson(item))
-              .toList()),
-      newReactionTypes: List<ReactionType>.from(
-          ((json['new_reaction_types'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => ReactionType.fromJson(item))
-              .toList()),
+      date: (json['date'] as int?) ?? 0,
+      oldReactionTypes: List<ReactionType>.from(((json['old_reaction_types']
+                  as List<dynamic>?) ??
+              <dynamic>[])
+          .map((item) => ReactionType.fromJson(item as Map<String, dynamic>?))
+          .toList()),
+      newReactionTypes: List<ReactionType>.from(((json['new_reaction_types']
+                  as List<dynamic>?) ??
+              <dynamic>[])
+          .map((item) => ReactionType.fromJson(item as Map<String, dynamic>?))
+          .toList()),
     );
   }
 

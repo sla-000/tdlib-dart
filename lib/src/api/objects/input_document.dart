@@ -35,7 +35,7 @@ class InputDocument extends TdObject {
       thumbnail:
           InputThumbnail.fromJson(json['thumbnail'] as Map<String, dynamic>?),
       disableContentTypeDetection:
-          json['disable_content_type_detection'] as bool,
+          (json['disable_content_type_detection'] as bool?) ?? false,
     );
   }
 

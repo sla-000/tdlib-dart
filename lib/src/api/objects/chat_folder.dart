@@ -92,28 +92,31 @@ class ChatFolder extends TdObject {
     return ChatFolder(
       name: ChatFolderName.fromJson(json['name'] as Map<String, dynamic>?)!,
       icon: ChatFolderIcon.fromJson(json['icon'] as Map<String, dynamic>?),
-      colorId: json['color_id'] as int,
-      isShareable: json['is_shareable'] as bool,
+      colorId: (json['color_id'] as int?) ?? 0,
+      isShareable: (json['is_shareable'] as bool?) ?? false,
       pinnedChatIds: List<int>.from(
           ((json['pinned_chat_ids'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => item)
+              .map((item) =>
+                  (item is int ? item : int.tryParse(item.toString()) ?? 0))
               .toList()),
       includedChatIds: List<int>.from(
           ((json['included_chat_ids'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => item)
+              .map((item) =>
+                  (item is int ? item : int.tryParse(item.toString()) ?? 0))
               .toList()),
       excludedChatIds: List<int>.from(
           ((json['excluded_chat_ids'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => item)
+              .map((item) =>
+                  (item is int ? item : int.tryParse(item.toString()) ?? 0))
               .toList()),
-      excludeMuted: json['exclude_muted'] as bool,
-      excludeRead: json['exclude_read'] as bool,
-      excludeArchived: json['exclude_archived'] as bool,
-      includeContacts: json['include_contacts'] as bool,
-      includeNonContacts: json['include_non_contacts'] as bool,
-      includeBots: json['include_bots'] as bool,
-      includeGroups: json['include_groups'] as bool,
-      includeChannels: json['include_channels'] as bool,
+      excludeMuted: (json['exclude_muted'] as bool?) ?? false,
+      excludeRead: (json['exclude_read'] as bool?) ?? false,
+      excludeArchived: (json['exclude_archived'] as bool?) ?? false,
+      includeContacts: (json['include_contacts'] as bool?) ?? false,
+      includeNonContacts: (json['include_non_contacts'] as bool?) ?? false,
+      includeBots: (json['include_bots'] as bool?) ?? false,
+      includeGroups: (json['include_groups'] as bool?) ?? false,
+      includeChannels: (json['include_channels'] as bool?) ?? false,
     );
   }
 

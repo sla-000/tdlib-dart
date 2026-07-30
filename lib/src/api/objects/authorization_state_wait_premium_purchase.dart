@@ -39,10 +39,10 @@ class AuthorizationStateWaitPremiumPurchase extends AuthorizationState {
     }
 
     return AuthorizationStateWaitPremiumPurchase(
-      storeProductId: json['store_product_id'] as String,
-      premiumDayCount: json['premium_day_count'] as int,
-      supportEmailAddress: json['support_email_address'] as String,
-      supportEmailSubject: json['support_email_subject'] as String,
+      storeProductId: (json['store_product_id'] as String?) ?? '',
+      premiumDayCount: (json['premium_day_count'] as int?) ?? 0,
+      supportEmailAddress: (json['support_email_address'] as String?) ?? '',
+      supportEmailSubject: (json['support_email_subject'] as String?) ?? '',
     );
   }
 

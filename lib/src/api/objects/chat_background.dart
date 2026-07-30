@@ -28,7 +28,7 @@ class ChatBackground extends TdObject {
     return ChatBackground(
       background:
           Background.fromJson(json['background'] as Map<String, dynamic>?)!,
-      darkThemeDimming: json['dark_theme_dimming'] as int,
+      darkThemeDimming: (json['dark_theme_dimming'] as int?) ?? 0,
     );
   }
 

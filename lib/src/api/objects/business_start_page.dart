@@ -29,8 +29,8 @@ class BusinessStartPage extends TdObject {
     }
 
     return BusinessStartPage(
-      title: json['title'] as String,
-      message: json['message'] as String,
+      title: (json['title'] as String?) ?? '',
+      message: (json['message'] as String?) ?? '',
       sticker: Sticker.fromJson(json['sticker'] as Map<String, dynamic>?),
     );
   }

@@ -21,7 +21,7 @@ class DiffEntityTypeReplace extends DiffEntityType {
     }
 
     return DiffEntityTypeReplace(
-      oldText: json['old_text'] as String,
+      oldText: (json['old_text'] as String?) ?? '',
     );
   }
 

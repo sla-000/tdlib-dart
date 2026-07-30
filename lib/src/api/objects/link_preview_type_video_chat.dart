@@ -32,8 +32,8 @@ class LinkPreviewTypeVideoChat extends LinkPreviewType {
 
     return LinkPreviewTypeVideoChat(
       photo: ChatPhoto.fromJson(json['photo'] as Map<String, dynamic>?),
-      isLiveStream: json['is_live_stream'] as bool,
-      joinsAsSpeaker: json['joins_as_speaker'] as bool,
+      isLiveStream: (json['is_live_stream'] as bool?) ?? false,
+      joinsAsSpeaker: (json['joins_as_speaker'] as bool?) ?? false,
     );
   }
 

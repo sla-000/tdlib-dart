@@ -21,7 +21,7 @@ class TerminateSession extends TdFunction {
 
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'session_id': sessionId,
+        'session_id': sessionId.toString(),
         '@type': constructor,
       };
 

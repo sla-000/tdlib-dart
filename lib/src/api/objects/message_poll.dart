@@ -41,7 +41,7 @@ class MessagePoll extends MessageContent {
       description:
           FormattedText.fromJson(json['description'] as Map<String, dynamic>?)!,
       media: PollMedia.fromJson(json['media'] as Map<String, dynamic>?),
-      canAddOption: json['can_add_option'] as bool,
+      canAddOption: (json['can_add_option'] as bool?) ?? false,
     );
   }
 

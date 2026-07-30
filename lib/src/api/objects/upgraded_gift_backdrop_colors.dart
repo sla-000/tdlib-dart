@@ -33,10 +33,10 @@ class UpgradedGiftBackdropColors extends TdObject {
     }
 
     return UpgradedGiftBackdropColors(
-      centerColor: json['center_color'] as int,
-      edgeColor: json['edge_color'] as int,
-      symbolColor: json['symbol_color'] as int,
-      textColor: json['text_color'] as int,
+      centerColor: (json['center_color'] as int?) ?? 0,
+      edgeColor: (json['edge_color'] as int?) ?? 0,
+      symbolColor: (json['symbol_color'] as int?) ?? 0,
+      textColor: (json['text_color'] as int?) ?? 0,
     );
   }
 

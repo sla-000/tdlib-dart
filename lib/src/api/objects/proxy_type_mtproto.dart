@@ -21,7 +21,7 @@ class ProxyTypeMtproto extends ProxyType {
     }
 
     return ProxyTypeMtproto(
-      secret: json['secret'] as String,
+      secret: (json['secret'] as String?) ?? '',
     );
   }
 

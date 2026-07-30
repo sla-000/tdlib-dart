@@ -60,15 +60,16 @@ class AutoDownloadSettings extends TdObject {
     }
 
     return AutoDownloadSettings(
-      isAutoDownloadEnabled: json['is_auto_download_enabled'] as bool,
-      maxPhotoFileSize: json['max_photo_file_size'] as int,
-      maxVideoFileSize: json['max_video_file_size'] as int,
-      maxOtherFileSize: json['max_other_file_size'] as int,
-      videoUploadBitrate: json['video_upload_bitrate'] as int,
-      preloadLargeVideos: json['preload_large_videos'] as bool,
-      preloadNextAudio: json['preload_next_audio'] as bool,
-      preloadStories: json['preload_stories'] as bool,
-      useLessDataForCalls: json['use_less_data_for_calls'] as bool,
+      isAutoDownloadEnabled:
+          (json['is_auto_download_enabled'] as bool?) ?? false,
+      maxPhotoFileSize: (json['max_photo_file_size'] as int?) ?? 0,
+      maxVideoFileSize: (json['max_video_file_size'] as int?) ?? 0,
+      maxOtherFileSize: (json['max_other_file_size'] as int?) ?? 0,
+      videoUploadBitrate: (json['video_upload_bitrate'] as int?) ?? 0,
+      preloadLargeVideos: (json['preload_large_videos'] as bool?) ?? false,
+      preloadNextAudio: (json['preload_next_audio'] as bool?) ?? false,
+      preloadStories: (json['preload_stories'] as bool?) ?? false,
+      useLessDataForCalls: (json['use_less_data_for_calls'] as bool?) ?? false,
     );
   }
 

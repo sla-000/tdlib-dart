@@ -21,7 +21,7 @@ class UpgradedGiftAttributeIdBackdrop extends UpgradedGiftAttributeId {
     }
 
     return UpgradedGiftAttributeIdBackdrop(
-      backdropId: json['backdrop_id'] as int,
+      backdropId: (json['backdrop_id'] as int?) ?? 0,
     );
   }
 

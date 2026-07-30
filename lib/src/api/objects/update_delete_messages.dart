@@ -35,13 +35,14 @@ class UpdateDeleteMessages extends Update {
     }
 
     return UpdateDeleteMessages(
-      chatId: json['chat_id'] as int,
+      chatId: (json['chat_id'] as int?) ?? 0,
       messageIds: List<int>.from(
           ((json['message_ids'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => item)
+              .map((item) =>
+                  (item is int ? item : int.tryParse(item.toString()) ?? 0))
               .toList()),
-      isPermanent: json['is_permanent'] as bool,
-      fromCache: json['from_cache'] as bool,
+      isPermanent: (json['is_permanent'] as bool?) ?? false,
+      fromCache: (json['from_cache'] as bool?) ?? false,
     );
   }
 

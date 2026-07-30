@@ -220,54 +220,67 @@ class Chat extends TdObject {
     }
 
     return Chat(
-      id: json['id'] as int,
+      id: (json['id'] as int?) ?? 0,
       type: ChatType.fromJson(json['type'] as Map<String, dynamic>?)!,
-      title: json['title'] as String,
+      title: (json['title'] as String?) ?? '',
       photo: ChatPhotoInfo.fromJson(json['photo'] as Map<String, dynamic>?),
-      accentColorId: json['accent_color_id'] as int,
-      backgroundCustomEmojiId:
-          int.tryParse(json['background_custom_emoji_id']) ?? 0,
+      accentColorId: (json['accent_color_id'] as int?) ?? 0,
+      backgroundCustomEmojiId: (json['background_custom_emoji_id'] is int
+              ? json['background_custom_emoji_id'] as int
+              : int.tryParse(
+                  json['background_custom_emoji_id']?.toString() ?? '')) ??
+          0,
       upgradedGiftColors: UpgradedGiftColors.fromJson(
           json['upgraded_gift_colors'] as Map<String, dynamic>?),
-      profileAccentColorId: json['profile_accent_color_id'] as int,
+      profileAccentColorId: (json['profile_accent_color_id'] as int?) ?? 0,
       profileBackgroundCustomEmojiId:
-          int.tryParse(json['profile_background_custom_emoji_id']) ?? 0,
+          (json['profile_background_custom_emoji_id'] is int
+                  ? json['profile_background_custom_emoji_id'] as int
+                  : int.tryParse(
+                      json['profile_background_custom_emoji_id']?.toString() ??
+                          '')) ??
+              0,
       permissions: ChatPermissions.fromJson(
           json['permissions'] as Map<String, dynamic>?)!,
       lastMessage:
           Message.fromJson(json['last_message'] as Map<String, dynamic>?),
-      positions: List<ChatPosition>.from(
-          ((json['positions'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => ChatPosition.fromJson(item))
-              .toList()),
+      positions: List<ChatPosition>.from(((json['positions']
+                  as List<dynamic>?) ??
+              <dynamic>[])
+          .map((item) => ChatPosition.fromJson(item as Map<String, dynamic>?))
+          .toList()),
       chatLists: List<ChatList>.from(
           ((json['chat_lists'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => ChatList.fromJson(item))
+              .map((item) => ChatList.fromJson(item as Map<String, dynamic>?))
               .toList()),
       messageSenderId: MessageSender.fromJson(
           json['message_sender_id'] as Map<String, dynamic>?),
       blockList:
           BlockList.fromJson(json['block_list'] as Map<String, dynamic>?),
-      hasProtectedContent: json['has_protected_content'] as bool,
-      isTranslatable: json['is_translatable'] as bool,
-      isMarkedAsUnread: json['is_marked_as_unread'] as bool,
-      viewAsTopics: json['view_as_topics'] as bool,
-      hasScheduledMessages: json['has_scheduled_messages'] as bool,
-      canBeDeletedOnlyForSelf: json['can_be_deleted_only_for_self'] as bool,
-      canBeDeletedForAllUsers: json['can_be_deleted_for_all_users'] as bool,
-      canBeReported: json['can_be_reported'] as bool,
-      defaultDisableNotification: json['default_disable_notification'] as bool,
-      unreadCount: json['unread_count'] as int,
-      lastReadInboxMessageId: json['last_read_inbox_message_id'] as int,
-      lastReadOutboxMessageId: json['last_read_outbox_message_id'] as int,
-      unreadMentionCount: json['unread_mention_count'] as int,
-      unreadReactionCount: json['unread_reaction_count'] as int,
-      unreadPollVoteCount: json['unread_poll_vote_count'] as int,
+      hasProtectedContent: (json['has_protected_content'] as bool?) ?? false,
+      isTranslatable: (json['is_translatable'] as bool?) ?? false,
+      isMarkedAsUnread: (json['is_marked_as_unread'] as bool?) ?? false,
+      viewAsTopics: (json['view_as_topics'] as bool?) ?? false,
+      hasScheduledMessages: (json['has_scheduled_messages'] as bool?) ?? false,
+      canBeDeletedOnlyForSelf:
+          (json['can_be_deleted_only_for_self'] as bool?) ?? false,
+      canBeDeletedForAllUsers:
+          (json['can_be_deleted_for_all_users'] as bool?) ?? false,
+      canBeReported: (json['can_be_reported'] as bool?) ?? false,
+      defaultDisableNotification:
+          (json['default_disable_notification'] as bool?) ?? false,
+      unreadCount: (json['unread_count'] as int?) ?? 0,
+      lastReadInboxMessageId: (json['last_read_inbox_message_id'] as int?) ?? 0,
+      lastReadOutboxMessageId:
+          (json['last_read_outbox_message_id'] as int?) ?? 0,
+      unreadMentionCount: (json['unread_mention_count'] as int?) ?? 0,
+      unreadReactionCount: (json['unread_reaction_count'] as int?) ?? 0,
+      unreadPollVoteCount: (json['unread_poll_vote_count'] as int?) ?? 0,
       notificationSettings: ChatNotificationSettings.fromJson(
           json['notification_settings'] as Map<String, dynamic>?)!,
       availableReactions: ChatAvailableReactions.fromJson(
           json['available_reactions'] as Map<String, dynamic>?)!,
-      messageAutoDeleteTime: json['message_auto_delete_time'] as int,
+      messageAutoDeleteTime: (json['message_auto_delete_time'] as int?) ?? 0,
       emojiStatus:
           EmojiStatus.fromJson(json['emoji_status'] as Map<String, dynamic>?),
       background:
@@ -281,10 +294,10 @@ class Chat extends TdObject {
           VideoChat.fromJson(json['video_chat'] as Map<String, dynamic>?)!,
       pendingJoinRequests: ChatJoinRequestsInfo.fromJson(
           json['pending_join_requests'] as Map<String, dynamic>?),
-      replyMarkupMessageId: json['reply_markup_message_id'] as int,
+      replyMarkupMessageId: (json['reply_markup_message_id'] as int?) ?? 0,
       draftMessage:
           DraftMessage.fromJson(json['draft_message'] as Map<String, dynamic>?),
-      clientData: json['client_data'] as String,
+      clientData: (json['client_data'] as String?) ?? '',
     );
   }
 

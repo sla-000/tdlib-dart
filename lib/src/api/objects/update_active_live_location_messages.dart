@@ -26,7 +26,7 @@ class UpdateActiveLiveLocationMessages extends Update {
     return UpdateActiveLiveLocationMessages(
       messages: List<Message>.from(
           ((json['messages'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => Message.fromJson(item))
+              .map((item) => Message.fromJson(item as Map<String, dynamic>?))
               .toList()),
     );
   }

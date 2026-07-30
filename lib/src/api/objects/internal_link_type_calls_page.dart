@@ -22,7 +22,7 @@ class InternalLinkTypeCallsPage extends InternalLinkType {
     }
 
     return InternalLinkTypeCallsPage(
-      section: json['section'] as String,
+      section: (json['section'] as String?) ?? '',
     );
   }
 

@@ -24,7 +24,8 @@ class StoryPrivacySettingsEveryone extends StoryPrivacySettings {
     return StoryPrivacySettingsEveryone(
       exceptUserIds: List<int>.from(
           ((json['except_user_ids'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => item)
+              .map((item) =>
+                  (item is int ? item : int.tryParse(item.toString()) ?? 0))
               .toList()),
     );
   }

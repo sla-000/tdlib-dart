@@ -28,7 +28,7 @@ class MessageSuggestedPostApprovalFailed extends MessageContent {
     }
 
     return MessageSuggestedPostApprovalFailed(
-      suggestedPostMessageId: json['suggested_post_message_id'] as int,
+      suggestedPostMessageId: (json['suggested_post_message_id'] as int?) ?? 0,
       price:
           SuggestedPostPrice.fromJson(json['price'] as Map<String, dynamic>?)!,
     );

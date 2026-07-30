@@ -49,16 +49,16 @@ class PageBlockEmbedded extends PageBlock {
     }
 
     return PageBlockEmbedded(
-      url: json['url'] as String,
-      html: json['html'] as String,
+      url: (json['url'] as String?) ?? '',
+      html: (json['html'] as String?) ?? '',
       posterPhoto:
           Photo.fromJson(json['poster_photo'] as Map<String, dynamic>?),
-      width: json['width'] as int,
-      height: json['height'] as int,
+      width: (json['width'] as int?) ?? 0,
+      height: (json['height'] as int?) ?? 0,
       caption:
           PageBlockCaption.fromJson(json['caption'] as Map<String, dynamic>?),
-      isFullWidth: json['is_full_width'] as bool,
-      allowScrolling: json['allow_scrolling'] as bool,
+      isFullWidth: (json['is_full_width'] as bool?) ?? false,
+      allowScrolling: (json['allow_scrolling'] as bool?) ?? false,
     );
   }
 

@@ -30,9 +30,9 @@ class PushMessageContentChatDeleteMember extends PushMessageContent {
     }
 
     return PushMessageContentChatDeleteMember(
-      memberName: json['member_name'] as String,
-      isCurrentUser: json['is_current_user'] as bool,
-      isLeft: json['is_left'] as bool,
+      memberName: (json['member_name'] as String?) ?? '',
+      isCurrentUser: (json['is_current_user'] as bool?) ?? false,
+      isLeft: (json['is_left'] as bool?) ?? false,
     );
   }
 

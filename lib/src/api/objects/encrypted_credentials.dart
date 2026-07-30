@@ -30,9 +30,9 @@ class EncryptedCredentials extends TdObject {
     }
 
     return EncryptedCredentials(
-      data: json['data'] as String,
-      hash: json['hash'] as String,
-      secret: json['secret'] as String,
+      data: (json['data'] as String?) ?? '',
+      hash: (json['hash'] as String?) ?? '',
+      secret: (json['secret'] as String?) ?? '',
     );
   }
 

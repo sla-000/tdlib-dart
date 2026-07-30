@@ -22,7 +22,7 @@ class SettingsSectionBusiness extends SettingsSection {
     }
 
     return SettingsSectionBusiness(
-      subsection: json['subsection'] as String,
+      subsection: (json['subsection'] as String?) ?? '',
     );
   }
 

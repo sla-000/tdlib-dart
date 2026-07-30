@@ -28,8 +28,8 @@ class AffiliateProgramParameters extends TdObject {
     }
 
     return AffiliateProgramParameters(
-      commissionPerMille: json['commission_per_mille'] as int,
-      monthCount: json['month_count'] as int,
+      commissionPerMille: (json['commission_per_mille'] as int?) ?? 0,
+      monthCount: (json['month_count'] as int?) ?? 0,
     );
   }
 

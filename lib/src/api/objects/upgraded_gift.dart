@@ -161,25 +161,31 @@ class UpgradedGift extends TdObject {
     }
 
     return UpgradedGift(
-      id: int.tryParse(json['id']) ?? 0,
-      regularGiftId: int.tryParse(json['regular_gift_id']) ?? 0,
-      publisherChatId: json['publisher_chat_id'] as int,
-      title: json['title'] as String,
-      name: json['name'] as String,
-      number: json['number'] as int,
-      totalUpgradedCount: json['total_upgraded_count'] as int,
-      maxUpgradedCount: json['max_upgraded_count'] as int,
-      isBurned: json['is_burned'] as bool,
-      isCrafted: json['is_crafted'] as bool,
-      isPremium: json['is_premium'] as bool,
-      isThemeAvailable: json['is_theme_available'] as bool,
-      usedThemeChatId: json['used_theme_chat_id'] as int,
+      id: (json['id'] is int
+              ? json['id'] as int
+              : int.tryParse(json['id']?.toString() ?? '')) ??
+          0,
+      regularGiftId: (json['regular_gift_id'] is int
+              ? json['regular_gift_id'] as int
+              : int.tryParse(json['regular_gift_id']?.toString() ?? '')) ??
+          0,
+      publisherChatId: (json['publisher_chat_id'] as int?) ?? 0,
+      title: (json['title'] as String?) ?? '',
+      name: (json['name'] as String?) ?? '',
+      number: (json['number'] as int?) ?? 0,
+      totalUpgradedCount: (json['total_upgraded_count'] as int?) ?? 0,
+      maxUpgradedCount: (json['max_upgraded_count'] as int?) ?? 0,
+      isBurned: (json['is_burned'] as bool?) ?? false,
+      isCrafted: (json['is_crafted'] as bool?) ?? false,
+      isPremium: (json['is_premium'] as bool?) ?? false,
+      isThemeAvailable: (json['is_theme_available'] as bool?) ?? false,
+      usedThemeChatId: (json['used_theme_chat_id'] as int?) ?? 0,
       hostId: MessageSender.fromJson(json['host_id'] as Map<String, dynamic>?),
       ownerId:
           MessageSender.fromJson(json['owner_id'] as Map<String, dynamic>?),
-      ownerAddress: json['owner_address'] as String,
-      ownerName: json['owner_name'] as String,
-      giftAddress: json['gift_address'] as String,
+      ownerAddress: (json['owner_address'] as String?) ?? '',
+      ownerName: (json['owner_name'] as String?) ?? '',
+      giftAddress: (json['gift_address'] as String?) ?? '',
       model:
           UpgradedGiftModel.fromJson(json['model'] as Map<String, dynamic>?)!,
       symbol:
@@ -192,11 +198,12 @@ class UpgradedGift extends TdObject {
           UpgradedGiftColors.fromJson(json['colors'] as Map<String, dynamic>?),
       resaleParameters: GiftResaleParameters.fromJson(
           json['resale_parameters'] as Map<String, dynamic>?),
-      canSendPurchaseOffer: json['can_send_purchase_offer'] as bool,
-      craftProbabilityPerMille: json['craft_probability_per_mille'] as int,
-      valueCurrency: json['value_currency'] as String,
-      valueAmount: json['value_amount'] as int,
-      valueUsdAmount: json['value_usd_amount'] as int,
+      canSendPurchaseOffer: (json['can_send_purchase_offer'] as bool?) ?? false,
+      craftProbabilityPerMille:
+          (json['craft_probability_per_mille'] as int?) ?? 0,
+      valueCurrency: (json['value_currency'] as String?) ?? '',
+      valueAmount: (json['value_amount'] as int?) ?? 0,
+      valueUsdAmount: (json['value_usd_amount'] as int?) ?? 0,
     );
   }
 

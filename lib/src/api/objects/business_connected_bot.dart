@@ -29,7 +29,7 @@ class BusinessConnectedBot extends TdObject {
     }
 
     return BusinessConnectedBot(
-      botUserId: json['bot_user_id'] as int,
+      botUserId: (json['bot_user_id'] as int?) ?? 0,
       recipients: BusinessRecipients.fromJson(
           json['recipients'] as Map<String, dynamic>?)!,
       rights:

@@ -25,7 +25,7 @@ class MessageGiveawayCreated extends MessageContent {
     }
 
     return MessageGiveawayCreated(
-      starCount: json['star_count'] as int,
+      starCount: (json['star_count'] as int?) ?? 0,
     );
   }
 

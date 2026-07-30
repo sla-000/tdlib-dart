@@ -30,12 +30,13 @@ class TonTransactions extends TdObject {
     }
 
     return TonTransactions(
-      tonAmount: json['ton_amount'] as int,
-      transactions: List<TonTransaction>.from(
-          ((json['transactions'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => TonTransaction.fromJson(item))
-              .toList()),
-      nextOffset: json['next_offset'] as String,
+      tonAmount: (json['ton_amount'] as int?) ?? 0,
+      transactions: List<TonTransaction>.from(((json['transactions']
+                  as List<dynamic>?) ??
+              <dynamic>[])
+          .map((item) => TonTransaction.fromJson(item as Map<String, dynamic>?))
+          .toList()),
+      nextOffset: (json['next_offset'] as String?) ?? '',
     );
   }
 

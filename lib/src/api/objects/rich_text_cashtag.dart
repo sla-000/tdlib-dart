@@ -26,7 +26,7 @@ class RichTextCashtag extends RichText {
 
     return RichTextCashtag(
       text: RichText.fromJson(json['text'] as Map<String, dynamic>?)!,
-      cashtag: json['cashtag'] as String,
+      cashtag: (json['cashtag'] as String?) ?? '',
     );
   }
 

@@ -22,7 +22,7 @@ class PushMessageContentChatChangeTitle extends PushMessageContent {
     }
 
     return PushMessageContentChatChangeTitle(
-      title: json['title'] as String,
+      title: (json['title'] as String?) ?? '',
     );
   }
 

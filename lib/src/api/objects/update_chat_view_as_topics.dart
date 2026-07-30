@@ -25,8 +25,8 @@ class UpdateChatViewAsTopics extends Update {
     }
 
     return UpdateChatViewAsTopics(
-      chatId: json['chat_id'] as int,
-      viewAsTopics: json['view_as_topics'] as bool,
+      chatId: (json['chat_id'] as int?) ?? 0,
+      viewAsTopics: (json['view_as_topics'] as bool?) ?? false,
     );
   }
 

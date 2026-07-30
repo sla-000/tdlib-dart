@@ -27,7 +27,7 @@ class UpdateUnconfirmedSession extends Update {
     return UpdateUnconfirmedSession(
       session:
           UnconfirmedSession.fromJson(json['session'] as Map<String, dynamic>?),
-      unconfirmedSessionCount: json['unconfirmed_session_count'] as int,
+      unconfirmedSessionCount: (json['unconfirmed_session_count'] as int?) ?? 0,
     );
   }
 

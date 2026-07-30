@@ -25,7 +25,7 @@ class InternalLinkTypeDirectMessagesChat extends InternalLinkType {
     }
 
     return InternalLinkTypeDirectMessagesChat(
-      channelUsername: json['channel_username'] as String,
+      channelUsername: (json['channel_username'] as String?) ?? '',
     );
   }
 

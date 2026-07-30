@@ -30,12 +30,12 @@ class FoundChatBoosts extends TdObject {
     }
 
     return FoundChatBoosts(
-      totalCount: json['total_count'] as int,
+      totalCount: (json['total_count'] as int?) ?? 0,
       boosts: List<ChatBoost>.from(
           ((json['boosts'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => ChatBoost.fromJson(item))
+              .map((item) => ChatBoost.fromJson(item as Map<String, dynamic>?))
               .toList()),
-      nextOffset: json['next_offset'] as String,
+      nextOffset: (json['next_offset'] as String?) ?? '',
     );
   }
 

@@ -29,9 +29,9 @@ class LinkPreviewTypeExternalAudio extends LinkPreviewType {
     }
 
     return LinkPreviewTypeExternalAudio(
-      url: json['url'] as String,
-      mimeType: json['mime_type'] as String,
-      duration: json['duration'] as int,
+      url: (json['url'] as String?) ?? '',
+      mimeType: (json['mime_type'] as String?) ?? '',
+      duration: (json['duration'] as int?) ?? 0,
     );
   }
 

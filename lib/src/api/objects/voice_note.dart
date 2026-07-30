@@ -41,9 +41,9 @@ class VoiceNote extends TdObject {
     }
 
     return VoiceNote(
-      duration: json['duration'] as int,
-      waveform: json['waveform'] as String,
-      mimeType: json['mime_type'] as String,
+      duration: (json['duration'] as int?) ?? 0,
+      waveform: (json['waveform'] as String?) ?? '',
+      mimeType: (json['mime_type'] as String?) ?? '',
       speechRecognitionResult: SpeechRecognitionResult.fromJson(
           json['speech_recognition_result'] as Map<String, dynamic>?),
       voice: File.fromJson(json['voice'] as Map<String, dynamic>?)!,

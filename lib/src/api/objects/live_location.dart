@@ -40,9 +40,9 @@ class LiveLocation extends TdObject {
 
     return LiveLocation(
       location: Location.fromJson(json['location'] as Map<String, dynamic>?)!,
-      livePeriod: json['live_period'] as int,
-      heading: json['heading'] as int,
-      proximityAlertRadius: json['proximity_alert_radius'] as int,
+      livePeriod: (json['live_period'] as int?) ?? 0,
+      heading: (json['heading'] as int?) ?? 0,
+      proximityAlertRadius: (json['proximity_alert_radius'] as int?) ?? 0,
     );
   }
 

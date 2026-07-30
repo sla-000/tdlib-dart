@@ -48,14 +48,15 @@ class Checklist extends TdObject {
 
     return Checklist(
       title: FormattedText.fromJson(json['title'] as Map<String, dynamic>?)!,
-      tasks: List<ChecklistTask>.from(
-          ((json['tasks'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => ChecklistTask.fromJson(item))
-              .toList()),
-      othersCanAddTasks: json['others_can_add_tasks'] as bool,
-      canAddTasks: json['can_add_tasks'] as bool,
-      othersCanMarkTasksAsDone: json['others_can_mark_tasks_as_done'] as bool,
-      canMarkTasksAsDone: json['can_mark_tasks_as_done'] as bool,
+      tasks: List<ChecklistTask>.from(((json['tasks'] as List<dynamic>?) ??
+              <dynamic>[])
+          .map((item) => ChecklistTask.fromJson(item as Map<String, dynamic>?))
+          .toList()),
+      othersCanAddTasks: (json['others_can_add_tasks'] as bool?) ?? false,
+      canAddTasks: (json['can_add_tasks'] as bool?) ?? false,
+      othersCanMarkTasksAsDone:
+          (json['others_can_mark_tasks_as_done'] as bool?) ?? false,
+      canMarkTasksAsDone: (json['can_mark_tasks_as_done'] as bool?) ?? false,
     );
   }
 

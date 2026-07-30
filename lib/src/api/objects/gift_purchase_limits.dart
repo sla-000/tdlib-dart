@@ -26,8 +26,8 @@ class GiftPurchaseLimits extends TdObject {
     }
 
     return GiftPurchaseLimits(
-      totalCount: json['total_count'] as int,
-      remainingCount: json['remaining_count'] as int,
+      totalCount: (json['total_count'] as int?) ?? 0,
+      remainingCount: (json['remaining_count'] as int?) ?? 0,
     );
   }
 

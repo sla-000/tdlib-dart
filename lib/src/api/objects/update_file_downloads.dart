@@ -30,9 +30,9 @@ class UpdateFileDownloads extends Update {
     }
 
     return UpdateFileDownloads(
-      totalSize: json['total_size'] as int,
-      totalCount: json['total_count'] as int,
-      downloadedSize: json['downloaded_size'] as int,
+      totalSize: (json['total_size'] as int?) ?? 0,
+      totalCount: (json['total_count'] as int?) ?? 0,
+      downloadedSize: (json['downloaded_size'] as int?) ?? 0,
     );
   }
 

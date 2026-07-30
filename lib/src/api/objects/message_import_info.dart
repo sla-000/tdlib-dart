@@ -25,8 +25,8 @@ class MessageImportInfo extends TdObject {
     }
 
     return MessageImportInfo(
-      senderName: json['sender_name'] as String,
-      date: json['date'] as int,
+      senderName: (json['sender_name'] as String?) ?? '',
+      date: (json['date'] as int?) ?? 0,
     );
   }
 

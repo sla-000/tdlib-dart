@@ -23,7 +23,7 @@ class InternalLinkTypeBusinessChat extends InternalLinkType {
     }
 
     return InternalLinkTypeBusinessChat(
-      linkName: json['link_name'] as String,
+      linkName: (json['link_name'] as String?) ?? '',
     );
   }
 

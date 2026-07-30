@@ -21,7 +21,10 @@ class UpgradedGiftAttributeIdModel extends UpgradedGiftAttributeId {
     }
 
     return UpgradedGiftAttributeIdModel(
-      stickerId: int.tryParse(json['sticker_id']) ?? 0,
+      stickerId: (json['sticker_id'] is int
+              ? json['sticker_id'] as int
+              : int.tryParse(json['sticker_id']?.toString() ?? '')) ??
+          0,
     );
   }
 

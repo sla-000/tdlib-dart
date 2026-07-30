@@ -31,8 +31,8 @@ class MessageSchedulingStateSendAtDate extends MessageSchedulingState {
     }
 
     return MessageSchedulingStateSendAtDate(
-      sendDate: json['send_date'] as int,
-      repeatPeriod: json['repeat_period'] as int,
+      sendDate: (json['send_date'] as int?) ?? 0,
+      repeatPeriod: (json['repeat_period'] as int?) ?? 0,
     );
   }
 

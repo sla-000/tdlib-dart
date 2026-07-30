@@ -22,10 +22,12 @@ class PremiumGiftPaymentOptions extends TdObject {
     }
 
     return PremiumGiftPaymentOptions(
-      options: List<PremiumGiftPaymentOption>.from(
-          ((json['options'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => PremiumGiftPaymentOption.fromJson(item))
-              .toList()),
+      options: List<PremiumGiftPaymentOption>.from(((json['options']
+                  as List<dynamic>?) ??
+              <dynamic>[])
+          .map((item) =>
+              PremiumGiftPaymentOption.fromJson(item as Map<String, dynamic>?))
+          .toList()),
     );
   }
 

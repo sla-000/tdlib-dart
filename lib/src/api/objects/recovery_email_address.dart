@@ -21,7 +21,7 @@ class RecoveryEmailAddress extends TdObject {
     }
 
     return RecoveryEmailAddress(
-      recoveryEmailAddress: json['recovery_email_address'] as String,
+      recoveryEmailAddress: (json['recovery_email_address'] as String?) ?? '',
     );
   }
 

@@ -33,8 +33,8 @@ class StoryAlbum extends TdObject {
     }
 
     return StoryAlbum(
-      id: json['id'] as int,
-      name: json['name'] as String,
+      id: (json['id'] as int?) ?? 0,
+      name: (json['name'] as String?) ?? '',
       photoIcon: Photo.fromJson(json['photo_icon'] as Map<String, dynamic>?),
       videoIcon: Video.fromJson(json['video_icon'] as Map<String, dynamic>?),
     );

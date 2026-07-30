@@ -36,10 +36,14 @@ class WebDomainException extends TdObject {
     }
 
     return WebDomainException(
-      url: json['url'] as String,
-      domain: json['domain'] as String,
-      title: json['title'] as String,
-      faviconCustomEmojiId: int.tryParse(json['favicon_custom_emoji_id']) ?? 0,
+      url: (json['url'] as String?) ?? '',
+      domain: (json['domain'] as String?) ?? '',
+      title: (json['title'] as String?) ?? '',
+      faviconCustomEmojiId: (json['favicon_custom_emoji_id'] is int
+              ? json['favicon_custom_emoji_id'] as int
+              : int.tryParse(
+                  json['favicon_custom_emoji_id']?.toString() ?? '')) ??
+          0,
     );
   }
 

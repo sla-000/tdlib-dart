@@ -27,8 +27,8 @@ class InternalLinkTypeStory extends InternalLinkType {
     }
 
     return InternalLinkTypeStory(
-      storyPosterUsername: json['story_poster_username'] as String,
-      storyId: json['story_id'] as int,
+      storyPosterUsername: (json['story_poster_username'] as String?) ?? '',
+      storyId: (json['story_id'] as int?) ?? 0,
     );
   }
 

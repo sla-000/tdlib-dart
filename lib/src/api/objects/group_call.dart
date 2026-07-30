@@ -170,44 +170,50 @@ class GroupCall extends TdObject {
     }
 
     return GroupCall(
-      id: json['id'] as int,
-      uniqueId: int.tryParse(json['unique_id']) ?? 0,
-      title: json['title'] as String,
-      inviteLink: json['invite_link'] as String,
-      paidMessageStarCount: json['paid_message_star_count'] as int,
-      scheduledStartDate: json['scheduled_start_date'] as int,
-      enabledStartNotification: json['enabled_start_notification'] as bool,
-      isActive: json['is_active'] as bool,
-      isVideoChat: json['is_video_chat'] as bool,
-      isLiveStory: json['is_live_story'] as bool,
-      isRtmpStream: json['is_rtmp_stream'] as bool,
-      isJoined: json['is_joined'] as bool,
-      needRejoin: json['need_rejoin'] as bool,
-      isOwned: json['is_owned'] as bool,
-      canBeManaged: json['can_be_managed'] as bool,
-      participantCount: json['participant_count'] as int,
-      hasHiddenListeners: json['has_hidden_listeners'] as bool,
-      loadedAllParticipants: json['loaded_all_participants'] as bool,
+      id: (json['id'] as int?) ?? 0,
+      uniqueId: (json['unique_id'] is int
+              ? json['unique_id'] as int
+              : int.tryParse(json['unique_id']?.toString() ?? '')) ??
+          0,
+      title: (json['title'] as String?) ?? '',
+      inviteLink: (json['invite_link'] as String?) ?? '',
+      paidMessageStarCount: (json['paid_message_star_count'] as int?) ?? 0,
+      scheduledStartDate: (json['scheduled_start_date'] as int?) ?? 0,
+      enabledStartNotification:
+          (json['enabled_start_notification'] as bool?) ?? false,
+      isActive: (json['is_active'] as bool?) ?? false,
+      isVideoChat: (json['is_video_chat'] as bool?) ?? false,
+      isLiveStory: (json['is_live_story'] as bool?) ?? false,
+      isRtmpStream: (json['is_rtmp_stream'] as bool?) ?? false,
+      isJoined: (json['is_joined'] as bool?) ?? false,
+      needRejoin: (json['need_rejoin'] as bool?) ?? false,
+      isOwned: (json['is_owned'] as bool?) ?? false,
+      canBeManaged: (json['can_be_managed'] as bool?) ?? false,
+      participantCount: (json['participant_count'] as int?) ?? 0,
+      hasHiddenListeners: (json['has_hidden_listeners'] as bool?) ?? false,
+      loadedAllParticipants:
+          (json['loaded_all_participants'] as bool?) ?? false,
       messageSenderId: MessageSender.fromJson(
           json['message_sender_id'] as Map<String, dynamic>?),
       recentSpeakers: List<GroupCallRecentSpeaker>.from(
           ((json['recent_speakers'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => GroupCallRecentSpeaker.fromJson(item))
+              .map((item) => GroupCallRecentSpeaker.fromJson(
+                  item as Map<String, dynamic>?))
               .toList()),
-      isMyVideoEnabled: json['is_my_video_enabled'] as bool,
-      isMyVideoPaused: json['is_my_video_paused'] as bool,
-      canEnableVideo: json['can_enable_video'] as bool,
-      muteNewParticipants: json['mute_new_participants'] as bool,
+      isMyVideoEnabled: (json['is_my_video_enabled'] as bool?) ?? false,
+      isMyVideoPaused: (json['is_my_video_paused'] as bool?) ?? false,
+      canEnableVideo: (json['can_enable_video'] as bool?) ?? false,
+      muteNewParticipants: (json['mute_new_participants'] as bool?) ?? false,
       canToggleMuteNewParticipants:
-          json['can_toggle_mute_new_participants'] as bool,
-      canSendMessages: json['can_send_messages'] as bool,
-      areMessagesAllowed: json['are_messages_allowed'] as bool,
+          (json['can_toggle_mute_new_participants'] as bool?) ?? false,
+      canSendMessages: (json['can_send_messages'] as bool?) ?? false,
+      areMessagesAllowed: (json['are_messages_allowed'] as bool?) ?? false,
       canToggleAreMessagesAllowed:
-          json['can_toggle_are_messages_allowed'] as bool,
-      canDeleteMessages: json['can_delete_messages'] as bool,
-      recordDuration: json['record_duration'] as int,
-      isVideoRecorded: json['is_video_recorded'] as bool,
-      duration: json['duration'] as int,
+          (json['can_toggle_are_messages_allowed'] as bool?) ?? false,
+      canDeleteMessages: (json['can_delete_messages'] as bool?) ?? false,
+      recordDuration: (json['record_duration'] as int?) ?? 0,
+      isVideoRecorded: (json['is_video_recorded'] as bool?) ?? false,
+      duration: (json['duration'] as int?) ?? 0,
     );
   }
 

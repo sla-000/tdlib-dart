@@ -149,34 +149,37 @@ class Supergroup extends TdObject {
     }
 
     return Supergroup(
-      id: json['id'] as int,
+      id: (json['id'] as int?) ?? 0,
       usernames: Usernames.fromJson(json['usernames'] as Map<String, dynamic>?),
-      date: json['date'] as int,
+      date: (json['date'] as int?) ?? 0,
       status:
           ChatMemberStatus.fromJson(json['status'] as Map<String, dynamic>?)!,
-      memberCount: json['member_count'] as int,
-      boostLevel: json['boost_level'] as int,
-      hasAutomaticTranslation: json['has_automatic_translation'] as bool,
-      hasLinkedChat: json['has_linked_chat'] as bool,
-      hasLocation: json['has_location'] as bool,
-      signMessages: json['sign_messages'] as bool,
-      showMessageSender: json['show_message_sender'] as bool,
-      joinToSendMessages: json['join_to_send_messages'] as bool,
-      joinByRequest: json['join_by_request'] as bool,
-      isSlowModeEnabled: json['is_slow_mode_enabled'] as bool,
-      isChannel: json['is_channel'] as bool,
-      isBroadcastGroup: json['is_broadcast_group'] as bool,
-      isForum: json['is_forum'] as bool,
-      isDirectMessagesGroup: json['is_direct_messages_group'] as bool,
+      memberCount: (json['member_count'] as int?) ?? 0,
+      boostLevel: (json['boost_level'] as int?) ?? 0,
+      hasAutomaticTranslation:
+          (json['has_automatic_translation'] as bool?) ?? false,
+      hasLinkedChat: (json['has_linked_chat'] as bool?) ?? false,
+      hasLocation: (json['has_location'] as bool?) ?? false,
+      signMessages: (json['sign_messages'] as bool?) ?? false,
+      showMessageSender: (json['show_message_sender'] as bool?) ?? false,
+      joinToSendMessages: (json['join_to_send_messages'] as bool?) ?? false,
+      joinByRequest: (json['join_by_request'] as bool?) ?? false,
+      isSlowModeEnabled: (json['is_slow_mode_enabled'] as bool?) ?? false,
+      isChannel: (json['is_channel'] as bool?) ?? false,
+      isBroadcastGroup: (json['is_broadcast_group'] as bool?) ?? false,
+      isForum: (json['is_forum'] as bool?) ?? false,
+      isDirectMessagesGroup:
+          (json['is_direct_messages_group'] as bool?) ?? false,
       isAdministeredDirectMessagesGroup:
-          json['is_administered_direct_messages_group'] as bool,
+          (json['is_administered_direct_messages_group'] as bool?) ?? false,
       verificationStatus: VerificationStatus.fromJson(
           json['verification_status'] as Map<String, dynamic>?),
-      hasDirectMessagesGroup: json['has_direct_messages_group'] as bool,
-      hasForumTabs: json['has_forum_tabs'] as bool,
+      hasDirectMessagesGroup:
+          (json['has_direct_messages_group'] as bool?) ?? false,
+      hasForumTabs: (json['has_forum_tabs'] as bool?) ?? false,
       restrictionInfo: RestrictionInfo.fromJson(
           json['restriction_info'] as Map<String, dynamic>?),
-      paidMessageStarCount: json['paid_message_star_count'] as int,
+      paidMessageStarCount: (json['paid_message_star_count'] as int?) ?? 0,
       activeStoryState: ActiveStoryState.fromJson(
           json['active_story_state'] as Map<String, dynamic>?),
     );

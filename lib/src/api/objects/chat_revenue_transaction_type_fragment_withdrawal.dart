@@ -29,7 +29,7 @@ class ChatRevenueTransactionTypeFragmentWithdrawal
     }
 
     return ChatRevenueTransactionTypeFragmentWithdrawal(
-      withdrawalDate: json['withdrawal_date'] as int,
+      withdrawalDate: (json['withdrawal_date'] as int?) ?? 0,
       state: RevenueWithdrawalState.fromJson(
           json['state'] as Map<String, dynamic>?)!,
     );

@@ -40,9 +40,9 @@ class PhoneNumberInfo extends TdObject {
 
     return PhoneNumberInfo(
       country: CountryInfo.fromJson(json['country'] as Map<String, dynamic>?),
-      countryCallingCode: json['country_calling_code'] as String,
-      formattedPhoneNumber: json['formatted_phone_number'] as String,
-      isAnonymous: json['is_anonymous'] as bool,
+      countryCallingCode: (json['country_calling_code'] as String?) ?? '',
+      formattedPhoneNumber: (json['formatted_phone_number'] as String?) ?? '',
+      isAnonymous: (json['is_anonymous'] as bool?) ?? false,
     );
   }
 

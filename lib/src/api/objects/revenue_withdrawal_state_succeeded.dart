@@ -25,8 +25,8 @@ class RevenueWithdrawalStateSucceeded extends RevenueWithdrawalState {
     }
 
     return RevenueWithdrawalStateSucceeded(
-      date: json['date'] as int,
-      url: json['url'] as String,
+      date: (json['date'] as int?) ?? 0,
+      url: (json['url'] as String?) ?? '',
     );
   }
 

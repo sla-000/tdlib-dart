@@ -25,7 +25,7 @@ class CloseBirthdayUser extends TdObject {
     }
 
     return CloseBirthdayUser(
-      userId: json['user_id'] as int,
+      userId: (json['user_id'] as int?) ?? 0,
       birthdate:
           Birthdate.fromJson(json['birthdate'] as Map<String, dynamic>?)!,
     );

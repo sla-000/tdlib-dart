@@ -28,8 +28,8 @@ class ChatRevenueTransactionTypeSponsoredMessageEarnings
     }
 
     return ChatRevenueTransactionTypeSponsoredMessageEarnings(
-      startDate: json['start_date'] as int,
-      endDate: json['end_date'] as int,
+      startDate: (json['start_date'] as int?) ?? 0,
+      endDate: (json['end_date'] as int?) ?? 0,
     );
   }
 

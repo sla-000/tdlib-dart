@@ -72,14 +72,18 @@ class ForumTopic extends TdObject {
       info: ForumTopicInfo.fromJson(json['info'] as Map<String, dynamic>?)!,
       lastMessage:
           Message.fromJson(json['last_message'] as Map<String, dynamic>?),
-      order: int.tryParse(json['order']) ?? 0,
-      isPinned: json['is_pinned'] as bool,
-      unreadCount: json['unread_count'] as int,
-      lastReadInboxMessageId: json['last_read_inbox_message_id'] as int,
-      lastReadOutboxMessageId: json['last_read_outbox_message_id'] as int,
-      unreadMentionCount: json['unread_mention_count'] as int,
-      unreadReactionCount: json['unread_reaction_count'] as int,
-      unreadPollVoteCount: json['unread_poll_vote_count'] as int,
+      order: (json['order'] is int
+              ? json['order'] as int
+              : int.tryParse(json['order']?.toString() ?? '')) ??
+          0,
+      isPinned: (json['is_pinned'] as bool?) ?? false,
+      unreadCount: (json['unread_count'] as int?) ?? 0,
+      lastReadInboxMessageId: (json['last_read_inbox_message_id'] as int?) ?? 0,
+      lastReadOutboxMessageId:
+          (json['last_read_outbox_message_id'] as int?) ?? 0,
+      unreadMentionCount: (json['unread_mention_count'] as int?) ?? 0,
+      unreadReactionCount: (json['unread_reaction_count'] as int?) ?? 0,
+      unreadPollVoteCount: (json['unread_poll_vote_count'] as int?) ?? 0,
       notificationSettings: ChatNotificationSettings.fromJson(
           json['notification_settings'] as Map<String, dynamic>?)!,
       draftMessage:

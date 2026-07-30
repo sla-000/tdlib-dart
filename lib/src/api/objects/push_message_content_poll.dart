@@ -30,9 +30,9 @@ class PushMessageContentPoll extends PushMessageContent {
     }
 
     return PushMessageContentPoll(
-      question: json['question'] as String,
-      isRegular: json['is_regular'] as bool,
-      isPinned: json['is_pinned'] as bool,
+      question: (json['question'] as String?) ?? '',
+      isRegular: (json['is_regular'] as bool?) ?? false,
+      isPinned: (json['is_pinned'] as bool?) ?? false,
     );
   }
 

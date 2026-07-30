@@ -61,17 +61,24 @@ class ScopeNotificationSettings extends TdObject {
     }
 
     return ScopeNotificationSettings(
-      muteFor: json['mute_for'] as int,
-      soundId: int.tryParse(json['sound_id']) ?? 0,
-      showPreview: json['show_preview'] as bool,
-      useDefaultMuteStories: json['use_default_mute_stories'] as bool,
-      muteStories: json['mute_stories'] as bool,
-      storySoundId: int.tryParse(json['story_sound_id']) ?? 0,
-      showStoryPoster: json['show_story_poster'] as bool,
+      muteFor: (json['mute_for'] as int?) ?? 0,
+      soundId: (json['sound_id'] is int
+              ? json['sound_id'] as int
+              : int.tryParse(json['sound_id']?.toString() ?? '')) ??
+          0,
+      showPreview: (json['show_preview'] as bool?) ?? false,
+      useDefaultMuteStories:
+          (json['use_default_mute_stories'] as bool?) ?? false,
+      muteStories: (json['mute_stories'] as bool?) ?? false,
+      storySoundId: (json['story_sound_id'] is int
+              ? json['story_sound_id'] as int
+              : int.tryParse(json['story_sound_id']?.toString() ?? '')) ??
+          0,
+      showStoryPoster: (json['show_story_poster'] as bool?) ?? false,
       disablePinnedMessageNotifications:
-          json['disable_pinned_message_notifications'] as bool,
+          (json['disable_pinned_message_notifications'] as bool?) ?? false,
       disableMentionNotifications:
-          json['disable_mention_notifications'] as bool,
+          (json['disable_mention_notifications'] as bool?) ?? false,
     );
   }
 

@@ -24,9 +24,9 @@ class ReplyMarkupInlineKeyboard extends ReplyMarkup {
       rows: List<List<InlineKeyboardButton>>.from(
           ((json['rows'] as List<dynamic>?) ?? <dynamic>[])
               .map((item) => List<InlineKeyboardButton>.from(
-                  ((json['List<InlineKeyboardButton>'] as List<dynamic>?) ??
-                          <dynamic>[])
-                      .map((item) => InlineKeyboardButton.fromJson(item))
+                  ((item as List<dynamic>?) ?? <dynamic>[])
+                      .map((item) => InlineKeyboardButton.fromJson(
+                          item as Map<String, dynamic>?))
                       .toList()))
               .toList()),
     );

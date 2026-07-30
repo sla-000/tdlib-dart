@@ -25,11 +25,12 @@ class GroupCallParticipants extends TdObject {
     }
 
     return GroupCallParticipants(
-      totalCount: json['total_count'] as int,
-      participantIds: List<MessageSender>.from(
-          ((json['participant_ids'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => MessageSender.fromJson(item))
-              .toList()),
+      totalCount: (json['total_count'] as int?) ?? 0,
+      participantIds: List<MessageSender>.from(((json['participant_ids']
+                  as List<dynamic>?) ??
+              <dynamic>[])
+          .map((item) => MessageSender.fromJson(item as Map<String, dynamic>?))
+          .toList()),
     );
   }
 

@@ -46,7 +46,7 @@ class SettingsSectionDataAndStorage extends SettingsSection {
     }
 
     return SettingsSectionDataAndStorage(
-      subsection: json['subsection'] as String,
+      subsection: (json['subsection'] as String?) ?? '',
     );
   }
 

@@ -21,7 +21,7 @@ class MessageSenderChat extends MessageSender {
     }
 
     return MessageSenderChat(
-      chatId: json['chat_id'] as int,
+      chatId: (json['chat_id'] as int?) ?? 0,
     );
   }
 

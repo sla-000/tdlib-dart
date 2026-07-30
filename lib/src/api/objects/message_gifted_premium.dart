@@ -62,15 +62,19 @@ class MessageGiftedPremium extends MessageContent {
     }
 
     return MessageGiftedPremium(
-      gifterUserId: json['gifter_user_id'] as int,
-      receiverUserId: json['receiver_user_id'] as int,
+      gifterUserId: (json['gifter_user_id'] as int?) ?? 0,
+      receiverUserId: (json['receiver_user_id'] as int?) ?? 0,
       text: FormattedText.fromJson(json['text'] as Map<String, dynamic>?)!,
-      currency: json['currency'] as String,
-      amount: json['amount'] as int,
-      cryptocurrency: json['cryptocurrency'] as String,
-      cryptocurrencyAmount: int.tryParse(json['cryptocurrency_amount']) ?? 0,
-      monthCount: json['month_count'] as int,
-      dayCount: json['day_count'] as int,
+      currency: (json['currency'] as String?) ?? '',
+      amount: (json['amount'] as int?) ?? 0,
+      cryptocurrency: (json['cryptocurrency'] as String?) ?? '',
+      cryptocurrencyAmount: (json['cryptocurrency_amount'] is int
+              ? json['cryptocurrency_amount'] as int
+              : int.tryParse(
+                  json['cryptocurrency_amount']?.toString() ?? '')) ??
+          0,
+      monthCount: (json['month_count'] as int?) ?? 0,
+      dayCount: (json['day_count'] as int?) ?? 0,
       sticker: Sticker.fromJson(json['sticker'] as Map<String, dynamic>?),
     );
   }

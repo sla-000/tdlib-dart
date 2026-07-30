@@ -39,7 +39,8 @@ class SetChatProfileAccentColor extends TdFunction {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'chat_id': chatId,
         'profile_accent_color_id': profileAccentColorId,
-        'profile_background_custom_emoji_id': profileBackgroundCustomEmojiId,
+        'profile_background_custom_emoji_id':
+            profileBackgroundCustomEmojiId.toString(),
         '@type': constructor,
       };
 

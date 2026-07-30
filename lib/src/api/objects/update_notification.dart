@@ -25,7 +25,7 @@ class UpdateNotification extends Update {
     }
 
     return UpdateNotification(
-      notificationGroupId: json['notification_group_id'] as int,
+      notificationGroupId: (json['notification_group_id'] as int?) ?? 0,
       notification:
           Notification.fromJson(json['notification'] as Map<String, dynamic>?)!,
     );

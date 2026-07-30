@@ -26,11 +26,12 @@ class ChatAvailableReactionsSome extends ChatAvailableReactions {
     }
 
     return ChatAvailableReactionsSome(
-      reactions: List<ReactionType>.from(
-          ((json['reactions'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => ReactionType.fromJson(item))
-              .toList()),
-      maxReactionCount: json['max_reaction_count'] as int,
+      reactions: List<ReactionType>.from(((json['reactions']
+                  as List<dynamic>?) ??
+              <dynamic>[])
+          .map((item) => ReactionType.fromJson(item as Map<String, dynamic>?))
+          .toList()),
+      maxReactionCount: (json['max_reaction_count'] as int?) ?? 0,
     );
   }
 

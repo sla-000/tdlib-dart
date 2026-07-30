@@ -21,7 +21,7 @@ class AutosaveSettingsScopeChat extends AutosaveSettingsScope {
     }
 
     return AutosaveSettingsScopeChat(
-      chatId: json['chat_id'] as int,
+      chatId: (json['chat_id'] as int?) ?? 0,
     );
   }
 

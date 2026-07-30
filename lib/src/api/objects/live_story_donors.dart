@@ -26,11 +26,12 @@ class LiveStoryDonors extends TdObject {
     }
 
     return LiveStoryDonors(
-      totalStarCount: json['total_star_count'] as int,
-      topDonors: List<PaidReactor>.from(
-          ((json['top_donors'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => PaidReactor.fromJson(item))
-              .toList()),
+      totalStarCount: (json['total_star_count'] as int?) ?? 0,
+      topDonors: List<PaidReactor>.from(((json['top_donors']
+                  as List<dynamic>?) ??
+              <dynamic>[])
+          .map((item) => PaidReactor.fromJson(item as Map<String, dynamic>?))
+          .toList()),
     );
   }
 

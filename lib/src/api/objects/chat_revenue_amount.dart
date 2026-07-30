@@ -41,11 +41,20 @@ class ChatRevenueAmount extends TdObject {
     }
 
     return ChatRevenueAmount(
-      cryptocurrency: json['cryptocurrency'] as String,
-      totalAmount: int.tryParse(json['total_amount']) ?? 0,
-      balanceAmount: int.tryParse(json['balance_amount']) ?? 0,
-      availableAmount: int.tryParse(json['available_amount']) ?? 0,
-      withdrawalEnabled: json['withdrawal_enabled'] as bool,
+      cryptocurrency: (json['cryptocurrency'] as String?) ?? '',
+      totalAmount: (json['total_amount'] is int
+              ? json['total_amount'] as int
+              : int.tryParse(json['total_amount']?.toString() ?? '')) ??
+          0,
+      balanceAmount: (json['balance_amount'] is int
+              ? json['balance_amount'] as int
+              : int.tryParse(json['balance_amount']?.toString() ?? '')) ??
+          0,
+      availableAmount: (json['available_amount'] is int
+              ? json['available_amount'] as int
+              : int.tryParse(json['available_amount']?.toString() ?? '')) ??
+          0,
+      withdrawalEnabled: (json['withdrawal_enabled'] as bool?) ?? false,
     );
   }
 

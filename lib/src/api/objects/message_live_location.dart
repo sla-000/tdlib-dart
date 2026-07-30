@@ -29,7 +29,7 @@ class MessageLiveLocation extends MessageContent {
     return MessageLiveLocation(
       location:
           LiveLocation.fromJson(json['location'] as Map<String, dynamic>?)!,
-      expiresIn: json['expires_in'] as int,
+      expiresIn: (json['expires_in'] as int?) ?? 0,
     );
   }
 

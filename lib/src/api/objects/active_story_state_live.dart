@@ -21,7 +21,7 @@ class ActiveStoryStateLive extends ActiveStoryState {
     }
 
     return ActiveStoryStateLive(
-      storyId: json['story_id'] as int,
+      storyId: (json['story_id'] as int?) ?? 0,
     );
   }
 

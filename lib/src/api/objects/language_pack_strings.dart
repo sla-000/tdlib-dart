@@ -23,7 +23,8 @@ class LanguagePackStrings extends TdObject {
     return LanguagePackStrings(
       strings: List<LanguagePackString>.from(
           ((json['strings'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => LanguagePackString.fromJson(item))
+              .map((item) =>
+                  LanguagePackString.fromJson(item as Map<String, dynamic>?))
               .toList()),
     );
   }

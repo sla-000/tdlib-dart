@@ -22,7 +22,8 @@ class ChatEventIsAllHistoryAvailableToggled extends ChatEventAction {
     }
 
     return ChatEventIsAllHistoryAvailableToggled(
-      isAllHistoryAvailable: json['is_all_history_available'] as bool,
+      isAllHistoryAvailable:
+          (json['is_all_history_available'] as bool?) ?? false,
     );
   }
 

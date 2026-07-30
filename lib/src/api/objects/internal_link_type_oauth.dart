@@ -25,7 +25,7 @@ class InternalLinkTypeOauth extends InternalLinkType {
     }
 
     return InternalLinkTypeOauth(
-      url: json['url'] as String,
+      url: (json['url'] as String?) ?? '',
     );
   }
 

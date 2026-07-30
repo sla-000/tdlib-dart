@@ -27,7 +27,7 @@ class PageBlockSectionHeading extends PageBlock {
 
     return PageBlockSectionHeading(
       text: RichText.fromJson(json['text'] as Map<String, dynamic>?)!,
-      size: json['size'] as int,
+      size: (json['size'] as int?) ?? 0,
     );
   }
 

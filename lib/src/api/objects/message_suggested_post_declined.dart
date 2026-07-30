@@ -27,8 +27,8 @@ class MessageSuggestedPostDeclined extends MessageContent {
     }
 
     return MessageSuggestedPostDeclined(
-      suggestedPostMessageId: json['suggested_post_message_id'] as int,
-      comment: json['comment'] as String,
+      suggestedPostMessageId: (json['suggested_post_message_id'] as int?) ?? 0,
+      comment: (json['comment'] as String?) ?? '',
     );
   }
 

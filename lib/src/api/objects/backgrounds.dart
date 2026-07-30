@@ -23,7 +23,7 @@ class Backgrounds extends TdObject {
     return Backgrounds(
       backgrounds: List<Background>.from(
           ((json['backgrounds'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => Background.fromJson(item))
+              .map((item) => Background.fromJson(item as Map<String, dynamic>?))
               .toList()),
     );
   }

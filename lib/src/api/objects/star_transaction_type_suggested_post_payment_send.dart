@@ -24,7 +24,7 @@ class StarTransactionTypeSuggestedPostPaymentSend extends StarTransactionType {
     }
 
     return StarTransactionTypeSuggestedPostPaymentSend(
-      chatId: json['chat_id'] as int,
+      chatId: (json['chat_id'] as int?) ?? 0,
     );
   }
 

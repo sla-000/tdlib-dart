@@ -36,9 +36,9 @@ class ChatStatisticsInteractionInfo extends TdObject {
     return ChatStatisticsInteractionInfo(
       objectType: ChatStatisticsObjectType.fromJson(
           json['object_type'] as Map<String, dynamic>?)!,
-      viewCount: json['view_count'] as int,
-      forwardCount: json['forward_count'] as int,
-      reactionCount: json['reaction_count'] as int,
+      viewCount: (json['view_count'] as int?) ?? 0,
+      forwardCount: (json['forward_count'] as int?) ?? 0,
+      reactionCount: (json['reaction_count'] as int?) ?? 0,
     );
   }
 

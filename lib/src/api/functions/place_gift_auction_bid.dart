@@ -41,7 +41,7 @@ class PlaceGiftAuctionBid extends TdFunction {
 
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'gift_id': giftId,
+        'gift_id': giftId.toString(),
         'star_count': starCount,
         'user_id': userId,
         'text': text.toJson(),

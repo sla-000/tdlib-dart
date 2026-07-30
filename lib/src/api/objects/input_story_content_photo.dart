@@ -30,7 +30,8 @@ class InputStoryContentPhoto extends InputStoryContent {
       photo: InputFile.fromJson(json['photo'] as Map<String, dynamic>?)!,
       addedStickerFileIds: List<int>.from(
           ((json['added_sticker_file_ids'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => item)
+              .map((item) =>
+                  (item is int ? item : int.tryParse(item.toString()) ?? 0))
               .toList()),
     );
   }

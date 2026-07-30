@@ -34,7 +34,7 @@ class MessageVoiceNote extends MessageContent {
           VoiceNote.fromJson(json['voice_note'] as Map<String, dynamic>?)!,
       caption:
           FormattedText.fromJson(json['caption'] as Map<String, dynamic>?)!,
-      isListened: json['is_listened'] as bool,
+      isListened: (json['is_listened'] as bool?) ?? false,
     );
   }
 

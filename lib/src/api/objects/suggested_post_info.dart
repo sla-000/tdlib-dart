@@ -47,11 +47,11 @@ class SuggestedPostInfo extends TdObject {
     return SuggestedPostInfo(
       price:
           SuggestedPostPrice.fromJson(json['price'] as Map<String, dynamic>?),
-      sendDate: json['send_date'] as int,
+      sendDate: (json['send_date'] as int?) ?? 0,
       state:
           SuggestedPostState.fromJson(json['state'] as Map<String, dynamic>?)!,
-      canBeApproved: json['can_be_approved'] as bool,
-      canBeDeclined: json['can_be_declined'] as bool,
+      canBeApproved: (json['can_be_approved'] as bool?) ?? false,
+      canBeDeclined: (json['can_be_declined'] as bool?) ?? false,
     );
   }
 

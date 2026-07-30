@@ -42,11 +42,11 @@ class ChatBoostSourceGiveaway extends ChatBoostSource {
     }
 
     return ChatBoostSourceGiveaway(
-      userId: json['user_id'] as int,
-      giftCode: json['gift_code'] as String,
-      starCount: json['star_count'] as int,
-      giveawayMessageId: json['giveaway_message_id'] as int,
-      isUnclaimed: json['is_unclaimed'] as bool,
+      userId: (json['user_id'] as int?) ?? 0,
+      giftCode: (json['gift_code'] as String?) ?? '',
+      starCount: (json['star_count'] as int?) ?? 0,
+      giveawayMessageId: (json['giveaway_message_id'] as int?) ?? 0,
+      isUnclaimed: (json['is_unclaimed'] as bool?) ?? false,
     );
   }
 

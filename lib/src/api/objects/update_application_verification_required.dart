@@ -37,9 +37,12 @@ class UpdateApplicationVerificationRequired extends Update {
     }
 
     return UpdateApplicationVerificationRequired(
-      verificationId: json['verification_id'] as int,
-      nonce: json['nonce'] as String,
-      cloudProjectNumber: int.tryParse(json['cloud_project_number']) ?? 0,
+      verificationId: (json['verification_id'] as int?) ?? 0,
+      nonce: (json['nonce'] as String?) ?? '',
+      cloudProjectNumber: (json['cloud_project_number'] is int
+              ? json['cloud_project_number'] as int
+              : int.tryParse(json['cloud_project_number']?.toString() ?? '')) ??
+          0,
     );
   }
 

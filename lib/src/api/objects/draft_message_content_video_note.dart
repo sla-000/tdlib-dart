@@ -34,9 +34,9 @@ class DraftMessageContentVideoNote extends DraftMessageContent {
     }
 
     return DraftMessageContentVideoNote(
-      filePath: json['file_path'] as String,
-      duration: json['duration'] as int,
-      length: json['length'] as int,
+      filePath: (json['file_path'] as String?) ?? '',
+      duration: (json['duration'] as int?) ?? 0,
+      length: (json['length'] as int?) ?? 0,
       selfDestructType: MessageSelfDestructType.fromJson(
           json['self_destruct_type'] as Map<String, dynamic>?),
     );

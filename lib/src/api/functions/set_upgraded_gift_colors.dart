@@ -22,7 +22,7 @@ class SetUpgradedGiftColors extends TdFunction {
 
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'upgraded_gift_colors_id': upgradedGiftColorsId,
+        'upgraded_gift_colors_id': upgradedGiftColorsId.toString(),
         '@type': constructor,
       };
 

@@ -26,8 +26,8 @@ class GroupCallInfo extends TdObject {
     }
 
     return GroupCallInfo(
-      groupCallId: json['group_call_id'] as int,
-      joinPayload: json['join_payload'] as String,
+      groupCallId: (json['group_call_id'] as int?) ?? 0,
+      joinPayload: (json['join_payload'] as String?) ?? '',
     );
   }
 

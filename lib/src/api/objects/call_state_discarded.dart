@@ -36,9 +36,9 @@ class CallStateDiscarded extends CallState {
     return CallStateDiscarded(
       reason:
           CallDiscardReason.fromJson(json['reason'] as Map<String, dynamic>?)!,
-      needRating: json['need_rating'] as bool,
-      needDebugInformation: json['need_debug_information'] as bool,
-      needLog: json['need_log'] as bool,
+      needRating: (json['need_rating'] as bool?) ?? false,
+      needDebugInformation: (json['need_debug_information'] as bool?) ?? false,
+      needLog: (json['need_log'] as bool?) ?? false,
     );
   }
 

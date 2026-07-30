@@ -41,10 +41,10 @@ class TelegramPaymentPurposeStarGiveaway extends TelegramPaymentPurpose {
     return TelegramPaymentPurposeStarGiveaway(
       parameters: GiveawayParameters.fromJson(
           json['parameters'] as Map<String, dynamic>?)!,
-      currency: json['currency'] as String,
-      amount: json['amount'] as int,
-      winnerCount: json['winner_count'] as int,
-      starCount: json['star_count'] as int,
+      currency: (json['currency'] as String?) ?? '',
+      amount: (json['amount'] as int?) ?? 0,
+      winnerCount: (json['winner_count'] as int?) ?? 0,
+      starCount: (json['star_count'] as int?) ?? 0,
     );
   }
 

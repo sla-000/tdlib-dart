@@ -26,7 +26,7 @@ class MessageSchedulingStateSendWhenVideoProcessed
     }
 
     return MessageSchedulingStateSendWhenVideoProcessed(
-      sendDate: json['send_date'] as int,
+      sendDate: (json['send_date'] as int?) ?? 0,
     );
   }
 

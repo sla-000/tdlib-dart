@@ -27,7 +27,7 @@ class InlineKeyboardButtonTypeSwitchInline extends InlineKeyboardButtonType {
     }
 
     return InlineKeyboardButtonTypeSwitchInline(
-      query: json['query'] as String,
+      query: (json['query'] as String?) ?? '',
       targetChat:
           TargetChat.fromJson(json['target_chat'] as Map<String, dynamic>?)!,
     );

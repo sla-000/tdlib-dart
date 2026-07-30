@@ -37,11 +37,11 @@ class LinkPreviewTypeExternalVideo extends LinkPreviewType {
     }
 
     return LinkPreviewTypeExternalVideo(
-      url: json['url'] as String,
-      mimeType: json['mime_type'] as String,
-      width: json['width'] as int,
-      height: json['height'] as int,
-      duration: json['duration'] as int,
+      url: (json['url'] as String?) ?? '',
+      mimeType: (json['mime_type'] as String?) ?? '',
+      width: (json['width'] as int?) ?? 0,
+      height: (json['height'] as int?) ?? 0,
+      duration: (json['duration'] as int?) ?? 0,
     );
   }
 

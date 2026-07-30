@@ -41,13 +41,13 @@ class BusinessConnection extends TdObject {
     }
 
     return BusinessConnection(
-      id: json['id'] as String,
-      userId: json['user_id'] as int,
-      userChatId: json['user_chat_id'] as int,
-      date: json['date'] as int,
+      id: (json['id'] as String?) ?? '',
+      userId: (json['user_id'] as int?) ?? 0,
+      userChatId: (json['user_chat_id'] as int?) ?? 0,
+      date: (json['date'] as int?) ?? 0,
       rights:
           BusinessBotRights.fromJson(json['rights'] as Map<String, dynamic>?),
-      isEnabled: json['is_enabled'] as bool,
+      isEnabled: (json['is_enabled'] as bool?) ?? false,
     );
   }
 

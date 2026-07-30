@@ -24,7 +24,7 @@ class GiftResalePriceStar extends GiftResalePrice {
     }
 
     return GiftResalePriceStar(
-      starCount: json['star_count'] as int,
+      starCount: (json['star_count'] as int?) ?? 0,
     );
   }
 

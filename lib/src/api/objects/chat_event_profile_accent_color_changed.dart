@@ -39,12 +39,24 @@ class ChatEventProfileAccentColorChanged extends ChatEventAction {
     }
 
     return ChatEventProfileAccentColorChanged(
-      oldProfileAccentColorId: json['old_profile_accent_color_id'] as int,
+      oldProfileAccentColorId:
+          (json['old_profile_accent_color_id'] as int?) ?? 0,
       oldProfileBackgroundCustomEmojiId:
-          int.tryParse(json['old_profile_background_custom_emoji_id']) ?? 0,
-      newProfileAccentColorId: json['new_profile_accent_color_id'] as int,
+          (json['old_profile_background_custom_emoji_id'] is int
+                  ? json['old_profile_background_custom_emoji_id'] as int
+                  : int.tryParse(json['old_profile_background_custom_emoji_id']
+                          ?.toString() ??
+                      '')) ??
+              0,
+      newProfileAccentColorId:
+          (json['new_profile_accent_color_id'] as int?) ?? 0,
       newProfileBackgroundCustomEmojiId:
-          int.tryParse(json['new_profile_background_custom_emoji_id']) ?? 0,
+          (json['new_profile_background_custom_emoji_id'] is int
+                  ? json['new_profile_background_custom_emoji_id'] as int
+                  : int.tryParse(json['new_profile_background_custom_emoji_id']
+                          ?.toString() ??
+                      '')) ??
+              0,
     );
   }
 

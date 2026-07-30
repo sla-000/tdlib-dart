@@ -21,7 +21,7 @@ class MessageOriginUser extends MessageOrigin {
     }
 
     return MessageOriginUser(
-      senderUserId: json['sender_user_id'] as int,
+      senderUserId: (json['sender_user_id'] as int?) ?? 0,
     );
   }
 

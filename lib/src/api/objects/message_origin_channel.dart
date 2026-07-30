@@ -30,9 +30,9 @@ class MessageOriginChannel extends MessageOrigin {
     }
 
     return MessageOriginChannel(
-      chatId: json['chat_id'] as int,
-      messageId: json['message_id'] as int,
-      authorSignature: json['author_signature'] as String,
+      chatId: (json['chat_id'] as int?) ?? 0,
+      messageId: (json['message_id'] as int?) ?? 0,
+      authorSignature: (json['author_signature'] as String?) ?? '',
     );
   }
 

@@ -25,8 +25,8 @@ class BankCardActionOpenUrl extends TdObject {
     }
 
     return BankCardActionOpenUrl(
-      text: json['text'] as String,
-      url: json['url'] as String,
+      text: (json['text'] as String?) ?? '',
+      url: (json['url'] as String?) ?? '',
     );
   }
 

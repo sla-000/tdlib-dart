@@ -26,8 +26,8 @@ class PushMessageContentGift extends PushMessageContent {
     }
 
     return PushMessageContentGift(
-      starCount: json['star_count'] as int,
-      isPrepaidUpgrade: json['is_prepaid_upgrade'] as bool,
+      starCount: (json['star_count'] as int?) ?? 0,
+      isPrepaidUpgrade: (json['is_prepaid_upgrade'] as bool?) ?? false,
     );
   }
 

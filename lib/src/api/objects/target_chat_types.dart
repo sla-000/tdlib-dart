@@ -33,10 +33,10 @@ class TargetChatTypes extends TdObject {
     }
 
     return TargetChatTypes(
-      allowUserChats: json['allow_user_chats'] as bool,
-      allowBotChats: json['allow_bot_chats'] as bool,
-      allowGroupChats: json['allow_group_chats'] as bool,
-      allowChannelChats: json['allow_channel_chats'] as bool,
+      allowUserChats: (json['allow_user_chats'] as bool?) ?? false,
+      allowBotChats: (json['allow_bot_chats'] as bool?) ?? false,
+      allowGroupChats: (json['allow_group_chats'] as bool?) ?? false,
+      allowChannelChats: (json['allow_channel_chats'] as bool?) ?? false,
     );
   }
 

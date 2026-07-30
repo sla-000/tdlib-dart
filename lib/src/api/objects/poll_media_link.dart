@@ -25,7 +25,7 @@ class PollMediaLink extends PollMedia {
     }
 
     return PollMediaLink(
-      url: json['url'] as String,
+      url: (json['url'] as String?) ?? '',
       linkPreview:
           LinkPreview.fromJson(json['link_preview'] as Map<String, dynamic>?),
     );

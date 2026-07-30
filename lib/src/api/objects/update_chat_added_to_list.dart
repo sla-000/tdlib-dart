@@ -25,7 +25,7 @@ class UpdateChatAddedToList extends Update {
     }
 
     return UpdateChatAddedToList(
-      chatId: json['chat_id'] as int,
+      chatId: (json['chat_id'] as int?) ?? 0,
       chatList: ChatList.fromJson(json['chat_list'] as Map<String, dynamic>?)!,
     );
   }

@@ -25,7 +25,7 @@ class InlineQueryResultAudio extends InlineQueryResult {
     }
 
     return InlineQueryResultAudio(
-      id: json['id'] as String,
+      id: (json['id'] as String?) ?? '',
       audio: Audio.fromJson(json['audio'] as Map<String, dynamic>?)!,
     );
   }

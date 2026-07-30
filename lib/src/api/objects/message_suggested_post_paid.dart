@@ -33,10 +33,10 @@ class MessageSuggestedPostPaid extends MessageContent {
     }
 
     return MessageSuggestedPostPaid(
-      suggestedPostMessageId: json['suggested_post_message_id'] as int,
+      suggestedPostMessageId: (json['suggested_post_message_id'] as int?) ?? 0,
       starAmount:
           StarAmount.fromJson(json['star_amount'] as Map<String, dynamic>?)!,
-      tonAmount: json['ton_amount'] as int,
+      tonAmount: (json['ton_amount'] as int?) ?? 0,
     );
   }
 

@@ -25,7 +25,7 @@ class ChatFolderIcon extends TdObject {
     }
 
     return ChatFolderIcon(
-      name: json['name'] as String,
+      name: (json['name'] as String?) ?? '',
     );
   }
 

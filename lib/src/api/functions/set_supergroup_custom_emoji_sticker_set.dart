@@ -31,7 +31,7 @@ class SetSupergroupCustomEmojiStickerSet extends TdFunction {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'supergroup_id': supergroupId,
-        'custom_emoji_sticker_set_id': customEmojiStickerSetId,
+        'custom_emoji_sticker_set_id': customEmojiStickerSetId.toString(),
         '@type': constructor,
       };
 

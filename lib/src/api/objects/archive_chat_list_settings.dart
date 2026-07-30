@@ -37,10 +37,12 @@ class ArchiveChatListSettings extends TdObject {
 
     return ArchiveChatListSettings(
       archiveAndMuteNewChatsFromUnknownUsers:
-          json['archive_and_mute_new_chats_from_unknown_users'] as bool,
-      keepUnmutedChatsArchived: json['keep_unmuted_chats_archived'] as bool,
+          (json['archive_and_mute_new_chats_from_unknown_users'] as bool?) ??
+              false,
+      keepUnmutedChatsArchived:
+          (json['keep_unmuted_chats_archived'] as bool?) ?? false,
       keepChatsFromFoldersArchived:
-          json['keep_chats_from_folders_archived'] as bool,
+          (json['keep_chats_from_folders_archived'] as bool?) ?? false,
     );
   }
 

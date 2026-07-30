@@ -54,17 +54,18 @@ class StarGiveawayPaymentOption extends TdObject {
     }
 
     return StarGiveawayPaymentOption(
-      currency: json['currency'] as String,
-      amount: json['amount'] as int,
-      starCount: json['star_count'] as int,
-      storeProductId: json['store_product_id'] as String,
-      yearlyBoostCount: json['yearly_boost_count'] as int,
+      currency: (json['currency'] as String?) ?? '',
+      amount: (json['amount'] as int?) ?? 0,
+      starCount: (json['star_count'] as int?) ?? 0,
+      storeProductId: (json['store_product_id'] as String?) ?? '',
+      yearlyBoostCount: (json['yearly_boost_count'] as int?) ?? 0,
       winnerOptions: List<StarGiveawayWinnerOption>.from(
           ((json['winner_options'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => StarGiveawayWinnerOption.fromJson(item))
+              .map((item) => StarGiveawayWinnerOption.fromJson(
+                  item as Map<String, dynamic>?))
               .toList()),
-      isDefault: json['is_default'] as bool,
-      isAdditional: json['is_additional'] as bool,
+      isDefault: (json['is_default'] as bool?) ?? false,
+      isAdditional: (json['is_additional'] as bool?) ?? false,
     );
   }
 

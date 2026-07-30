@@ -35,12 +35,13 @@ class StoryInteractionInfo extends TdObject {
     }
 
     return StoryInteractionInfo(
-      viewCount: json['view_count'] as int,
-      forwardCount: json['forward_count'] as int,
-      reactionCount: json['reaction_count'] as int,
+      viewCount: (json['view_count'] as int?) ?? 0,
+      forwardCount: (json['forward_count'] as int?) ?? 0,
+      reactionCount: (json['reaction_count'] as int?) ?? 0,
       recentViewerUserIds: List<int>.from(
           ((json['recent_viewer_user_ids'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => item)
+              .map((item) =>
+                  (item is int ? item : int.tryParse(item.toString()) ?? 0))
               .toList()),
     );
   }

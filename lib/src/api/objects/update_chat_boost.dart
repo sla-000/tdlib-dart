@@ -25,7 +25,7 @@ class UpdateChatBoost extends Update {
     }
 
     return UpdateChatBoost(
-      chatId: json['chat_id'] as int,
+      chatId: (json['chat_id'] as int?) ?? 0,
       boost: ChatBoost.fromJson(json['boost'] as Map<String, dynamic>?)!,
     );
   }

@@ -21,7 +21,7 @@ class FoundPosition extends TdObject {
     }
 
     return FoundPosition(
-      position: json['position'] as int,
+      position: (json['position'] as int?) ?? 0,
     );
   }
 

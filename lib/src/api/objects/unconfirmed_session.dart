@@ -37,9 +37,9 @@ class UnconfirmedSession extends TdObject {
 
     return UnconfirmedSession(
       type: SessionType.fromJson(json['type'] as Map<String, dynamic>?)!,
-      date: json['date'] as int,
-      deviceModel: json['device_model'] as String,
-      location: json['location'] as String,
+      date: (json['date'] as int?) ?? 0,
+      deviceModel: (json['device_model'] as String?) ?? '',
+      location: (json['location'] as String?) ?? '',
     );
   }
 

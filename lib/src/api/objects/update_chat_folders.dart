@@ -30,12 +30,13 @@ class UpdateChatFolders extends Update {
     }
 
     return UpdateChatFolders(
-      chatFolders: List<ChatFolderInfo>.from(
-          ((json['chat_folders'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => ChatFolderInfo.fromJson(item))
-              .toList()),
-      mainChatListPosition: json['main_chat_list_position'] as int,
-      areTagsEnabled: json['are_tags_enabled'] as bool,
+      chatFolders: List<ChatFolderInfo>.from(((json['chat_folders']
+                  as List<dynamic>?) ??
+              <dynamic>[])
+          .map((item) => ChatFolderInfo.fromJson(item as Map<String, dynamic>?))
+          .toList()),
+      mainChatListPosition: (json['main_chat_list_position'] as int?) ?? 0,
+      areTagsEnabled: (json['are_tags_enabled'] as bool?) ?? false,
     );
   }
 

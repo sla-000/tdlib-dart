@@ -60,19 +60,22 @@ class MessageVideo extends MessageContent {
       video: Video.fromJson(json['video'] as Map<String, dynamic>?)!,
       alternativeVideos: List<AlternativeVideo>.from(
           ((json['alternative_videos'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => AlternativeVideo.fromJson(item))
+              .map((item) =>
+                  AlternativeVideo.fromJson(item as Map<String, dynamic>?))
               .toList()),
       storyboards: List<VideoStoryboard>.from(
           ((json['storyboards'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => VideoStoryboard.fromJson(item))
+              .map((item) =>
+                  VideoStoryboard.fromJson(item as Map<String, dynamic>?))
               .toList()),
       cover: Photo.fromJson(json['cover'] as Map<String, dynamic>?),
-      startTimestamp: json['start_timestamp'] as int,
+      startTimestamp: (json['start_timestamp'] as int?) ?? 0,
       caption:
           FormattedText.fromJson(json['caption'] as Map<String, dynamic>?)!,
-      showCaptionAboveMedia: json['show_caption_above_media'] as bool,
-      hasSpoiler: json['has_spoiler'] as bool,
-      isSecret: json['is_secret'] as bool,
+      showCaptionAboveMedia:
+          (json['show_caption_above_media'] as bool?) ?? false,
+      hasSpoiler: (json['has_spoiler'] as bool?) ?? false,
+      isSecret: (json['is_secret'] as bool?) ?? false,
     );
   }
 

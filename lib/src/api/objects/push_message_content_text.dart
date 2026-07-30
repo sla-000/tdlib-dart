@@ -26,8 +26,8 @@ class PushMessageContentText extends PushMessageContent {
     }
 
     return PushMessageContentText(
-      text: json['text'] as String,
-      isPinned: json['is_pinned'] as bool,
+      text: (json['text'] as String?) ?? '',
+      isPinned: (json['is_pinned'] as bool?) ?? false,
     );
   }
 

@@ -26,7 +26,7 @@ class UpdateChatBackground extends Update {
     }
 
     return UpdateChatBackground(
-      chatId: json['chat_id'] as int,
+      chatId: (json['chat_id'] as int?) ?? 0,
       background:
           ChatBackground.fromJson(json['background'] as Map<String, dynamic>?),
     );

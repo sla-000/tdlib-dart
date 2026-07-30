@@ -63,15 +63,15 @@ class UpgradeGiftResult extends TdObject {
 
     return UpgradeGiftResult(
       gift: UpgradedGift.fromJson(json['gift'] as Map<String, dynamic>?)!,
-      receivedGiftId: json['received_gift_id'] as String,
-      isSaved: json['is_saved'] as bool,
-      canBeTransferred: json['can_be_transferred'] as bool,
-      transferStarCount: json['transfer_star_count'] as int,
+      receivedGiftId: (json['received_gift_id'] as String?) ?? '',
+      isSaved: (json['is_saved'] as bool?) ?? false,
+      canBeTransferred: (json['can_be_transferred'] as bool?) ?? false,
+      transferStarCount: (json['transfer_star_count'] as int?) ?? 0,
       dropOriginalDetailsStarCount:
-          json['drop_original_details_star_count'] as int,
-      nextTransferDate: json['next_transfer_date'] as int,
-      nextResaleDate: json['next_resale_date'] as int,
-      exportDate: json['export_date'] as int,
+          (json['drop_original_details_star_count'] as int?) ?? 0,
+      nextTransferDate: (json['next_transfer_date'] as int?) ?? 0,
+      nextResaleDate: (json['next_resale_date'] as int?) ?? 0,
+      exportDate: (json['export_date'] as int?) ?? 0,
     );
   }
 

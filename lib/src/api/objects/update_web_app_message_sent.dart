@@ -21,7 +21,10 @@ class UpdateWebAppMessageSent extends Update {
     }
 
     return UpdateWebAppMessageSent(
-      webAppLaunchId: int.tryParse(json['web_app_launch_id']) ?? 0,
+      webAppLaunchId: (json['web_app_launch_id'] is int
+              ? json['web_app_launch_id'] as int
+              : int.tryParse(json['web_app_launch_id']?.toString() ?? '')) ??
+          0,
     );
   }
 

@@ -62,19 +62,20 @@ class GiveawayParameters extends TdObject {
     }
 
     return GiveawayParameters(
-      boostedChatId: json['boosted_chat_id'] as int,
+      boostedChatId: (json['boosted_chat_id'] as int?) ?? 0,
       additionalChatIds: List<int>.from(
           ((json['additional_chat_ids'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => item)
+              .map((item) =>
+                  (item is int ? item : int.tryParse(item.toString()) ?? 0))
               .toList()),
-      winnersSelectionDate: json['winners_selection_date'] as int,
-      onlyNewMembers: json['only_new_members'] as bool,
-      hasPublicWinners: json['has_public_winners'] as bool,
+      winnersSelectionDate: (json['winners_selection_date'] as int?) ?? 0,
+      onlyNewMembers: (json['only_new_members'] as bool?) ?? false,
+      hasPublicWinners: (json['has_public_winners'] as bool?) ?? false,
       countryCodes: List<String>.from(
           ((json['country_codes'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => item)
+              .map((item) => item as String)
               .toList()),
-      prizeDescription: json['prize_description'] as String,
+      prizeDescription: (json['prize_description'] as String?) ?? '',
     );
   }
 

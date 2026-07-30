@@ -44,7 +44,7 @@ class SendPaymentForm extends TdFunction {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'input_invoice': inputInvoice.toJson(),
-        'payment_form_id': paymentFormId,
+        'payment_form_id': paymentFormId.toString(),
         'order_info_id': orderInfoId,
         'shipping_option_id': shippingOptionId,
         'credentials': credentials?.toJson(),

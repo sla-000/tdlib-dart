@@ -55,13 +55,16 @@ class QuickReplyMessage extends TdObject {
     }
 
     return QuickReplyMessage(
-      id: json['id'] as int,
+      id: (json['id'] as int?) ?? 0,
       sendingState: MessageSendingState.fromJson(
           json['sending_state'] as Map<String, dynamic>?),
-      canBeEdited: json['can_be_edited'] as bool,
-      replyToMessageId: json['reply_to_message_id'] as int,
-      viaBotUserId: json['via_bot_user_id'] as int,
-      mediaAlbumId: int.tryParse(json['media_album_id']) ?? 0,
+      canBeEdited: (json['can_be_edited'] as bool?) ?? false,
+      replyToMessageId: (json['reply_to_message_id'] as int?) ?? 0,
+      viaBotUserId: (json['via_bot_user_id'] as int?) ?? 0,
+      mediaAlbumId: (json['media_album_id'] is int
+              ? json['media_album_id'] as int
+              : int.tryParse(json['media_album_id']?.toString() ?? '')) ??
+          0,
       content:
           MessageContent.fromJson(json['content'] as Map<String, dynamic>?)!,
       replyMarkup:

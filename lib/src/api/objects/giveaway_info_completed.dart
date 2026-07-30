@@ -57,14 +57,15 @@ class GiveawayInfoCompleted extends GiveawayInfo {
     }
 
     return GiveawayInfoCompleted(
-      creationDate: json['creation_date'] as int,
-      actualWinnersSelectionDate: json['actual_winners_selection_date'] as int,
-      wasRefunded: json['was_refunded'] as bool,
-      isWinner: json['is_winner'] as bool,
-      winnerCount: json['winner_count'] as int,
-      activationCount: json['activation_count'] as int,
-      giftCode: json['gift_code'] as String,
-      wonStarCount: json['won_star_count'] as int,
+      creationDate: (json['creation_date'] as int?) ?? 0,
+      actualWinnersSelectionDate:
+          (json['actual_winners_selection_date'] as int?) ?? 0,
+      wasRefunded: (json['was_refunded'] as bool?) ?? false,
+      isWinner: (json['is_winner'] as bool?) ?? false,
+      winnerCount: (json['winner_count'] as int?) ?? 0,
+      activationCount: (json['activation_count'] as int?) ?? 0,
+      giftCode: (json['gift_code'] as String?) ?? '',
+      wonStarCount: (json['won_star_count'] as int?) ?? 0,
     );
   }
 

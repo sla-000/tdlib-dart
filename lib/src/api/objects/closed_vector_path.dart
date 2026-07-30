@@ -24,7 +24,8 @@ class ClosedVectorPath extends TdObject {
     return ClosedVectorPath(
       commands: List<VectorPathCommand>.from(
           ((json['commands'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => VectorPathCommand.fromJson(item))
+              .map((item) =>
+                  VectorPathCommand.fromJson(item as Map<String, dynamic>?))
               .toList()),
     );
   }

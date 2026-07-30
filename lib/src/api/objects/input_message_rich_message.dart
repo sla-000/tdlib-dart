@@ -27,7 +27,7 @@ class InputMessageRichMessage extends InputMessageContent {
     return InputMessageRichMessage(
       message:
           InputRichMessage.fromJson(json['message'] as Map<String, dynamic>?)!,
-      clearDraft: json['clear_draft'] as bool,
+      clearDraft: (json['clear_draft'] as bool?) ?? false,
     );
   }
 

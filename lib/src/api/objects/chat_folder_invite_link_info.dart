@@ -36,11 +36,13 @@ class ChatFolderInviteLinkInfo extends TdObject {
           json['chat_folder_info'] as Map<String, dynamic>?)!,
       missingChatIds: List<int>.from(
           ((json['missing_chat_ids'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => item)
+              .map((item) =>
+                  (item is int ? item : int.tryParse(item.toString()) ?? 0))
               .toList()),
       addedChatIds: List<int>.from(
           ((json['added_chat_ids'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => item)
+              .map((item) =>
+                  (item is int ? item : int.tryParse(item.toString()) ?? 0))
               .toList()),
     );
   }

@@ -23,7 +23,7 @@ class UserStatusLastWeek extends UserStatus {
     }
 
     return UserStatusLastWeek(
-      byMyPrivacySettings: json['by_my_privacy_settings'] as bool,
+      byMyPrivacySettings: (json['by_my_privacy_settings'] as bool?) ?? false,
     );
   }
 

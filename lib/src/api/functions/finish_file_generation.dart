@@ -26,7 +26,7 @@ class FinishFileGeneration extends TdFunction {
 
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'generation_id': generationId,
+        'generation_id': generationId.toString(),
         'error': error?.toJson(),
         '@type': constructor,
       };

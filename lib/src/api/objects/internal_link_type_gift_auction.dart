@@ -22,7 +22,7 @@ class InternalLinkTypeGiftAuction extends InternalLinkType {
     }
 
     return InternalLinkTypeGiftAuction(
-      auctionId: json['auction_id'] as String,
+      auctionId: (json['auction_id'] as String?) ?? '',
     );
   }
 

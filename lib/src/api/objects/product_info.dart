@@ -29,7 +29,7 @@ class ProductInfo extends TdObject {
     }
 
     return ProductInfo(
-      title: json['title'] as String,
+      title: (json['title'] as String?) ?? '',
       description:
           FormattedText.fromJson(json['description'] as Map<String, dynamic>?)!,
       photo: Photo.fromJson(json['photo'] as Map<String, dynamic>?),

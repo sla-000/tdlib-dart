@@ -22,7 +22,7 @@ class MessagePinMessage extends MessageContent {
     }
 
     return MessagePinMessage(
-      messageId: json['message_id'] as int,
+      messageId: (json['message_id'] as int?) ?? 0,
     );
   }
 

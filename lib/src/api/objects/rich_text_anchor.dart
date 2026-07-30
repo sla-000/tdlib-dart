@@ -21,7 +21,7 @@ class RichTextAnchor extends RichText {
     }
 
     return RichTextAnchor(
-      name: json['name'] as String,
+      name: (json['name'] as String?) ?? '',
     );
   }
 

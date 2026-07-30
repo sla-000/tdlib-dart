@@ -22,7 +22,10 @@ class TextEntityTypeCustomEmoji extends TextEntityType {
     }
 
     return TextEntityTypeCustomEmoji(
-      customEmojiId: int.tryParse(json['custom_emoji_id']) ?? 0,
+      customEmojiId: (json['custom_emoji_id'] is int
+              ? json['custom_emoji_id'] as int
+              : int.tryParse(json['custom_emoji_id']?.toString() ?? '')) ??
+          0,
     );
   }
 

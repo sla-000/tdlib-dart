@@ -39,7 +39,7 @@ class AnswerCallbackQuery extends TdFunction {
 
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'callback_query_id': callbackQueryId,
+        'callback_query_id': callbackQueryId.toString(),
         'text': text,
         'show_alert': showAlert,
         'url': url,

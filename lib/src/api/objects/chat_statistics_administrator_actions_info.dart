@@ -34,10 +34,10 @@ class ChatStatisticsAdministratorActionsInfo extends TdObject {
     }
 
     return ChatStatisticsAdministratorActionsInfo(
-      userId: json['user_id'] as int,
-      deletedMessageCount: json['deleted_message_count'] as int,
-      bannedUserCount: json['banned_user_count'] as int,
-      restrictedUserCount: json['restricted_user_count'] as int,
+      userId: (json['user_id'] as int?) ?? 0,
+      deletedMessageCount: (json['deleted_message_count'] as int?) ?? 0,
+      bannedUserCount: (json['banned_user_count'] as int?) ?? 0,
+      restrictedUserCount: (json['restricted_user_count'] as int?) ?? 0,
     );
   }
 

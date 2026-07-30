@@ -32,8 +32,8 @@ class InputStoryAreaTypeSuggestedReaction extends InputStoryAreaType {
     return InputStoryAreaTypeSuggestedReaction(
       reactionType: ReactionType.fromJson(
           json['reaction_type'] as Map<String, dynamic>?)!,
-      isDark: json['is_dark'] as bool,
-      isFlipped: json['is_flipped'] as bool,
+      isDark: (json['is_dark'] as bool?) ?? false,
+      isFlipped: (json['is_flipped'] as bool?) ?? false,
     );
   }
 

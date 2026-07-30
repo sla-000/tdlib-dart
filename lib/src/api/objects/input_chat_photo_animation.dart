@@ -30,7 +30,8 @@ class InputChatPhotoAnimation extends InputChatPhoto {
     return InputChatPhotoAnimation(
       animation:
           InputFile.fromJson(json['animation'] as Map<String, dynamic>?)!,
-      mainFrameTimestamp: (json['main_frame_timestamp'] as num).toDouble(),
+      mainFrameTimestamp:
+          (json['main_frame_timestamp'] as num?)?.toDouble() ?? 0.0,
     );
   }
 

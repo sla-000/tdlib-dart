@@ -25,7 +25,7 @@ class UpdateChatVideoChat extends Update {
     }
 
     return UpdateChatVideoChat(
-      chatId: json['chat_id'] as int,
+      chatId: (json['chat_id'] as int?) ?? 0,
       videoChat:
           VideoChat.fromJson(json['video_chat'] as Map<String, dynamic>?)!,
     );

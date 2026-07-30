@@ -22,7 +22,7 @@ class InputPollTypeRegular extends InputPollType {
     }
 
     return InputPollTypeRegular(
-      allowAddingOptions: json['allow_adding_options'] as bool,
+      allowAddingOptions: (json['allow_adding_options'] as bool?) ?? false,
     );
   }
 

@@ -21,7 +21,7 @@ class PageBlockMathematicalExpression extends PageBlock {
     }
 
     return PageBlockMathematicalExpression(
-      expression: json['expression'] as String,
+      expression: (json['expression'] as String?) ?? '',
     );
   }
 

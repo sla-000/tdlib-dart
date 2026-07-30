@@ -27,9 +27,9 @@ class MessageUsersShared extends MessageContent {
     return MessageUsersShared(
       users: List<SharedUser>.from(
           ((json['users'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => SharedUser.fromJson(item))
+              .map((item) => SharedUser.fromJson(item as Map<String, dynamic>?))
               .toList()),
-      buttonId: json['button_id'] as int,
+      buttonId: (json['button_id'] as int?) ?? 0,
     );
   }
 

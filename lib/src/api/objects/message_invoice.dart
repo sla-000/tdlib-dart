@@ -58,12 +58,12 @@ class MessageInvoice extends MessageContent {
     return MessageInvoice(
       productInfo:
           ProductInfo.fromJson(json['product_info'] as Map<String, dynamic>?)!,
-      currency: json['currency'] as String,
-      totalAmount: json['total_amount'] as int,
-      startParameter: json['start_parameter'] as String,
-      isTest: json['is_test'] as bool,
-      needShippingAddress: json['need_shipping_address'] as bool,
-      receiptMessageId: json['receipt_message_id'] as int,
+      currency: (json['currency'] as String?) ?? '',
+      totalAmount: (json['total_amount'] as int?) ?? 0,
+      startParameter: (json['start_parameter'] as String?) ?? '',
+      isTest: (json['is_test'] as bool?) ?? false,
+      needShippingAddress: (json['need_shipping_address'] as bool?) ?? false,
+      receiptMessageId: (json['receipt_message_id'] as int?) ?? 0,
       paidMedia:
           PaidMedia.fromJson(json['paid_media'] as Map<String, dynamic>?),
       paidMediaCaption: FormattedText.fromJson(

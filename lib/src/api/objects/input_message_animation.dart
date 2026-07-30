@@ -40,8 +40,9 @@ class InputMessageAnimation extends InputMessageContent {
       animation:
           InputAnimation.fromJson(json['animation'] as Map<String, dynamic>?)!,
       caption: FormattedText.fromJson(json['caption'] as Map<String, dynamic>?),
-      showCaptionAboveMedia: json['show_caption_above_media'] as bool,
-      hasSpoiler: json['has_spoiler'] as bool,
+      showCaptionAboveMedia:
+          (json['show_caption_above_media'] as bool?) ?? false,
+      hasSpoiler: (json['has_spoiler'] as bool?) ?? false,
     );
   }
 

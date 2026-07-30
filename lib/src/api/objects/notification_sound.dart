@@ -41,11 +41,14 @@ class NotificationSound extends TdObject {
     }
 
     return NotificationSound(
-      id: int.tryParse(json['id']) ?? 0,
-      duration: json['duration'] as int,
-      date: json['date'] as int,
-      title: json['title'] as String,
-      data: json['data'] as String,
+      id: (json['id'] is int
+              ? json['id'] as int
+              : int.tryParse(json['id']?.toString() ?? '')) ??
+          0,
+      duration: (json['duration'] as int?) ?? 0,
+      date: (json['date'] as int?) ?? 0,
+      title: (json['title'] as String?) ?? '',
+      data: (json['data'] as String?) ?? '',
       sound: File.fromJson(json['sound'] as Map<String, dynamic>?)!,
     );
   }

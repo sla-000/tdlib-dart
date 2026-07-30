@@ -83,21 +83,24 @@ class BusinessBotRights extends TdObject {
     }
 
     return BusinessBotRights(
-      canReply: json['can_reply'] as bool,
-      canReadMessages: json['can_read_messages'] as bool,
-      canDeleteSentMessages: json['can_delete_sent_messages'] as bool,
-      canDeleteAllMessages: json['can_delete_all_messages'] as bool,
-      canEditName: json['can_edit_name'] as bool,
-      canEditBio: json['can_edit_bio'] as bool,
-      canEditProfilePhoto: json['can_edit_profile_photo'] as bool,
-      canEditUsername: json['can_edit_username'] as bool,
-      canViewGiftsAndStars: json['can_view_gifts_and_stars'] as bool,
-      canSellGifts: json['can_sell_gifts'] as bool,
-      canChangeGiftSettings: json['can_change_gift_settings'] as bool,
+      canReply: (json['can_reply'] as bool?) ?? false,
+      canReadMessages: (json['can_read_messages'] as bool?) ?? false,
+      canDeleteSentMessages:
+          (json['can_delete_sent_messages'] as bool?) ?? false,
+      canDeleteAllMessages: (json['can_delete_all_messages'] as bool?) ?? false,
+      canEditName: (json['can_edit_name'] as bool?) ?? false,
+      canEditBio: (json['can_edit_bio'] as bool?) ?? false,
+      canEditProfilePhoto: (json['can_edit_profile_photo'] as bool?) ?? false,
+      canEditUsername: (json['can_edit_username'] as bool?) ?? false,
+      canViewGiftsAndStars:
+          (json['can_view_gifts_and_stars'] as bool?) ?? false,
+      canSellGifts: (json['can_sell_gifts'] as bool?) ?? false,
+      canChangeGiftSettings:
+          (json['can_change_gift_settings'] as bool?) ?? false,
       canTransferAndUpgradeGifts:
-          json['can_transfer_and_upgrade_gifts'] as bool,
-      canTransferStars: json['can_transfer_stars'] as bool,
-      canManageStories: json['can_manage_stories'] as bool,
+          (json['can_transfer_and_upgrade_gifts'] as bool?) ?? false,
+      canTransferStars: (json['can_transfer_stars'] as bool?) ?? false,
+      canManageStories: (json['can_manage_stories'] as bool?) ?? false,
     );
   }
 

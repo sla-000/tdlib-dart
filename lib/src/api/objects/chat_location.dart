@@ -26,7 +26,7 @@ class ChatLocation extends TdObject {
 
     return ChatLocation(
       location: Location.fromJson(json['location'] as Map<String, dynamic>?)!,
-      address: json['address'] as String,
+      address: (json['address'] as String?) ?? '',
     );
   }
 

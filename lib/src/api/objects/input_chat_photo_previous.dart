@@ -21,7 +21,10 @@ class InputChatPhotoPrevious extends InputChatPhoto {
     }
 
     return InputChatPhotoPrevious(
-      chatPhotoId: int.tryParse(json['chat_photo_id']) ?? 0,
+      chatPhotoId: (json['chat_photo_id'] is int
+              ? json['chat_photo_id'] as int
+              : int.tryParse(json['chat_photo_id']?.toString() ?? '')) ??
+          0,
     );
   }
 

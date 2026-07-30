@@ -31,9 +31,9 @@ class UpdateNewOauthRequest extends Update {
     }
 
     return UpdateNewOauthRequest(
-      domain: json['domain'] as String,
-      location: json['location'] as String,
-      url: json['url'] as String,
+      domain: (json['domain'] as String?) ?? '',
+      location: (json['location'] as String?) ?? '',
+      url: (json['url'] as String?) ?? '',
     );
   }
 

@@ -30,9 +30,9 @@ class StarGiveawayWinnerOption extends TdObject {
     }
 
     return StarGiveawayWinnerOption(
-      winnerCount: json['winner_count'] as int,
-      wonStarCount: json['won_star_count'] as int,
-      isDefault: json['is_default'] as bool,
+      winnerCount: (json['winner_count'] as int?) ?? 0,
+      wonStarCount: (json['won_star_count'] as int?) ?? 0,
+      isDefault: (json['is_default'] as bool?) ?? false,
     );
   }
 

@@ -23,7 +23,7 @@ class MessageChatUpgradeTo extends MessageContent {
     }
 
     return MessageChatUpgradeTo(
-      supergroupId: json['supergroup_id'] as int,
+      supergroupId: (json['supergroup_id'] as int?) ?? 0,
     );
   }
 

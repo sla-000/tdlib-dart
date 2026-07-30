@@ -24,7 +24,7 @@ class PassportElementErrorSourceTranslationFile
     }
 
     return PassportElementErrorSourceTranslationFile(
-      fileIndex: json['file_index'] as int,
+      fileIndex: (json['file_index'] as int?) ?? 0,
     );
   }
 

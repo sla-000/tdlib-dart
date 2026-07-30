@@ -27,7 +27,7 @@ class FactCheck extends TdObject {
 
     return FactCheck(
       text: FormattedText.fromJson(json['text'] as Map<String, dynamic>?)!,
-      countryCode: json['country_code'] as String,
+      countryCode: (json['country_code'] as String?) ?? '',
     );
   }
 

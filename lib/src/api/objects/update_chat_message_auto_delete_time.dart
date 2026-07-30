@@ -26,8 +26,8 @@ class UpdateChatMessageAutoDeleteTime extends Update {
     }
 
     return UpdateChatMessageAutoDeleteTime(
-      chatId: json['chat_id'] as int,
-      messageAutoDeleteTime: json['message_auto_delete_time'] as int,
+      chatId: (json['chat_id'] as int?) ?? 0,
+      messageAutoDeleteTime: (json['message_auto_delete_time'] as int?) ?? 0,
     );
   }
 

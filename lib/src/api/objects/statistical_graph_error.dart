@@ -21,7 +21,7 @@ class StatisticalGraphError extends StatisticalGraph {
     }
 
     return StatisticalGraphError(
-      errorMessage: json['error_message'] as String,
+      errorMessage: (json['error_message'] as String?) ?? '',
     );
   }
 

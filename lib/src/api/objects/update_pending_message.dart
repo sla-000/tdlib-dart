@@ -39,9 +39,12 @@ class UpdatePendingMessage extends Update {
     }
 
     return UpdatePendingMessage(
-      chatId: json['chat_id'] as int,
-      forumTopicId: json['forum_topic_id'] as int,
-      draftId: int.tryParse(json['draft_id']) ?? 0,
+      chatId: (json['chat_id'] as int?) ?? 0,
+      forumTopicId: (json['forum_topic_id'] as int?) ?? 0,
+      draftId: (json['draft_id'] is int
+              ? json['draft_id'] as int
+              : int.tryParse(json['draft_id']?.toString() ?? '')) ??
+          0,
       content:
           MessageContent.fromJson(json['content'] as Map<String, dynamic>?)!,
     );

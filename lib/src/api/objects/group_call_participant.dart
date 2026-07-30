@@ -105,26 +105,31 @@ class GroupCallParticipant extends TdObject {
     return GroupCallParticipant(
       participantId: MessageSender.fromJson(
           json['participant_id'] as Map<String, dynamic>?)!,
-      audioSourceId: json['audio_source_id'] as int,
-      screenSharingAudioSourceId: json['screen_sharing_audio_source_id'] as int,
+      audioSourceId: (json['audio_source_id'] as int?) ?? 0,
+      screenSharingAudioSourceId:
+          (json['screen_sharing_audio_source_id'] as int?) ?? 0,
       videoInfo: GroupCallParticipantVideoInfo.fromJson(
           json['video_info'] as Map<String, dynamic>?),
       screenSharingVideoInfo: GroupCallParticipantVideoInfo.fromJson(
           json['screen_sharing_video_info'] as Map<String, dynamic>?),
-      bio: json['bio'] as String,
-      isCurrentUser: json['is_current_user'] as bool,
-      isSpeaking: json['is_speaking'] as bool,
-      isHandRaised: json['is_hand_raised'] as bool,
-      canBeMutedForAllUsers: json['can_be_muted_for_all_users'] as bool,
-      canBeUnmutedForAllUsers: json['can_be_unmuted_for_all_users'] as bool,
-      canBeMutedForCurrentUser: json['can_be_muted_for_current_user'] as bool,
+      bio: (json['bio'] as String?) ?? '',
+      isCurrentUser: (json['is_current_user'] as bool?) ?? false,
+      isSpeaking: (json['is_speaking'] as bool?) ?? false,
+      isHandRaised: (json['is_hand_raised'] as bool?) ?? false,
+      canBeMutedForAllUsers:
+          (json['can_be_muted_for_all_users'] as bool?) ?? false,
+      canBeUnmutedForAllUsers:
+          (json['can_be_unmuted_for_all_users'] as bool?) ?? false,
+      canBeMutedForCurrentUser:
+          (json['can_be_muted_for_current_user'] as bool?) ?? false,
       canBeUnmutedForCurrentUser:
-          json['can_be_unmuted_for_current_user'] as bool,
-      isMutedForAllUsers: json['is_muted_for_all_users'] as bool,
-      isMutedForCurrentUser: json['is_muted_for_current_user'] as bool,
-      canUnmuteSelf: json['can_unmute_self'] as bool,
-      volumeLevel: json['volume_level'] as int,
-      order: json['order'] as String,
+          (json['can_be_unmuted_for_current_user'] as bool?) ?? false,
+      isMutedForAllUsers: (json['is_muted_for_all_users'] as bool?) ?? false,
+      isMutedForCurrentUser:
+          (json['is_muted_for_current_user'] as bool?) ?? false,
+      canUnmuteSelf: (json['can_unmute_self'] as bool?) ?? false,
+      volumeLevel: (json['volume_level'] as int?) ?? 0,
+      order: (json['order'] as String?) ?? '',
     );
   }
 

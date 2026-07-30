@@ -23,7 +23,7 @@ class ChatEventVideoChatMuteNewParticipantsToggled extends ChatEventAction {
     }
 
     return ChatEventVideoChatMuteNewParticipantsToggled(
-      muteNewParticipants: json['mute_new_participants'] as bool,
+      muteNewParticipants: (json['mute_new_participants'] as bool?) ?? false,
     );
   }
 

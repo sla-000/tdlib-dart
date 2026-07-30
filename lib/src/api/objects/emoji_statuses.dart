@@ -21,10 +21,11 @@ class EmojiStatuses extends TdObject {
     }
 
     return EmojiStatuses(
-      emojiStatuses: List<EmojiStatus>.from(
-          ((json['emoji_statuses'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => EmojiStatus.fromJson(item))
-              .toList()),
+      emojiStatuses: List<EmojiStatus>.from(((json['emoji_statuses']
+                  as List<dynamic>?) ??
+              <dynamic>[])
+          .map((item) => EmojiStatus.fromJson(item as Map<String, dynamic>?))
+          .toList()),
     );
   }
 

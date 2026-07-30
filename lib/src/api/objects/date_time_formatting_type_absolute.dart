@@ -34,7 +34,7 @@ class DateTimeFormattingTypeAbsolute extends DateTimeFormattingType {
           json['time_precision'] as Map<String, dynamic>?)!,
       datePrecision: DateTimePartPrecision.fromJson(
           json['date_precision'] as Map<String, dynamic>?)!,
-      showDayOfWeek: json['show_day_of_week'] as bool,
+      showDayOfWeek: (json['show_day_of_week'] as bool?) ?? false,
     );
   }
 

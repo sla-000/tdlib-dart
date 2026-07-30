@@ -26,8 +26,8 @@ class MessageOriginChat extends MessageOrigin {
     }
 
     return MessageOriginChat(
-      senderChatId: json['sender_chat_id'] as int,
-      authorSignature: json['author_signature'] as String,
+      senderChatId: (json['sender_chat_id'] as int?) ?? 0,
+      authorSignature: (json['author_signature'] as String?) ?? '',
     );
   }
 

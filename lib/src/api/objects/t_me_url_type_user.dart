@@ -21,7 +21,7 @@ class TMeUrlTypeUser extends TMeUrlType {
     }
 
     return TMeUrlTypeUser(
-      userId: json['user_id'] as int,
+      userId: (json['user_id'] as int?) ?? 0,
     );
   }
 

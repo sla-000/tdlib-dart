@@ -32,8 +32,8 @@ class TermsOfService extends TdObject {
 
     return TermsOfService(
       text: FormattedText.fromJson(json['text'] as Map<String, dynamic>?)!,
-      minUserAge: json['min_user_age'] as int,
-      showPopup: json['show_popup'] as bool,
+      minUserAge: (json['min_user_age'] as int?) ?? 0,
+      showPopup: (json['show_popup'] as bool?) ?? false,
     );
   }
 

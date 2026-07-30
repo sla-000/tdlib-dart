@@ -26,8 +26,8 @@ class PaymentResult extends TdObject {
     }
 
     return PaymentResult(
-      success: json['success'] as bool,
-      verificationUrl: json['verification_url'] as String,
+      success: (json['success'] as bool?) ?? false,
+      verificationUrl: (json['verification_url'] as String?) ?? '',
     );
   }
 

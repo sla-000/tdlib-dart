@@ -37,11 +37,11 @@ class PushMessageContentMediaAlbum extends PushMessageContent {
     }
 
     return PushMessageContentMediaAlbum(
-      totalCount: json['total_count'] as int,
-      hasPhotos: json['has_photos'] as bool,
-      hasVideos: json['has_videos'] as bool,
-      hasAudios: json['has_audios'] as bool,
-      hasDocuments: json['has_documents'] as bool,
+      totalCount: (json['total_count'] as int?) ?? 0,
+      hasPhotos: (json['has_photos'] as bool?) ?? false,
+      hasVideos: (json['has_videos'] as bool?) ?? false,
+      hasAudios: (json['has_audios'] as bool?) ?? false,
+      hasDocuments: (json['has_documents'] as bool?) ?? false,
     );
   }
 

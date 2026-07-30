@@ -26,7 +26,7 @@ class RichTextBotCommand extends RichText {
 
     return RichTextBotCommand(
       text: RichText.fromJson(json['text'] as Map<String, dynamic>?)!,
-      botCommand: json['bot_command'] as String,
+      botCommand: (json['bot_command'] as String?) ?? '',
     );
   }
 

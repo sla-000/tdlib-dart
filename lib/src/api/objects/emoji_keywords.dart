@@ -21,10 +21,11 @@ class EmojiKeywords extends TdObject {
     }
 
     return EmojiKeywords(
-      emojiKeywords: List<EmojiKeyword>.from(
-          ((json['emoji_keywords'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => EmojiKeyword.fromJson(item))
-              .toList()),
+      emojiKeywords: List<EmojiKeyword>.from(((json['emoji_keywords']
+                  as List<dynamic>?) ??
+              <dynamic>[])
+          .map((item) => EmojiKeyword.fromJson(item as Map<String, dynamic>?))
+          .toList()),
     );
   }
 

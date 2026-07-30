@@ -49,14 +49,14 @@ class GroupCallMessage extends TdObject {
     }
 
     return GroupCallMessage(
-      messageId: json['message_id'] as int,
+      messageId: (json['message_id'] as int?) ?? 0,
       senderId:
           MessageSender.fromJson(json['sender_id'] as Map<String, dynamic>?)!,
-      date: json['date'] as int,
+      date: (json['date'] as int?) ?? 0,
       text: FormattedText.fromJson(json['text'] as Map<String, dynamic>?)!,
-      paidMessageStarCount: json['paid_message_star_count'] as int,
-      isFromOwner: json['is_from_owner'] as bool,
-      canBeDeleted: json['can_be_deleted'] as bool,
+      paidMessageStarCount: (json['paid_message_star_count'] as int?) ?? 0,
+      isFromOwner: (json['is_from_owner'] as bool?) ?? false,
+      canBeDeleted: (json['can_be_deleted'] as bool?) ?? false,
     );
   }
 

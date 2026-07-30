@@ -23,7 +23,7 @@ class SettingsSectionInAppBrowser extends SettingsSection {
     }
 
     return SettingsSectionInAppBrowser(
-      subsection: json['subsection'] as String,
+      subsection: (json['subsection'] as String?) ?? '',
     );
   }
 

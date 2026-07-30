@@ -31,8 +31,8 @@ class MessagePollOptionAdded extends MessageContent {
     }
 
     return MessagePollOptionAdded(
-      pollMessageId: json['poll_message_id'] as int,
-      optionId: json['option_id'] as String,
+      pollMessageId: (json['poll_message_id'] as int?) ?? 0,
+      optionId: (json['option_id'] as String?) ?? '',
       text: FormattedText.fromJson(json['text'] as Map<String, dynamic>?)!,
     );
   }

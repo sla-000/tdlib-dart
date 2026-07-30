@@ -25,8 +25,8 @@ class ChatEventSlowModeDelayChanged extends ChatEventAction {
     }
 
     return ChatEventSlowModeDelayChanged(
-      oldSlowModeDelay: json['old_slow_mode_delay'] as int,
-      newSlowModeDelay: json['new_slow_mode_delay'] as int,
+      oldSlowModeDelay: (json['old_slow_mode_delay'] as int?) ?? 0,
+      newSlowModeDelay: (json['new_slow_mode_delay'] as int?) ?? 0,
     );
   }
 

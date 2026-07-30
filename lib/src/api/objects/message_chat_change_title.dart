@@ -21,7 +21,7 @@ class MessageChatChangeTitle extends MessageContent {
     }
 
     return MessageChatChangeTitle(
-      title: json['title'] as String,
+      title: (json['title'] as String?) ?? '',
     );
   }
 

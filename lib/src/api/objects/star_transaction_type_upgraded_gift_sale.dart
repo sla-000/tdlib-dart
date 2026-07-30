@@ -41,12 +41,12 @@ class StarTransactionTypeUpgradedGiftSale extends StarTransactionType {
     }
 
     return StarTransactionTypeUpgradedGiftSale(
-      userId: json['user_id'] as int,
+      userId: (json['user_id'] as int?) ?? 0,
       gift: UpgradedGift.fromJson(json['gift'] as Map<String, dynamic>?)!,
-      commissionPerMille: json['commission_per_mille'] as int,
+      commissionPerMille: (json['commission_per_mille'] as int?) ?? 0,
       commissionStarAmount: StarAmount.fromJson(
           json['commission_star_amount'] as Map<String, dynamic>?)!,
-      viaOffer: json['via_offer'] as bool,
+      viaOffer: (json['via_offer'] as bool?) ?? false,
     );
   }
 

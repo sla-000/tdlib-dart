@@ -25,7 +25,7 @@ class UpdateChatBlockList extends Update {
     }
 
     return UpdateChatBlockList(
-      chatId: json['chat_id'] as int,
+      chatId: (json['chat_id'] as int?) ?? 0,
       blockList:
           BlockList.fromJson(json['block_list'] as Map<String, dynamic>?),
     );

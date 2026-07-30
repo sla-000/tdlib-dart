@@ -21,7 +21,7 @@ class MessageTopicSavedMessages extends MessageTopic {
     }
 
     return MessageTopicSavedMessages(
-      savedMessagesTopicId: json['saved_messages_topic_id'] as int,
+      savedMessagesTopicId: (json['saved_messages_topic_id'] as int?) ?? 0,
     );
   }
 

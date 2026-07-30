@@ -31,13 +31,14 @@ class UpdateChatLastMessage extends Update {
     }
 
     return UpdateChatLastMessage(
-      chatId: json['chat_id'] as int,
+      chatId: (json['chat_id'] as int?) ?? 0,
       lastMessage:
           Message.fromJson(json['last_message'] as Map<String, dynamic>?),
-      positions: List<ChatPosition>.from(
-          ((json['positions'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => ChatPosition.fromJson(item))
-              .toList()),
+      positions: List<ChatPosition>.from(((json['positions']
+                  as List<dynamic>?) ??
+              <dynamic>[])
+          .map((item) => ChatPosition.fromJson(item as Map<String, dynamic>?))
+          .toList()),
     );
   }
 

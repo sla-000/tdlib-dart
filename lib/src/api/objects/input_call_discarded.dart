@@ -21,7 +21,7 @@ class InputCallDiscarded extends InputCall {
     }
 
     return InputCallDiscarded(
-      callId: json['call_id'] as int,
+      callId: (json['call_id'] as int?) ?? 0,
     );
   }
 

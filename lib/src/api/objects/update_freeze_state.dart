@@ -35,10 +35,10 @@ class UpdateFreezeState extends Update {
     }
 
     return UpdateFreezeState(
-      isFrozen: json['is_frozen'] as bool,
-      freezingDate: json['freezing_date'] as int,
-      deletionDate: json['deletion_date'] as int,
-      appealLink: json['appeal_link'] as String,
+      isFrozen: (json['is_frozen'] as bool?) ?? false,
+      freezingDate: (json['freezing_date'] as int?) ?? 0,
+      deletionDate: (json['deletion_date'] as int?) ?? 0,
+      appealLink: (json['appeal_link'] as String?) ?? '',
     );
   }
 

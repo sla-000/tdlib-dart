@@ -82,21 +82,23 @@ class ThemeParameters extends TdObject {
     }
 
     return ThemeParameters(
-      backgroundColor: json['background_color'] as int,
-      secondaryBackgroundColor: json['secondary_background_color'] as int,
-      headerBackgroundColor: json['header_background_color'] as int,
-      bottomBarBackgroundColor: json['bottom_bar_background_color'] as int,
-      sectionBackgroundColor: json['section_background_color'] as int,
-      sectionSeparatorColor: json['section_separator_color'] as int,
-      textColor: json['text_color'] as int,
-      accentTextColor: json['accent_text_color'] as int,
-      sectionHeaderTextColor: json['section_header_text_color'] as int,
-      subtitleTextColor: json['subtitle_text_color'] as int,
-      destructiveTextColor: json['destructive_text_color'] as int,
-      hintColor: json['hint_color'] as int,
-      linkColor: json['link_color'] as int,
-      buttonColor: json['button_color'] as int,
-      buttonTextColor: json['button_text_color'] as int,
+      backgroundColor: (json['background_color'] as int?) ?? 0,
+      secondaryBackgroundColor:
+          (json['secondary_background_color'] as int?) ?? 0,
+      headerBackgroundColor: (json['header_background_color'] as int?) ?? 0,
+      bottomBarBackgroundColor:
+          (json['bottom_bar_background_color'] as int?) ?? 0,
+      sectionBackgroundColor: (json['section_background_color'] as int?) ?? 0,
+      sectionSeparatorColor: (json['section_separator_color'] as int?) ?? 0,
+      textColor: (json['text_color'] as int?) ?? 0,
+      accentTextColor: (json['accent_text_color'] as int?) ?? 0,
+      sectionHeaderTextColor: (json['section_header_text_color'] as int?) ?? 0,
+      subtitleTextColor: (json['subtitle_text_color'] as int?) ?? 0,
+      destructiveTextColor: (json['destructive_text_color'] as int?) ?? 0,
+      hintColor: (json['hint_color'] as int?) ?? 0,
+      linkColor: (json['link_color'] as int?) ?? 0,
+      buttonColor: (json['button_color'] as int?) ?? 0,
+      buttonTextColor: (json['button_text_color'] as int?) ?? 0,
     );
   }
 

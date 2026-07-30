@@ -37,7 +37,7 @@ class StoryInteraction extends TdObject {
     return StoryInteraction(
       actorId:
           MessageSender.fromJson(json['actor_id'] as Map<String, dynamic>?)!,
-      interactionDate: json['interaction_date'] as int,
+      interactionDate: (json['interaction_date'] as int?) ?? 0,
       blockList:
           BlockList.fromJson(json['block_list'] as Map<String, dynamic>?),
       type:

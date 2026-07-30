@@ -36,10 +36,11 @@ class ChatInviteLinkMember extends TdObject {
     }
 
     return ChatInviteLinkMember(
-      userId: json['user_id'] as int,
-      joinedChatDate: json['joined_chat_date'] as int,
-      viaChatFolderInviteLink: json['via_chat_folder_invite_link'] as bool,
-      approverUserId: json['approver_user_id'] as int,
+      userId: (json['user_id'] as int?) ?? 0,
+      joinedChatDate: (json['joined_chat_date'] as int?) ?? 0,
+      viaChatFolderInviteLink:
+          (json['via_chat_folder_invite_link'] as bool?) ?? false,
+      approverUserId: (json['approver_user_id'] as int?) ?? 0,
     );
   }
 

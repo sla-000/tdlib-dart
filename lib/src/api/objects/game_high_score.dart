@@ -29,9 +29,9 @@ class GameHighScore extends TdObject {
     }
 
     return GameHighScore(
-      position: json['position'] as int,
-      userId: json['user_id'] as int,
-      score: json['score'] as int,
+      position: (json['position'] as int?) ?? 0,
+      userId: (json['user_id'] as int?) ?? 0,
+      score: (json['score'] as int?) ?? 0,
     );
   }
 

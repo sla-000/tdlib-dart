@@ -31,10 +31,11 @@ class FailedToAddMember extends TdObject {
     }
 
     return FailedToAddMember(
-      userId: json['user_id'] as int,
-      premiumWouldAllowInvite: json['premium_would_allow_invite'] as bool,
+      userId: (json['user_id'] as int?) ?? 0,
+      premiumWouldAllowInvite:
+          (json['premium_would_allow_invite'] as bool?) ?? false,
       premiumRequiredToSendMessages:
-          json['premium_required_to_send_messages'] as bool,
+          (json['premium_required_to_send_messages'] as bool?) ?? false,
     );
   }
 

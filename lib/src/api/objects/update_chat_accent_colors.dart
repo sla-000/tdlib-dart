@@ -46,15 +46,23 @@ class UpdateChatAccentColors extends Update {
     }
 
     return UpdateChatAccentColors(
-      chatId: json['chat_id'] as int,
-      accentColorId: json['accent_color_id'] as int,
-      backgroundCustomEmojiId:
-          int.tryParse(json['background_custom_emoji_id']) ?? 0,
+      chatId: (json['chat_id'] as int?) ?? 0,
+      accentColorId: (json['accent_color_id'] as int?) ?? 0,
+      backgroundCustomEmojiId: (json['background_custom_emoji_id'] is int
+              ? json['background_custom_emoji_id'] as int
+              : int.tryParse(
+                  json['background_custom_emoji_id']?.toString() ?? '')) ??
+          0,
       upgradedGiftColors: UpgradedGiftColors.fromJson(
           json['upgraded_gift_colors'] as Map<String, dynamic>?),
-      profileAccentColorId: json['profile_accent_color_id'] as int,
+      profileAccentColorId: (json['profile_accent_color_id'] as int?) ?? 0,
       profileBackgroundCustomEmojiId:
-          int.tryParse(json['profile_background_custom_emoji_id']) ?? 0,
+          (json['profile_background_custom_emoji_id'] is int
+                  ? json['profile_background_custom_emoji_id'] as int
+                  : int.tryParse(
+                      json['profile_background_custom_emoji_id']?.toString() ??
+                          '')) ??
+              0,
     );
   }
 

@@ -23,7 +23,8 @@ class QuickReplyMessages extends TdObject {
     return QuickReplyMessages(
       messages: List<QuickReplyMessage>.from(
           ((json['messages'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => QuickReplyMessage.fromJson(item))
+              .map((item) =>
+                  QuickReplyMessage.fromJson(item as Map<String, dynamic>?))
               .toList()),
     );
   }

@@ -27,7 +27,8 @@ class DeepLinkInfo extends TdObject {
 
     return DeepLinkInfo(
       text: FormattedText.fromJson(json['text'] as Map<String, dynamic>?)!,
-      needUpdateApplication: json['need_update_application'] as bool,
+      needUpdateApplication:
+          (json['need_update_application'] as bool?) ?? false,
     );
   }
 

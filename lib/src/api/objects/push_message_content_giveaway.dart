@@ -31,9 +31,9 @@ class PushMessageContentGiveaway extends PushMessageContent {
     }
 
     return PushMessageContentGiveaway(
-      winnerCount: json['winner_count'] as int,
+      winnerCount: (json['winner_count'] as int?) ?? 0,
       prize: GiveawayPrize.fromJson(json['prize'] as Map<String, dynamic>?),
-      isPinned: json['is_pinned'] as bool,
+      isPinned: (json['is_pinned'] as bool?) ?? false,
     );
   }
 

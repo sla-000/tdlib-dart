@@ -23,7 +23,7 @@ class CanPostStoryResultLiveStoryIsActive extends CanPostStoryResult {
     }
 
     return CanPostStoryResultLiveStoryIsActive(
-      storyId: json['story_id'] as int,
+      storyId: (json['story_id'] as int?) ?? 0,
     );
   }
 

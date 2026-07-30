@@ -26,8 +26,8 @@ class AuthenticationCodeTypeFragment extends AuthenticationCodeType {
     }
 
     return AuthenticationCodeTypeFragment(
-      url: json['url'] as String,
-      length: json['length'] as int,
+      url: (json['url'] as String?) ?? '',
+      length: (json['length'] as int?) ?? 0,
     );
   }
 

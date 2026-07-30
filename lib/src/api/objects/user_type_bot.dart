@@ -89,22 +89,25 @@ class UserTypeBot extends UserType {
     }
 
     return UserTypeBot(
-      canBeEdited: json['can_be_edited'] as bool,
-      canJoinGroups: json['can_join_groups'] as bool,
-      canReadAllGroupMessages: json['can_read_all_group_messages'] as bool,
-      hasMainWebApp: json['has_main_web_app'] as bool,
-      hasTopics: json['has_topics'] as bool,
-      allowsUsersToCreateTopics: json['allows_users_to_create_topics'] as bool,
-      canManageBots: json['can_manage_bots'] as bool,
-      isInline: json['is_inline'] as bool,
-      inlineQueryPlaceholder: json['inline_query_placeholder'] as String,
-      supportsGuestQueries: json['supports_guest_queries'] as bool,
-      isGuard: json['is_guard'] as bool,
-      needLocation: json['need_location'] as bool,
-      canConnectToBusiness: json['can_connect_to_business'] as bool,
+      canBeEdited: (json['can_be_edited'] as bool?) ?? false,
+      canJoinGroups: (json['can_join_groups'] as bool?) ?? false,
+      canReadAllGroupMessages:
+          (json['can_read_all_group_messages'] as bool?) ?? false,
+      hasMainWebApp: (json['has_main_web_app'] as bool?) ?? false,
+      hasTopics: (json['has_topics'] as bool?) ?? false,
+      allowsUsersToCreateTopics:
+          (json['allows_users_to_create_topics'] as bool?) ?? false,
+      canManageBots: (json['can_manage_bots'] as bool?) ?? false,
+      isInline: (json['is_inline'] as bool?) ?? false,
+      inlineQueryPlaceholder:
+          (json['inline_query_placeholder'] as String?) ?? '',
+      supportsGuestQueries: (json['supports_guest_queries'] as bool?) ?? false,
+      isGuard: (json['is_guard'] as bool?) ?? false,
+      needLocation: (json['need_location'] as bool?) ?? false,
+      canConnectToBusiness: (json['can_connect_to_business'] as bool?) ?? false,
       canBeAddedToAttachmentMenu:
-          json['can_be_added_to_attachment_menu'] as bool,
-      activeUserCount: json['active_user_count'] as int,
+          (json['can_be_added_to_attachment_menu'] as bool?) ?? false,
+      activeUserCount: (json['active_user_count'] as int?) ?? 0,
     );
   }
 

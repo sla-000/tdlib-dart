@@ -25,8 +25,8 @@ class StoryOriginPublicStory extends StoryOrigin {
     }
 
     return StoryOriginPublicStory(
-      chatId: json['chat_id'] as int,
-      storyId: json['story_id'] as int,
+      chatId: (json['chat_id'] as int?) ?? 0,
+      storyId: (json['story_id'] as int?) ?? 0,
     );
   }
 

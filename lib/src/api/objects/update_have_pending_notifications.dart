@@ -29,9 +29,10 @@ class UpdateHavePendingNotifications extends Update {
     }
 
     return UpdateHavePendingNotifications(
-      haveDelayedNotifications: json['have_delayed_notifications'] as bool,
+      haveDelayedNotifications:
+          (json['have_delayed_notifications'] as bool?) ?? false,
       haveUnreceivedNotifications:
-          json['have_unreceived_notifications'] as bool,
+          (json['have_unreceived_notifications'] as bool?) ?? false,
     );
   }
 

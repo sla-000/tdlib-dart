@@ -30,14 +30,15 @@ class Stories extends TdObject {
     }
 
     return Stories(
-      totalCount: json['total_count'] as int,
+      totalCount: (json['total_count'] as int?) ?? 0,
       stories: List<Story>.from(
           ((json['stories'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => Story.fromJson(item))
+              .map((item) => Story.fromJson(item as Map<String, dynamic>?))
               .toList()),
       pinnedStoryIds: List<int>.from(
           ((json['pinned_story_ids'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => item)
+              .map((item) =>
+                  (item is int ? item : int.tryParse(item.toString()) ?? 0))
               .toList()),
     );
   }

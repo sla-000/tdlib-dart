@@ -29,7 +29,7 @@ class InlineQueryResultContact extends InlineQueryResult {
     }
 
     return InlineQueryResultContact(
-      id: json['id'] as String,
+      id: (json['id'] as String?) ?? '',
       contact: Contact.fromJson(json['contact'] as Map<String, dynamic>?)!,
       thumbnail: Thumbnail.fromJson(json['thumbnail'] as Map<String, dynamic>?),
     );

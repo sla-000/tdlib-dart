@@ -32,7 +32,7 @@ class UpdateMessageSendFailed extends Update {
 
     return UpdateMessageSendFailed(
       message: Message.fromJson(json['message'] as Map<String, dynamic>?)!,
-      oldMessageId: json['old_message_id'] as int,
+      oldMessageId: (json['old_message_id'] as int?) ?? 0,
       error: TdError.fromJson(json['error'] as Map<String, dynamic>?)!,
     );
   }

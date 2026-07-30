@@ -26,8 +26,11 @@ class InputStoryAreaTypeFoundVenue extends InputStoryAreaType {
     }
 
     return InputStoryAreaTypeFoundVenue(
-      queryId: int.tryParse(json['query_id']) ?? 0,
-      resultId: json['result_id'] as String,
+      queryId: (json['query_id'] is int
+              ? json['query_id'] as int
+              : int.tryParse(json['query_id']?.toString() ?? '')) ??
+          0,
+      resultId: (json['result_id'] as String?) ?? '',
     );
   }
 

@@ -25,8 +25,8 @@ class Point extends TdObject {
     }
 
     return Point(
-      x: (json['x'] as num).toDouble(),
-      y: (json['y'] as num).toDouble(),
+      x: (json['x'] as num?)?.toDouble() ?? 0.0,
+      y: (json['y'] as num?)?.toDouble() ?? 0.0,
     );
   }
 

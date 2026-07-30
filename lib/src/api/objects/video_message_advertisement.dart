@@ -54,15 +54,15 @@ class VideoMessageAdvertisement extends TdObject {
     }
 
     return VideoMessageAdvertisement(
-      uniqueId: json['unique_id'] as int,
-      text: json['text'] as String,
-      minDisplayDuration: json['min_display_duration'] as int,
-      maxDisplayDuration: json['max_display_duration'] as int,
-      canBeReported: json['can_be_reported'] as bool,
+      uniqueId: (json['unique_id'] as int?) ?? 0,
+      text: (json['text'] as String?) ?? '',
+      minDisplayDuration: (json['min_display_duration'] as int?) ?? 0,
+      maxDisplayDuration: (json['max_display_duration'] as int?) ?? 0,
+      canBeReported: (json['can_be_reported'] as bool?) ?? false,
       sponsor: AdvertisementSponsor.fromJson(
           json['sponsor'] as Map<String, dynamic>?)!,
-      title: json['title'] as String,
-      additionalInfo: json['additional_info'] as String,
+      title: (json['title'] as String?) ?? '',
+      additionalInfo: (json['additional_info'] as String?) ?? '',
     );
   }
 

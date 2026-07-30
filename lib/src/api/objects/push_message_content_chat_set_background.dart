@@ -23,7 +23,7 @@ class PushMessageContentChatSetBackground extends PushMessageContent {
     }
 
     return PushMessageContentChatSetBackground(
-      isSame: json['is_same'] as bool,
+      isSame: (json['is_same'] as bool?) ?? false,
     );
   }
 

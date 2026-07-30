@@ -21,7 +21,7 @@ class RichTextMathematicalExpression extends RichText {
     }
 
     return RichTextMathematicalExpression(
-      expression: json['expression'] as String,
+      expression: (json['expression'] as String?) ?? '',
     );
   }
 

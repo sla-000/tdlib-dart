@@ -181,28 +181,30 @@ class UserFullInfo extends TdObject {
           ChatPhoto.fromJson(json['public_photo'] as Map<String, dynamic>?),
       blockList:
           BlockList.fromJson(json['block_list'] as Map<String, dynamic>?),
-      canBeCalled: json['can_be_called'] as bool,
-      supportsVideoCalls: json['supports_video_calls'] as bool,
-      hasPrivateCalls: json['has_private_calls'] as bool,
-      hasPrivateForwards: json['has_private_forwards'] as bool,
+      canBeCalled: (json['can_be_called'] as bool?) ?? false,
+      supportsVideoCalls: (json['supports_video_calls'] as bool?) ?? false,
+      hasPrivateCalls: (json['has_private_calls'] as bool?) ?? false,
+      hasPrivateForwards: (json['has_private_forwards'] as bool?) ?? false,
       hasRestrictedVoiceAndVideoNoteMessages:
-          json['has_restricted_voice_and_video_note_messages'] as bool,
-      hasPostedToProfileStories: json['has_posted_to_profile_stories'] as bool,
+          (json['has_restricted_voice_and_video_note_messages'] as bool?) ??
+              false,
+      hasPostedToProfileStories:
+          (json['has_posted_to_profile_stories'] as bool?) ?? false,
       hasSponsoredMessagesEnabled:
-          json['has_sponsored_messages_enabled'] as bool,
+          (json['has_sponsored_messages_enabled'] as bool?) ?? false,
       needPhoneNumberPrivacyException:
-          json['need_phone_number_privacy_exception'] as bool,
-      setChatBackground: json['set_chat_background'] as bool,
-      usesUnofficialApp: json['uses_unofficial_app'] as bool,
+          (json['need_phone_number_privacy_exception'] as bool?) ?? false,
+      setChatBackground: (json['set_chat_background'] as bool?) ?? false,
+      usesUnofficialApp: (json['uses_unofficial_app'] as bool?) ?? false,
       bio: FormattedText.fromJson(json['bio'] as Map<String, dynamic>?),
       birthdate: Birthdate.fromJson(json['birthdate'] as Map<String, dynamic>?),
-      personalChatId: json['personal_chat_id'] as int,
-      giftCount: json['gift_count'] as int,
-      groupInCommonCount: json['group_in_common_count'] as int,
+      personalChatId: (json['personal_chat_id'] as int?) ?? 0,
+      giftCount: (json['gift_count'] as int?) ?? 0,
+      groupInCommonCount: (json['group_in_common_count'] as int?) ?? 0,
       incomingPaidMessageStarCount:
-          json['incoming_paid_message_star_count'] as int,
+          (json['incoming_paid_message_star_count'] as int?) ?? 0,
       outgoingPaidMessageStarCount:
-          json['outgoing_paid_message_star_count'] as int,
+          (json['outgoing_paid_message_star_count'] as int?) ?? 0,
       giftSettings: GiftSettings.fromJson(
           json['gift_settings'] as Map<String, dynamic>?)!,
       botVerification: BotVerification.fromJson(
@@ -214,7 +216,7 @@ class UserFullInfo extends TdObject {
       rating: UserRating.fromJson(json['rating'] as Map<String, dynamic>?),
       pendingRating:
           UserRating.fromJson(json['pending_rating'] as Map<String, dynamic>?),
-      pendingRatingDate: json['pending_rating_date'] as int,
+      pendingRatingDate: (json['pending_rating_date'] as int?) ?? 0,
       note: FormattedText.fromJson(json['note'] as Map<String, dynamic>?),
       businessInfo:
           BusinessInfo.fromJson(json['business_info'] as Map<String, dynamic>?),

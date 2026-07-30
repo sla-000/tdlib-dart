@@ -22,7 +22,7 @@ class GiftResaleResultOk extends GiftResaleResult {
     }
 
     return GiftResaleResultOk(
-      receivedGiftId: json['received_gift_id'] as String,
+      receivedGiftId: (json['received_gift_id'] as String?) ?? '',
     );
   }
 

@@ -30,15 +30,17 @@ class MessageChecklistTasksDone extends MessageContent {
     }
 
     return MessageChecklistTasksDone(
-      checklistMessageId: json['checklist_message_id'] as int,
+      checklistMessageId: (json['checklist_message_id'] as int?) ?? 0,
       markedAsDoneTaskIds: List<int>.from(
           ((json['marked_as_done_task_ids'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => item)
+              .map((item) =>
+                  (item is int ? item : int.tryParse(item.toString()) ?? 0))
               .toList()),
       markedAsNotDoneTaskIds: List<int>.from(
           ((json['marked_as_not_done_task_ids'] as List<dynamic>?) ??
                   <dynamic>[])
-              .map((item) => item)
+              .map((item) =>
+                  (item is int ? item : int.tryParse(item.toString()) ?? 0))
               .toList()),
     );
   }

@@ -41,7 +41,7 @@ class ChatRevenueStatistics extends TdObject {
           json['revenue_graph'] as Map<String, dynamic>?)!,
       revenueAmount: ChatRevenueAmount.fromJson(
           json['revenue_amount'] as Map<String, dynamic>?)!,
-      usdRate: (json['usd_rate'] as num).toDouble(),
+      usdRate: (json['usd_rate'] as num?)?.toDouble() ?? 0.0,
     );
   }
 

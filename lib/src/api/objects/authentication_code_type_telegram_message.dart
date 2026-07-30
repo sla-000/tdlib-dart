@@ -23,7 +23,7 @@ class AuthenticationCodeTypeTelegramMessage extends AuthenticationCodeType {
     }
 
     return AuthenticationCodeTypeTelegramMessage(
-      length: json['length'] as int,
+      length: (json['length'] as int?) ?? 0,
     );
   }
 

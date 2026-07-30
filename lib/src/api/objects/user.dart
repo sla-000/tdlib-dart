@@ -146,41 +146,50 @@ class User extends TdObject {
     }
 
     return User(
-      id: json['id'] as int,
-      firstName: json['first_name'] as String,
-      lastName: json['last_name'] as String,
+      id: (json['id'] as int?) ?? 0,
+      firstName: (json['first_name'] as String?) ?? '',
+      lastName: (json['last_name'] as String?) ?? '',
       usernames: Usernames.fromJson(json['usernames'] as Map<String, dynamic>?),
-      phoneNumber: json['phone_number'] as String,
+      phoneNumber: (json['phone_number'] as String?) ?? '',
       status: UserStatus.fromJson(json['status'] as Map<String, dynamic>?)!,
       profilePhoto:
           ProfilePhoto.fromJson(json['profile_photo'] as Map<String, dynamic>?),
-      accentColorId: json['accent_color_id'] as int,
-      backgroundCustomEmojiId:
-          int.tryParse(json['background_custom_emoji_id']) ?? 0,
+      accentColorId: (json['accent_color_id'] as int?) ?? 0,
+      backgroundCustomEmojiId: (json['background_custom_emoji_id'] is int
+              ? json['background_custom_emoji_id'] as int
+              : int.tryParse(
+                  json['background_custom_emoji_id']?.toString() ?? '')) ??
+          0,
       upgradedGiftColors: UpgradedGiftColors.fromJson(
           json['upgraded_gift_colors'] as Map<String, dynamic>?),
-      profileAccentColorId: json['profile_accent_color_id'] as int,
+      profileAccentColorId: (json['profile_accent_color_id'] as int?) ?? 0,
       profileBackgroundCustomEmojiId:
-          int.tryParse(json['profile_background_custom_emoji_id']) ?? 0,
+          (json['profile_background_custom_emoji_id'] is int
+                  ? json['profile_background_custom_emoji_id'] as int
+                  : int.tryParse(
+                      json['profile_background_custom_emoji_id']?.toString() ??
+                          '')) ??
+              0,
       emojiStatus:
           EmojiStatus.fromJson(json['emoji_status'] as Map<String, dynamic>?),
-      isContact: json['is_contact'] as bool,
-      isMutualContact: json['is_mutual_contact'] as bool,
-      isCloseFriend: json['is_close_friend'] as bool,
+      isContact: (json['is_contact'] as bool?) ?? false,
+      isMutualContact: (json['is_mutual_contact'] as bool?) ?? false,
+      isCloseFriend: (json['is_close_friend'] as bool?) ?? false,
       verificationStatus: VerificationStatus.fromJson(
           json['verification_status'] as Map<String, dynamic>?),
-      isPremium: json['is_premium'] as bool,
-      isSupport: json['is_support'] as bool,
+      isPremium: (json['is_premium'] as bool?) ?? false,
+      isSupport: (json['is_support'] as bool?) ?? false,
       restrictionInfo: RestrictionInfo.fromJson(
           json['restriction_info'] as Map<String, dynamic>?),
       activeStoryState: ActiveStoryState.fromJson(
           json['active_story_state'] as Map<String, dynamic>?),
-      restrictsNewChats: json['restricts_new_chats'] as bool,
-      paidMessageStarCount: json['paid_message_star_count'] as int,
-      haveAccess: json['have_access'] as bool,
+      restrictsNewChats: (json['restricts_new_chats'] as bool?) ?? false,
+      paidMessageStarCount: (json['paid_message_star_count'] as int?) ?? 0,
+      haveAccess: (json['have_access'] as bool?) ?? false,
       type: UserType.fromJson(json['type'] as Map<String, dynamic>?)!,
-      languageCode: json['language_code'] as String,
-      addedToAttachmentMenu: json['added_to_attachment_menu'] as bool,
+      languageCode: (json['language_code'] as String?) ?? '',
+      addedToAttachmentMenu:
+          (json['added_to_attachment_menu'] as bool?) ?? false,
     );
   }
 

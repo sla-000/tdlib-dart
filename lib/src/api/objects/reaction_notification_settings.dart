@@ -48,8 +48,11 @@ class ReactionNotificationSettings extends TdObject {
           json['story_reaction_source'] as Map<String, dynamic>?)!,
       pollVoteSource: ReactionNotificationSource.fromJson(
           json['poll_vote_source'] as Map<String, dynamic>?)!,
-      soundId: int.tryParse(json['sound_id']) ?? 0,
-      showPreview: json['show_preview'] as bool,
+      soundId: (json['sound_id'] is int
+              ? json['sound_id'] as int
+              : int.tryParse(json['sound_id']?.toString() ?? '')) ??
+          0,
+      showPreview: (json['show_preview'] as bool?) ?? false,
     );
   }
 

@@ -21,7 +21,10 @@ class InputBackgroundRemote extends InputBackground {
     }
 
     return InputBackgroundRemote(
-      backgroundId: int.tryParse(json['background_id']) ?? 0,
+      backgroundId: (json['background_id'] is int
+              ? json['background_id'] as int
+              : int.tryParse(json['background_id']?.toString() ?? '')) ??
+          0,
     );
   }
 

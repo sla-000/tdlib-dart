@@ -22,7 +22,7 @@ class SupergroupMembersFilterBanned extends SupergroupMembersFilter {
     }
 
     return SupergroupMembersFilterBanned(
-      query: json['query'] as String,
+      query: (json['query'] as String?) ?? '',
     );
   }
 

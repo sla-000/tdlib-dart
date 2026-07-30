@@ -21,10 +21,11 @@ class GiftCollections extends TdObject {
     }
 
     return GiftCollections(
-      collections: List<GiftCollection>.from(
-          ((json['collections'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => GiftCollection.fromJson(item))
-              .toList()),
+      collections: List<GiftCollection>.from(((json['collections']
+                  as List<dynamic>?) ??
+              <dynamic>[])
+          .map((item) => GiftCollection.fromJson(item as Map<String, dynamic>?))
+          .toList()),
     );
   }
 

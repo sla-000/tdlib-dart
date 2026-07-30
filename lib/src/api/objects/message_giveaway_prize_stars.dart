@@ -44,11 +44,11 @@ class MessageGiveawayPrizeStars extends MessageContent {
     }
 
     return MessageGiveawayPrizeStars(
-      starCount: json['star_count'] as int,
-      transactionId: json['transaction_id'] as String,
-      boostedChatId: json['boosted_chat_id'] as int,
-      giveawayMessageId: json['giveaway_message_id'] as int,
-      isUnclaimed: json['is_unclaimed'] as bool,
+      starCount: (json['star_count'] as int?) ?? 0,
+      transactionId: (json['transaction_id'] as String?) ?? '',
+      boostedChatId: (json['boosted_chat_id'] as int?) ?? 0,
+      giveawayMessageId: (json['giveaway_message_id'] as int?) ?? 0,
+      isUnclaimed: (json['is_unclaimed'] as bool?) ?? false,
       sticker: Sticker.fromJson(json['sticker'] as Map<String, dynamic>?),
     );
   }

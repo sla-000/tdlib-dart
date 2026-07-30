@@ -23,7 +23,7 @@ class Stickers extends TdObject {
     return Stickers(
       stickers: List<Sticker>.from(
           ((json['stickers'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => Sticker.fromJson(item))
+              .map((item) => Sticker.fromJson(item as Map<String, dynamic>?))
               .toList()),
     );
   }

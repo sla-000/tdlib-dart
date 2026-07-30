@@ -34,11 +34,11 @@ class UpdateGroupCallVerificationState extends Update {
     }
 
     return UpdateGroupCallVerificationState(
-      groupCallId: json['group_call_id'] as int,
-      generation: json['generation'] as int,
+      groupCallId: (json['group_call_id'] as int?) ?? 0,
+      generation: (json['generation'] as int?) ?? 0,
       emojis: List<String>.from(
           ((json['emojis'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => item)
+              .map((item) => item as String)
               .toList()),
     );
   }

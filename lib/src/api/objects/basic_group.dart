@@ -39,12 +39,12 @@ class BasicGroup extends TdObject {
     }
 
     return BasicGroup(
-      id: json['id'] as int,
-      memberCount: json['member_count'] as int,
+      id: (json['id'] as int?) ?? 0,
+      memberCount: (json['member_count'] as int?) ?? 0,
       status:
           ChatMemberStatus.fromJson(json['status'] as Map<String, dynamic>?)!,
-      isActive: json['is_active'] as bool,
-      upgradedToSupergroupId: json['upgraded_to_supergroup_id'] as int,
+      isActive: (json['is_active'] as bool?) ?? false,
+      upgradedToSupergroupId: (json['upgraded_to_supergroup_id'] as int?) ?? 0,
     );
   }
 

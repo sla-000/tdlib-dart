@@ -25,10 +25,11 @@ class BankCardInfo extends TdObject {
     }
 
     return BankCardInfo(
-      title: json['title'] as String,
+      title: (json['title'] as String?) ?? '',
       actions: List<BankCardActionOpenUrl>.from(
           ((json['actions'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => BankCardActionOpenUrl.fromJson(item))
+              .map((item) =>
+                  BankCardActionOpenUrl.fromJson(item as Map<String, dynamic>?))
               .toList()),
     );
   }

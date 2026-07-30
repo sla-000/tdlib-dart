@@ -30,8 +30,8 @@ class PremiumLimit extends TdObject {
 
     return PremiumLimit(
       type: PremiumLimitType.fromJson(json['type'] as Map<String, dynamic>?)!,
-      defaultValue: json['default_value'] as int,
-      premiumValue: json['premium_value'] as int,
+      defaultValue: (json['default_value'] as int?) ?? 0,
+      premiumValue: (json['premium_value'] as int?) ?? 0,
     );
   }
 

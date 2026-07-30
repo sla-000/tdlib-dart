@@ -24,7 +24,7 @@ class EmailAddressResetStateAvailable extends EmailAddressResetState {
     }
 
     return EmailAddressResetStateAvailable(
-      waitPeriod: json['wait_period'] as int,
+      waitPeriod: (json['wait_period'] as int?) ?? 0,
     );
   }
 

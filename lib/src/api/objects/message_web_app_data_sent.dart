@@ -22,7 +22,7 @@ class MessageWebAppDataSent extends MessageContent {
     }
 
     return MessageWebAppDataSent(
-      buttonText: json['button_text'] as String,
+      buttonText: (json['button_text'] as String?) ?? '',
     );
   }
 

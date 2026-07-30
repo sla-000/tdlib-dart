@@ -64,13 +64,13 @@ class MessageReplyToMessage extends MessageReplyTo {
     }
 
     return MessageReplyToMessage(
-      chatId: json['chat_id'] as int,
-      messageId: json['message_id'] as int,
+      chatId: (json['chat_id'] as int?) ?? 0,
+      messageId: (json['message_id'] as int?) ?? 0,
       quote: TextQuote.fromJson(json['quote'] as Map<String, dynamic>?),
-      checklistTaskId: json['checklist_task_id'] as int,
-      pollOptionId: json['poll_option_id'] as String,
+      checklistTaskId: (json['checklist_task_id'] as int?) ?? 0,
+      pollOptionId: (json['poll_option_id'] as String?) ?? '',
       origin: MessageOrigin.fromJson(json['origin'] as Map<String, dynamic>?),
-      originSendDate: json['origin_send_date'] as int,
+      originSendDate: (json['origin_send_date'] as int?) ?? 0,
       content:
           MessageContent.fromJson(json['content'] as Map<String, dynamic>?),
     );

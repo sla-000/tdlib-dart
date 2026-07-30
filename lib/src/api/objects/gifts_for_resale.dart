@@ -45,24 +45,30 @@ class GiftsForResale extends TdObject {
     }
 
     return GiftsForResale(
-      totalCount: json['total_count'] as int,
-      gifts: List<GiftForResale>.from(
-          ((json['gifts'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => GiftForResale.fromJson(item))
-              .toList()),
-      models: List<UpgradedGiftModelCount>.from(
-          ((json['models'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => UpgradedGiftModelCount.fromJson(item))
-              .toList()),
-      symbols: List<UpgradedGiftSymbolCount>.from(
-          ((json['symbols'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => UpgradedGiftSymbolCount.fromJson(item))
-              .toList()),
-      backdrops: List<UpgradedGiftBackdropCount>.from(
-          ((json['backdrops'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => UpgradedGiftBackdropCount.fromJson(item))
-              .toList()),
-      nextOffset: json['next_offset'] as String,
+      totalCount: (json['total_count'] as int?) ?? 0,
+      gifts: List<GiftForResale>.from(((json['gifts'] as List<dynamic>?) ??
+              <dynamic>[])
+          .map((item) => GiftForResale.fromJson(item as Map<String, dynamic>?))
+          .toList()),
+      models: List<UpgradedGiftModelCount>.from(((json['models']
+                  as List<dynamic>?) ??
+              <dynamic>[])
+          .map((item) =>
+              UpgradedGiftModelCount.fromJson(item as Map<String, dynamic>?))
+          .toList()),
+      symbols: List<UpgradedGiftSymbolCount>.from(((json['symbols']
+                  as List<dynamic>?) ??
+              <dynamic>[])
+          .map((item) =>
+              UpgradedGiftSymbolCount.fromJson(item as Map<String, dynamic>?))
+          .toList()),
+      backdrops: List<UpgradedGiftBackdropCount>.from(((json['backdrops']
+                  as List<dynamic>?) ??
+              <dynamic>[])
+          .map((item) =>
+              UpgradedGiftBackdropCount.fromJson(item as Map<String, dynamic>?))
+          .toList()),
+      nextOffset: (json['next_offset'] as String?) ?? '',
     );
   }
 

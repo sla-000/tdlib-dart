@@ -22,7 +22,7 @@ class PageBlockAnchor extends PageBlock {
     }
 
     return PageBlockAnchor(
-      name: json['name'] as String,
+      name: (json['name'] as String?) ?? '',
     );
   }
 

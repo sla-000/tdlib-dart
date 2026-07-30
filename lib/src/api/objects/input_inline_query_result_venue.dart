@@ -49,11 +49,11 @@ class InputInlineQueryResultVenue extends InputInlineQueryResult {
     }
 
     return InputInlineQueryResultVenue(
-      id: json['id'] as String,
+      id: (json['id'] as String?) ?? '',
       venue: Venue.fromJson(json['venue'] as Map<String, dynamic>?)!,
-      thumbnailUrl: json['thumbnail_url'] as String,
-      thumbnailWidth: json['thumbnail_width'] as int,
-      thumbnailHeight: json['thumbnail_height'] as int,
+      thumbnailUrl: (json['thumbnail_url'] as String?) ?? '',
+      thumbnailWidth: (json['thumbnail_width'] as int?) ?? 0,
+      thumbnailHeight: (json['thumbnail_height'] as int?) ?? 0,
       replyMarkup:
           ReplyMarkup.fromJson(json['reply_markup'] as Map<String, dynamic>?),
       inputMessageContent: InputMessageContent.fromJson(

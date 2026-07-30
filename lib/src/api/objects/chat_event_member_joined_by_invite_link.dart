@@ -29,7 +29,8 @@ class ChatEventMemberJoinedByInviteLink extends ChatEventAction {
     return ChatEventMemberJoinedByInviteLink(
       inviteLink: ChatInviteLink.fromJson(
           json['invite_link'] as Map<String, dynamic>?)!,
-      viaChatFolderInviteLink: json['via_chat_folder_invite_link'] as bool,
+      viaChatFolderInviteLink:
+          (json['via_chat_folder_invite_link'] as bool?) ?? false,
     );
   }
 

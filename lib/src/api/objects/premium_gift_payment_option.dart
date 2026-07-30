@@ -52,12 +52,12 @@ class PremiumGiftPaymentOption extends TdObject {
     }
 
     return PremiumGiftPaymentOption(
-      currency: json['currency'] as String,
-      amount: json['amount'] as int,
-      starCount: json['star_count'] as int,
-      discountPercentage: json['discount_percentage'] as int,
-      monthCount: json['month_count'] as int,
-      storeProductId: json['store_product_id'] as String,
+      currency: (json['currency'] as String?) ?? '',
+      amount: (json['amount'] as int?) ?? 0,
+      starCount: (json['star_count'] as int?) ?? 0,
+      discountPercentage: (json['discount_percentage'] as int?) ?? 0,
+      monthCount: (json['month_count'] as int?) ?? 0,
+      storeProductId: (json['store_product_id'] as String?) ?? '',
       sticker: Sticker.fromJson(json['sticker'] as Map<String, dynamic>?),
     );
   }

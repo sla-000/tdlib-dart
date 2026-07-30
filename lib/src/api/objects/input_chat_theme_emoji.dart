@@ -21,7 +21,7 @@ class InputChatThemeEmoji extends InputChatTheme {
     }
 
     return InputChatThemeEmoji(
-      name: json['name'] as String,
+      name: (json['name'] as String?) ?? '',
     );
   }
 

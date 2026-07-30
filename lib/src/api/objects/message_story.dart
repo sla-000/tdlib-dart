@@ -30,9 +30,9 @@ class MessageStory extends MessageContent {
     }
 
     return MessageStory(
-      storyPosterChatId: json['story_poster_chat_id'] as int,
-      storyId: json['story_id'] as int,
-      viaMention: json['via_mention'] as bool,
+      storyPosterChatId: (json['story_poster_chat_id'] as int?) ?? 0,
+      storyId: (json['story_id'] as int?) ?? 0,
+      viaMention: (json['via_mention'] as bool?) ?? false,
     );
   }
 

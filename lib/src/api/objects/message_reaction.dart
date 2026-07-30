@@ -40,14 +40,15 @@ class MessageReaction extends TdObject {
 
     return MessageReaction(
       type: ReactionType.fromJson(json['type'] as Map<String, dynamic>?)!,
-      totalCount: json['total_count'] as int,
-      isChosen: json['is_chosen'] as bool,
+      totalCount: (json['total_count'] as int?) ?? 0,
+      isChosen: (json['is_chosen'] as bool?) ?? false,
       usedSenderId: MessageSender.fromJson(
           json['used_sender_id'] as Map<String, dynamic>?),
-      recentSenderIds: List<MessageSender>.from(
-          ((json['recent_sender_ids'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => MessageSender.fromJson(item))
-              .toList()),
+      recentSenderIds: List<MessageSender>.from(((json['recent_sender_ids']
+                  as List<dynamic>?) ??
+              <dynamic>[])
+          .map((item) => MessageSender.fromJson(item as Map<String, dynamic>?))
+          .toList()),
     );
   }
 

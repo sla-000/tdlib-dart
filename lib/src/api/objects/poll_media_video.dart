@@ -41,14 +41,16 @@ class PollMediaVideo extends PollMedia {
       video: Video.fromJson(json['video'] as Map<String, dynamic>?)!,
       alternativeVideos: List<AlternativeVideo>.from(
           ((json['alternative_videos'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => AlternativeVideo.fromJson(item))
+              .map((item) =>
+                  AlternativeVideo.fromJson(item as Map<String, dynamic>?))
               .toList()),
       storyboards: List<VideoStoryboard>.from(
           ((json['storyboards'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => VideoStoryboard.fromJson(item))
+              .map((item) =>
+                  VideoStoryboard.fromJson(item as Map<String, dynamic>?))
               .toList()),
       cover: Photo.fromJson(json['cover'] as Map<String, dynamic>?),
-      startTimestamp: json['start_timestamp'] as int,
+      startTimestamp: (json['start_timestamp'] as int?) ?? 0,
     );
   }
 

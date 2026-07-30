@@ -43,8 +43,8 @@ class InputMessageVoiceNote extends InputMessageContent {
     return InputMessageVoiceNote(
       voiceNote:
           InputFile.fromJson(json['voice_note'] as Map<String, dynamic>?)!,
-      duration: json['duration'] as int,
-      waveform: json['waveform'] as String,
+      duration: (json['duration'] as int?) ?? 0,
+      waveform: (json['waveform'] as String?) ?? '',
       caption: FormattedText.fromJson(json['caption'] as Map<String, dynamic>?),
       selfDestructType: MessageSelfDestructType.fromJson(
           json['self_destruct_type'] as Map<String, dynamic>?),

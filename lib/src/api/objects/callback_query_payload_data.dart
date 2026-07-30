@@ -21,7 +21,7 @@ class CallbackQueryPayloadData extends CallbackQueryPayload {
     }
 
     return CallbackQueryPayloadData(
-      data: json['data'] as String,
+      data: (json['data'] as String?) ?? '',
     );
   }
 

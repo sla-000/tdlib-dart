@@ -23,7 +23,7 @@ class SuggestedPostPriceTon extends SuggestedPostPrice {
     }
 
     return SuggestedPostPriceTon(
-      toncoinCentCount: json['toncoin_cent_count'] as int,
+      toncoinCentCount: (json['toncoin_cent_count'] as int?) ?? 0,
     );
   }
 

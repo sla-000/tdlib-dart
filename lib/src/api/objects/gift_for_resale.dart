@@ -27,7 +27,7 @@ class GiftForResale extends TdObject {
 
     return GiftForResale(
       gift: UpgradedGift.fromJson(json['gift'] as Map<String, dynamic>?)!,
-      receivedGiftId: json['received_gift_id'] as String,
+      receivedGiftId: (json['received_gift_id'] as String?) ?? '',
     );
   }
 

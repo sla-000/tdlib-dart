@@ -69,27 +69,31 @@ class ChatBoostFeatures extends TdObject {
     }
 
     return ChatBoostFeatures(
-      features: List<ChatBoostLevelFeatures>.from(
-          ((json['features'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => ChatBoostLevelFeatures.fromJson(item))
-              .toList()),
+      features: List<ChatBoostLevelFeatures>.from(((json['features']
+                  as List<dynamic>?) ??
+              <dynamic>[])
+          .map((item) =>
+              ChatBoostLevelFeatures.fromJson(item as Map<String, dynamic>?))
+          .toList()),
       minProfileBackgroundCustomEmojiBoostLevel:
-          json['min_profile_background_custom_emoji_boost_level'] as int,
+          (json['min_profile_background_custom_emoji_boost_level'] as int?) ??
+              0,
       minBackgroundCustomEmojiBoostLevel:
-          json['min_background_custom_emoji_boost_level'] as int,
-      minEmojiStatusBoostLevel: json['min_emoji_status_boost_level'] as int,
+          (json['min_background_custom_emoji_boost_level'] as int?) ?? 0,
+      minEmojiStatusBoostLevel:
+          (json['min_emoji_status_boost_level'] as int?) ?? 0,
       minChatThemeBackgroundBoostLevel:
-          json['min_chat_theme_background_boost_level'] as int,
+          (json['min_chat_theme_background_boost_level'] as int?) ?? 0,
       minCustomBackgroundBoostLevel:
-          json['min_custom_background_boost_level'] as int,
+          (json['min_custom_background_boost_level'] as int?) ?? 0,
       minCustomEmojiStickerSetBoostLevel:
-          json['min_custom_emoji_sticker_set_boost_level'] as int,
+          (json['min_custom_emoji_sticker_set_boost_level'] as int?) ?? 0,
       minAutomaticTranslationBoostLevel:
-          json['min_automatic_translation_boost_level'] as int,
+          (json['min_automatic_translation_boost_level'] as int?) ?? 0,
       minSpeechRecognitionBoostLevel:
-          json['min_speech_recognition_boost_level'] as int,
+          (json['min_speech_recognition_boost_level'] as int?) ?? 0,
       minSponsoredMessageDisableBoostLevel:
-          json['min_sponsored_message_disable_boost_level'] as int,
+          (json['min_sponsored_message_disable_boost_level'] as int?) ?? 0,
     );
   }
 

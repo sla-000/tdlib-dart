@@ -29,7 +29,7 @@ class SetFileGenerationProgress extends TdFunction {
 
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'generation_id': generationId,
+        'generation_id': generationId.toString(),
         'expected_size': expectedSize,
         'local_prefix_size': localPrefixSize,
         '@type': constructor,

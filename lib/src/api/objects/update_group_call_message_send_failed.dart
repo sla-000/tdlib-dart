@@ -30,8 +30,8 @@ class UpdateGroupCallMessageSendFailed extends Update {
     }
 
     return UpdateGroupCallMessageSendFailed(
-      groupCallId: json['group_call_id'] as int,
-      messageId: json['message_id'] as int,
+      groupCallId: (json['group_call_id'] as int?) ?? 0,
+      messageId: (json['message_id'] as int?) ?? 0,
       error: TdError.fromJson(json['error'] as Map<String, dynamic>?)!,
     );
   }

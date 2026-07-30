@@ -43,7 +43,7 @@ class InputIdentityDocument extends TdObject {
     }
 
     return InputIdentityDocument(
-      number: json['number'] as String,
+      number: (json['number'] as String?) ?? '',
       expirationDate:
           Date.fromJson(json['expiration_date'] as Map<String, dynamic>?),
       frontSide:
@@ -53,7 +53,7 @@ class InputIdentityDocument extends TdObject {
       selfie: InputFile.fromJson(json['selfie'] as Map<String, dynamic>?),
       translation: List<InputFile>.from(
           ((json['translation'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => InputFile.fromJson(item))
+              .map((item) => InputFile.fromJson(item as Map<String, dynamic>?))
               .toList()),
     );
   }

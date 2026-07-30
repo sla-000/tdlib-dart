@@ -21,7 +21,7 @@ class JsonValueString extends JsonValue {
     }
 
     return JsonValueString(
-      value: json['value'] as String,
+      value: (json['value'] as String?) ?? '',
     );
   }
 

@@ -33,11 +33,11 @@ class UpgradedGiftModel extends TdObject {
     }
 
     return UpgradedGiftModel(
-      name: json['name'] as String,
+      name: (json['name'] as String?) ?? '',
       sticker: Sticker.fromJson(json['sticker'] as Map<String, dynamic>?)!,
       rarity: UpgradedGiftAttributeRarity.fromJson(
           json['rarity'] as Map<String, dynamic>?)!,
-      isCrafted: json['is_crafted'] as bool,
+      isCrafted: (json['is_crafted'] as bool?) ?? false,
     );
   }
 

@@ -27,7 +27,7 @@ class PageBlockCollage extends PageBlock {
     return PageBlockCollage(
       blocks: List<PageBlock>.from(
           ((json['blocks'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => PageBlock.fromJson(item))
+              .map((item) => PageBlock.fromJson(item as Map<String, dynamic>?))
               .toList()),
       caption:
           PageBlockCaption.fromJson(json['caption'] as Map<String, dynamic>?),

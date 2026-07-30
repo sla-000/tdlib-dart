@@ -77,19 +77,19 @@ class LanguagePackInfo extends TdObject {
     }
 
     return LanguagePackInfo(
-      id: json['id'] as String,
-      baseLanguagePackId: json['base_language_pack_id'] as String,
-      name: json['name'] as String,
-      nativeName: json['native_name'] as String,
-      pluralCode: json['plural_code'] as String,
-      isOfficial: json['is_official'] as bool,
-      isRtl: json['is_rtl'] as bool,
-      isBeta: json['is_beta'] as bool,
-      isInstalled: json['is_installed'] as bool,
-      totalStringCount: json['total_string_count'] as int,
-      translatedStringCount: json['translated_string_count'] as int,
-      localStringCount: json['local_string_count'] as int,
-      translationUrl: json['translation_url'] as String,
+      id: (json['id'] as String?) ?? '',
+      baseLanguagePackId: (json['base_language_pack_id'] as String?) ?? '',
+      name: (json['name'] as String?) ?? '',
+      nativeName: (json['native_name'] as String?) ?? '',
+      pluralCode: (json['plural_code'] as String?) ?? '',
+      isOfficial: (json['is_official'] as bool?) ?? false,
+      isRtl: (json['is_rtl'] as bool?) ?? false,
+      isBeta: (json['is_beta'] as bool?) ?? false,
+      isInstalled: (json['is_installed'] as bool?) ?? false,
+      totalStringCount: (json['total_string_count'] as int?) ?? 0,
+      translatedStringCount: (json['translated_string_count'] as int?) ?? 0,
+      localStringCount: (json['local_string_count'] as int?) ?? 0,
+      translationUrl: (json['translation_url'] as String?) ?? '',
     );
   }
 

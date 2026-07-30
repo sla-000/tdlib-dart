@@ -25,7 +25,7 @@ class CanTransferOwnershipResultPasswordTooFresh
     }
 
     return CanTransferOwnershipResultPasswordTooFresh(
-      retryAfter: json['retry_after'] as int,
+      retryAfter: (json['retry_after'] as int?) ?? 0,
     );
   }
 

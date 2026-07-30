@@ -24,7 +24,7 @@ class PushMessageContentInviteVideoChatParticipants extends PushMessageContent {
     }
 
     return PushMessageContentInviteVideoChatParticipants(
-      isCurrentUser: json['is_current_user'] as bool,
+      isCurrentUser: (json['is_current_user'] as bool?) ?? false,
     );
   }
 

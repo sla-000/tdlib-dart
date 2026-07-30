@@ -25,7 +25,7 @@ class UpdateChatAvailableReactions extends Update {
     }
 
     return UpdateChatAvailableReactions(
-      chatId: json['chat_id'] as int,
+      chatId: (json['chat_id'] as int?) ?? 0,
       availableReactions: ChatAvailableReactions.fromJson(
           json['available_reactions'] as Map<String, dynamic>?)!,
     );

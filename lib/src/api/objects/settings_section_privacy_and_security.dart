@@ -47,7 +47,7 @@ class SettingsSectionPrivacyAndSecurity extends SettingsSection {
     }
 
     return SettingsSectionPrivacyAndSecurity(
-      subsection: json['subsection'] as String,
+      subsection: (json['subsection'] as String?) ?? '',
     );
   }
 

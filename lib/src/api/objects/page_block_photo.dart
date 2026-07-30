@@ -38,8 +38,8 @@ class PageBlockPhoto extends PageBlock {
       photo: Photo.fromJson(json['photo'] as Map<String, dynamic>?),
       caption:
           PageBlockCaption.fromJson(json['caption'] as Map<String, dynamic>?),
-      url: json['url'] as String,
-      hasSpoiler: json['has_spoiler'] as bool,
+      url: (json['url'] as String?) ?? '',
+      hasSpoiler: (json['has_spoiler'] as bool?) ?? false,
     );
   }
 

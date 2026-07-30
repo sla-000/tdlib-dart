@@ -34,10 +34,10 @@ class TelegramPaymentPurposeGiftedStars extends TelegramPaymentPurpose {
     }
 
     return TelegramPaymentPurposeGiftedStars(
-      userId: json['user_id'] as int,
-      currency: json['currency'] as String,
-      amount: json['amount'] as int,
-      starCount: json['star_count'] as int,
+      userId: (json['user_id'] as int?) ?? 0,
+      currency: (json['currency'] as String?) ?? '',
+      amount: (json['amount'] as int?) ?? 0,
+      starCount: (json['star_count'] as int?) ?? 0,
     );
   }
 

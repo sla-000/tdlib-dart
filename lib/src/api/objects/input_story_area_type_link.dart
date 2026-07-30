@@ -21,7 +21,7 @@ class InputStoryAreaTypeLink extends InputStoryAreaType {
     }
 
     return InputStoryAreaTypeLink(
-      url: json['url'] as String,
+      url: (json['url'] as String?) ?? '',
     );
   }
 

@@ -67,22 +67,24 @@ class ChatBoostStatus extends TdObject {
     }
 
     return ChatBoostStatus(
-      boostUrl: json['boost_url'] as String,
+      boostUrl: (json['boost_url'] as String?) ?? '',
       appliedSlotIds: List<int>.from(
           ((json['applied_slot_ids'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => item)
+              .map((item) =>
+                  (item is int ? item : int.tryParse(item.toString()) ?? 0))
               .toList()),
-      level: json['level'] as int,
-      giftCodeBoostCount: json['gift_code_boost_count'] as int,
-      boostCount: json['boost_count'] as int,
-      currentLevelBoostCount: json['current_level_boost_count'] as int,
-      nextLevelBoostCount: json['next_level_boost_count'] as int,
-      premiumMemberCount: json['premium_member_count'] as int,
+      level: (json['level'] as int?) ?? 0,
+      giftCodeBoostCount: (json['gift_code_boost_count'] as int?) ?? 0,
+      boostCount: (json['boost_count'] as int?) ?? 0,
+      currentLevelBoostCount: (json['current_level_boost_count'] as int?) ?? 0,
+      nextLevelBoostCount: (json['next_level_boost_count'] as int?) ?? 0,
+      premiumMemberCount: (json['premium_member_count'] as int?) ?? 0,
       premiumMemberPercentage:
-          (json['premium_member_percentage'] as num).toDouble(),
+          (json['premium_member_percentage'] as num?)?.toDouble() ?? 0.0,
       prepaidGiveaways: List<PrepaidGiveaway>.from(
           ((json['prepaid_giveaways'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => PrepaidGiveaway.fromJson(item))
+              .map((item) =>
+                  PrepaidGiveaway.fromJson(item as Map<String, dynamic>?))
               .toList()),
     );
   }

@@ -25,8 +25,8 @@ class UpdateChatTitle extends Update {
     }
 
     return UpdateChatTitle(
-      chatId: json['chat_id'] as int,
-      title: json['title'] as String,
+      chatId: (json['chat_id'] as int?) ?? 0,
+      title: (json['title'] as String?) ?? '',
     );
   }
 

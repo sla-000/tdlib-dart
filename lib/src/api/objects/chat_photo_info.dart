@@ -43,8 +43,8 @@ class ChatPhotoInfo extends TdObject {
       big: File.fromJson(json['big'] as Map<String, dynamic>?)!,
       minithumbnail: Minithumbnail.fromJson(
           json['minithumbnail'] as Map<String, dynamic>?),
-      hasAnimation: json['has_animation'] as bool,
-      isPersonal: json['is_personal'] as bool,
+      hasAnimation: (json['has_animation'] as bool?) ?? false,
+      isPersonal: (json['is_personal'] as bool?) ?? false,
     );
   }
 

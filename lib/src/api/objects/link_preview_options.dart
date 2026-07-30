@@ -42,11 +42,11 @@ class LinkPreviewOptions extends TdObject {
     }
 
     return LinkPreviewOptions(
-      isDisabled: json['is_disabled'] as bool,
-      url: json['url'] as String,
-      forceSmallMedia: json['force_small_media'] as bool,
-      forceLargeMedia: json['force_large_media'] as bool,
-      showAboveText: json['show_above_text'] as bool,
+      isDisabled: (json['is_disabled'] as bool?) ?? false,
+      url: (json['url'] as String?) ?? '',
+      forceSmallMedia: (json['force_small_media'] as bool?) ?? false,
+      forceLargeMedia: (json['force_large_media'] as bool?) ?? false,
+      showAboveText: (json['show_above_text'] as bool?) ?? false,
     );
   }
 

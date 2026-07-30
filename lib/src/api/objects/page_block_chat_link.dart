@@ -35,10 +35,10 @@ class PageBlockChatLink extends PageBlock {
     }
 
     return PageBlockChatLink(
-      title: json['title'] as String,
+      title: (json['title'] as String?) ?? '',
       photo: ChatPhotoInfo.fromJson(json['photo'] as Map<String, dynamic>?),
-      accentColorId: json['accent_color_id'] as int,
-      username: json['username'] as String,
+      accentColorId: (json['accent_color_id'] as int?) ?? 0,
+      username: (json['username'] as String?) ?? '',
     );
   }
 

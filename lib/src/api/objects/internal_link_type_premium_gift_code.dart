@@ -23,7 +23,7 @@ class InternalLinkTypePremiumGiftCode extends InternalLinkType {
     }
 
     return InternalLinkTypePremiumGiftCode(
-      code: json['code'] as String,
+      code: (json['code'] as String?) ?? '',
     );
   }
 

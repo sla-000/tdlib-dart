@@ -23,7 +23,8 @@ class UpdateFavoriteStickers extends Update {
     return UpdateFavoriteStickers(
       stickerIds: List<int>.from(
           ((json['sticker_ids'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => item)
+              .map((item) =>
+                  (item is int ? item : int.tryParse(item.toString()) ?? 0))
               .toList()),
     );
   }

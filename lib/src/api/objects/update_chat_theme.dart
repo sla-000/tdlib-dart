@@ -26,7 +26,7 @@ class UpdateChatTheme extends Update {
     }
 
     return UpdateChatTheme(
-      chatId: json['chat_id'] as int,
+      chatId: (json['chat_id'] as int?) ?? 0,
       theme: ChatTheme.fromJson(json['theme'] as Map<String, dynamic>?),
     );
   }

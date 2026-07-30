@@ -29,9 +29,9 @@ class DeviceTokenApplePushVoIP extends DeviceToken {
     }
 
     return DeviceTokenApplePushVoIP(
-      deviceToken: json['device_token'] as String,
-      isAppSandbox: json['is_app_sandbox'] as bool,
-      encrypt: json['encrypt'] as bool,
+      deviceToken: (json['device_token'] as String?) ?? '',
+      isAppSandbox: (json['is_app_sandbox'] as bool?) ?? false,
+      encrypt: (json['encrypt'] as bool?) ?? false,
     );
   }
 

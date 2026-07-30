@@ -29,7 +29,7 @@ class AnswerShippingQuery extends TdFunction {
 
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'shipping_query_id': shippingQueryId,
+        'shipping_query_id': shippingQueryId.toString(),
         'shipping_options':
             shippingOptions.map((item) => item.toJson()).toList(),
         'error_message': errorMessage,

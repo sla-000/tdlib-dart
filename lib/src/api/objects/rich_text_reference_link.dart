@@ -30,8 +30,8 @@ class RichTextReferenceLink extends RichText {
 
     return RichTextReferenceLink(
       text: RichText.fromJson(json['text'] as Map<String, dynamic>?)!,
-      referenceName: json['reference_name'] as String,
-      url: json['url'] as String,
+      referenceName: (json['reference_name'] as String?) ?? '',
+      url: (json['url'] as String?) ?? '',
     );
   }
 

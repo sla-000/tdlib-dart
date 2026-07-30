@@ -32,8 +32,8 @@ class VideoChat extends TdObject {
     }
 
     return VideoChat(
-      groupCallId: json['group_call_id'] as int,
-      hasParticipants: json['has_participants'] as bool,
+      groupCallId: (json['group_call_id'] as int?) ?? 0,
+      hasParticipants: (json['has_participants'] as bool?) ?? false,
       defaultParticipantId: MessageSender.fromJson(
           json['default_participant_id'] as Map<String, dynamic>?),
     );

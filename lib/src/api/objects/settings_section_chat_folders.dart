@@ -22,7 +22,7 @@ class SettingsSectionChatFolders extends SettingsSection {
     }
 
     return SettingsSectionChatFolders(
-      subsection: json['subsection'] as String,
+      subsection: (json['subsection'] as String?) ?? '',
     );
   }
 

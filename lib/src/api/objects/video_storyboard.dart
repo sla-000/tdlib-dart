@@ -36,8 +36,8 @@ class VideoStoryboard extends TdObject {
     return VideoStoryboard(
       storyboardFile:
           File.fromJson(json['storyboard_file'] as Map<String, dynamic>?)!,
-      width: json['width'] as int,
-      height: json['height'] as int,
+      width: (json['width'] as int?) ?? 0,
+      height: (json['height'] as int?) ?? 0,
       mapFile: File.fromJson(json['map_file'] as Map<String, dynamic>?)!,
     );
   }

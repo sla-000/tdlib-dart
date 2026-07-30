@@ -25,7 +25,7 @@ class RichTextReference extends RichText {
     }
 
     return RichTextReference(
-      name: json['name'] as String,
+      name: (json['name'] as String?) ?? '',
       text: RichText.fromJson(json['text'] as Map<String, dynamic>?)!,
     );
   }

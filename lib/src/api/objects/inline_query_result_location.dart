@@ -33,9 +33,9 @@ class InlineQueryResultLocation extends InlineQueryResult {
     }
 
     return InlineQueryResultLocation(
-      id: json['id'] as String,
+      id: (json['id'] as String?) ?? '',
       location: Location.fromJson(json['location'] as Map<String, dynamic>?)!,
-      title: json['title'] as String,
+      title: (json['title'] as String?) ?? '',
       thumbnail: Thumbnail.fromJson(json['thumbnail'] as Map<String, dynamic>?),
     );
   }

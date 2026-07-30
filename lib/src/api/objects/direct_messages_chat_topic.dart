@@ -69,17 +69,22 @@ class DirectMessagesChatTopic extends TdObject {
     }
 
     return DirectMessagesChatTopic(
-      chatId: json['chat_id'] as int,
-      id: json['id'] as int,
+      chatId: (json['chat_id'] as int?) ?? 0,
+      id: (json['id'] as int?) ?? 0,
       senderId:
           MessageSender.fromJson(json['sender_id'] as Map<String, dynamic>?)!,
-      order: int.tryParse(json['order']) ?? 0,
-      canSendUnpaidMessages: json['can_send_unpaid_messages'] as bool,
-      isMarkedAsUnread: json['is_marked_as_unread'] as bool,
-      unreadCount: json['unread_count'] as int,
-      lastReadInboxMessageId: json['last_read_inbox_message_id'] as int,
-      lastReadOutboxMessageId: json['last_read_outbox_message_id'] as int,
-      unreadReactionCount: json['unread_reaction_count'] as int,
+      order: (json['order'] is int
+              ? json['order'] as int
+              : int.tryParse(json['order']?.toString() ?? '')) ??
+          0,
+      canSendUnpaidMessages:
+          (json['can_send_unpaid_messages'] as bool?) ?? false,
+      isMarkedAsUnread: (json['is_marked_as_unread'] as bool?) ?? false,
+      unreadCount: (json['unread_count'] as int?) ?? 0,
+      lastReadInboxMessageId: (json['last_read_inbox_message_id'] as int?) ?? 0,
+      lastReadOutboxMessageId:
+          (json['last_read_outbox_message_id'] as int?) ?? 0,
+      unreadReactionCount: (json['unread_reaction_count'] as int?) ?? 0,
       lastMessage:
           Message.fromJson(json['last_message'] as Map<String, dynamic>?),
       draftMessage:

@@ -30,8 +30,12 @@ class ChatRevenueTransaction extends TdObject {
     }
 
     return ChatRevenueTransaction(
-      cryptocurrency: json['cryptocurrency'] as String,
-      cryptocurrencyAmount: int.tryParse(json['cryptocurrency_amount']) ?? 0,
+      cryptocurrency: (json['cryptocurrency'] as String?) ?? '',
+      cryptocurrencyAmount: (json['cryptocurrency_amount'] is int
+              ? json['cryptocurrency_amount'] as int
+              : int.tryParse(
+                  json['cryptocurrency_amount']?.toString() ?? '')) ??
+          0,
       type: ChatRevenueTransactionType.fromJson(
           json['type'] as Map<String, dynamic>?)!,
     );

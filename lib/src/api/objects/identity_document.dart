@@ -43,7 +43,7 @@ class IdentityDocument extends TdObject {
     }
 
     return IdentityDocument(
-      number: json['number'] as String,
+      number: (json['number'] as String?) ?? '',
       expirationDate:
           Date.fromJson(json['expiration_date'] as Map<String, dynamic>?),
       frontSide:
@@ -53,7 +53,7 @@ class IdentityDocument extends TdObject {
       selfie: DatedFile.fromJson(json['selfie'] as Map<String, dynamic>?),
       translation: List<DatedFile>.from(
           ((json['translation'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => DatedFile.fromJson(item))
+              .map((item) => DatedFile.fromJson(item as Map<String, dynamic>?))
               .toList()),
     );
   }

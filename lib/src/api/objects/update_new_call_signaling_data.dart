@@ -25,8 +25,8 @@ class UpdateNewCallSignalingData extends Update {
     }
 
     return UpdateNewCallSignalingData(
-      callId: json['call_id'] as int,
-      data: json['data'] as String,
+      callId: (json['call_id'] as int?) ?? 0,
+      data: (json['data'] as String?) ?? '',
     );
   }
 

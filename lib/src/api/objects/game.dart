@@ -46,11 +46,14 @@ class Game extends TdObject {
     }
 
     return Game(
-      id: int.tryParse(json['id']) ?? 0,
-      shortName: json['short_name'] as String,
-      title: json['title'] as String,
+      id: (json['id'] is int
+              ? json['id'] as int
+              : int.tryParse(json['id']?.toString() ?? '')) ??
+          0,
+      shortName: (json['short_name'] as String?) ?? '',
+      title: (json['title'] as String?) ?? '',
       text: FormattedText.fromJson(json['text'] as Map<String, dynamic>?)!,
-      description: json['description'] as String,
+      description: (json['description'] as String?) ?? '',
       photo: Photo.fromJson(json['photo'] as Map<String, dynamic>?)!,
       animation: Animation.fromJson(json['animation'] as Map<String, dynamic>?),
     );

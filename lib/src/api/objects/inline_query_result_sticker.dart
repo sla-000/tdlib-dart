@@ -25,7 +25,7 @@ class InlineQueryResultSticker extends InlineQueryResult {
     }
 
     return InlineQueryResultSticker(
-      id: json['id'] as String,
+      id: (json['id'] as String?) ?? '',
       sticker: Sticker.fromJson(json['sticker'] as Map<String, dynamic>?)!,
     );
   }

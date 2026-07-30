@@ -33,9 +33,9 @@ class PaidMediaPreview extends PaidMedia {
     }
 
     return PaidMediaPreview(
-      width: json['width'] as int,
-      height: json['height'] as int,
-      duration: json['duration'] as int,
+      width: (json['width'] as int?) ?? 0,
+      height: (json['height'] as int?) ?? 0,
+      duration: (json['duration'] as int?) ?? 0,
       minithumbnail: Minithumbnail.fromJson(
           json['minithumbnail'] as Map<String, dynamic>?),
     );

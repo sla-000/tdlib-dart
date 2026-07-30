@@ -37,16 +37,18 @@ class WebBrowserSettings extends TdObject {
     }
 
     return WebBrowserSettings(
-      openExternalBrowser: json['open_external_browser'] as bool,
+      openExternalBrowser: (json['open_external_browser'] as bool?) ?? false,
       externalExceptions: List<WebDomainException>.from(
           ((json['external_exceptions'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => WebDomainException.fromJson(item))
+              .map((item) =>
+                  WebDomainException.fromJson(item as Map<String, dynamic>?))
               .toList()),
       inAppExceptions: List<WebDomainException>.from(
           ((json['in_app_exceptions'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => WebDomainException.fromJson(item))
+              .map((item) =>
+                  WebDomainException.fromJson(item as Map<String, dynamic>?))
               .toList()),
-      displayCloseButton: json['display_close_button'] as bool,
+      displayCloseButton: (json['display_close_button'] as bool?) ?? false,
     );
   }
 

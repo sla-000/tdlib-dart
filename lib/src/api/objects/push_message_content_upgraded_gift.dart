@@ -28,8 +28,8 @@ class PushMessageContentUpgradedGift extends PushMessageContent {
     }
 
     return PushMessageContentUpgradedGift(
-      isUpgrade: json['is_upgrade'] as bool,
-      isPrepaidUpgrade: json['is_prepaid_upgrade'] as bool,
+      isUpgrade: (json['is_upgrade'] as bool?) ?? false,
+      isPrepaidUpgrade: (json['is_prepaid_upgrade'] as bool?) ?? false,
     );
   }
 

@@ -21,7 +21,7 @@ class ChatListFolder extends ChatList {
     }
 
     return ChatListFolder(
-      chatFolderId: json['chat_folder_id'] as int,
+      chatFolderId: (json['chat_folder_id'] as int?) ?? 0,
     );
   }
 

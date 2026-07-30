@@ -41,10 +41,10 @@ class MessageGiftedTon extends MessageContent {
     }
 
     return MessageGiftedTon(
-      gifterUserId: json['gifter_user_id'] as int,
-      receiverUserId: json['receiver_user_id'] as int,
-      tonAmount: json['ton_amount'] as int,
-      transactionId: json['transaction_id'] as String,
+      gifterUserId: (json['gifter_user_id'] as int?) ?? 0,
+      receiverUserId: (json['receiver_user_id'] as int?) ?? 0,
+      tonAmount: (json['ton_amount'] as int?) ?? 0,
+      transactionId: (json['transaction_id'] as String?) ?? '',
       sticker: Sticker.fromJson(json['sticker'] as Map<String, dynamic>?),
     );
   }

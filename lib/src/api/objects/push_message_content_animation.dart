@@ -31,8 +31,8 @@ class PushMessageContentAnimation extends PushMessageContent {
 
     return PushMessageContentAnimation(
       animation: Animation.fromJson(json['animation'] as Map<String, dynamic>?),
-      caption: json['caption'] as String,
-      isPinned: json['is_pinned'] as bool,
+      caption: (json['caption'] as String?) ?? '',
+      isPinned: (json['is_pinned'] as bool?) ?? false,
     );
   }
 

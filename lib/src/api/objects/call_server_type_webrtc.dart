@@ -33,10 +33,10 @@ class CallServerTypeWebrtc extends CallServerType {
     }
 
     return CallServerTypeWebrtc(
-      username: json['username'] as String,
-      password: json['password'] as String,
-      supportsTurn: json['supports_turn'] as bool,
-      supportsStun: json['supports_stun'] as bool,
+      username: (json['username'] as String?) ?? '',
+      password: (json['password'] as String?) ?? '',
+      supportsTurn: (json['supports_turn'] as bool?) ?? false,
+      supportsStun: (json['supports_stun'] as bool?) ?? false,
     );
   }
 

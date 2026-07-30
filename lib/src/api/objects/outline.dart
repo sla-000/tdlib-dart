@@ -23,7 +23,8 @@ class Outline extends TdObject {
     return Outline(
       paths: List<ClosedVectorPath>.from(
           ((json['paths'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => ClosedVectorPath.fromJson(item))
+              .map((item) =>
+                  ClosedVectorPath.fromJson(item as Map<String, dynamic>?))
               .toList()),
     );
   }

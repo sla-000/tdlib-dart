@@ -33,8 +33,8 @@ class ChatMemberStatusRestricted extends ChatMemberStatus {
     }
 
     return ChatMemberStatusRestricted(
-      isMember: json['is_member'] as bool,
-      restrictedUntilDate: json['restricted_until_date'] as int,
+      isMember: (json['is_member'] as bool?) ?? false,
+      restrictedUntilDate: (json['restricted_until_date'] as int?) ?? 0,
       permissions: ChatPermissions.fromJson(
           json['permissions'] as Map<String, dynamic>?)!,
     );

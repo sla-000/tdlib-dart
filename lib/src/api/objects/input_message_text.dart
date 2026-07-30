@@ -37,7 +37,7 @@ class InputMessageText extends InputMessageContent {
       text: FormattedText.fromJson(json['text'] as Map<String, dynamic>?)!,
       linkPreviewOptions: LinkPreviewOptions.fromJson(
           json['link_preview_options'] as Map<String, dynamic>?),
-      clearDraft: json['clear_draft'] as bool,
+      clearDraft: (json['clear_draft'] as bool?) ?? false,
     );
   }
 

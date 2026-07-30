@@ -25,8 +25,8 @@ class MessageReplyToStory extends MessageReplyTo {
     }
 
     return MessageReplyToStory(
-      storyPosterChatId: json['story_poster_chat_id'] as int,
-      storyId: json['story_id'] as int,
+      storyPosterChatId: (json['story_poster_chat_id'] as int?) ?? 0,
+      storyId: (json['story_id'] as int?) ?? 0,
     );
   }
 

@@ -37,9 +37,9 @@ class NetworkStatisticsEntryCall extends NetworkStatisticsEntry {
     return NetworkStatisticsEntryCall(
       networkType:
           NetworkType.fromJson(json['network_type'] as Map<String, dynamic>?)!,
-      sentBytes: json['sent_bytes'] as int,
-      receivedBytes: json['received_bytes'] as int,
-      duration: (json['duration'] as num).toDouble(),
+      sentBytes: (json['sent_bytes'] as int?) ?? 0,
+      receivedBytes: (json['received_bytes'] as int?) ?? 0,
+      duration: (json['duration'] as num?)?.toDouble() ?? 0.0,
     );
   }
 

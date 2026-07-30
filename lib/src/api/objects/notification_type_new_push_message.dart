@@ -40,11 +40,11 @@ class NotificationTypeNewPushMessage extends NotificationType {
     }
 
     return NotificationTypeNewPushMessage(
-      messageId: json['message_id'] as int,
+      messageId: (json['message_id'] as int?) ?? 0,
       senderId:
           MessageSender.fromJson(json['sender_id'] as Map<String, dynamic>?)!,
-      senderName: json['sender_name'] as String,
-      isOutgoing: json['is_outgoing'] as bool,
+      senderName: (json['sender_name'] as String?) ?? '',
+      isOutgoing: (json['is_outgoing'] as bool?) ?? false,
       content: PushMessageContent.fromJson(
           json['content'] as Map<String, dynamic>?)!,
     );

@@ -21,7 +21,7 @@ class InputPollMediaLink extends InputPollMedia {
     }
 
     return InputPollMediaLink(
-      url: json['url'] as String,
+      url: (json['url'] as String?) ?? '',
     );
   }
 

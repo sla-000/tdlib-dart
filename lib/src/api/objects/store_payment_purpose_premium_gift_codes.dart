@@ -44,12 +44,13 @@ class StorePaymentPurposePremiumGiftCodes extends StorePaymentPurpose {
     }
 
     return StorePaymentPurposePremiumGiftCodes(
-      boostedChatId: json['boosted_chat_id'] as int,
-      currency: json['currency'] as String,
-      amount: json['amount'] as int,
+      boostedChatId: (json['boosted_chat_id'] as int?) ?? 0,
+      currency: (json['currency'] as String?) ?? '',
+      amount: (json['amount'] as int?) ?? 0,
       userIds: List<int>.from(
           ((json['user_ids'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => item)
+              .map((item) =>
+                  (item is int ? item : int.tryParse(item.toString()) ?? 0))
               .toList()),
       text: FormattedText.fromJson(json['text'] as Map<String, dynamic>?)!,
     );

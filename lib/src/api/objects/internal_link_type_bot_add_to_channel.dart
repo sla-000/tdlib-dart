@@ -33,7 +33,7 @@ class InternalLinkTypeBotAddToChannel extends InternalLinkType {
     }
 
     return InternalLinkTypeBotAddToChannel(
-      botUsername: json['bot_username'] as String,
+      botUsername: (json['bot_username'] as String?) ?? '',
       administratorRights: ChatAdministratorRights.fromJson(
           json['administrator_rights'] as Map<String, dynamic>?)!,
     );

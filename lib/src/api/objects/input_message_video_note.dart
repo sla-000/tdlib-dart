@@ -45,8 +45,8 @@ class InputMessageVideoNote extends InputMessageContent {
           InputFile.fromJson(json['video_note'] as Map<String, dynamic>?)!,
       thumbnail:
           InputThumbnail.fromJson(json['thumbnail'] as Map<String, dynamic>?),
-      duration: json['duration'] as int,
-      length: json['length'] as int,
+      duration: (json['duration'] as int?) ?? 0,
+      length: (json['length'] as int?) ?? 0,
       selfDestructType: MessageSelfDestructType.fromJson(
           json['self_destruct_type'] as Map<String, dynamic>?),
     );

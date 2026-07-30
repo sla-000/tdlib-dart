@@ -25,7 +25,7 @@ class UpdateChatEmojiStatus extends Update {
     }
 
     return UpdateChatEmojiStatus(
-      chatId: json['chat_id'] as int,
+      chatId: (json['chat_id'] as int?) ?? 0,
       emojiStatus:
           EmojiStatus.fromJson(json['emoji_status'] as Map<String, dynamic>?),
     );

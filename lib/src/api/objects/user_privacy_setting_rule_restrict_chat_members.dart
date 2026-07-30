@@ -26,7 +26,8 @@ class UserPrivacySettingRuleRestrictChatMembers extends UserPrivacySettingRule {
     return UserPrivacySettingRuleRestrictChatMembers(
       chatIds: List<int>.from(
           ((json['chat_ids'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => item)
+              .map((item) =>
+                  (item is int ? item : int.tryParse(item.toString()) ?? 0))
               .toList()),
     );
   }

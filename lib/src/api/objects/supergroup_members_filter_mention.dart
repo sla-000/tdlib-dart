@@ -26,7 +26,7 @@ class SupergroupMembersFilterMention extends SupergroupMembersFilter {
     }
 
     return SupergroupMembersFilterMention(
-      query: json['query'] as String,
+      query: (json['query'] as String?) ?? '',
       topicId: MessageTopic.fromJson(json['topic_id'] as Map<String, dynamic>?),
     );
   }

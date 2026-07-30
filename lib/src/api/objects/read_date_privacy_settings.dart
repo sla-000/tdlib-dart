@@ -25,7 +25,7 @@ class ReadDatePrivacySettings extends TdObject {
     }
 
     return ReadDatePrivacySettings(
-      showReadDate: json['show_read_date'] as bool,
+      showReadDate: (json['show_read_date'] as bool?) ?? false,
     );
   }
 

@@ -135,34 +135,36 @@ class ReceivedGift extends TdObject {
     }
 
     return ReceivedGift(
-      receivedGiftId: json['received_gift_id'] as String,
+      receivedGiftId: (json['received_gift_id'] as String?) ?? '',
       senderId:
           MessageSender.fromJson(json['sender_id'] as Map<String, dynamic>?),
       text: FormattedText.fromJson(json['text'] as Map<String, dynamic>?)!,
-      uniqueGiftNumber: json['unique_gift_number'] as int,
-      isPrivate: json['is_private'] as bool,
-      isSaved: json['is_saved'] as bool,
-      isPinned: json['is_pinned'] as bool,
-      canBeUpgraded: json['can_be_upgraded'] as bool,
-      canBeTransferred: json['can_be_transferred'] as bool,
-      wasRefunded: json['was_refunded'] as bool,
-      date: json['date'] as int,
+      uniqueGiftNumber: (json['unique_gift_number'] as int?) ?? 0,
+      isPrivate: (json['is_private'] as bool?) ?? false,
+      isSaved: (json['is_saved'] as bool?) ?? false,
+      isPinned: (json['is_pinned'] as bool?) ?? false,
+      canBeUpgraded: (json['can_be_upgraded'] as bool?) ?? false,
+      canBeTransferred: (json['can_be_transferred'] as bool?) ?? false,
+      wasRefunded: (json['was_refunded'] as bool?) ?? false,
+      date: (json['date'] as int?) ?? 0,
       gift: SentGift.fromJson(json['gift'] as Map<String, dynamic>?)!,
       collectionIds: List<int>.from(
           ((json['collection_ids'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => item)
+              .map((item) =>
+                  (item is int ? item : int.tryParse(item.toString()) ?? 0))
               .toList()),
-      sellStarCount: json['sell_star_count'] as int,
-      prepaidUpgradeStarCount: json['prepaid_upgrade_star_count'] as int,
-      isUpgradeSeparate: json['is_upgrade_separate'] as bool,
-      transferStarCount: json['transfer_star_count'] as int,
+      sellStarCount: (json['sell_star_count'] as int?) ?? 0,
+      prepaidUpgradeStarCount:
+          (json['prepaid_upgrade_star_count'] as int?) ?? 0,
+      isUpgradeSeparate: (json['is_upgrade_separate'] as bool?) ?? false,
+      transferStarCount: (json['transfer_star_count'] as int?) ?? 0,
       dropOriginalDetailsStarCount:
-          json['drop_original_details_star_count'] as int,
-      nextTransferDate: json['next_transfer_date'] as int,
-      nextResaleDate: json['next_resale_date'] as int,
-      exportDate: json['export_date'] as int,
-      prepaidUpgradeHash: json['prepaid_upgrade_hash'] as String,
-      craftDate: json['craft_date'] as int,
+          (json['drop_original_details_star_count'] as int?) ?? 0,
+      nextTransferDate: (json['next_transfer_date'] as int?) ?? 0,
+      nextResaleDate: (json['next_resale_date'] as int?) ?? 0,
+      exportDate: (json['export_date'] as int?) ?? 0,
+      prepaidUpgradeHash: (json['prepaid_upgrade_hash'] as String?) ?? '',
+      craftDate: (json['craft_date'] as int?) ?? 0,
     );
   }
 

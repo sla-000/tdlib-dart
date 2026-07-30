@@ -30,10 +30,10 @@ class UpdateNewGroupCallPaidReaction extends Update {
     }
 
     return UpdateNewGroupCallPaidReaction(
-      groupCallId: json['group_call_id'] as int,
+      groupCallId: (json['group_call_id'] as int?) ?? 0,
       senderId:
           MessageSender.fromJson(json['sender_id'] as Map<String, dynamic>?)!,
-      starCount: json['star_count'] as int,
+      starCount: (json['star_count'] as int?) ?? 0,
     );
   }
 

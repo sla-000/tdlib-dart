@@ -26,7 +26,7 @@ class RichTextBankCardNumber extends RichText {
 
     return RichTextBankCardNumber(
       text: RichText.fromJson(json['text'] as Map<String, dynamic>?)!,
-      bankCardNumber: json['bank_card_number'] as String,
+      bankCardNumber: (json['bank_card_number'] as String?) ?? '',
     );
   }
 

@@ -32,10 +32,10 @@ class RichMessage extends TdObject {
     return RichMessage(
       blocks: List<PageBlock>.from(
           ((json['blocks'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => PageBlock.fromJson(item))
+              .map((item) => PageBlock.fromJson(item as Map<String, dynamic>?))
               .toList()),
-      isRtl: json['is_rtl'] as bool,
-      isFull: json['is_full'] as bool,
+      isRtl: (json['is_rtl'] as bool?) ?? false,
+      isFull: (json['is_full'] as bool?) ?? false,
     );
   }
 

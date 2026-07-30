@@ -21,7 +21,7 @@ class Text extends TdObject {
     }
 
     return Text(
-      text: json['text'] as String,
+      text: (json['text'] as String?) ?? '',
     );
   }
 

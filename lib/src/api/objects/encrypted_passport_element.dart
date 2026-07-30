@@ -57,7 +57,7 @@ class EncryptedPassportElement extends TdObject {
     return EncryptedPassportElement(
       type:
           PassportElementType.fromJson(json['type'] as Map<String, dynamic>?)!,
-      data: json['data'] as String,
+      data: (json['data'] as String?) ?? '',
       frontSide:
           DatedFile.fromJson(json['front_side'] as Map<String, dynamic>?)!,
       reverseSide:
@@ -65,14 +65,14 @@ class EncryptedPassportElement extends TdObject {
       selfie: DatedFile.fromJson(json['selfie'] as Map<String, dynamic>?),
       translation: List<DatedFile>.from(
           ((json['translation'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => DatedFile.fromJson(item))
+              .map((item) => DatedFile.fromJson(item as Map<String, dynamic>?))
               .toList()),
       files: List<DatedFile>.from(
           ((json['files'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => DatedFile.fromJson(item))
+              .map((item) => DatedFile.fromJson(item as Map<String, dynamic>?))
               .toList()),
-      value: json['value'] as String,
-      hash: json['hash'] as String,
+      value: (json['value'] as String?) ?? '',
+      hash: (json['hash'] as String?) ?? '',
     );
   }
 

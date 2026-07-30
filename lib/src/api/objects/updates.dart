@@ -23,7 +23,7 @@ class Updates extends TdObject {
     return Updates(
       updates: List<Update>.from(
           ((json['updates'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => Update.fromJson(item))
+              .map((item) => Update.fromJson(item as Map<String, dynamic>?))
               .toList()),
     );
   }

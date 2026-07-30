@@ -34,10 +34,10 @@ class GroupCallJoinParameters extends TdObject {
     }
 
     return GroupCallJoinParameters(
-      audioSourceId: json['audio_source_id'] as int,
-      payload: json['payload'] as String,
-      isMuted: json['is_muted'] as bool,
-      isMyVideoEnabled: json['is_my_video_enabled'] as bool,
+      audioSourceId: (json['audio_source_id'] as int?) ?? 0,
+      payload: (json['payload'] as String?) ?? '',
+      isMuted: (json['is_muted'] as bool?) ?? false,
+      isMyVideoEnabled: (json['is_my_video_enabled'] as bool?) ?? false,
     );
   }
 

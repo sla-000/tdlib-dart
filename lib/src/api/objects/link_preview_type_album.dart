@@ -27,9 +27,10 @@ class LinkPreviewTypeAlbum extends LinkPreviewType {
     return LinkPreviewTypeAlbum(
       media: List<LinkPreviewAlbumMedia>.from(
           ((json['media'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => LinkPreviewAlbumMedia.fromJson(item))
+              .map((item) =>
+                  LinkPreviewAlbumMedia.fromJson(item as Map<String, dynamic>?))
               .toList()),
-      caption: json['caption'] as String,
+      caption: (json['caption'] as String?) ?? '',
     );
   }
 

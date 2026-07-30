@@ -27,7 +27,7 @@ class StarTransactionTypeUpgradedGiftPurchase extends StarTransactionType {
     }
 
     return StarTransactionTypeUpgradedGiftPurchase(
-      userId: json['user_id'] as int,
+      userId: (json['user_id'] as int?) ?? 0,
       gift: UpgradedGift.fromJson(json['gift'] as Map<String, dynamic>?)!,
     );
   }

@@ -112,17 +112,20 @@ class ChatStatisticsSupergroup extends ChatStatistics {
           json['week_graph'] as Map<String, dynamic>?)!,
       topSenders: List<ChatStatisticsMessageSenderInfo>.from(
           ((json['top_senders'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => ChatStatisticsMessageSenderInfo.fromJson(item))
+              .map((item) => ChatStatisticsMessageSenderInfo.fromJson(
+                  item as Map<String, dynamic>?))
               .toList()),
       topAdministrators: List<ChatStatisticsAdministratorActionsInfo>.from(
           ((json['top_administrators'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) =>
-                  ChatStatisticsAdministratorActionsInfo.fromJson(item))
+              .map((item) => ChatStatisticsAdministratorActionsInfo.fromJson(
+                  item as Map<String, dynamic>?))
               .toList()),
-      topInviters: List<ChatStatisticsInviterInfo>.from(
-          ((json['top_inviters'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => ChatStatisticsInviterInfo.fromJson(item))
-              .toList()),
+      topInviters: List<ChatStatisticsInviterInfo>.from(((json['top_inviters']
+                  as List<dynamic>?) ??
+              <dynamic>[])
+          .map((item) =>
+              ChatStatisticsInviterInfo.fromJson(item as Map<String, dynamic>?))
+          .toList()),
     );
   }
 

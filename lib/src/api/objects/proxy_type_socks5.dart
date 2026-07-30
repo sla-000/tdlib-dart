@@ -25,8 +25,8 @@ class ProxyTypeSocks5 extends ProxyType {
     }
 
     return ProxyTypeSocks5(
-      username: json['username'] as String,
-      password: json['password'] as String,
+      username: (json['username'] as String?) ?? '',
+      password: (json['password'] as String?) ?? '',
     );
   }
 

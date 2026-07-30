@@ -33,9 +33,9 @@ class OrderInfo extends TdObject {
     }
 
     return OrderInfo(
-      name: json['name'] as String,
-      phoneNumber: json['phone_number'] as String,
-      emailAddress: json['email_address'] as String,
+      name: (json['name'] as String?) ?? '',
+      phoneNumber: (json['phone_number'] as String?) ?? '',
+      emailAddress: (json['email_address'] as String?) ?? '',
       shippingAddress:
           Address.fromJson(json['shipping_address'] as Map<String, dynamic>?),
     );

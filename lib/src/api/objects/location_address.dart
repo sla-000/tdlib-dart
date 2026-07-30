@@ -33,10 +33,10 @@ class LocationAddress extends TdObject {
     }
 
     return LocationAddress(
-      countryCode: json['country_code'] as String,
-      state: json['state'] as String,
-      city: json['city'] as String,
-      street: json['street'] as String,
+      countryCode: (json['country_code'] as String?) ?? '',
+      state: (json['state'] as String?) ?? '',
+      city: (json['city'] as String?) ?? '',
+      street: (json['street'] as String?) ?? '',
     );
   }
 

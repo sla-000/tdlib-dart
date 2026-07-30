@@ -44,11 +44,12 @@ class UpdateUnreadChatCount extends Update {
 
     return UpdateUnreadChatCount(
       chatList: ChatList.fromJson(json['chat_list'] as Map<String, dynamic>?)!,
-      totalCount: json['total_count'] as int,
-      unreadCount: json['unread_count'] as int,
-      unreadUnmutedCount: json['unread_unmuted_count'] as int,
-      markedAsUnreadCount: json['marked_as_unread_count'] as int,
-      markedAsUnreadUnmutedCount: json['marked_as_unread_unmuted_count'] as int,
+      totalCount: (json['total_count'] as int?) ?? 0,
+      unreadCount: (json['unread_count'] as int?) ?? 0,
+      unreadUnmutedCount: (json['unread_unmuted_count'] as int?) ?? 0,
+      markedAsUnreadCount: (json['marked_as_unread_count'] as int?) ?? 0,
+      markedAsUnreadUnmutedCount:
+          (json['marked_as_unread_unmuted_count'] as int?) ?? 0,
     );
   }
 

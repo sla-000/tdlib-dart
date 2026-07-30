@@ -21,7 +21,7 @@ class ChatEventSignMessagesToggled extends ChatEventAction {
     }
 
     return ChatEventSignMessagesToggled(
-      signMessages: json['sign_messages'] as bool,
+      signMessages: (json['sign_messages'] as bool?) ?? false,
     );
   }
 

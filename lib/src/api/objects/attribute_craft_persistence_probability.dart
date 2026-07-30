@@ -30,7 +30,8 @@ class AttributeCraftPersistenceProbability extends TdObject {
       persistenceChancePerMille: List<int>.from(
           ((json['persistence_chance_per_mille'] as List<dynamic>?) ??
                   <dynamic>[])
-              .map((item) => item)
+              .map((item) =>
+                  (item is int ? item : int.tryParse(item.toString()) ?? 0))
               .toList()),
     );
   }

@@ -25,7 +25,7 @@ class GiveawayParticipantStatusAlreadyWasMember
     }
 
     return GiveawayParticipantStatusAlreadyWasMember(
-      joinedChatDate: json['joined_chat_date'] as int,
+      joinedChatDate: (json['joined_chat_date'] as int?) ?? 0,
     );
   }
 

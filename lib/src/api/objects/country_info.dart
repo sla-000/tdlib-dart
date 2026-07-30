@@ -38,13 +38,13 @@ class CountryInfo extends TdObject {
     }
 
     return CountryInfo(
-      countryCode: json['country_code'] as String,
-      name: json['name'] as String,
-      englishName: json['english_name'] as String,
-      isHidden: json['is_hidden'] as bool,
+      countryCode: (json['country_code'] as String?) ?? '',
+      name: (json['name'] as String?) ?? '',
+      englishName: (json['english_name'] as String?) ?? '',
+      isHidden: (json['is_hidden'] as bool?) ?? false,
       callingCodes: List<String>.from(
           ((json['calling_codes'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => item)
+              .map((item) => item as String)
               .toList()),
     );
   }

@@ -28,8 +28,8 @@ class InternalLinkTypeStarPurchase extends InternalLinkType {
     }
 
     return InternalLinkTypeStarPurchase(
-      starCount: json['star_count'] as int,
-      purpose: json['purpose'] as String,
+      starCount: (json['star_count'] as int?) ?? 0,
+      purpose: (json['purpose'] as String?) ?? '',
     );
   }
 

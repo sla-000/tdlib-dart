@@ -39,7 +39,7 @@ class CreateTextCompositionStyle extends TdFunction {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'title': title,
-        'custom_emoji_id': customEmojiId,
+        'custom_emoji_id': customEmojiId.toString(),
         'prompt': prompt,
         'show_creator': showCreator,
         '@type': constructor,

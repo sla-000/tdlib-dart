@@ -34,12 +34,18 @@ class ChatEventAccentColorChanged extends ChatEventAction {
     }
 
     return ChatEventAccentColorChanged(
-      oldAccentColorId: json['old_accent_color_id'] as int,
-      oldBackgroundCustomEmojiId:
-          int.tryParse(json['old_background_custom_emoji_id']) ?? 0,
-      newAccentColorId: json['new_accent_color_id'] as int,
-      newBackgroundCustomEmojiId:
-          int.tryParse(json['new_background_custom_emoji_id']) ?? 0,
+      oldAccentColorId: (json['old_accent_color_id'] as int?) ?? 0,
+      oldBackgroundCustomEmojiId: (json['old_background_custom_emoji_id'] is int
+              ? json['old_background_custom_emoji_id'] as int
+              : int.tryParse(
+                  json['old_background_custom_emoji_id']?.toString() ?? '')) ??
+          0,
+      newAccentColorId: (json['new_accent_color_id'] as int?) ?? 0,
+      newBackgroundCustomEmojiId: (json['new_background_custom_emoji_id'] is int
+              ? json['new_background_custom_emoji_id'] as int
+              : int.tryParse(
+                  json['new_background_custom_emoji_id']?.toString() ?? '')) ??
+          0,
     );
   }
 

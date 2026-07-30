@@ -34,10 +34,10 @@ class StarSubscriptionTypeBot extends StarSubscriptionType {
     }
 
     return StarSubscriptionTypeBot(
-      isCanceledByBot: json['is_canceled_by_bot'] as bool,
-      title: json['title'] as String,
+      isCanceledByBot: (json['is_canceled_by_bot'] as bool?) ?? false,
+      title: (json['title'] as String?) ?? '',
       photo: Photo.fromJson(json['photo'] as Map<String, dynamic>?)!,
-      invoiceLink: json['invoice_link'] as String,
+      invoiceLink: (json['invoice_link'] as String?) ?? '',
     );
   }
 

@@ -25,7 +25,7 @@ class AnswerGuestQuery extends TdFunction {
 
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'guest_query_id': guestQueryId,
+        'guest_query_id': guestQueryId.toString(),
         'result': result.toJson(),
         '@type': constructor,
       };

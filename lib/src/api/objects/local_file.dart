@@ -55,14 +55,15 @@ class LocalFile extends TdObject {
     }
 
     return LocalFile(
-      path: json['path'] as String,
-      canBeDownloaded: json['can_be_downloaded'] as bool,
-      canBeDeleted: json['can_be_deleted'] as bool,
-      isDownloadingActive: json['is_downloading_active'] as bool,
-      isDownloadingCompleted: json['is_downloading_completed'] as bool,
-      downloadOffset: json['download_offset'] as int,
-      downloadedPrefixSize: json['downloaded_prefix_size'] as int,
-      downloadedSize: json['downloaded_size'] as int,
+      path: (json['path'] as String?) ?? '',
+      canBeDownloaded: (json['can_be_downloaded'] as bool?) ?? false,
+      canBeDeleted: (json['can_be_deleted'] as bool?) ?? false,
+      isDownloadingActive: (json['is_downloading_active'] as bool?) ?? false,
+      isDownloadingCompleted:
+          (json['is_downloading_completed'] as bool?) ?? false,
+      downloadOffset: (json['download_offset'] as int?) ?? 0,
+      downloadedPrefixSize: (json['downloaded_prefix_size'] as int?) ?? 0,
+      downloadedSize: (json['downloaded_size'] as int?) ?? 0,
     );
   }
 

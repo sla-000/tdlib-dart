@@ -22,7 +22,7 @@ class ChatActionWatchingAnimations extends ChatAction {
     }
 
     return ChatActionWatchingAnimations(
-      emoji: json['emoji'] as String,
+      emoji: (json['emoji'] as String?) ?? '',
     );
   }
 

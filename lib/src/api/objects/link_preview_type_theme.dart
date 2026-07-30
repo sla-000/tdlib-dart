@@ -27,7 +27,7 @@ class LinkPreviewTypeTheme extends LinkPreviewType {
     return LinkPreviewTypeTheme(
       documents: List<Document>.from(
           ((json['documents'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => Document.fromJson(item))
+              .map((item) => Document.fromJson(item as Map<String, dynamic>?))
               .toList()),
       settings:
           ThemeSettings.fromJson(json['settings'] as Map<String, dynamic>?),

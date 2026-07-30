@@ -22,7 +22,7 @@ class CallbackQueryPayloadGame extends CallbackQueryPayload {
     }
 
     return CallbackQueryPayloadGame(
-      gameShortName: json['game_short_name'] as String,
+      gameShortName: (json['game_short_name'] as String?) ?? '',
     );
   }
 

@@ -50,17 +50,19 @@ class BusinessRecipients extends TdObject {
     return BusinessRecipients(
       chatIds: List<int>.from(
           ((json['chat_ids'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => item)
+              .map((item) =>
+                  (item is int ? item : int.tryParse(item.toString()) ?? 0))
               .toList()),
       excludedChatIds: List<int>.from(
           ((json['excluded_chat_ids'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => item)
+              .map((item) =>
+                  (item is int ? item : int.tryParse(item.toString()) ?? 0))
               .toList()),
-      selectExistingChats: json['select_existing_chats'] as bool,
-      selectNewChats: json['select_new_chats'] as bool,
-      selectContacts: json['select_contacts'] as bool,
-      selectNonContacts: json['select_non_contacts'] as bool,
-      excludeSelected: json['exclude_selected'] as bool,
+      selectExistingChats: (json['select_existing_chats'] as bool?) ?? false,
+      selectNewChats: (json['select_new_chats'] as bool?) ?? false,
+      selectContacts: (json['select_contacts'] as bool?) ?? false,
+      selectNonContacts: (json['select_non_contacts'] as bool?) ?? false,
+      excludeSelected: (json['exclude_selected'] as bool?) ?? false,
     );
   }
 

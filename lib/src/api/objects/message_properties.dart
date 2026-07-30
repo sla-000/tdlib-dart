@@ -219,47 +219,57 @@ class MessageProperties extends TdObject {
     }
 
     return MessageProperties(
-      canAddOffer: json['can_add_offer'] as bool,
-      canAddTasks: json['can_add_tasks'] as bool,
-      canBeApproved: json['can_be_approved'] as bool,
-      canBeCopied: json['can_be_copied'] as bool,
-      canBeCopiedToSecretChat: json['can_be_copied_to_secret_chat'] as bool,
-      canBeDeclined: json['can_be_declined'] as bool,
-      canBeDeletedOnlyForSelf: json['can_be_deleted_only_for_self'] as bool,
-      canBeDeletedForAllUsers: json['can_be_deleted_for_all_users'] as bool,
-      canBeEdited: json['can_be_edited'] as bool,
-      canBeForwarded: json['can_be_forwarded'] as bool,
-      canBePaid: json['can_be_paid'] as bool,
-      canBePinned: json['can_be_pinned'] as bool,
-      canBeReplied: json['can_be_replied'] as bool,
-      canBeRepliedInAnotherChat: json['can_be_replied_in_another_chat'] as bool,
-      canBeSaved: json['can_be_saved'] as bool,
-      canBeSharedInStory: json['can_be_shared_in_story'] as bool,
-      canDeleteReactions: json['can_delete_reactions'] as bool,
-      canEditMedia: json['can_edit_media'] as bool,
-      canEditSchedulingState: json['can_edit_scheduling_state'] as bool,
-      canEditSuggestedPostInfo: json['can_edit_suggested_post_info'] as bool,
-      canGetAuthor: json['can_get_author'] as bool,
-      canGetEmbeddingCode: json['can_get_embedding_code'] as bool,
-      canGetLink: json['can_get_link'] as bool,
-      canGetMediaTimestampLinks: json['can_get_media_timestamp_links'] as bool,
-      canGetMessageThread: json['can_get_message_thread'] as bool,
-      canGetPollVoteStatistics: json['can_get_poll_vote_statistics'] as bool,
-      canGetReadDate: json['can_get_read_date'] as bool,
-      canGetStatistics: json['can_get_statistics'] as bool,
-      canGetVideoAdvertisements: json['can_get_video_advertisements'] as bool,
-      canGetViewers: json['can_get_viewers'] as bool,
-      canMarkTasksAsDone: json['can_mark_tasks_as_done'] as bool,
-      canRecognizeSpeech: json['can_recognize_speech'] as bool,
-      canReportChat: json['can_report_chat'] as bool,
-      canReportReactions: json['can_report_reactions'] as bool,
-      canReportSupergroupSpam: json['can_report_supergroup_spam'] as bool,
-      canSetFactCheck: json['can_set_fact_check'] as bool,
+      canAddOffer: (json['can_add_offer'] as bool?) ?? false,
+      canAddTasks: (json['can_add_tasks'] as bool?) ?? false,
+      canBeApproved: (json['can_be_approved'] as bool?) ?? false,
+      canBeCopied: (json['can_be_copied'] as bool?) ?? false,
+      canBeCopiedToSecretChat:
+          (json['can_be_copied_to_secret_chat'] as bool?) ?? false,
+      canBeDeclined: (json['can_be_declined'] as bool?) ?? false,
+      canBeDeletedOnlyForSelf:
+          (json['can_be_deleted_only_for_self'] as bool?) ?? false,
+      canBeDeletedForAllUsers:
+          (json['can_be_deleted_for_all_users'] as bool?) ?? false,
+      canBeEdited: (json['can_be_edited'] as bool?) ?? false,
+      canBeForwarded: (json['can_be_forwarded'] as bool?) ?? false,
+      canBePaid: (json['can_be_paid'] as bool?) ?? false,
+      canBePinned: (json['can_be_pinned'] as bool?) ?? false,
+      canBeReplied: (json['can_be_replied'] as bool?) ?? false,
+      canBeRepliedInAnotherChat:
+          (json['can_be_replied_in_another_chat'] as bool?) ?? false,
+      canBeSaved: (json['can_be_saved'] as bool?) ?? false,
+      canBeSharedInStory: (json['can_be_shared_in_story'] as bool?) ?? false,
+      canDeleteReactions: (json['can_delete_reactions'] as bool?) ?? false,
+      canEditMedia: (json['can_edit_media'] as bool?) ?? false,
+      canEditSchedulingState:
+          (json['can_edit_scheduling_state'] as bool?) ?? false,
+      canEditSuggestedPostInfo:
+          (json['can_edit_suggested_post_info'] as bool?) ?? false,
+      canGetAuthor: (json['can_get_author'] as bool?) ?? false,
+      canGetEmbeddingCode: (json['can_get_embedding_code'] as bool?) ?? false,
+      canGetLink: (json['can_get_link'] as bool?) ?? false,
+      canGetMediaTimestampLinks:
+          (json['can_get_media_timestamp_links'] as bool?) ?? false,
+      canGetMessageThread: (json['can_get_message_thread'] as bool?) ?? false,
+      canGetPollVoteStatistics:
+          (json['can_get_poll_vote_statistics'] as bool?) ?? false,
+      canGetReadDate: (json['can_get_read_date'] as bool?) ?? false,
+      canGetStatistics: (json['can_get_statistics'] as bool?) ?? false,
+      canGetVideoAdvertisements:
+          (json['can_get_video_advertisements'] as bool?) ?? false,
+      canGetViewers: (json['can_get_viewers'] as bool?) ?? false,
+      canMarkTasksAsDone: (json['can_mark_tasks_as_done'] as bool?) ?? false,
+      canRecognizeSpeech: (json['can_recognize_speech'] as bool?) ?? false,
+      canReportChat: (json['can_report_chat'] as bool?) ?? false,
+      canReportReactions: (json['can_report_reactions'] as bool?) ?? false,
+      canReportSupergroupSpam:
+          (json['can_report_supergroup_spam'] as bool?) ?? false,
+      canSetFactCheck: (json['can_set_fact_check'] as bool?) ?? false,
       hasProtectedContentByCurrentUser:
-          json['has_protected_content_by_current_user'] as bool,
+          (json['has_protected_content_by_current_user'] as bool?) ?? false,
       hasProtectedContentByOtherUser:
-          json['has_protected_content_by_other_user'] as bool,
-      needShowStatistics: json['need_show_statistics'] as bool,
+          (json['has_protected_content_by_other_user'] as bool?) ?? false,
+      needShowStatistics: (json['need_show_statistics'] as bool?) ?? false,
     );
   }
 

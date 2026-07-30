@@ -21,7 +21,7 @@ class JsonValueNumber extends JsonValue {
     }
 
     return JsonValueNumber(
-      value: (json['value'] as num).toDouble(),
+      value: (json['value'] as num?)?.toDouble() ?? 0.0,
     );
   }
 

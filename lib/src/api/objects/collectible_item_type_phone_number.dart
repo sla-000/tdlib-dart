@@ -21,7 +21,7 @@ class CollectibleItemTypePhoneNumber extends CollectibleItemType {
     }
 
     return CollectibleItemTypePhoneNumber(
-      phoneNumber: json['phone_number'] as String,
+      phoneNumber: (json['phone_number'] as String?) ?? '',
     );
   }
 

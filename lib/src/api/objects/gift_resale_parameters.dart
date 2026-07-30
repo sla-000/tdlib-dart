@@ -29,9 +29,9 @@ class GiftResaleParameters extends TdObject {
     }
 
     return GiftResaleParameters(
-      starCount: json['star_count'] as int,
-      toncoinCentCount: json['toncoin_cent_count'] as int,
-      toncoinOnly: json['toncoin_only'] as bool,
+      starCount: (json['star_count'] as int?) ?? 0,
+      toncoinCentCount: (json['toncoin_cent_count'] as int?) ?? 0,
+      toncoinOnly: (json['toncoin_only'] as bool?) ?? false,
     );
   }
 

@@ -30,10 +30,10 @@ class MessageChatSetBackground extends MessageContent {
     }
 
     return MessageChatSetBackground(
-      oldBackgroundMessageId: json['old_background_message_id'] as int,
+      oldBackgroundMessageId: (json['old_background_message_id'] as int?) ?? 0,
       background:
           ChatBackground.fromJson(json['background'] as Map<String, dynamic>?)!,
-      onlyForSelf: json['only_for_self'] as bool,
+      onlyForSelf: (json['only_for_self'] as bool?) ?? false,
     );
   }
 

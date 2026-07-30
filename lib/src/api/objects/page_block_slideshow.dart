@@ -27,7 +27,7 @@ class PageBlockSlideshow extends PageBlock {
     return PageBlockSlideshow(
       blocks: List<PageBlock>.from(
           ((json['blocks'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => PageBlock.fromJson(item))
+              .map((item) => PageBlock.fromJson(item as Map<String, dynamic>?))
               .toList()),
       caption:
           PageBlockCaption.fromJson(json['caption'] as Map<String, dynamic>?),

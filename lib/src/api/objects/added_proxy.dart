@@ -38,10 +38,10 @@ class AddedProxy extends TdObject {
     }
 
     return AddedProxy(
-      id: json['id'] as int,
-      lastUsedDate: json['last_used_date'] as int,
-      isEnabled: json['is_enabled'] as bool,
-      comment: json['comment'] as String,
+      id: (json['id'] as int?) ?? 0,
+      lastUsedDate: (json['last_used_date'] as int?) ?? 0,
+      isEnabled: (json['is_enabled'] as bool?) ?? false,
+      comment: (json['comment'] as String?) ?? '',
       proxy: Proxy.fromJson(json['proxy'] as Map<String, dynamic>?)!,
     );
   }

@@ -21,7 +21,7 @@ class GetStickerSet extends TdFunction {
 
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'set_id': setId,
+        'set_id': setId.toString(),
         '@type': constructor,
       };
 

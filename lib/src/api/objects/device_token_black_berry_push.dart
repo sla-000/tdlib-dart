@@ -21,7 +21,7 @@ class DeviceTokenBlackBerryPush extends DeviceToken {
     }
 
     return DeviceTokenBlackBerryPush(
-      token: json['token'] as String,
+      token: (json['token'] as String?) ?? '',
     );
   }
 

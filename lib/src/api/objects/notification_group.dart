@@ -39,15 +39,16 @@ class NotificationGroup extends TdObject {
     }
 
     return NotificationGroup(
-      id: json['id'] as int,
+      id: (json['id'] as int?) ?? 0,
       type: NotificationGroupType.fromJson(
           json['type'] as Map<String, dynamic>?)!,
-      chatId: json['chat_id'] as int,
-      totalCount: json['total_count'] as int,
-      notifications: List<Notification>.from(
-          ((json['notifications'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => Notification.fromJson(item))
-              .toList()),
+      chatId: (json['chat_id'] as int?) ?? 0,
+      totalCount: (json['total_count'] as int?) ?? 0,
+      notifications: List<Notification>.from(((json['notifications']
+                  as List<dynamic>?) ??
+              <dynamic>[])
+          .map((item) => Notification.fromJson(item as Map<String, dynamic>?))
+          .toList()),
     );
   }
 

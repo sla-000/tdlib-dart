@@ -59,16 +59,17 @@ class StoryVideo extends TdObject {
     }
 
     return StoryVideo(
-      duration: (json['duration'] as num).toDouble(),
-      width: json['width'] as int,
-      height: json['height'] as int,
-      hasStickers: json['has_stickers'] as bool,
-      isAnimation: json['is_animation'] as bool,
+      duration: (json['duration'] as num?)?.toDouble() ?? 0.0,
+      width: (json['width'] as int?) ?? 0,
+      height: (json['height'] as int?) ?? 0,
+      hasStickers: (json['has_stickers'] as bool?) ?? false,
+      isAnimation: (json['is_animation'] as bool?) ?? false,
       minithumbnail: Minithumbnail.fromJson(
           json['minithumbnail'] as Map<String, dynamic>?),
       thumbnail: Thumbnail.fromJson(json['thumbnail'] as Map<String, dynamic>?),
-      preloadPrefixSize: json['preload_prefix_size'] as int,
-      coverFrameTimestamp: (json['cover_frame_timestamp'] as num).toDouble(),
+      preloadPrefixSize: (json['preload_prefix_size'] as int?) ?? 0,
+      coverFrameTimestamp:
+          (json['cover_frame_timestamp'] as num?)?.toDouble() ?? 0.0,
       video: File.fromJson(json['video'] as Map<String, dynamic>?)!,
     );
   }

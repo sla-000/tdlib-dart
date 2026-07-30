@@ -25,7 +25,7 @@ class UpdateChatNotificationSettings extends Update {
     }
 
     return UpdateChatNotificationSettings(
-      chatId: json['chat_id'] as int,
+      chatId: (json['chat_id'] as int?) ?? 0,
       notificationSettings: ChatNotificationSettings.fromJson(
           json['notification_settings'] as Map<String, dynamic>?)!,
     );

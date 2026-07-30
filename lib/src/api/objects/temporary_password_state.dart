@@ -26,8 +26,8 @@ class TemporaryPasswordState extends TdObject {
     }
 
     return TemporaryPasswordState(
-      hasPassword: json['has_password'] as bool,
-      validFor: json['valid_for'] as int,
+      hasPassword: (json['has_password'] as bool?) ?? false,
+      validFor: (json['valid_for'] as int?) ?? 0,
     );
   }
 

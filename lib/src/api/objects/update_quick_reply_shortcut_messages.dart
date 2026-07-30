@@ -27,10 +27,11 @@ class UpdateQuickReplyShortcutMessages extends Update {
     }
 
     return UpdateQuickReplyShortcutMessages(
-      shortcutId: json['shortcut_id'] as int,
+      shortcutId: (json['shortcut_id'] as int?) ?? 0,
       messages: List<QuickReplyMessage>.from(
           ((json['messages'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => QuickReplyMessage.fromJson(item))
+              .map((item) =>
+                  QuickReplyMessage.fromJson(item as Map<String, dynamic>?))
               .toList()),
     );
   }

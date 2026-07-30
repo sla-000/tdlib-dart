@@ -33,9 +33,9 @@ class InputMessageStakeDice extends InputMessageContent {
     }
 
     return InputMessageStakeDice(
-      stateHash: json['state_hash'] as String,
-      stakeToncoinAmount: json['stake_toncoin_amount'] as int,
-      clearDraft: json['clear_draft'] as bool,
+      stateHash: (json['state_hash'] as String?) ?? '',
+      stakeToncoinAmount: (json['stake_toncoin_amount'] as int?) ?? 0,
+      clearDraft: (json['clear_draft'] as bool?) ?? false,
     );
   }
 

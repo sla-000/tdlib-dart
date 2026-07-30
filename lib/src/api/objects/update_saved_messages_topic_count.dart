@@ -21,7 +21,7 @@ class UpdateSavedMessagesTopicCount extends Update {
     }
 
     return UpdateSavedMessagesTopicCount(
-      topicCount: json['topic_count'] as int,
+      topicCount: (json['topic_count'] as int?) ?? 0,
     );
   }
 

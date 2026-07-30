@@ -25,8 +25,8 @@ class ReportOption extends TdObject {
     }
 
     return ReportOption(
-      id: json['id'] as String,
-      text: json['text'] as String,
+      id: (json['id'] as String?) ?? '',
+      text: (json['text'] as String?) ?? '',
     );
   }
 

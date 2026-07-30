@@ -39,8 +39,8 @@ class NetworkStatisticsEntryFile extends NetworkStatisticsEntry {
       fileType: FileType.fromJson(json['file_type'] as Map<String, dynamic>?),
       networkType:
           NetworkType.fromJson(json['network_type'] as Map<String, dynamic>?)!,
-      sentBytes: json['sent_bytes'] as int,
-      receivedBytes: json['received_bytes'] as int,
+      sentBytes: (json['sent_bytes'] as int?) ?? 0,
+      receivedBytes: (json['received_bytes'] as int?) ?? 0,
     );
   }
 

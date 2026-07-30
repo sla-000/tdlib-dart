@@ -32,8 +32,8 @@ class InputBusinessStartPage extends TdObject {
     }
 
     return InputBusinessStartPage(
-      title: json['title'] as String,
-      message: json['message'] as String,
+      title: (json['title'] as String?) ?? '',
+      message: (json['message'] as String?) ?? '',
       sticker: InputFile.fromJson(json['sticker'] as Map<String, dynamic>?),
     );
   }

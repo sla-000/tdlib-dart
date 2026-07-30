@@ -37,14 +37,16 @@ class MessageReactions extends TdObject {
     return MessageReactions(
       reactions: List<MessageReaction>.from(
           ((json['reactions'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => MessageReaction.fromJson(item))
+              .map((item) =>
+                  MessageReaction.fromJson(item as Map<String, dynamic>?))
               .toList()),
-      areTags: json['are_tags'] as bool,
-      paidReactors: List<PaidReactor>.from(
-          ((json['paid_reactors'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => PaidReactor.fromJson(item))
-              .toList()),
-      canGetAddedReactions: json['can_get_added_reactions'] as bool,
+      areTags: (json['are_tags'] as bool?) ?? false,
+      paidReactors: List<PaidReactor>.from(((json['paid_reactors']
+                  as List<dynamic>?) ??
+              <dynamic>[])
+          .map((item) => PaidReactor.fromJson(item as Map<String, dynamic>?))
+          .toList()),
+      canGetAddedReactions: (json['can_get_added_reactions'] as bool?) ?? false,
     );
   }
 

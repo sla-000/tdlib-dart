@@ -66,19 +66,20 @@ class PollOption extends TdObject {
     }
 
     return PollOption(
-      id: json['id'] as String,
+      id: (json['id'] as String?) ?? '',
       text: FormattedText.fromJson(json['text'] as Map<String, dynamic>?)!,
       media: PollMedia.fromJson(json['media'] as Map<String, dynamic>?),
-      voterCount: json['voter_count'] as int,
-      votePercentage: json['vote_percentage'] as int,
-      recentVoterIds: List<MessageSender>.from(
-          ((json['recent_voter_ids'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => MessageSender.fromJson(item))
-              .toList()),
-      isChosen: json['is_chosen'] as bool,
-      isBeingChosen: json['is_being_chosen'] as bool,
+      voterCount: (json['voter_count'] as int?) ?? 0,
+      votePercentage: (json['vote_percentage'] as int?) ?? 0,
+      recentVoterIds: List<MessageSender>.from(((json['recent_voter_ids']
+                  as List<dynamic>?) ??
+              <dynamic>[])
+          .map((item) => MessageSender.fromJson(item as Map<String, dynamic>?))
+          .toList()),
+      isChosen: (json['is_chosen'] as bool?) ?? false,
+      isBeingChosen: (json['is_being_chosen'] as bool?) ?? false,
       author: MessageSender.fromJson(json['author'] as Map<String, dynamic>?),
-      additionDate: json['addition_date'] as int,
+      additionDate: (json['addition_date'] as int?) ?? 0,
     );
   }
 

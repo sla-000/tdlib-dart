@@ -34,7 +34,7 @@ class InputSuggestedPostInfo extends TdObject {
     return InputSuggestedPostInfo(
       price:
           SuggestedPostPrice.fromJson(json['price'] as Map<String, dynamic>?),
-      sendDate: json['send_date'] as int,
+      sendDate: (json['send_date'] as int?) ?? 0,
     );
   }
 

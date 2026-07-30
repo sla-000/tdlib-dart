@@ -29,9 +29,9 @@ class AuctionBid extends TdObject {
     }
 
     return AuctionBid(
-      starCount: json['star_count'] as int,
-      bidDate: json['bid_date'] as int,
-      position: json['position'] as int,
+      starCount: (json['star_count'] as int?) ?? 0,
+      bidDate: (json['bid_date'] as int?) ?? 0,
+      position: (json['position'] as int?) ?? 0,
     );
   }
 

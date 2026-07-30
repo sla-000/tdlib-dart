@@ -21,7 +21,7 @@ class SpeechRecognitionResultPending extends SpeechRecognitionResult {
     }
 
     return SpeechRecognitionResultPending(
-      partialText: json['partial_text'] as String,
+      partialText: (json['partial_text'] as String?) ?? '',
     );
   }
 

@@ -28,7 +28,7 @@ class SetAccentColor extends TdFunction {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'accent_color_id': accentColorId,
-        'background_custom_emoji_id': backgroundCustomEmojiId,
+        'background_custom_emoji_id': backgroundCustomEmojiId.toString(),
         '@type': constructor,
       };
 

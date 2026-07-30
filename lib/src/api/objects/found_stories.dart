@@ -30,12 +30,12 @@ class FoundStories extends TdObject {
     }
 
     return FoundStories(
-      totalCount: json['total_count'] as int,
+      totalCount: (json['total_count'] as int?) ?? 0,
       stories: List<Story>.from(
           ((json['stories'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => Story.fromJson(item))
+              .map((item) => Story.fromJson(item as Map<String, dynamic>?))
               .toList()),
-      nextOffset: json['next_offset'] as String,
+      nextOffset: (json['next_offset'] as String?) ?? '',
     );
   }
 

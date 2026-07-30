@@ -29,11 +29,12 @@ class ShippingOption extends TdObject {
     }
 
     return ShippingOption(
-      id: json['id'] as String,
-      title: json['title'] as String,
+      id: (json['id'] as String?) ?? '',
+      title: (json['title'] as String?) ?? '',
       priceParts: List<LabeledPricePart>.from(
           ((json['price_parts'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => LabeledPricePart.fromJson(item))
+              .map((item) =>
+                  LabeledPricePart.fromJson(item as Map<String, dynamic>?))
               .toList()),
     );
   }

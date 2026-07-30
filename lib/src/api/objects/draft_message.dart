@@ -42,10 +42,13 @@ class DraftMessage extends TdObject {
     return DraftMessage(
       replyTo: InputMessageReplyTo.fromJson(
           json['reply_to'] as Map<String, dynamic>?),
-      date: json['date'] as int,
+      date: (json['date'] as int?) ?? 0,
       content: DraftMessageContent.fromJson(
           json['content'] as Map<String, dynamic>?)!,
-      effectId: int.tryParse(json['effect_id']) ?? 0,
+      effectId: (json['effect_id'] is int
+              ? json['effect_id'] as int
+              : int.tryParse(json['effect_id']?.toString() ?? '')) ??
+          0,
       suggestedPostInfo: InputSuggestedPostInfo.fromJson(
           json['suggested_post_info'] as Map<String, dynamic>?),
     );

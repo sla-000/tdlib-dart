@@ -22,7 +22,7 @@ class GetSavedNotificationSound extends TdFunction {
 
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'notification_sound_id': notificationSoundId,
+        'notification_sound_id': notificationSoundId.toString(),
         '@type': constructor,
       };
 

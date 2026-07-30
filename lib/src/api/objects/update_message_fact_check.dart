@@ -29,8 +29,8 @@ class UpdateMessageFactCheck extends Update {
     }
 
     return UpdateMessageFactCheck(
-      chatId: json['chat_id'] as int,
-      messageId: json['message_id'] as int,
+      chatId: (json['chat_id'] as int?) ?? 0,
+      messageId: (json['message_id'] as int?) ?? 0,
       factCheck:
           FactCheck.fromJson(json['fact_check'] as Map<String, dynamic>?)!,
     );

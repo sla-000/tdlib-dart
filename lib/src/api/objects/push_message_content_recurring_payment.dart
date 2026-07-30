@@ -22,7 +22,7 @@ class PushMessageContentRecurringPayment extends PushMessageContent {
     }
 
     return PushMessageContentRecurringPayment(
-      amount: json['amount'] as String,
+      amount: (json['amount'] as String?) ?? '',
     );
   }
 

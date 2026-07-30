@@ -25,7 +25,7 @@ class UpdateDefaultBackground extends Update {
     }
 
     return UpdateDefaultBackground(
-      forDarkTheme: json['for_dark_theme'] as bool,
+      forDarkTheme: (json['for_dark_theme'] as bool?) ?? false,
       background:
           Background.fromJson(json['background'] as Map<String, dynamic>?),
     );

@@ -25,8 +25,8 @@ class GiftUpgradePrice extends TdObject {
     }
 
     return GiftUpgradePrice(
-      date: json['date'] as int,
-      starCount: json['star_count'] as int,
+      date: (json['date'] as int?) ?? 0,
+      starCount: (json['star_count'] as int?) ?? 0,
     );
   }
 

@@ -38,8 +38,8 @@ class MessageUpgradedGiftPurchaseOfferRejected extends MessageContent {
     return MessageUpgradedGiftPurchaseOfferRejected(
       gift: UpgradedGift.fromJson(json['gift'] as Map<String, dynamic>?)!,
       price: GiftResalePrice.fromJson(json['price'] as Map<String, dynamic>?)!,
-      offerMessageId: json['offer_message_id'] as int,
-      wasExpired: json['was_expired'] as bool,
+      offerMessageId: (json['offer_message_id'] as int?) ?? 0,
+      wasExpired: (json['was_expired'] as bool?) ?? false,
     );
   }
 

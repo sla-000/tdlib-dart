@@ -23,7 +23,7 @@ class MessageChatHasProtectedContentDisableRequested extends MessageContent {
     }
 
     return MessageChatHasProtectedContentDisableRequested(
-      isExpired: json['is_expired'] as bool,
+      isExpired: (json['is_expired'] as bool?) ?? false,
     );
   }
 

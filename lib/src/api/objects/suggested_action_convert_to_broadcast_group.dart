@@ -22,7 +22,7 @@ class SuggestedActionConvertToBroadcastGroup extends SuggestedAction {
     }
 
     return SuggestedActionConvertToBroadcastGroup(
-      supergroupId: json['supergroup_id'] as int,
+      supergroupId: (json['supergroup_id'] as int?) ?? 0,
     );
   }
 

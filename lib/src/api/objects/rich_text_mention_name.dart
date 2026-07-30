@@ -26,7 +26,7 @@ class RichTextMentionName extends RichText {
 
     return RichTextMentionName(
       text: RichText.fromJson(json['text'] as Map<String, dynamic>?)!,
-      userId: json['user_id'] as int,
+      userId: (json['user_id'] as int?) ?? 0,
     );
   }
 

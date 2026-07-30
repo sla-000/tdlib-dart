@@ -25,7 +25,7 @@ class InternalLinkTypeChatBoost extends InternalLinkType {
     }
 
     return InternalLinkTypeChatBoost(
-      url: json['url'] as String,
+      url: (json['url'] as String?) ?? '',
     );
   }
 

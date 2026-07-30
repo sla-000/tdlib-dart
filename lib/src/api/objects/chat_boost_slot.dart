@@ -40,11 +40,11 @@ class ChatBoostSlot extends TdObject {
     }
 
     return ChatBoostSlot(
-      slotId: json['slot_id'] as int,
-      currentlyBoostedChatId: json['currently_boosted_chat_id'] as int,
-      startDate: json['start_date'] as int,
-      expirationDate: json['expiration_date'] as int,
-      cooldownUntilDate: json['cooldown_until_date'] as int,
+      slotId: (json['slot_id'] as int?) ?? 0,
+      currentlyBoostedChatId: (json['currently_boosted_chat_id'] as int?) ?? 0,
+      startDate: (json['start_date'] as int?) ?? 0,
+      expirationDate: (json['expiration_date'] as int?) ?? 0,
+      cooldownUntilDate: (json['cooldown_until_date'] as int?) ?? 0,
     );
   }
 

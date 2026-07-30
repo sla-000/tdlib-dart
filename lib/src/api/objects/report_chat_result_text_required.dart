@@ -25,7 +25,7 @@ class ReportChatResultTextRequired extends ReportChatResult {
     }
 
     return ReportChatResultTextRequired(
-      optionId: json['option_id'] as String,
+      optionId: (json['option_id'] as String?) ?? '',
       isOptional: json['is_optional'] as bool?,
     );
   }

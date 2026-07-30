@@ -25,7 +25,7 @@ class UpdateBasicGroupFullInfo extends Update {
     }
 
     return UpdateBasicGroupFullInfo(
-      basicGroupId: json['basic_group_id'] as int,
+      basicGroupId: (json['basic_group_id'] as int?) ?? 0,
       basicGroupFullInfo: BasicGroupFullInfo.fromJson(
           json['basic_group_full_info'] as Map<String, dynamic>?)!,
     );

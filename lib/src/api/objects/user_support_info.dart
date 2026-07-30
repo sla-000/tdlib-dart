@@ -31,8 +31,8 @@ class UserSupportInfo extends TdObject {
     return UserSupportInfo(
       message:
           FormattedText.fromJson(json['message'] as Map<String, dynamic>?)!,
-      author: json['author'] as String,
-      date: json['date'] as int,
+      author: (json['author'] as String?) ?? '',
+      date: (json['date'] as int?) ?? 0,
     );
   }
 

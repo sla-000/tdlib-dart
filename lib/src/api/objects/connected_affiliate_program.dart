@@ -49,14 +49,17 @@ class ConnectedAffiliateProgram extends TdObject {
     }
 
     return ConnectedAffiliateProgram(
-      url: json['url'] as String,
-      botUserId: json['bot_user_id'] as int,
+      url: (json['url'] as String?) ?? '',
+      botUserId: (json['bot_user_id'] as int?) ?? 0,
       parameters: AffiliateProgramParameters.fromJson(
           json['parameters'] as Map<String, dynamic>?)!,
-      connectionDate: json['connection_date'] as int,
-      isDisconnected: json['is_disconnected'] as bool,
-      userCount: int.tryParse(json['user_count']) ?? 0,
-      revenueStarCount: json['revenue_star_count'] as int,
+      connectionDate: (json['connection_date'] as int?) ?? 0,
+      isDisconnected: (json['is_disconnected'] as bool?) ?? false,
+      userCount: (json['user_count'] is int
+              ? json['user_count'] as int
+              : int.tryParse(json['user_count']?.toString() ?? '')) ??
+          0,
+      revenueStarCount: (json['revenue_star_count'] as int?) ?? 0,
     );
   }
 

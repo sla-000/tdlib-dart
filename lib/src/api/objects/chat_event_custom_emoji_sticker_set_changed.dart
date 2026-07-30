@@ -26,8 +26,14 @@ class ChatEventCustomEmojiStickerSetChanged extends ChatEventAction {
     }
 
     return ChatEventCustomEmojiStickerSetChanged(
-      oldStickerSetId: int.tryParse(json['old_sticker_set_id']) ?? 0,
-      newStickerSetId: int.tryParse(json['new_sticker_set_id']) ?? 0,
+      oldStickerSetId: (json['old_sticker_set_id'] is int
+              ? json['old_sticker_set_id'] as int
+              : int.tryParse(json['old_sticker_set_id']?.toString() ?? '')) ??
+          0,
+      newStickerSetId: (json['new_sticker_set_id'] is int
+              ? json['new_sticker_set_id'] as int
+              : int.tryParse(json['new_sticker_set_id']?.toString() ?? '')) ??
+          0,
     );
   }
 

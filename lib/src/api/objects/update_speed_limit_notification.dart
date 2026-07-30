@@ -27,7 +27,7 @@ class UpdateSpeedLimitNotification extends Update {
     }
 
     return UpdateSpeedLimitNotification(
-      isUpload: json['is_upload'] as bool,
+      isUpload: (json['is_upload'] as bool?) ?? false,
     );
   }
 

@@ -26,8 +26,8 @@ class StatisticalGraphData extends StatisticalGraph {
     }
 
     return StatisticalGraphData(
-      jsonData: json['json_data'] as String,
-      zoomToken: json['zoom_token'] as String,
+      jsonData: (json['json_data'] as String?) ?? '',
+      zoomToken: (json['zoom_token'] as String?) ?? '',
     );
   }
 

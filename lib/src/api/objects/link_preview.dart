@@ -77,20 +77,21 @@ class LinkPreview extends TdObject {
     }
 
     return LinkPreview(
-      url: json['url'] as String,
-      displayUrl: json['display_url'] as String,
-      siteName: json['site_name'] as String,
-      title: json['title'] as String,
+      url: (json['url'] as String?) ?? '',
+      displayUrl: (json['display_url'] as String?) ?? '',
+      siteName: (json['site_name'] as String?) ?? '',
+      title: (json['title'] as String?) ?? '',
       description:
           FormattedText.fromJson(json['description'] as Map<String, dynamic>?)!,
-      author: json['author'] as String,
+      author: (json['author'] as String?) ?? '',
       type: LinkPreviewType.fromJson(json['type'] as Map<String, dynamic>?)!,
-      hasLargeMedia: json['has_large_media'] as bool,
-      showLargeMedia: json['show_large_media'] as bool,
-      showMediaAboveDescription: json['show_media_above_description'] as bool,
-      skipConfirmation: json['skip_confirmation'] as bool,
-      showAboveText: json['show_above_text'] as bool,
-      instantViewVersion: json['instant_view_version'] as int,
+      hasLargeMedia: (json['has_large_media'] as bool?) ?? false,
+      showLargeMedia: (json['show_large_media'] as bool?) ?? false,
+      showMediaAboveDescription:
+          (json['show_media_above_description'] as bool?) ?? false,
+      skipConfirmation: (json['skip_confirmation'] as bool?) ?? false,
+      showAboveText: (json['show_above_text'] as bool?) ?? false,
+      instantViewVersion: (json['instant_view_version'] as int?) ?? 0,
     );
   }
 

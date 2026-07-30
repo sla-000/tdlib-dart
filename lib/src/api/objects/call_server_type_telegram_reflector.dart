@@ -25,8 +25,8 @@ class CallServerTypeTelegramReflector extends CallServerType {
     }
 
     return CallServerTypeTelegramReflector(
-      peerTag: json['peer_tag'] as String,
-      isTcp: json['is_tcp'] as bool,
+      peerTag: (json['peer_tag'] as String?) ?? '',
+      isTcp: (json['is_tcp'] as bool?) ?? false,
     );
   }
 

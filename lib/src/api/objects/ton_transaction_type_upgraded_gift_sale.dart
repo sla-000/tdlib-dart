@@ -40,11 +40,11 @@ class TonTransactionTypeUpgradedGiftSale extends TonTransactionType {
     }
 
     return TonTransactionTypeUpgradedGiftSale(
-      userId: json['user_id'] as int,
+      userId: (json['user_id'] as int?) ?? 0,
       gift: UpgradedGift.fromJson(json['gift'] as Map<String, dynamic>?)!,
-      commissionPerMille: json['commission_per_mille'] as int,
-      commissionToncoinAmount: json['commission_toncoin_amount'] as int,
-      viaOffer: json['via_offer'] as bool,
+      commissionPerMille: (json['commission_per_mille'] as int?) ?? 0,
+      commissionToncoinAmount: (json['commission_toncoin_amount'] as int?) ?? 0,
+      viaOffer: (json['via_offer'] as bool?) ?? false,
     );
   }
 

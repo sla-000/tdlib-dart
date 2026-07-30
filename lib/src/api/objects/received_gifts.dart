@@ -35,13 +35,14 @@ class ReceivedGifts extends TdObject {
     }
 
     return ReceivedGifts(
-      totalCount: json['total_count'] as int,
-      gifts: List<ReceivedGift>.from(
-          ((json['gifts'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => ReceivedGift.fromJson(item))
-              .toList()),
-      areNotificationsEnabled: json['are_notifications_enabled'] as bool,
-      nextOffset: json['next_offset'] as String,
+      totalCount: (json['total_count'] as int?) ?? 0,
+      gifts: List<ReceivedGift>.from(((json['gifts'] as List<dynamic>?) ??
+              <dynamic>[])
+          .map((item) => ReceivedGift.fromJson(item as Map<String, dynamic>?))
+          .toList()),
+      areNotificationsEnabled:
+          (json['are_notifications_enabled'] as bool?) ?? false,
+      nextOffset: (json['next_offset'] as String?) ?? '',
     );
   }
 

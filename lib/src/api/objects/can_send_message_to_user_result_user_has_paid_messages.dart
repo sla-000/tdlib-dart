@@ -26,7 +26,7 @@ class CanSendMessageToUserResultUserHasPaidMessages
 
     return CanSendMessageToUserResultUserHasPaidMessages(
       outgoingPaidMessageStarCount:
-          json['outgoing_paid_message_star_count'] as int,
+          (json['outgoing_paid_message_star_count'] as int?) ?? 0,
     );
   }
 

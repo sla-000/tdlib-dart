@@ -33,11 +33,11 @@ class StarTransactionTypeChannelPaidMediaPurchase extends StarTransactionType {
     }
 
     return StarTransactionTypeChannelPaidMediaPurchase(
-      chatId: json['chat_id'] as int,
-      messageId: json['message_id'] as int,
+      chatId: (json['chat_id'] as int?) ?? 0,
+      messageId: (json['message_id'] as int?) ?? 0,
       media: List<PaidMedia>.from(
           ((json['media'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => PaidMedia.fromJson(item))
+              .map((item) => PaidMedia.fromJson(item as Map<String, dynamic>?))
               .toList()),
     );
   }

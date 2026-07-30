@@ -23,7 +23,8 @@ class BusinessMessages extends TdObject {
     return BusinessMessages(
       messages: List<BusinessMessage>.from(
           ((json['messages'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => BusinessMessage.fromJson(item))
+              .map((item) =>
+                  BusinessMessage.fromJson(item as Map<String, dynamic>?))
               .toList()),
     );
   }

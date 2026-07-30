@@ -45,8 +45,8 @@ class StarRevenueStatus extends TdObject {
           StarAmount.fromJson(json['current_amount'] as Map<String, dynamic>?)!,
       availableAmount: StarAmount.fromJson(
           json['available_amount'] as Map<String, dynamic>?)!,
-      withdrawalEnabled: json['withdrawal_enabled'] as bool,
-      nextWithdrawalIn: json['next_withdrawal_in'] as int,
+      withdrawalEnabled: (json['withdrawal_enabled'] as bool?) ?? false,
+      nextWithdrawalIn: (json['next_withdrawal_in'] as int?) ?? 0,
     );
   }
 

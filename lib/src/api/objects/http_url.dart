@@ -21,7 +21,7 @@ class HttpUrl extends TdObject {
     }
 
     return HttpUrl(
-      url: json['url'] as String,
+      url: (json['url'] as String?) ?? '',
     );
   }
 

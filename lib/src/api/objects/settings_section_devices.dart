@@ -22,7 +22,7 @@ class SettingsSectionDevices extends SettingsSection {
     }
 
     return SettingsSectionDevices(
-      subsection: json['subsection'] as String,
+      subsection: (json['subsection'] as String?) ?? '',
     );
   }
 

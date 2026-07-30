@@ -22,7 +22,7 @@ class MessagePaidMessagePriceChanged extends MessageContent {
     }
 
     return MessagePaidMessagePriceChanged(
-      paidMessageStarCount: json['paid_message_star_count'] as int,
+      paidMessageStarCount: (json['paid_message_star_count'] as int?) ?? 0,
     );
   }
 

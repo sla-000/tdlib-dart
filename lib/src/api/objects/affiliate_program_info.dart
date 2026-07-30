@@ -35,7 +35,7 @@ class AffiliateProgramInfo extends TdObject {
     return AffiliateProgramInfo(
       parameters: AffiliateProgramParameters.fromJson(
           json['parameters'] as Map<String, dynamic>?)!,
-      endDate: json['end_date'] as int,
+      endDate: (json['end_date'] as int?) ?? 0,
       dailyRevenuePerUserAmount: StarAmount.fromJson(
           json['daily_revenue_per_user_amount'] as Map<String, dynamic>?)!,
     );

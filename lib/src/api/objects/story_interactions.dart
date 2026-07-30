@@ -40,14 +40,15 @@ class StoryInteractions extends TdObject {
     }
 
     return StoryInteractions(
-      totalCount: json['total_count'] as int,
-      totalForwardCount: json['total_forward_count'] as int,
-      totalReactionCount: json['total_reaction_count'] as int,
+      totalCount: (json['total_count'] as int?) ?? 0,
+      totalForwardCount: (json['total_forward_count'] as int?) ?? 0,
+      totalReactionCount: (json['total_reaction_count'] as int?) ?? 0,
       interactions: List<StoryInteraction>.from(
           ((json['interactions'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => StoryInteraction.fromJson(item))
+              .map((item) =>
+                  StoryInteraction.fromJson(item as Map<String, dynamic>?))
               .toList()),
-      nextOffset: json['next_offset'] as String,
+      nextOffset: (json['next_offset'] as String?) ?? '',
     );
   }
 

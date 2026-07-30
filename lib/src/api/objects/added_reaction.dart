@@ -36,8 +36,8 @@ class AddedReaction extends TdObject {
       type: ReactionType.fromJson(json['type'] as Map<String, dynamic>?)!,
       senderId:
           MessageSender.fromJson(json['sender_id'] as Map<String, dynamic>?)!,
-      isOutgoing: json['is_outgoing'] as bool,
-      date: json['date'] as int,
+      isOutgoing: (json['is_outgoing'] as bool?) ?? false,
+      date: (json['date'] as int?) ?? 0,
     );
   }
 

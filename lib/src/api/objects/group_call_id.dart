@@ -21,7 +21,7 @@ class GroupCallId extends TdObject {
     }
 
     return GroupCallId(
-      id: json['id'] as int,
+      id: (json['id'] as int?) ?? 0,
     );
   }
 

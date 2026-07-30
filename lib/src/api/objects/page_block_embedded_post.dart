@@ -42,14 +42,14 @@ class PageBlockEmbeddedPost extends PageBlock {
     }
 
     return PageBlockEmbeddedPost(
-      url: json['url'] as String,
-      author: json['author'] as String,
+      url: (json['url'] as String?) ?? '',
+      author: (json['author'] as String?) ?? '',
       authorPhoto:
           Photo.fromJson(json['author_photo'] as Map<String, dynamic>?),
-      date: json['date'] as int,
+      date: (json['date'] as int?) ?? 0,
       blocks: List<PageBlock>.from(
           ((json['blocks'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => PageBlock.fromJson(item))
+              .map((item) => PageBlock.fromJson(item as Map<String, dynamic>?))
               .toList()),
       caption:
           PageBlockCaption.fromJson(json['caption'] as Map<String, dynamic>?),

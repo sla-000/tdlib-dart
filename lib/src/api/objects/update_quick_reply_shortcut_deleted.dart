@@ -21,7 +21,7 @@ class UpdateQuickReplyShortcutDeleted extends Update {
     }
 
     return UpdateQuickReplyShortcutDeleted(
-      shortcutId: json['shortcut_id'] as int,
+      shortcutId: (json['shortcut_id'] as int?) ?? 0,
     );
   }
 

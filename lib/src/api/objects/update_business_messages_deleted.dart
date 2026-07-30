@@ -30,11 +30,12 @@ class UpdateBusinessMessagesDeleted extends Update {
     }
 
     return UpdateBusinessMessagesDeleted(
-      connectionId: json['connection_id'] as String,
-      chatId: json['chat_id'] as int,
+      connectionId: (json['connection_id'] as String?) ?? '',
+      chatId: (json['chat_id'] as int?) ?? 0,
       messageIds: List<int>.from(
           ((json['message_ids'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => item)
+              .map((item) =>
+                  (item is int ? item : int.tryParse(item.toString()) ?? 0))
               .toList()),
     );
   }

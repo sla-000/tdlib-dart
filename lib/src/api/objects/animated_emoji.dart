@@ -43,9 +43,9 @@ class AnimatedEmoji extends TdObject {
 
     return AnimatedEmoji(
       sticker: Sticker.fromJson(json['sticker'] as Map<String, dynamic>?),
-      stickerWidth: json['sticker_width'] as int,
-      stickerHeight: json['sticker_height'] as int,
-      fitzpatrickType: json['fitzpatrick_type'] as int,
+      stickerWidth: (json['sticker_width'] as int?) ?? 0,
+      stickerHeight: (json['sticker_height'] as int?) ?? 0,
+      fitzpatrickType: (json['fitzpatrick_type'] as int?) ?? 0,
       sound: File.fromJson(json['sound'] as Map<String, dynamic>?),
     );
   }

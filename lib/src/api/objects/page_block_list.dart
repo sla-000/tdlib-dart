@@ -23,7 +23,8 @@ class PageBlockList extends PageBlock {
     return PageBlockList(
       items: List<PageBlockListItem>.from(
           ((json['items'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => PageBlockListItem.fromJson(item))
+              .map((item) =>
+                  PageBlockListItem.fromJson(item as Map<String, dynamic>?))
               .toList()),
     );
   }

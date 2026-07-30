@@ -82,22 +82,23 @@ class OauthLinkInfo extends TdObject {
     }
 
     return OauthLinkInfo(
-      userId: json['user_id'] as int,
-      url: json['url'] as String,
-      domain: json['domain'] as String,
-      fromApp: json['from_app'] as bool,
-      verifiedAppName: json['verified_app_name'] as String,
-      botUserId: json['bot_user_id'] as int,
-      requestWriteAccess: json['request_write_access'] as bool,
-      requestPhoneNumberAccess: json['request_phone_number_access'] as bool,
-      browser: json['browser'] as String,
-      platform: json['platform'] as String,
-      ipAddress: json['ip_address'] as String,
-      location: json['location'] as String,
-      matchCodeFirst: json['match_code_first'] as bool,
+      userId: (json['user_id'] as int?) ?? 0,
+      url: (json['url'] as String?) ?? '',
+      domain: (json['domain'] as String?) ?? '',
+      fromApp: (json['from_app'] as bool?) ?? false,
+      verifiedAppName: (json['verified_app_name'] as String?) ?? '',
+      botUserId: (json['bot_user_id'] as int?) ?? 0,
+      requestWriteAccess: (json['request_write_access'] as bool?) ?? false,
+      requestPhoneNumberAccess:
+          (json['request_phone_number_access'] as bool?) ?? false,
+      browser: (json['browser'] as String?) ?? '',
+      platform: (json['platform'] as String?) ?? '',
+      ipAddress: (json['ip_address'] as String?) ?? '',
+      location: (json['location'] as String?) ?? '',
+      matchCodeFirst: (json['match_code_first'] as bool?) ?? false,
       matchCodes: List<String>.from(
           ((json['match_codes'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => item)
+              .map((item) => item as String)
               .toList()),
     );
   }

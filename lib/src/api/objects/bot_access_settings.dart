@@ -27,10 +27,11 @@ class BotAccessSettings extends TdObject {
     }
 
     return BotAccessSettings(
-      isRestricted: json['is_restricted'] as bool,
+      isRestricted: (json['is_restricted'] as bool?) ?? false,
       addedUserIds: List<int>.from(
           ((json['added_user_ids'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => item)
+              .map((item) =>
+                  (item is int ? item : int.tryParse(item.toString()) ?? 0))
               .toList()),
     );
   }

@@ -100,36 +100,42 @@ class Poll extends TdObject {
     }
 
     return Poll(
-      id: int.tryParse(json['id']) ?? 0,
+      id: (json['id'] is int
+              ? json['id'] as int
+              : int.tryParse(json['id']?.toString() ?? '')) ??
+          0,
       question:
           FormattedText.fromJson(json['question'] as Map<String, dynamic>?)!,
       options: List<PollOption>.from(
           ((json['options'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => PollOption.fromJson(item))
+              .map((item) => PollOption.fromJson(item as Map<String, dynamic>?))
               .toList()),
-      totalVoterCount: json['total_voter_count'] as int,
-      recentVoterIds: List<MessageSender>.from(
-          ((json['recent_voter_ids'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => MessageSender.fromJson(item))
-              .toList()),
-      canGetVoters: json['can_get_voters'] as bool,
-      canSeeResults: json['can_see_results'] as bool,
-      isAnonymous: json['is_anonymous'] as bool,
-      allowsMultipleAnswers: json['allows_multiple_answers'] as bool,
-      allowsRevoting: json['allows_revoting'] as bool,
-      membersOnly: json['members_only'] as bool,
+      totalVoterCount: (json['total_voter_count'] as int?) ?? 0,
+      recentVoterIds: List<MessageSender>.from(((json['recent_voter_ids']
+                  as List<dynamic>?) ??
+              <dynamic>[])
+          .map((item) => MessageSender.fromJson(item as Map<String, dynamic>?))
+          .toList()),
+      canGetVoters: (json['can_get_voters'] as bool?) ?? false,
+      canSeeResults: (json['can_see_results'] as bool?) ?? false,
+      isAnonymous: (json['is_anonymous'] as bool?) ?? false,
+      allowsMultipleAnswers:
+          (json['allows_multiple_answers'] as bool?) ?? false,
+      allowsRevoting: (json['allows_revoting'] as bool?) ?? false,
+      membersOnly: (json['members_only'] as bool?) ?? false,
       countryCodes: List<String>.from(
           ((json['country_codes'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => item)
+              .map((item) => item as String)
               .toList()),
       optionOrder: List<int>.from(
           ((json['option_order'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => item)
+              .map((item) =>
+                  (item is int ? item : int.tryParse(item.toString()) ?? 0))
               .toList()),
       type: PollType.fromJson(json['type'] as Map<String, dynamic>?)!,
-      openPeriod: json['open_period'] as int,
-      closeDate: json['close_date'] as int,
-      isClosed: json['is_closed'] as bool,
+      openPeriod: (json['open_period'] as int?) ?? 0,
+      closeDate: (json['close_date'] as int?) ?? 0,
+      isClosed: (json['is_closed'] as bool?) ?? false,
       voteRestrictionReason: PollVoteRestrictionReason.fromJson(
           json['vote_restriction_reason'] as Map<String, dynamic>?),
     );

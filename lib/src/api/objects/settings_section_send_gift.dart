@@ -21,7 +21,7 @@ class SettingsSectionSendGift extends SettingsSection {
     }
 
     return SettingsSectionSendGift(
-      subsection: json['subsection'] as String,
+      subsection: (json['subsection'] as String?) ?? '',
     );
   }
 

@@ -26,7 +26,7 @@ class RecommendedChatFolder extends TdObject {
 
     return RecommendedChatFolder(
       folder: ChatFolder.fromJson(json['folder'] as Map<String, dynamic>?)!,
-      description: json['description'] as String,
+      description: (json['description'] as String?) ?? '',
     );
   }
 

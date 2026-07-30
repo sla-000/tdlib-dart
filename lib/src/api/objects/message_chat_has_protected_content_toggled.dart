@@ -32,9 +32,11 @@ class MessageChatHasProtectedContentToggled extends MessageContent {
     }
 
     return MessageChatHasProtectedContentToggled(
-      requestMessageId: json['request_message_id'] as int,
-      oldHasProtectedContent: json['old_has_protected_content'] as bool,
-      newHasProtectedContent: json['new_has_protected_content'] as bool,
+      requestMessageId: (json['request_message_id'] as int?) ?? 0,
+      oldHasProtectedContent:
+          (json['old_has_protected_content'] as bool?) ?? false,
+      newHasProtectedContent:
+          (json['new_has_protected_content'] as bool?) ?? false,
     );
   }
 

@@ -31,12 +31,13 @@ class PublicForwards extends TdObject {
     }
 
     return PublicForwards(
-      totalCount: json['total_count'] as int,
-      forwards: List<PublicForward>.from(
-          ((json['forwards'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => PublicForward.fromJson(item))
-              .toList()),
-      nextOffset: json['next_offset'] as String,
+      totalCount: (json['total_count'] as int?) ?? 0,
+      forwards: List<PublicForward>.from(((json['forwards']
+                  as List<dynamic>?) ??
+              <dynamic>[])
+          .map((item) => PublicForward.fromJson(item as Map<String, dynamic>?))
+          .toList()),
+      nextOffset: (json['next_offset'] as String?) ?? '',
     );
   }
 

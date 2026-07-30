@@ -23,7 +23,7 @@ class StarTransactionTypeTelegramApiUsage extends StarTransactionType {
     }
 
     return StarTransactionTypeTelegramApiUsage(
-      requestCount: json['request_count'] as int,
+      requestCount: (json['request_count'] as int?) ?? 0,
     );
   }
 

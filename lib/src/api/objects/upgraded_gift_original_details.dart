@@ -39,7 +39,7 @@ class UpgradedGiftOriginalDetails extends TdObject {
       receiverId:
           MessageSender.fromJson(json['receiver_id'] as Map<String, dynamic>?)!,
       text: FormattedText.fromJson(json['text'] as Map<String, dynamic>?)!,
-      date: json['date'] as int,
+      date: (json['date'] as int?) ?? 0,
     );
   }
 

@@ -30,7 +30,7 @@ class AdvertisementSponsor extends TdObject {
     }
 
     return AdvertisementSponsor(
-      url: json['url'] as String,
+      url: (json['url'] as String?) ?? '',
       photo: Photo.fromJson(json['photo'] as Map<String, dynamic>?),
       info: json['info'] as String?,
     );

@@ -37,10 +37,10 @@ class UpdateSpeechRecognitionTrial extends Update {
     }
 
     return UpdateSpeechRecognitionTrial(
-      maxMediaDuration: json['max_media_duration'] as int,
-      weeklyCount: json['weekly_count'] as int,
-      leftCount: json['left_count'] as int,
-      nextResetDate: json['next_reset_date'] as int,
+      maxMediaDuration: (json['max_media_duration'] as int?) ?? 0,
+      weeklyCount: (json['weekly_count'] as int?) ?? 0,
+      leftCount: (json['left_count'] as int?) ?? 0,
+      nextResetDate: (json['next_reset_date'] as int?) ?? 0,
     );
   }
 

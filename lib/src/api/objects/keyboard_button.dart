@@ -34,8 +34,11 @@ class KeyboardButton extends TdObject {
     }
 
     return KeyboardButton(
-      text: json['text'] as String,
-      iconCustomEmojiId: int.tryParse(json['icon_custom_emoji_id']) ?? 0,
+      text: (json['text'] as String?) ?? '',
+      iconCustomEmojiId: (json['icon_custom_emoji_id'] is int
+              ? json['icon_custom_emoji_id'] as int
+              : int.tryParse(json['icon_custom_emoji_id']?.toString() ?? '')) ??
+          0,
       style: ButtonStyle.fromJson(json['style'] as Map<String, dynamic>?)!,
       type: KeyboardButtonType.fromJson(json['type'] as Map<String, dynamic>?)!,
     );

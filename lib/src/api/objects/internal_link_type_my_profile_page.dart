@@ -22,7 +22,7 @@ class InternalLinkTypeMyProfilePage extends InternalLinkType {
     }
 
     return InternalLinkTypeMyProfilePage(
-      section: json['section'] as String,
+      section: (json['section'] as String?) ?? '',
     );
   }
 

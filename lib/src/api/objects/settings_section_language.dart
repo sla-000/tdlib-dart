@@ -23,7 +23,7 @@ class SettingsSectionLanguage extends SettingsSection {
     }
 
     return SettingsSectionLanguage(
-      subsection: json['subsection'] as String,
+      subsection: (json['subsection'] as String?) ?? '',
     );
   }
 

@@ -26,7 +26,7 @@ class TextEntityTypeDateTime extends TextEntityType {
     }
 
     return TextEntityTypeDateTime(
-      unixTime: json['unix_time'] as int,
+      unixTime: (json['unix_time'] as int?) ?? 0,
       formattingType: DateTimeFormattingType.fromJson(
           json['formatting_type'] as Map<String, dynamic>?),
     );

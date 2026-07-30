@@ -22,7 +22,8 @@ class ChatEventAutomaticTranslationToggled extends ChatEventAction {
     }
 
     return ChatEventAutomaticTranslationToggled(
-      hasAutomaticTranslation: json['has_automatic_translation'] as bool,
+      hasAutomaticTranslation:
+          (json['has_automatic_translation'] as bool?) ?? false,
     );
   }
 

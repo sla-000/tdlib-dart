@@ -24,7 +24,7 @@ class InternalLinkTypeAuthenticationCode extends InternalLinkType {
     }
 
     return InternalLinkTypeAuthenticationCode(
-      code: json['code'] as String,
+      code: (json['code'] as String?) ?? '',
     );
   }
 

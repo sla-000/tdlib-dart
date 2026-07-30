@@ -43,10 +43,13 @@ class AlternativeVideo extends TdObject {
     }
 
     return AlternativeVideo(
-      id: int.tryParse(json['id']) ?? 0,
-      width: json['width'] as int,
-      height: json['height'] as int,
-      codec: json['codec'] as String,
+      id: (json['id'] is int
+              ? json['id'] as int
+              : int.tryParse(json['id']?.toString() ?? '')) ??
+          0,
+      width: (json['width'] as int?) ?? 0,
+      height: (json['height'] as int?) ?? 0,
+      codec: (json['codec'] as String?) ?? '',
       hlsFile: File.fromJson(json['hls_file'] as Map<String, dynamic>?)!,
       video: File.fromJson(json['video'] as Map<String, dynamic>?)!,
     );

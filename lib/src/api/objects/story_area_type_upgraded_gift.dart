@@ -21,7 +21,7 @@ class StoryAreaTypeUpgradedGift extends StoryAreaType {
     }
 
     return StoryAreaTypeUpgradedGift(
-      giftName: json['gift_name'] as String,
+      giftName: (json['gift_name'] as String?) ?? '',
     );
   }
 

@@ -27,7 +27,7 @@ class ChatFolderName extends TdObject {
 
     return ChatFolderName(
       text: FormattedText.fromJson(json['text'] as Map<String, dynamic>?)!,
-      animateCustomEmoji: json['animate_custom_emoji'] as bool,
+      animateCustomEmoji: (json['animate_custom_emoji'] as bool?) ?? false,
     );
   }
 

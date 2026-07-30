@@ -23,7 +23,7 @@ class GiveawayParticipantStatusAdministrator extends GiveawayParticipantStatus {
     }
 
     return GiveawayParticipantStatusAdministrator(
-      chatId: json['chat_id'] as int,
+      chatId: (json['chat_id'] as int?) ?? 0,
     );
   }
 

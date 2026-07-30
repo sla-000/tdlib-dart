@@ -37,12 +37,12 @@ class ChatBoost extends TdObject {
     }
 
     return ChatBoost(
-      id: json['id'] as String,
-      count: json['count'] as int,
+      id: (json['id'] as String?) ?? '',
+      count: (json['count'] as int?) ?? 0,
       source:
           ChatBoostSource.fromJson(json['source'] as Map<String, dynamic>?)!,
-      startDate: json['start_date'] as int,
-      expirationDate: json['expiration_date'] as int,
+      startDate: (json['start_date'] as int?) ?? 0,
+      expirationDate: (json['expiration_date'] as int?) ?? 0,
     );
   }
 

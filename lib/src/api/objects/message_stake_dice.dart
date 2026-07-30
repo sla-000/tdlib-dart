@@ -49,9 +49,9 @@ class MessageStakeDice extends MessageContent {
           DiceStickers.fromJson(json['initial_state'] as Map<String, dynamic>?),
       finalState:
           DiceStickers.fromJson(json['final_state'] as Map<String, dynamic>?),
-      value: json['value'] as int,
-      stakeToncoinAmount: json['stake_toncoin_amount'] as int,
-      prizeToncoinAmount: json['prize_toncoin_amount'] as int,
+      value: (json['value'] as int?) ?? 0,
+      stakeToncoinAmount: (json['stake_toncoin_amount'] as int?) ?? 0,
+      prizeToncoinAmount: (json['prize_toncoin_amount'] as int?) ?? 0,
     );
   }
 

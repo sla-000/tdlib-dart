@@ -31,7 +31,10 @@ class PreparedInlineMessage extends TdObject {
     }
 
     return PreparedInlineMessage(
-      inlineQueryId: int.tryParse(json['inline_query_id']) ?? 0,
+      inlineQueryId: (json['inline_query_id'] is int
+              ? json['inline_query_id'] as int
+              : int.tryParse(json['inline_query_id']?.toString() ?? '')) ??
+          0,
       result:
           InlineQueryResult.fromJson(json['result'] as Map<String, dynamic>?)!,
       chatTypes: TargetChatTypes.fromJson(

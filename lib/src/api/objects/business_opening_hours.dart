@@ -25,10 +25,11 @@ class BusinessOpeningHours extends TdObject {
     }
 
     return BusinessOpeningHours(
-      timeZoneId: json['time_zone_id'] as String,
+      timeZoneId: (json['time_zone_id'] as String?) ?? '',
       openingHours: List<BusinessOpeningHoursInterval>.from(
           ((json['opening_hours'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => BusinessOpeningHoursInterval.fromJson(item))
+              .map((item) => BusinessOpeningHoursInterval.fromJson(
+                  item as Map<String, dynamic>?))
               .toList()),
     );
   }

@@ -48,12 +48,15 @@ class UpdateNewPreCheckoutQuery extends Update {
     }
 
     return UpdateNewPreCheckoutQuery(
-      id: int.tryParse(json['id']) ?? 0,
-      senderUserId: json['sender_user_id'] as int,
-      currency: json['currency'] as String,
-      totalAmount: json['total_amount'] as int,
-      invoicePayload: json['invoice_payload'] as String,
-      shippingOptionId: json['shipping_option_id'] as String,
+      id: (json['id'] is int
+              ? json['id'] as int
+              : int.tryParse(json['id']?.toString() ?? '')) ??
+          0,
+      senderUserId: (json['sender_user_id'] as int?) ?? 0,
+      currency: (json['currency'] as String?) ?? '',
+      totalAmount: (json['total_amount'] as int?) ?? 0,
+      invoicePayload: (json['invoice_payload'] as String?) ?? '',
+      shippingOptionId: (json['shipping_option_id'] as String?) ?? '',
       orderInfo:
           OrderInfo.fromJson(json['order_info'] as Map<String, dynamic>?),
     );

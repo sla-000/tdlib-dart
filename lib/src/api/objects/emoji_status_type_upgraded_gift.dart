@@ -44,11 +44,22 @@ class EmojiStatusTypeUpgradedGift extends EmojiStatusType {
     }
 
     return EmojiStatusTypeUpgradedGift(
-      upgradedGiftId: int.tryParse(json['upgraded_gift_id']) ?? 0,
-      giftTitle: json['gift_title'] as String,
-      giftName: json['gift_name'] as String,
-      modelCustomEmojiId: int.tryParse(json['model_custom_emoji_id']) ?? 0,
-      symbolCustomEmojiId: int.tryParse(json['symbol_custom_emoji_id']) ?? 0,
+      upgradedGiftId: (json['upgraded_gift_id'] is int
+              ? json['upgraded_gift_id'] as int
+              : int.tryParse(json['upgraded_gift_id']?.toString() ?? '')) ??
+          0,
+      giftTitle: (json['gift_title'] as String?) ?? '',
+      giftName: (json['gift_name'] as String?) ?? '',
+      modelCustomEmojiId: (json['model_custom_emoji_id'] is int
+              ? json['model_custom_emoji_id'] as int
+              : int.tryParse(
+                  json['model_custom_emoji_id']?.toString() ?? '')) ??
+          0,
+      symbolCustomEmojiId: (json['symbol_custom_emoji_id'] is int
+              ? json['symbol_custom_emoji_id'] as int
+              : int.tryParse(
+                  json['symbol_custom_emoji_id']?.toString() ?? '')) ??
+          0,
       backdropColors: UpgradedGiftBackdropColors.fromJson(
           json['backdrop_colors'] as Map<String, dynamic>?)!,
     );

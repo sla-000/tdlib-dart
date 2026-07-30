@@ -26,11 +26,11 @@ class MessageChecklistTasksAdded extends MessageContent {
     }
 
     return MessageChecklistTasksAdded(
-      checklistMessageId: json['checklist_message_id'] as int,
-      tasks: List<ChecklistTask>.from(
-          ((json['tasks'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => ChecklistTask.fromJson(item))
-              .toList()),
+      checklistMessageId: (json['checklist_message_id'] as int?) ?? 0,
+      tasks: List<ChecklistTask>.from(((json['tasks'] as List<dynamic>?) ??
+              <dynamic>[])
+          .map((item) => ChecklistTask.fromJson(item as Map<String, dynamic>?))
+          .toList()),
     );
   }
 

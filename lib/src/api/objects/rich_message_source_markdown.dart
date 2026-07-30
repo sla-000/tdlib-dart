@@ -21,7 +21,7 @@ class RichMessageSourceMarkdown extends RichMessageSource {
     }
 
     return RichMessageSourceMarkdown(
-      text: json['text'] as String,
+      text: (json['text'] as String?) ?? '',
     );
   }
 

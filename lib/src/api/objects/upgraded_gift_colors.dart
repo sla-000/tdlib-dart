@@ -50,18 +50,31 @@ class UpgradedGiftColors extends TdObject {
     }
 
     return UpgradedGiftColors(
-      id: int.tryParse(json['id']) ?? 0,
-      modelCustomEmojiId: int.tryParse(json['model_custom_emoji_id']) ?? 0,
-      symbolCustomEmojiId: int.tryParse(json['symbol_custom_emoji_id']) ?? 0,
-      lightThemeAccentColor: json['light_theme_accent_color'] as int,
+      id: (json['id'] is int
+              ? json['id'] as int
+              : int.tryParse(json['id']?.toString() ?? '')) ??
+          0,
+      modelCustomEmojiId: (json['model_custom_emoji_id'] is int
+              ? json['model_custom_emoji_id'] as int
+              : int.tryParse(
+                  json['model_custom_emoji_id']?.toString() ?? '')) ??
+          0,
+      symbolCustomEmojiId: (json['symbol_custom_emoji_id'] is int
+              ? json['symbol_custom_emoji_id'] as int
+              : int.tryParse(
+                  json['symbol_custom_emoji_id']?.toString() ?? '')) ??
+          0,
+      lightThemeAccentColor: (json['light_theme_accent_color'] as int?) ?? 0,
       lightThemeColors: List<int>.from(
           ((json['light_theme_colors'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => item)
+              .map((item) =>
+                  (item is int ? item : int.tryParse(item.toString()) ?? 0))
               .toList()),
-      darkThemeAccentColor: json['dark_theme_accent_color'] as int,
+      darkThemeAccentColor: (json['dark_theme_accent_color'] as int?) ?? 0,
       darkThemeColors: List<int>.from(
           ((json['dark_theme_colors'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => item)
+              .map((item) =>
+                  (item is int ? item : int.tryParse(item.toString()) ?? 0))
               .toList()),
     );
   }

@@ -35,8 +35,8 @@ class PaymentReceipt extends TdObject {
     return PaymentReceipt(
       productInfo:
           ProductInfo.fromJson(json['product_info'] as Map<String, dynamic>?)!,
-      date: json['date'] as int,
-      sellerBotUserId: json['seller_bot_user_id'] as int,
+      date: (json['date'] as int?) ?? 0,
+      sellerBotUserId: (json['seller_bot_user_id'] as int?) ?? 0,
       type: PaymentReceiptType.fromJson(json['type'] as Map<String, dynamic>?)!,
     );
   }

@@ -41,12 +41,12 @@ class UserAuctionBid extends TdObject {
     }
 
     return UserAuctionBid(
-      starCount: json['star_count'] as int,
-      bidDate: json['bid_date'] as int,
-      nextBidStarCount: json['next_bid_star_count'] as int,
+      starCount: (json['star_count'] as int?) ?? 0,
+      bidDate: (json['bid_date'] as int?) ?? 0,
+      nextBidStarCount: (json['next_bid_star_count'] as int?) ?? 0,
       ownerId:
           MessageSender.fromJson(json['owner_id'] as Map<String, dynamic>?)!,
-      wasReturned: json['was_returned'] as bool,
+      wasReturned: (json['was_returned'] as bool?) ?? false,
     );
   }
 

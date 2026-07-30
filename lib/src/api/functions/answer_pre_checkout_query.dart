@@ -25,7 +25,7 @@ class AnswerPreCheckoutQuery extends TdFunction {
 
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'pre_checkout_query_id': preCheckoutQueryId,
+        'pre_checkout_query_id': preCheckoutQueryId.toString(),
         'error_message': errorMessage,
         '@type': constructor,
       };

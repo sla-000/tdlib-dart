@@ -38,9 +38,9 @@ class WebApp extends TdObject {
     }
 
     return WebApp(
-      shortName: json['short_name'] as String,
-      title: json['title'] as String,
-      description: json['description'] as String,
+      shortName: (json['short_name'] as String?) ?? '',
+      title: (json['title'] as String?) ?? '',
+      description: (json['description'] as String?) ?? '',
       photo: Photo.fromJson(json['photo'] as Map<String, dynamic>?)!,
       animation: Animation.fromJson(json['animation'] as Map<String, dynamic>?),
     );

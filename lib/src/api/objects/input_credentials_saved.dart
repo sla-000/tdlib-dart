@@ -23,7 +23,7 @@ class InputCredentialsSaved extends InputCredentials {
     }
 
     return InputCredentialsSaved(
-      savedCredentialsId: json['saved_credentials_id'] as String,
+      savedCredentialsId: (json['saved_credentials_id'] as String?) ?? '',
     );
   }
 

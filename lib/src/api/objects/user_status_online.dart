@@ -22,7 +22,7 @@ class UserStatusOnline extends UserStatus {
     }
 
     return UserStatusOnline(
-      expires: json['expires'] as int,
+      expires: (json['expires'] as int?) ?? 0,
     );
   }
 

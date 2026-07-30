@@ -78,18 +78,21 @@ class MessageSendOptions extends TdObject {
     return MessageSendOptions(
       suggestedPostInfo: InputSuggestedPostInfo.fromJson(
           json['suggested_post_info'] as Map<String, dynamic>?),
-      disableNotification: json['disable_notification'] as bool,
-      fromBackground: json['from_background'] as bool,
+      disableNotification: (json['disable_notification'] as bool?) ?? false,
+      fromBackground: (json['from_background'] as bool?) ?? false,
       protectContent: json['protect_content'] as bool?,
       allowPaidBroadcast: json['allow_paid_broadcast'] as bool?,
-      paidMessageStarCount: json['paid_message_star_count'] as int,
+      paidMessageStarCount: (json['paid_message_star_count'] as int?) ?? 0,
       updateOrderOfInstalledStickerSets:
-          json['update_order_of_installed_sticker_sets'] as bool,
+          (json['update_order_of_installed_sticker_sets'] as bool?) ?? false,
       schedulingState: MessageSchedulingState.fromJson(
           json['scheduling_state'] as Map<String, dynamic>?),
-      effectId: int.tryParse(json['effect_id']) ?? 0,
-      sendingId: json['sending_id'] as int,
-      onlyPreview: json['only_preview'] as bool,
+      effectId: (json['effect_id'] is int
+              ? json['effect_id'] as int
+              : int.tryParse(json['effect_id']?.toString() ?? '')) ??
+          0,
+      sendingId: (json['sending_id'] as int?) ?? 0,
+      onlyPreview: (json['only_preview'] as bool?) ?? false,
     );
   }
 

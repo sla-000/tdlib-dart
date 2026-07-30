@@ -22,7 +22,7 @@ class MessageReadDateRead extends MessageReadDate {
     }
 
     return MessageReadDateRead(
-      readDate: json['read_date'] as int,
+      readDate: (json['read_date'] as int?) ?? 0,
     );
   }
 

@@ -26,8 +26,8 @@ class PushMessageContentStory extends PushMessageContent {
     }
 
     return PushMessageContentStory(
-      isMention: json['is_mention'] as bool,
-      isPinned: json['is_pinned'] as bool,
+      isMention: (json['is_mention'] as bool?) ?? false,
+      isPinned: (json['is_pinned'] as bool?) ?? false,
     );
   }
 

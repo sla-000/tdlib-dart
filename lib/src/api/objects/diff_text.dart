@@ -26,10 +26,10 @@ class DiffText extends TdObject {
     }
 
     return DiffText(
-      text: json['text'] as String,
+      text: (json['text'] as String?) ?? '',
       entities: List<DiffEntity>.from(
           ((json['entities'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => DiffEntity.fromJson(item))
+              .map((item) => DiffEntity.fromJson(item as Map<String, dynamic>?))
               .toList()),
     );
   }

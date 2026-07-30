@@ -25,8 +25,8 @@ class PaymentProviderSmartGlocal extends PaymentProvider {
     }
 
     return PaymentProviderSmartGlocal(
-      publicToken: json['public_token'] as String,
-      tokenizeUrl: json['tokenize_url'] as String,
+      publicToken: (json['public_token'] as String?) ?? '',
+      tokenizeUrl: (json['tokenize_url'] as String?) ?? '',
     );
   }
 

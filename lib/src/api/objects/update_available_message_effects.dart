@@ -29,11 +29,13 @@ class UpdateAvailableMessageEffects extends Update {
     return UpdateAvailableMessageEffects(
       reactionEffectIds: List<int>.from(
           ((json['reaction_effect_ids'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => item)
+              .map((item) =>
+                  (item is int ? item : int.tryParse(item.toString()) ?? 0))
               .toList()),
       stickerEffectIds: List<int>.from(
           ((json['sticker_effect_ids'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => item)
+              .map((item) =>
+                  (item is int ? item : int.tryParse(item.toString()) ?? 0))
               .toList()),
     );
   }
@@ -43,8 +45,10 @@ class UpdateAvailableMessageEffects extends Update {
 
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'reaction_effect_ids': reactionEffectIds.map((item) => item).toList(),
-        'sticker_effect_ids': stickerEffectIds.map((item) => item).toList(),
+        'reaction_effect_ids':
+            reactionEffectIds.map((item) => item.toString()).toList(),
+        'sticker_effect_ids':
+            stickerEffectIds.map((item) => item.toString()).toList(),
         '@type': constructor,
       };
 

@@ -27,8 +27,8 @@ class UpdateStoryStealthMode extends Update {
     }
 
     return UpdateStoryStealthMode(
-      activeUntilDate: json['active_until_date'] as int,
-      cooldownUntilDate: json['cooldown_until_date'] as int,
+      activeUntilDate: (json['active_until_date'] as int?) ?? 0,
+      cooldownUntilDate: (json['cooldown_until_date'] as int?) ?? 0,
     );
   }
 

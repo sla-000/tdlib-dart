@@ -26,11 +26,11 @@ class GiftChatThemes extends TdObject {
     }
 
     return GiftChatThemes(
-      themes: List<GiftChatTheme>.from(
-          ((json['themes'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => GiftChatTheme.fromJson(item))
-              .toList()),
-      nextOffset: json['next_offset'] as String,
+      themes: List<GiftChatTheme>.from(((json['themes'] as List<dynamic>?) ??
+              <dynamic>[])
+          .map((item) => GiftChatTheme.fromJson(item as Map<String, dynamic>?))
+          .toList()),
+      nextOffset: (json['next_offset'] as String?) ?? '',
     );
   }
 

@@ -26,8 +26,10 @@ class ChatEventMessageAutoDeleteTimeChanged extends ChatEventAction {
     }
 
     return ChatEventMessageAutoDeleteTimeChanged(
-      oldMessageAutoDeleteTime: json['old_message_auto_delete_time'] as int,
-      newMessageAutoDeleteTime: json['new_message_auto_delete_time'] as int,
+      oldMessageAutoDeleteTime:
+          (json['old_message_auto_delete_time'] as int?) ?? 0,
+      newMessageAutoDeleteTime:
+          (json['new_message_auto_delete_time'] as int?) ?? 0,
     );
   }
 

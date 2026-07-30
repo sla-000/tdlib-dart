@@ -22,7 +22,7 @@ class InternalLinkTypeUpgradedGift extends InternalLinkType {
     }
 
     return InternalLinkTypeUpgradedGift(
-      name: json['name'] as String,
+      name: (json['name'] as String?) ?? '',
     );
   }
 

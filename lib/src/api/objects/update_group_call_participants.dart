@@ -29,10 +29,11 @@ class UpdateGroupCallParticipants extends Update {
     }
 
     return UpdateGroupCallParticipants(
-      groupCallId: json['group_call_id'] as int,
+      groupCallId: (json['group_call_id'] as int?) ?? 0,
       participantUserIds: List<int>.from(
           ((json['participant_user_ids'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => item)
+              .map((item) =>
+                  (item is int ? item : int.tryParse(item.toString()) ?? 0))
               .toList()),
     );
   }
@@ -43,7 +44,8 @@ class UpdateGroupCallParticipants extends Update {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'group_call_id': groupCallId,
-        'participant_user_ids': participantUserIds.map((item) => item).toList(),
+        'participant_user_ids':
+            participantUserIds.map((item) => item.toString()).toList(),
         '@type': constructor,
       };
 

@@ -29,8 +29,8 @@ class MessageForumTopicCreated extends MessageContent {
     }
 
     return MessageForumTopicCreated(
-      name: json['name'] as String,
-      isNameImplicit: json['is_name_implicit'] as bool,
+      name: (json['name'] as String?) ?? '',
+      isNameImplicit: (json['is_name_implicit'] as bool?) ?? false,
       icon: ForumTopicIcon.fromJson(json['icon'] as Map<String, dynamic>?)!,
     );
   }

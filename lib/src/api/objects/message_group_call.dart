@@ -48,14 +48,18 @@ class MessageGroupCall extends MessageContent {
     }
 
     return MessageGroupCall(
-      uniqueId: int.tryParse(json['unique_id']) ?? 0,
-      isActive: json['is_active'] as bool,
-      wasMissed: json['was_missed'] as bool,
-      isVideo: json['is_video'] as bool,
-      duration: json['duration'] as int,
+      uniqueId: (json['unique_id'] is int
+              ? json['unique_id'] as int
+              : int.tryParse(json['unique_id']?.toString() ?? '')) ??
+          0,
+      isActive: (json['is_active'] as bool?) ?? false,
+      wasMissed: (json['was_missed'] as bool?) ?? false,
+      isVideo: (json['is_video'] as bool?) ?? false,
+      duration: (json['duration'] as int?) ?? 0,
       otherParticipantIds: List<MessageSender>.from(
           ((json['other_participant_ids'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => MessageSender.fromJson(item))
+              .map((item) =>
+                  MessageSender.fromJson(item as Map<String, dynamic>?))
               .toList()),
     );
   }

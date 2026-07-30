@@ -23,7 +23,7 @@ class InternalLinkTypeBackground extends InternalLinkType {
     }
 
     return InternalLinkTypeBackground(
-      backgroundName: json['background_name'] as String,
+      backgroundName: (json['background_name'] as String?) ?? '',
     );
   }
 

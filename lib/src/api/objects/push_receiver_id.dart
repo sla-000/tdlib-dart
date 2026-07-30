@@ -22,7 +22,10 @@ class PushReceiverId extends TdObject {
     }
 
     return PushReceiverId(
-      id: int.tryParse(json['id']) ?? 0,
+      id: (json['id'] is int
+              ? json['id'] as int
+              : int.tryParse(json['id']?.toString() ?? '')) ??
+          0,
     );
   }
 

@@ -26,8 +26,8 @@ class UserLink extends TdObject {
     }
 
     return UserLink(
-      url: json['url'] as String,
-      expiresIn: json['expires_in'] as int,
+      url: (json['url'] as String?) ?? '',
+      expiresIn: (json['expires_in'] as int?) ?? 0,
     );
   }
 

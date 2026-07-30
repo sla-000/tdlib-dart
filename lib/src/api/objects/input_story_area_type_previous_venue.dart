@@ -25,8 +25,8 @@ class InputStoryAreaTypePreviousVenue extends InputStoryAreaType {
     }
 
     return InputStoryAreaTypePreviousVenue(
-      venueProvider: json['venue_provider'] as String,
-      venueId: json['venue_id'] as String,
+      venueProvider: (json['venue_provider'] as String?) ?? '',
+      venueId: (json['venue_id'] as String?) ?? '',
     );
   }
 

@@ -27,8 +27,8 @@ class StarSubscriptionTypeChannel extends StarSubscriptionType {
     }
 
     return StarSubscriptionTypeChannel(
-      canReuse: json['can_reuse'] as bool,
-      inviteLink: json['invite_link'] as String,
+      canReuse: (json['can_reuse'] as bool?) ?? false,
+      inviteLink: (json['invite_link'] as String?) ?? '',
     );
   }
 

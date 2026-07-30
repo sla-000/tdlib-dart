@@ -29,9 +29,9 @@ class StoreTransactionGooglePlay extends StoreTransaction {
     }
 
     return StoreTransactionGooglePlay(
-      packageName: json['package_name'] as String,
-      storeProductId: json['store_product_id'] as String,
-      purchaseToken: json['purchase_token'] as String,
+      packageName: (json['package_name'] as String?) ?? '',
+      storeProductId: (json['store_product_id'] as String?) ?? '',
+      purchaseToken: (json['purchase_token'] as String?) ?? '',
     );
   }
 

@@ -22,7 +22,10 @@ class SessionTypeDevice extends SessionType {
     }
 
     return SessionTypeDevice(
-      sessionId: int.tryParse(json['session_id']) ?? 0,
+      sessionId: (json['session_id'] is int
+              ? json['session_id'] as int
+              : int.tryParse(json['session_id']?.toString() ?? '')) ??
+          0,
     );
   }
 

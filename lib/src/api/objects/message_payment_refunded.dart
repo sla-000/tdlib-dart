@@ -45,11 +45,13 @@ class MessagePaymentRefunded extends MessageContent {
     return MessagePaymentRefunded(
       ownerId:
           MessageSender.fromJson(json['owner_id'] as Map<String, dynamic>?)!,
-      currency: json['currency'] as String,
-      totalAmount: json['total_amount'] as int,
-      invoicePayload: json['invoice_payload'] as String,
-      telegramPaymentChargeId: json['telegram_payment_charge_id'] as String,
-      providerPaymentChargeId: json['provider_payment_charge_id'] as String,
+      currency: (json['currency'] as String?) ?? '',
+      totalAmount: (json['total_amount'] as int?) ?? 0,
+      invoicePayload: (json['invoice_payload'] as String?) ?? '',
+      telegramPaymentChargeId:
+          (json['telegram_payment_charge_id'] as String?) ?? '',
+      providerPaymentChargeId:
+          (json['provider_payment_charge_id'] as String?) ?? '',
     );
   }
 

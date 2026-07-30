@@ -32,7 +32,7 @@ class WebAppOpenParameters extends TdObject {
 
     return WebAppOpenParameters(
       theme: ThemeParameters.fromJson(json['theme'] as Map<String, dynamic>?),
-      applicationName: json['application_name'] as String,
+      applicationName: (json['application_name'] as String?) ?? '',
       mode: WebAppOpenMode.fromJson(json['mode'] as Map<String, dynamic>?),
     );
   }

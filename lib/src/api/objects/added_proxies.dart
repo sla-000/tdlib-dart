@@ -23,7 +23,7 @@ class AddedProxies extends TdObject {
     return AddedProxies(
       proxies: List<AddedProxy>.from(
           ((json['proxies'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => AddedProxy.fromJson(item))
+              .map((item) => AddedProxy.fromJson(item as Map<String, dynamic>?))
               .toList()),
     );
   }

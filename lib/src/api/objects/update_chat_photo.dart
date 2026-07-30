@@ -25,7 +25,7 @@ class UpdateChatPhoto extends Update {
     }
 
     return UpdateChatPhoto(
-      chatId: json['chat_id'] as int,
+      chatId: (json['chat_id'] as int?) ?? 0,
       photo: ChatPhotoInfo.fromJson(json['photo'] as Map<String, dynamic>?),
     );
   }

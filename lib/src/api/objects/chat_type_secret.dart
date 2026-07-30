@@ -25,8 +25,8 @@ class ChatTypeSecret extends ChatType {
     }
 
     return ChatTypeSecret(
-      secretChatId: json['secret_chat_id'] as int,
-      userId: json['user_id'] as int,
+      secretChatId: (json['secret_chat_id'] as int?) ?? 0,
+      userId: (json['user_id'] as int?) ?? 0,
     );
   }
 

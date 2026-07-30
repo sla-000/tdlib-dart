@@ -32,8 +32,8 @@ class TextQuote extends TdObject {
 
     return TextQuote(
       text: FormattedText.fromJson(json['text'] as Map<String, dynamic>?)!,
-      position: json['position'] as int,
-      isManual: json['is_manual'] as bool,
+      position: (json['position'] as int?) ?? 0,
+      isManual: (json['is_manual'] as bool?) ?? false,
     );
   }
 

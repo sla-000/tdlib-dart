@@ -29,8 +29,8 @@ class StarTransactionTypeGiveawayDeposit extends StarTransactionType {
     }
 
     return StarTransactionTypeGiveawayDeposit(
-      chatId: json['chat_id'] as int,
-      giveawayMessageId: json['giveaway_message_id'] as int,
+      chatId: (json['chat_id'] as int?) ?? 0,
+      giveawayMessageId: (json['giveaway_message_id'] as int?) ?? 0,
     );
   }
 

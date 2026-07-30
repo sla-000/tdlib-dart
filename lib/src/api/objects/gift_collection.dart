@@ -33,10 +33,10 @@ class GiftCollection extends TdObject {
     }
 
     return GiftCollection(
-      id: json['id'] as int,
-      name: json['name'] as String,
+      id: (json['id'] as int?) ?? 0,
+      name: (json['name'] as String?) ?? '',
       icon: Sticker.fromJson(json['icon'] as Map<String, dynamic>?),
-      giftCount: json['gift_count'] as int,
+      giftCount: (json['gift_count'] as int?) ?? 0,
     );
   }
 

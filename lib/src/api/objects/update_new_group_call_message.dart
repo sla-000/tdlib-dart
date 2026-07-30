@@ -25,7 +25,7 @@ class UpdateNewGroupCallMessage extends Update {
     }
 
     return UpdateNewGroupCallMessage(
-      groupCallId: json['group_call_id'] as int,
+      groupCallId: (json['group_call_id'] as int?) ?? 0,
       message:
           GroupCallMessage.fromJson(json['message'] as Map<String, dynamic>?)!,
     );

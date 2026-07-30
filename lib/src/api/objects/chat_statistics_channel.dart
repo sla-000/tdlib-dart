@@ -137,7 +137,7 @@ class ChatStatisticsChannel extends ChatStatistics {
       meanStoryReactionCount: StatisticalValue.fromJson(
           json['mean_story_reaction_count'] as Map<String, dynamic>?)!,
       enabledNotificationsPercentage:
-          (json['enabled_notifications_percentage'] as num).toDouble(),
+          (json['enabled_notifications_percentage'] as num?)?.toDouble() ?? 0.0,
       memberCountGraph: StatisticalGraph.fromJson(
           json['member_count_graph'] as Map<String, dynamic>?)!,
       joinGraph: StatisticalGraph.fromJson(
@@ -164,7 +164,8 @@ class ChatStatisticsChannel extends ChatStatistics {
           json['instant_view_interaction_graph'] as Map<String, dynamic>?)!,
       recentInteractions: List<ChatStatisticsInteractionInfo>.from(
           ((json['recent_interactions'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => ChatStatisticsInteractionInfo.fromJson(item))
+              .map((item) => ChatStatisticsInteractionInfo.fromJson(
+                  item as Map<String, dynamic>?))
               .toList()),
     );
   }

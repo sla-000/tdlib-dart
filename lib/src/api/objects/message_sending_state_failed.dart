@@ -53,13 +53,14 @@ class MessageSendingStateFailed extends MessageSendingState {
 
     return MessageSendingStateFailed(
       error: TdError.fromJson(json['error'] as Map<String, dynamic>?)!,
-      canRetry: json['can_retry'] as bool,
-      needAnotherSender: json['need_another_sender'] as bool,
-      needAnotherReplyQuote: json['need_another_reply_quote'] as bool,
-      needDropReply: json['need_drop_reply'] as bool,
+      canRetry: (json['can_retry'] as bool?) ?? false,
+      needAnotherSender: (json['need_another_sender'] as bool?) ?? false,
+      needAnotherReplyQuote:
+          (json['need_another_reply_quote'] as bool?) ?? false,
+      needDropReply: (json['need_drop_reply'] as bool?) ?? false,
       requiredPaidMessageStarCount:
-          json['required_paid_message_star_count'] as int,
-      retryAfter: (json['retry_after'] as num).toDouble(),
+          (json['required_paid_message_star_count'] as int?) ?? 0,
+      retryAfter: (json['retry_after'] as num?)?.toDouble() ?? 0.0,
     );
   }
 

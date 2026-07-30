@@ -47,12 +47,12 @@ class PremiumGiveawayPaymentOption extends TdObject {
     }
 
     return PremiumGiveawayPaymentOption(
-      currency: json['currency'] as String,
-      amount: json['amount'] as int,
-      winnerCount: json['winner_count'] as int,
-      monthCount: json['month_count'] as int,
-      storeProductId: json['store_product_id'] as String,
-      storeProductQuantity: json['store_product_quantity'] as int,
+      currency: (json['currency'] as String?) ?? '',
+      amount: (json['amount'] as int?) ?? 0,
+      winnerCount: (json['winner_count'] as int?) ?? 0,
+      monthCount: (json['month_count'] as int?) ?? 0,
+      storeProductId: (json['store_product_id'] as String?) ?? '',
+      storeProductQuantity: (json['store_product_quantity'] as int?) ?? 0,
     );
   }
 

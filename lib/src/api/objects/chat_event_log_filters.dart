@@ -81,21 +81,22 @@ class ChatEventLogFilters extends TdObject {
     }
 
     return ChatEventLogFilters(
-      messageEdits: json['message_edits'] as bool,
-      messageDeletions: json['message_deletions'] as bool,
-      messagePins: json['message_pins'] as bool,
-      memberJoins: json['member_joins'] as bool,
-      memberLeaves: json['member_leaves'] as bool,
-      memberInvites: json['member_invites'] as bool,
-      memberPromotions: json['member_promotions'] as bool,
-      memberRestrictions: json['member_restrictions'] as bool,
-      memberTagChanges: json['member_tag_changes'] as bool,
-      infoChanges: json['info_changes'] as bool,
-      settingChanges: json['setting_changes'] as bool,
-      inviteLinkChanges: json['invite_link_changes'] as bool,
-      videoChatChanges: json['video_chat_changes'] as bool,
-      forumChanges: json['forum_changes'] as bool,
-      subscriptionExtensions: json['subscription_extensions'] as bool,
+      messageEdits: (json['message_edits'] as bool?) ?? false,
+      messageDeletions: (json['message_deletions'] as bool?) ?? false,
+      messagePins: (json['message_pins'] as bool?) ?? false,
+      memberJoins: (json['member_joins'] as bool?) ?? false,
+      memberLeaves: (json['member_leaves'] as bool?) ?? false,
+      memberInvites: (json['member_invites'] as bool?) ?? false,
+      memberPromotions: (json['member_promotions'] as bool?) ?? false,
+      memberRestrictions: (json['member_restrictions'] as bool?) ?? false,
+      memberTagChanges: (json['member_tag_changes'] as bool?) ?? false,
+      infoChanges: (json['info_changes'] as bool?) ?? false,
+      settingChanges: (json['setting_changes'] as bool?) ?? false,
+      inviteLinkChanges: (json['invite_link_changes'] as bool?) ?? false,
+      videoChatChanges: (json['video_chat_changes'] as bool?) ?? false,
+      forumChanges: (json['forum_changes'] as bool?) ?? false,
+      subscriptionExtensions:
+          (json['subscription_extensions'] as bool?) ?? false,
     );
   }
 

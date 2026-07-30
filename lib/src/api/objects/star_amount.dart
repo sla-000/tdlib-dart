@@ -26,8 +26,8 @@ class StarAmount extends TdObject {
     }
 
     return StarAmount(
-      starCount: json['star_count'] as int,
-      nanostarCount: json['nanostar_count'] as int,
+      starCount: (json['star_count'] as int?) ?? 0,
+      nanostarCount: (json['nanostar_count'] as int?) ?? 0,
     );
   }
 

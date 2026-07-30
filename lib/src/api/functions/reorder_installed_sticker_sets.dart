@@ -27,7 +27,8 @@ class ReorderInstalledStickerSets extends TdFunction {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'sticker_type': stickerType.toJson(),
-        'sticker_set_ids': stickerSetIds.map((item) => item).toList(),
+        'sticker_set_ids':
+            stickerSetIds.map((item) => item.toString()).toList(),
         '@type': constructor,
       };
 

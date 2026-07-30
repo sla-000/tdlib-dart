@@ -29,9 +29,9 @@ class Date extends TdObject {
     }
 
     return Date(
-      day: json['day'] as int,
-      month: json['month'] as int,
-      year: json['year'] as int,
+      day: (json['day'] as int?) ?? 0,
+      month: (json['month'] as int?) ?? 0,
+      year: (json['year'] as int?) ?? 0,
     );
   }
 

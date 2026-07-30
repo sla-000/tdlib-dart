@@ -85,21 +85,22 @@ class ChatInviteLink extends TdObject {
     }
 
     return ChatInviteLink(
-      inviteLink: json['invite_link'] as String,
-      name: json['name'] as String,
-      creatorUserId: json['creator_user_id'] as int,
-      date: json['date'] as int,
-      editDate: json['edit_date'] as int,
-      expirationDate: json['expiration_date'] as int,
+      inviteLink: (json['invite_link'] as String?) ?? '',
+      name: (json['name'] as String?) ?? '',
+      creatorUserId: (json['creator_user_id'] as int?) ?? 0,
+      date: (json['date'] as int?) ?? 0,
+      editDate: (json['edit_date'] as int?) ?? 0,
+      expirationDate: (json['expiration_date'] as int?) ?? 0,
       subscriptionPricing: StarSubscriptionPricing.fromJson(
           json['subscription_pricing'] as Map<String, dynamic>?),
-      memberLimit: json['member_limit'] as int,
-      memberCount: json['member_count'] as int,
-      expiredMemberCount: json['expired_member_count'] as int,
-      pendingJoinRequestCount: json['pending_join_request_count'] as int,
-      createsJoinRequest: json['creates_join_request'] as bool,
-      isPrimary: json['is_primary'] as bool,
-      isRevoked: json['is_revoked'] as bool,
+      memberLimit: (json['member_limit'] as int?) ?? 0,
+      memberCount: (json['member_count'] as int?) ?? 0,
+      expiredMemberCount: (json['expired_member_count'] as int?) ?? 0,
+      pendingJoinRequestCount:
+          (json['pending_join_request_count'] as int?) ?? 0,
+      createsJoinRequest: (json['creates_join_request'] as bool?) ?? false,
+      isPrimary: (json['is_primary'] as bool?) ?? false,
+      isRevoked: (json['is_revoked'] as bool?) ?? false,
     );
   }
 

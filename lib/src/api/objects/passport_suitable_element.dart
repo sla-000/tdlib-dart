@@ -39,9 +39,10 @@ class PassportSuitableElement extends TdObject {
     return PassportSuitableElement(
       type:
           PassportElementType.fromJson(json['type'] as Map<String, dynamic>?)!,
-      isSelfieRequired: json['is_selfie_required'] as bool,
-      isTranslationRequired: json['is_translation_required'] as bool,
-      isNativeNameRequired: json['is_native_name_required'] as bool,
+      isSelfieRequired: (json['is_selfie_required'] as bool?) ?? false,
+      isTranslationRequired:
+          (json['is_translation_required'] as bool?) ?? false,
+      isNativeNameRequired: (json['is_native_name_required'] as bool?) ?? false,
     );
   }
 

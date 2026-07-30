@@ -88,26 +88,30 @@ class ChatBoostLevelFeatures extends TdObject {
     }
 
     return ChatBoostLevelFeatures(
-      level: json['level'] as int,
-      storyPerDayCount: json['story_per_day_count'] as int,
-      customEmojiReactionCount: json['custom_emoji_reaction_count'] as int,
-      titleColorCount: json['title_color_count'] as int,
-      profileAccentColorCount: json['profile_accent_color_count'] as int,
+      level: (json['level'] as int?) ?? 0,
+      storyPerDayCount: (json['story_per_day_count'] as int?) ?? 0,
+      customEmojiReactionCount:
+          (json['custom_emoji_reaction_count'] as int?) ?? 0,
+      titleColorCount: (json['title_color_count'] as int?) ?? 0,
+      profileAccentColorCount:
+          (json['profile_accent_color_count'] as int?) ?? 0,
       canSetProfileBackgroundCustomEmoji:
-          json['can_set_profile_background_custom_emoji'] as bool,
-      accentColorCount: json['accent_color_count'] as int,
+          (json['can_set_profile_background_custom_emoji'] as bool?) ?? false,
+      accentColorCount: (json['accent_color_count'] as int?) ?? 0,
       canSetBackgroundCustomEmoji:
-          json['can_set_background_custom_emoji'] as bool,
-      canSetEmojiStatus: json['can_set_emoji_status'] as bool,
-      chatThemeBackgroundCount: json['chat_theme_background_count'] as int,
-      canSetCustomBackground: json['can_set_custom_background'] as bool,
+          (json['can_set_background_custom_emoji'] as bool?) ?? false,
+      canSetEmojiStatus: (json['can_set_emoji_status'] as bool?) ?? false,
+      chatThemeBackgroundCount:
+          (json['chat_theme_background_count'] as int?) ?? 0,
+      canSetCustomBackground:
+          (json['can_set_custom_background'] as bool?) ?? false,
       canSetCustomEmojiStickerSet:
-          json['can_set_custom_emoji_sticker_set'] as bool,
+          (json['can_set_custom_emoji_sticker_set'] as bool?) ?? false,
       canEnableAutomaticTranslation:
-          json['can_enable_automatic_translation'] as bool,
-      canRecognizeSpeech: json['can_recognize_speech'] as bool,
+          (json['can_enable_automatic_translation'] as bool?) ?? false,
+      canRecognizeSpeech: (json['can_recognize_speech'] as bool?) ?? false,
       canDisableSponsoredMessages:
-          json['can_disable_sponsored_messages'] as bool,
+          (json['can_disable_sponsored_messages'] as bool?) ?? false,
     );
   }
 

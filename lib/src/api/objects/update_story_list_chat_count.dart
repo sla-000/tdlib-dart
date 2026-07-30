@@ -28,7 +28,7 @@ class UpdateStoryListChatCount extends Update {
     return UpdateStoryListChatCount(
       storyList:
           StoryList.fromJson(json['story_list'] as Map<String, dynamic>?)!,
-      chatCount: json['chat_count'] as int,
+      chatCount: (json['chat_count'] as int?) ?? 0,
     );
   }
 

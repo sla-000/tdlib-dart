@@ -23,7 +23,7 @@ class CanPostStoryResultMonthlyLimitExceeded extends CanPostStoryResult {
     }
 
     return CanPostStoryResultMonthlyLimitExceeded(
-      retryAfter: json['retry_after'] as int,
+      retryAfter: (json['retry_after'] as int?) ?? 0,
     );
   }
 

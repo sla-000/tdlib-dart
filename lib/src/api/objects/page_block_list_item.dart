@@ -44,15 +44,15 @@ class PageBlockListItem extends TdObject {
     }
 
     return PageBlockListItem(
-      label: json['label'] as String,
+      label: (json['label'] as String?) ?? '',
       blocks: List<PageBlock>.from(
           ((json['blocks'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => PageBlock.fromJson(item))
+              .map((item) => PageBlock.fromJson(item as Map<String, dynamic>?))
               .toList()),
-      hasCheckbox: json['has_checkbox'] as bool,
-      isChecked: json['is_checked'] as bool,
-      value: json['value'] as int,
-      type: json['type'] as String,
+      hasCheckbox: (json['has_checkbox'] as bool?) ?? false,
+      isChecked: (json['is_checked'] as bool?) ?? false,
+      value: (json['value'] as int?) ?? 0,
+      type: (json['type'] as String?) ?? '',
     );
   }
 

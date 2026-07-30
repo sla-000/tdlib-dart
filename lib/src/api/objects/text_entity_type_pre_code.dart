@@ -21,7 +21,7 @@ class TextEntityTypePreCode extends TextEntityType {
     }
 
     return TextEntityTypePreCode(
-      language: json['language'] as String,
+      language: (json['language'] as String?) ?? '',
     );
   }
 

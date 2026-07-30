@@ -30,12 +30,12 @@ class FoundChatMessages extends TdObject {
     }
 
     return FoundChatMessages(
-      totalCount: json['total_count'] as int,
+      totalCount: (json['total_count'] as int?) ?? 0,
       messages: List<Message>.from(
           ((json['messages'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => Message.fromJson(item))
+              .map((item) => Message.fromJson(item as Map<String, dynamic>?))
               .toList()),
-      nextFromMessageId: json['next_from_message_id'] as int,
+      nextFromMessageId: (json['next_from_message_id'] as int?) ?? 0,
     );
   }
 

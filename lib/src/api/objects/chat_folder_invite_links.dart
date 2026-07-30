@@ -23,7 +23,8 @@ class ChatFolderInviteLinks extends TdObject {
     return ChatFolderInviteLinks(
       inviteLinks: List<ChatFolderInviteLink>.from(
           ((json['invite_links'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => ChatFolderInviteLink.fromJson(item))
+              .map((item) =>
+                  ChatFolderInviteLink.fromJson(item as Map<String, dynamic>?))
               .toList()),
     );
   }

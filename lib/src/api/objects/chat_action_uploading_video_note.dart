@@ -21,7 +21,7 @@ class ChatActionUploadingVideoNote extends ChatAction {
     }
 
     return ChatActionUploadingVideoNote(
-      progress: json['progress'] as int,
+      progress: (json['progress'] as int?) ?? 0,
     );
   }
 

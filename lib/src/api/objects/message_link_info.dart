@@ -56,14 +56,14 @@ class MessageLinkInfo extends TdObject {
     }
 
     return MessageLinkInfo(
-      isPublic: json['is_public'] as bool,
-      chatId: json['chat_id'] as int,
+      isPublic: (json['is_public'] as bool?) ?? false,
+      chatId: (json['chat_id'] as int?) ?? 0,
       topicId: MessageTopic.fromJson(json['topic_id'] as Map<String, dynamic>?),
       message: Message.fromJson(json['message'] as Map<String, dynamic>?),
-      mediaTimestamp: json['media_timestamp'] as int,
-      checklistTaskId: json['checklist_task_id'] as int,
-      pollOptionId: json['poll_option_id'] as String,
-      forAlbum: json['for_album'] as bool,
+      mediaTimestamp: (json['media_timestamp'] as int?) ?? 0,
+      checklistTaskId: (json['checklist_task_id'] as int?) ?? 0,
+      pollOptionId: (json['poll_option_id'] as String?) ?? '',
+      forAlbum: (json['for_album'] as bool?) ?? false,
     );
   }
 

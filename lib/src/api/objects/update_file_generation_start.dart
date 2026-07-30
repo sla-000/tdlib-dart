@@ -40,10 +40,13 @@ class UpdateFileGenerationStart extends Update {
     }
 
     return UpdateFileGenerationStart(
-      generationId: int.tryParse(json['generation_id']) ?? 0,
-      originalPath: json['original_path'] as String,
-      destinationPath: json['destination_path'] as String,
-      conversion: json['conversion'] as String,
+      generationId: (json['generation_id'] is int
+              ? json['generation_id'] as int
+              : int.tryParse(json['generation_id']?.toString() ?? '')) ??
+          0,
+      originalPath: (json['original_path'] as String?) ?? '',
+      destinationPath: (json['destination_path'] as String?) ?? '',
+      conversion: (json['conversion'] as String?) ?? '',
     );
   }
 

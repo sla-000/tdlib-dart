@@ -38,20 +38,20 @@ class GiftsForCrafting extends TdObject {
     }
 
     return GiftsForCrafting(
-      totalCount: json['total_count'] as int,
-      gifts: List<ReceivedGift>.from(
-          ((json['gifts'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => ReceivedGift.fromJson(item))
-              .toList()),
+      totalCount: (json['total_count'] as int?) ?? 0,
+      gifts: List<ReceivedGift>.from(((json['gifts'] as List<dynamic>?) ??
+              <dynamic>[])
+          .map((item) => ReceivedGift.fromJson(item as Map<String, dynamic>?))
+          .toList()),
       attributePersistenceProbabilities:
           List<AttributeCraftPersistenceProbability>.from(
               ((json['attribute_persistence_probabilities']
                           as List<dynamic>?) ??
                       <dynamic>[])
-                  .map((item) =>
-                      AttributeCraftPersistenceProbability.fromJson(item))
+                  .map((item) => AttributeCraftPersistenceProbability.fromJson(
+                      item as Map<String, dynamic>?))
                   .toList()),
-      nextOffset: json['next_offset'] as String,
+      nextOffset: (json['next_offset'] as String?) ?? '',
     );
   }
 

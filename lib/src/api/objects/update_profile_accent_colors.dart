@@ -29,12 +29,14 @@ class UpdateProfileAccentColors extends Update {
     return UpdateProfileAccentColors(
       colors: List<ProfileAccentColor>.from(
           ((json['colors'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => ProfileAccentColor.fromJson(item))
+              .map((item) =>
+                  ProfileAccentColor.fromJson(item as Map<String, dynamic>?))
               .toList()),
       availableAccentColorIds: List<int>.from(
           ((json['available_accent_color_ids'] as List<dynamic>?) ??
                   <dynamic>[])
-              .map((item) => item)
+              .map((item) =>
+                  (item is int ? item : int.tryParse(item.toString()) ?? 0))
               .toList()),
     );
   }

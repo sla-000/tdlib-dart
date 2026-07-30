@@ -42,12 +42,12 @@ class LinkPreviewTypeEmbeddedAnimationPlayer extends LinkPreviewType {
     }
 
     return LinkPreviewTypeEmbeddedAnimationPlayer(
-      url: json['url'] as String,
+      url: (json['url'] as String?) ?? '',
       animation: Animation.fromJson(json['animation'] as Map<String, dynamic>?),
       thumbnail: Photo.fromJson(json['thumbnail'] as Map<String, dynamic>?),
-      duration: json['duration'] as int,
-      width: json['width'] as int,
-      height: json['height'] as int,
+      duration: (json['duration'] as int?) ?? 0,
+      width: (json['width'] as int?) ?? 0,
+      height: (json['height'] as int?) ?? 0,
     );
   }
 

@@ -26,7 +26,7 @@ class InputPassportElementErrorSourceReverseSide
     }
 
     return InputPassportElementErrorSourceReverseSide(
-      fileHash: json['file_hash'] as String,
+      fileHash: (json['file_hash'] as String?) ?? '',
     );
   }
 

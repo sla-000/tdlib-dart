@@ -23,7 +23,7 @@ class SuggestedActionExtendPremium extends SuggestedAction {
 
     return SuggestedActionExtendPremium(
       managePremiumSubscriptionUrl:
-          json['manage_premium_subscription_url'] as String,
+          (json['manage_premium_subscription_url'] as String?) ?? '',
     );
   }
 

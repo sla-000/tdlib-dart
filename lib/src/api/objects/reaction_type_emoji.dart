@@ -21,7 +21,7 @@ class ReactionTypeEmoji extends ReactionType {
     }
 
     return ReactionTypeEmoji(
-      emoji: json['emoji'] as String,
+      emoji: (json['emoji'] as String?) ?? '',
     );
   }
 

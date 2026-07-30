@@ -21,7 +21,7 @@ class TextEntityTypeTextUrl extends TextEntityType {
     }
 
     return TextEntityTypeTextUrl(
-      url: json['url'] as String,
+      url: (json['url'] as String?) ?? '',
     );
   }
 

@@ -48,7 +48,7 @@ class EditForumTopic extends TdFunction {
         'forum_topic_id': forumTopicId,
         'name': name,
         'edit_icon_custom_emoji': editIconCustomEmoji,
-        'icon_custom_emoji_id': iconCustomEmojiId,
+        'icon_custom_emoji_id': iconCustomEmojiId.toString(),
         '@type': constructor,
       };
 

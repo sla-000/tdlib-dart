@@ -25,7 +25,7 @@ class JsonObjectMember extends TdObject {
     }
 
     return JsonObjectMember(
-      key: json['key'] as String,
+      key: (json['key'] as String?) ?? '',
       value: JsonValue.fromJson(json['value'] as Map<String, dynamic>?)!,
     );
   }

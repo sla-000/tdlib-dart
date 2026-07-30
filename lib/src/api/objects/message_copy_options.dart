@@ -44,11 +44,12 @@ class MessageCopyOptions extends TdObject {
     }
 
     return MessageCopyOptions(
-      sendCopy: json['send_copy'] as bool,
-      replaceCaption: json['replace_caption'] as bool,
+      sendCopy: (json['send_copy'] as bool?) ?? false,
+      replaceCaption: (json['replace_caption'] as bool?) ?? false,
       newCaption:
           FormattedText.fromJson(json['new_caption'] as Map<String, dynamic>?),
-      newShowCaptionAboveMedia: json['new_show_caption_above_media'] as bool,
+      newShowCaptionAboveMedia:
+          (json['new_show_caption_above_media'] as bool?) ?? false,
     );
   }
 

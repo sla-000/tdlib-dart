@@ -32,10 +32,11 @@ class VideoMessageAdvertisements extends TdObject {
     return VideoMessageAdvertisements(
       advertisements: List<VideoMessageAdvertisement>.from(
           ((json['advertisements'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => VideoMessageAdvertisement.fromJson(item))
+              .map((item) => VideoMessageAdvertisement.fromJson(
+                  item as Map<String, dynamic>?))
               .toList()),
-      startDelay: json['start_delay'] as int,
-      betweenDelay: json['between_delay'] as int,
+      startDelay: (json['start_delay'] as int?) ?? 0,
+      betweenDelay: (json['between_delay'] as int?) ?? 0,
     );
   }
 

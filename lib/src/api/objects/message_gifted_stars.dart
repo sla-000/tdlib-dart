@@ -58,14 +58,18 @@ class MessageGiftedStars extends MessageContent {
     }
 
     return MessageGiftedStars(
-      gifterUserId: json['gifter_user_id'] as int,
-      receiverUserId: json['receiver_user_id'] as int,
-      currency: json['currency'] as String,
-      amount: json['amount'] as int,
-      cryptocurrency: json['cryptocurrency'] as String,
-      cryptocurrencyAmount: int.tryParse(json['cryptocurrency_amount']) ?? 0,
-      starCount: json['star_count'] as int,
-      transactionId: json['transaction_id'] as String,
+      gifterUserId: (json['gifter_user_id'] as int?) ?? 0,
+      receiverUserId: (json['receiver_user_id'] as int?) ?? 0,
+      currency: (json['currency'] as String?) ?? '',
+      amount: (json['amount'] as int?) ?? 0,
+      cryptocurrency: (json['cryptocurrency'] as String?) ?? '',
+      cryptocurrencyAmount: (json['cryptocurrency_amount'] is int
+              ? json['cryptocurrency_amount'] as int
+              : int.tryParse(
+                  json['cryptocurrency_amount']?.toString() ?? '')) ??
+          0,
+      starCount: (json['star_count'] as int?) ?? 0,
+      transactionId: (json['transaction_id'] as String?) ?? '',
       sticker: Sticker.fromJson(json['sticker'] as Map<String, dynamic>?),
     );
   }

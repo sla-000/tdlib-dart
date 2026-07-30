@@ -22,7 +22,7 @@ class MessageOriginHiddenUser extends MessageOrigin {
     }
 
     return MessageOriginHiddenUser(
-      senderName: json['sender_name'] as String,
+      senderName: (json['sender_name'] as String?) ?? '',
     );
   }
 

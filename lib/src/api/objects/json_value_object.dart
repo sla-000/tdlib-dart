@@ -23,7 +23,8 @@ class JsonValueObject extends JsonValue {
     return JsonValueObject(
       members: List<JsonObjectMember>.from(
           ((json['members'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => JsonObjectMember.fromJson(item))
+              .map((item) =>
+                  JsonObjectMember.fromJson(item as Map<String, dynamic>?))
               .toList()),
     );
   }

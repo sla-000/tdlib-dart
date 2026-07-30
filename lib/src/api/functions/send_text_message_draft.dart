@@ -37,7 +37,7 @@ class SendTextMessageDraft extends TdFunction {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'chat_id': chatId,
         'forum_topic_id': forumTopicId,
-        'draft_id': draftId,
+        'draft_id': draftId.toString(),
         'text': text?.toJson(),
         '@type': constructor,
       };

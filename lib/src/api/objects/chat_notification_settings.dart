@@ -97,26 +97,36 @@ class ChatNotificationSettings extends TdObject {
     }
 
     return ChatNotificationSettings(
-      useDefaultMuteFor: json['use_default_mute_for'] as bool,
-      muteFor: json['mute_for'] as int,
-      useDefaultSound: json['use_default_sound'] as bool,
-      soundId: int.tryParse(json['sound_id']) ?? 0,
-      useDefaultShowPreview: json['use_default_show_preview'] as bool,
-      showPreview: json['show_preview'] as bool,
-      useDefaultMuteStories: json['use_default_mute_stories'] as bool,
-      muteStories: json['mute_stories'] as bool,
-      useDefaultStorySound: json['use_default_story_sound'] as bool,
-      storySoundId: int.tryParse(json['story_sound_id']) ?? 0,
-      useDefaultShowStoryPoster: json['use_default_show_story_poster'] as bool,
-      showStoryPoster: json['show_story_poster'] as bool,
+      useDefaultMuteFor: (json['use_default_mute_for'] as bool?) ?? false,
+      muteFor: (json['mute_for'] as int?) ?? 0,
+      useDefaultSound: (json['use_default_sound'] as bool?) ?? false,
+      soundId: (json['sound_id'] is int
+              ? json['sound_id'] as int
+              : int.tryParse(json['sound_id']?.toString() ?? '')) ??
+          0,
+      useDefaultShowPreview:
+          (json['use_default_show_preview'] as bool?) ?? false,
+      showPreview: (json['show_preview'] as bool?) ?? false,
+      useDefaultMuteStories:
+          (json['use_default_mute_stories'] as bool?) ?? false,
+      muteStories: (json['mute_stories'] as bool?) ?? false,
+      useDefaultStorySound: (json['use_default_story_sound'] as bool?) ?? false,
+      storySoundId: (json['story_sound_id'] is int
+              ? json['story_sound_id'] as int
+              : int.tryParse(json['story_sound_id']?.toString() ?? '')) ??
+          0,
+      useDefaultShowStoryPoster:
+          (json['use_default_show_story_poster'] as bool?) ?? false,
+      showStoryPoster: (json['show_story_poster'] as bool?) ?? false,
       useDefaultDisablePinnedMessageNotifications:
-          json['use_default_disable_pinned_message_notifications'] as bool,
+          (json['use_default_disable_pinned_message_notifications'] as bool?) ??
+              false,
       disablePinnedMessageNotifications:
-          json['disable_pinned_message_notifications'] as bool,
+          (json['disable_pinned_message_notifications'] as bool?) ?? false,
       useDefaultDisableMentionNotifications:
-          json['use_default_disable_mention_notifications'] as bool,
+          (json['use_default_disable_mention_notifications'] as bool?) ?? false,
       disableMentionNotifications:
-          json['disable_mention_notifications'] as bool,
+          (json['disable_mention_notifications'] as bool?) ?? false,
     );
   }
 

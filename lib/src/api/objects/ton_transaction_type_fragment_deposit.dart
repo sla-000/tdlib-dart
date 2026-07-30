@@ -27,7 +27,7 @@ class TonTransactionTypeFragmentDeposit extends TonTransactionType {
     }
 
     return TonTransactionTypeFragmentDeposit(
-      isGift: json['is_gift'] as bool,
+      isGift: (json['is_gift'] as bool?) ?? false,
       sticker: Sticker.fromJson(json['sticker'] as Map<String, dynamic>?),
     );
   }

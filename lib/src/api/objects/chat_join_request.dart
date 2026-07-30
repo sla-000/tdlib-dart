@@ -30,9 +30,9 @@ class ChatJoinRequest extends TdObject {
     }
 
     return ChatJoinRequest(
-      userId: json['user_id'] as int,
-      date: json['date'] as int,
-      bio: json['bio'] as String,
+      userId: (json['user_id'] as int?) ?? 0,
+      date: (json['date'] as int?) ?? 0,
+      bio: (json['bio'] as String?) ?? '',
     );
   }
 

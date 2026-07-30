@@ -25,7 +25,7 @@ class ReportStoryResultTextRequired extends ReportStoryResult {
     }
 
     return ReportStoryResultTextRequired(
-      optionId: json['option_id'] as String,
+      optionId: (json['option_id'] as String?) ?? '',
       isOptional: json['is_optional'] as bool?,
     );
   }

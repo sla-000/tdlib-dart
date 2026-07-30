@@ -40,12 +40,12 @@ class FoundPublicPosts extends TdObject {
     return FoundPublicPosts(
       messages: List<Message>.from(
           ((json['messages'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => Message.fromJson(item))
+              .map((item) => Message.fromJson(item as Map<String, dynamic>?))
               .toList()),
-      nextOffset: json['next_offset'] as String,
+      nextOffset: (json['next_offset'] as String?) ?? '',
       searchLimits: PublicPostSearchLimits.fromJson(
           json['search_limits'] as Map<String, dynamic>?),
-      areLimitsExceeded: json['are_limits_exceeded'] as bool,
+      areLimitsExceeded: (json['are_limits_exceeded'] as bool?) ?? false,
     );
   }
 

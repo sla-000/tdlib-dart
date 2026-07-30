@@ -21,7 +21,7 @@ class TMeUrlTypeSupergroup extends TMeUrlType {
     }
 
     return TMeUrlTypeSupergroup(
-      supergroupId: json['supergroup_id'] as int,
+      supergroupId: (json['supergroup_id'] as int?) ?? 0,
     );
   }
 

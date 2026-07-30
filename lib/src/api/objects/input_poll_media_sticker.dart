@@ -36,8 +36,8 @@ class InputPollMediaSticker extends InputPollMedia {
       sticker: InputFile.fromJson(json['sticker'] as Map<String, dynamic>?)!,
       thumbnail:
           InputThumbnail.fromJson(json['thumbnail'] as Map<String, dynamic>?),
-      width: json['width'] as int,
-      height: json['height'] as int,
+      width: (json['width'] as int?) ?? 0,
+      height: (json['height'] as int?) ?? 0,
     );
   }
 

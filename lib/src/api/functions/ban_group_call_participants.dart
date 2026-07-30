@@ -30,7 +30,7 @@ class BanGroupCallParticipants extends TdFunction {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'group_call_id': groupCallId,
-        'user_ids': userIds.map((item) => item).toList(),
+        'user_ids': userIds.map((item) => item.toString()).toList(),
         '@type': constructor,
       };
 

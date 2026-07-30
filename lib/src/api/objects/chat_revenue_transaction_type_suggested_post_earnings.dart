@@ -24,7 +24,7 @@ class ChatRevenueTransactionTypeSuggestedPostEarnings
     }
 
     return ChatRevenueTransactionTypeSuggestedPostEarnings(
-      userId: json['user_id'] as int,
+      userId: (json['user_id'] as int?) ?? 0,
     );
   }
 

@@ -67,15 +67,15 @@ class InputInlineQueryResultVideo extends InputInlineQueryResult {
     }
 
     return InputInlineQueryResultVideo(
-      id: json['id'] as String,
-      title: json['title'] as String,
-      description: json['description'] as String,
-      thumbnailUrl: json['thumbnail_url'] as String,
-      videoUrl: json['video_url'] as String,
-      mimeType: json['mime_type'] as String,
-      videoWidth: json['video_width'] as int,
-      videoHeight: json['video_height'] as int,
-      videoDuration: json['video_duration'] as int,
+      id: (json['id'] as String?) ?? '',
+      title: (json['title'] as String?) ?? '',
+      description: (json['description'] as String?) ?? '',
+      thumbnailUrl: (json['thumbnail_url'] as String?) ?? '',
+      videoUrl: (json['video_url'] as String?) ?? '',
+      mimeType: (json['mime_type'] as String?) ?? '',
+      videoWidth: (json['video_width'] as int?) ?? 0,
+      videoHeight: (json['video_height'] as int?) ?? 0,
+      videoDuration: (json['video_duration'] as int?) ?? 0,
       replyMarkup:
           ReplyMarkup.fromJson(json['reply_markup'] as Map<String, dynamic>?),
       inputMessageContent: InputMessageContent.fromJson(

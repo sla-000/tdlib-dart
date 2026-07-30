@@ -21,7 +21,7 @@ class MessageChatOwnerChanged extends MessageContent {
     }
 
     return MessageChatOwnerChanged(
-      newOwnerUserId: json['new_owner_user_id'] as int,
+      newOwnerUserId: (json['new_owner_user_id'] as int?) ?? 0,
     );
   }
 

@@ -36,16 +36,20 @@ class UpdatePollAnswer extends Update {
     }
 
     return UpdatePollAnswer(
-      pollId: int.tryParse(json['poll_id']) ?? 0,
+      pollId: (json['poll_id'] is int
+              ? json['poll_id'] as int
+              : int.tryParse(json['poll_id']?.toString() ?? '')) ??
+          0,
       voterId:
           MessageSender.fromJson(json['voter_id'] as Map<String, dynamic>?)!,
       optionIds: List<String>.from(
           ((json['option_ids'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => item)
+              .map((item) => item as String)
               .toList()),
       optionPositions: List<int>.from(
           ((json['option_positions'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => item)
+              .map((item) =>
+                  (item is int ? item : int.tryParse(item.toString()) ?? 0))
               .toList()),
     );
   }

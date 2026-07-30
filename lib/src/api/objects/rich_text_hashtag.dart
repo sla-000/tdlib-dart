@@ -26,7 +26,7 @@ class RichTextHashtag extends RichText {
 
     return RichTextHashtag(
       text: RichText.fromJson(json['text'] as Map<String, dynamic>?)!,
-      hashtag: json['hashtag'] as String,
+      hashtag: (json['hashtag'] as String?) ?? '',
     );
   }
 

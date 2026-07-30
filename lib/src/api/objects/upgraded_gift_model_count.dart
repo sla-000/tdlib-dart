@@ -27,7 +27,7 @@ class UpgradedGiftModelCount extends TdObject {
     return UpgradedGiftModelCount(
       model:
           UpgradedGiftModel.fromJson(json['model'] as Map<String, dynamic>?)!,
-      totalCount: json['total_count'] as int,
+      totalCount: (json['total_count'] as int?) ?? 0,
     );
   }
 

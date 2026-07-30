@@ -21,7 +21,7 @@ class MessageCustomServiceAction extends MessageContent {
     }
 
     return MessageCustomServiceAction(
-      text: json['text'] as String,
+      text: (json['text'] as String?) ?? '',
     );
   }
 

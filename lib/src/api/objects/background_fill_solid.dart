@@ -21,7 +21,7 @@ class BackgroundFillSolid extends BackgroundFill {
     }
 
     return BackgroundFillSolid(
-      color: json['color'] as int,
+      color: (json['color'] as int?) ?? 0,
     );
   }
 

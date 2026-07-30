@@ -44,23 +44,28 @@ class GiftUpgradePreview extends TdObject {
     return GiftUpgradePreview(
       models: List<UpgradedGiftModel>.from(
           ((json['models'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => UpgradedGiftModel.fromJson(item))
+              .map((item) =>
+                  UpgradedGiftModel.fromJson(item as Map<String, dynamic>?))
               .toList()),
       symbols: List<UpgradedGiftSymbol>.from(
           ((json['symbols'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => UpgradedGiftSymbol.fromJson(item))
+              .map((item) =>
+                  UpgradedGiftSymbol.fromJson(item as Map<String, dynamic>?))
               .toList()),
       backdrops: List<UpgradedGiftBackdrop>.from(
           ((json['backdrops'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => UpgradedGiftBackdrop.fromJson(item))
+              .map((item) =>
+                  UpgradedGiftBackdrop.fromJson(item as Map<String, dynamic>?))
               .toList()),
       prices: List<GiftUpgradePrice>.from(
           ((json['prices'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => GiftUpgradePrice.fromJson(item))
+              .map((item) =>
+                  GiftUpgradePrice.fromJson(item as Map<String, dynamic>?))
               .toList()),
       nextPrices: List<GiftUpgradePrice>.from(
           ((json['next_prices'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => GiftUpgradePrice.fromJson(item))
+              .map((item) =>
+                  GiftUpgradePrice.fromJson(item as Map<String, dynamic>?))
               .toList()),
     );
   }

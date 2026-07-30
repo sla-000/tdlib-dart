@@ -39,10 +39,11 @@ class StarSubscriptions extends TdObject {
           StarAmount.fromJson(json['star_amount'] as Map<String, dynamic>?)!,
       subscriptions: List<StarSubscription>.from(
           ((json['subscriptions'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => StarSubscription.fromJson(item))
+              .map((item) =>
+                  StarSubscription.fromJson(item as Map<String, dynamic>?))
               .toList()),
-      requiredStarCount: json['required_star_count'] as int,
-      nextOffset: json['next_offset'] as String,
+      requiredStarCount: (json['required_star_count'] as int?) ?? 0,
+      nextOffset: (json['next_offset'] as String?) ?? '',
     );
   }
 

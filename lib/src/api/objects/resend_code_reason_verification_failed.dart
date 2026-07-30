@@ -24,7 +24,7 @@ class ResendCodeReasonVerificationFailed extends ResendCodeReason {
     }
 
     return ResendCodeReasonVerificationFailed(
-      errorMessage: json['error_message'] as String,
+      errorMessage: (json['error_message'] as String?) ?? '',
     );
   }
 

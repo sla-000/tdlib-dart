@@ -31,12 +31,13 @@ class PassportAuthorizationForm extends TdObject {
     }
 
     return PassportAuthorizationForm(
-      id: json['id'] as int,
+      id: (json['id'] as int?) ?? 0,
       requiredElements: List<PassportRequiredElement>.from(
           ((json['required_elements'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => PassportRequiredElement.fromJson(item))
+              .map((item) => PassportRequiredElement.fromJson(
+                  item as Map<String, dynamic>?))
               .toList()),
-      privacyPolicyUrl: json['privacy_policy_url'] as String,
+      privacyPolicyUrl: (json['privacy_policy_url'] as String?) ?? '',
     );
   }
 

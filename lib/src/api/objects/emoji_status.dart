@@ -27,7 +27,7 @@ class EmojiStatus extends TdObject {
 
     return EmojiStatus(
       type: EmojiStatusType.fromJson(json['type'] as Map<String, dynamic>?)!,
-      expirationDate: json['expiration_date'] as int,
+      expirationDate: (json['expiration_date'] as int?) ?? 0,
     );
   }
 

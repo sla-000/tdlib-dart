@@ -23,7 +23,7 @@ class SettingsSectionPowerSaving extends SettingsSection {
     }
 
     return SettingsSectionPowerSaving(
-      subsection: json['subsection'] as String,
+      subsection: (json['subsection'] as String?) ?? '',
     );
   }
 

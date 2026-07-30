@@ -22,7 +22,7 @@ class InlineKeyboardButtonTypeCopyText extends InlineKeyboardButtonType {
     }
 
     return InlineKeyboardButtonTypeCopyText(
-      text: json['text'] as String,
+      text: (json['text'] as String?) ?? '',
     );
   }
 

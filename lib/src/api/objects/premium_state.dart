@@ -40,15 +40,18 @@ class PremiumState extends TdObject {
       state: FormattedText.fromJson(json['state'] as Map<String, dynamic>?)!,
       paymentOptions: List<PremiumStatePaymentOption>.from(
           ((json['payment_options'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => PremiumStatePaymentOption.fromJson(item))
+              .map((item) => PremiumStatePaymentOption.fromJson(
+                  item as Map<String, dynamic>?))
               .toList()),
       animations: List<PremiumFeaturePromotionAnimation>.from(
           ((json['animations'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => PremiumFeaturePromotionAnimation.fromJson(item))
+              .map((item) => PremiumFeaturePromotionAnimation.fromJson(
+                  item as Map<String, dynamic>?))
               .toList()),
       businessAnimations: List<BusinessFeaturePromotionAnimation>.from(
           ((json['business_animations'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => BusinessFeaturePromotionAnimation.fromJson(item))
+              .map((item) => BusinessFeaturePromotionAnimation.fromJson(
+                  item as Map<String, dynamic>?))
               .toList()),
     );
   }

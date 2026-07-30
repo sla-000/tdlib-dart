@@ -21,7 +21,7 @@ class MessageTopicForum extends MessageTopic {
     }
 
     return MessageTopicForum(
-      forumTopicId: json['forum_topic_id'] as int,
+      forumTopicId: (json['forum_topic_id'] as int?) ?? 0,
     );
   }
 

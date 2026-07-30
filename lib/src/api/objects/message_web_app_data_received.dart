@@ -26,8 +26,8 @@ class MessageWebAppDataReceived extends MessageContent {
     }
 
     return MessageWebAppDataReceived(
-      buttonText: json['button_text'] as String,
-      data: json['data'] as String,
+      buttonText: (json['button_text'] as String?) ?? '',
+      data: (json['data'] as String?) ?? '',
     );
   }
 

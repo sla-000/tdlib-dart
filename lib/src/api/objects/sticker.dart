@@ -54,11 +54,17 @@ class Sticker extends TdObject {
     }
 
     return Sticker(
-      id: int.tryParse(json['id']) ?? 0,
-      setId: int.tryParse(json['set_id']) ?? 0,
-      width: json['width'] as int,
-      height: json['height'] as int,
-      emoji: json['emoji'] as String,
+      id: (json['id'] is int
+              ? json['id'] as int
+              : int.tryParse(json['id']?.toString() ?? '')) ??
+          0,
+      setId: (json['set_id'] is int
+              ? json['set_id'] as int
+              : int.tryParse(json['set_id']?.toString() ?? '')) ??
+          0,
+      width: (json['width'] as int?) ?? 0,
+      height: (json['height'] as int?) ?? 0,
+      emoji: (json['emoji'] as String?) ?? '',
       format: StickerFormat.fromJson(json['format'] as Map<String, dynamic>?)!,
       fullType:
           StickerFullType.fromJson(json['full_type'] as Map<String, dynamic>?)!,

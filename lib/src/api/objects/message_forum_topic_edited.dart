@@ -31,9 +31,13 @@ class MessageForumTopicEdited extends MessageContent {
     }
 
     return MessageForumTopicEdited(
-      name: json['name'] as String,
-      editIconCustomEmojiId: json['edit_icon_custom_emoji_id'] as bool,
-      iconCustomEmojiId: int.tryParse(json['icon_custom_emoji_id']) ?? 0,
+      name: (json['name'] as String?) ?? '',
+      editIconCustomEmojiId:
+          (json['edit_icon_custom_emoji_id'] as bool?) ?? false,
+      iconCustomEmojiId: (json['icon_custom_emoji_id'] is int
+              ? json['icon_custom_emoji_id'] as int
+              : int.tryParse(json['icon_custom_emoji_id']?.toString() ?? '')) ??
+          0,
     );
   }
 

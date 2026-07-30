@@ -85,20 +85,23 @@ class UpgradedGiftValueInfo extends TdObject {
     }
 
     return UpgradedGiftValueInfo(
-      currency: json['currency'] as String,
-      value: json['value'] as int,
-      isValueAverage: json['is_value_average'] as bool,
-      initialSaleDate: json['initial_sale_date'] as int,
-      initialSaleStarCount: json['initial_sale_star_count'] as int,
-      initialSalePrice: json['initial_sale_price'] as int,
-      lastSaleDate: json['last_sale_date'] as int,
-      lastSalePrice: json['last_sale_price'] as int,
-      isLastSaleOnFragment: json['is_last_sale_on_fragment'] as bool,
-      minimumPrice: json['minimum_price'] as int,
-      averageSalePrice: json['average_sale_price'] as int,
-      telegramListedGiftCount: json['telegram_listed_gift_count'] as int,
-      fragmentListedGiftCount: json['fragment_listed_gift_count'] as int,
-      fragmentUrl: json['fragment_url'] as String,
+      currency: (json['currency'] as String?) ?? '',
+      value: (json['value'] as int?) ?? 0,
+      isValueAverage: (json['is_value_average'] as bool?) ?? false,
+      initialSaleDate: (json['initial_sale_date'] as int?) ?? 0,
+      initialSaleStarCount: (json['initial_sale_star_count'] as int?) ?? 0,
+      initialSalePrice: (json['initial_sale_price'] as int?) ?? 0,
+      lastSaleDate: (json['last_sale_date'] as int?) ?? 0,
+      lastSalePrice: (json['last_sale_price'] as int?) ?? 0,
+      isLastSaleOnFragment:
+          (json['is_last_sale_on_fragment'] as bool?) ?? false,
+      minimumPrice: (json['minimum_price'] as int?) ?? 0,
+      averageSalePrice: (json['average_sale_price'] as int?) ?? 0,
+      telegramListedGiftCount:
+          (json['telegram_listed_gift_count'] as int?) ?? 0,
+      fragmentListedGiftCount:
+          (json['fragment_listed_gift_count'] as int?) ?? 0,
+      fragmentUrl: (json['fragment_url'] as String?) ?? '',
     );
   }
 

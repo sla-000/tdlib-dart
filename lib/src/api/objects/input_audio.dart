@@ -43,9 +43,9 @@ class InputAudio extends TdObject {
       audio: InputFile.fromJson(json['audio'] as Map<String, dynamic>?)!,
       albumCoverThumbnail: InputThumbnail.fromJson(
           json['album_cover_thumbnail'] as Map<String, dynamic>?),
-      duration: json['duration'] as int,
-      title: json['title'] as String,
-      performer: json['performer'] as String,
+      duration: (json['duration'] as int?) ?? 0,
+      title: (json['title'] as String?) ?? '',
+      performer: (json['performer'] as String?) ?? '',
     );
   }
 

@@ -22,7 +22,7 @@ class PushMessageContentHidden extends PushMessageContent {
     }
 
     return PushMessageContentHidden(
-      isPinned: json['is_pinned'] as bool,
+      isPinned: (json['is_pinned'] as bool?) ?? false,
     );
   }
 

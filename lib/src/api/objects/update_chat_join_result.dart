@@ -32,8 +32,11 @@ class UpdateChatJoinResult extends Update {
     }
 
     return UpdateChatJoinResult(
-      queryId: int.tryParse(json['query_id']) ?? 0,
-      chatId: json['chat_id'] as int,
+      queryId: (json['query_id'] is int
+              ? json['query_id'] as int
+              : int.tryParse(json['query_id']?.toString() ?? '')) ??
+          0,
+      chatId: (json['chat_id'] as int?) ?? 0,
       result: ChatJoinRequestResult.fromJson(
           json['result'] as Map<String, dynamic>?)!,
     );

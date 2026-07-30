@@ -24,7 +24,7 @@ class BotWriteAccessAllowReasonConnectedWebsite
     }
 
     return BotWriteAccessAllowReasonConnectedWebsite(
-      domainName: json['domain_name'] as String,
+      domainName: (json['domain_name'] as String?) ?? '',
     );
   }
 

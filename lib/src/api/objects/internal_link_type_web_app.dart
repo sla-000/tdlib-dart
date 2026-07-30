@@ -43,9 +43,9 @@ class InternalLinkTypeWebApp extends InternalLinkType {
     }
 
     return InternalLinkTypeWebApp(
-      botUsername: json['bot_username'] as String,
-      webAppShortName: json['web_app_short_name'] as String,
-      startParameter: json['start_parameter'] as String,
+      botUsername: (json['bot_username'] as String?) ?? '',
+      webAppShortName: (json['web_app_short_name'] as String?) ?? '',
+      startParameter: (json['start_parameter'] as String?) ?? '',
       mode: WebAppOpenMode.fromJson(json['mode'] as Map<String, dynamic>?)!,
     );
   }

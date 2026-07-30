@@ -26,8 +26,8 @@ class ChatBoostSourceGiftCode extends ChatBoostSource {
     }
 
     return ChatBoostSourceGiftCode(
-      userId: json['user_id'] as int,
-      giftCode: json['gift_code'] as String,
+      userId: (json['user_id'] as int?) ?? 0,
+      giftCode: (json['gift_code'] as String?) ?? '',
     );
   }
 

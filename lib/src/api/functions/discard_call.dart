@@ -47,7 +47,7 @@ class DiscardCall extends TdFunction {
         'invite_link': inviteLink,
         'duration': duration,
         'is_video': isVideo,
-        'connection_id': connectionId,
+        'connection_id': connectionId.toString(),
         '@type': constructor,
       };
 

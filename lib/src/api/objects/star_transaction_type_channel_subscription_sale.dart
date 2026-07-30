@@ -29,8 +29,8 @@ class StarTransactionTypeChannelSubscriptionSale extends StarTransactionType {
     }
 
     return StarTransactionTypeChannelSubscriptionSale(
-      userId: json['user_id'] as int,
-      subscriptionPeriod: json['subscription_period'] as int,
+      userId: (json['user_id'] as int?) ?? 0,
+      subscriptionPeriod: (json['subscription_period'] as int?) ?? 0,
     );
   }
 

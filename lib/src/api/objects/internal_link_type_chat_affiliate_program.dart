@@ -27,8 +27,8 @@ class InternalLinkTypeChatAffiliateProgram extends InternalLinkType {
     }
 
     return InternalLinkTypeChatAffiliateProgram(
-      username: json['username'] as String,
-      referrer: json['referrer'] as String,
+      username: (json['username'] as String?) ?? '',
+      referrer: (json['referrer'] as String?) ?? '',
     );
   }
 

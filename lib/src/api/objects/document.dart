@@ -38,8 +38,8 @@ class Document extends TdObject {
     }
 
     return Document(
-      fileName: json['file_name'] as String,
-      mimeType: json['mime_type'] as String,
+      fileName: (json['file_name'] as String?) ?? '',
+      mimeType: (json['mime_type'] as String?) ?? '',
       minithumbnail: Minithumbnail.fromJson(
           json['minithumbnail'] as Map<String, dynamic>?),
       thumbnail: Thumbnail.fromJson(json['thumbnail'] as Map<String, dynamic>?),

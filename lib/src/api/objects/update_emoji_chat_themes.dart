@@ -21,10 +21,11 @@ class UpdateEmojiChatThemes extends Update {
     }
 
     return UpdateEmojiChatThemes(
-      chatThemes: List<EmojiChatTheme>.from(
-          ((json['chat_themes'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => EmojiChatTheme.fromJson(item))
-              .toList()),
+      chatThemes: List<EmojiChatTheme>.from(((json['chat_themes']
+                  as List<dynamic>?) ??
+              <dynamic>[])
+          .map((item) => EmojiChatTheme.fromJson(item as Map<String, dynamic>?))
+          .toList()),
     );
   }
 

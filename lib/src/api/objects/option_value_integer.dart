@@ -21,7 +21,10 @@ class OptionValueInteger extends OptionValue {
     }
 
     return OptionValueInteger(
-      value: int.tryParse(json['value']) ?? 0,
+      value: (json['value'] is int
+              ? json['value'] as int
+              : int.tryParse(json['value']?.toString() ?? '')) ??
+          0,
     );
   }
 

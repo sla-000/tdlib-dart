@@ -24,7 +24,7 @@ class FirebaseDeviceVerificationParametersSafetyNet
     }
 
     return FirebaseDeviceVerificationParametersSafetyNet(
-      nonce: json['nonce'] as String,
+      nonce: (json['nonce'] as String?) ?? '',
     );
   }
 

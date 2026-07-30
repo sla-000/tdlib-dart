@@ -39,7 +39,7 @@ class MessageUpgradedGiftPurchaseOffer extends MessageContent {
       state: GiftPurchaseOfferState.fromJson(
           json['state'] as Map<String, dynamic>?)!,
       price: GiftResalePrice.fromJson(json['price'] as Map<String, dynamic>?)!,
-      expirationDate: json['expiration_date'] as int,
+      expirationDate: (json['expiration_date'] as int?) ?? 0,
     );
   }
 

@@ -36,9 +36,9 @@ class StoryAreaTypeSuggestedReaction extends StoryAreaType {
     return StoryAreaTypeSuggestedReaction(
       reactionType: ReactionType.fromJson(
           json['reaction_type'] as Map<String, dynamic>?)!,
-      totalCount: json['total_count'] as int,
-      isDark: json['is_dark'] as bool,
-      isFlipped: json['is_flipped'] as bool,
+      totalCount: (json['total_count'] as int?) ?? 0,
+      isDark: (json['is_dark'] as bool?) ?? false,
+      isFlipped: (json['is_flipped'] as bool?) ?? false,
     );
   }
 

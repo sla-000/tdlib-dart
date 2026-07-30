@@ -25,7 +25,7 @@ class UpdateNewBusinessMessage extends Update {
     }
 
     return UpdateNewBusinessMessage(
-      connectionId: json['connection_id'] as String,
+      connectionId: (json['connection_id'] as String?) ?? '',
       message:
           BusinessMessage.fromJson(json['message'] as Map<String, dynamic>?)!,
     );

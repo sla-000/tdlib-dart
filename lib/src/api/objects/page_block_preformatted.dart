@@ -26,7 +26,7 @@ class PageBlockPreformatted extends PageBlock {
 
     return PageBlockPreformatted(
       text: RichText.fromJson(json['text'] as Map<String, dynamic>?)!,
-      language: json['language'] as String,
+      language: (json['language'] as String?) ?? '',
     );
   }
 

@@ -33,7 +33,7 @@ class TonRevenueStatistics extends TdObject {
           json['revenue_by_day_graph'] as Map<String, dynamic>?)!,
       status:
           TonRevenueStatus.fromJson(json['status'] as Map<String, dynamic>?)!,
-      usdRate: (json['usd_rate'] as num).toDouble(),
+      usdRate: (json['usd_rate'] as num?)?.toDouble() ?? 0.0,
     );
   }
 

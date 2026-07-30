@@ -61,15 +61,16 @@ class InputVideo extends TdObject {
       thumbnail:
           InputThumbnail.fromJson(json['thumbnail'] as Map<String, dynamic>?),
       cover: InputFile.fromJson(json['cover'] as Map<String, dynamic>?),
-      startTimestamp: json['start_timestamp'] as int,
+      startTimestamp: (json['start_timestamp'] as int?) ?? 0,
       addedStickerFileIds: List<int>.from(
           ((json['added_sticker_file_ids'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => item)
+              .map((item) =>
+                  (item is int ? item : int.tryParse(item.toString()) ?? 0))
               .toList()),
-      duration: json['duration'] as int,
-      width: json['width'] as int,
-      height: json['height'] as int,
-      supportsStreaming: json['supports_streaming'] as bool,
+      duration: (json['duration'] as int?) ?? 0,
+      width: (json['width'] as int?) ?? 0,
+      height: (json['height'] as int?) ?? 0,
+      supportsStreaming: (json['supports_streaming'] as bool?) ?? false,
     );
   }
 

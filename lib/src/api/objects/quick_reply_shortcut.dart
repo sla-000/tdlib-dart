@@ -33,11 +33,11 @@ class QuickReplyShortcut extends TdObject {
     }
 
     return QuickReplyShortcut(
-      id: json['id'] as int,
-      name: json['name'] as String,
+      id: (json['id'] as int?) ?? 0,
+      name: (json['name'] as String?) ?? '',
       firstMessage: QuickReplyMessage.fromJson(
           json['first_message'] as Map<String, dynamic>?)!,
-      messageCount: json['message_count'] as int,
+      messageCount: (json['message_count'] as int?) ?? 0,
     );
   }
 

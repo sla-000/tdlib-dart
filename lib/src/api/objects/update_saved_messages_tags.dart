@@ -26,7 +26,7 @@ class UpdateSavedMessagesTags extends Update {
     }
 
     return UpdateSavedMessagesTags(
-      savedMessagesTopicId: json['saved_messages_topic_id'] as int,
+      savedMessagesTopicId: (json['saved_messages_topic_id'] as int?) ?? 0,
       tags: SavedMessagesTags.fromJson(json['tags'] as Map<String, dynamic>?)!,
     );
   }

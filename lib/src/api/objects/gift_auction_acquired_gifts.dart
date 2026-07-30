@@ -22,10 +22,12 @@ class GiftAuctionAcquiredGifts extends TdObject {
     }
 
     return GiftAuctionAcquiredGifts(
-      gifts: List<GiftAuctionAcquiredGift>.from(
-          ((json['gifts'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => GiftAuctionAcquiredGift.fromJson(item))
-              .toList()),
+      gifts: List<GiftAuctionAcquiredGift>.from(((json['gifts']
+                  as List<dynamic>?) ??
+              <dynamic>[])
+          .map((item) =>
+              GiftAuctionAcquiredGift.fromJson(item as Map<String, dynamic>?))
+          .toList()),
     );
   }
 

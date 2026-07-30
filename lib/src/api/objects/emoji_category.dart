@@ -34,11 +34,11 @@ class EmojiCategory extends TdObject {
     }
 
     return EmojiCategory(
-      name: json['name'] as String,
+      name: (json['name'] as String?) ?? '',
       icon: Sticker.fromJson(json['icon'] as Map<String, dynamic>?)!,
       source: EmojiCategorySource.fromJson(
           json['source'] as Map<String, dynamic>?)!,
-      isGreeting: json['is_greeting'] as bool,
+      isGreeting: (json['is_greeting'] as bool?) ?? false,
     );
   }
 

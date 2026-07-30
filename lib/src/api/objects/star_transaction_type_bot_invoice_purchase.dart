@@ -28,7 +28,7 @@ class StarTransactionTypeBotInvoicePurchase extends StarTransactionType {
     }
 
     return StarTransactionTypeBotInvoicePurchase(
-      userId: json['user_id'] as int,
+      userId: (json['user_id'] as int?) ?? 0,
       productInfo:
           ProductInfo.fromJson(json['product_info'] as Map<String, dynamic>?)!,
     );

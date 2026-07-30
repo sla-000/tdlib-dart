@@ -49,11 +49,11 @@ class InputInlineQueryResultAudio extends InputInlineQueryResult {
     }
 
     return InputInlineQueryResultAudio(
-      id: json['id'] as String,
-      title: json['title'] as String,
-      performer: json['performer'] as String,
-      audioUrl: json['audio_url'] as String,
-      audioDuration: json['audio_duration'] as int,
+      id: (json['id'] as String?) ?? '',
+      title: (json['title'] as String?) ?? '',
+      performer: (json['performer'] as String?) ?? '',
+      audioUrl: (json['audio_url'] as String?) ?? '',
+      audioDuration: (json['audio_duration'] as int?) ?? 0,
       replyMarkup:
           ReplyMarkup.fromJson(json['reply_markup'] as Map<String, dynamic>?),
       inputMessageContent: InputMessageContent.fromJson(

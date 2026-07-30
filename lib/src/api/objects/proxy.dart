@@ -29,8 +29,8 @@ class Proxy extends TdObject {
     }
 
     return Proxy(
-      server: json['server'] as String,
-      port: json['port'] as int,
+      server: (json['server'] as String?) ?? '',
+      port: (json['port'] as int?) ?? 0,
       type: ProxyType.fromJson(json['type'] as Map<String, dynamic>?)!,
     );
   }

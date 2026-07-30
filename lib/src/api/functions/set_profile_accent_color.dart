@@ -29,7 +29,8 @@ class SetProfileAccentColor extends TdFunction {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'profile_accent_color_id': profileAccentColorId,
-        'profile_background_custom_emoji_id': profileBackgroundCustomEmojiId,
+        'profile_background_custom_emoji_id':
+            profileBackgroundCustomEmojiId.toString(),
         '@type': constructor,
       };
 

@@ -22,7 +22,7 @@ class EmailAddressAuthenticationAppleId extends EmailAddressAuthentication {
     }
 
     return EmailAddressAuthenticationAppleId(
-      token: json['token'] as String,
+      token: (json['token'] as String?) ?? '',
     );
   }
 

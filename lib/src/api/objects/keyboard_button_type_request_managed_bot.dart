@@ -33,9 +33,9 @@ class KeyboardButtonTypeRequestManagedBot extends KeyboardButtonType {
     }
 
     return KeyboardButtonTypeRequestManagedBot(
-      id: json['id'] as int,
-      suggestedName: json['suggested_name'] as String,
-      suggestedUsername: json['suggested_username'] as String,
+      id: (json['id'] as int?) ?? 0,
+      suggestedName: (json['suggested_name'] as String?) ?? '',
+      suggestedUsername: (json['suggested_username'] as String?) ?? '',
     );
   }
 

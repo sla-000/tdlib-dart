@@ -26,8 +26,8 @@ class PushMessageContentInvoice extends PushMessageContent {
     }
 
     return PushMessageContentInvoice(
-      price: json['price'] as String,
-      isPinned: json['is_pinned'] as bool,
+      price: (json['price'] as String?) ?? '',
+      isPinned: (json['is_pinned'] as bool?) ?? false,
     );
   }
 

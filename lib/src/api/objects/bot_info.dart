@@ -135,18 +135,18 @@ class BotInfo extends TdObject {
     }
 
     return BotInfo(
-      shortDescription: json['short_description'] as String,
-      description: json['description'] as String,
+      shortDescription: (json['short_description'] as String?) ?? '',
+      description: (json['description'] as String?) ?? '',
       photo: Photo.fromJson(json['photo'] as Map<String, dynamic>?),
       animation: Animation.fromJson(json['animation'] as Map<String, dynamic>?),
-      managerBotUserId: json['manager_bot_user_id'] as int,
+      managerBotUserId: (json['manager_bot_user_id'] as int?) ?? 0,
       menuButton:
           BotMenuButton.fromJson(json['menu_button'] as Map<String, dynamic>?),
       commands: List<BotCommand>.from(
           ((json['commands'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => BotCommand.fromJson(item))
+              .map((item) => BotCommand.fromJson(item as Map<String, dynamic>?))
               .toList()),
-      privacyPolicyUrl: json['privacy_policy_url'] as String,
+      privacyPolicyUrl: (json['privacy_policy_url'] as String?) ?? '',
       defaultGroupAdministratorRights: ChatAdministratorRights.fromJson(
           json['default_group_administrator_rights'] as Map<String, dynamic>?),
       defaultChannelAdministratorRights: ChatAdministratorRights.fromJson(
@@ -154,15 +154,18 @@ class BotInfo extends TdObject {
               as Map<String, dynamic>?),
       affiliateProgram: AffiliateProgramInfo.fromJson(
           json['affiliate_program'] as Map<String, dynamic>?),
-      webAppBackgroundLightColor: json['web_app_background_light_color'] as int,
-      webAppBackgroundDarkColor: json['web_app_background_dark_color'] as int,
-      webAppHeaderLightColor: json['web_app_header_light_color'] as int,
-      webAppHeaderDarkColor: json['web_app_header_dark_color'] as int,
+      webAppBackgroundLightColor:
+          (json['web_app_background_light_color'] as int?) ?? 0,
+      webAppBackgroundDarkColor:
+          (json['web_app_background_dark_color'] as int?) ?? 0,
+      webAppHeaderLightColor: (json['web_app_header_light_color'] as int?) ?? 0,
+      webAppHeaderDarkColor: (json['web_app_header_dark_color'] as int?) ?? 0,
       verificationParameters: BotVerificationParameters.fromJson(
           json['verification_parameters'] as Map<String, dynamic>?),
-      canGetRevenueStatistics: json['can_get_revenue_statistics'] as bool,
-      canManageEmojiStatus: json['can_manage_emoji_status'] as bool,
-      hasMediaPreviews: json['has_media_previews'] as bool,
+      canGetRevenueStatistics:
+          (json['can_get_revenue_statistics'] as bool?) ?? false,
+      canManageEmojiStatus: (json['can_manage_emoji_status'] as bool?) ?? false,
+      hasMediaPreviews: (json['has_media_previews'] as bool?) ?? false,
       editCommandsLink: InternalLinkType.fromJson(
           json['edit_commands_link'] as Map<String, dynamic>?),
       editDescriptionLink: InternalLinkType.fromJson(

@@ -24,7 +24,7 @@ class EmailAddressResetStatePending extends EmailAddressResetState {
     }
 
     return EmailAddressResetStatePending(
-      resetIn: json['reset_in'] as int,
+      resetIn: (json['reset_in'] as int?) ?? 0,
     );
   }
 

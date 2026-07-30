@@ -23,7 +23,7 @@ class LinkPreviewTypeGiftCollection extends LinkPreviewType {
     return LinkPreviewTypeGiftCollection(
       icons: List<Sticker>.from(
           ((json['icons'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => Sticker.fromJson(item))
+              .map((item) => Sticker.fromJson(item as Map<String, dynamic>?))
               .toList()),
     );
   }

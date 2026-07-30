@@ -29,8 +29,8 @@ class MessageChatSetMessageAutoDeleteTime extends MessageContent {
     }
 
     return MessageChatSetMessageAutoDeleteTime(
-      messageAutoDeleteTime: json['message_auto_delete_time'] as int,
-      fromUserId: json['from_user_id'] as int,
+      messageAutoDeleteTime: (json['message_auto_delete_time'] as int?) ?? 0,
+      fromUserId: (json['from_user_id'] as int?) ?? 0,
     );
   }
 

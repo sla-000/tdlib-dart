@@ -21,7 +21,7 @@ class StoryOriginHiddenUser extends StoryOrigin {
     }
 
     return StoryOriginHiddenUser(
-      posterName: json['poster_name'] as String,
+      posterName: (json['poster_name'] as String?) ?? '',
     );
   }
 

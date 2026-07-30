@@ -38,11 +38,11 @@ class StarTransaction extends TdObject {
     }
 
     return StarTransaction(
-      id: json['id'] as String,
+      id: (json['id'] as String?) ?? '',
       starAmount:
           StarAmount.fromJson(json['star_amount'] as Map<String, dynamic>?)!,
-      isRefund: json['is_refund'] as bool,
-      date: json['date'] as int,
+      isRefund: (json['is_refund'] as bool?) ?? false,
+      date: (json['date'] as int?) ?? 0,
       type:
           StarTransactionType.fromJson(json['type'] as Map<String, dynamic>?)!,
     );

@@ -23,7 +23,7 @@ class SessionTypeConnectedBot extends SessionType {
     }
 
     return SessionTypeConnectedBot(
-      botUserId: json['bot_user_id'] as int,
+      botUserId: (json['bot_user_id'] as int?) ?? 0,
     );
   }
 

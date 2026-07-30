@@ -31,7 +31,7 @@ class GetUpgradedGiftVariants extends TdFunction {
 
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'regular_gift_id': regularGiftId,
+        'regular_gift_id': regularGiftId.toString(),
         'return_upgrade_models': returnUpgradeModels,
         'return_craft_models': returnCraftModels,
         '@type': constructor,

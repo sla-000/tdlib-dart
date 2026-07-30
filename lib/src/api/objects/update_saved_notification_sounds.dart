@@ -26,7 +26,8 @@ class UpdateSavedNotificationSounds extends Update {
     return UpdateSavedNotificationSounds(
       notificationSoundIds: List<int>.from(
           ((json['notification_sound_ids'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => item)
+              .map((item) =>
+                  (item is int ? item : int.tryParse(item.toString()) ?? 0))
               .toList()),
     );
   }
@@ -37,7 +38,7 @@ class UpdateSavedNotificationSounds extends Update {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'notification_sound_ids':
-            notificationSoundIds.map((item) => item).toList(),
+            notificationSoundIds.map((item) => item.toString()).toList(),
         '@type': constructor,
       };
 

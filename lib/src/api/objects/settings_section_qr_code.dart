@@ -21,7 +21,7 @@ class SettingsSectionQrCode extends SettingsSection {
     }
 
     return SettingsSectionQrCode(
-      subsection: json['subsection'] as String,
+      subsection: (json['subsection'] as String?) ?? '',
     );
   }
 

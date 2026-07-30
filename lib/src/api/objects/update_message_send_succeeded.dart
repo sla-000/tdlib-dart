@@ -29,7 +29,7 @@ class UpdateMessageSendSucceeded extends Update {
 
     return UpdateMessageSendSucceeded(
       message: Message.fromJson(json['message'] as Map<String, dynamic>?)!,
-      oldMessageId: json['old_message_id'] as int,
+      oldMessageId: (json['old_message_id'] as int?) ?? 0,
     );
   }
 

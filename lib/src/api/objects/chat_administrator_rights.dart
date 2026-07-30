@@ -109,23 +109,24 @@ class ChatAdministratorRights extends TdObject {
     }
 
     return ChatAdministratorRights(
-      canManageChat: json['can_manage_chat'] as bool,
-      canChangeInfo: json['can_change_info'] as bool,
-      canPostMessages: json['can_post_messages'] as bool,
-      canEditMessages: json['can_edit_messages'] as bool,
-      canDeleteMessages: json['can_delete_messages'] as bool,
-      canInviteUsers: json['can_invite_users'] as bool,
-      canRestrictMembers: json['can_restrict_members'] as bool,
-      canPinMessages: json['can_pin_messages'] as bool,
-      canManageTopics: json['can_manage_topics'] as bool,
-      canPromoteMembers: json['can_promote_members'] as bool,
-      canManageVideoChats: json['can_manage_video_chats'] as bool,
-      canPostStories: json['can_post_stories'] as bool,
-      canEditStories: json['can_edit_stories'] as bool,
-      canDeleteStories: json['can_delete_stories'] as bool,
-      canManageDirectMessages: json['can_manage_direct_messages'] as bool,
-      canManageTags: json['can_manage_tags'] as bool,
-      isAnonymous: json['is_anonymous'] as bool,
+      canManageChat: (json['can_manage_chat'] as bool?) ?? false,
+      canChangeInfo: (json['can_change_info'] as bool?) ?? false,
+      canPostMessages: (json['can_post_messages'] as bool?) ?? false,
+      canEditMessages: (json['can_edit_messages'] as bool?) ?? false,
+      canDeleteMessages: (json['can_delete_messages'] as bool?) ?? false,
+      canInviteUsers: (json['can_invite_users'] as bool?) ?? false,
+      canRestrictMembers: (json['can_restrict_members'] as bool?) ?? false,
+      canPinMessages: (json['can_pin_messages'] as bool?) ?? false,
+      canManageTopics: (json['can_manage_topics'] as bool?) ?? false,
+      canPromoteMembers: (json['can_promote_members'] as bool?) ?? false,
+      canManageVideoChats: (json['can_manage_video_chats'] as bool?) ?? false,
+      canPostStories: (json['can_post_stories'] as bool?) ?? false,
+      canEditStories: (json['can_edit_stories'] as bool?) ?? false,
+      canDeleteStories: (json['can_delete_stories'] as bool?) ?? false,
+      canManageDirectMessages:
+          (json['can_manage_direct_messages'] as bool?) ?? false,
+      canManageTags: (json['can_manage_tags'] as bool?) ?? false,
+      isAnonymous: (json['is_anonymous'] as bool?) ?? false,
     );
   }
 

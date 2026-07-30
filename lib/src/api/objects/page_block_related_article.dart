@@ -42,12 +42,12 @@ class PageBlockRelatedArticle extends TdObject {
     }
 
     return PageBlockRelatedArticle(
-      url: json['url'] as String,
-      title: json['title'] as String,
-      description: json['description'] as String,
+      url: (json['url'] as String?) ?? '',
+      title: (json['title'] as String?) ?? '',
+      description: (json['description'] as String?) ?? '',
       photo: Photo.fromJson(json['photo'] as Map<String, dynamic>?),
-      author: json['author'] as String,
-      publishDate: json['publish_date'] as int,
+      author: (json['author'] as String?) ?? '',
+      publishDate: (json['publish_date'] as int?) ?? 0,
     );
   }
 

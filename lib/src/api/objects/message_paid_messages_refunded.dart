@@ -25,8 +25,8 @@ class MessagePaidMessagesRefunded extends MessageContent {
     }
 
     return MessagePaidMessagesRefunded(
-      messageCount: json['message_count'] as int,
-      starCount: json['star_count'] as int,
+      messageCount: (json['message_count'] as int?) ?? 0,
+      starCount: (json['star_count'] as int?) ?? 0,
     );
   }
 

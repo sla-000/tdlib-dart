@@ -21,10 +21,10 @@ class SponsoredChats extends TdObject {
     }
 
     return SponsoredChats(
-      chats: List<SponsoredChat>.from(
-          ((json['chats'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => SponsoredChat.fromJson(item))
-              .toList()),
+      chats: List<SponsoredChat>.from(((json['chats'] as List<dynamic>?) ??
+              <dynamic>[])
+          .map((item) => SponsoredChat.fromJson(item as Map<String, dynamic>?))
+          .toList()),
     );
   }
 

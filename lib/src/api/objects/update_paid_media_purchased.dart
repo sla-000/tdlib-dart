@@ -25,8 +25,8 @@ class UpdatePaidMediaPurchased extends Update {
     }
 
     return UpdatePaidMediaPurchased(
-      userId: json['user_id'] as int,
-      payload: json['payload'] as String,
+      userId: (json['user_id'] as int?) ?? 0,
+      payload: (json['payload'] as String?) ?? '',
     );
   }
 

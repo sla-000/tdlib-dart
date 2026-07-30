@@ -102,24 +102,27 @@ class InputMessagePoll extends InputMessageContent {
           FormattedText.fromJson(json['question'] as Map<String, dynamic>?)!,
       options: List<InputPollOption>.from(
           ((json['options'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => InputPollOption.fromJson(item))
+              .map((item) =>
+                  InputPollOption.fromJson(item as Map<String, dynamic>?))
               .toList()),
       description:
           FormattedText.fromJson(json['description'] as Map<String, dynamic>?),
       media: InputPollMedia.fromJson(json['media'] as Map<String, dynamic>?),
-      isAnonymous: json['is_anonymous'] as bool,
-      allowsMultipleAnswers: json['allows_multiple_answers'] as bool,
-      allowsRevoting: json['allows_revoting'] as bool,
-      membersOnly: json['members_only'] as bool,
+      isAnonymous: (json['is_anonymous'] as bool?) ?? false,
+      allowsMultipleAnswers:
+          (json['allows_multiple_answers'] as bool?) ?? false,
+      allowsRevoting: (json['allows_revoting'] as bool?) ?? false,
+      membersOnly: (json['members_only'] as bool?) ?? false,
       countryCodes: List<String>.from(
           ((json['country_codes'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => item)
+              .map((item) => item as String)
               .toList()),
-      shuffleOptions: json['shuffle_options'] as bool,
-      hideResultsUntilCloses: json['hide_results_until_closes'] as bool,
+      shuffleOptions: (json['shuffle_options'] as bool?) ?? false,
+      hideResultsUntilCloses:
+          (json['hide_results_until_closes'] as bool?) ?? false,
       type: InputPollType.fromJson(json['type'] as Map<String, dynamic>?)!,
-      openPeriod: json['open_period'] as int,
-      closeDate: json['close_date'] as int,
+      openPeriod: (json['open_period'] as int?) ?? 0,
+      closeDate: (json['close_date'] as int?) ?? 0,
       isClosed: json['is_closed'] as bool?,
     );
   }

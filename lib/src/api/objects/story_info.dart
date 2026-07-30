@@ -33,10 +33,10 @@ class StoryInfo extends TdObject {
     }
 
     return StoryInfo(
-      storyId: json['story_id'] as int,
-      date: json['date'] as int,
-      isForCloseFriends: json['is_for_close_friends'] as bool,
-      isLive: json['is_live'] as bool,
+      storyId: (json['story_id'] as int?) ?? 0,
+      date: (json['date'] as int?) ?? 0,
+      isForCloseFriends: (json['is_for_close_friends'] as bool?) ?? false,
+      isLive: (json['is_live'] as bool?) ?? false,
     );
   }
 

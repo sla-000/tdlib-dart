@@ -23,7 +23,8 @@ class BusinessFeatures extends TdObject {
     return BusinessFeatures(
       features: List<BusinessFeature>.from(
           ((json['features'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => BusinessFeature.fromJson(item))
+              .map((item) =>
+                  BusinessFeature.fromJson(item as Map<String, dynamic>?))
               .toList()),
     );
   }

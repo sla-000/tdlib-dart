@@ -34,9 +34,9 @@ class InternalLinkTypePublicChat extends InternalLinkType {
     }
 
     return InternalLinkTypePublicChat(
-      chatUsername: json['chat_username'] as String,
-      draftText: json['draft_text'] as String,
-      openProfile: json['open_profile'] as bool,
+      chatUsername: (json['chat_username'] as String?) ?? '',
+      draftText: (json['draft_text'] as String?) ?? '',
+      openProfile: (json['open_profile'] as bool?) ?? false,
     );
   }
 

@@ -21,7 +21,7 @@ class InputFileId extends InputFile {
     }
 
     return InputFileId(
-      id: json['id'] as int,
+      id: (json['id'] as int?) ?? 0,
     );
   }
 

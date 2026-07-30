@@ -23,7 +23,8 @@ class GetCustomEmojiStickers extends TdFunction {
 
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'custom_emoji_ids': customEmojiIds.map((item) => item).toList(),
+        'custom_emoji_ids':
+            customEmojiIds.map((item) => item.toString()).toList(),
         '@type': constructor,
       };
 

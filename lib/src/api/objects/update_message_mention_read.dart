@@ -30,9 +30,9 @@ class UpdateMessageMentionRead extends Update {
     }
 
     return UpdateMessageMentionRead(
-      chatId: json['chat_id'] as int,
-      messageId: json['message_id'] as int,
-      unreadMentionCount: json['unread_mention_count'] as int,
+      chatId: (json['chat_id'] as int?) ?? 0,
+      messageId: (json['message_id'] as int?) ?? 0,
+      unreadMentionCount: (json['unread_mention_count'] as int?) ?? 0,
     );
   }
 

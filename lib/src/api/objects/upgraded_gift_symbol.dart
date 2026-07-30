@@ -29,7 +29,7 @@ class UpgradedGiftSymbol extends TdObject {
     }
 
     return UpgradedGiftSymbol(
-      name: json['name'] as String,
+      name: (json['name'] as String?) ?? '',
       sticker: Sticker.fromJson(json['sticker'] as Map<String, dynamic>?)!,
       rarity: UpgradedGiftAttributeRarity.fromJson(
           json['rarity'] as Map<String, dynamic>?)!,

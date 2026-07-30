@@ -25,8 +25,11 @@ class RichTextCustomEmoji extends RichText {
     }
 
     return RichTextCustomEmoji(
-      customEmojiId: int.tryParse(json['custom_emoji_id']) ?? 0,
-      alternativeText: json['alternative_text'] as String,
+      customEmojiId: (json['custom_emoji_id'] is int
+              ? json['custom_emoji_id'] as int
+              : int.tryParse(json['custom_emoji_id']?.toString() ?? '')) ??
+          0,
+      alternativeText: (json['alternative_text'] as String?) ?? '',
     );
   }
 

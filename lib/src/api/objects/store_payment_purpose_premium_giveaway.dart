@@ -32,8 +32,8 @@ class StorePaymentPurposePremiumGiveaway extends StorePaymentPurpose {
     return StorePaymentPurposePremiumGiveaway(
       parameters: GiveawayParameters.fromJson(
           json['parameters'] as Map<String, dynamic>?)!,
-      currency: json['currency'] as String,
-      amount: json['amount'] as int,
+      currency: (json['currency'] as String?) ?? '',
+      amount: (json['amount'] as int?) ?? 0,
     );
   }
 

@@ -37,8 +37,8 @@ class MessageInteractionInfo extends TdObject {
     }
 
     return MessageInteractionInfo(
-      viewCount: json['view_count'] as int,
-      forwardCount: json['forward_count'] as int,
+      viewCount: (json['view_count'] as int?) ?? 0,
+      forwardCount: (json['forward_count'] as int?) ?? 0,
       replyInfo: MessageReplyInfo.fromJson(
           json['reply_info'] as Map<String, dynamic>?),
       reactions:

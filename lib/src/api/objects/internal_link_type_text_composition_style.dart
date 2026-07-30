@@ -25,7 +25,7 @@ class InternalLinkTypeTextCompositionStyle extends InternalLinkType {
     }
 
     return InternalLinkTypeTextCompositionStyle(
-      styleName: json['style_name'] as String,
+      styleName: (json['style_name'] as String?) ?? '',
     );
   }
 

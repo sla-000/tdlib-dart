@@ -29,7 +29,7 @@ class AnswerChatJoinRequestQuery extends TdFunction {
 
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'query_id': queryId,
+        'query_id': queryId.toString(),
         'result': result.toJson(),
         'url': url,
         '@type': constructor,

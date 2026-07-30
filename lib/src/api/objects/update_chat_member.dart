@@ -52,13 +52,14 @@ class UpdateChatMember extends Update {
     }
 
     return UpdateChatMember(
-      chatId: json['chat_id'] as int,
-      actorUserId: json['actor_user_id'] as int,
-      date: json['date'] as int,
+      chatId: (json['chat_id'] as int?) ?? 0,
+      actorUserId: (json['actor_user_id'] as int?) ?? 0,
+      date: (json['date'] as int?) ?? 0,
       inviteLink:
           ChatInviteLink.fromJson(json['invite_link'] as Map<String, dynamic>?),
-      viaJoinRequest: json['via_join_request'] as bool,
-      viaChatFolderInviteLink: json['via_chat_folder_invite_link'] as bool,
+      viaJoinRequest: (json['via_join_request'] as bool?) ?? false,
+      viaChatFolderInviteLink:
+          (json['via_chat_folder_invite_link'] as bool?) ?? false,
       oldChatMember: ChatMember.fromJson(
           json['old_chat_member'] as Map<String, dynamic>?)!,
       newChatMember: ChatMember.fromJson(

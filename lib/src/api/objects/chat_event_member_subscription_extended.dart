@@ -30,7 +30,7 @@ class ChatEventMemberSubscriptionExtended extends ChatEventAction {
     }
 
     return ChatEventMemberSubscriptionExtended(
-      userId: json['user_id'] as int,
+      userId: (json['user_id'] as int?) ?? 0,
       oldStatus: ChatMemberStatus.fromJson(
           json['old_status'] as Map<String, dynamic>?)!,
       newStatus: ChatMemberStatus.fromJson(

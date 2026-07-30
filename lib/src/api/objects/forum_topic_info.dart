@@ -65,18 +65,18 @@ class ForumTopicInfo extends TdObject {
     }
 
     return ForumTopicInfo(
-      chatId: json['chat_id'] as int,
-      forumTopicId: json['forum_topic_id'] as int,
-      name: json['name'] as String,
+      chatId: (json['chat_id'] as int?) ?? 0,
+      forumTopicId: (json['forum_topic_id'] as int?) ?? 0,
+      name: (json['name'] as String?) ?? '',
       icon: ForumTopicIcon.fromJson(json['icon'] as Map<String, dynamic>?)!,
-      creationDate: json['creation_date'] as int,
+      creationDate: (json['creation_date'] as int?) ?? 0,
       creatorId:
           MessageSender.fromJson(json['creator_id'] as Map<String, dynamic>?)!,
-      isGeneral: json['is_general'] as bool,
-      isOutgoing: json['is_outgoing'] as bool,
-      isClosed: json['is_closed'] as bool,
-      isHidden: json['is_hidden'] as bool,
-      isNameImplicit: json['is_name_implicit'] as bool,
+      isGeneral: (json['is_general'] as bool?) ?? false,
+      isOutgoing: (json['is_outgoing'] as bool?) ?? false,
+      isClosed: (json['is_closed'] as bool?) ?? false,
+      isHidden: (json['is_hidden'] as bool?) ?? false,
+      isNameImplicit: (json['is_name_implicit'] as bool?) ?? false,
     );
   }
 

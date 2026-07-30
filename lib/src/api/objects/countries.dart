@@ -21,10 +21,11 @@ class Countries extends TdObject {
     }
 
     return Countries(
-      countries: List<CountryInfo>.from(
-          ((json['countries'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => CountryInfo.fromJson(item))
-              .toList()),
+      countries: List<CountryInfo>.from(((json['countries']
+                  as List<dynamic>?) ??
+              <dynamic>[])
+          .map((item) => CountryInfo.fromJson(item as Map<String, dynamic>?))
+          .toList()),
     );
   }
 

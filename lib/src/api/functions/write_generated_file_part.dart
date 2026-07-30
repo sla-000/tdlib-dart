@@ -31,7 +31,7 @@ class WriteGeneratedFilePart extends TdFunction {
 
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'generation_id': generationId,
+        'generation_id': generationId.toString(),
         'offset': offset,
         'data': data,
         '@type': constructor,

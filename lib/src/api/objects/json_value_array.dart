@@ -23,7 +23,7 @@ class JsonValueArray extends JsonValue {
     return JsonValueArray(
       values: List<JsonValue>.from(
           ((json['values'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => JsonValue.fromJson(item))
+              .map((item) => JsonValue.fromJson(item as Map<String, dynamic>?))
               .toList()),
     );
   }

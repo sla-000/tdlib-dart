@@ -51,13 +51,13 @@ class GroupCallMessageLevel extends TdObject {
     }
 
     return GroupCallMessageLevel(
-      minStarCount: json['min_star_count'] as int,
-      pinDuration: json['pin_duration'] as int,
-      maxTextLength: json['max_text_length'] as int,
-      maxCustomEmojiCount: json['max_custom_emoji_count'] as int,
-      firstColor: json['first_color'] as int,
-      secondColor: json['second_color'] as int,
-      backgroundColor: json['background_color'] as int,
+      minStarCount: (json['min_star_count'] as int?) ?? 0,
+      pinDuration: (json['pin_duration'] as int?) ?? 0,
+      maxTextLength: (json['max_text_length'] as int?) ?? 0,
+      maxCustomEmojiCount: (json['max_custom_emoji_count'] as int?) ?? 0,
+      firstColor: (json['first_color'] as int?) ?? 0,
+      secondColor: (json['second_color'] as int?) ?? 0,
+      backgroundColor: (json['background_color'] as int?) ?? 0,
     );
   }
 

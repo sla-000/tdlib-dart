@@ -26,8 +26,8 @@ class KeyboardButtonTypeRequestPoll extends KeyboardButtonType {
     }
 
     return KeyboardButtonTypeRequestPoll(
-      forceRegular: json['force_regular'] as bool,
-      forceQuiz: json['force_quiz'] as bool,
+      forceRegular: (json['force_regular'] as bool?) ?? false,
+      forceQuiz: (json['force_quiz'] as bool?) ?? false,
     );
   }
 

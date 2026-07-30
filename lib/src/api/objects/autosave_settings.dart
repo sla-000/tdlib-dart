@@ -40,10 +40,12 @@ class AutosaveSettings extends TdObject {
           json['group_settings'] as Map<String, dynamic>?)!,
       channelSettings: ScopeAutosaveSettings.fromJson(
           json['channel_settings'] as Map<String, dynamic>?)!,
-      exceptions: List<AutosaveSettingsException>.from(
-          ((json['exceptions'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => AutosaveSettingsException.fromJson(item))
-              .toList()),
+      exceptions: List<AutosaveSettingsException>.from(((json['exceptions']
+                  as List<dynamic>?) ??
+              <dynamic>[])
+          .map((item) =>
+              AutosaveSettingsException.fromJson(item as Map<String, dynamic>?))
+          .toList()),
     );
   }
 

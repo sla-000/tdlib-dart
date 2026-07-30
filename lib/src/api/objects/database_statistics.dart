@@ -21,7 +21,7 @@ class DatabaseStatistics extends TdObject {
     }
 
     return DatabaseStatistics(
-      statistics: json['statistics'] as String,
+      statistics: (json['statistics'] as String?) ?? '',
     );
   }
 

@@ -31,14 +31,15 @@ class UpdateAccentColors extends Update {
     }
 
     return UpdateAccentColors(
-      colors: List<AccentColor>.from(
-          ((json['colors'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => AccentColor.fromJson(item))
-              .toList()),
+      colors: List<AccentColor>.from(((json['colors'] as List<dynamic>?) ??
+              <dynamic>[])
+          .map((item) => AccentColor.fromJson(item as Map<String, dynamic>?))
+          .toList()),
       availableAccentColorIds: List<int>.from(
           ((json['available_accent_color_ids'] as List<dynamic>?) ??
                   <dynamic>[])
-              .map((item) => item)
+              .map((item) =>
+                  (item is int ? item : int.tryParse(item.toString()) ?? 0))
               .toList()),
     );
   }
