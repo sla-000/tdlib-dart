@@ -79,7 +79,7 @@ Future<void> main() async {
 6. `flutter run`
 
 ### Prebuilt binaries
-The tdlib binaries is built automatically using github actions and published on the [releases page](https://github.com/ivk1800/td-json-client-prebuilt/releases/). Follow the instructions below for each platform to configure flutter project to use tdlib
+The tdlib binaries are built automatically using GitHub Actions and published on the [releases page](https://github.com/ivk1800/td-json-client-prebuilt/releases/). Additional prebuilt native binaries can also be found at [tdlib.native releases](https://github.com/ForNeVeR/tdlib.native/releases), Android binaries at [android-libtdjson releases](https://github.com/up9cloud/android-libtdjson/releases), and iOS/macOS binaries at [ios-libtdjson releases](https://github.com/up9cloud/ios-libtdjson/releases). Follow the instructions below for each platform to configure flutter project to use tdlib.
 
 ### Android
 Copy `.so` files from archive to `example/android/app/main/jniLibs`:
