@@ -7,7 +7,7 @@ void main() {
   final List<Class> classes = Parser().parse();
   print('generate...');
   Generator(
-    root: '',
+    root: './lib/src/api',
     classes: classes,
   ).generate();
 }
