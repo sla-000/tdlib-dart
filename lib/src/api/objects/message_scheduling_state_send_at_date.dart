@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// The message will be sent at the specified date
@@ -46,8 +47,18 @@ class MessageSchedulingStateSendAtDate extends MessageSchedulingState {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is MessageSchedulingStateSendAtDate &&
+          const DeepCollectionEquality().equals(other.sendDate, sendDate) &&
+          const DeepCollectionEquality()
+              .equals(other.repeatPeriod, repeatPeriod));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(sendDate),
+        const DeepCollectionEquality().hash(repeatPeriod)
+      ]);
 }

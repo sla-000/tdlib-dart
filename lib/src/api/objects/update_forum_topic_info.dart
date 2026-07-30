@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Basic information about a topic in a forum chat was changed
@@ -34,8 +35,13 @@ class UpdateForumTopicInfo extends Update {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is UpdateForumTopicInfo &&
+          const DeepCollectionEquality().equals(other.info, info));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode =>
+      Object.hashAll([runtimeType, const DeepCollectionEquality().hash(info)]);
 }

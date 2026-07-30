@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// The current user shared a chat, which was requested by the bot
@@ -40,8 +41,17 @@ class MessageChatShared extends MessageContent {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is MessageChatShared &&
+          const DeepCollectionEquality().equals(other.chat, chat) &&
+          const DeepCollectionEquality().equals(other.buttonId, buttonId));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(chat),
+        const DeepCollectionEquality().hash(buttonId)
+      ]);
 }

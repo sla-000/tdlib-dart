@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// A gift which purchase, upgrade or transfer were refunded
@@ -55,8 +56,21 @@ class MessageRefundedUpgradedGift extends MessageContent {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is MessageRefundedUpgradedGift &&
+          const DeepCollectionEquality().equals(other.gift, gift) &&
+          const DeepCollectionEquality().equals(other.senderId, senderId) &&
+          const DeepCollectionEquality().equals(other.receiverId, receiverId) &&
+          const DeepCollectionEquality().equals(other.origin, origin));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(gift),
+        const DeepCollectionEquality().hash(senderId),
+        const DeepCollectionEquality().hash(receiverId),
+        const DeepCollectionEquality().hash(origin)
+      ]);
 }

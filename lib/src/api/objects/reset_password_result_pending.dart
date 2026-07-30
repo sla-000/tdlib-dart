@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// The password reset request is pending
@@ -35,8 +36,14 @@ class ResetPasswordResultPending extends ResetPasswordResult {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is ResetPasswordResultPending &&
+          const DeepCollectionEquality()
+              .equals(other.pendingResetDate, pendingResetDate));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll(
+      [runtimeType, const DeepCollectionEquality().hash(pendingResetDate)]);
 }

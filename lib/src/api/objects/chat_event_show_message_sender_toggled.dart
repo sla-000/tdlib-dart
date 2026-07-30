@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// The show_message_sender setting of a channel was toggled
@@ -35,8 +36,14 @@ class ChatEventShowMessageSenderToggled extends ChatEventAction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is ChatEventShowMessageSenderToggled &&
+          const DeepCollectionEquality()
+              .equals(other.showMessageSender, showMessageSender));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll(
+      [runtimeType, const DeepCollectionEquality().hash(showMessageSender)]);
 }

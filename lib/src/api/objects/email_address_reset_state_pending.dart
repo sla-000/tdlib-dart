@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Email address reset has already been requested. Call
@@ -37,8 +38,13 @@ class EmailAddressResetStatePending extends EmailAddressResetState {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is EmailAddressResetStatePending &&
+          const DeepCollectionEquality().equals(other.resetIn, resetIn));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll(
+      [runtimeType, const DeepCollectionEquality().hash(resetIn)]);
 }

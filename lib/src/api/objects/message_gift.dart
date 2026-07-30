@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// A regular gift was received or sent by the current user, or the current
@@ -162,8 +163,64 @@ class MessageGift extends MessageContent {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is MessageGift &&
+          const DeepCollectionEquality().equals(other.gift, gift) &&
+          const DeepCollectionEquality().equals(other.senderId, senderId) &&
+          const DeepCollectionEquality().equals(other.receiverId, receiverId) &&
+          const DeepCollectionEquality()
+              .equals(other.receivedGiftId, receivedGiftId) &&
+          const DeepCollectionEquality().equals(other.text, text) &&
+          const DeepCollectionEquality()
+              .equals(other.uniqueGiftNumber, uniqueGiftNumber) &&
+          const DeepCollectionEquality()
+              .equals(other.sellStarCount, sellStarCount) &&
+          const DeepCollectionEquality()
+              .equals(other.prepaidUpgradeStarCount, prepaidUpgradeStarCount) &&
+          const DeepCollectionEquality()
+              .equals(other.isUpgradeSeparate, isUpgradeSeparate) &&
+          const DeepCollectionEquality()
+              .equals(other.isFromAuction, isFromAuction) &&
+          const DeepCollectionEquality().equals(other.isPrivate, isPrivate) &&
+          const DeepCollectionEquality().equals(other.isSaved, isSaved) &&
+          const DeepCollectionEquality()
+              .equals(other.isPrepaidUpgrade, isPrepaidUpgrade) &&
+          const DeepCollectionEquality()
+              .equals(other.canBeUpgraded, canBeUpgraded) &&
+          const DeepCollectionEquality()
+              .equals(other.wasConverted, wasConverted) &&
+          const DeepCollectionEquality()
+              .equals(other.wasUpgraded, wasUpgraded) &&
+          const DeepCollectionEquality()
+              .equals(other.wasRefunded, wasRefunded) &&
+          const DeepCollectionEquality()
+              .equals(other.upgradedReceivedGiftId, upgradedReceivedGiftId) &&
+          const DeepCollectionEquality()
+              .equals(other.prepaidUpgradeHash, prepaidUpgradeHash));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(gift),
+        const DeepCollectionEquality().hash(senderId),
+        const DeepCollectionEquality().hash(receiverId),
+        const DeepCollectionEquality().hash(receivedGiftId),
+        const DeepCollectionEquality().hash(text),
+        const DeepCollectionEquality().hash(uniqueGiftNumber),
+        const DeepCollectionEquality().hash(sellStarCount),
+        const DeepCollectionEquality().hash(prepaidUpgradeStarCount),
+        const DeepCollectionEquality().hash(isUpgradeSeparate),
+        const DeepCollectionEquality().hash(isFromAuction),
+        const DeepCollectionEquality().hash(isPrivate),
+        const DeepCollectionEquality().hash(isSaved),
+        const DeepCollectionEquality().hash(isPrepaidUpgrade),
+        const DeepCollectionEquality().hash(canBeUpgraded),
+        const DeepCollectionEquality().hash(wasConverted),
+        const DeepCollectionEquality().hash(wasUpgraded),
+        const DeepCollectionEquality().hash(wasRefunded),
+        const DeepCollectionEquality().hash(upgradedReceivedGiftId),
+        const DeepCollectionEquality().hash(prepaidUpgradeHash)
+      ]);
 }

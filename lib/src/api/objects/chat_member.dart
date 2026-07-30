@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Describes a user or a chat as a member of another chat
@@ -66,8 +67,25 @@ class ChatMember extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is ChatMember &&
+          const DeepCollectionEquality().equals(other.memberId, memberId) &&
+          const DeepCollectionEquality().equals(other.tag, tag) &&
+          const DeepCollectionEquality()
+              .equals(other.inviterUserId, inviterUserId) &&
+          const DeepCollectionEquality()
+              .equals(other.joinedChatDate, joinedChatDate) &&
+          const DeepCollectionEquality().equals(other.status, status));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(memberId),
+        const DeepCollectionEquality().hash(tag),
+        const DeepCollectionEquality().hash(inviterUserId),
+        const DeepCollectionEquality().hash(joinedChatDate),
+        const DeepCollectionEquality().hash(status)
+      ]);
 }

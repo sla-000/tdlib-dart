@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Contains a list of downloaded files, found by a search
@@ -51,8 +52,20 @@ class FoundFileDownloads extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is FoundFileDownloads &&
+          const DeepCollectionEquality()
+              .equals(other.totalCounts, totalCounts) &&
+          const DeepCollectionEquality().equals(other.files, files) &&
+          const DeepCollectionEquality().equals(other.nextOffset, nextOffset));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(totalCounts),
+        const DeepCollectionEquality().hash(files),
+        const DeepCollectionEquality().hash(nextOffset)
+      ]);
 }

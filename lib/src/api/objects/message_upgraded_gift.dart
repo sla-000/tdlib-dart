@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// An upgraded gift was received or sent by the current user, or the current
@@ -132,8 +133,49 @@ class MessageUpgradedGift extends MessageContent {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is MessageUpgradedGift &&
+          const DeepCollectionEquality().equals(other.gift, gift) &&
+          const DeepCollectionEquality().equals(other.senderId, senderId) &&
+          const DeepCollectionEquality().equals(other.receiverId, receiverId) &&
+          const DeepCollectionEquality().equals(other.origin, origin) &&
+          const DeepCollectionEquality()
+              .equals(other.receivedGiftId, receivedGiftId) &&
+          const DeepCollectionEquality().equals(other.isSaved, isSaved) &&
+          const DeepCollectionEquality()
+              .equals(other.canBeTransferred, canBeTransferred) &&
+          const DeepCollectionEquality()
+              .equals(other.wasTransferred, wasTransferred) &&
+          const DeepCollectionEquality()
+              .equals(other.transferStarCount, transferStarCount) &&
+          const DeepCollectionEquality().equals(
+              other.dropOriginalDetailsStarCount,
+              dropOriginalDetailsStarCount) &&
+          const DeepCollectionEquality()
+              .equals(other.nextTransferDate, nextTransferDate) &&
+          const DeepCollectionEquality()
+              .equals(other.nextResaleDate, nextResaleDate) &&
+          const DeepCollectionEquality().equals(other.exportDate, exportDate) &&
+          const DeepCollectionEquality().equals(other.craftDate, craftDate));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(gift),
+        const DeepCollectionEquality().hash(senderId),
+        const DeepCollectionEquality().hash(receiverId),
+        const DeepCollectionEquality().hash(origin),
+        const DeepCollectionEquality().hash(receivedGiftId),
+        const DeepCollectionEquality().hash(isSaved),
+        const DeepCollectionEquality().hash(canBeTransferred),
+        const DeepCollectionEquality().hash(wasTransferred),
+        const DeepCollectionEquality().hash(transferStarCount),
+        const DeepCollectionEquality().hash(dropOriginalDetailsStarCount),
+        const DeepCollectionEquality().hash(nextTransferDate),
+        const DeepCollectionEquality().hash(nextResaleDate),
+        const DeepCollectionEquality().hash(exportDate),
+        const DeepCollectionEquality().hash(craftDate)
+      ]);
 }

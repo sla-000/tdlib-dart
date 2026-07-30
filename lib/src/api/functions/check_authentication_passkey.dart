@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Checks a passkey to log in to the corresponding account. Call
@@ -54,8 +55,25 @@ class CheckAuthenticationPasskey extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is CheckAuthenticationPasskey &&
+          const DeepCollectionEquality()
+              .equals(other.credentialId, credentialId) &&
+          const DeepCollectionEquality().equals(other.clientData, clientData) &&
+          const DeepCollectionEquality()
+              .equals(other.authenticatorData, authenticatorData) &&
+          const DeepCollectionEquality().equals(other.signature, signature) &&
+          const DeepCollectionEquality().equals(other.userHandle, userHandle));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(credentialId),
+        const DeepCollectionEquality().hash(clientData),
+        const DeepCollectionEquality().hash(authenticatorData),
+        const DeepCollectionEquality().hash(signature),
+        const DeepCollectionEquality().hash(userHandle)
+      ]);
 }

@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Some data of a community has changed. This update is guaranteed to come
@@ -36,8 +37,13 @@ class UpdateCommunity extends Update {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is UpdateCommunity &&
+          const DeepCollectionEquality().equals(other.community, community));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll(
+      [runtimeType, const DeepCollectionEquality().hash(community)]);
 }

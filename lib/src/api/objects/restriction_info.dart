@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Contains information about restrictions that must be applied to a chat or
@@ -50,8 +51,19 @@ class RestrictionInfo extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is RestrictionInfo &&
+          const DeepCollectionEquality()
+              .equals(other.restrictionReason, restrictionReason) &&
+          const DeepCollectionEquality()
+              .equals(other.hasSensitiveContent, hasSensitiveContent));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(restrictionReason),
+        const DeepCollectionEquality().hash(hasSensitiveContent)
+      ]);
 }

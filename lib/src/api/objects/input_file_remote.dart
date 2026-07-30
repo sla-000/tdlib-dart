@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// A file defined by its remote identifier. The remote identifier is
@@ -39,8 +40,13 @@ class InputFileRemote extends InputFile {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is InputFileRemote &&
+          const DeepCollectionEquality().equals(other.id, id));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode =>
+      Object.hashAll([runtimeType, const DeepCollectionEquality().hash(id)]);
 }

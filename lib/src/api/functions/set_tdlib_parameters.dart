@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Sets the parameters for TDLib initialization. Works only when the current
@@ -104,8 +105,52 @@ class SetTdlibParameters extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is SetTdlibParameters &&
+          const DeepCollectionEquality().equals(other.useTestDc, useTestDc) &&
+          const DeepCollectionEquality()
+              .equals(other.databaseDirectory, databaseDirectory) &&
+          const DeepCollectionEquality()
+              .equals(other.filesDirectory, filesDirectory) &&
+          const DeepCollectionEquality()
+              .equals(other.databaseEncryptionKey, databaseEncryptionKey) &&
+          const DeepCollectionEquality()
+              .equals(other.useFileDatabase, useFileDatabase) &&
+          const DeepCollectionEquality()
+              .equals(other.useChatInfoDatabase, useChatInfoDatabase) &&
+          const DeepCollectionEquality()
+              .equals(other.useMessageDatabase, useMessageDatabase) &&
+          const DeepCollectionEquality()
+              .equals(other.useSecretChats, useSecretChats) &&
+          const DeepCollectionEquality().equals(other.apiId, apiId) &&
+          const DeepCollectionEquality().equals(other.apiHash, apiHash) &&
+          const DeepCollectionEquality()
+              .equals(other.systemLanguageCode, systemLanguageCode) &&
+          const DeepCollectionEquality()
+              .equals(other.deviceModel, deviceModel) &&
+          const DeepCollectionEquality()
+              .equals(other.systemVersion, systemVersion) &&
+          const DeepCollectionEquality()
+              .equals(other.applicationVersion, applicationVersion));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(useTestDc),
+        const DeepCollectionEquality().hash(databaseDirectory),
+        const DeepCollectionEquality().hash(filesDirectory),
+        const DeepCollectionEquality().hash(databaseEncryptionKey),
+        const DeepCollectionEquality().hash(useFileDatabase),
+        const DeepCollectionEquality().hash(useChatInfoDatabase),
+        const DeepCollectionEquality().hash(useMessageDatabase),
+        const DeepCollectionEquality().hash(useSecretChats),
+        const DeepCollectionEquality().hash(apiId),
+        const DeepCollectionEquality().hash(apiHash),
+        const DeepCollectionEquality().hash(systemLanguageCode),
+        const DeepCollectionEquality().hash(deviceModel),
+        const DeepCollectionEquality().hash(systemVersion),
+        const DeepCollectionEquality().hash(applicationVersion)
+      ]);
 }

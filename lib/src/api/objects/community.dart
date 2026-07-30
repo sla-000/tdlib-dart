@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Represents a community consisting of supergroup chats, channel chats and
@@ -78,8 +79,28 @@ class Community extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is Community &&
+          const DeepCollectionEquality().equals(other.id, id) &&
+          const DeepCollectionEquality().equals(other.haveAccess, haveAccess) &&
+          const DeepCollectionEquality().equals(other.name, name) &&
+          const DeepCollectionEquality().equals(other.photo, photo) &&
+          const DeepCollectionEquality().equals(other.date, date) &&
+          const DeepCollectionEquality().equals(other.status, status) &&
+          const DeepCollectionEquality()
+              .equals(other.permissions, permissions));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(id),
+        const DeepCollectionEquality().hash(haveAccess),
+        const DeepCollectionEquality().hash(name),
+        const DeepCollectionEquality().hash(photo),
+        const DeepCollectionEquality().hash(date),
+        const DeepCollectionEquality().hash(status),
+        const DeepCollectionEquality().hash(permissions)
+      ]);
 }

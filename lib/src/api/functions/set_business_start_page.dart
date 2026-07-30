@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Changes the business start page of the current user. Requires Telegram
@@ -27,8 +28,13 @@ class SetBusinessStartPage extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is SetBusinessStartPage &&
+          const DeepCollectionEquality().equals(other.startPage, startPage));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll(
+      [runtimeType, const DeepCollectionEquality().hash(startPage)]);
 }

@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Specifies the supported call protocols
@@ -61,8 +62,25 @@ class CallProtocol extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is CallProtocol &&
+          const DeepCollectionEquality().equals(other.udpP2p, udpP2p) &&
+          const DeepCollectionEquality()
+              .equals(other.udpReflector, udpReflector) &&
+          const DeepCollectionEquality().equals(other.minLayer, minLayer) &&
+          const DeepCollectionEquality().equals(other.maxLayer, maxLayer) &&
+          const DeepCollectionEquality()
+              .equals(other.libraryVersions, libraryVersions));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(udpP2p),
+        const DeepCollectionEquality().hash(udpReflector),
+        const DeepCollectionEquality().hash(minLayer),
+        const DeepCollectionEquality().hash(maxLayer),
+        const DeepCollectionEquality().hash(libraryVersions)
+      ]);
 }

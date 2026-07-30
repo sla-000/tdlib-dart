@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// A user in the chat came within proximity alert range
@@ -50,8 +51,19 @@ class MessageProximityAlertTriggered extends MessageContent {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is MessageProximityAlertTriggered &&
+          const DeepCollectionEquality().equals(other.travelerId, travelerId) &&
+          const DeepCollectionEquality().equals(other.watcherId, watcherId) &&
+          const DeepCollectionEquality().equals(other.distance, distance));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(travelerId),
+        const DeepCollectionEquality().hash(watcherId),
+        const DeepCollectionEquality().hash(distance)
+      ]);
 }

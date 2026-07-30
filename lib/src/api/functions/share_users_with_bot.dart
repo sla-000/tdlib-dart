@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Shares users after pressing a keyboardButtonTypeRequestUsers button with
@@ -42,8 +43,22 @@ class ShareUsersWithBot extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is ShareUsersWithBot &&
+          const DeepCollectionEquality().equals(other.source, source) &&
+          const DeepCollectionEquality().equals(other.buttonId, buttonId) &&
+          const DeepCollectionEquality()
+              .equals(other.sharedUserIds, sharedUserIds) &&
+          const DeepCollectionEquality().equals(other.onlyCheck, onlyCheck));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(source),
+        const DeepCollectionEquality().hash(buttonId),
+        const DeepCollectionEquality().hash(sharedUserIds),
+        const DeepCollectionEquality().hash(onlyCheck)
+      ]);
 }

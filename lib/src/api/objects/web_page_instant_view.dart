@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Describes an instant view page for a web page
@@ -70,8 +71,26 @@ class WebPageInstantView extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is WebPageInstantView &&
+          const DeepCollectionEquality().equals(other.blocks, blocks) &&
+          const DeepCollectionEquality().equals(other.viewCount, viewCount) &&
+          const DeepCollectionEquality().equals(other.version, version) &&
+          const DeepCollectionEquality().equals(other.isRtl, isRtl) &&
+          const DeepCollectionEquality().equals(other.isFull, isFull) &&
+          const DeepCollectionEquality()
+              .equals(other.feedbackLink, feedbackLink));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(blocks),
+        const DeepCollectionEquality().hash(viewCount),
+        const DeepCollectionEquality().hash(version),
+        const DeepCollectionEquality().hash(isRtl),
+        const DeepCollectionEquality().hash(isFull),
+        const DeepCollectionEquality().hash(feedbackLink)
+      ]);
 }

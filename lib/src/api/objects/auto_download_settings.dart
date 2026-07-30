@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Contains auto-download settings
@@ -89,8 +90,40 @@ class AutoDownloadSettings extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is AutoDownloadSettings &&
+          const DeepCollectionEquality()
+              .equals(other.isAutoDownloadEnabled, isAutoDownloadEnabled) &&
+          const DeepCollectionEquality()
+              .equals(other.maxPhotoFileSize, maxPhotoFileSize) &&
+          const DeepCollectionEquality()
+              .equals(other.maxVideoFileSize, maxVideoFileSize) &&
+          const DeepCollectionEquality()
+              .equals(other.maxOtherFileSize, maxOtherFileSize) &&
+          const DeepCollectionEquality()
+              .equals(other.videoUploadBitrate, videoUploadBitrate) &&
+          const DeepCollectionEquality()
+              .equals(other.preloadLargeVideos, preloadLargeVideos) &&
+          const DeepCollectionEquality()
+              .equals(other.preloadNextAudio, preloadNextAudio) &&
+          const DeepCollectionEquality()
+              .equals(other.preloadStories, preloadStories) &&
+          const DeepCollectionEquality()
+              .equals(other.useLessDataForCalls, useLessDataForCalls));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(isAutoDownloadEnabled),
+        const DeepCollectionEquality().hash(maxPhotoFileSize),
+        const DeepCollectionEquality().hash(maxVideoFileSize),
+        const DeepCollectionEquality().hash(maxOtherFileSize),
+        const DeepCollectionEquality().hash(videoUploadBitrate),
+        const DeepCollectionEquality().hash(preloadLargeVideos),
+        const DeepCollectionEquality().hash(preloadNextAudio),
+        const DeepCollectionEquality().hash(preloadStories),
+        const DeepCollectionEquality().hash(useLessDataForCalls)
+      ]);
 }

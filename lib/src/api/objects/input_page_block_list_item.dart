@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Describes an item of a list page block to be sent
@@ -64,8 +65,24 @@ class InputPageBlockListItem extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is InputPageBlockListItem &&
+          const DeepCollectionEquality().equals(other.blocks, blocks) &&
+          const DeepCollectionEquality()
+              .equals(other.hasCheckbox, hasCheckbox) &&
+          const DeepCollectionEquality().equals(other.isChecked, isChecked) &&
+          const DeepCollectionEquality().equals(other.value, value) &&
+          const DeepCollectionEquality().equals(other.type, type));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(blocks),
+        const DeepCollectionEquality().hash(hasCheckbox),
+        const DeepCollectionEquality().hash(isChecked),
+        const DeepCollectionEquality().hash(value),
+        const DeepCollectionEquality().hash(type)
+      ]);
 }

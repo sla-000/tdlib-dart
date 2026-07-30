@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Toggles whether all users directly joining the supergroup need to be
@@ -47,8 +48,25 @@ class ToggleSupergroupJoinByRequest extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is ToggleSupergroupJoinByRequest &&
+          const DeepCollectionEquality()
+              .equals(other.supergroupId, supergroupId) &&
+          const DeepCollectionEquality()
+              .equals(other.joinByRequest, joinByRequest) &&
+          const DeepCollectionEquality()
+              .equals(other.guardBotUserId, guardBotUserId) &&
+          const DeepCollectionEquality()
+              .equals(other.applyToInviteLinks, applyToInviteLinks));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(supergroupId),
+        const DeepCollectionEquality().hash(joinByRequest),
+        const DeepCollectionEquality().hash(guardBotUserId),
+        const DeepCollectionEquality().hash(applyToInviteLinks)
+      ]);
 }

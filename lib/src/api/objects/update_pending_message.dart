@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// A new pending text or rich message was received in a chat with a bot. The
@@ -59,8 +60,22 @@ class UpdatePendingMessage extends Update {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is UpdatePendingMessage &&
+          const DeepCollectionEquality().equals(other.chatId, chatId) &&
+          const DeepCollectionEquality()
+              .equals(other.forumTopicId, forumTopicId) &&
+          const DeepCollectionEquality().equals(other.draftId, draftId) &&
+          const DeepCollectionEquality().equals(other.content, content));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(chatId),
+        const DeepCollectionEquality().hash(forumTopicId),
+        const DeepCollectionEquality().hash(draftId),
+        const DeepCollectionEquality().hash(content)
+      ]);
 }

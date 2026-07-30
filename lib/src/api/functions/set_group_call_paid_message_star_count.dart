@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Changes the minimum number of Telegram Stars that must be paid by general
@@ -34,8 +35,19 @@ class SetGroupCallPaidMessageStarCount extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is SetGroupCallPaidMessageStarCount &&
+          const DeepCollectionEquality()
+              .equals(other.groupCallId, groupCallId) &&
+          const DeepCollectionEquality()
+              .equals(other.paidMessageStarCount, paidMessageStarCount));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(groupCallId),
+        const DeepCollectionEquality().hash(paidMessageStarCount)
+      ]);
 }

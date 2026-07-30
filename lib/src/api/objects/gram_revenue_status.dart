@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Contains information about TON Grams earned by the current user
@@ -55,8 +56,25 @@ class GramRevenueStatus extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is GramRevenueStatus &&
+          const DeepCollectionEquality()
+              .equals(other.totalAmount, totalAmount) &&
+          const DeepCollectionEquality()
+              .equals(other.balanceAmount, balanceAmount) &&
+          const DeepCollectionEquality()
+              .equals(other.availableAmount, availableAmount) &&
+          const DeepCollectionEquality()
+              .equals(other.withdrawalEnabled, withdrawalEnabled));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(totalAmount),
+        const DeepCollectionEquality().hash(balanceAmount),
+        const DeepCollectionEquality().hash(availableAmount),
+        const DeepCollectionEquality().hash(withdrawalEnabled)
+      ]);
 }

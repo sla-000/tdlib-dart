@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Contains information about supported accent color for user profile photo
@@ -64,8 +65,27 @@ class ProfileAccentColor extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is ProfileAccentColor &&
+          const DeepCollectionEquality().equals(other.id, id) &&
+          const DeepCollectionEquality()
+              .equals(other.lightThemeColors, lightThemeColors) &&
+          const DeepCollectionEquality()
+              .equals(other.darkThemeColors, darkThemeColors) &&
+          const DeepCollectionEquality().equals(
+              other.minSupergroupChatBoostLevel, minSupergroupChatBoostLevel) &&
+          const DeepCollectionEquality().equals(
+              other.minChannelChatBoostLevel, minChannelChatBoostLevel));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(id),
+        const DeepCollectionEquality().hash(lightThemeColors),
+        const DeepCollectionEquality().hash(darkThemeColors),
+        const DeepCollectionEquality().hash(minSupergroupChatBoostLevel),
+        const DeepCollectionEquality().hash(minChannelChatBoostLevel)
+      ]);
 }

@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Checks whether an in-store purchase of Telegram Premium is possible before
@@ -38,8 +39,20 @@ class CheckAuthenticationPremiumPurchase extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is CheckAuthenticationPremiumPurchase &&
+          const DeepCollectionEquality()
+              .equals(other.premiumDayCount, premiumDayCount) &&
+          const DeepCollectionEquality().equals(other.currency, currency) &&
+          const DeepCollectionEquality().equals(other.amount, amount));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(premiumDayCount),
+        const DeepCollectionEquality().hash(currency),
+        const DeepCollectionEquality().hash(amount)
+      ]);
 }

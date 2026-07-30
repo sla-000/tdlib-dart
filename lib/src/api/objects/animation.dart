@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Describes an animation file. The animation must be encoded in GIF or MPEG4
@@ -85,8 +86,33 @@ class Animation extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is Animation &&
+          const DeepCollectionEquality().equals(other.duration, duration) &&
+          const DeepCollectionEquality().equals(other.width, width) &&
+          const DeepCollectionEquality().equals(other.height, height) &&
+          const DeepCollectionEquality().equals(other.fileName, fileName) &&
+          const DeepCollectionEquality().equals(other.mimeType, mimeType) &&
+          const DeepCollectionEquality()
+              .equals(other.hasStickers, hasStickers) &&
+          const DeepCollectionEquality()
+              .equals(other.minithumbnail, minithumbnail) &&
+          const DeepCollectionEquality().equals(other.thumbnail, thumbnail) &&
+          const DeepCollectionEquality().equals(other.animation, animation));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(duration),
+        const DeepCollectionEquality().hash(width),
+        const DeepCollectionEquality().hash(height),
+        const DeepCollectionEquality().hash(fileName),
+        const DeepCollectionEquality().hash(mimeType),
+        const DeepCollectionEquality().hash(hasStickers),
+        const DeepCollectionEquality().hash(minithumbnail),
+        const DeepCollectionEquality().hash(thumbnail),
+        const DeepCollectionEquality().hash(animation)
+      ]);
 }

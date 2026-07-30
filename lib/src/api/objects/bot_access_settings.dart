@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Describes users that have access to a bot
@@ -45,8 +46,19 @@ class BotAccessSettings extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is BotAccessSettings &&
+          const DeepCollectionEquality()
+              .equals(other.isRestricted, isRestricted) &&
+          const DeepCollectionEquality()
+              .equals(other.addedUserIds, addedUserIds));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(isRestricted),
+        const DeepCollectionEquality().hash(addedUserIds)
+      ]);
 }

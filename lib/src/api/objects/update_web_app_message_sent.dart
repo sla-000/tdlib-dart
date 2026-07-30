@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// A message was sent by an opened Web App, so the Web App needs to be closed
@@ -34,8 +35,14 @@ class UpdateWebAppMessageSent extends Update {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is UpdateWebAppMessageSent &&
+          const DeepCollectionEquality()
+              .equals(other.webAppLaunchId, webAppLaunchId));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll(
+      [runtimeType, const DeepCollectionEquality().hash(webAppLaunchId)]);
 }

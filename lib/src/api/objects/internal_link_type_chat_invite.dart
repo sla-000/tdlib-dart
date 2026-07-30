@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// The link is a chat invite link. Call checkChatInviteLink with the given
@@ -36,8 +37,13 @@ class InternalLinkTypeChatInvite extends InternalLinkType {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is InternalLinkTypeChatInvite &&
+          const DeepCollectionEquality().equals(other.inviteLink, inviteLink));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll(
+      [runtimeType, const DeepCollectionEquality().hash(inviteLink)]);
 }

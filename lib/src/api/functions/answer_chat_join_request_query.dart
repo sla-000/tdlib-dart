@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Sets the result of a chat join query; for bots only
@@ -35,8 +36,19 @@ class AnswerChatJoinRequestQuery extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is AnswerChatJoinRequestQuery &&
+          const DeepCollectionEquality().equals(other.queryId, queryId) &&
+          const DeepCollectionEquality().equals(other.result, result) &&
+          const DeepCollectionEquality().equals(other.url, url));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(queryId),
+        const DeepCollectionEquality().hash(result),
+        const DeepCollectionEquality().hash(url)
+      ]);
 }

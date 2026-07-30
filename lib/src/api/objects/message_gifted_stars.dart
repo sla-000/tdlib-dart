@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Telegram Stars were gifted to a user
@@ -87,8 +88,36 @@ class MessageGiftedStars extends MessageContent {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is MessageGiftedStars &&
+          const DeepCollectionEquality()
+              .equals(other.gifterUserId, gifterUserId) &&
+          const DeepCollectionEquality()
+              .equals(other.receiverUserId, receiverUserId) &&
+          const DeepCollectionEquality().equals(other.currency, currency) &&
+          const DeepCollectionEquality().equals(other.amount, amount) &&
+          const DeepCollectionEquality()
+              .equals(other.cryptocurrency, cryptocurrency) &&
+          const DeepCollectionEquality()
+              .equals(other.cryptocurrencyAmount, cryptocurrencyAmount) &&
+          const DeepCollectionEquality().equals(other.starCount, starCount) &&
+          const DeepCollectionEquality()
+              .equals(other.transactionId, transactionId) &&
+          const DeepCollectionEquality().equals(other.sticker, sticker));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(gifterUserId),
+        const DeepCollectionEquality().hash(receiverUserId),
+        const DeepCollectionEquality().hash(currency),
+        const DeepCollectionEquality().hash(amount),
+        const DeepCollectionEquality().hash(cryptocurrency),
+        const DeepCollectionEquality().hash(cryptocurrencyAmount),
+        const DeepCollectionEquality().hash(starCount),
+        const DeepCollectionEquality().hash(transactionId),
+        const DeepCollectionEquality().hash(sticker)
+      ]);
 }

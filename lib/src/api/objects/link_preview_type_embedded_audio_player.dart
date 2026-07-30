@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// The link is a link to an audio player
@@ -65,8 +66,25 @@ class LinkPreviewTypeEmbeddedAudioPlayer extends LinkPreviewType {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is LinkPreviewTypeEmbeddedAudioPlayer &&
+          const DeepCollectionEquality().equals(other.url, url) &&
+          const DeepCollectionEquality().equals(other.audio, audio) &&
+          const DeepCollectionEquality().equals(other.thumbnail, thumbnail) &&
+          const DeepCollectionEquality().equals(other.duration, duration) &&
+          const DeepCollectionEquality().equals(other.width, width) &&
+          const DeepCollectionEquality().equals(other.height, height));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(url),
+        const DeepCollectionEquality().hash(audio),
+        const DeepCollectionEquality().hash(thumbnail),
+        const DeepCollectionEquality().hash(duration),
+        const DeepCollectionEquality().hash(width),
+        const DeepCollectionEquality().hash(height)
+      ]);
 }

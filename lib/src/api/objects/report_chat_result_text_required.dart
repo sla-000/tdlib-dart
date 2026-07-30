@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// The user must add additional text details to the report
@@ -40,8 +41,17 @@ class ReportChatResultTextRequired extends ReportChatResult {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is ReportChatResultTextRequired &&
+          const DeepCollectionEquality().equals(other.optionId, optionId) &&
+          const DeepCollectionEquality().equals(other.isOptional, isOptional));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(optionId),
+        const DeepCollectionEquality().hash(isOptional)
+      ]);
 }

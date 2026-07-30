@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Describes a file added to file download list
@@ -60,8 +61,24 @@ class FileDownload extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is FileDownload &&
+          const DeepCollectionEquality().equals(other.fileId, fileId) &&
+          const DeepCollectionEquality().equals(other.message, message) &&
+          const DeepCollectionEquality().equals(other.addDate, addDate) &&
+          const DeepCollectionEquality()
+              .equals(other.completeDate, completeDate) &&
+          const DeepCollectionEquality().equals(other.isPaused, isPaused));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(fileId),
+        const DeepCollectionEquality().hash(message),
+        const DeepCollectionEquality().hash(addDate),
+        const DeepCollectionEquality().hash(completeDate),
+        const DeepCollectionEquality().hash(isPaused)
+      ]);
 }

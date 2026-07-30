@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// A SOCKS5 proxy server
@@ -40,8 +41,17 @@ class ProxyTypeSocks5 extends ProxyType {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is ProxyTypeSocks5 &&
+          const DeepCollectionEquality().equals(other.username, username) &&
+          const DeepCollectionEquality().equals(other.password, password));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(username),
+        const DeepCollectionEquality().hash(password)
+      ]);
 }

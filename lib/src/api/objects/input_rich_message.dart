@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// A rich message to send. Total length of all texts, including custom emoji
@@ -56,8 +57,20 @@ class InputRichMessage extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is InputRichMessage &&
+          const DeepCollectionEquality().equals(other.source, source) &&
+          const DeepCollectionEquality().equals(other.isRtl, isRtl) &&
+          const DeepCollectionEquality()
+              .equals(other.detectAutomaticBlocks, detectAutomaticBlocks));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(source),
+        const DeepCollectionEquality().hash(isRtl),
+        const DeepCollectionEquality().hash(detectAutomaticBlocks)
+      ]);
 }

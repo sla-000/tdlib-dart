@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Describes a group of video synchronization source identifiers
@@ -43,8 +44,17 @@ class GroupCallVideoSourceGroup extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is GroupCallVideoSourceGroup &&
+          const DeepCollectionEquality().equals(other.semantics, semantics) &&
+          const DeepCollectionEquality().equals(other.sourceIds, sourceIds));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(semantics),
+        const DeepCollectionEquality().hash(sourceIds)
+      ]);
 }

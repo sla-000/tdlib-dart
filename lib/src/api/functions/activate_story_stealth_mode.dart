@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Activates stealth mode for stories, which hides all views of stories from
@@ -22,8 +23,10 @@ class ActivateStoryStealthMode extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType && other is ActivateStoryStealthMode);
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => runtimeType.hashCode;
 }

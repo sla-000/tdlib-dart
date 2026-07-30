@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Some tasks were added to a checklist
@@ -44,8 +45,18 @@ class MessageChecklistTasksAdded extends MessageContent {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is MessageChecklistTasksAdded &&
+          const DeepCollectionEquality()
+              .equals(other.checklistMessageId, checklistMessageId) &&
+          const DeepCollectionEquality().equals(other.tasks, tasks));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(checklistMessageId),
+        const DeepCollectionEquality().hash(tasks)
+      ]);
 }

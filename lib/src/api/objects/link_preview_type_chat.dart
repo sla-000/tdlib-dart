@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// The link is a link to a chat
@@ -46,8 +47,20 @@ class LinkPreviewTypeChat extends LinkPreviewType {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is LinkPreviewTypeChat &&
+          const DeepCollectionEquality().equals(other.type, type) &&
+          const DeepCollectionEquality().equals(other.photo, photo) &&
+          const DeepCollectionEquality()
+              .equals(other.createsJoinRequest, createsJoinRequest));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(type),
+        const DeepCollectionEquality().hash(photo),
+        const DeepCollectionEquality().hash(createsJoinRequest)
+      ]);
 }

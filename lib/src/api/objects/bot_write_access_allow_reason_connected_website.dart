@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// The user connected a website by logging in using Telegram Login Widget on
@@ -37,8 +38,13 @@ class BotWriteAccessAllowReasonConnectedWebsite
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is BotWriteAccessAllowReasonConnectedWebsite &&
+          const DeepCollectionEquality().equals(other.domainName, domainName));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll(
+      [runtimeType, const DeepCollectionEquality().hash(domainName)]);
 }

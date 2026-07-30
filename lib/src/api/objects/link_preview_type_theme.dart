@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// The link is a link to a cloud theme. TDLib has no theme support yet
@@ -44,8 +45,17 @@ class LinkPreviewTypeTheme extends LinkPreviewType {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is LinkPreviewTypeTheme &&
+          const DeepCollectionEquality().equals(other.documents, documents) &&
+          const DeepCollectionEquality().equals(other.settings, settings));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(documents),
+        const DeepCollectionEquality().hash(settings)
+      ]);
 }

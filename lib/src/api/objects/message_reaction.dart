@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Contains information about a reaction to a message
@@ -65,8 +66,25 @@ class MessageReaction extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is MessageReaction &&
+          const DeepCollectionEquality().equals(other.type, type) &&
+          const DeepCollectionEquality().equals(other.totalCount, totalCount) &&
+          const DeepCollectionEquality().equals(other.isChosen, isChosen) &&
+          const DeepCollectionEquality()
+              .equals(other.usedSenderId, usedSenderId) &&
+          const DeepCollectionEquality()
+              .equals(other.recentSenderIds, recentSenderIds));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(type),
+        const DeepCollectionEquality().hash(totalCount),
+        const DeepCollectionEquality().hash(isChosen),
+        const DeepCollectionEquality().hash(usedSenderId),
+        const DeepCollectionEquality().hash(recentSenderIds)
+      ]);
 }

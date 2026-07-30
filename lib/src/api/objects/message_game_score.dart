@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// A new high score was achieved in a game
@@ -48,8 +49,20 @@ class MessageGameScore extends MessageContent {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is MessageGameScore &&
+          const DeepCollectionEquality()
+              .equals(other.gameMessageId, gameMessageId) &&
+          const DeepCollectionEquality().equals(other.gameId, gameId) &&
+          const DeepCollectionEquality().equals(other.score, score));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(gameMessageId),
+        const DeepCollectionEquality().hash(gameId),
+        const DeepCollectionEquality().hash(score)
+      ]);
 }

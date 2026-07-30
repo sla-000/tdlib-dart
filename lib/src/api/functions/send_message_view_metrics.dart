@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Informs TDLib about details of a message view by the user from a chat, a
@@ -57,8 +58,30 @@ class SendMessageViewMetrics extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is SendMessageViewMetrics &&
+          const DeepCollectionEquality().equals(other.chatId, chatId) &&
+          const DeepCollectionEquality().equals(other.messageId, messageId) &&
+          const DeepCollectionEquality()
+              .equals(other.timeInViewMs, timeInViewMs) &&
+          const DeepCollectionEquality()
+              .equals(other.activeTimeInViewMs, activeTimeInViewMs) &&
+          const DeepCollectionEquality().equals(
+              other.heightToViewportRatioPerMille,
+              heightToViewportRatioPerMille) &&
+          const DeepCollectionEquality()
+              .equals(other.seenRangeRatioPerMille, seenRangeRatioPerMille));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(chatId),
+        const DeepCollectionEquality().hash(messageId),
+        const DeepCollectionEquality().hash(timeInViewMs),
+        const DeepCollectionEquality().hash(activeTimeInViewMs),
+        const DeepCollectionEquality().hash(heightToViewportRatioPerMille),
+        const DeepCollectionEquality().hash(seenRangeRatioPerMille)
+      ]);
 }

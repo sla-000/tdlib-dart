@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Re-adds quick reply messages which failed to add. Can be called only for
@@ -37,8 +38,18 @@ class ReaddQuickReplyShortcutMessages extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is ReaddQuickReplyShortcutMessages &&
+          const DeepCollectionEquality()
+              .equals(other.shortcutName, shortcutName) &&
+          const DeepCollectionEquality().equals(other.messageIds, messageIds));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(shortcutName),
+        const DeepCollectionEquality().hash(messageIds)
+      ]);
 }

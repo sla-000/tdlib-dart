@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// TON Grams were gifted to a user
@@ -62,8 +63,26 @@ class MessageGiftedTon extends MessageContent {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is MessageGiftedTon &&
+          const DeepCollectionEquality()
+              .equals(other.gifterUserId, gifterUserId) &&
+          const DeepCollectionEquality()
+              .equals(other.receiverUserId, receiverUserId) &&
+          const DeepCollectionEquality().equals(other.gramAmount, gramAmount) &&
+          const DeepCollectionEquality()
+              .equals(other.transactionId, transactionId) &&
+          const DeepCollectionEquality().equals(other.sticker, sticker));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(gifterUserId),
+        const DeepCollectionEquality().hash(receiverUserId),
+        const DeepCollectionEquality().hash(gramAmount),
+        const DeepCollectionEquality().hash(transactionId),
+        const DeepCollectionEquality().hash(sticker)
+      ]);
 }

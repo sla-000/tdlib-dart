@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// A forwarded message
@@ -71,8 +72,29 @@ class InputMessageForwarded extends InputMessageContent {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is InputMessageForwarded &&
+          const DeepCollectionEquality().equals(other.fromChatId, fromChatId) &&
+          const DeepCollectionEquality().equals(other.messageId, messageId) &&
+          const DeepCollectionEquality()
+              .equals(other.inGameShare, inGameShare) &&
+          const DeepCollectionEquality().equals(
+              other.replaceVideoStartTimestamp, replaceVideoStartTimestamp) &&
+          const DeepCollectionEquality()
+              .equals(other.newVideoStartTimestamp, newVideoStartTimestamp) &&
+          const DeepCollectionEquality()
+              .equals(other.copyOptions, copyOptions));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(fromChatId),
+        const DeepCollectionEquality().hash(messageId),
+        const DeepCollectionEquality().hash(inGameShare),
+        const DeepCollectionEquality().hash(replaceVideoStartTimestamp),
+        const DeepCollectionEquality().hash(newVideoStartTimestamp),
+        const DeepCollectionEquality().hash(copyOptions)
+      ]);
 }

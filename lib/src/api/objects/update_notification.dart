@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// A notification was changed
@@ -41,8 +42,19 @@ class UpdateNotification extends Update {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is UpdateNotification &&
+          const DeepCollectionEquality()
+              .equals(other.notificationGroupId, notificationGroupId) &&
+          const DeepCollectionEquality()
+              .equals(other.notification, notification));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(notificationGroupId),
+        const DeepCollectionEquality().hash(notification)
+      ]);
 }

@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Returns strings from a language pack in the current localization target by
@@ -32,8 +33,18 @@ class GetLanguagePackStrings extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is GetLanguagePackStrings &&
+          const DeepCollectionEquality()
+              .equals(other.languagePackId, languagePackId) &&
+          const DeepCollectionEquality().equals(other.keys, keys));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(languagePackId),
+        const DeepCollectionEquality().hash(keys)
+      ]);
 }

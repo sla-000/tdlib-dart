@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Describes an animated or custom representation of an emoji
@@ -63,8 +64,26 @@ class AnimatedEmoji extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is AnimatedEmoji &&
+          const DeepCollectionEquality().equals(other.sticker, sticker) &&
+          const DeepCollectionEquality()
+              .equals(other.stickerWidth, stickerWidth) &&
+          const DeepCollectionEquality()
+              .equals(other.stickerHeight, stickerHeight) &&
+          const DeepCollectionEquality()
+              .equals(other.fitzpatrickType, fitzpatrickType) &&
+          const DeepCollectionEquality().equals(other.sound, sound));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(sticker),
+        const DeepCollectionEquality().hash(stickerWidth),
+        const DeepCollectionEquality().hash(stickerHeight),
+        const DeepCollectionEquality().hash(fitzpatrickType),
+        const DeepCollectionEquality().hash(sound)
+      ]);
 }

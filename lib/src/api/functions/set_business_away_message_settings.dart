@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Changes the business away message settings of the current user. Requires
@@ -27,8 +28,14 @@ class SetBusinessAwayMessageSettings extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is SetBusinessAwayMessageSettings &&
+          const DeepCollectionEquality()
+              .equals(other.awayMessageSettings, awayMessageSettings));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll(
+      [runtimeType, const DeepCollectionEquality().hash(awayMessageSettings)]);
 }

@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Represents the current state of 2-step verification
@@ -76,8 +77,35 @@ class PasswordState extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is PasswordState &&
+          const DeepCollectionEquality()
+              .equals(other.hasPassword, hasPassword) &&
+          const DeepCollectionEquality()
+              .equals(other.passwordHint, passwordHint) &&
+          const DeepCollectionEquality()
+              .equals(other.hasRecoveryEmailAddress, hasRecoveryEmailAddress) &&
+          const DeepCollectionEquality()
+              .equals(other.hasPassportData, hasPassportData) &&
+          const DeepCollectionEquality().equals(
+              other.recoveryEmailAddressCodeInfo,
+              recoveryEmailAddressCodeInfo) &&
+          const DeepCollectionEquality().equals(
+              other.loginEmailAddressPattern, loginEmailAddressPattern) &&
+          const DeepCollectionEquality()
+              .equals(other.pendingResetDate, pendingResetDate));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(hasPassword),
+        const DeepCollectionEquality().hash(passwordHint),
+        const DeepCollectionEquality().hash(hasRecoveryEmailAddress),
+        const DeepCollectionEquality().hash(hasPassportData),
+        const DeepCollectionEquality().hash(recoveryEmailAddressCodeInfo),
+        const DeepCollectionEquality().hash(loginEmailAddressPattern),
+        const DeepCollectionEquality().hash(pendingResetDate)
+      ]);
 }

@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// New terms of service must be accepted by the user. If the terms of service
@@ -43,8 +44,19 @@ class UpdateTermsOfService extends Update {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is UpdateTermsOfService &&
+          const DeepCollectionEquality()
+              .equals(other.termsOfServiceId, termsOfServiceId) &&
+          const DeepCollectionEquality()
+              .equals(other.termsOfService, termsOfService));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(termsOfServiceId),
+        const DeepCollectionEquality().hash(termsOfService)
+      ]);
 }

@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// A link to a chat; instant view only
@@ -54,8 +55,22 @@ class PageBlockChatLink extends PageBlock {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is PageBlockChatLink &&
+          const DeepCollectionEquality().equals(other.title, title) &&
+          const DeepCollectionEquality().equals(other.photo, photo) &&
+          const DeepCollectionEquality()
+              .equals(other.accentColorId, accentColorId) &&
+          const DeepCollectionEquality().equals(other.username, username));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(title),
+        const DeepCollectionEquality().hash(photo),
+        const DeepCollectionEquality().hash(accentColorId),
+        const DeepCollectionEquality().hash(username)
+      ]);
 }

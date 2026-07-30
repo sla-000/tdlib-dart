@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// An authorization confirmation dialog needs to be shown to the user
@@ -53,8 +54,22 @@ class LoginUrlInfoRequestConfirmation extends LoginUrlInfo {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is LoginUrlInfoRequestConfirmation &&
+          const DeepCollectionEquality().equals(other.url, url) &&
+          const DeepCollectionEquality().equals(other.domain, domain) &&
+          const DeepCollectionEquality().equals(other.botUserId, botUserId) &&
+          const DeepCollectionEquality()
+              .equals(other.requestWriteAccess, requestWriteAccess));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(url),
+        const DeepCollectionEquality().hash(domain),
+        const DeepCollectionEquality().hash(botUserId),
+        const DeepCollectionEquality().hash(requestWriteAccess)
+      ]);
 }

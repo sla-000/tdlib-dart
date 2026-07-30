@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Contains basic information about a chat folder
@@ -66,8 +67,27 @@ class ChatFolderInfo extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is ChatFolderInfo &&
+          const DeepCollectionEquality().equals(other.id, id) &&
+          const DeepCollectionEquality().equals(other.name, name) &&
+          const DeepCollectionEquality().equals(other.icon, icon) &&
+          const DeepCollectionEquality().equals(other.colorId, colorId) &&
+          const DeepCollectionEquality()
+              .equals(other.isShareable, isShareable) &&
+          const DeepCollectionEquality()
+              .equals(other.hasMyInviteLinks, hasMyInviteLinks));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(id),
+        const DeepCollectionEquality().hash(name),
+        const DeepCollectionEquality().hash(icon),
+        const DeepCollectionEquality().hash(colorId),
+        const DeepCollectionEquality().hash(isShareable),
+        const DeepCollectionEquality().hash(hasMyInviteLinks)
+      ]);
 }

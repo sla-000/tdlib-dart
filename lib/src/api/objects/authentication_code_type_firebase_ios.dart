@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// A digit-only authentication code is delivered via Firebase Authentication
@@ -50,8 +51,20 @@ class AuthenticationCodeTypeFirebaseIos extends AuthenticationCodeType {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is AuthenticationCodeTypeFirebaseIos &&
+          const DeepCollectionEquality().equals(other.receipt, receipt) &&
+          const DeepCollectionEquality()
+              .equals(other.pushTimeout, pushTimeout) &&
+          const DeepCollectionEquality().equals(other.length, length));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(receipt),
+        const DeepCollectionEquality().hash(pushTimeout),
+        const DeepCollectionEquality().hash(length)
+      ]);
 }

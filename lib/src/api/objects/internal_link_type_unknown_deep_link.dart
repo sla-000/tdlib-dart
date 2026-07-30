@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// The link is an unknown tg: link. Call getDeepLinkInfo to process the link
@@ -34,8 +35,13 @@ class InternalLinkTypeUnknownDeepLink extends InternalLinkType {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is InternalLinkTypeUnknownDeepLink &&
+          const DeepCollectionEquality().equals(other.link, link));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode =>
+      Object.hashAll([runtimeType, const DeepCollectionEquality().hash(link)]);
 }

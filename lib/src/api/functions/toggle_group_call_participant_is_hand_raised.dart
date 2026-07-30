@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Toggles whether a group call participant hand is rased; for video chats
@@ -38,8 +39,22 @@ class ToggleGroupCallParticipantIsHandRaised extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is ToggleGroupCallParticipantIsHandRaised &&
+          const DeepCollectionEquality()
+              .equals(other.groupCallId, groupCallId) &&
+          const DeepCollectionEquality()
+              .equals(other.participantId, participantId) &&
+          const DeepCollectionEquality()
+              .equals(other.isHandRaised, isHandRaised));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(groupCallId),
+        const DeepCollectionEquality().hash(participantId),
+        const DeepCollectionEquality().hash(isHandRaised)
+      ]);
 }

@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Contains a chat invite link
@@ -125,8 +126,49 @@ class ChatInviteLink extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is ChatInviteLink &&
+          const DeepCollectionEquality().equals(other.inviteLink, inviteLink) &&
+          const DeepCollectionEquality().equals(other.name, name) &&
+          const DeepCollectionEquality()
+              .equals(other.creatorUserId, creatorUserId) &&
+          const DeepCollectionEquality().equals(other.date, date) &&
+          const DeepCollectionEquality().equals(other.editDate, editDate) &&
+          const DeepCollectionEquality()
+              .equals(other.expirationDate, expirationDate) &&
+          const DeepCollectionEquality()
+              .equals(other.subscriptionPricing, subscriptionPricing) &&
+          const DeepCollectionEquality()
+              .equals(other.memberLimit, memberLimit) &&
+          const DeepCollectionEquality()
+              .equals(other.memberCount, memberCount) &&
+          const DeepCollectionEquality()
+              .equals(other.expiredMemberCount, expiredMemberCount) &&
+          const DeepCollectionEquality()
+              .equals(other.pendingJoinRequestCount, pendingJoinRequestCount) &&
+          const DeepCollectionEquality()
+              .equals(other.createsJoinRequest, createsJoinRequest) &&
+          const DeepCollectionEquality().equals(other.isPrimary, isPrimary) &&
+          const DeepCollectionEquality().equals(other.isRevoked, isRevoked));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(inviteLink),
+        const DeepCollectionEquality().hash(name),
+        const DeepCollectionEquality().hash(creatorUserId),
+        const DeepCollectionEquality().hash(date),
+        const DeepCollectionEquality().hash(editDate),
+        const DeepCollectionEquality().hash(expirationDate),
+        const DeepCollectionEquality().hash(subscriptionPricing),
+        const DeepCollectionEquality().hash(memberLimit),
+        const DeepCollectionEquality().hash(memberCount),
+        const DeepCollectionEquality().hash(expiredMemberCount),
+        const DeepCollectionEquality().hash(pendingJoinRequestCount),
+        const DeepCollectionEquality().hash(createsJoinRequest),
+        const DeepCollectionEquality().hash(isPrimary),
+        const DeepCollectionEquality().hash(isRevoked)
+      ]);
 }

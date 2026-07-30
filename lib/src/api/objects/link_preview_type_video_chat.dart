@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// The link is a link to a video chat
@@ -48,8 +49,21 @@ class LinkPreviewTypeVideoChat extends LinkPreviewType {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is LinkPreviewTypeVideoChat &&
+          const DeepCollectionEquality().equals(other.photo, photo) &&
+          const DeepCollectionEquality()
+              .equals(other.isLiveStream, isLiveStream) &&
+          const DeepCollectionEquality()
+              .equals(other.joinsAsSpeaker, joinsAsSpeaker));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(photo),
+        const DeepCollectionEquality().hash(isLiveStream),
+        const DeepCollectionEquality().hash(joinsAsSpeaker)
+      ]);
 }

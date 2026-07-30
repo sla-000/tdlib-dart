@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Recovers the 2-step verification password with a password recovery code
@@ -38,8 +39,21 @@ class RecoverAuthenticationPassword extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is RecoverAuthenticationPassword &&
+          const DeepCollectionEquality()
+              .equals(other.recoveryCode, recoveryCode) &&
+          const DeepCollectionEquality()
+              .equals(other.newPassword, newPassword) &&
+          const DeepCollectionEquality().equals(other.newHint, newHint));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(recoveryCode),
+        const DeepCollectionEquality().hash(newPassword),
+        const DeepCollectionEquality().hash(newHint)
+      ]);
 }

@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Describes a video file posted as a story
@@ -91,8 +92,38 @@ class StoryVideo extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is StoryVideo &&
+          const DeepCollectionEquality().equals(other.duration, duration) &&
+          const DeepCollectionEquality().equals(other.width, width) &&
+          const DeepCollectionEquality().equals(other.height, height) &&
+          const DeepCollectionEquality()
+              .equals(other.hasStickers, hasStickers) &&
+          const DeepCollectionEquality()
+              .equals(other.isAnimation, isAnimation) &&
+          const DeepCollectionEquality()
+              .equals(other.minithumbnail, minithumbnail) &&
+          const DeepCollectionEquality().equals(other.thumbnail, thumbnail) &&
+          const DeepCollectionEquality()
+              .equals(other.preloadPrefixSize, preloadPrefixSize) &&
+          const DeepCollectionEquality()
+              .equals(other.coverFrameTimestamp, coverFrameTimestamp) &&
+          const DeepCollectionEquality().equals(other.video, video));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(duration),
+        const DeepCollectionEquality().hash(width),
+        const DeepCollectionEquality().hash(height),
+        const DeepCollectionEquality().hash(hasStickers),
+        const DeepCollectionEquality().hash(isAnimation),
+        const DeepCollectionEquality().hash(minithumbnail),
+        const DeepCollectionEquality().hash(thumbnail),
+        const DeepCollectionEquality().hash(preloadPrefixSize),
+        const DeepCollectionEquality().hash(coverFrameTimestamp),
+        const DeepCollectionEquality().hash(video)
+      ]);
 }

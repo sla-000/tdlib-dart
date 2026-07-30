@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Searches public chats by looking for specified query in their username and
@@ -34,8 +35,17 @@ class SearchPublicChats extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is SearchPublicChats &&
+          const DeepCollectionEquality().equals(other.query, query) &&
+          const DeepCollectionEquality().equals(other.typeFilter, typeFilter));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(query),
+        const DeepCollectionEquality().hash(typeFilter)
+      ]);
 }

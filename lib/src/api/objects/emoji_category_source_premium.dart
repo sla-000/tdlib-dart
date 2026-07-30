@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// The category contains premium stickers that must be found by
@@ -27,8 +28,10 @@ class EmojiCategorySourcePremium extends EmojiCategorySource {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType && other is EmojiCategorySourcePremium);
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => runtimeType.hashCode;
 }

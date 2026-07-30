@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Applies if a user chooses some previously saved payment credentials. To
@@ -36,8 +37,14 @@ class InputCredentialsSaved extends InputCredentials {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is InputCredentialsSaved &&
+          const DeepCollectionEquality()
+              .equals(other.savedCredentialsId, savedCredentialsId));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll(
+      [runtimeType, const DeepCollectionEquality().hash(savedCredentialsId)]);
 }

@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// A new incoming pre-checkout query; for bots only. Contains full
@@ -74,8 +75,31 @@ class UpdateNewPreCheckoutQuery extends Update {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is UpdateNewPreCheckoutQuery &&
+          const DeepCollectionEquality().equals(other.id, id) &&
+          const DeepCollectionEquality()
+              .equals(other.senderUserId, senderUserId) &&
+          const DeepCollectionEquality().equals(other.currency, currency) &&
+          const DeepCollectionEquality()
+              .equals(other.totalAmount, totalAmount) &&
+          const DeepCollectionEquality()
+              .equals(other.invoicePayload, invoicePayload) &&
+          const DeepCollectionEquality()
+              .equals(other.shippingOptionId, shippingOptionId) &&
+          const DeepCollectionEquality().equals(other.orderInfo, orderInfo));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(id),
+        const DeepCollectionEquality().hash(senderUserId),
+        const DeepCollectionEquality().hash(currency),
+        const DeepCollectionEquality().hash(totalAmount),
+        const DeepCollectionEquality().hash(invoicePayload),
+        const DeepCollectionEquality().hash(shippingOptionId),
+        const DeepCollectionEquality().hash(orderInfo)
+      ]);
 }

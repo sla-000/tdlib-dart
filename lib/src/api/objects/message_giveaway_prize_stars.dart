@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Telegram Stars were received by the current user from a giveaway
@@ -67,8 +68,29 @@ class MessageGiveawayPrizeStars extends MessageContent {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is MessageGiveawayPrizeStars &&
+          const DeepCollectionEquality().equals(other.starCount, starCount) &&
+          const DeepCollectionEquality()
+              .equals(other.transactionId, transactionId) &&
+          const DeepCollectionEquality()
+              .equals(other.boostedChatId, boostedChatId) &&
+          const DeepCollectionEquality()
+              .equals(other.giveawayMessageId, giveawayMessageId) &&
+          const DeepCollectionEquality()
+              .equals(other.isUnclaimed, isUnclaimed) &&
+          const DeepCollectionEquality().equals(other.sticker, sticker));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(starCount),
+        const DeepCollectionEquality().hash(transactionId),
+        const DeepCollectionEquality().hash(boostedChatId),
+        const DeepCollectionEquality().hash(giveawayMessageId),
+        const DeepCollectionEquality().hash(isUnclaimed),
+        const DeepCollectionEquality().hash(sticker)
+      ]);
 }

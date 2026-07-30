@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// The category contains a list of similar emoji to search for in getStickers
@@ -39,8 +40,13 @@ class EmojiCategorySourceSearch extends EmojiCategorySource {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is EmojiCategorySourceSearch &&
+          const DeepCollectionEquality().equals(other.emojis, emojis));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll(
+      [runtimeType, const DeepCollectionEquality().hash(emojis)]);
 }

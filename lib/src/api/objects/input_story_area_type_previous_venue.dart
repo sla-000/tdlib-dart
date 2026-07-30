@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// An area pointing to a venue already added to the story
@@ -40,8 +41,18 @@ class InputStoryAreaTypePreviousVenue extends InputStoryAreaType {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is InputStoryAreaTypePreviousVenue &&
+          const DeepCollectionEquality()
+              .equals(other.venueProvider, venueProvider) &&
+          const DeepCollectionEquality().equals(other.venueId, venueId));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(venueProvider),
+        const DeepCollectionEquality().hash(venueId)
+      ]);
 }

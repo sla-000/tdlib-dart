@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Contains a temporary identifier of validated order information, which is
@@ -45,8 +46,19 @@ class ValidatedOrderInfo extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is ValidatedOrderInfo &&
+          const DeepCollectionEquality()
+              .equals(other.orderInfoId, orderInfoId) &&
+          const DeepCollectionEquality()
+              .equals(other.shippingOptions, shippingOptions));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(orderInfoId),
+        const DeepCollectionEquality().hash(shippingOptions)
+      ]);
 }

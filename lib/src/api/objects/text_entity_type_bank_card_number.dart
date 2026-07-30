@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// A bank card number. The getBankCardInfo method can be used to get
@@ -27,8 +28,11 @@ class TextEntityTypeBankCardNumber extends TextEntityType {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is TextEntityTypeBankCardNumber);
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => runtimeType.hashCode;
 }

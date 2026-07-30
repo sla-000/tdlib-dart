@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Adds an audio file to the beginning of the profile audio files of the
@@ -26,8 +27,13 @@ class AddProfileAudio extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is AddProfileAudio &&
+          const DeepCollectionEquality().equals(other.audio, audio));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode =>
+      Object.hashAll([runtimeType, const DeepCollectionEquality().hash(audio)]);
 }

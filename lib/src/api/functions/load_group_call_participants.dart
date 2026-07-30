@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Loads more participants of a group call; not supported in live stories.
@@ -34,8 +35,18 @@ class LoadGroupCallParticipants extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is LoadGroupCallParticipants &&
+          const DeepCollectionEquality()
+              .equals(other.groupCallId, groupCallId) &&
+          const DeepCollectionEquality().equals(other.limit, limit));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(groupCallId),
+        const DeepCollectionEquality().hash(limit)
+      ]);
 }

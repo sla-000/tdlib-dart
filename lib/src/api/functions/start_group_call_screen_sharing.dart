@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Starts screen sharing in a joined group call; not supported in live
@@ -37,8 +38,21 @@ class StartGroupCallScreenSharing extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is StartGroupCallScreenSharing &&
+          const DeepCollectionEquality()
+              .equals(other.groupCallId, groupCallId) &&
+          const DeepCollectionEquality()
+              .equals(other.audioSourceId, audioSourceId) &&
+          const DeepCollectionEquality().equals(other.payload, payload));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(groupCallId),
+        const DeepCollectionEquality().hash(audioSourceId),
+        const DeepCollectionEquality().hash(payload)
+      ]);
 }

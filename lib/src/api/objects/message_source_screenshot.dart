@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// The message was screenshotted; the source must be used only if the message
@@ -27,8 +28,10 @@ class MessageSourceScreenshot extends MessageSource {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType && other is MessageSourceScreenshot);
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => runtimeType.hashCode;
 }

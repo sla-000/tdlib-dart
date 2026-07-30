@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// The user has been successfully authorized. TDLib is now ready to answer
@@ -27,8 +28,10 @@ class AuthorizationStateReady extends AuthorizationState {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType && other is AuthorizationStateReady);
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => runtimeType.hashCode;
 }

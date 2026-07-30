@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Describes a withdrawal of earnings through Fragment
@@ -45,8 +46,18 @@ class ChatRevenueTransactionTypeFragmentWithdrawal
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is ChatRevenueTransactionTypeFragmentWithdrawal &&
+          const DeepCollectionEquality()
+              .equals(other.withdrawalDate, withdrawalDate) &&
+          const DeepCollectionEquality().equals(other.state, state));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(withdrawalDate),
+        const DeepCollectionEquality().hash(state)
+      ]);
 }

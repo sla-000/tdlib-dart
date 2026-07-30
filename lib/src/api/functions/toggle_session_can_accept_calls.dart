@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Toggles whether a session can accept incoming calls
@@ -31,8 +32,18 @@ class ToggleSessionCanAcceptCalls extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is ToggleSessionCanAcceptCalls &&
+          const DeepCollectionEquality().equals(other.sessionId, sessionId) &&
+          const DeepCollectionEquality()
+              .equals(other.canAcceptCalls, canAcceptCalls));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(sessionId),
+        const DeepCollectionEquality().hash(canAcceptCalls)
+      ]);
 }

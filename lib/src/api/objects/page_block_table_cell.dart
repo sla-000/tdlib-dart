@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Represents a cell of a table
@@ -67,8 +68,25 @@ class PageBlockTableCell extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is PageBlockTableCell &&
+          const DeepCollectionEquality().equals(other.text, text) &&
+          const DeepCollectionEquality().equals(other.isHeader, isHeader) &&
+          const DeepCollectionEquality().equals(other.colspan, colspan) &&
+          const DeepCollectionEquality().equals(other.rowspan, rowspan) &&
+          const DeepCollectionEquality().equals(other.align, align) &&
+          const DeepCollectionEquality().equals(other.valign, valign));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(text),
+        const DeepCollectionEquality().hash(isHeader),
+        const DeepCollectionEquality().hash(colspan),
+        const DeepCollectionEquality().hash(rowspan),
+        const DeepCollectionEquality().hash(align),
+        const DeepCollectionEquality().hash(valign)
+      ]);
 }

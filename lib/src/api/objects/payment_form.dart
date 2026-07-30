@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Contains information about an invoice payment form
@@ -53,8 +54,23 @@ class PaymentForm extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is PaymentForm &&
+          const DeepCollectionEquality().equals(other.id, id) &&
+          const DeepCollectionEquality().equals(other.type, type) &&
+          const DeepCollectionEquality()
+              .equals(other.sellerBotUserId, sellerBotUserId) &&
+          const DeepCollectionEquality()
+              .equals(other.productInfo, productInfo));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(id),
+        const DeepCollectionEquality().hash(type),
+        const DeepCollectionEquality().hash(sellerBotUserId),
+        const DeepCollectionEquality().hash(productInfo)
+      ]);
 }

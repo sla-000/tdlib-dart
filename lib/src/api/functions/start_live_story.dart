@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Starts a new live story on behalf of a chat; requires can_post_stories
@@ -58,8 +59,30 @@ class StartLiveStory extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is StartLiveStory &&
+          const DeepCollectionEquality().equals(other.chatId, chatId) &&
+          const DeepCollectionEquality()
+              .equals(other.privacySettings, privacySettings) &&
+          const DeepCollectionEquality()
+              .equals(other.protectContent, protectContent) &&
+          const DeepCollectionEquality()
+              .equals(other.isRtmpStream, isRtmpStream) &&
+          const DeepCollectionEquality()
+              .equals(other.enableMessages, enableMessages) &&
+          const DeepCollectionEquality()
+              .equals(other.paidMessageStarCount, paidMessageStarCount));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(chatId),
+        const DeepCollectionEquality().hash(privacySettings),
+        const DeepCollectionEquality().hash(protectContent),
+        const DeepCollectionEquality().hash(isRtmpStream),
+        const DeepCollectionEquality().hash(enableMessages),
+        const DeepCollectionEquality().hash(paidMessageStarCount)
+      ]);
 }

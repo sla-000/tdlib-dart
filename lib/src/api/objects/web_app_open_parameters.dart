@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Options to be used when a Web App is opened
@@ -48,8 +49,20 @@ class WebAppOpenParameters extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is WebAppOpenParameters &&
+          const DeepCollectionEquality().equals(other.theme, theme) &&
+          const DeepCollectionEquality()
+              .equals(other.applicationName, applicationName) &&
+          const DeepCollectionEquality().equals(other.mode, mode));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(theme),
+        const DeepCollectionEquality().hash(applicationName),
+        const DeepCollectionEquality().hash(mode)
+      ]);
 }

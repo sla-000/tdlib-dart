@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Checks the authentication of an email address. Works only when the current
@@ -26,8 +27,13 @@ class CheckAuthenticationEmailCode extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is CheckAuthenticationEmailCode &&
+          const DeepCollectionEquality().equals(other.code, code));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode =>
+      Object.hashAll([runtimeType, const DeepCollectionEquality().hash(code)]);
 }

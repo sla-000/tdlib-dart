@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// A point on a Cartesian plane
@@ -40,8 +41,17 @@ class Point extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is Point &&
+          const DeepCollectionEquality().equals(other.x, x) &&
+          const DeepCollectionEquality().equals(other.y, y));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(x),
+        const DeepCollectionEquality().hash(y)
+      ]);
 }

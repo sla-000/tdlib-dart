@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Describes a color to highlight a bot added to attachment menu
@@ -40,8 +41,17 @@ class AttachmentMenuBotColor extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is AttachmentMenuBotColor &&
+          const DeepCollectionEquality().equals(other.lightColor, lightColor) &&
+          const DeepCollectionEquality().equals(other.darkColor, darkColor));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(lightColor),
+        const DeepCollectionEquality().hash(darkColor)
+      ]);
 }

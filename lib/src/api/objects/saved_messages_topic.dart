@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Contains information about a Saved Messages topic
@@ -68,8 +69,27 @@ class SavedMessagesTopic extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is SavedMessagesTopic &&
+          const DeepCollectionEquality().equals(other.id, id) &&
+          const DeepCollectionEquality().equals(other.type, type) &&
+          const DeepCollectionEquality().equals(other.isPinned, isPinned) &&
+          const DeepCollectionEquality().equals(other.order, order) &&
+          const DeepCollectionEquality()
+              .equals(other.lastMessage, lastMessage) &&
+          const DeepCollectionEquality()
+              .equals(other.draftMessage, draftMessage));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(id),
+        const DeepCollectionEquality().hash(type),
+        const DeepCollectionEquality().hash(isPinned),
+        const DeepCollectionEquality().hash(order),
+        const DeepCollectionEquality().hash(lastMessage),
+        const DeepCollectionEquality().hash(draftMessage)
+      ]);
 }

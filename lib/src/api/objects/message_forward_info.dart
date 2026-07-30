@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Contains information about a forwarded message
@@ -57,8 +58,23 @@ class MessageForwardInfo extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is MessageForwardInfo &&
+          const DeepCollectionEquality().equals(other.origin, origin) &&
+          const DeepCollectionEquality().equals(other.date, date) &&
+          const DeepCollectionEquality().equals(other.source, source) &&
+          const DeepCollectionEquality().equals(
+              other.publicServiceAnnouncementType,
+              publicServiceAnnouncementType));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(origin),
+        const DeepCollectionEquality().hash(date),
+        const DeepCollectionEquality().hash(source),
+        const DeepCollectionEquality().hash(publicServiceAnnouncementType)
+      ]);
 }

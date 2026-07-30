@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Adds a passkey allowed to be used for the login by the current user and
@@ -32,8 +33,18 @@ class AddLoginPasskey extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is AddLoginPasskey &&
+          const DeepCollectionEquality().equals(other.clientData, clientData) &&
+          const DeepCollectionEquality()
+              .equals(other.attestationObject, attestationObject));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(clientData),
+        const DeepCollectionEquality().hash(attestationObject)
+      ]);
 }

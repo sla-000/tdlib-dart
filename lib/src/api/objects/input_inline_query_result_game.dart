@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Represents a game
@@ -48,8 +49,21 @@ class InputInlineQueryResultGame extends InputInlineQueryResult {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is InputInlineQueryResultGame &&
+          const DeepCollectionEquality().equals(other.id, id) &&
+          const DeepCollectionEquality()
+              .equals(other.gameShortName, gameShortName) &&
+          const DeepCollectionEquality()
+              .equals(other.replyMarkup, replyMarkup));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(id),
+        const DeepCollectionEquality().hash(gameShortName),
+        const DeepCollectionEquality().hash(replyMarkup)
+      ]);
 }

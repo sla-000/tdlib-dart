@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Describes a passkey
@@ -61,8 +62,26 @@ class Passkey extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is Passkey &&
+          const DeepCollectionEquality().equals(other.id, id) &&
+          const DeepCollectionEquality().equals(other.name, name) &&
+          const DeepCollectionEquality()
+              .equals(other.additionDate, additionDate) &&
+          const DeepCollectionEquality()
+              .equals(other.lastUsageDate, lastUsageDate) &&
+          const DeepCollectionEquality().equals(
+              other.softwareIconCustomEmojiId, softwareIconCustomEmojiId));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(id),
+        const DeepCollectionEquality().hash(name),
+        const DeepCollectionEquality().hash(additionDate),
+        const DeepCollectionEquality().hash(lastUsageDate),
+        const DeepCollectionEquality().hash(softwareIconCustomEmojiId)
+      ]);
 }

@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Describes the button that opens a private chat with the bot and sends a
@@ -37,8 +38,13 @@ class InlineQueryResultsButtonTypeStartBot
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is InlineQueryResultsButtonTypeStartBot &&
+          const DeepCollectionEquality().equals(other.parameter, parameter));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll(
+      [runtimeType, const DeepCollectionEquality().hash(parameter)]);
 }

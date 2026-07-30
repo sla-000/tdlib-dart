@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Adds a special handling for the opening of the specified URL
@@ -32,8 +33,18 @@ class AddWebBrowserSettingsException extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is AddWebBrowserSettingsException &&
+          const DeepCollectionEquality()
+              .equals(other.openExternalBrowser, openExternalBrowser) &&
+          const DeepCollectionEquality().equals(other.url, url));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(openExternalBrowser),
+        const DeepCollectionEquality().hash(url)
+      ]);
 }

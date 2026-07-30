@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Contains information about one website the current user is logged in with
@@ -86,8 +87,32 @@ class ConnectedWebsite extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is ConnectedWebsite &&
+          const DeepCollectionEquality().equals(other.id, id) &&
+          const DeepCollectionEquality().equals(other.domainName, domainName) &&
+          const DeepCollectionEquality().equals(other.botUserId, botUserId) &&
+          const DeepCollectionEquality().equals(other.browser, browser) &&
+          const DeepCollectionEquality().equals(other.platform, platform) &&
+          const DeepCollectionEquality().equals(other.logInDate, logInDate) &&
+          const DeepCollectionEquality()
+              .equals(other.lastActiveDate, lastActiveDate) &&
+          const DeepCollectionEquality().equals(other.ipAddress, ipAddress) &&
+          const DeepCollectionEquality().equals(other.location, location));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(id),
+        const DeepCollectionEquality().hash(domainName),
+        const DeepCollectionEquality().hash(botUserId),
+        const DeepCollectionEquality().hash(browser),
+        const DeepCollectionEquality().hash(platform),
+        const DeepCollectionEquality().hash(logInDate),
+        const DeepCollectionEquality().hash(lastActiveDate),
+        const DeepCollectionEquality().hash(ipAddress),
+        const DeepCollectionEquality().hash(location)
+      ]);
 }

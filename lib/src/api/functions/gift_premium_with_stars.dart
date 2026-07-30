@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Allows to buy a Telegram Premium subscription for another user with
@@ -45,8 +46,21 @@ class GiftPremiumWithStars extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is GiftPremiumWithStars &&
+          const DeepCollectionEquality().equals(other.userId, userId) &&
+          const DeepCollectionEquality().equals(other.starCount, starCount) &&
+          const DeepCollectionEquality().equals(other.monthCount, monthCount) &&
+          const DeepCollectionEquality().equals(other.text, text));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(userId),
+        const DeepCollectionEquality().hash(starCount),
+        const DeepCollectionEquality().hash(monthCount),
+        const DeepCollectionEquality().hash(text)
+      ]);
 }

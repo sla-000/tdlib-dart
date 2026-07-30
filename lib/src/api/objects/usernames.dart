@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Describes usernames assigned to a user, a supergroup, or a channel
@@ -70,8 +71,25 @@ class Usernames extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is Usernames &&
+          const DeepCollectionEquality()
+              .equals(other.activeUsernames, activeUsernames) &&
+          const DeepCollectionEquality()
+              .equals(other.disabledUsernames, disabledUsernames) &&
+          const DeepCollectionEquality()
+              .equals(other.editableUsername, editableUsername) &&
+          const DeepCollectionEquality()
+              .equals(other.collectibleUsernames, collectibleUsernames));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(activeUsernames),
+        const DeepCollectionEquality().hash(disabledUsernames),
+        const DeepCollectionEquality().hash(editableUsername),
+        const DeepCollectionEquality().hash(collectibleUsernames)
+      ]);
 }

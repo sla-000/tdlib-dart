@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Contains autosave settings for an autosave settings scope
@@ -47,8 +48,22 @@ class ScopeAutosaveSettings extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is ScopeAutosaveSettings &&
+          const DeepCollectionEquality()
+              .equals(other.autosavePhotos, autosavePhotos) &&
+          const DeepCollectionEquality()
+              .equals(other.autosaveVideos, autosaveVideos) &&
+          const DeepCollectionEquality()
+              .equals(other.maxVideoFileSize, maxVideoFileSize));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(autosavePhotos),
+        const DeepCollectionEquality().hash(autosaveVideos),
+        const DeepCollectionEquality().hash(maxVideoFileSize)
+      ]);
 }

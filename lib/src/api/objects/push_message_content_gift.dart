@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// A message with a gift
@@ -41,8 +42,18 @@ class PushMessageContentGift extends PushMessageContent {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is PushMessageContentGift &&
+          const DeepCollectionEquality().equals(other.starCount, starCount) &&
+          const DeepCollectionEquality()
+              .equals(other.isPrepaidUpgrade, isPrepaidUpgrade));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(starCount),
+        const DeepCollectionEquality().hash(isPrepaidUpgrade)
+      ]);
 }

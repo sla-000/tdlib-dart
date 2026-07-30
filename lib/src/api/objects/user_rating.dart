@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Contains description of user rating
@@ -59,8 +60,26 @@ class UserRating extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is UserRating &&
+          const DeepCollectionEquality().equals(other.level, level) &&
+          const DeepCollectionEquality()
+              .equals(other.isMaximumLevelReached, isMaximumLevelReached) &&
+          const DeepCollectionEquality().equals(other.rating, rating) &&
+          const DeepCollectionEquality()
+              .equals(other.currentLevelRating, currentLevelRating) &&
+          const DeepCollectionEquality()
+              .equals(other.nextLevelRating, nextLevelRating));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(level),
+        const DeepCollectionEquality().hash(isMaximumLevelReached),
+        const DeepCollectionEquality().hash(rating),
+        const DeepCollectionEquality().hash(currentLevelRating),
+        const DeepCollectionEquality().hash(nextLevelRating)
+      ]);
 }

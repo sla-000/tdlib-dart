@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Represents a supergroup or channel with zero or more members (subscribers
@@ -214,8 +215,82 @@ class Supergroup extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is Supergroup &&
+          const DeepCollectionEquality().equals(other.id, id) &&
+          const DeepCollectionEquality().equals(other.usernames, usernames) &&
+          const DeepCollectionEquality().equals(other.date, date) &&
+          const DeepCollectionEquality().equals(other.status, status) &&
+          const DeepCollectionEquality()
+              .equals(other.memberCount, memberCount) &&
+          const DeepCollectionEquality().equals(other.boostLevel, boostLevel) &&
+          const DeepCollectionEquality()
+              .equals(other.hasAutomaticTranslation, hasAutomaticTranslation) &&
+          const DeepCollectionEquality()
+              .equals(other.hasLinkedChat, hasLinkedChat) &&
+          const DeepCollectionEquality()
+              .equals(other.hasLocation, hasLocation) &&
+          const DeepCollectionEquality()
+              .equals(other.signMessages, signMessages) &&
+          const DeepCollectionEquality()
+              .equals(other.showMessageSender, showMessageSender) &&
+          const DeepCollectionEquality()
+              .equals(other.joinToSendMessages, joinToSendMessages) &&
+          const DeepCollectionEquality()
+              .equals(other.joinByRequest, joinByRequest) &&
+          const DeepCollectionEquality()
+              .equals(other.isSlowModeEnabled, isSlowModeEnabled) &&
+          const DeepCollectionEquality().equals(other.isChannel, isChannel) &&
+          const DeepCollectionEquality()
+              .equals(other.isBroadcastGroup, isBroadcastGroup) &&
+          const DeepCollectionEquality().equals(other.isForum, isForum) &&
+          const DeepCollectionEquality()
+              .equals(other.isDirectMessagesGroup, isDirectMessagesGroup) &&
+          const DeepCollectionEquality().equals(
+              other.isAdministeredDirectMessagesGroup,
+              isAdministeredDirectMessagesGroup) &&
+          const DeepCollectionEquality()
+              .equals(other.verificationStatus, verificationStatus) &&
+          const DeepCollectionEquality()
+              .equals(other.hasDirectMessagesGroup, hasDirectMessagesGroup) &&
+          const DeepCollectionEquality()
+              .equals(other.hasForumTabs, hasForumTabs) &&
+          const DeepCollectionEquality()
+              .equals(other.restrictionInfo, restrictionInfo) &&
+          const DeepCollectionEquality()
+              .equals(other.paidMessageStarCount, paidMessageStarCount) &&
+          const DeepCollectionEquality()
+              .equals(other.activeStoryState, activeStoryState));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(id),
+        const DeepCollectionEquality().hash(usernames),
+        const DeepCollectionEquality().hash(date),
+        const DeepCollectionEquality().hash(status),
+        const DeepCollectionEquality().hash(memberCount),
+        const DeepCollectionEquality().hash(boostLevel),
+        const DeepCollectionEquality().hash(hasAutomaticTranslation),
+        const DeepCollectionEquality().hash(hasLinkedChat),
+        const DeepCollectionEquality().hash(hasLocation),
+        const DeepCollectionEquality().hash(signMessages),
+        const DeepCollectionEquality().hash(showMessageSender),
+        const DeepCollectionEquality().hash(joinToSendMessages),
+        const DeepCollectionEquality().hash(joinByRequest),
+        const DeepCollectionEquality().hash(isSlowModeEnabled),
+        const DeepCollectionEquality().hash(isChannel),
+        const DeepCollectionEquality().hash(isBroadcastGroup),
+        const DeepCollectionEquality().hash(isForum),
+        const DeepCollectionEquality().hash(isDirectMessagesGroup),
+        const DeepCollectionEquality().hash(isAdministeredDirectMessagesGroup),
+        const DeepCollectionEquality().hash(verificationStatus),
+        const DeepCollectionEquality().hash(hasDirectMessagesGroup),
+        const DeepCollectionEquality().hash(hasForumTabs),
+        const DeepCollectionEquality().hash(restrictionInfo),
+        const DeepCollectionEquality().hash(paidMessageStarCount),
+        const DeepCollectionEquality().hash(activeStoryState)
+      ]);
 }

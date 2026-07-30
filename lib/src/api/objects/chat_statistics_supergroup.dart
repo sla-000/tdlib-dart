@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// A detailed statistics about a supergroup chat
@@ -151,8 +152,56 @@ class ChatStatisticsSupergroup extends ChatStatistics {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is ChatStatisticsSupergroup &&
+          const DeepCollectionEquality().equals(other.period, period) &&
+          const DeepCollectionEquality()
+              .equals(other.memberCount, memberCount) &&
+          const DeepCollectionEquality()
+              .equals(other.messageCount, messageCount) &&
+          const DeepCollectionEquality()
+              .equals(other.viewerCount, viewerCount) &&
+          const DeepCollectionEquality()
+              .equals(other.senderCount, senderCount) &&
+          const DeepCollectionEquality()
+              .equals(other.memberCountGraph, memberCountGraph) &&
+          const DeepCollectionEquality().equals(other.joinGraph, joinGraph) &&
+          const DeepCollectionEquality()
+              .equals(other.joinBySourceGraph, joinBySourceGraph) &&
+          const DeepCollectionEquality()
+              .equals(other.languageGraph, languageGraph) &&
+          const DeepCollectionEquality()
+              .equals(other.messageContentGraph, messageContentGraph) &&
+          const DeepCollectionEquality()
+              .equals(other.actionGraph, actionGraph) &&
+          const DeepCollectionEquality().equals(other.dayGraph, dayGraph) &&
+          const DeepCollectionEquality().equals(other.weekGraph, weekGraph) &&
+          const DeepCollectionEquality().equals(other.topSenders, topSenders) &&
+          const DeepCollectionEquality()
+              .equals(other.topAdministrators, topAdministrators) &&
+          const DeepCollectionEquality()
+              .equals(other.topInviters, topInviters));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(period),
+        const DeepCollectionEquality().hash(memberCount),
+        const DeepCollectionEquality().hash(messageCount),
+        const DeepCollectionEquality().hash(viewerCount),
+        const DeepCollectionEquality().hash(senderCount),
+        const DeepCollectionEquality().hash(memberCountGraph),
+        const DeepCollectionEquality().hash(joinGraph),
+        const DeepCollectionEquality().hash(joinBySourceGraph),
+        const DeepCollectionEquality().hash(languageGraph),
+        const DeepCollectionEquality().hash(messageContentGraph),
+        const DeepCollectionEquality().hash(actionGraph),
+        const DeepCollectionEquality().hash(dayGraph),
+        const DeepCollectionEquality().hash(weekGraph),
+        const DeepCollectionEquality().hash(topSenders),
+        const DeepCollectionEquality().hash(topAdministrators),
+        const DeepCollectionEquality().hash(topInviters)
+      ]);
 }

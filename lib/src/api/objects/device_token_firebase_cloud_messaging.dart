@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// A token for Firebase Cloud Messaging
@@ -41,8 +42,17 @@ class DeviceTokenFirebaseCloudMessaging extends DeviceToken {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is DeviceTokenFirebaseCloudMessaging &&
+          const DeepCollectionEquality().equals(other.token, token) &&
+          const DeepCollectionEquality().equals(other.encrypt, encrypt));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(token),
+        const DeepCollectionEquality().hash(encrypt)
+      ]);
 }

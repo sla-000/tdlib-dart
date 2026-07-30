@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Contains information about public post search limits
@@ -61,8 +62,27 @@ class PublicPostSearchLimits extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is PublicPostSearchLimits &&
+          const DeepCollectionEquality()
+              .equals(other.dailyFreeQueryCount, dailyFreeQueryCount) &&
+          const DeepCollectionEquality()
+              .equals(other.remainingFreeQueryCount, remainingFreeQueryCount) &&
+          const DeepCollectionEquality()
+              .equals(other.nextFreeQueryIn, nextFreeQueryIn) &&
+          const DeepCollectionEquality().equals(other.starCount, starCount) &&
+          const DeepCollectionEquality()
+              .equals(other.isCurrentQueryFree, isCurrentQueryFree));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(dailyFreeQueryCount),
+        const DeepCollectionEquality().hash(remainingFreeQueryCount),
+        const DeepCollectionEquality().hash(nextFreeQueryIn),
+        const DeepCollectionEquality().hash(starCount),
+        const DeepCollectionEquality().hash(isCurrentQueryFree)
+      ]);
 }

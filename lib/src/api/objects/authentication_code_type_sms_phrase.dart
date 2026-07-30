@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// An authentication code is a phrase from multiple words delivered via an
@@ -36,8 +37,13 @@ class AuthenticationCodeTypeSmsPhrase extends AuthenticationCodeType {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is AuthenticationCodeTypeSmsPhrase &&
+          const DeepCollectionEquality().equals(other.firstWord, firstWord));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll(
+      [runtimeType, const DeepCollectionEquality().hash(firstWord)]);
 }

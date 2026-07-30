@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Describes a voice note
@@ -63,8 +64,24 @@ class VoiceNote extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is VoiceNote &&
+          const DeepCollectionEquality().equals(other.duration, duration) &&
+          const DeepCollectionEquality().equals(other.waveform, waveform) &&
+          const DeepCollectionEquality().equals(other.mimeType, mimeType) &&
+          const DeepCollectionEquality()
+              .equals(other.speechRecognitionResult, speechRecognitionResult) &&
+          const DeepCollectionEquality().equals(other.voice, voice));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(duration),
+        const DeepCollectionEquality().hash(waveform),
+        const DeepCollectionEquality().hash(mimeType),
+        const DeepCollectionEquality().hash(speechRecognitionResult),
+        const DeepCollectionEquality().hash(voice)
+      ]);
 }

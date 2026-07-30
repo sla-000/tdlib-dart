@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Sets the background in a specific chat. Supported only in private and
@@ -56,8 +57,25 @@ class SetChatBackground extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is SetChatBackground &&
+          const DeepCollectionEquality().equals(other.chatId, chatId) &&
+          const DeepCollectionEquality().equals(other.background, background) &&
+          const DeepCollectionEquality().equals(other.type, type) &&
+          const DeepCollectionEquality()
+              .equals(other.darkThemeDimming, darkThemeDimming) &&
+          const DeepCollectionEquality()
+              .equals(other.onlyForSelf, onlyForSelf));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(chatId),
+        const DeepCollectionEquality().hash(background),
+        const DeepCollectionEquality().hash(type),
+        const DeepCollectionEquality().hash(darkThemeDimming),
+        const DeepCollectionEquality().hash(onlyForSelf)
+      ]);
 }

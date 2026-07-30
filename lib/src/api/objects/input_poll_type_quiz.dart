@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// A poll in quiz mode, which has predefined correct answers
@@ -57,8 +58,22 @@ class InputPollTypeQuiz extends InputPollType {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is InputPollTypeQuiz &&
+          const DeepCollectionEquality()
+              .equals(other.correctOptionIds, correctOptionIds) &&
+          const DeepCollectionEquality()
+              .equals(other.explanation, explanation) &&
+          const DeepCollectionEquality()
+              .equals(other.explanationMedia, explanationMedia));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(correctOptionIds),
+        const DeepCollectionEquality().hash(explanation),
+        const DeepCollectionEquality().hash(explanationMedia)
+      ]);
 }

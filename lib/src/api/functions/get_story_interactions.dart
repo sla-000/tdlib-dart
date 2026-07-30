@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Returns interactions with a story. The method can be called only for
@@ -63,8 +64,30 @@ class GetStoryInteractions extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is GetStoryInteractions &&
+          const DeepCollectionEquality().equals(other.storyId, storyId) &&
+          const DeepCollectionEquality().equals(other.query, query) &&
+          const DeepCollectionEquality()
+              .equals(other.onlyContacts, onlyContacts) &&
+          const DeepCollectionEquality()
+              .equals(other.preferForwards, preferForwards) &&
+          const DeepCollectionEquality()
+              .equals(other.preferWithReaction, preferWithReaction) &&
+          const DeepCollectionEquality().equals(other.offset, offset) &&
+          const DeepCollectionEquality().equals(other.limit, limit));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(storyId),
+        const DeepCollectionEquality().hash(query),
+        const DeepCollectionEquality().hash(onlyContacts),
+        const DeepCollectionEquality().hash(preferForwards),
+        const DeepCollectionEquality().hash(preferWithReaction),
+        const DeepCollectionEquality().hash(offset),
+        const DeepCollectionEquality().hash(limit)
+      ]);
 }

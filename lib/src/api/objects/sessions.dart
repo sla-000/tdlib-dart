@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Contains a list of sessions
@@ -44,8 +45,18 @@ class Sessions extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is Sessions &&
+          const DeepCollectionEquality().equals(other.sessions, sessions) &&
+          const DeepCollectionEquality()
+              .equals(other.inactiveSessionTtlDays, inactiveSessionTtlDays));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(sessions),
+        const DeepCollectionEquality().hash(inactiveSessionTtlDays)
+      ]);
 }

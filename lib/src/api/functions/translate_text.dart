@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Translates a text to the given language; must not be used in secret chats.
@@ -49,8 +50,20 @@ class TranslateText extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is TranslateText &&
+          const DeepCollectionEquality().equals(other.text, text) &&
+          const DeepCollectionEquality()
+              .equals(other.toLanguageCode, toLanguageCode) &&
+          const DeepCollectionEquality().equals(other.tone, tone));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(text),
+        const DeepCollectionEquality().hash(toLanguageCode),
+        const DeepCollectionEquality().hash(tone)
+      ]);
 }

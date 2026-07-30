@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Options to be used for generation of a link preview
@@ -63,8 +64,26 @@ class LinkPreviewOptions extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is LinkPreviewOptions &&
+          const DeepCollectionEquality().equals(other.isDisabled, isDisabled) &&
+          const DeepCollectionEquality().equals(other.url, url) &&
+          const DeepCollectionEquality()
+              .equals(other.forceSmallMedia, forceSmallMedia) &&
+          const DeepCollectionEquality()
+              .equals(other.forceLargeMedia, forceLargeMedia) &&
+          const DeepCollectionEquality()
+              .equals(other.showAboveText, showAboveText));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(isDisabled),
+        const DeepCollectionEquality().hash(url),
+        const DeepCollectionEquality().hash(forceSmallMedia),
+        const DeepCollectionEquality().hash(forceLargeMedia),
+        const DeepCollectionEquality().hash(showAboveText)
+      ]);
 }

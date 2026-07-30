@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Contains result of gift upgrading
@@ -92,8 +93,38 @@ class UpgradeGiftResult extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is UpgradeGiftResult &&
+          const DeepCollectionEquality().equals(other.gift, gift) &&
+          const DeepCollectionEquality()
+              .equals(other.receivedGiftId, receivedGiftId) &&
+          const DeepCollectionEquality().equals(other.isSaved, isSaved) &&
+          const DeepCollectionEquality()
+              .equals(other.canBeTransferred, canBeTransferred) &&
+          const DeepCollectionEquality()
+              .equals(other.transferStarCount, transferStarCount) &&
+          const DeepCollectionEquality().equals(
+              other.dropOriginalDetailsStarCount,
+              dropOriginalDetailsStarCount) &&
+          const DeepCollectionEquality()
+              .equals(other.nextTransferDate, nextTransferDate) &&
+          const DeepCollectionEquality()
+              .equals(other.nextResaleDate, nextResaleDate) &&
+          const DeepCollectionEquality().equals(other.exportDate, exportDate));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(gift),
+        const DeepCollectionEquality().hash(receivedGiftId),
+        const DeepCollectionEquality().hash(isSaved),
+        const DeepCollectionEquality().hash(canBeTransferred),
+        const DeepCollectionEquality().hash(transferStarCount),
+        const DeepCollectionEquality().hash(dropOriginalDetailsStarCount),
+        const DeepCollectionEquality().hash(nextTransferDate),
+        const DeepCollectionEquality().hash(nextResaleDate),
+        const DeepCollectionEquality().hash(exportDate)
+      ]);
 }

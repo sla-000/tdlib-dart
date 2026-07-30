@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Returns all possible variants of upgraded gifts for a regular gift
@@ -37,8 +38,22 @@ class GetUpgradedGiftVariants extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is GetUpgradedGiftVariants &&
+          const DeepCollectionEquality()
+              .equals(other.regularGiftId, regularGiftId) &&
+          const DeepCollectionEquality()
+              .equals(other.returnUpgradeModels, returnUpgradeModels) &&
+          const DeepCollectionEquality()
+              .equals(other.returnCraftModels, returnCraftModels));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(regularGiftId),
+        const DeepCollectionEquality().hash(returnUpgradeModels),
+        const DeepCollectionEquality().hash(returnCraftModels)
+      ]);
 }

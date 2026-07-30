@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Represents a link to an animated GIF or an animated (i.e., without sound)
@@ -104,8 +105,42 @@ class InputInlineQueryResultAnimation extends InputInlineQueryResult {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is InputInlineQueryResultAnimation &&
+          const DeepCollectionEquality().equals(other.id, id) &&
+          const DeepCollectionEquality().equals(other.title, title) &&
+          const DeepCollectionEquality()
+              .equals(other.thumbnailUrl, thumbnailUrl) &&
+          const DeepCollectionEquality()
+              .equals(other.thumbnailMimeType, thumbnailMimeType) &&
+          const DeepCollectionEquality().equals(other.videoUrl, videoUrl) &&
+          const DeepCollectionEquality()
+              .equals(other.videoMimeType, videoMimeType) &&
+          const DeepCollectionEquality()
+              .equals(other.videoDuration, videoDuration) &&
+          const DeepCollectionEquality().equals(other.videoWidth, videoWidth) &&
+          const DeepCollectionEquality()
+              .equals(other.videoHeight, videoHeight) &&
+          const DeepCollectionEquality()
+              .equals(other.replyMarkup, replyMarkup) &&
+          const DeepCollectionEquality()
+              .equals(other.inputMessageContent, inputMessageContent));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(id),
+        const DeepCollectionEquality().hash(title),
+        const DeepCollectionEquality().hash(thumbnailUrl),
+        const DeepCollectionEquality().hash(thumbnailMimeType),
+        const DeepCollectionEquality().hash(videoUrl),
+        const DeepCollectionEquality().hash(videoMimeType),
+        const DeepCollectionEquality().hash(videoDuration),
+        const DeepCollectionEquality().hash(videoWidth),
+        const DeepCollectionEquality().hash(videoHeight),
+        const DeepCollectionEquality().hash(replyMarkup),
+        const DeepCollectionEquality().hash(inputMessageContent)
+      ]);
 }

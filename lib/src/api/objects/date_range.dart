@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Represents a date range
@@ -40,8 +41,17 @@ class DateRange extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is DateRange &&
+          const DeepCollectionEquality().equals(other.startDate, startDate) &&
+          const DeepCollectionEquality().equals(other.endDate, endDate));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(startDate),
+        const DeepCollectionEquality().hash(endDate)
+      ]);
 }

@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// A document (general file) to be sent
@@ -50,8 +51,20 @@ class InputDocument extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is InputDocument &&
+          const DeepCollectionEquality().equals(other.document, document) &&
+          const DeepCollectionEquality().equals(other.thumbnail, thumbnail) &&
+          const DeepCollectionEquality().equals(
+              other.disableContentTypeDetection, disableContentTypeDetection));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(document),
+        const DeepCollectionEquality().hash(thumbnail),
+        const DeepCollectionEquality().hash(disableContentTypeDetection)
+      ]);
 }

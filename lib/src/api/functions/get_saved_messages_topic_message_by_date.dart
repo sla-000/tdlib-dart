@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Returns the last message sent in a Saved Messages topic no later than the
@@ -33,8 +34,18 @@ class GetSavedMessagesTopicMessageByDate extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is GetSavedMessagesTopicMessageByDate &&
+          const DeepCollectionEquality()
+              .equals(other.savedMessagesTopicId, savedMessagesTopicId) &&
+          const DeepCollectionEquality().equals(other.date, date));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(savedMessagesTopicId),
+        const DeepCollectionEquality().hash(date)
+      ]);
 }

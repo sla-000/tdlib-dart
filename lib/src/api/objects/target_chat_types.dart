@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Describes allowed types for the target chat
@@ -52,8 +53,25 @@ class TargetChatTypes extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is TargetChatTypes &&
+          const DeepCollectionEquality()
+              .equals(other.allowUserChats, allowUserChats) &&
+          const DeepCollectionEquality()
+              .equals(other.allowBotChats, allowBotChats) &&
+          const DeepCollectionEquality()
+              .equals(other.allowGroupChats, allowGroupChats) &&
+          const DeepCollectionEquality()
+              .equals(other.allowChannelChats, allowChannelChats));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(allowUserChats),
+        const DeepCollectionEquality().hash(allowBotChats),
+        const DeepCollectionEquality().hash(allowGroupChats),
+        const DeepCollectionEquality().hash(allowChannelChats)
+      ]);
 }

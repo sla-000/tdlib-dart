@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Contains a list of chat themes based on upgraded gifts
@@ -44,8 +45,17 @@ class GiftChatThemes extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is GiftChatThemes &&
+          const DeepCollectionEquality().equals(other.themes, themes) &&
+          const DeepCollectionEquality().equals(other.nextOffset, nextOffset));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(themes),
+        const DeepCollectionEquality().hash(nextOffset)
+      ]);
 }

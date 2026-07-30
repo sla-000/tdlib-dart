@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Returns a list of service actions taken by chat members and administrators
@@ -56,8 +57,26 @@ class GetChatEventLog extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is GetChatEventLog &&
+          const DeepCollectionEquality().equals(other.chatId, chatId) &&
+          const DeepCollectionEquality().equals(other.query, query) &&
+          const DeepCollectionEquality()
+              .equals(other.fromEventId, fromEventId) &&
+          const DeepCollectionEquality().equals(other.limit, limit) &&
+          const DeepCollectionEquality().equals(other.filters, filters) &&
+          const DeepCollectionEquality().equals(other.userIds, userIds));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(chatId),
+        const DeepCollectionEquality().hash(query),
+        const DeepCollectionEquality().hash(fromEventId),
+        const DeepCollectionEquality().hash(limit),
+        const DeepCollectionEquality().hash(filters),
+        const DeepCollectionEquality().hash(userIds)
+      ]);
 }

@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Contains information about Telegram Stars earned by a user or a chat
@@ -63,8 +64,28 @@ class StarRevenueStatus extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is StarRevenueStatus &&
+          const DeepCollectionEquality()
+              .equals(other.totalAmount, totalAmount) &&
+          const DeepCollectionEquality()
+              .equals(other.currentAmount, currentAmount) &&
+          const DeepCollectionEquality()
+              .equals(other.availableAmount, availableAmount) &&
+          const DeepCollectionEquality()
+              .equals(other.withdrawalEnabled, withdrawalEnabled) &&
+          const DeepCollectionEquality()
+              .equals(other.nextWithdrawalIn, nextWithdrawalIn));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(totalAmount),
+        const DeepCollectionEquality().hash(currentAmount),
+        const DeepCollectionEquality().hash(availableAmount),
+        const DeepCollectionEquality().hash(withdrawalEnabled),
+        const DeepCollectionEquality().hash(nextWithdrawalIn)
+      ]);
 }

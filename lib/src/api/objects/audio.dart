@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Describes an audio file. Audio is usually in MP3 or M4A format
@@ -93,8 +94,34 @@ class Audio extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is Audio &&
+          const DeepCollectionEquality().equals(other.duration, duration) &&
+          const DeepCollectionEquality().equals(other.title, title) &&
+          const DeepCollectionEquality().equals(other.performer, performer) &&
+          const DeepCollectionEquality().equals(other.fileName, fileName) &&
+          const DeepCollectionEquality().equals(other.mimeType, mimeType) &&
+          const DeepCollectionEquality()
+              .equals(other.albumCoverMinithumbnail, albumCoverMinithumbnail) &&
+          const DeepCollectionEquality()
+              .equals(other.albumCoverThumbnail, albumCoverThumbnail) &&
+          const DeepCollectionEquality()
+              .equals(other.externalAlbumCovers, externalAlbumCovers) &&
+          const DeepCollectionEquality().equals(other.audio, audio));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(duration),
+        const DeepCollectionEquality().hash(title),
+        const DeepCollectionEquality().hash(performer),
+        const DeepCollectionEquality().hash(fileName),
+        const DeepCollectionEquality().hash(mimeType),
+        const DeepCollectionEquality().hash(albumCoverMinithumbnail),
+        const DeepCollectionEquality().hash(albumCoverThumbnail),
+        const DeepCollectionEquality().hash(externalAlbumCovers),
+        const DeepCollectionEquality().hash(audio)
+      ]);
 }

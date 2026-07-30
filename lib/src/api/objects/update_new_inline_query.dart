@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// A new incoming inline query; for bots only
@@ -66,8 +67,27 @@ class UpdateNewInlineQuery extends Update {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is UpdateNewInlineQuery &&
+          const DeepCollectionEquality().equals(other.id, id) &&
+          const DeepCollectionEquality()
+              .equals(other.senderUserId, senderUserId) &&
+          const DeepCollectionEquality()
+              .equals(other.userLocation, userLocation) &&
+          const DeepCollectionEquality().equals(other.chatType, chatType) &&
+          const DeepCollectionEquality().equals(other.query, query) &&
+          const DeepCollectionEquality().equals(other.offset, offset));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(id),
+        const DeepCollectionEquality().hash(senderUserId),
+        const DeepCollectionEquality().hash(userLocation),
+        const DeepCollectionEquality().hash(chatType),
+        const DeepCollectionEquality().hash(query),
+        const DeepCollectionEquality().hash(offset)
+      ]);
 }

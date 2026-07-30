@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// A rule to restrict all members of specified basic groups and supergroups
@@ -40,8 +41,13 @@ class UserPrivacySettingRuleRestrictChatMembers extends UserPrivacySettingRule {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is UserPrivacySettingRuleRestrictChatMembers &&
+          const DeepCollectionEquality().equals(other.chatIds, chatIds));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll(
+      [runtimeType, const DeepCollectionEquality().hash(chatIds)]);
 }

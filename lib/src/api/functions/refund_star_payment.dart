@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Refunds a previously done payment in Telegram Stars; for bots only
@@ -30,8 +31,18 @@ class RefundStarPayment extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is RefundStarPayment &&
+          const DeepCollectionEquality().equals(other.userId, userId) &&
+          const DeepCollectionEquality()
+              .equals(other.telegramPaymentChargeId, telegramPaymentChargeId));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(userId),
+        const DeepCollectionEquality().hash(telegramPaymentChargeId)
+      ]);
 }

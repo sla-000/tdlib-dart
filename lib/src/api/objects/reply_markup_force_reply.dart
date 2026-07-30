@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Instructs application to force a reply to this message
@@ -43,8 +44,18 @@ class ReplyMarkupForceReply extends ReplyMarkup {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is ReplyMarkupForceReply &&
+          const DeepCollectionEquality().equals(other.isPersonal, isPersonal) &&
+          const DeepCollectionEquality()
+              .equals(other.inputFieldPlaceholder, inputFieldPlaceholder));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(isPersonal),
+        const DeepCollectionEquality().hash(inputFieldPlaceholder)
+      ]);
 }

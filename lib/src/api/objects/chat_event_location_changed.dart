@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// The supergroup location was changed
@@ -42,8 +43,19 @@ class ChatEventLocationChanged extends ChatEventAction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is ChatEventLocationChanged &&
+          const DeepCollectionEquality()
+              .equals(other.oldLocation, oldLocation) &&
+          const DeepCollectionEquality()
+              .equals(other.newLocation, newLocation));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(oldLocation),
+        const DeepCollectionEquality().hash(newLocation)
+      ]);
 }

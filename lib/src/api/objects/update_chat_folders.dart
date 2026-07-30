@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// The list of chat folders or a chat folder has changed
@@ -50,8 +51,22 @@ class UpdateChatFolders extends Update {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is UpdateChatFolders &&
+          const DeepCollectionEquality()
+              .equals(other.chatFolders, chatFolders) &&
+          const DeepCollectionEquality()
+              .equals(other.mainChatListPosition, mainChatListPosition) &&
+          const DeepCollectionEquality()
+              .equals(other.areTagsEnabled, areTagsEnabled));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(chatFolders),
+        const DeepCollectionEquality().hash(mainChatListPosition),
+        const DeepCollectionEquality().hash(areTagsEnabled)
+      ]);
 }

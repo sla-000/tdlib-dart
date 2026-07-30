@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Contains information about a user who added paid reactions
@@ -61,8 +62,24 @@ class PaidReactor extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is PaidReactor &&
+          const DeepCollectionEquality().equals(other.senderId, senderId) &&
+          const DeepCollectionEquality().equals(other.starCount, starCount) &&
+          const DeepCollectionEquality().equals(other.isTop, isTop) &&
+          const DeepCollectionEquality().equals(other.isMe, isMe) &&
+          const DeepCollectionEquality()
+              .equals(other.isAnonymous, isAnonymous));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(senderId),
+        const DeepCollectionEquality().hash(starCount),
+        const DeepCollectionEquality().hash(isTop),
+        const DeepCollectionEquality().hash(isMe),
+        const DeepCollectionEquality().hash(isAnonymous)
+      ]);
 }

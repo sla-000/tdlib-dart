@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Contains information about the total amount of data that was used to send
@@ -56,8 +57,23 @@ class NetworkStatisticsEntryFile extends NetworkStatisticsEntry {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is NetworkStatisticsEntryFile &&
+          const DeepCollectionEquality().equals(other.fileType, fileType) &&
+          const DeepCollectionEquality()
+              .equals(other.networkType, networkType) &&
+          const DeepCollectionEquality().equals(other.sentBytes, sentBytes) &&
+          const DeepCollectionEquality()
+              .equals(other.receivedBytes, receivedBytes));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(fileType),
+        const DeepCollectionEquality().hash(networkType),
+        const DeepCollectionEquality().hash(sentBytes),
+        const DeepCollectionEquality().hash(receivedBytes)
+      ]);
 }

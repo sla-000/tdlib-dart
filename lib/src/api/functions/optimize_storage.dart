@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Optimizes storage usage, i.e. deletes some files and returns new storage
@@ -80,8 +81,34 @@ class OptimizeStorage extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is OptimizeStorage &&
+          const DeepCollectionEquality().equals(other.size, size) &&
+          const DeepCollectionEquality().equals(other.ttl, ttl) &&
+          const DeepCollectionEquality().equals(other.count, count) &&
+          const DeepCollectionEquality()
+              .equals(other.immunityDelay, immunityDelay) &&
+          const DeepCollectionEquality().equals(other.fileTypes, fileTypes) &&
+          const DeepCollectionEquality().equals(other.chatIds, chatIds) &&
+          const DeepCollectionEquality()
+              .equals(other.excludeChatIds, excludeChatIds) &&
+          const DeepCollectionEquality().equals(
+              other.returnDeletedFileStatistics, returnDeletedFileStatistics) &&
+          const DeepCollectionEquality().equals(other.chatLimit, chatLimit));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(size),
+        const DeepCollectionEquality().hash(ttl),
+        const DeepCollectionEquality().hash(count),
+        const DeepCollectionEquality().hash(immunityDelay),
+        const DeepCollectionEquality().hash(fileTypes),
+        const DeepCollectionEquality().hash(chatIds),
+        const DeepCollectionEquality().hash(excludeChatIds),
+        const DeepCollectionEquality().hash(returnDeletedFileStatistics),
+        const DeepCollectionEquality().hash(chatLimit)
+      ]);
 }

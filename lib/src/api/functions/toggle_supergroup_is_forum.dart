@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Toggles whether the supergroup is a forum; requires owner privileges in
@@ -36,8 +37,21 @@ class ToggleSupergroupIsForum extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is ToggleSupergroupIsForum &&
+          const DeepCollectionEquality()
+              .equals(other.supergroupId, supergroupId) &&
+          const DeepCollectionEquality().equals(other.isForum, isForum) &&
+          const DeepCollectionEquality()
+              .equals(other.hasForumTabs, hasForumTabs));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(supergroupId),
+        const DeepCollectionEquality().hash(isForum),
+        const DeepCollectionEquality().hash(hasForumTabs)
+      ]);
 }

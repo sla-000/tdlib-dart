@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// The link is a link to a media album consisting of photos and videos
@@ -43,8 +44,17 @@ class LinkPreviewTypeAlbum extends LinkPreviewType {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is LinkPreviewTypeAlbum &&
+          const DeepCollectionEquality().equals(other.media, media) &&
+          const DeepCollectionEquality().equals(other.caption, caption));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(media),
+        const DeepCollectionEquality().hash(caption)
+      ]);
 }

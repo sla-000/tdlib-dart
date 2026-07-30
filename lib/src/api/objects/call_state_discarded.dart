@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// The call has ended successfully
@@ -54,8 +55,22 @@ class CallStateDiscarded extends CallState {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is CallStateDiscarded &&
+          const DeepCollectionEquality().equals(other.reason, reason) &&
+          const DeepCollectionEquality().equals(other.needRating, needRating) &&
+          const DeepCollectionEquality()
+              .equals(other.needDebugInformation, needDebugInformation) &&
+          const DeepCollectionEquality().equals(other.needLog, needLog));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(reason),
+        const DeepCollectionEquality().hash(needRating),
+        const DeepCollectionEquality().hash(needDebugInformation),
+        const DeepCollectionEquality().hash(needLog)
+      ]);
 }

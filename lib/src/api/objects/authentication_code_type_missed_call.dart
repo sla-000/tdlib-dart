@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// An authentication code is delivered by an immediately canceled call to the
@@ -44,8 +45,18 @@ class AuthenticationCodeTypeMissedCall extends AuthenticationCodeType {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is AuthenticationCodeTypeMissedCall &&
+          const DeepCollectionEquality()
+              .equals(other.phoneNumberPrefix, phoneNumberPrefix) &&
+          const DeepCollectionEquality().equals(other.length, length));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(phoneNumberPrefix),
+        const DeepCollectionEquality().hash(length)
+      ]);
 }

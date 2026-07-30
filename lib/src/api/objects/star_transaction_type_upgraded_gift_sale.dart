@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// The transaction is a sale of an upgraded gift; relevant for regular users
@@ -63,8 +64,25 @@ class StarTransactionTypeUpgradedGiftSale extends StarTransactionType {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is StarTransactionTypeUpgradedGiftSale &&
+          const DeepCollectionEquality().equals(other.userId, userId) &&
+          const DeepCollectionEquality().equals(other.gift, gift) &&
+          const DeepCollectionEquality()
+              .equals(other.commissionPerMille, commissionPerMille) &&
+          const DeepCollectionEquality()
+              .equals(other.commissionStarAmount, commissionStarAmount) &&
+          const DeepCollectionEquality().equals(other.viaOffer, viaOffer));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(userId),
+        const DeepCollectionEquality().hash(gift),
+        const DeepCollectionEquality().hash(commissionPerMille),
+        const DeepCollectionEquality().hash(commissionStarAmount),
+        const DeepCollectionEquality().hash(viaOffer)
+      ]);
 }

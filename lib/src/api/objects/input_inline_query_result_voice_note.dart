@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Represents a link to an opus-encoded audio file within an OGG container,
@@ -71,8 +72,29 @@ class InputInlineQueryResultVoiceNote extends InputInlineQueryResult {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is InputInlineQueryResultVoiceNote &&
+          const DeepCollectionEquality().equals(other.id, id) &&
+          const DeepCollectionEquality().equals(other.title, title) &&
+          const DeepCollectionEquality()
+              .equals(other.voiceNoteUrl, voiceNoteUrl) &&
+          const DeepCollectionEquality()
+              .equals(other.voiceNoteDuration, voiceNoteDuration) &&
+          const DeepCollectionEquality()
+              .equals(other.replyMarkup, replyMarkup) &&
+          const DeepCollectionEquality()
+              .equals(other.inputMessageContent, inputMessageContent));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(id),
+        const DeepCollectionEquality().hash(title),
+        const DeepCollectionEquality().hash(voiceNoteUrl),
+        const DeepCollectionEquality().hash(voiceNoteDuration),
+        const DeepCollectionEquality().hash(replyMarkup),
+        const DeepCollectionEquality().hash(inputMessageContent)
+      ]);
 }

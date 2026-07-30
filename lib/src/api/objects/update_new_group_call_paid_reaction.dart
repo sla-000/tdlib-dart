@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// A new paid reaction was received in a live story group call
@@ -48,8 +49,20 @@ class UpdateNewGroupCallPaidReaction extends Update {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is UpdateNewGroupCallPaidReaction &&
+          const DeepCollectionEquality()
+              .equals(other.groupCallId, groupCallId) &&
+          const DeepCollectionEquality().equals(other.senderId, senderId) &&
+          const DeepCollectionEquality().equals(other.starCount, starCount));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(groupCallId),
+        const DeepCollectionEquality().hash(senderId),
+        const DeepCollectionEquality().hash(starCount)
+      ]);
 }

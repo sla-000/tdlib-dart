@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Describes settings for messages that are automatically sent by a Telegram
@@ -56,8 +57,22 @@ class BusinessAwayMessageSettings extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is BusinessAwayMessageSettings &&
+          const DeepCollectionEquality().equals(other.shortcutId, shortcutId) &&
+          const DeepCollectionEquality().equals(other.recipients, recipients) &&
+          const DeepCollectionEquality().equals(other.schedule, schedule) &&
+          const DeepCollectionEquality()
+              .equals(other.offlineOnly, offlineOnly));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(shortcutId),
+        const DeepCollectionEquality().hash(recipients),
+        const DeepCollectionEquality().hash(schedule),
+        const DeepCollectionEquality().hash(offlineOnly)
+      ]);
 }

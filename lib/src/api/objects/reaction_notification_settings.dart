@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Contains information about notification settings for reactions and poll
@@ -66,8 +67,27 @@ class ReactionNotificationSettings extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is ReactionNotificationSettings &&
+          const DeepCollectionEquality()
+              .equals(other.messageReactionSource, messageReactionSource) &&
+          const DeepCollectionEquality()
+              .equals(other.storyReactionSource, storyReactionSource) &&
+          const DeepCollectionEquality()
+              .equals(other.pollVoteSource, pollVoteSource) &&
+          const DeepCollectionEquality().equals(other.soundId, soundId) &&
+          const DeepCollectionEquality()
+              .equals(other.showPreview, showPreview));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(messageReactionSource),
+        const DeepCollectionEquality().hash(storyReactionSource),
+        const DeepCollectionEquality().hash(pollVoteSource),
+        const DeepCollectionEquality().hash(soundId),
+        const DeepCollectionEquality().hash(showPreview)
+      ]);
 }

@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// An object of this type can be returned on every function call, in case of
@@ -43,8 +44,17 @@ class TdError extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is TdError &&
+          const DeepCollectionEquality().equals(other.code, code) &&
+          const DeepCollectionEquality().equals(other.message, message));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(code),
+        const DeepCollectionEquality().hash(message)
+      ]);
 }

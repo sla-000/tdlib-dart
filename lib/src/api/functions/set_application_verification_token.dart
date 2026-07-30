@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Informs TDLib that application or reCAPTCHA verification has been
@@ -37,8 +38,18 @@ class SetApplicationVerificationToken extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is SetApplicationVerificationToken &&
+          const DeepCollectionEquality()
+              .equals(other.verificationId, verificationId) &&
+          const DeepCollectionEquality().equals(other.token, token));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(verificationId),
+        const DeepCollectionEquality().hash(token)
+      ]);
 }

@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Contains a list of chat revenue transactions
@@ -51,8 +52,20 @@ class ChatRevenueTransactions extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is ChatRevenueTransactions &&
+          const DeepCollectionEquality().equals(other.gramAmount, gramAmount) &&
+          const DeepCollectionEquality()
+              .equals(other.transactions, transactions) &&
+          const DeepCollectionEquality().equals(other.nextOffset, nextOffset));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(gramAmount),
+        const DeepCollectionEquality().hash(transactions),
+        const DeepCollectionEquality().hash(nextOffset)
+      ]);
 }

@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Describes a style that can be used to compose a text
@@ -87,8 +88,35 @@ class TextCompositionStyle extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is TextCompositionStyle &&
+          const DeepCollectionEquality().equals(other.name, name) &&
+          const DeepCollectionEquality()
+              .equals(other.customEmojiId, customEmojiId) &&
+          const DeepCollectionEquality().equals(other.title, title) &&
+          const DeepCollectionEquality().equals(other.isCustom, isCustom) &&
+          const DeepCollectionEquality().equals(other.isCreator, isCreator) &&
+          const DeepCollectionEquality()
+              .equals(other.installCount, installCount) &&
+          const DeepCollectionEquality().equals(other.prompt, prompt) &&
+          const DeepCollectionEquality()
+              .equals(other.creatorUserId, creatorUserId) &&
+          const DeepCollectionEquality()
+              .equals(other.englishExample, englishExample));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(name),
+        const DeepCollectionEquality().hash(customEmojiId),
+        const DeepCollectionEquality().hash(title),
+        const DeepCollectionEquality().hash(isCustom),
+        const DeepCollectionEquality().hash(isCreator),
+        const DeepCollectionEquality().hash(installCount),
+        const DeepCollectionEquality().hash(prompt),
+        const DeepCollectionEquality().hash(creatorUserId),
+        const DeepCollectionEquality().hash(englishExample)
+      ]);
 }

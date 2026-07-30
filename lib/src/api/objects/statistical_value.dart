@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// A value with information about its recent changes
@@ -46,8 +47,21 @@ class StatisticalValue extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is StatisticalValue &&
+          const DeepCollectionEquality().equals(other.value, value) &&
+          const DeepCollectionEquality()
+              .equals(other.previousValue, previousValue) &&
+          const DeepCollectionEquality()
+              .equals(other.growthRatePercentage, growthRatePercentage));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(value),
+        const DeepCollectionEquality().hash(previousValue),
+        const DeepCollectionEquality().hash(growthRatePercentage)
+      ]);
 }

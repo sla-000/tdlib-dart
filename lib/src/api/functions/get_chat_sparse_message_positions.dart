@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Returns sparse positions of messages of the specified type in the chat to
@@ -58,8 +59,25 @@ class GetChatSparseMessagePositions extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is GetChatSparseMessagePositions &&
+          const DeepCollectionEquality().equals(other.chatId, chatId) &&
+          const DeepCollectionEquality().equals(other.filter, filter) &&
+          const DeepCollectionEquality()
+              .equals(other.fromMessageId, fromMessageId) &&
+          const DeepCollectionEquality().equals(other.limit, limit) &&
+          const DeepCollectionEquality()
+              .equals(other.savedMessagesTopicId, savedMessagesTopicId));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(chatId),
+        const DeepCollectionEquality().hash(filter),
+        const DeepCollectionEquality().hash(fromMessageId),
+        const DeepCollectionEquality().hash(limit),
+        const DeepCollectionEquality().hash(savedMessagesTopicId)
+      ]);
 }

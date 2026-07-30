@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// A button that requests users to be shared by the current user; available
@@ -88,8 +89,38 @@ class KeyboardButtonTypeRequestUsers extends KeyboardButtonType {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is KeyboardButtonTypeRequestUsers &&
+          const DeepCollectionEquality().equals(other.id, id) &&
+          const DeepCollectionEquality()
+              .equals(other.restrictUserIsBot, restrictUserIsBot) &&
+          const DeepCollectionEquality().equals(other.userIsBot, userIsBot) &&
+          const DeepCollectionEquality()
+              .equals(other.restrictUserIsPremium, restrictUserIsPremium) &&
+          const DeepCollectionEquality()
+              .equals(other.userIsPremium, userIsPremium) &&
+          const DeepCollectionEquality()
+              .equals(other.maxQuantity, maxQuantity) &&
+          const DeepCollectionEquality()
+              .equals(other.requestName, requestName) &&
+          const DeepCollectionEquality()
+              .equals(other.requestUsername, requestUsername) &&
+          const DeepCollectionEquality()
+              .equals(other.requestPhoto, requestPhoto));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(id),
+        const DeepCollectionEquality().hash(restrictUserIsBot),
+        const DeepCollectionEquality().hash(userIsBot),
+        const DeepCollectionEquality().hash(restrictUserIsPremium),
+        const DeepCollectionEquality().hash(userIsPremium),
+        const DeepCollectionEquality().hash(maxQuantity),
+        const DeepCollectionEquality().hash(requestName),
+        const DeepCollectionEquality().hash(requestUsername),
+        const DeepCollectionEquality().hash(requestPhoto)
+      ]);
 }

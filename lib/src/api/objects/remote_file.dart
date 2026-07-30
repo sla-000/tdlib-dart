@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Represents a remote file
@@ -72,8 +73,26 @@ class RemoteFile extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is RemoteFile &&
+          const DeepCollectionEquality().equals(other.id, id) &&
+          const DeepCollectionEquality().equals(other.uniqueId, uniqueId) &&
+          const DeepCollectionEquality()
+              .equals(other.isUploadingActive, isUploadingActive) &&
+          const DeepCollectionEquality()
+              .equals(other.isUploadingCompleted, isUploadingCompleted) &&
+          const DeepCollectionEquality()
+              .equals(other.uploadedSize, uploadedSize));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(id),
+        const DeepCollectionEquality().hash(uniqueId),
+        const DeepCollectionEquality().hash(isUploadingActive),
+        const DeepCollectionEquality().hash(isUploadingCompleted),
+        const DeepCollectionEquality().hash(uploadedSize)
+      ]);
 }

@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// A personal document, containing some information about a user
@@ -47,8 +48,18 @@ class PersonalDocument extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is PersonalDocument &&
+          const DeepCollectionEquality().equals(other.files, files) &&
+          const DeepCollectionEquality()
+              .equals(other.translation, translation));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(files),
+        const DeepCollectionEquality().hash(translation)
+      ]);
 }

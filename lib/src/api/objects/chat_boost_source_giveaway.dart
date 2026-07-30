@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// The chat created a giveaway
@@ -63,8 +64,25 @@ class ChatBoostSourceGiveaway extends ChatBoostSource {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is ChatBoostSourceGiveaway &&
+          const DeepCollectionEquality().equals(other.userId, userId) &&
+          const DeepCollectionEquality().equals(other.giftCode, giftCode) &&
+          const DeepCollectionEquality().equals(other.starCount, starCount) &&
+          const DeepCollectionEquality()
+              .equals(other.giveawayMessageId, giveawayMessageId) &&
+          const DeepCollectionEquality()
+              .equals(other.isUnclaimed, isUnclaimed));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(userId),
+        const DeepCollectionEquality().hash(giftCode),
+        const DeepCollectionEquality().hash(starCount),
+        const DeepCollectionEquality().hash(giveawayMessageId),
+        const DeepCollectionEquality().hash(isUnclaimed)
+      ]);
 }

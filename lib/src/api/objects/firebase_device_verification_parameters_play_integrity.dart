@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Device verification must be performed with the classic Play Integrity
@@ -45,8 +46,18 @@ class FirebaseDeviceVerificationParametersPlayIntegrity
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is FirebaseDeviceVerificationParametersPlayIntegrity &&
+          const DeepCollectionEquality().equals(other.nonce, nonce) &&
+          const DeepCollectionEquality()
+              .equals(other.cloudProjectNumber, cloudProjectNumber));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(nonce),
+        const DeepCollectionEquality().hash(cloudProjectNumber)
+      ]);
 }

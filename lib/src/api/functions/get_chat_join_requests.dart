@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Returns pending join requests in a chat
@@ -50,8 +51,24 @@ class GetChatJoinRequests extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is GetChatJoinRequests &&
+          const DeepCollectionEquality().equals(other.chatId, chatId) &&
+          const DeepCollectionEquality().equals(other.inviteLink, inviteLink) &&
+          const DeepCollectionEquality().equals(other.query, query) &&
+          const DeepCollectionEquality()
+              .equals(other.offsetRequest, offsetRequest) &&
+          const DeepCollectionEquality().equals(other.limit, limit));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(chatId),
+        const DeepCollectionEquality().hash(inviteLink),
+        const DeepCollectionEquality().hash(query),
+        const DeepCollectionEquality().hash(offsetRequest),
+        const DeepCollectionEquality().hash(limit)
+      ]);
 }

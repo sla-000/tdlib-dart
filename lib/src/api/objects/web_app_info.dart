@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Contains information about a Web App
@@ -40,8 +41,17 @@ class WebAppInfo extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is WebAppInfo &&
+          const DeepCollectionEquality().equals(other.launchId, launchId) &&
+          const DeepCollectionEquality().equals(other.url, url));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(launchId),
+        const DeepCollectionEquality().hash(url)
+      ]);
 }

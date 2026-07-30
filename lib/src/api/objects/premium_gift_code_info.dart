@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Contains information about a Telegram Premium gift code
@@ -83,8 +84,32 @@ class PremiumGiftCodeInfo extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is PremiumGiftCodeInfo &&
+          const DeepCollectionEquality().equals(other.creatorId, creatorId) &&
+          const DeepCollectionEquality()
+              .equals(other.creationDate, creationDate) &&
+          const DeepCollectionEquality()
+              .equals(other.isFromGiveaway, isFromGiveaway) &&
+          const DeepCollectionEquality()
+              .equals(other.giveawayMessageId, giveawayMessageId) &&
+          const DeepCollectionEquality().equals(other.monthCount, monthCount) &&
+          const DeepCollectionEquality().equals(other.dayCount, dayCount) &&
+          const DeepCollectionEquality().equals(other.userId, userId) &&
+          const DeepCollectionEquality().equals(other.useDate, useDate));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(creatorId),
+        const DeepCollectionEquality().hash(creationDate),
+        const DeepCollectionEquality().hash(isFromGiveaway),
+        const DeepCollectionEquality().hash(giveawayMessageId),
+        const DeepCollectionEquality().hash(monthCount),
+        const DeepCollectionEquality().hash(dayCount),
+        const DeepCollectionEquality().hash(userId),
+        const DeepCollectionEquality().hash(useDate)
+      ]);
 }

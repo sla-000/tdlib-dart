@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// The message was originally sent on behalf of a chat
@@ -41,8 +42,19 @@ class MessageOriginChat extends MessageOrigin {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is MessageOriginChat &&
+          const DeepCollectionEquality()
+              .equals(other.senderChatId, senderChatId) &&
+          const DeepCollectionEquality()
+              .equals(other.authorSignature, authorSignature));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(senderChatId),
+        const DeepCollectionEquality().hash(authorSignature)
+      ]);
 }

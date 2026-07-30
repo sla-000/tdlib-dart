@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Contains settings for gift receiving for a user
@@ -43,8 +44,19 @@ class GiftSettings extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is GiftSettings &&
+          const DeepCollectionEquality()
+              .equals(other.showGiftButton, showGiftButton) &&
+          const DeepCollectionEquality()
+              .equals(other.acceptedGiftTypes, acceptedGiftTypes));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(showGiftButton),
+        const DeepCollectionEquality().hash(acceptedGiftTypes)
+      ]);
 }

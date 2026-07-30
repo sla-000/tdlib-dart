@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Changes the verification status of a user or a chat by an owned bot
@@ -41,8 +42,20 @@ class SetMessageSenderBotVerification extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is SetMessageSenderBotVerification &&
+          const DeepCollectionEquality().equals(other.botUserId, botUserId) &&
+          const DeepCollectionEquality().equals(other.verifiedId, verifiedId) &&
+          const DeepCollectionEquality()
+              .equals(other.customDescription, customDescription));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(botUserId),
+        const DeepCollectionEquality().hash(verifiedId),
+        const DeepCollectionEquality().hash(customDescription)
+      ]);
 }

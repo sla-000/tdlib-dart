@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// The author and publishing date of a page; instant view only
@@ -41,8 +42,18 @@ class PageBlockAuthorDate extends PageBlock {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is PageBlockAuthorDate &&
+          const DeepCollectionEquality().equals(other.author, author) &&
+          const DeepCollectionEquality()
+              .equals(other.publishDate, publishDate));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(author),
+        const DeepCollectionEquality().hash(publishDate)
+      ]);
 }

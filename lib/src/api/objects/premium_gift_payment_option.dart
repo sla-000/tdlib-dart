@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Describes an option for gifting Telegram Premium to a user. Use
@@ -77,8 +78,29 @@ class PremiumGiftPaymentOption extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is PremiumGiftPaymentOption &&
+          const DeepCollectionEquality().equals(other.currency, currency) &&
+          const DeepCollectionEquality().equals(other.amount, amount) &&
+          const DeepCollectionEquality().equals(other.starCount, starCount) &&
+          const DeepCollectionEquality()
+              .equals(other.discountPercentage, discountPercentage) &&
+          const DeepCollectionEquality().equals(other.monthCount, monthCount) &&
+          const DeepCollectionEquality()
+              .equals(other.storeProductId, storeProductId) &&
+          const DeepCollectionEquality().equals(other.sticker, sticker));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(currency),
+        const DeepCollectionEquality().hash(amount),
+        const DeepCollectionEquality().hash(starCount),
+        const DeepCollectionEquality().hash(discountPercentage),
+        const DeepCollectionEquality().hash(monthCount),
+        const DeepCollectionEquality().hash(storeProductId),
+        const DeepCollectionEquality().hash(sticker)
+      ]);
 }

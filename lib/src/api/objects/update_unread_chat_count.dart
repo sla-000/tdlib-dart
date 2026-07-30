@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Number of unread chats, i.e. with unread messages or marked as unread, has
@@ -66,8 +67,29 @@ class UpdateUnreadChatCount extends Update {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is UpdateUnreadChatCount &&
+          const DeepCollectionEquality().equals(other.chatList, chatList) &&
+          const DeepCollectionEquality().equals(other.totalCount, totalCount) &&
+          const DeepCollectionEquality()
+              .equals(other.unreadCount, unreadCount) &&
+          const DeepCollectionEquality()
+              .equals(other.unreadUnmutedCount, unreadUnmutedCount) &&
+          const DeepCollectionEquality()
+              .equals(other.markedAsUnreadCount, markedAsUnreadCount) &&
+          const DeepCollectionEquality().equals(
+              other.markedAsUnreadUnmutedCount, markedAsUnreadUnmutedCount));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(chatList),
+        const DeepCollectionEquality().hash(totalCount),
+        const DeepCollectionEquality().hash(unreadCount),
+        const DeepCollectionEquality().hash(unreadUnmutedCount),
+        const DeepCollectionEquality().hash(markedAsUnreadCount),
+        const DeepCollectionEquality().hash(markedAsUnreadUnmutedCount)
+      ]);
 }

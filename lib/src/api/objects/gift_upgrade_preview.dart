@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Contains examples of possible upgraded gifts for the given regular gift
@@ -78,8 +79,23 @@ class GiftUpgradePreview extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is GiftUpgradePreview &&
+          const DeepCollectionEquality().equals(other.models, models) &&
+          const DeepCollectionEquality().equals(other.symbols, symbols) &&
+          const DeepCollectionEquality().equals(other.backdrops, backdrops) &&
+          const DeepCollectionEquality().equals(other.prices, prices) &&
+          const DeepCollectionEquality().equals(other.nextPrices, nextPrices));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(models),
+        const DeepCollectionEquality().hash(symbols),
+        const DeepCollectionEquality().hash(backdrops),
+        const DeepCollectionEquality().hash(prices),
+        const DeepCollectionEquality().hash(nextPrices)
+      ]);
 }

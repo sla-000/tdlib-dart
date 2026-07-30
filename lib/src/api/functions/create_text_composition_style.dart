@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Creates a custom text composition style. May return an error with a
@@ -45,8 +46,23 @@ class CreateTextCompositionStyle extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is CreateTextCompositionStyle &&
+          const DeepCollectionEquality().equals(other.title, title) &&
+          const DeepCollectionEquality()
+              .equals(other.customEmojiId, customEmojiId) &&
+          const DeepCollectionEquality().equals(other.prompt, prompt) &&
+          const DeepCollectionEquality()
+              .equals(other.showCreator, showCreator));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(title),
+        const DeepCollectionEquality().hash(customEmojiId),
+        const DeepCollectionEquality().hash(prompt),
+        const DeepCollectionEquality().hash(showCreator)
+      ]);
 }

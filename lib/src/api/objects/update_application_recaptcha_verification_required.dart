@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// A request can't be completed unless reCAPTCHA verification is performed;
@@ -51,8 +52,21 @@ class UpdateApplicationRecaptchaVerificationRequired extends Update {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is UpdateApplicationRecaptchaVerificationRequired &&
+          const DeepCollectionEquality()
+              .equals(other.verificationId, verificationId) &&
+          const DeepCollectionEquality().equals(other.action, action) &&
+          const DeepCollectionEquality()
+              .equals(other.recaptchaKeyId, recaptchaKeyId));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(verificationId),
+        const DeepCollectionEquality().hash(action),
+        const DeepCollectionEquality().hash(recaptchaKeyId)
+      ]);
 }

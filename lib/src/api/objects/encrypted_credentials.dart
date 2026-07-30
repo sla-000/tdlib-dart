@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Contains encrypted Telegram Passport data credentials
@@ -47,8 +48,19 @@ class EncryptedCredentials extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is EncryptedCredentials &&
+          const DeepCollectionEquality().equals(other.data, data) &&
+          const DeepCollectionEquality().equals(other.hash, hash) &&
+          const DeepCollectionEquality().equals(other.secret, secret));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(data),
+        const DeepCollectionEquality().hash(hash),
+        const DeepCollectionEquality().hash(secret)
+      ]);
 }

@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// The General forum topic was hidden or unhidden
@@ -36,8 +37,13 @@ class ChatEventForumTopicToggleIsHidden extends ChatEventAction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is ChatEventForumTopicToggleIsHidden &&
+          const DeepCollectionEquality().equals(other.topicInfo, topicInfo));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll(
+      [runtimeType, const DeepCollectionEquality().hash(topicInfo)]);
 }

@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Removes a group of active notifications. Needs to be called only if the
@@ -31,8 +32,19 @@ class RemoveNotificationGroup extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is RemoveNotificationGroup &&
+          const DeepCollectionEquality()
+              .equals(other.notificationGroupId, notificationGroupId) &&
+          const DeepCollectionEquality()
+              .equals(other.maxNotificationId, maxNotificationId));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(notificationGroupId),
+        const DeepCollectionEquality().hash(maxNotificationId)
+      ]);
 }

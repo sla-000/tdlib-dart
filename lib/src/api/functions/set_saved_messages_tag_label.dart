@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Changes label of a Saved Messages tag; for Telegram Premium users only
@@ -30,8 +31,17 @@ class SetSavedMessagesTagLabel extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is SetSavedMessagesTagLabel &&
+          const DeepCollectionEquality().equals(other.tag, tag) &&
+          const DeepCollectionEquality().equals(other.label, label));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(tag),
+        const DeepCollectionEquality().hash(label)
+      ]);
 }

@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Informs server about an in-store purchase. For official applications only
@@ -30,8 +31,18 @@ class AssignStoreTransaction extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is AssignStoreTransaction &&
+          const DeepCollectionEquality()
+              .equals(other.transaction, transaction) &&
+          const DeepCollectionEquality().equals(other.purpose, purpose));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(transaction),
+        const DeepCollectionEquality().hash(purpose)
+      ]);
 }

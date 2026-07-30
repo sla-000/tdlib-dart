@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// The transaction is a receiving of a paid group call reaction; relevant for
@@ -54,8 +55,21 @@ class StarTransactionTypePaidGroupCallReactionReceive
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is StarTransactionTypePaidGroupCallReactionReceive &&
+          const DeepCollectionEquality().equals(other.senderId, senderId) &&
+          const DeepCollectionEquality()
+              .equals(other.commissionPerMille, commissionPerMille) &&
+          const DeepCollectionEquality()
+              .equals(other.commissionStarAmount, commissionStarAmount));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(senderId),
+        const DeepCollectionEquality().hash(commissionPerMille),
+        const DeepCollectionEquality().hash(commissionStarAmount)
+      ]);
 }

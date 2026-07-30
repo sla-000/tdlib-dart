@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Contains full information about a user
@@ -269,8 +270,106 @@ class UserFullInfo extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is UserFullInfo &&
+          const DeepCollectionEquality()
+              .equals(other.personalPhoto, personalPhoto) &&
+          const DeepCollectionEquality().equals(other.photo, photo) &&
+          const DeepCollectionEquality()
+              .equals(other.publicPhoto, publicPhoto) &&
+          const DeepCollectionEquality()
+              .equals(other.communityId, communityId) &&
+          const DeepCollectionEquality().equals(other.blockList, blockList) &&
+          const DeepCollectionEquality()
+              .equals(other.canBeCalled, canBeCalled) &&
+          const DeepCollectionEquality()
+              .equals(other.supportsVideoCalls, supportsVideoCalls) &&
+          const DeepCollectionEquality()
+              .equals(other.hasPrivateCalls, hasPrivateCalls) &&
+          const DeepCollectionEquality()
+              .equals(other.hasPrivateForwards, hasPrivateForwards) &&
+          const DeepCollectionEquality().equals(
+              other.hasRestrictedVoiceAndVideoNoteMessages,
+              hasRestrictedVoiceAndVideoNoteMessages) &&
+          const DeepCollectionEquality().equals(
+              other.hasPostedToProfileStories, hasPostedToProfileStories) &&
+          const DeepCollectionEquality().equals(
+              other.hasSponsoredMessagesEnabled, hasSponsoredMessagesEnabled) &&
+          const DeepCollectionEquality().equals(
+              other.needPhoneNumberPrivacyException,
+              needPhoneNumberPrivacyException) &&
+          const DeepCollectionEquality()
+              .equals(other.setChatBackground, setChatBackground) &&
+          const DeepCollectionEquality()
+              .equals(other.usesUnofficialApp, usesUnofficialApp) &&
+          const DeepCollectionEquality().equals(other.bio, bio) &&
+          const DeepCollectionEquality().equals(other.birthdate, birthdate) &&
+          const DeepCollectionEquality()
+              .equals(other.personalChatId, personalChatId) &&
+          const DeepCollectionEquality().equals(other.giftCount, giftCount) &&
+          const DeepCollectionEquality()
+              .equals(other.groupInCommonCount, groupInCommonCount) &&
+          const DeepCollectionEquality().equals(
+              other.incomingPaidMessageStarCount,
+              incomingPaidMessageStarCount) &&
+          const DeepCollectionEquality().equals(
+              other.outgoingPaidMessageStarCount,
+              outgoingPaidMessageStarCount) &&
+          const DeepCollectionEquality()
+              .equals(other.giftSettings, giftSettings) &&
+          const DeepCollectionEquality()
+              .equals(other.botVerification, botVerification) &&
+          const DeepCollectionEquality()
+              .equals(other.mainProfileTab, mainProfileTab) &&
+          const DeepCollectionEquality()
+              .equals(other.firstProfileAudio, firstProfileAudio) &&
+          const DeepCollectionEquality().equals(other.rating, rating) &&
+          const DeepCollectionEquality()
+              .equals(other.pendingRating, pendingRating) &&
+          const DeepCollectionEquality()
+              .equals(other.pendingRatingDate, pendingRatingDate) &&
+          const DeepCollectionEquality().equals(other.note, note) &&
+          const DeepCollectionEquality()
+              .equals(other.businessInfo, businessInfo) &&
+          const DeepCollectionEquality().equals(other.botInfo, botInfo));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(personalPhoto),
+        const DeepCollectionEquality().hash(photo),
+        const DeepCollectionEquality().hash(publicPhoto),
+        const DeepCollectionEquality().hash(communityId),
+        const DeepCollectionEquality().hash(blockList),
+        const DeepCollectionEquality().hash(canBeCalled),
+        const DeepCollectionEquality().hash(supportsVideoCalls),
+        const DeepCollectionEquality().hash(hasPrivateCalls),
+        const DeepCollectionEquality().hash(hasPrivateForwards),
+        const DeepCollectionEquality()
+            .hash(hasRestrictedVoiceAndVideoNoteMessages),
+        const DeepCollectionEquality().hash(hasPostedToProfileStories),
+        const DeepCollectionEquality().hash(hasSponsoredMessagesEnabled),
+        const DeepCollectionEquality().hash(needPhoneNumberPrivacyException),
+        const DeepCollectionEquality().hash(setChatBackground),
+        const DeepCollectionEquality().hash(usesUnofficialApp),
+        const DeepCollectionEquality().hash(bio),
+        const DeepCollectionEquality().hash(birthdate),
+        const DeepCollectionEquality().hash(personalChatId),
+        const DeepCollectionEquality().hash(giftCount),
+        const DeepCollectionEquality().hash(groupInCommonCount),
+        const DeepCollectionEquality().hash(incomingPaidMessageStarCount),
+        const DeepCollectionEquality().hash(outgoingPaidMessageStarCount),
+        const DeepCollectionEquality().hash(giftSettings),
+        const DeepCollectionEquality().hash(botVerification),
+        const DeepCollectionEquality().hash(mainProfileTab),
+        const DeepCollectionEquality().hash(firstProfileAudio),
+        const DeepCollectionEquality().hash(rating),
+        const DeepCollectionEquality().hash(pendingRating),
+        const DeepCollectionEquality().hash(pendingRatingDate),
+        const DeepCollectionEquality().hash(note),
+        const DeepCollectionEquality().hash(businessInfo),
+        const DeepCollectionEquality().hash(botInfo)
+      ]);
 }

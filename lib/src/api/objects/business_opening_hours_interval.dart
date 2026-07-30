@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Describes an interval of time when the business is open
@@ -44,8 +45,18 @@ class BusinessOpeningHoursInterval extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is BusinessOpeningHoursInterval &&
+          const DeepCollectionEquality()
+              .equals(other.startMinute, startMinute) &&
+          const DeepCollectionEquality().equals(other.endMinute, endMinute));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(startMinute),
+        const DeepCollectionEquality().hash(endMinute)
+      ]);
 }

@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// A sticker to be added to a sticker set
@@ -68,8 +69,24 @@ class NewSticker extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is NewSticker &&
+          const DeepCollectionEquality().equals(other.sticker, sticker) &&
+          const DeepCollectionEquality().equals(other.format, format) &&
+          const DeepCollectionEquality().equals(other.emojis, emojis) &&
+          const DeepCollectionEquality()
+              .equals(other.maskPosition, maskPosition) &&
+          const DeepCollectionEquality().equals(other.keywords, keywords));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(sticker),
+        const DeepCollectionEquality().hash(format),
+        const DeepCollectionEquality().hash(emojis),
+        const DeepCollectionEquality().hash(maskPosition),
+        const DeepCollectionEquality().hash(keywords)
+      ]);
 }

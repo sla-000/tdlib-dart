@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Represents one member of a JSON object
@@ -40,8 +41,17 @@ class JsonObjectMember extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is JsonObjectMember &&
+          const DeepCollectionEquality().equals(other.key, key) &&
+          const DeepCollectionEquality().equals(other.value, value));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(key),
+        const DeepCollectionEquality().hash(value)
+      ]);
 }

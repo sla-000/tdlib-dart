@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// The user has been authorized, but needs to enter a 2-step verification
@@ -58,8 +59,25 @@ class AuthorizationStateWaitPassword extends AuthorizationState {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is AuthorizationStateWaitPassword &&
+          const DeepCollectionEquality()
+              .equals(other.passwordHint, passwordHint) &&
+          const DeepCollectionEquality()
+              .equals(other.hasRecoveryEmailAddress, hasRecoveryEmailAddress) &&
+          const DeepCollectionEquality()
+              .equals(other.hasPassportData, hasPassportData) &&
+          const DeepCollectionEquality().equals(
+              other.recoveryEmailAddressPattern, recoveryEmailAddressPattern));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(passwordHint),
+        const DeepCollectionEquality().hash(hasRecoveryEmailAddress),
+        const DeepCollectionEquality().hash(hasPassportData),
+        const DeepCollectionEquality().hash(recoveryEmailAddressPattern)
+      ]);
 }

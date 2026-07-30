@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Contains parameters of the application theme
@@ -123,8 +124,55 @@ class ThemeParameters extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is ThemeParameters &&
+          const DeepCollectionEquality()
+              .equals(other.backgroundColor, backgroundColor) &&
+          const DeepCollectionEquality().equals(
+              other.secondaryBackgroundColor, secondaryBackgroundColor) &&
+          const DeepCollectionEquality()
+              .equals(other.headerBackgroundColor, headerBackgroundColor) &&
+          const DeepCollectionEquality().equals(
+              other.bottomBarBackgroundColor, bottomBarBackgroundColor) &&
+          const DeepCollectionEquality()
+              .equals(other.sectionBackgroundColor, sectionBackgroundColor) &&
+          const DeepCollectionEquality()
+              .equals(other.sectionSeparatorColor, sectionSeparatorColor) &&
+          const DeepCollectionEquality().equals(other.textColor, textColor) &&
+          const DeepCollectionEquality()
+              .equals(other.accentTextColor, accentTextColor) &&
+          const DeepCollectionEquality()
+              .equals(other.sectionHeaderTextColor, sectionHeaderTextColor) &&
+          const DeepCollectionEquality()
+              .equals(other.subtitleTextColor, subtitleTextColor) &&
+          const DeepCollectionEquality()
+              .equals(other.destructiveTextColor, destructiveTextColor) &&
+          const DeepCollectionEquality().equals(other.hintColor, hintColor) &&
+          const DeepCollectionEquality().equals(other.linkColor, linkColor) &&
+          const DeepCollectionEquality()
+              .equals(other.buttonColor, buttonColor) &&
+          const DeepCollectionEquality()
+              .equals(other.buttonTextColor, buttonTextColor));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(backgroundColor),
+        const DeepCollectionEquality().hash(secondaryBackgroundColor),
+        const DeepCollectionEquality().hash(headerBackgroundColor),
+        const DeepCollectionEquality().hash(bottomBarBackgroundColor),
+        const DeepCollectionEquality().hash(sectionBackgroundColor),
+        const DeepCollectionEquality().hash(sectionSeparatorColor),
+        const DeepCollectionEquality().hash(textColor),
+        const DeepCollectionEquality().hash(accentTextColor),
+        const DeepCollectionEquality().hash(sectionHeaderTextColor),
+        const DeepCollectionEquality().hash(subtitleTextColor),
+        const DeepCollectionEquality().hash(destructiveTextColor),
+        const DeepCollectionEquality().hash(hintColor),
+        const DeepCollectionEquality().hash(linkColor),
+        const DeepCollectionEquality().hash(buttonColor),
+        const DeepCollectionEquality().hash(buttonTextColor)
+      ]);
 }

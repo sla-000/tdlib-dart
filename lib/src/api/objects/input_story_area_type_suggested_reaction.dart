@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// An area pointing to a suggested reaction
@@ -48,8 +49,20 @@ class InputStoryAreaTypeSuggestedReaction extends InputStoryAreaType {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is InputStoryAreaTypeSuggestedReaction &&
+          const DeepCollectionEquality()
+              .equals(other.reactionType, reactionType) &&
+          const DeepCollectionEquality().equals(other.isDark, isDark) &&
+          const DeepCollectionEquality().equals(other.isFlipped, isFlipped));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(reactionType),
+        const DeepCollectionEquality().hash(isDark),
+        const DeepCollectionEquality().hash(isFlipped)
+      ]);
 }

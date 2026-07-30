@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Returns an ordered list of chats from the beginning of a chat list. For
@@ -33,8 +34,17 @@ class GetChats extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is GetChats &&
+          const DeepCollectionEquality().equals(other.chatList, chatList) &&
+          const DeepCollectionEquality().equals(other.limit, limit));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(chatList),
+        const DeepCollectionEquality().hash(limit)
+      ]);
 }

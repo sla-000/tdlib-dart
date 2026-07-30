@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Represents a link to a WEBP, TGS, or WEBM sticker
@@ -77,8 +78,32 @@ class InputInlineQueryResultSticker extends InputInlineQueryResult {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is InputInlineQueryResultSticker &&
+          const DeepCollectionEquality().equals(other.id, id) &&
+          const DeepCollectionEquality()
+              .equals(other.thumbnailUrl, thumbnailUrl) &&
+          const DeepCollectionEquality().equals(other.stickerUrl, stickerUrl) &&
+          const DeepCollectionEquality()
+              .equals(other.stickerWidth, stickerWidth) &&
+          const DeepCollectionEquality()
+              .equals(other.stickerHeight, stickerHeight) &&
+          const DeepCollectionEquality()
+              .equals(other.replyMarkup, replyMarkup) &&
+          const DeepCollectionEquality()
+              .equals(other.inputMessageContent, inputMessageContent));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(id),
+        const DeepCollectionEquality().hash(thumbnailUrl),
+        const DeepCollectionEquality().hash(stickerUrl),
+        const DeepCollectionEquality().hash(stickerWidth),
+        const DeepCollectionEquality().hash(stickerHeight),
+        const DeepCollectionEquality().hash(replyMarkup),
+        const DeepCollectionEquality().hash(inputMessageContent)
+      ]);
 }

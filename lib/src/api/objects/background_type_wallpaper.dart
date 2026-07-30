@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// A wallpaper in JPEG format
@@ -42,8 +43,17 @@ class BackgroundTypeWallpaper extends BackgroundType {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is BackgroundTypeWallpaper &&
+          const DeepCollectionEquality().equals(other.isBlurred, isBlurred) &&
+          const DeepCollectionEquality().equals(other.isMoving, isMoving));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(isBlurred),
+        const DeepCollectionEquality().hash(isMoving)
+      ]);
 }

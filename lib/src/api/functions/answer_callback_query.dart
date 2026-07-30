@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Sets the result of a callback query; for bots only
@@ -47,8 +48,24 @@ class AnswerCallbackQuery extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is AnswerCallbackQuery &&
+          const DeepCollectionEquality()
+              .equals(other.callbackQueryId, callbackQueryId) &&
+          const DeepCollectionEquality().equals(other.text, text) &&
+          const DeepCollectionEquality().equals(other.showAlert, showAlert) &&
+          const DeepCollectionEquality().equals(other.url, url) &&
+          const DeepCollectionEquality().equals(other.cacheTime, cacheTime));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(callbackQueryId),
+        const DeepCollectionEquality().hash(text),
+        const DeepCollectionEquality().hash(showAlert),
+        const DeepCollectionEquality().hash(url),
+        const DeepCollectionEquality().hash(cacheTime)
+      ]);
 }

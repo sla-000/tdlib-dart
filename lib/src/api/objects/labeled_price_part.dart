@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Portion of the price of a product (e.g., "delivery cost", "tax amount")
@@ -40,8 +41,17 @@ class LabeledPricePart extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is LabeledPricePart &&
+          const DeepCollectionEquality().equals(other.label, label) &&
+          const DeepCollectionEquality().equals(other.amount, amount));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(label),
+        const DeepCollectionEquality().hash(amount)
+      ]);
 }

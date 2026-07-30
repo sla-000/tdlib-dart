@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// The transaction is a receiving of a paid message; relevant for regular
@@ -58,8 +59,24 @@ class StarTransactionTypePaidMessageReceive extends StarTransactionType {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is StarTransactionTypePaidMessageReceive &&
+          const DeepCollectionEquality().equals(other.senderId, senderId) &&
+          const DeepCollectionEquality()
+              .equals(other.messageCount, messageCount) &&
+          const DeepCollectionEquality()
+              .equals(other.commissionPerMille, commissionPerMille) &&
+          const DeepCollectionEquality()
+              .equals(other.commissionStarAmount, commissionStarAmount));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(senderId),
+        const DeepCollectionEquality().hash(messageCount),
+        const DeepCollectionEquality().hash(commissionPerMille),
+        const DeepCollectionEquality().hash(commissionStarAmount)
+      ]);
 }

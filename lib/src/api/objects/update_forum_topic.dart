@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Information about a topic in a forum chat was changed
@@ -93,8 +94,41 @@ class UpdateForumTopic extends Update {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is UpdateForumTopic &&
+          const DeepCollectionEquality().equals(other.chatId, chatId) &&
+          const DeepCollectionEquality()
+              .equals(other.forumTopicId, forumTopicId) &&
+          const DeepCollectionEquality().equals(other.isPinned, isPinned) &&
+          const DeepCollectionEquality()
+              .equals(other.lastReadInboxMessageId, lastReadInboxMessageId) &&
+          const DeepCollectionEquality()
+              .equals(other.lastReadOutboxMessageId, lastReadOutboxMessageId) &&
+          const DeepCollectionEquality()
+              .equals(other.unreadMentionCount, unreadMentionCount) &&
+          const DeepCollectionEquality()
+              .equals(other.unreadReactionCount, unreadReactionCount) &&
+          const DeepCollectionEquality()
+              .equals(other.unreadPollVoteCount, unreadPollVoteCount) &&
+          const DeepCollectionEquality()
+              .equals(other.notificationSettings, notificationSettings) &&
+          const DeepCollectionEquality()
+              .equals(other.draftMessage, draftMessage));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(chatId),
+        const DeepCollectionEquality().hash(forumTopicId),
+        const DeepCollectionEquality().hash(isPinned),
+        const DeepCollectionEquality().hash(lastReadInboxMessageId),
+        const DeepCollectionEquality().hash(lastReadOutboxMessageId),
+        const DeepCollectionEquality().hash(unreadMentionCount),
+        const DeepCollectionEquality().hash(unreadReactionCount),
+        const DeepCollectionEquality().hash(unreadPollVoteCount),
+        const DeepCollectionEquality().hash(notificationSettings),
+        const DeepCollectionEquality().hash(draftMessage)
+      ]);
 }

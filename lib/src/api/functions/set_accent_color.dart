@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Changes accent color and background custom emoji for the current user; for
@@ -32,8 +33,19 @@ class SetAccentColor extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is SetAccentColor &&
+          const DeepCollectionEquality()
+              .equals(other.accentColorId, accentColorId) &&
+          const DeepCollectionEquality()
+              .equals(other.backgroundCustomEmojiId, backgroundCustomEmojiId));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(accentColorId),
+        const DeepCollectionEquality().hash(backgroundCustomEmojiId)
+      ]);
 }

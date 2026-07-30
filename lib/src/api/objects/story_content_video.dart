@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// A video story
@@ -42,8 +43,18 @@ class StoryContentVideo extends StoryContent {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is StoryContentVideo &&
+          const DeepCollectionEquality().equals(other.video, video) &&
+          const DeepCollectionEquality()
+              .equals(other.alternativeVideo, alternativeVideo));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(video),
+        const DeepCollectionEquality().hash(alternativeVideo)
+      ]);
 }

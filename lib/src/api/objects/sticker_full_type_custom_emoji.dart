@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// The sticker is a custom emoji to be used inside message text and caption.
@@ -43,8 +44,19 @@ class StickerFullTypeCustomEmoji extends StickerFullType {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is StickerFullTypeCustomEmoji &&
+          const DeepCollectionEquality()
+              .equals(other.customEmojiId, customEmojiId) &&
+          const DeepCollectionEquality()
+              .equals(other.needsRepainting, needsRepainting));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(customEmojiId),
+        const DeepCollectionEquality().hash(needsRepainting)
+      ]);
 }

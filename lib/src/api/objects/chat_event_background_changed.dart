@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// The chat background was changed
@@ -42,8 +43,19 @@ class ChatEventBackgroundChanged extends ChatEventAction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is ChatEventBackgroundChanged &&
+          const DeepCollectionEquality()
+              .equals(other.oldBackground, oldBackground) &&
+          const DeepCollectionEquality()
+              .equals(other.newBackground, newBackground));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(oldBackground),
+        const DeepCollectionEquality().hash(newBackground)
+      ]);
 }

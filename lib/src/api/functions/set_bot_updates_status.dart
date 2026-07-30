@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Informs the server about the number of pending bot updates if they haven't
@@ -31,8 +32,19 @@ class SetBotUpdatesStatus extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is SetBotUpdatesStatus &&
+          const DeepCollectionEquality()
+              .equals(other.pendingUpdateCount, pendingUpdateCount) &&
+          const DeepCollectionEquality()
+              .equals(other.errorMessage, errorMessage));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(pendingUpdateCount),
+        const DeepCollectionEquality().hash(errorMessage)
+      ]);
 }

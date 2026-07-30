@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Contains information about verification status of a chat or a user
@@ -55,8 +56,23 @@ class VerificationStatus extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is VerificationStatus &&
+          const DeepCollectionEquality().equals(other.isVerified, isVerified) &&
+          const DeepCollectionEquality().equals(other.isScam, isScam) &&
+          const DeepCollectionEquality().equals(other.isFake, isFake) &&
+          const DeepCollectionEquality().equals(
+              other.botVerificationIconCustomEmojiId,
+              botVerificationIconCustomEmojiId));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(isVerified),
+        const DeepCollectionEquality().hash(isScam),
+        const DeepCollectionEquality().hash(isFake),
+        const DeepCollectionEquality().hash(botVerificationIconCustomEmojiId)
+      ]);
 }

@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Represents a list of reactions that can be added to a message
@@ -79,8 +80,30 @@ class AvailableReactions extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is AvailableReactions &&
+          const DeepCollectionEquality()
+              .equals(other.topReactions, topReactions) &&
+          const DeepCollectionEquality()
+              .equals(other.recentReactions, recentReactions) &&
+          const DeepCollectionEquality()
+              .equals(other.popularReactions, popularReactions) &&
+          const DeepCollectionEquality()
+              .equals(other.allowCustomEmoji, allowCustomEmoji) &&
+          const DeepCollectionEquality().equals(other.areTags, areTags) &&
+          const DeepCollectionEquality()
+              .equals(other.unavailabilityReason, unavailabilityReason));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(topReactions),
+        const DeepCollectionEquality().hash(recentReactions),
+        const DeepCollectionEquality().hash(popularReactions),
+        const DeepCollectionEquality().hash(allowCustomEmoji),
+        const DeepCollectionEquality().hash(areTags),
+        const DeepCollectionEquality().hash(unavailabilityReason)
+      ]);
 }

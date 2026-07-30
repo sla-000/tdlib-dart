@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Contains information about a Web App found by its short name
@@ -49,8 +50,21 @@ class FoundWebApp extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is FoundWebApp &&
+          const DeepCollectionEquality().equals(other.webApp, webApp) &&
+          const DeepCollectionEquality()
+              .equals(other.requestWriteAccess, requestWriteAccess) &&
+          const DeepCollectionEquality()
+              .equals(other.skipConfirmation, skipConfirmation));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(webApp),
+        const DeepCollectionEquality().hash(requestWriteAccess),
+        const DeepCollectionEquality().hash(skipConfirmation)
+      ]);
 }

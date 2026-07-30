@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Contains information about a country
@@ -68,8 +69,28 @@ class CountryInfo extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is CountryInfo &&
+          const DeepCollectionEquality()
+              .equals(other.countryCode, countryCode) &&
+          const DeepCollectionEquality().equals(other.name, name) &&
+          const DeepCollectionEquality()
+              .equals(other.englishName, englishName) &&
+          const DeepCollectionEquality().equals(other.flagEmoji, flagEmoji) &&
+          const DeepCollectionEquality().equals(other.isHidden, isHidden) &&
+          const DeepCollectionEquality()
+              .equals(other.callingCodes, callingCodes));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(countryCode),
+        const DeepCollectionEquality().hash(name),
+        const DeepCollectionEquality().hash(englishName),
+        const DeepCollectionEquality().hash(flagEmoji),
+        const DeepCollectionEquality().hash(isHidden),
+        const DeepCollectionEquality().hash(callingCodes)
+      ]);
 }

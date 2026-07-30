@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Sets the verbosity level for a specified TDLib internal log tag. Can be
@@ -31,8 +32,18 @@ class SetLogTagVerbosityLevel extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is SetLogTagVerbosityLevel &&
+          const DeepCollectionEquality().equals(other.tag, tag) &&
+          const DeepCollectionEquality()
+              .equals(other.newVerbosityLevel, newVerbosityLevel));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(tag),
+        const DeepCollectionEquality().hash(newVerbosityLevel)
+      ]);
 }

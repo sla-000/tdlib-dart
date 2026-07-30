@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Contains information about an affiliate that received commission from a
@@ -50,8 +51,21 @@ class AffiliateInfo extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is AffiliateInfo &&
+          const DeepCollectionEquality()
+              .equals(other.commissionPerMille, commissionPerMille) &&
+          const DeepCollectionEquality()
+              .equals(other.affiliateChatId, affiliateChatId) &&
+          const DeepCollectionEquality().equals(other.starAmount, starAmount));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(commissionPerMille),
+        const DeepCollectionEquality().hash(affiliateChatId),
+        const DeepCollectionEquality().hash(starAmount)
+      ]);
 }

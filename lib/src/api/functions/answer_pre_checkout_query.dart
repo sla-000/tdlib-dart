@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Sets the result of a pre-checkout query; for bots only
@@ -30,8 +31,19 @@ class AnswerPreCheckoutQuery extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is AnswerPreCheckoutQuery &&
+          const DeepCollectionEquality()
+              .equals(other.preCheckoutQueryId, preCheckoutQueryId) &&
+          const DeepCollectionEquality()
+              .equals(other.errorMessage, errorMessage));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(preCheckoutQueryId),
+        const DeepCollectionEquality().hash(errorMessage)
+      ]);
 }

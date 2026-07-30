@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Describes a message
@@ -351,8 +352,126 @@ class Message extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is Message &&
+          const DeepCollectionEquality().equals(other.id, id) &&
+          const DeepCollectionEquality().equals(other.senderId, senderId) &&
+          const DeepCollectionEquality().equals(other.receiverId, receiverId) &&
+          const DeepCollectionEquality().equals(other.chatId, chatId) &&
+          const DeepCollectionEquality()
+              .equals(other.sendingState, sendingState) &&
+          const DeepCollectionEquality()
+              .equals(other.schedulingState, schedulingState) &&
+          const DeepCollectionEquality().equals(other.isOutgoing, isOutgoing) &&
+          const DeepCollectionEquality().equals(other.isPinned, isPinned) &&
+          const DeepCollectionEquality()
+              .equals(other.isFromOffline, isFromOffline) &&
+          const DeepCollectionEquality().equals(other.canBeSaved, canBeSaved) &&
+          const DeepCollectionEquality()
+              .equals(other.hasTimestampedMedia, hasTimestampedMedia) &&
+          const DeepCollectionEquality()
+              .equals(other.isChannelPost, isChannelPost) &&
+          const DeepCollectionEquality()
+              .equals(other.isPaidStarSuggestedPost, isPaidStarSuggestedPost) &&
+          const DeepCollectionEquality()
+              .equals(other.isPaidGramSuggestedPost, isPaidGramSuggestedPost) &&
+          const DeepCollectionEquality()
+              .equals(other.containsUnreadMention, containsUnreadMention) &&
+          const DeepCollectionEquality()
+              .equals(other.containsUnreadPollVotes, containsUnreadPollVotes) &&
+          const DeepCollectionEquality().equals(other.date, date) &&
+          const DeepCollectionEquality().equals(other.editDate, editDate) &&
+          const DeepCollectionEquality()
+              .equals(other.forwardInfo, forwardInfo) &&
+          const DeepCollectionEquality().equals(other.importInfo, importInfo) &&
+          const DeepCollectionEquality()
+              .equals(other.interactionInfo, interactionInfo) &&
+          const DeepCollectionEquality()
+              .equals(other.unreadReactions, unreadReactions) &&
+          const DeepCollectionEquality().equals(other.factCheck, factCheck) &&
+          const DeepCollectionEquality()
+              .equals(other.suggestedPostInfo, suggestedPostInfo) &&
+          const DeepCollectionEquality().equals(other.replyTo, replyTo) &&
+          const DeepCollectionEquality().equals(other.topicId, topicId) &&
+          const DeepCollectionEquality()
+              .equals(other.selfDestructType, selfDestructType) &&
+          const DeepCollectionEquality()
+              .equals(other.selfDestructIn, selfDestructIn) &&
+          const DeepCollectionEquality()
+              .equals(other.autoDeleteIn, autoDeleteIn) &&
+          const DeepCollectionEquality()
+              .equals(other.viaBotUserId, viaBotUserId) &&
+          const DeepCollectionEquality()
+              .equals(other.guestBotCallerId, guestBotCallerId) &&
+          const DeepCollectionEquality()
+              .equals(other.senderBusinessBotUserId, senderBusinessBotUserId) &&
+          const DeepCollectionEquality()
+              .equals(other.senderBoostCount, senderBoostCount) &&
+          const DeepCollectionEquality().equals(other.senderTag, senderTag) &&
+          const DeepCollectionEquality()
+              .equals(other.paidMessageStarCount, paidMessageStarCount) &&
+          const DeepCollectionEquality()
+              .equals(other.authorSignature, authorSignature) &&
+          const DeepCollectionEquality()
+              .equals(other.mediaAlbumId, mediaAlbumId) &&
+          const DeepCollectionEquality().equals(other.effectId, effectId) &&
+          const DeepCollectionEquality()
+              .equals(other.restrictionInfo, restrictionInfo) &&
+          const DeepCollectionEquality()
+              .equals(other.summaryLanguageCode, summaryLanguageCode) &&
+          const DeepCollectionEquality().equals(other.content, content) &&
+          const DeepCollectionEquality()
+              .equals(other.replyMarkup, replyMarkup) &&
+          const DeepCollectionEquality()
+              .equals(other.ephemeralMessageId, ephemeralMessageId));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(id),
+        const DeepCollectionEquality().hash(senderId),
+        const DeepCollectionEquality().hash(receiverId),
+        const DeepCollectionEquality().hash(chatId),
+        const DeepCollectionEquality().hash(sendingState),
+        const DeepCollectionEquality().hash(schedulingState),
+        const DeepCollectionEquality().hash(isOutgoing),
+        const DeepCollectionEquality().hash(isPinned),
+        const DeepCollectionEquality().hash(isFromOffline),
+        const DeepCollectionEquality().hash(canBeSaved),
+        const DeepCollectionEquality().hash(hasTimestampedMedia),
+        const DeepCollectionEquality().hash(isChannelPost),
+        const DeepCollectionEquality().hash(isPaidStarSuggestedPost),
+        const DeepCollectionEquality().hash(isPaidGramSuggestedPost),
+        const DeepCollectionEquality().hash(containsUnreadMention),
+        const DeepCollectionEquality().hash(containsUnreadPollVotes),
+        const DeepCollectionEquality().hash(date),
+        const DeepCollectionEquality().hash(editDate),
+        const DeepCollectionEquality().hash(forwardInfo),
+        const DeepCollectionEquality().hash(importInfo),
+        const DeepCollectionEquality().hash(interactionInfo),
+        const DeepCollectionEquality().hash(unreadReactions),
+        const DeepCollectionEquality().hash(factCheck),
+        const DeepCollectionEquality().hash(suggestedPostInfo),
+        const DeepCollectionEquality().hash(replyTo),
+        const DeepCollectionEquality().hash(topicId),
+        const DeepCollectionEquality().hash(selfDestructType),
+        const DeepCollectionEquality().hash(selfDestructIn),
+        const DeepCollectionEquality().hash(autoDeleteIn),
+        const DeepCollectionEquality().hash(viaBotUserId),
+        const DeepCollectionEquality().hash(guestBotCallerId),
+        const DeepCollectionEquality().hash(senderBusinessBotUserId),
+        const DeepCollectionEquality().hash(senderBoostCount),
+        const DeepCollectionEquality().hash(senderTag),
+        const DeepCollectionEquality().hash(paidMessageStarCount),
+        const DeepCollectionEquality().hash(authorSignature),
+        const DeepCollectionEquality().hash(mediaAlbumId),
+        const DeepCollectionEquality().hash(effectId),
+        const DeepCollectionEquality().hash(restrictionInfo),
+        const DeepCollectionEquality().hash(summaryLanguageCode),
+        const DeepCollectionEquality().hash(content),
+        const DeepCollectionEquality().hash(replyMarkup),
+        const DeepCollectionEquality().hash(ephemeralMessageId)
+      ]);
 }

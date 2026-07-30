@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Describes an advertisement to be shown while a video from a message is
@@ -82,8 +83,33 @@ class VideoMessageAdvertisement extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is VideoMessageAdvertisement &&
+          const DeepCollectionEquality().equals(other.uniqueId, uniqueId) &&
+          const DeepCollectionEquality().equals(other.text, text) &&
+          const DeepCollectionEquality()
+              .equals(other.minDisplayDuration, minDisplayDuration) &&
+          const DeepCollectionEquality()
+              .equals(other.maxDisplayDuration, maxDisplayDuration) &&
+          const DeepCollectionEquality()
+              .equals(other.canBeReported, canBeReported) &&
+          const DeepCollectionEquality().equals(other.sponsor, sponsor) &&
+          const DeepCollectionEquality().equals(other.title, title) &&
+          const DeepCollectionEquality()
+              .equals(other.additionalInfo, additionalInfo));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(uniqueId),
+        const DeepCollectionEquality().hash(text),
+        const DeepCollectionEquality().hash(minDisplayDuration),
+        const DeepCollectionEquality().hash(maxDisplayDuration),
+        const DeepCollectionEquality().hash(canBeReported),
+        const DeepCollectionEquality().hash(sponsor),
+        const DeepCollectionEquality().hash(title),
+        const DeepCollectionEquality().hash(additionalInfo)
+      ]);
 }

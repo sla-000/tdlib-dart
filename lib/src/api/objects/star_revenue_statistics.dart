@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// A detailed statistics about Telegram Stars earned by a user or a chat
@@ -48,8 +49,20 @@ class StarRevenueStatistics extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is StarRevenueStatistics &&
+          const DeepCollectionEquality()
+              .equals(other.revenueByDayGraph, revenueByDayGraph) &&
+          const DeepCollectionEquality().equals(other.status, status) &&
+          const DeepCollectionEquality().equals(other.usdRate, usdRate));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(revenueByDayGraph),
+        const DeepCollectionEquality().hash(status),
+        const DeepCollectionEquality().hash(usdRate)
+      ]);
 }

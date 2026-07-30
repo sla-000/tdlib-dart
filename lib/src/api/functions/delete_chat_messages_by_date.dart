@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Deletes all messages between the specified dates in a chat. Supported only
@@ -43,8 +44,21 @@ class DeleteChatMessagesByDate extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is DeleteChatMessagesByDate &&
+          const DeepCollectionEquality().equals(other.chatId, chatId) &&
+          const DeepCollectionEquality().equals(other.minDate, minDate) &&
+          const DeepCollectionEquality().equals(other.maxDate, maxDate) &&
+          const DeepCollectionEquality().equals(other.revoke, revoke));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(chatId),
+        const DeepCollectionEquality().hash(minDate),
+        const DeepCollectionEquality().hash(maxDate),
+        const DeepCollectionEquality().hash(revoke)
+      ]);
 }

@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// A media album
@@ -58,8 +59,24 @@ class PushMessageContentMediaAlbum extends PushMessageContent {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is PushMessageContentMediaAlbum &&
+          const DeepCollectionEquality().equals(other.totalCount, totalCount) &&
+          const DeepCollectionEquality().equals(other.hasPhotos, hasPhotos) &&
+          const DeepCollectionEquality().equals(other.hasVideos, hasVideos) &&
+          const DeepCollectionEquality().equals(other.hasAudios, hasAudios) &&
+          const DeepCollectionEquality()
+              .equals(other.hasDocuments, hasDocuments));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(totalCount),
+        const DeepCollectionEquality().hash(hasPhotos),
+        const DeepCollectionEquality().hash(hasVideos),
+        const DeepCollectionEquality().hash(hasAudios),
+        const DeepCollectionEquality().hash(hasDocuments)
+      ]);
 }

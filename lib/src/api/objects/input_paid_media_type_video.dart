@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// The media is a video
@@ -53,8 +54,23 @@ class InputPaidMediaTypeVideo extends InputPaidMediaType {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is InputPaidMediaTypeVideo &&
+          const DeepCollectionEquality().equals(other.cover, cover) &&
+          const DeepCollectionEquality()
+              .equals(other.startTimestamp, startTimestamp) &&
+          const DeepCollectionEquality().equals(other.duration, duration) &&
+          const DeepCollectionEquality()
+              .equals(other.supportsStreaming, supportsStreaming));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(cover),
+        const DeepCollectionEquality().hash(startTimestamp),
+        const DeepCollectionEquality().hash(duration),
+        const DeepCollectionEquality().hash(supportsStreaming)
+      ]);
 }

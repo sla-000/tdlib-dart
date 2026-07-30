@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Adds, edits or deletes a string in a custom local language pack. Can be
@@ -32,8 +33,18 @@ class SetCustomLanguagePackString extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is SetCustomLanguagePackString &&
+          const DeepCollectionEquality()
+              .equals(other.languagePackId, languagePackId) &&
+          const DeepCollectionEquality().equals(other.newString, newString));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(languagePackId),
+        const DeepCollectionEquality().hash(newString)
+      ]);
 }

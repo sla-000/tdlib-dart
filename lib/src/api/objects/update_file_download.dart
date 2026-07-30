@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// A file download was changed. This update is sent only after file download
@@ -56,8 +57,22 @@ class UpdateFileDownload extends Update {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is UpdateFileDownload &&
+          const DeepCollectionEquality().equals(other.fileId, fileId) &&
+          const DeepCollectionEquality()
+              .equals(other.completeDate, completeDate) &&
+          const DeepCollectionEquality().equals(other.isPaused, isPaused) &&
+          const DeepCollectionEquality().equals(other.counts, counts));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(fileId),
+        const DeepCollectionEquality().hash(completeDate),
+        const DeepCollectionEquality().hash(isPaused),
+        const DeepCollectionEquality().hash(counts)
+      ]);
 }

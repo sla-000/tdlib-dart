@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Describes rights of a business bot
@@ -123,8 +124,53 @@ class BusinessBotRights extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is BusinessBotRights &&
+          const DeepCollectionEquality().equals(other.canReply, canReply) &&
+          const DeepCollectionEquality()
+              .equals(other.canReadMessages, canReadMessages) &&
+          const DeepCollectionEquality()
+              .equals(other.canDeleteSentMessages, canDeleteSentMessages) &&
+          const DeepCollectionEquality()
+              .equals(other.canDeleteAllMessages, canDeleteAllMessages) &&
+          const DeepCollectionEquality()
+              .equals(other.canEditName, canEditName) &&
+          const DeepCollectionEquality().equals(other.canEditBio, canEditBio) &&
+          const DeepCollectionEquality()
+              .equals(other.canEditProfilePhoto, canEditProfilePhoto) &&
+          const DeepCollectionEquality()
+              .equals(other.canEditUsername, canEditUsername) &&
+          const DeepCollectionEquality()
+              .equals(other.canViewGiftsAndStars, canViewGiftsAndStars) &&
+          const DeepCollectionEquality()
+              .equals(other.canSellGifts, canSellGifts) &&
+          const DeepCollectionEquality()
+              .equals(other.canChangeGiftSettings, canChangeGiftSettings) &&
+          const DeepCollectionEquality().equals(
+              other.canTransferAndUpgradeGifts, canTransferAndUpgradeGifts) &&
+          const DeepCollectionEquality()
+              .equals(other.canTransferStars, canTransferStars) &&
+          const DeepCollectionEquality()
+              .equals(other.canManageStories, canManageStories));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(canReply),
+        const DeepCollectionEquality().hash(canReadMessages),
+        const DeepCollectionEquality().hash(canDeleteSentMessages),
+        const DeepCollectionEquality().hash(canDeleteAllMessages),
+        const DeepCollectionEquality().hash(canEditName),
+        const DeepCollectionEquality().hash(canEditBio),
+        const DeepCollectionEquality().hash(canEditProfilePhoto),
+        const DeepCollectionEquality().hash(canEditUsername),
+        const DeepCollectionEquality().hash(canViewGiftsAndStars),
+        const DeepCollectionEquality().hash(canSellGifts),
+        const DeepCollectionEquality().hash(canChangeGiftSettings),
+        const DeepCollectionEquality().hash(canTransferAndUpgradeGifts),
+        const DeepCollectionEquality().hash(canTransferStars),
+        const DeepCollectionEquality().hash(canManageStories)
+      ]);
 }

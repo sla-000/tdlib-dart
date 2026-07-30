@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Contains auto-download settings presets for the current user
@@ -51,8 +52,19 @@ class AutoDownloadSettingsPresets extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is AutoDownloadSettingsPresets &&
+          const DeepCollectionEquality().equals(other.low, low) &&
+          const DeepCollectionEquality().equals(other.medium, medium) &&
+          const DeepCollectionEquality().equals(other.high, high));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(low),
+        const DeepCollectionEquality().hash(medium),
+        const DeepCollectionEquality().hash(high)
+      ]);
 }

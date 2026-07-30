@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// The link is a link to a chat with a Telegram bot. Call searchPublicChat
@@ -50,8 +51,21 @@ class InternalLinkTypeBotStart extends InternalLinkType {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is InternalLinkTypeBotStart &&
+          const DeepCollectionEquality()
+              .equals(other.botUsername, botUsername) &&
+          const DeepCollectionEquality()
+              .equals(other.startParameter, startParameter) &&
+          const DeepCollectionEquality().equals(other.autostart, autostart));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(botUsername),
+        const DeepCollectionEquality().hash(startParameter),
+        const DeepCollectionEquality().hash(autostart)
+      ]);
 }

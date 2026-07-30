@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Contains information about an ongoing or scheduled auction
@@ -123,8 +124,46 @@ class AuctionStateActive extends AuctionState {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is AuctionStateActive &&
+          const DeepCollectionEquality().equals(other.startDate, startDate) &&
+          const DeepCollectionEquality().equals(other.endDate, endDate) &&
+          const DeepCollectionEquality().equals(other.minBid, minBid) &&
+          const DeepCollectionEquality().equals(other.bidLevels, bidLevels) &&
+          const DeepCollectionEquality()
+              .equals(other.topBidderUserIds, topBidderUserIds) &&
+          const DeepCollectionEquality().equals(other.rounds, rounds) &&
+          const DeepCollectionEquality()
+              .equals(other.currentRoundEndDate, currentRoundEndDate) &&
+          const DeepCollectionEquality()
+              .equals(other.currentRoundNumber, currentRoundNumber) &&
+          const DeepCollectionEquality()
+              .equals(other.totalRoundCount, totalRoundCount) &&
+          const DeepCollectionEquality()
+              .equals(other.distributedItemCount, distributedItemCount) &&
+          const DeepCollectionEquality()
+              .equals(other.leftItemCount, leftItemCount) &&
+          const DeepCollectionEquality()
+              .equals(other.acquiredItemCount, acquiredItemCount) &&
+          const DeepCollectionEquality().equals(other.userBid, userBid));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(startDate),
+        const DeepCollectionEquality().hash(endDate),
+        const DeepCollectionEquality().hash(minBid),
+        const DeepCollectionEquality().hash(bidLevels),
+        const DeepCollectionEquality().hash(topBidderUserIds),
+        const DeepCollectionEquality().hash(rounds),
+        const DeepCollectionEquality().hash(currentRoundEndDate),
+        const DeepCollectionEquality().hash(currentRoundNumber),
+        const DeepCollectionEquality().hash(totalRoundCount),
+        const DeepCollectionEquality().hash(distributedItemCount),
+        const DeepCollectionEquality().hash(leftItemCount),
+        const DeepCollectionEquality().hash(acquiredItemCount),
+        const DeepCollectionEquality().hash(userBid)
+      ]);
 }

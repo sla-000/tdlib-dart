@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Contains information about a bot
@@ -207,8 +208,80 @@ class BotInfo extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is BotInfo &&
+          const DeepCollectionEquality()
+              .equals(other.shortDescription, shortDescription) &&
+          const DeepCollectionEquality()
+              .equals(other.description, description) &&
+          const DeepCollectionEquality().equals(other.photo, photo) &&
+          const DeepCollectionEquality().equals(other.animation, animation) &&
+          const DeepCollectionEquality()
+              .equals(other.managerBotUserId, managerBotUserId) &&
+          const DeepCollectionEquality().equals(other.menuButton, menuButton) &&
+          const DeepCollectionEquality().equals(other.commands, commands) &&
+          const DeepCollectionEquality()
+              .equals(other.privacyPolicyUrl, privacyPolicyUrl) &&
+          const DeepCollectionEquality().equals(
+              other.defaultGroupAdministratorRights,
+              defaultGroupAdministratorRights) &&
+          const DeepCollectionEquality().equals(
+              other.defaultChannelAdministratorRights,
+              defaultChannelAdministratorRights) &&
+          const DeepCollectionEquality()
+              .equals(other.affiliateProgram, affiliateProgram) &&
+          const DeepCollectionEquality().equals(
+              other.webAppBackgroundLightColor, webAppBackgroundLightColor) &&
+          const DeepCollectionEquality().equals(
+              other.webAppBackgroundDarkColor, webAppBackgroundDarkColor) &&
+          const DeepCollectionEquality()
+              .equals(other.webAppHeaderLightColor, webAppHeaderLightColor) &&
+          const DeepCollectionEquality()
+              .equals(other.webAppHeaderDarkColor, webAppHeaderDarkColor) &&
+          const DeepCollectionEquality()
+              .equals(other.verificationParameters, verificationParameters) &&
+          const DeepCollectionEquality()
+              .equals(other.canGetRevenueStatistics, canGetRevenueStatistics) &&
+          const DeepCollectionEquality()
+              .equals(other.canManageEmojiStatus, canManageEmojiStatus) &&
+          const DeepCollectionEquality()
+              .equals(other.hasMediaPreviews, hasMediaPreviews) &&
+          const DeepCollectionEquality()
+              .equals(other.editCommandsLink, editCommandsLink) &&
+          const DeepCollectionEquality()
+              .equals(other.editDescriptionLink, editDescriptionLink) &&
+          const DeepCollectionEquality().equals(
+              other.editDescriptionMediaLink, editDescriptionMediaLink) &&
+          const DeepCollectionEquality()
+              .equals(other.editSettingsLink, editSettingsLink));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(shortDescription),
+        const DeepCollectionEquality().hash(description),
+        const DeepCollectionEquality().hash(photo),
+        const DeepCollectionEquality().hash(animation),
+        const DeepCollectionEquality().hash(managerBotUserId),
+        const DeepCollectionEquality().hash(menuButton),
+        const DeepCollectionEquality().hash(commands),
+        const DeepCollectionEquality().hash(privacyPolicyUrl),
+        const DeepCollectionEquality().hash(defaultGroupAdministratorRights),
+        const DeepCollectionEquality().hash(defaultChannelAdministratorRights),
+        const DeepCollectionEquality().hash(affiliateProgram),
+        const DeepCollectionEquality().hash(webAppBackgroundLightColor),
+        const DeepCollectionEquality().hash(webAppBackgroundDarkColor),
+        const DeepCollectionEquality().hash(webAppHeaderLightColor),
+        const DeepCollectionEquality().hash(webAppHeaderDarkColor),
+        const DeepCollectionEquality().hash(verificationParameters),
+        const DeepCollectionEquality().hash(canGetRevenueStatistics),
+        const DeepCollectionEquality().hash(canManageEmojiStatus),
+        const DeepCollectionEquality().hash(hasMediaPreviews),
+        const DeepCollectionEquality().hash(editCommandsLink),
+        const DeepCollectionEquality().hash(editDescriptionLink),
+        const DeepCollectionEquality().hash(editDescriptionMediaLink),
+        const DeepCollectionEquality().hash(editSettingsLink)
+      ]);
 }

@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// One of the data fields contains an error. The error will be considered
@@ -36,8 +37,13 @@ class PassportElementErrorSourceDataField extends PassportElementErrorSource {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is PassportElementErrorSourceDataField &&
+          const DeepCollectionEquality().equals(other.fieldName, fieldName));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll(
+      [runtimeType, const DeepCollectionEquality().hash(fieldName)]);
 }

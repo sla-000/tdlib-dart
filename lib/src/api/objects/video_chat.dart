@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Describes a video chat, i.e. a group call bound to a chat
@@ -50,8 +51,22 @@ class VideoChat extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is VideoChat &&
+          const DeepCollectionEquality()
+              .equals(other.groupCallId, groupCallId) &&
+          const DeepCollectionEquality()
+              .equals(other.hasParticipants, hasParticipants) &&
+          const DeepCollectionEquality()
+              .equals(other.defaultParticipantId, defaultParticipantId));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(groupCallId),
+        const DeepCollectionEquality().hash(hasParticipants),
+        const DeepCollectionEquality().hash(defaultParticipantId)
+      ]);
 }

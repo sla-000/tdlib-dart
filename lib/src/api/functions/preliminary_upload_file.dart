@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Preliminarily uploads a file to the cloud before sending it in a message,
@@ -42,8 +43,19 @@ class PreliminaryUploadFile extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is PreliminaryUploadFile &&
+          const DeepCollectionEquality().equals(other.file, file) &&
+          const DeepCollectionEquality().equals(other.fileType, fileType) &&
+          const DeepCollectionEquality().equals(other.priority, priority));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(file),
+        const DeepCollectionEquality().hash(fileType),
+        const DeepCollectionEquality().hash(priority)
+      ]);
 }

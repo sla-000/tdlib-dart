@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Adds a proxy server for network requests. Can be called before
@@ -36,8 +37,19 @@ class AddProxy extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is AddProxy &&
+          const DeepCollectionEquality().equals(other.proxy, proxy) &&
+          const DeepCollectionEquality().equals(other.enable, enable) &&
+          const DeepCollectionEquality().equals(other.comment, comment));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(proxy),
+        const DeepCollectionEquality().hash(enable),
+        const DeepCollectionEquality().hash(comment)
+      ]);
 }

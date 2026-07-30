@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Searches for the specified query in the title and username of up to 50
@@ -37,8 +38,19 @@ class SearchRecentlyFoundChats extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is SearchRecentlyFoundChats &&
+          const DeepCollectionEquality().equals(other.query, query) &&
+          const DeepCollectionEquality().equals(other.typeFilter, typeFilter) &&
+          const DeepCollectionEquality().equals(other.limit, limit));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(query),
+        const DeepCollectionEquality().hash(typeFilter),
+        const DeepCollectionEquality().hash(limit)
+      ]);
 }

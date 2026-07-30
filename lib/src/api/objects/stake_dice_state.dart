@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Describes state of the stake dice
@@ -79,8 +80,30 @@ class StakeDiceState extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is StakeDiceState &&
+          const DeepCollectionEquality().equals(other.stateHash, stateHash) &&
+          const DeepCollectionEquality()
+              .equals(other.stakeGramAmount, stakeGramAmount) &&
+          const DeepCollectionEquality().equals(
+              other.suggestedStakeGramAmounts, suggestedStakeGramAmounts) &&
+          const DeepCollectionEquality()
+              .equals(other.currentStreak, currentStreak) &&
+          const DeepCollectionEquality()
+              .equals(other.prizePerMille, prizePerMille) &&
+          const DeepCollectionEquality()
+              .equals(other.streakPrizePerMille, streakPrizePerMille));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(stateHash),
+        const DeepCollectionEquality().hash(stakeGramAmount),
+        const DeepCollectionEquality().hash(suggestedStakeGramAmounts),
+        const DeepCollectionEquality().hash(currentStreak),
+        const DeepCollectionEquality().hash(prizePerMille),
+        const DeepCollectionEquality().hash(streakPrizePerMille)
+      ]);
 }

@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Creates a new temporary password for processing payments
@@ -31,8 +32,17 @@ class CreateTemporaryPassword extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is CreateTemporaryPassword &&
+          const DeepCollectionEquality().equals(other.password, password) &&
+          const DeepCollectionEquality().equals(other.validFor, validFor));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(password),
+        const DeepCollectionEquality().hash(validFor)
+      ]);
 }

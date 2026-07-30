@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Installs/uninstalls or activates/archives a sticker set
@@ -36,8 +37,20 @@ class ChangeStickerSet extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is ChangeStickerSet &&
+          const DeepCollectionEquality().equals(other.setId, setId) &&
+          const DeepCollectionEquality()
+              .equals(other.isInstalled, isInstalled) &&
+          const DeepCollectionEquality().equals(other.isArchived, isArchived));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(setId),
+        const DeepCollectionEquality().hash(isInstalled),
+        const DeepCollectionEquality().hash(isArchived)
+      ]);
 }

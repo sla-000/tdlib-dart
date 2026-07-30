@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Returns information about the next messages of the specified type in the
@@ -50,8 +51,22 @@ class GetChatMessageCalendar extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is GetChatMessageCalendar &&
+          const DeepCollectionEquality().equals(other.chatId, chatId) &&
+          const DeepCollectionEquality().equals(other.topicId, topicId) &&
+          const DeepCollectionEquality().equals(other.filter, filter) &&
+          const DeepCollectionEquality()
+              .equals(other.fromMessageId, fromMessageId));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(chatId),
+        const DeepCollectionEquality().hash(topicId),
+        const DeepCollectionEquality().hash(filter),
+        const DeepCollectionEquality().hash(fromMessageId)
+      ]);
 }

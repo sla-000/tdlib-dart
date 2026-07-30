@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// A live location
@@ -58,8 +59,22 @@ class LiveLocation extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is LiveLocation &&
+          const DeepCollectionEquality().equals(other.location, location) &&
+          const DeepCollectionEquality().equals(other.livePeriod, livePeriod) &&
+          const DeepCollectionEquality().equals(other.heading, heading) &&
+          const DeepCollectionEquality()
+              .equals(other.proximityAlertRadius, proximityAlertRadius));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(location),
+        const DeepCollectionEquality().hash(livePeriod),
+        const DeepCollectionEquality().hash(heading),
+        const DeepCollectionEquality().hash(proximityAlertRadius)
+      ]);
 }

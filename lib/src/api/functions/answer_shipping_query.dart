@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Sets the result of a shipping query; for bots only
@@ -36,8 +37,22 @@ class AnswerShippingQuery extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is AnswerShippingQuery &&
+          const DeepCollectionEquality()
+              .equals(other.shippingQueryId, shippingQueryId) &&
+          const DeepCollectionEquality()
+              .equals(other.shippingOptions, shippingOptions) &&
+          const DeepCollectionEquality()
+              .equals(other.errorMessage, errorMessage));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(shippingQueryId),
+        const DeepCollectionEquality().hash(shippingOptions),
+        const DeepCollectionEquality().hash(errorMessage)
+      ]);
 }

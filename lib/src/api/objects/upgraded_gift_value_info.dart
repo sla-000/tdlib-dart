@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Contains information about value of an upgraded gift
@@ -124,8 +125,53 @@ class UpgradedGiftValueInfo extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is UpgradedGiftValueInfo &&
+          const DeepCollectionEquality().equals(other.currency, currency) &&
+          const DeepCollectionEquality().equals(other.value, value) &&
+          const DeepCollectionEquality()
+              .equals(other.isValueAverage, isValueAverage) &&
+          const DeepCollectionEquality()
+              .equals(other.initialSaleDate, initialSaleDate) &&
+          const DeepCollectionEquality()
+              .equals(other.initialSaleStarCount, initialSaleStarCount) &&
+          const DeepCollectionEquality()
+              .equals(other.initialSalePrice, initialSalePrice) &&
+          const DeepCollectionEquality()
+              .equals(other.lastSaleDate, lastSaleDate) &&
+          const DeepCollectionEquality()
+              .equals(other.lastSalePrice, lastSalePrice) &&
+          const DeepCollectionEquality()
+              .equals(other.isLastSaleOnFragment, isLastSaleOnFragment) &&
+          const DeepCollectionEquality()
+              .equals(other.minimumPrice, minimumPrice) &&
+          const DeepCollectionEquality()
+              .equals(other.averageSalePrice, averageSalePrice) &&
+          const DeepCollectionEquality()
+              .equals(other.telegramListedGiftCount, telegramListedGiftCount) &&
+          const DeepCollectionEquality()
+              .equals(other.fragmentListedGiftCount, fragmentListedGiftCount) &&
+          const DeepCollectionEquality()
+              .equals(other.fragmentUrl, fragmentUrl));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(currency),
+        const DeepCollectionEquality().hash(value),
+        const DeepCollectionEquality().hash(isValueAverage),
+        const DeepCollectionEquality().hash(initialSaleDate),
+        const DeepCollectionEquality().hash(initialSaleStarCount),
+        const DeepCollectionEquality().hash(initialSalePrice),
+        const DeepCollectionEquality().hash(lastSaleDate),
+        const DeepCollectionEquality().hash(lastSalePrice),
+        const DeepCollectionEquality().hash(isLastSaleOnFragment),
+        const DeepCollectionEquality().hash(minimumPrice),
+        const DeepCollectionEquality().hash(averageSalePrice),
+        const DeepCollectionEquality().hash(telegramListedGiftCount),
+        const DeepCollectionEquality().hash(fragmentListedGiftCount),
+        const DeepCollectionEquality().hash(fragmentUrl)
+      ]);
 }

@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// A message with paid media
@@ -58,8 +59,22 @@ class MessagePaidMedia extends MessageContent {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is MessagePaidMedia &&
+          const DeepCollectionEquality().equals(other.starCount, starCount) &&
+          const DeepCollectionEquality().equals(other.media, media) &&
+          const DeepCollectionEquality().equals(other.caption, caption) &&
+          const DeepCollectionEquality()
+              .equals(other.showCaptionAboveMedia, showCaptionAboveMedia));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(starCount),
+        const DeepCollectionEquality().hash(media),
+        const DeepCollectionEquality().hash(caption),
+        const DeepCollectionEquality().hash(showCaptionAboveMedia)
+      ]);
 }

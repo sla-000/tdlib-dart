@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// The chat permissions were changed
@@ -42,8 +43,19 @@ class ChatEventPermissionsChanged extends ChatEventAction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is ChatEventPermissionsChanged &&
+          const DeepCollectionEquality()
+              .equals(other.oldPermissions, oldPermissions) &&
+          const DeepCollectionEquality()
+              .equals(other.newPermissions, newPermissions));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(oldPermissions),
+        const DeepCollectionEquality().hash(newPermissions)
+      ]);
 }

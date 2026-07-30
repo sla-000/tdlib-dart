@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Describes an ongoing giveaway
@@ -48,8 +49,20 @@ class GiveawayInfoOngoing extends GiveawayInfo {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is GiveawayInfoOngoing &&
+          const DeepCollectionEquality()
+              .equals(other.creationDate, creationDate) &&
+          const DeepCollectionEquality().equals(other.status, status) &&
+          const DeepCollectionEquality().equals(other.isEnded, isEnded));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(creationDate),
+        const DeepCollectionEquality().hash(status),
+        const DeepCollectionEquality().hash(isEnded)
+      ]);
 }

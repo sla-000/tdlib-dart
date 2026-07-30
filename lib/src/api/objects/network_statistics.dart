@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// A full list of available network statistic entries
@@ -44,8 +45,17 @@ class NetworkStatistics extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is NetworkStatistics &&
+          const DeepCollectionEquality().equals(other.sinceDate, sinceDate) &&
+          const DeepCollectionEquality().equals(other.entries, entries));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(sinceDate),
+        const DeepCollectionEquality().hash(entries)
+      ]);
 }

@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Sends a call rating
@@ -41,8 +42,21 @@ class SendCallRating extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is SendCallRating &&
+          const DeepCollectionEquality().equals(other.callId, callId) &&
+          const DeepCollectionEquality().equals(other.rating, rating) &&
+          const DeepCollectionEquality().equals(other.comment, comment) &&
+          const DeepCollectionEquality().equals(other.problems, problems));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(callId),
+        const DeepCollectionEquality().hash(rating),
+        const DeepCollectionEquality().hash(comment),
+        const DeepCollectionEquality().hash(problems)
+      ]);
 }

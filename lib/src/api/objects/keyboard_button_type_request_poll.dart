@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// A button that allows the user to create and send a poll when pressed;
@@ -41,8 +42,18 @@ class KeyboardButtonTypeRequestPoll extends KeyboardButtonType {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is KeyboardButtonTypeRequestPoll &&
+          const DeepCollectionEquality()
+              .equals(other.forceRegular, forceRegular) &&
+          const DeepCollectionEquality().equals(other.forceQuiz, forceQuiz));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(forceRegular),
+        const DeepCollectionEquality().hash(forceQuiz)
+      ]);
 }

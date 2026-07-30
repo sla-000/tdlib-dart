@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Represents a story
@@ -219,8 +220,85 @@ class Story extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is Story &&
+          const DeepCollectionEquality().equals(other.id, id) &&
+          const DeepCollectionEquality()
+              .equals(other.posterChatId, posterChatId) &&
+          const DeepCollectionEquality().equals(other.posterId, posterId) &&
+          const DeepCollectionEquality().equals(other.date, date) &&
+          const DeepCollectionEquality()
+              .equals(other.isBeingPosted, isBeingPosted) &&
+          const DeepCollectionEquality()
+              .equals(other.isBeingEdited, isBeingEdited) &&
+          const DeepCollectionEquality().equals(other.isEdited, isEdited) &&
+          const DeepCollectionEquality()
+              .equals(other.isPostedToChatPage, isPostedToChatPage) &&
+          const DeepCollectionEquality()
+              .equals(other.isVisibleOnlyForSelf, isVisibleOnlyForSelf) &&
+          const DeepCollectionEquality()
+              .equals(other.canBeAddedToAlbum, canBeAddedToAlbum) &&
+          const DeepCollectionEquality()
+              .equals(other.canBeDeleted, canBeDeleted) &&
+          const DeepCollectionEquality()
+              .equals(other.canBeEdited, canBeEdited) &&
+          const DeepCollectionEquality()
+              .equals(other.canBeForwarded, canBeForwarded) &&
+          const DeepCollectionEquality()
+              .equals(other.canBeReplied, canBeReplied) &&
+          const DeepCollectionEquality()
+              .equals(other.canSetPrivacySettings, canSetPrivacySettings) &&
+          const DeepCollectionEquality().equals(
+              other.canToggleIsPostedToChatPage, canToggleIsPostedToChatPage) &&
+          const DeepCollectionEquality()
+              .equals(other.canGetStatistics, canGetStatistics) &&
+          const DeepCollectionEquality()
+              .equals(other.canGetInteractions, canGetInteractions) &&
+          const DeepCollectionEquality()
+              .equals(other.hasExpiredViewers, hasExpiredViewers) &&
+          const DeepCollectionEquality().equals(other.repostInfo, repostInfo) &&
+          const DeepCollectionEquality()
+              .equals(other.interactionInfo, interactionInfo) &&
+          const DeepCollectionEquality()
+              .equals(other.chosenReactionType, chosenReactionType) &&
+          const DeepCollectionEquality()
+              .equals(other.privacySettings, privacySettings) &&
+          const DeepCollectionEquality().equals(other.content, content) &&
+          const DeepCollectionEquality().equals(other.areas, areas) &&
+          const DeepCollectionEquality().equals(other.caption, caption) &&
+          const DeepCollectionEquality().equals(other.albumIds, albumIds));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(id),
+        const DeepCollectionEquality().hash(posterChatId),
+        const DeepCollectionEquality().hash(posterId),
+        const DeepCollectionEquality().hash(date),
+        const DeepCollectionEquality().hash(isBeingPosted),
+        const DeepCollectionEquality().hash(isBeingEdited),
+        const DeepCollectionEquality().hash(isEdited),
+        const DeepCollectionEquality().hash(isPostedToChatPage),
+        const DeepCollectionEquality().hash(isVisibleOnlyForSelf),
+        const DeepCollectionEquality().hash(canBeAddedToAlbum),
+        const DeepCollectionEquality().hash(canBeDeleted),
+        const DeepCollectionEquality().hash(canBeEdited),
+        const DeepCollectionEquality().hash(canBeForwarded),
+        const DeepCollectionEquality().hash(canBeReplied),
+        const DeepCollectionEquality().hash(canSetPrivacySettings),
+        const DeepCollectionEquality().hash(canToggleIsPostedToChatPage),
+        const DeepCollectionEquality().hash(canGetStatistics),
+        const DeepCollectionEquality().hash(canGetInteractions),
+        const DeepCollectionEquality().hash(hasExpiredViewers),
+        const DeepCollectionEquality().hash(repostInfo),
+        const DeepCollectionEquality().hash(interactionInfo),
+        const DeepCollectionEquality().hash(chosenReactionType),
+        const DeepCollectionEquality().hash(privacySettings),
+        const DeepCollectionEquality().hash(content),
+        const DeepCollectionEquality().hash(areas),
+        const DeepCollectionEquality().hash(caption),
+        const DeepCollectionEquality().hash(albumIds)
+      ]);
 }

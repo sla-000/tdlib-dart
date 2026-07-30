@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Validates the order information provided by a user and returns the
@@ -37,8 +38,20 @@ class ValidateOrderInfo extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is ValidateOrderInfo &&
+          const DeepCollectionEquality()
+              .equals(other.inputInvoice, inputInvoice) &&
+          const DeepCollectionEquality().equals(other.orderInfo, orderInfo) &&
+          const DeepCollectionEquality().equals(other.allowSave, allowSave));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(inputInvoice),
+        const DeepCollectionEquality().hash(orderInfo),
+        const DeepCollectionEquality().hash(allowSave)
+      ]);
 }

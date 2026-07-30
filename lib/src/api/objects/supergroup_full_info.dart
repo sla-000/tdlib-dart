@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Contains full information about a supergroup or channel
@@ -340,8 +341,126 @@ class SupergroupFullInfo extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is SupergroupFullInfo &&
+          const DeepCollectionEquality().equals(other.photo, photo) &&
+          const DeepCollectionEquality()
+              .equals(other.communityId, communityId) &&
+          const DeepCollectionEquality()
+              .equals(other.description, description) &&
+          const DeepCollectionEquality()
+              .equals(other.memberCount, memberCount) &&
+          const DeepCollectionEquality()
+              .equals(other.administratorCount, administratorCount) &&
+          const DeepCollectionEquality()
+              .equals(other.restrictedCount, restrictedCount) &&
+          const DeepCollectionEquality()
+              .equals(other.bannedCount, bannedCount) &&
+          const DeepCollectionEquality()
+              .equals(other.linkedChatId, linkedChatId) &&
+          const DeepCollectionEquality()
+              .equals(other.directMessagesChatId, directMessagesChatId) &&
+          const DeepCollectionEquality()
+              .equals(other.slowModeDelay, slowModeDelay) &&
+          const DeepCollectionEquality()
+              .equals(other.slowModeDelayExpiresIn, slowModeDelayExpiresIn) &&
+          const DeepCollectionEquality()
+              .equals(other.canEnablePaidMessages, canEnablePaidMessages) &&
+          const DeepCollectionEquality()
+              .equals(other.canEnablePaidReaction, canEnablePaidReaction) &&
+          const DeepCollectionEquality()
+              .equals(other.canGetMembers, canGetMembers) &&
+          const DeepCollectionEquality()
+              .equals(other.hasHiddenMembers, hasHiddenMembers) &&
+          const DeepCollectionEquality()
+              .equals(other.canHideMembers, canHideMembers) &&
+          const DeepCollectionEquality()
+              .equals(other.canSetStickerSet, canSetStickerSet) &&
+          const DeepCollectionEquality()
+              .equals(other.canSetLocation, canSetLocation) &&
+          const DeepCollectionEquality()
+              .equals(other.canGetStatistics, canGetStatistics) &&
+          const DeepCollectionEquality()
+              .equals(other.canGetRevenueStatistics, canGetRevenueStatistics) &&
+          const DeepCollectionEquality().equals(
+              other.canGetStarRevenueStatistics, canGetStarRevenueStatistics) &&
+          const DeepCollectionEquality()
+              .equals(other.canSendGift, canSendGift) &&
+          const DeepCollectionEquality().equals(
+              other.canToggleAggressiveAntiSpam, canToggleAggressiveAntiSpam) &&
+          const DeepCollectionEquality()
+              .equals(other.isAllHistoryAvailable, isAllHistoryAvailable) &&
+          const DeepCollectionEquality().equals(
+              other.canHaveSponsoredMessages, canHaveSponsoredMessages) &&
+          const DeepCollectionEquality().equals(
+              other.hasAggressiveAntiSpamEnabled,
+              hasAggressiveAntiSpamEnabled) &&
+          const DeepCollectionEquality()
+              .equals(other.hasPaidMediaAllowed, hasPaidMediaAllowed) &&
+          const DeepCollectionEquality()
+              .equals(other.hasPinnedStories, hasPinnedStories) &&
+          const DeepCollectionEquality().equals(other.giftCount, giftCount) &&
+          const DeepCollectionEquality()
+              .equals(other.myBoostCount, myBoostCount) &&
+          const DeepCollectionEquality().equals(other.unrestrictBoostCount, unrestrictBoostCount) &&
+          const DeepCollectionEquality().equals(other.outgoingPaidMessageStarCount, outgoingPaidMessageStarCount) &&
+          const DeepCollectionEquality().equals(other.stickerSetId, stickerSetId) &&
+          const DeepCollectionEquality().equals(other.customEmojiStickerSetId, customEmojiStickerSetId) &&
+          const DeepCollectionEquality().equals(other.location, location) &&
+          const DeepCollectionEquality().equals(other.inviteLink, inviteLink) &&
+          const DeepCollectionEquality().equals(other.guardBotUserId, guardBotUserId) &&
+          const DeepCollectionEquality().equals(other.botCommands, botCommands) &&
+          const DeepCollectionEquality().equals(other.botVerification, botVerification) &&
+          const DeepCollectionEquality().equals(other.mainProfileTab, mainProfileTab) &&
+          const DeepCollectionEquality().equals(other.upgradedFromBasicGroupId, upgradedFromBasicGroupId) &&
+          const DeepCollectionEquality().equals(other.upgradedFromMaxMessageId, upgradedFromMaxMessageId));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(photo),
+        const DeepCollectionEquality().hash(communityId),
+        const DeepCollectionEquality().hash(description),
+        const DeepCollectionEquality().hash(memberCount),
+        const DeepCollectionEquality().hash(administratorCount),
+        const DeepCollectionEquality().hash(restrictedCount),
+        const DeepCollectionEquality().hash(bannedCount),
+        const DeepCollectionEquality().hash(linkedChatId),
+        const DeepCollectionEquality().hash(directMessagesChatId),
+        const DeepCollectionEquality().hash(slowModeDelay),
+        const DeepCollectionEquality().hash(slowModeDelayExpiresIn),
+        const DeepCollectionEquality().hash(canEnablePaidMessages),
+        const DeepCollectionEquality().hash(canEnablePaidReaction),
+        const DeepCollectionEquality().hash(canGetMembers),
+        const DeepCollectionEquality().hash(hasHiddenMembers),
+        const DeepCollectionEquality().hash(canHideMembers),
+        const DeepCollectionEquality().hash(canSetStickerSet),
+        const DeepCollectionEquality().hash(canSetLocation),
+        const DeepCollectionEquality().hash(canGetStatistics),
+        const DeepCollectionEquality().hash(canGetRevenueStatistics),
+        const DeepCollectionEquality().hash(canGetStarRevenueStatistics),
+        const DeepCollectionEquality().hash(canSendGift),
+        const DeepCollectionEquality().hash(canToggleAggressiveAntiSpam),
+        const DeepCollectionEquality().hash(isAllHistoryAvailable),
+        const DeepCollectionEquality().hash(canHaveSponsoredMessages),
+        const DeepCollectionEquality().hash(hasAggressiveAntiSpamEnabled),
+        const DeepCollectionEquality().hash(hasPaidMediaAllowed),
+        const DeepCollectionEquality().hash(hasPinnedStories),
+        const DeepCollectionEquality().hash(giftCount),
+        const DeepCollectionEquality().hash(myBoostCount),
+        const DeepCollectionEquality().hash(unrestrictBoostCount),
+        const DeepCollectionEquality().hash(outgoingPaidMessageStarCount),
+        const DeepCollectionEquality().hash(stickerSetId),
+        const DeepCollectionEquality().hash(customEmojiStickerSetId),
+        const DeepCollectionEquality().hash(location),
+        const DeepCollectionEquality().hash(inviteLink),
+        const DeepCollectionEquality().hash(guardBotUserId),
+        const DeepCollectionEquality().hash(botCommands),
+        const DeepCollectionEquality().hash(botVerification),
+        const DeepCollectionEquality().hash(mainProfileTab),
+        const DeepCollectionEquality().hash(upgradedFromBasicGroupId),
+        const DeepCollectionEquality().hash(upgradedFromMaxMessageId)
+      ]);
 }

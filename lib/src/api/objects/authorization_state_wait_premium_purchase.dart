@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// The user must buy Telegram Premium as an in-store purchase to log in. Call
@@ -58,8 +59,25 @@ class AuthorizationStateWaitPremiumPurchase extends AuthorizationState {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is AuthorizationStateWaitPremiumPurchase &&
+          const DeepCollectionEquality()
+              .equals(other.storeProductId, storeProductId) &&
+          const DeepCollectionEquality()
+              .equals(other.premiumDayCount, premiumDayCount) &&
+          const DeepCollectionEquality()
+              .equals(other.supportEmailAddress, supportEmailAddress) &&
+          const DeepCollectionEquality()
+              .equals(other.supportEmailSubject, supportEmailSubject));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(storeProductId),
+        const DeepCollectionEquality().hash(premiumDayCount),
+        const DeepCollectionEquality().hash(supportEmailAddress),
+        const DeepCollectionEquality().hash(supportEmailSubject)
+      ]);
 }

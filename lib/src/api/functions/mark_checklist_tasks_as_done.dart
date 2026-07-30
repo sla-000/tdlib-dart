@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Adds tasks of a checklist in a message as done or not done
@@ -44,8 +45,23 @@ class MarkChecklistTasksAsDone extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is MarkChecklistTasksAsDone &&
+          const DeepCollectionEquality().equals(other.chatId, chatId) &&
+          const DeepCollectionEquality().equals(other.messageId, messageId) &&
+          const DeepCollectionEquality()
+              .equals(other.markedAsDoneTaskIds, markedAsDoneTaskIds) &&
+          const DeepCollectionEquality()
+              .equals(other.markedAsNotDoneTaskIds, markedAsNotDoneTaskIds));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(chatId),
+        const DeepCollectionEquality().hash(messageId),
+        const DeepCollectionEquality().hash(markedAsDoneTaskIds),
+        const DeepCollectionEquality().hash(markedAsNotDoneTaskIds)
+      ]);
 }

@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// A button that requests a chat to be shared by the current user; available
@@ -120,8 +121,51 @@ class KeyboardButtonTypeRequestChat extends KeyboardButtonType {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is KeyboardButtonTypeRequestChat &&
+          const DeepCollectionEquality().equals(other.id, id) &&
+          const DeepCollectionEquality()
+              .equals(other.chatIsChannel, chatIsChannel) &&
+          const DeepCollectionEquality()
+              .equals(other.restrictChatIsForum, restrictChatIsForum) &&
+          const DeepCollectionEquality()
+              .equals(other.chatIsForum, chatIsForum) &&
+          const DeepCollectionEquality()
+              .equals(other.restrictChatHasUsername, restrictChatHasUsername) &&
+          const DeepCollectionEquality()
+              .equals(other.chatHasUsername, chatHasUsername) &&
+          const DeepCollectionEquality()
+              .equals(other.chatIsCreated, chatIsCreated) &&
+          const DeepCollectionEquality()
+              .equals(other.userAdministratorRights, userAdministratorRights) &&
+          const DeepCollectionEquality()
+              .equals(other.botAdministratorRights, botAdministratorRights) &&
+          const DeepCollectionEquality()
+              .equals(other.botIsMember, botIsMember) &&
+          const DeepCollectionEquality()
+              .equals(other.requestTitle, requestTitle) &&
+          const DeepCollectionEquality()
+              .equals(other.requestUsername, requestUsername) &&
+          const DeepCollectionEquality()
+              .equals(other.requestPhoto, requestPhoto));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(id),
+        const DeepCollectionEquality().hash(chatIsChannel),
+        const DeepCollectionEquality().hash(restrictChatIsForum),
+        const DeepCollectionEquality().hash(chatIsForum),
+        const DeepCollectionEquality().hash(restrictChatHasUsername),
+        const DeepCollectionEquality().hash(chatHasUsername),
+        const DeepCollectionEquality().hash(chatIsCreated),
+        const DeepCollectionEquality().hash(userAdministratorRights),
+        const DeepCollectionEquality().hash(botAdministratorRights),
+        const DeepCollectionEquality().hash(botIsMember),
+        const DeepCollectionEquality().hash(requestTitle),
+        const DeepCollectionEquality().hash(requestUsername),
+        const DeepCollectionEquality().hash(requestPhoto)
+      ]);
 }

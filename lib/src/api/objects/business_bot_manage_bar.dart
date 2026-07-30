@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Contains information about a business bot that manages the chat
@@ -53,8 +54,23 @@ class BusinessBotManageBar extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is BusinessBotManageBar &&
+          const DeepCollectionEquality().equals(other.botUserId, botUserId) &&
+          const DeepCollectionEquality().equals(other.manageUrl, manageUrl) &&
+          const DeepCollectionEquality()
+              .equals(other.isBotPaused, isBotPaused) &&
+          const DeepCollectionEquality()
+              .equals(other.canBotReply, canBotReply));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(botUserId),
+        const DeepCollectionEquality().hash(manageUrl),
+        const DeepCollectionEquality().hash(isBotPaused),
+        const DeepCollectionEquality().hash(canBotReply)
+      ]);
 }

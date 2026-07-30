@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Adds a message to a quick reply shortcut via inline bot. If shortcut
@@ -55,8 +56,25 @@ class AddQuickReplyShortcutInlineQueryResultMessage extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is AddQuickReplyShortcutInlineQueryResultMessage &&
+          const DeepCollectionEquality()
+              .equals(other.shortcutName, shortcutName) &&
+          const DeepCollectionEquality()
+              .equals(other.replyToMessageId, replyToMessageId) &&
+          const DeepCollectionEquality().equals(other.queryId, queryId) &&
+          const DeepCollectionEquality().equals(other.resultId, resultId) &&
+          const DeepCollectionEquality().equals(other.hideViaBot, hideViaBot));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(shortcutName),
+        const DeepCollectionEquality().hash(replyToMessageId),
+        const DeepCollectionEquality().hash(queryId),
+        const DeepCollectionEquality().hash(resultId),
+        const DeepCollectionEquality().hash(hideViaBot)
+      ]);
 }

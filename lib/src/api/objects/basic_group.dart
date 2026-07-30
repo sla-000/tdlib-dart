@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Represents a basic group of 0-200 users (must be upgraded to a supergroup
@@ -61,8 +62,25 @@ class BasicGroup extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is BasicGroup &&
+          const DeepCollectionEquality().equals(other.id, id) &&
+          const DeepCollectionEquality()
+              .equals(other.memberCount, memberCount) &&
+          const DeepCollectionEquality().equals(other.status, status) &&
+          const DeepCollectionEquality().equals(other.isActive, isActive) &&
+          const DeepCollectionEquality()
+              .equals(other.upgradedToSupergroupId, upgradedToSupergroupId));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(id),
+        const DeepCollectionEquality().hash(memberCount),
+        const DeepCollectionEquality().hash(status),
+        const DeepCollectionEquality().hash(isActive),
+        const DeepCollectionEquality().hash(upgradedToSupergroupId)
+      ]);
 }

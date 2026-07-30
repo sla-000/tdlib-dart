@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Describes private chats chosen for automatic interaction with a business
@@ -79,8 +80,33 @@ class BusinessRecipients extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is BusinessRecipients &&
+          const DeepCollectionEquality().equals(other.chatIds, chatIds) &&
+          const DeepCollectionEquality()
+              .equals(other.excludedChatIds, excludedChatIds) &&
+          const DeepCollectionEquality()
+              .equals(other.selectExistingChats, selectExistingChats) &&
+          const DeepCollectionEquality()
+              .equals(other.selectNewChats, selectNewChats) &&
+          const DeepCollectionEquality()
+              .equals(other.selectContacts, selectContacts) &&
+          const DeepCollectionEquality()
+              .equals(other.selectNonContacts, selectNonContacts) &&
+          const DeepCollectionEquality()
+              .equals(other.excludeSelected, excludeSelected));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(chatIds),
+        const DeepCollectionEquality().hash(excludedChatIds),
+        const DeepCollectionEquality().hash(selectExistingChats),
+        const DeepCollectionEquality().hash(selectNewChats),
+        const DeepCollectionEquality().hash(selectContacts),
+        const DeepCollectionEquality().hash(selectNonContacts),
+        const DeepCollectionEquality().hash(excludeSelected)
+      ]);
 }

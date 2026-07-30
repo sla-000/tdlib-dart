@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// An animation in MPEG4 format; must be square, at most 10 seconds long,
@@ -44,8 +45,18 @@ class InputChatPhotoAnimation extends InputChatPhoto {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is InputChatPhotoAnimation &&
+          const DeepCollectionEquality().equals(other.animation, animation) &&
+          const DeepCollectionEquality()
+              .equals(other.mainFrameTimestamp, mainFrameTimestamp));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(animation),
+        const DeepCollectionEquality().hash(mainFrameTimestamp)
+      ]);
 }

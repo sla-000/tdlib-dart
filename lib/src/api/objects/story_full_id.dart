@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Contains identifier of a story along with identifier of the chat that
@@ -41,8 +42,18 @@ class StoryFullId extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is StoryFullId &&
+          const DeepCollectionEquality()
+              .equals(other.posterChatId, posterChatId) &&
+          const DeepCollectionEquality().equals(other.storyId, storyId));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(posterChatId),
+        const DeepCollectionEquality().hash(storyId)
+      ]);
 }

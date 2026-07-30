@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// The list of supported accent colors for user profiles has changed
@@ -50,8 +51,18 @@ class UpdateProfileAccentColors extends Update {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is UpdateProfileAccentColors &&
+          const DeepCollectionEquality().equals(other.colors, colors) &&
+          const DeepCollectionEquality()
+              .equals(other.availableAccentColorIds, availableAccentColorIds));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(colors),
+        const DeepCollectionEquality().hash(availableAccentColorIds)
+      ]);
 }

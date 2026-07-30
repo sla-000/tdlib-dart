@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Changes user privacy settings
@@ -30,8 +31,17 @@ class SetUserPrivacySettingRules extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is SetUserPrivacySettingRules &&
+          const DeepCollectionEquality().equals(other.setting, setting) &&
+          const DeepCollectionEquality().equals(other.rules, rules));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(setting),
+        const DeepCollectionEquality().hash(rules)
+      ]);
 }

@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Upgrades a regular gift
@@ -43,8 +44,24 @@ class UpgradeGift extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is UpgradeGift &&
+          const DeepCollectionEquality()
+              .equals(other.businessConnectionId, businessConnectionId) &&
+          const DeepCollectionEquality()
+              .equals(other.receivedGiftId, receivedGiftId) &&
+          const DeepCollectionEquality()
+              .equals(other.keepOriginalDetails, keepOriginalDetails) &&
+          const DeepCollectionEquality().equals(other.starCount, starCount));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(businessConnectionId),
+        const DeepCollectionEquality().hash(receivedGiftId),
+        const DeepCollectionEquality().hash(keepOriginalDetails),
+        const DeepCollectionEquality().hash(starCount)
+      ]);
 }

@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// The message will be self-destructed in the specified time after its
@@ -36,8 +37,14 @@ class MessageSelfDestructTypeTimer extends MessageSelfDestructType {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is MessageSelfDestructTypeTimer &&
+          const DeepCollectionEquality()
+              .equals(other.selfDestructTime, selfDestructTime));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll(
+      [runtimeType, const DeepCollectionEquality().hash(selfDestructTime)]);
 }

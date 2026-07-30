@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Options to be used when a message content is copied without reference to
@@ -64,8 +65,23 @@ class MessageCopyOptions extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is MessageCopyOptions &&
+          const DeepCollectionEquality().equals(other.sendCopy, sendCopy) &&
+          const DeepCollectionEquality()
+              .equals(other.replaceCaption, replaceCaption) &&
+          const DeepCollectionEquality().equals(other.newCaption, newCaption) &&
+          const DeepCollectionEquality().equals(
+              other.newShowCaptionAboveMedia, newShowCaptionAboveMedia));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(sendCopy),
+        const DeepCollectionEquality().hash(replaceCaption),
+        const DeepCollectionEquality().hash(newCaption),
+        const DeepCollectionEquality().hash(newShowCaptionAboveMedia)
+      ]);
 }

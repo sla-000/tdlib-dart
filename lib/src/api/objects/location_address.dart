@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Describes an address of a location
@@ -52,8 +53,22 @@ class LocationAddress extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is LocationAddress &&
+          const DeepCollectionEquality()
+              .equals(other.countryCode, countryCode) &&
+          const DeepCollectionEquality().equals(other.state, state) &&
+          const DeepCollectionEquality().equals(other.city, city) &&
+          const DeepCollectionEquality().equals(other.street, street));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(countryCode),
+        const DeepCollectionEquality().hash(state),
+        const DeepCollectionEquality().hash(city),
+        const DeepCollectionEquality().hash(street)
+      ]);
 }

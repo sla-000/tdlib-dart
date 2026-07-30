@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Returns the list of commands supported by the bot for the given user scope
@@ -32,8 +33,18 @@ class GetCommands extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is GetCommands &&
+          const DeepCollectionEquality().equals(other.scope, scope) &&
+          const DeepCollectionEquality()
+              .equals(other.languageCode, languageCode));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(scope),
+        const DeepCollectionEquality().hash(languageCode)
+      ]);
 }

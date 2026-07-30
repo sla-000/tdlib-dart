@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Describes an option for buying or upgrading Telegram Premium for self
@@ -56,8 +57,23 @@ class PremiumStatePaymentOption extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is PremiumStatePaymentOption &&
+          const DeepCollectionEquality()
+              .equals(other.paymentOption, paymentOption) &&
+          const DeepCollectionEquality().equals(other.isCurrent, isCurrent) &&
+          const DeepCollectionEquality().equals(other.isUpgrade, isUpgrade) &&
+          const DeepCollectionEquality()
+              .equals(other.lastTransactionId, lastTransactionId));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(paymentOption),
+        const DeepCollectionEquality().hash(isCurrent),
+        const DeepCollectionEquality().hash(isUpgrade),
+        const DeepCollectionEquality().hash(lastTransactionId)
+      ]);
 }

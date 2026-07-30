@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Describes a slot for chat boost
@@ -61,8 +62,26 @@ class ChatBoostSlot extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is ChatBoostSlot &&
+          const DeepCollectionEquality().equals(other.slotId, slotId) &&
+          const DeepCollectionEquality()
+              .equals(other.currentlyBoostedChatId, currentlyBoostedChatId) &&
+          const DeepCollectionEquality().equals(other.startDate, startDate) &&
+          const DeepCollectionEquality()
+              .equals(other.expirationDate, expirationDate) &&
+          const DeepCollectionEquality()
+              .equals(other.cooldownUntilDate, cooldownUntilDate));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(slotId),
+        const DeepCollectionEquality().hash(currentlyBoostedChatId),
+        const DeepCollectionEquality().hash(startDate),
+        const DeepCollectionEquality().hash(expirationDate),
+        const DeepCollectionEquality().hash(cooldownUntilDate)
+      ]);
 }

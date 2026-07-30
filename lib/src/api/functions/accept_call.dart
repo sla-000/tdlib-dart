@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Accepts an incoming call
@@ -30,8 +31,17 @@ class AcceptCall extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is AcceptCall &&
+          const DeepCollectionEquality().equals(other.callId, callId) &&
+          const DeepCollectionEquality().equals(other.protocol, protocol));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(callId),
+        const DeepCollectionEquality().hash(protocol)
+      ]);
 }

@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Describes one answer option of a poll
@@ -101,8 +102,37 @@ class PollOption extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is PollOption &&
+          const DeepCollectionEquality().equals(other.id, id) &&
+          const DeepCollectionEquality().equals(other.text, text) &&
+          const DeepCollectionEquality().equals(other.media, media) &&
+          const DeepCollectionEquality().equals(other.voterCount, voterCount) &&
+          const DeepCollectionEquality()
+              .equals(other.votePercentage, votePercentage) &&
+          const DeepCollectionEquality()
+              .equals(other.recentVoterIds, recentVoterIds) &&
+          const DeepCollectionEquality().equals(other.isChosen, isChosen) &&
+          const DeepCollectionEquality()
+              .equals(other.isBeingChosen, isBeingChosen) &&
+          const DeepCollectionEquality().equals(other.author, author) &&
+          const DeepCollectionEquality()
+              .equals(other.additionDate, additionDate));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(id),
+        const DeepCollectionEquality().hash(text),
+        const DeepCollectionEquality().hash(media),
+        const DeepCollectionEquality().hash(voterCount),
+        const DeepCollectionEquality().hash(votePercentage),
+        const DeepCollectionEquality().hash(recentVoterIds),
+        const DeepCollectionEquality().hash(isChosen),
+        const DeepCollectionEquality().hash(isBeingChosen),
+        const DeepCollectionEquality().hash(author),
+        const DeepCollectionEquality().hash(additionDate)
+      ]);
 }

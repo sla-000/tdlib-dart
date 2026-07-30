@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// The media is a photo. The photo must be at most 10 MB in size. The photo's
@@ -36,8 +37,13 @@ class InputPaidMediaTypePhoto extends InputPaidMediaType {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is InputPaidMediaTypePhoto &&
+          const DeepCollectionEquality().equals(other.video, video));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode =>
+      Object.hashAll([runtimeType, const DeepCollectionEquality().hash(video)]);
 }

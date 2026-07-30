@@ -1,4 +1,4 @@
-import 'package:tdlib/td_api.dart';
+import '../tdapi.dart';
 import 'package:collection/collection.dart';
 extension TdErrorDataClassExtensions on TdError {
   bool overriddenEquality(Object other) =>

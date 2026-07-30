@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Describes theme settings
@@ -70,8 +71,29 @@ class ThemeSettings extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is ThemeSettings &&
+          const DeepCollectionEquality().equals(other.baseTheme, baseTheme) &&
+          const DeepCollectionEquality()
+              .equals(other.accentColor, accentColor) &&
+          const DeepCollectionEquality().equals(other.background, background) &&
+          const DeepCollectionEquality()
+              .equals(other.outgoingMessageFill, outgoingMessageFill) &&
+          const DeepCollectionEquality().equals(
+              other.animateOutgoingMessageFill, animateOutgoingMessageFill) &&
+          const DeepCollectionEquality().equals(
+              other.outgoingMessageAccentColor, outgoingMessageAccentColor));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(baseTheme),
+        const DeepCollectionEquality().hash(accentColor),
+        const DeepCollectionEquality().hash(background),
+        const DeepCollectionEquality().hash(outgoingMessageFill),
+        const DeepCollectionEquality().hash(animateOutgoingMessageFill),
+        const DeepCollectionEquality().hash(outgoingMessageAccentColor)
+      ]);
 }

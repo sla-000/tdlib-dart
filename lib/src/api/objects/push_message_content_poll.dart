@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// A message with a poll
@@ -47,8 +48,19 @@ class PushMessageContentPoll extends PushMessageContent {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is PushMessageContentPoll &&
+          const DeepCollectionEquality().equals(other.question, question) &&
+          const DeepCollectionEquality().equals(other.isRegular, isRegular) &&
+          const DeepCollectionEquality().equals(other.isPinned, isPinned));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(question),
+        const DeepCollectionEquality().hash(isRegular),
+        const DeepCollectionEquality().hash(isPinned)
+      ]);
 }

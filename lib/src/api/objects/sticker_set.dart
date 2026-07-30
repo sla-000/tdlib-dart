@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Represents a sticker set
@@ -136,8 +137,48 @@ class StickerSet extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is StickerSet &&
+          const DeepCollectionEquality().equals(other.id, id) &&
+          const DeepCollectionEquality().equals(other.title, title) &&
+          const DeepCollectionEquality().equals(other.name, name) &&
+          const DeepCollectionEquality().equals(other.thumbnail, thumbnail) &&
+          const DeepCollectionEquality()
+              .equals(other.thumbnailOutline, thumbnailOutline) &&
+          const DeepCollectionEquality().equals(other.isOwned, isOwned) &&
+          const DeepCollectionEquality()
+              .equals(other.isInstalled, isInstalled) &&
+          const DeepCollectionEquality().equals(other.isArchived, isArchived) &&
+          const DeepCollectionEquality().equals(other.isOfficial, isOfficial) &&
+          const DeepCollectionEquality()
+              .equals(other.stickerType, stickerType) &&
+          const DeepCollectionEquality()
+              .equals(other.needsRepainting, needsRepainting) &&
+          const DeepCollectionEquality().equals(
+              other.isAllowedAsChatEmojiStatus, isAllowedAsChatEmojiStatus) &&
+          const DeepCollectionEquality().equals(other.isViewed, isViewed) &&
+          const DeepCollectionEquality().equals(other.stickers, stickers) &&
+          const DeepCollectionEquality().equals(other.emojis, emojis));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(id),
+        const DeepCollectionEquality().hash(title),
+        const DeepCollectionEquality().hash(name),
+        const DeepCollectionEquality().hash(thumbnail),
+        const DeepCollectionEquality().hash(thumbnailOutline),
+        const DeepCollectionEquality().hash(isOwned),
+        const DeepCollectionEquality().hash(isInstalled),
+        const DeepCollectionEquality().hash(isArchived),
+        const DeepCollectionEquality().hash(isOfficial),
+        const DeepCollectionEquality().hash(stickerType),
+        const DeepCollectionEquality().hash(needsRepainting),
+        const DeepCollectionEquality().hash(isAllowedAsChatEmojiStatus),
+        const DeepCollectionEquality().hash(isViewed),
+        const DeepCollectionEquality().hash(stickers),
+        const DeepCollectionEquality().hash(emojis)
+      ]);
 }

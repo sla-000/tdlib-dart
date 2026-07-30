@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Approval of suggested post has failed, because the user who proposed the
@@ -44,8 +45,18 @@ class MessageSuggestedPostApprovalFailed extends MessageContent {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is MessageSuggestedPostApprovalFailed &&
+          const DeepCollectionEquality()
+              .equals(other.suggestedPostMessageId, suggestedPostMessageId) &&
+          const DeepCollectionEquality().equals(other.price, price));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(suggestedPostMessageId),
+        const DeepCollectionEquality().hash(price)
+      ]);
 }

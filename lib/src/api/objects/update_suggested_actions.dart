@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// The list of suggested to the user actions has changed
@@ -46,8 +47,19 @@ class UpdateSuggestedActions extends Update {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is UpdateSuggestedActions &&
+          const DeepCollectionEquality()
+              .equals(other.addedActions, addedActions) &&
+          const DeepCollectionEquality()
+              .equals(other.removedActions, removedActions));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(addedActions),
+        const DeepCollectionEquality().hash(removedActions)
+      ]);
 }

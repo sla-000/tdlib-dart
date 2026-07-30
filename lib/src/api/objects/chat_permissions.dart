@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Describes actions that a user is allowed to take in a chat
@@ -129,8 +130,60 @@ class ChatPermissions extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is ChatPermissions &&
+          const DeepCollectionEquality()
+              .equals(other.canSendBasicMessages, canSendBasicMessages) &&
+          const DeepCollectionEquality()
+              .equals(other.canSendAudios, canSendAudios) &&
+          const DeepCollectionEquality()
+              .equals(other.canSendDocuments, canSendDocuments) &&
+          const DeepCollectionEquality()
+              .equals(other.canSendPhotos, canSendPhotos) &&
+          const DeepCollectionEquality()
+              .equals(other.canSendVideos, canSendVideos) &&
+          const DeepCollectionEquality()
+              .equals(other.canSendVideoNotes, canSendVideoNotes) &&
+          const DeepCollectionEquality()
+              .equals(other.canSendVoiceNotes, canSendVoiceNotes) &&
+          const DeepCollectionEquality()
+              .equals(other.canSendPolls, canSendPolls) &&
+          const DeepCollectionEquality()
+              .equals(other.canSendOtherMessages, canSendOtherMessages) &&
+          const DeepCollectionEquality()
+              .equals(other.canAddLinkPreviews, canAddLinkPreviews) &&
+          const DeepCollectionEquality()
+              .equals(other.canReactToMessages, canReactToMessages) &&
+          const DeepCollectionEquality().equals(other.canEditTag, canEditTag) &&
+          const DeepCollectionEquality()
+              .equals(other.canChangeInfo, canChangeInfo) &&
+          const DeepCollectionEquality()
+              .equals(other.canInviteUsers, canInviteUsers) &&
+          const DeepCollectionEquality()
+              .equals(other.canPinMessages, canPinMessages) &&
+          const DeepCollectionEquality()
+              .equals(other.canCreateTopics, canCreateTopics));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(canSendBasicMessages),
+        const DeepCollectionEquality().hash(canSendAudios),
+        const DeepCollectionEquality().hash(canSendDocuments),
+        const DeepCollectionEquality().hash(canSendPhotos),
+        const DeepCollectionEquality().hash(canSendVideos),
+        const DeepCollectionEquality().hash(canSendVideoNotes),
+        const DeepCollectionEquality().hash(canSendVoiceNotes),
+        const DeepCollectionEquality().hash(canSendPolls),
+        const DeepCollectionEquality().hash(canSendOtherMessages),
+        const DeepCollectionEquality().hash(canAddLinkPreviews),
+        const DeepCollectionEquality().hash(canReactToMessages),
+        const DeepCollectionEquality().hash(canEditTag),
+        const DeepCollectionEquality().hash(canChangeInfo),
+        const DeepCollectionEquality().hash(canInviteUsers),
+        const DeepCollectionEquality().hash(canPinMessages),
+        const DeepCollectionEquality().hash(canCreateTopics)
+      ]);
 }

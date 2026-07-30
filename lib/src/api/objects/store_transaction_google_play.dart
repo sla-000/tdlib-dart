@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// A purchase through Google Play
@@ -46,8 +47,22 @@ class StoreTransactionGooglePlay extends StoreTransaction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is StoreTransactionGooglePlay &&
+          const DeepCollectionEquality()
+              .equals(other.packageName, packageName) &&
+          const DeepCollectionEquality()
+              .equals(other.storeProductId, storeProductId) &&
+          const DeepCollectionEquality()
+              .equals(other.purchaseToken, purchaseToken));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(packageName),
+        const DeepCollectionEquality().hash(storeProductId),
+        const DeepCollectionEquality().hash(purchaseToken)
+      ]);
 }

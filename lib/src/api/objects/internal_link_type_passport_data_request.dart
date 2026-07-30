@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// The link contains a request of Telegram passport data. Call
@@ -68,8 +69,24 @@ class InternalLinkTypePassportDataRequest extends InternalLinkType {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is InternalLinkTypePassportDataRequest &&
+          const DeepCollectionEquality().equals(other.botUserId, botUserId) &&
+          const DeepCollectionEquality().equals(other.scope, scope) &&
+          const DeepCollectionEquality().equals(other.publicKey, publicKey) &&
+          const DeepCollectionEquality().equals(other.nonce, nonce) &&
+          const DeepCollectionEquality()
+              .equals(other.callbackUrl, callbackUrl));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(botUserId),
+        const DeepCollectionEquality().hash(scope),
+        const DeepCollectionEquality().hash(publicKey),
+        const DeepCollectionEquality().hash(nonce),
+        const DeepCollectionEquality().hash(callbackUrl)
+      ]);
 }

@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Represents a list of Telegram Star subscriptions
@@ -58,8 +59,23 @@ class StarSubscriptions extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is StarSubscriptions &&
+          const DeepCollectionEquality().equals(other.starAmount, starAmount) &&
+          const DeepCollectionEquality()
+              .equals(other.subscriptions, subscriptions) &&
+          const DeepCollectionEquality()
+              .equals(other.requiredStarCount, requiredStarCount) &&
+          const DeepCollectionEquality().equals(other.nextOffset, nextOffset));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(starAmount),
+        const DeepCollectionEquality().hash(subscriptions),
+        const DeepCollectionEquality().hash(requiredStarCount),
+        const DeepCollectionEquality().hash(nextOffset)
+      ]);
 }

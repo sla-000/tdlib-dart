@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Changes the list of pinned gifts on the current user's or the channel's
@@ -35,8 +36,18 @@ class SetPinnedGifts extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is SetPinnedGifts &&
+          const DeepCollectionEquality().equals(other.ownerId, ownerId) &&
+          const DeepCollectionEquality()
+              .equals(other.receivedGiftIds, receivedGiftIds));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(ownerId),
+        const DeepCollectionEquality().hash(receivedGiftIds)
+      ]);
 }

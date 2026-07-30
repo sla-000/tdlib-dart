@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Represents a tag used in Saved Messages or a Saved Messages topic
@@ -48,8 +49,19 @@ class SavedMessagesTag extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is SavedMessagesTag &&
+          const DeepCollectionEquality().equals(other.tag, tag) &&
+          const DeepCollectionEquality().equals(other.label, label) &&
+          const DeepCollectionEquality().equals(other.count, count));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(tag),
+        const DeepCollectionEquality().hash(label),
+        const DeepCollectionEquality().hash(count)
+      ]);
 }

@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Contains statistics about interactions with a message sent in the chat or
@@ -54,8 +55,23 @@ class ChatStatisticsInteractionInfo extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is ChatStatisticsInteractionInfo &&
+          const DeepCollectionEquality().equals(other.objectType, objectType) &&
+          const DeepCollectionEquality().equals(other.viewCount, viewCount) &&
+          const DeepCollectionEquality()
+              .equals(other.forwardCount, forwardCount) &&
+          const DeepCollectionEquality()
+              .equals(other.reactionCount, reactionCount));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(objectType),
+        const DeepCollectionEquality().hash(viewCount),
+        const DeepCollectionEquality().hash(forwardCount),
+        const DeepCollectionEquality().hash(reactionCount)
+      ]);
 }

@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Searches specified query by word prefixes in the provided strings. Returns
@@ -42,8 +43,22 @@ class SearchStringsByPrefix extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is SearchStringsByPrefix &&
+          const DeepCollectionEquality().equals(other.strings, strings) &&
+          const DeepCollectionEquality().equals(other.query, query) &&
+          const DeepCollectionEquality().equals(other.limit, limit) &&
+          const DeepCollectionEquality()
+              .equals(other.returnNoneForEmptyQuery, returnNoneForEmptyQuery));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(strings),
+        const DeepCollectionEquality().hash(query),
+        const DeepCollectionEquality().hash(limit),
+        const DeepCollectionEquality().hash(returnNoneForEmptyQuery)
+      ]);
 }

@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Describes background of a gift
@@ -46,8 +47,20 @@ class GiftBackground extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is GiftBackground &&
+          const DeepCollectionEquality()
+              .equals(other.centerColor, centerColor) &&
+          const DeepCollectionEquality().equals(other.edgeColor, edgeColor) &&
+          const DeepCollectionEquality().equals(other.textColor, textColor));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(centerColor),
+        const DeepCollectionEquality().hash(edgeColor),
+        const DeepCollectionEquality().hash(textColor)
+      ]);
 }

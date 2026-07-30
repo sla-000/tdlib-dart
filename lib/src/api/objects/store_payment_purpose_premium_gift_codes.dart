@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// The user boosting a chat by creating Telegram Premium gift codes for other
@@ -68,8 +69,24 @@ class StorePaymentPurposePremiumGiftCodes extends StorePaymentPurpose {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is StorePaymentPurposePremiumGiftCodes &&
+          const DeepCollectionEquality()
+              .equals(other.boostedChatId, boostedChatId) &&
+          const DeepCollectionEquality().equals(other.currency, currency) &&
+          const DeepCollectionEquality().equals(other.amount, amount) &&
+          const DeepCollectionEquality().equals(other.userIds, userIds) &&
+          const DeepCollectionEquality().equals(other.text, text));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(boostedChatId),
+        const DeepCollectionEquality().hash(currency),
+        const DeepCollectionEquality().hash(amount),
+        const DeepCollectionEquality().hash(userIds),
+        const DeepCollectionEquality().hash(text)
+      ]);
 }

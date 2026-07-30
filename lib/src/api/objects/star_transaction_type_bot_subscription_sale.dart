@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// The transaction is a sale of a subscription by the bot; relevant for bots
@@ -64,8 +65,26 @@ class StarTransactionTypeBotSubscriptionSale extends StarTransactionType {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is StarTransactionTypeBotSubscriptionSale &&
+          const DeepCollectionEquality().equals(other.userId, userId) &&
+          const DeepCollectionEquality()
+              .equals(other.subscriptionPeriod, subscriptionPeriod) &&
+          const DeepCollectionEquality()
+              .equals(other.productInfo, productInfo) &&
+          const DeepCollectionEquality()
+              .equals(other.invoicePayload, invoicePayload) &&
+          const DeepCollectionEquality().equals(other.affiliate, affiliate));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(userId),
+        const DeepCollectionEquality().hash(subscriptionPeriod),
+        const DeepCollectionEquality().hash(productInfo),
+        const DeepCollectionEquality().hash(invoicePayload),
+        const DeepCollectionEquality().hash(affiliate)
+      ]);
 }

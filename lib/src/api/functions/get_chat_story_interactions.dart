@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Returns interactions with a story posted in a chat. Can be used only if
@@ -57,8 +58,28 @@ class GetChatStoryInteractions extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is GetChatStoryInteractions &&
+          const DeepCollectionEquality()
+              .equals(other.storyPosterChatId, storyPosterChatId) &&
+          const DeepCollectionEquality().equals(other.storyId, storyId) &&
+          const DeepCollectionEquality()
+              .equals(other.reactionType, reactionType) &&
+          const DeepCollectionEquality()
+              .equals(other.preferForwards, preferForwards) &&
+          const DeepCollectionEquality().equals(other.offset, offset) &&
+          const DeepCollectionEquality().equals(other.limit, limit));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(storyPosterChatId),
+        const DeepCollectionEquality().hash(storyId),
+        const DeepCollectionEquality().hash(reactionType),
+        const DeepCollectionEquality().hash(preferForwards),
+        const DeepCollectionEquality().hash(offset),
+        const DeepCollectionEquality().hash(limit)
+      ]);
 }

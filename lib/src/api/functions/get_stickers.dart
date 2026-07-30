@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Returns stickers from the installed sticker sets that correspond to any of
@@ -45,8 +46,22 @@ class GetStickers extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is GetStickers &&
+          const DeepCollectionEquality()
+              .equals(other.stickerType, stickerType) &&
+          const DeepCollectionEquality().equals(other.query, query) &&
+          const DeepCollectionEquality().equals(other.limit, limit) &&
+          const DeepCollectionEquality().equals(other.chatId, chatId));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(stickerType),
+        const DeepCollectionEquality().hash(query),
+        const DeepCollectionEquality().hash(limit),
+        const DeepCollectionEquality().hash(chatId)
+      ]);
 }

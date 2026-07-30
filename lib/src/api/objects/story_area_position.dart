@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Describes position of a clickable rectangle area on a story media
@@ -71,8 +72,31 @@ class StoryAreaPosition extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is StoryAreaPosition &&
+          const DeepCollectionEquality()
+              .equals(other.xPercentage, xPercentage) &&
+          const DeepCollectionEquality()
+              .equals(other.yPercentage, yPercentage) &&
+          const DeepCollectionEquality()
+              .equals(other.widthPercentage, widthPercentage) &&
+          const DeepCollectionEquality()
+              .equals(other.heightPercentage, heightPercentage) &&
+          const DeepCollectionEquality()
+              .equals(other.rotationAngle, rotationAngle) &&
+          const DeepCollectionEquality()
+              .equals(other.cornerRadiusPercentage, cornerRadiusPercentage));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(xPercentage),
+        const DeepCollectionEquality().hash(yPercentage),
+        const DeepCollectionEquality().hash(widthPercentage),
+        const DeepCollectionEquality().hash(heightPercentage),
+        const DeepCollectionEquality().hash(rotationAngle),
+        const DeepCollectionEquality().hash(cornerRadiusPercentage)
+      ]);
 }

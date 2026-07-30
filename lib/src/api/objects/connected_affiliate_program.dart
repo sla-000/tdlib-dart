@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Describes an affiliate program that was connected to an affiliate
@@ -75,8 +76,30 @@ class ConnectedAffiliateProgram extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is ConnectedAffiliateProgram &&
+          const DeepCollectionEquality().equals(other.url, url) &&
+          const DeepCollectionEquality().equals(other.botUserId, botUserId) &&
+          const DeepCollectionEquality().equals(other.parameters, parameters) &&
+          const DeepCollectionEquality()
+              .equals(other.connectionDate, connectionDate) &&
+          const DeepCollectionEquality()
+              .equals(other.isDisconnected, isDisconnected) &&
+          const DeepCollectionEquality().equals(other.userCount, userCount) &&
+          const DeepCollectionEquality()
+              .equals(other.revenueStarCount, revenueStarCount));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(url),
+        const DeepCollectionEquality().hash(botUserId),
+        const DeepCollectionEquality().hash(parameters),
+        const DeepCollectionEquality().hash(connectionDate),
+        const DeepCollectionEquality().hash(isDisconnected),
+        const DeepCollectionEquality().hash(userCount),
+        const DeepCollectionEquality().hash(revenueStarCount)
+      ]);
 }

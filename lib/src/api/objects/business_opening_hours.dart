@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Describes opening hours of a business
@@ -43,8 +44,18 @@ class BusinessOpeningHours extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is BusinessOpeningHours &&
+          const DeepCollectionEquality().equals(other.timeZoneId, timeZoneId) &&
+          const DeepCollectionEquality()
+              .equals(other.openingHours, openingHours));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(timeZoneId),
+        const DeepCollectionEquality().hash(openingHours)
+      ]);
 }

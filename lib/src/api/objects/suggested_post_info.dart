@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Contains information about a suggested post. If the post can be approved
@@ -68,8 +69,25 @@ class SuggestedPostInfo extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is SuggestedPostInfo &&
+          const DeepCollectionEquality().equals(other.price, price) &&
+          const DeepCollectionEquality().equals(other.sendDate, sendDate) &&
+          const DeepCollectionEquality().equals(other.state, state) &&
+          const DeepCollectionEquality()
+              .equals(other.canBeApproved, canBeApproved) &&
+          const DeepCollectionEquality()
+              .equals(other.canBeDeclined, canBeDeclined));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(price),
+        const DeepCollectionEquality().hash(sendDate),
+        const DeepCollectionEquality().hash(state),
+        const DeepCollectionEquality().hash(canBeApproved),
+        const DeepCollectionEquality().hash(canBeDeclined)
+      ]);
 }

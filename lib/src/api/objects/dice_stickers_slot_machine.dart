@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Animated stickers to be combined into a slot machine
@@ -62,8 +63,23 @@ class DiceStickersSlotMachine extends DiceStickers {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is DiceStickersSlotMachine &&
+          const DeepCollectionEquality().equals(other.background, background) &&
+          const DeepCollectionEquality().equals(other.lever, lever) &&
+          const DeepCollectionEquality().equals(other.leftReel, leftReel) &&
+          const DeepCollectionEquality().equals(other.centerReel, centerReel) &&
+          const DeepCollectionEquality().equals(other.rightReel, rightReel));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(background),
+        const DeepCollectionEquality().hash(lever),
+        const DeepCollectionEquality().hash(leftReel),
+        const DeepCollectionEquality().hash(centerReel),
+        const DeepCollectionEquality().hash(rightReel)
+      ]);
 }

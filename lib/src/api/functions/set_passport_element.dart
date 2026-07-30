@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Adds an element to the user's Telegram Passport. May return an error with
@@ -32,8 +33,17 @@ class SetPassportElement extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is SetPassportElement &&
+          const DeepCollectionEquality().equals(other.element, element) &&
+          const DeepCollectionEquality().equals(other.password, password));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(element),
+        const DeepCollectionEquality().hash(password)
+      ]);
 }

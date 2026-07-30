@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// An offer to purchase a gift was rejected or expired
@@ -55,8 +56,22 @@ class MessageUpgradedGiftPurchaseOfferRejected extends MessageContent {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is MessageUpgradedGiftPurchaseOfferRejected &&
+          const DeepCollectionEquality().equals(other.gift, gift) &&
+          const DeepCollectionEquality().equals(other.price, price) &&
+          const DeepCollectionEquality()
+              .equals(other.offerMessageId, offerMessageId) &&
+          const DeepCollectionEquality().equals(other.wasExpired, wasExpired));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(gift),
+        const DeepCollectionEquality().hash(price),
+        const DeepCollectionEquality().hash(offerMessageId),
+        const DeepCollectionEquality().hash(wasExpired)
+      ]);
 }

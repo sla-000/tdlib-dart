@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Describes an option for the number of winners of a Telegram Star giveaway
@@ -47,8 +48,21 @@ class StarGiveawayWinnerOption extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is StarGiveawayWinnerOption &&
+          const DeepCollectionEquality()
+              .equals(other.winnerCount, winnerCount) &&
+          const DeepCollectionEquality()
+              .equals(other.wonStarCount, wonStarCount) &&
+          const DeepCollectionEquality().equals(other.isDefault, isDefault));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(winnerCount),
+        const DeepCollectionEquality().hash(wonStarCount),
+        const DeepCollectionEquality().hash(isDefault)
+      ]);
 }

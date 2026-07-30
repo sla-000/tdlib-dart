@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Represents a set of filters used to obtain a chat event log
@@ -122,8 +123,58 @@ class ChatEventLogFilters extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is ChatEventLogFilters &&
+          const DeepCollectionEquality()
+              .equals(other.messageEdits, messageEdits) &&
+          const DeepCollectionEquality()
+              .equals(other.messageDeletions, messageDeletions) &&
+          const DeepCollectionEquality()
+              .equals(other.messagePins, messagePins) &&
+          const DeepCollectionEquality()
+              .equals(other.memberJoins, memberJoins) &&
+          const DeepCollectionEquality()
+              .equals(other.memberLeaves, memberLeaves) &&
+          const DeepCollectionEquality()
+              .equals(other.memberInvites, memberInvites) &&
+          const DeepCollectionEquality()
+              .equals(other.memberPromotions, memberPromotions) &&
+          const DeepCollectionEquality()
+              .equals(other.memberRestrictions, memberRestrictions) &&
+          const DeepCollectionEquality()
+              .equals(other.memberTagChanges, memberTagChanges) &&
+          const DeepCollectionEquality()
+              .equals(other.infoChanges, infoChanges) &&
+          const DeepCollectionEquality()
+              .equals(other.settingChanges, settingChanges) &&
+          const DeepCollectionEquality()
+              .equals(other.inviteLinkChanges, inviteLinkChanges) &&
+          const DeepCollectionEquality()
+              .equals(other.videoChatChanges, videoChatChanges) &&
+          const DeepCollectionEquality()
+              .equals(other.forumChanges, forumChanges) &&
+          const DeepCollectionEquality()
+              .equals(other.subscriptionExtensions, subscriptionExtensions));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(messageEdits),
+        const DeepCollectionEquality().hash(messageDeletions),
+        const DeepCollectionEquality().hash(messagePins),
+        const DeepCollectionEquality().hash(memberJoins),
+        const DeepCollectionEquality().hash(memberLeaves),
+        const DeepCollectionEquality().hash(memberInvites),
+        const DeepCollectionEquality().hash(memberPromotions),
+        const DeepCollectionEquality().hash(memberRestrictions),
+        const DeepCollectionEquality().hash(memberTagChanges),
+        const DeepCollectionEquality().hash(infoChanges),
+        const DeepCollectionEquality().hash(settingChanges),
+        const DeepCollectionEquality().hash(inviteLinkChanges),
+        const DeepCollectionEquality().hash(videoChatChanges),
+        const DeepCollectionEquality().hash(forumChanges),
+        const DeepCollectionEquality().hash(subscriptionExtensions)
+      ]);
 }

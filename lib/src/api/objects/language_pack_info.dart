@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Contains information about a language pack
@@ -114,8 +115,45 @@ class LanguagePackInfo extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is LanguagePackInfo &&
+          const DeepCollectionEquality().equals(other.id, id) &&
+          const DeepCollectionEquality()
+              .equals(other.baseLanguagePackId, baseLanguagePackId) &&
+          const DeepCollectionEquality().equals(other.name, name) &&
+          const DeepCollectionEquality().equals(other.nativeName, nativeName) &&
+          const DeepCollectionEquality().equals(other.pluralCode, pluralCode) &&
+          const DeepCollectionEquality().equals(other.isOfficial, isOfficial) &&
+          const DeepCollectionEquality().equals(other.isRtl, isRtl) &&
+          const DeepCollectionEquality().equals(other.isBeta, isBeta) &&
+          const DeepCollectionEquality()
+              .equals(other.isInstalled, isInstalled) &&
+          const DeepCollectionEquality()
+              .equals(other.totalStringCount, totalStringCount) &&
+          const DeepCollectionEquality()
+              .equals(other.translatedStringCount, translatedStringCount) &&
+          const DeepCollectionEquality()
+              .equals(other.localStringCount, localStringCount) &&
+          const DeepCollectionEquality()
+              .equals(other.translationUrl, translationUrl));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(id),
+        const DeepCollectionEquality().hash(baseLanguagePackId),
+        const DeepCollectionEquality().hash(name),
+        const DeepCollectionEquality().hash(nativeName),
+        const DeepCollectionEquality().hash(pluralCode),
+        const DeepCollectionEquality().hash(isOfficial),
+        const DeepCollectionEquality().hash(isRtl),
+        const DeepCollectionEquality().hash(isBeta),
+        const DeepCollectionEquality().hash(isInstalled),
+        const DeepCollectionEquality().hash(totalStringCount),
+        const DeepCollectionEquality().hash(translatedStringCount),
+        const DeepCollectionEquality().hash(localStringCount),
+        const DeepCollectionEquality().hash(translationUrl)
+      ]);
 }

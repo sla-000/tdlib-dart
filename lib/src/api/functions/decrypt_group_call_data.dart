@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Decrypts group call data received by tgcalls
@@ -42,8 +43,24 @@ class DecryptGroupCallData extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is DecryptGroupCallData &&
+          const DeepCollectionEquality()
+              .equals(other.groupCallId, groupCallId) &&
+          const DeepCollectionEquality()
+              .equals(other.participantId, participantId) &&
+          const DeepCollectionEquality()
+              .equals(other.dataChannel, dataChannel) &&
+          const DeepCollectionEquality().equals(other.data, data));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(groupCallId),
+        const DeepCollectionEquality().hash(participantId),
+        const DeepCollectionEquality().hash(dataChannel),
+        const DeepCollectionEquality().hash(data)
+      ]);
 }

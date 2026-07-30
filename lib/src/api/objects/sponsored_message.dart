@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Describes a sponsored message
@@ -100,8 +101,38 @@ class SponsoredMessage extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is SponsoredMessage &&
+          const DeepCollectionEquality().equals(other.messageId, messageId) &&
+          const DeepCollectionEquality()
+              .equals(other.isRecommended, isRecommended) &&
+          const DeepCollectionEquality()
+              .equals(other.canBeReported, canBeReported) &&
+          const DeepCollectionEquality().equals(other.content, content) &&
+          const DeepCollectionEquality().equals(other.sponsor, sponsor) &&
+          const DeepCollectionEquality().equals(other.title, title) &&
+          const DeepCollectionEquality().equals(other.buttonText, buttonText) &&
+          const DeepCollectionEquality()
+              .equals(other.accentColorId, accentColorId) &&
+          const DeepCollectionEquality()
+              .equals(other.backgroundCustomEmojiId, backgroundCustomEmojiId) &&
+          const DeepCollectionEquality()
+              .equals(other.additionalInfo, additionalInfo));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(messageId),
+        const DeepCollectionEquality().hash(isRecommended),
+        const DeepCollectionEquality().hash(canBeReported),
+        const DeepCollectionEquality().hash(content),
+        const DeepCollectionEquality().hash(sponsor),
+        const DeepCollectionEquality().hash(title),
+        const DeepCollectionEquality().hash(buttonText),
+        const DeepCollectionEquality().hash(accentColorId),
+        const DeepCollectionEquality().hash(backgroundCustomEmojiId),
+        const DeepCollectionEquality().hash(additionalInfo)
+      ]);
 }

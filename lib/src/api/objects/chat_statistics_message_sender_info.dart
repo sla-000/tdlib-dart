@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Contains statistics about messages sent by a user
@@ -47,8 +48,21 @@ class ChatStatisticsMessageSenderInfo extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is ChatStatisticsMessageSenderInfo &&
+          const DeepCollectionEquality().equals(other.userId, userId) &&
+          const DeepCollectionEquality()
+              .equals(other.sentMessageCount, sentMessageCount) &&
+          const DeepCollectionEquality()
+              .equals(other.averageCharacterCount, averageCharacterCount));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(userId),
+        const DeepCollectionEquality().hash(sentMessageCount),
+        const DeepCollectionEquality().hash(averageCharacterCount)
+      ]);
 }

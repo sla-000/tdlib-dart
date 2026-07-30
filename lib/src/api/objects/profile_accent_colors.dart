@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Contains information about supported accent colors for user profile photo
@@ -60,8 +61,22 @@ class ProfileAccentColors extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is ProfileAccentColors &&
+          const DeepCollectionEquality()
+              .equals(other.paletteColors, paletteColors) &&
+          const DeepCollectionEquality()
+              .equals(other.backgroundColors, backgroundColors) &&
+          const DeepCollectionEquality()
+              .equals(other.storyColors, storyColors));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(paletteColors),
+        const DeepCollectionEquality().hash(backgroundColors),
+        const DeepCollectionEquality().hash(storyColors)
+      ]);
 }

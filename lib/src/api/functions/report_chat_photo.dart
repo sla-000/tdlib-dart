@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Reports a chat photo to the Telegram moderators. A chat photo can be
@@ -42,8 +43,21 @@ class ReportChatPhoto extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is ReportChatPhoto &&
+          const DeepCollectionEquality().equals(other.chatId, chatId) &&
+          const DeepCollectionEquality().equals(other.fileId, fileId) &&
+          const DeepCollectionEquality().equals(other.reason, reason) &&
+          const DeepCollectionEquality().equals(other.text, text));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(chatId),
+        const DeepCollectionEquality().hash(fileId),
+        const DeepCollectionEquality().hash(reason),
+        const DeepCollectionEquality().hash(text)
+      ]);
 }

@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// The link is a link to an attachment menu bot to be opened in the specified
@@ -59,8 +60,20 @@ class InternalLinkTypeAttachmentMenuBot extends InternalLinkType {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is InternalLinkTypeAttachmentMenuBot &&
+          const DeepCollectionEquality().equals(other.targetChat, targetChat) &&
+          const DeepCollectionEquality()
+              .equals(other.botUsername, botUsername) &&
+          const DeepCollectionEquality().equals(other.url, url));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(targetChat),
+        const DeepCollectionEquality().hash(botUsername),
+        const DeepCollectionEquality().hash(url)
+      ]);
 }

@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Searches for messages with given words in the chat. Returns the results in
@@ -77,8 +78,30 @@ class SearchChatMessages extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is SearchChatMessages &&
+          const DeepCollectionEquality().equals(other.chatId, chatId) &&
+          const DeepCollectionEquality().equals(other.topicId, topicId) &&
+          const DeepCollectionEquality().equals(other.query, query) &&
+          const DeepCollectionEquality().equals(other.senderId, senderId) &&
+          const DeepCollectionEquality()
+              .equals(other.fromMessageId, fromMessageId) &&
+          const DeepCollectionEquality().equals(other.offset, offset) &&
+          const DeepCollectionEquality().equals(other.limit, limit) &&
+          const DeepCollectionEquality().equals(other.filter, filter));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(chatId),
+        const DeepCollectionEquality().hash(topicId),
+        const DeepCollectionEquality().hash(query),
+        const DeepCollectionEquality().hash(senderId),
+        const DeepCollectionEquality().hash(fromMessageId),
+        const DeepCollectionEquality().hash(offset),
+        const DeepCollectionEquality().hash(limit),
+        const DeepCollectionEquality().hash(filter)
+      ]);
 }

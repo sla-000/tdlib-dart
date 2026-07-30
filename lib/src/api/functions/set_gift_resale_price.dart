@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Changes resale price of a unique gift owned by the current user
@@ -35,8 +36,18 @@ class SetGiftResalePrice extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is SetGiftResalePrice &&
+          const DeepCollectionEquality()
+              .equals(other.receivedGiftId, receivedGiftId) &&
+          const DeepCollectionEquality().equals(other.price, price));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(receivedGiftId),
+        const DeepCollectionEquality().hash(price)
+      ]);
 }

@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// A message with an invoice from a bot
@@ -41,8 +42,17 @@ class PushMessageContentInvoice extends PushMessageContent {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is PushMessageContentInvoice &&
+          const DeepCollectionEquality().equals(other.price, price) &&
+          const DeepCollectionEquality().equals(other.isPinned, isPinned));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(price),
+        const DeepCollectionEquality().hash(isPinned)
+      ]);
 }

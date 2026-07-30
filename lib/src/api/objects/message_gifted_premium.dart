@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Telegram Premium was gifted to a user
@@ -93,8 +94,37 @@ class MessageGiftedPremium extends MessageContent {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is MessageGiftedPremium &&
+          const DeepCollectionEquality()
+              .equals(other.gifterUserId, gifterUserId) &&
+          const DeepCollectionEquality()
+              .equals(other.receiverUserId, receiverUserId) &&
+          const DeepCollectionEquality().equals(other.text, text) &&
+          const DeepCollectionEquality().equals(other.currency, currency) &&
+          const DeepCollectionEquality().equals(other.amount, amount) &&
+          const DeepCollectionEquality()
+              .equals(other.cryptocurrency, cryptocurrency) &&
+          const DeepCollectionEquality()
+              .equals(other.cryptocurrencyAmount, cryptocurrencyAmount) &&
+          const DeepCollectionEquality().equals(other.monthCount, monthCount) &&
+          const DeepCollectionEquality().equals(other.dayCount, dayCount) &&
+          const DeepCollectionEquality().equals(other.sticker, sticker));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(gifterUserId),
+        const DeepCollectionEquality().hash(receiverUserId),
+        const DeepCollectionEquality().hash(text),
+        const DeepCollectionEquality().hash(currency),
+        const DeepCollectionEquality().hash(amount),
+        const DeepCollectionEquality().hash(cryptocurrency),
+        const DeepCollectionEquality().hash(cryptocurrencyAmount),
+        const DeepCollectionEquality().hash(monthCount),
+        const DeepCollectionEquality().hash(dayCount),
+        const DeepCollectionEquality().hash(sticker)
+      ]);
 }

@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// An audio to be sent
@@ -62,8 +63,24 @@ class InputAudio extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is InputAudio &&
+          const DeepCollectionEquality().equals(other.audio, audio) &&
+          const DeepCollectionEquality()
+              .equals(other.albumCoverThumbnail, albumCoverThumbnail) &&
+          const DeepCollectionEquality().equals(other.duration, duration) &&
+          const DeepCollectionEquality().equals(other.title, title) &&
+          const DeepCollectionEquality().equals(other.performer, performer));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(audio),
+        const DeepCollectionEquality().hash(albumCoverThumbnail),
+        const DeepCollectionEquality().hash(duration),
+        const DeepCollectionEquality().hash(title),
+        const DeepCollectionEquality().hash(performer)
+      ]);
 }

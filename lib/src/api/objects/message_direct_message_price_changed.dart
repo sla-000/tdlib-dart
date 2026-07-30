@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// A price for direct messages was changed in the channel chat
@@ -45,8 +46,18 @@ class MessageDirectMessagePriceChanged extends MessageContent {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is MessageDirectMessagePriceChanged &&
+          const DeepCollectionEquality().equals(other.isEnabled, isEnabled) &&
+          const DeepCollectionEquality()
+              .equals(other.paidMessageStarCount, paidMessageStarCount));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(isEnabled),
+        const DeepCollectionEquality().hash(paidMessageStarCount)
+      ]);
 }

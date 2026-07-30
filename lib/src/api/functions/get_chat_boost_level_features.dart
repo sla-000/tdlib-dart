@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Returns the list of features available on the specific chat boost level.
@@ -32,8 +33,17 @@ class GetChatBoostLevelFeatures extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is GetChatBoostLevelFeatures &&
+          const DeepCollectionEquality().equals(other.isChannel, isChannel) &&
+          const DeepCollectionEquality().equals(other.level, level));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(isChannel),
+        const DeepCollectionEquality().hash(level)
+      ]);
 }

@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Describes a gift that can be sent to another user or channel chat
@@ -149,8 +150,57 @@ class Gift extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is Gift &&
+          const DeepCollectionEquality().equals(other.id, id) &&
+          const DeepCollectionEquality()
+              .equals(other.publisherChatId, publisherChatId) &&
+          const DeepCollectionEquality().equals(other.sticker, sticker) &&
+          const DeepCollectionEquality().equals(other.starCount, starCount) &&
+          const DeepCollectionEquality()
+              .equals(other.defaultSellStarCount, defaultSellStarCount) &&
+          const DeepCollectionEquality()
+              .equals(other.upgradeStarCount, upgradeStarCount) &&
+          const DeepCollectionEquality()
+              .equals(other.upgradeVariantCount, upgradeVariantCount) &&
+          const DeepCollectionEquality().equals(other.hasColors, hasColors) &&
+          const DeepCollectionEquality()
+              .equals(other.isForBirthday, isForBirthday) &&
+          const DeepCollectionEquality().equals(other.isPremium, isPremium) &&
+          const DeepCollectionEquality()
+              .equals(other.auctionInfo, auctionInfo) &&
+          const DeepCollectionEquality()
+              .equals(other.nextSendDate, nextSendDate) &&
+          const DeepCollectionEquality().equals(other.userLimits, userLimits) &&
+          const DeepCollectionEquality()
+              .equals(other.overallLimits, overallLimits) &&
+          const DeepCollectionEquality().equals(other.background, background) &&
+          const DeepCollectionEquality()
+              .equals(other.firstSendDate, firstSendDate) &&
+          const DeepCollectionEquality()
+              .equals(other.lastSendDate, lastSendDate));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(id),
+        const DeepCollectionEquality().hash(publisherChatId),
+        const DeepCollectionEquality().hash(sticker),
+        const DeepCollectionEquality().hash(starCount),
+        const DeepCollectionEquality().hash(defaultSellStarCount),
+        const DeepCollectionEquality().hash(upgradeStarCount),
+        const DeepCollectionEquality().hash(upgradeVariantCount),
+        const DeepCollectionEquality().hash(hasColors),
+        const DeepCollectionEquality().hash(isForBirthday),
+        const DeepCollectionEquality().hash(isPremium),
+        const DeepCollectionEquality().hash(auctionInfo),
+        const DeepCollectionEquality().hash(nextSendDate),
+        const DeepCollectionEquality().hash(userLimits),
+        const DeepCollectionEquality().hash(overallLimits),
+        const DeepCollectionEquality().hash(background),
+        const DeepCollectionEquality().hash(firstSendDate),
+        const DeepCollectionEquality().hash(lastSendDate)
+      ]);
 }

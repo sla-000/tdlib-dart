@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Describes parameters of verification that is provided by a bot
@@ -57,8 +58,25 @@ class BotVerificationParameters extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is BotVerificationParameters &&
+          const DeepCollectionEquality()
+              .equals(other.iconCustomEmojiId, iconCustomEmojiId) &&
+          const DeepCollectionEquality()
+              .equals(other.organizationName, organizationName) &&
+          const DeepCollectionEquality().equals(
+              other.defaultCustomDescription, defaultCustomDescription) &&
+          const DeepCollectionEquality()
+              .equals(other.canSetCustomDescription, canSetCustomDescription));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(iconCustomEmojiId),
+        const DeepCollectionEquality().hash(organizationName),
+        const DeepCollectionEquality().hash(defaultCustomDescription),
+        const DeepCollectionEquality().hash(canSetCustomDescription)
+      ]);
 }

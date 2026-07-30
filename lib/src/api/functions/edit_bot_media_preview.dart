@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Replaces media preview in the list of media previews of a bot. Returns the
@@ -42,8 +43,22 @@ class EditBotMediaPreview extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is EditBotMediaPreview &&
+          const DeepCollectionEquality().equals(other.botUserId, botUserId) &&
+          const DeepCollectionEquality()
+              .equals(other.languageCode, languageCode) &&
+          const DeepCollectionEquality().equals(other.fileId, fileId) &&
+          const DeepCollectionEquality().equals(other.content, content));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(botUserId),
+        const DeepCollectionEquality().hash(languageCode),
+        const DeepCollectionEquality().hash(fileId),
+        const DeepCollectionEquality().hash(content)
+      ]);
 }

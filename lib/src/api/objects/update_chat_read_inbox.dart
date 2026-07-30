@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Incoming messages were read or the number of unread messages has been
@@ -47,8 +48,21 @@ class UpdateChatReadInbox extends Update {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is UpdateChatReadInbox &&
+          const DeepCollectionEquality().equals(other.chatId, chatId) &&
+          const DeepCollectionEquality()
+              .equals(other.lastReadInboxMessageId, lastReadInboxMessageId) &&
+          const DeepCollectionEquality()
+              .equals(other.unreadCount, unreadCount));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(chatId),
+        const DeepCollectionEquality().hash(lastReadInboxMessageId),
+        const DeepCollectionEquality().hash(unreadCount)
+      ]);
 }

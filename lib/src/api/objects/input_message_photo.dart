@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// A photo message
@@ -64,8 +65,25 @@ class InputMessagePhoto extends InputMessageContent {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is InputMessagePhoto &&
+          const DeepCollectionEquality().equals(other.photo, photo) &&
+          const DeepCollectionEquality().equals(other.caption, caption) &&
+          const DeepCollectionEquality()
+              .equals(other.showCaptionAboveMedia, showCaptionAboveMedia) &&
+          const DeepCollectionEquality()
+              .equals(other.selfDestructType, selfDestructType) &&
+          const DeepCollectionEquality().equals(other.hasSpoiler, hasSpoiler));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(photo),
+        const DeepCollectionEquality().hash(caption),
+        const DeepCollectionEquality().hash(showCaptionAboveMedia),
+        const DeepCollectionEquality().hash(selfDestructType),
+        const DeepCollectionEquality().hash(hasSpoiler)
+      ]);
 }

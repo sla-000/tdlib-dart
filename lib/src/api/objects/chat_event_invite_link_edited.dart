@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// A chat invite link was edited
@@ -42,8 +43,19 @@ class ChatEventInviteLinkEdited extends ChatEventAction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is ChatEventInviteLinkEdited &&
+          const DeepCollectionEquality()
+              .equals(other.oldInviteLink, oldInviteLink) &&
+          const DeepCollectionEquality()
+              .equals(other.newInviteLink, newInviteLink));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(oldInviteLink),
+        const DeepCollectionEquality().hash(newInviteLink)
+      ]);
 }

@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// TDLib needs the user's authentication code sent to an email address to
@@ -56,8 +57,24 @@ class AuthorizationStateWaitEmailCode extends AuthorizationState {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is AuthorizationStateWaitEmailCode &&
+          const DeepCollectionEquality()
+              .equals(other.allowAppleId, allowAppleId) &&
+          const DeepCollectionEquality()
+              .equals(other.allowGoogleId, allowGoogleId) &&
+          const DeepCollectionEquality().equals(other.codeInfo, codeInfo) &&
+          const DeepCollectionEquality()
+              .equals(other.emailAddressResetState, emailAddressResetState));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(allowAppleId),
+        const DeepCollectionEquality().hash(allowGoogleId),
+        const DeepCollectionEquality().hash(codeInfo),
+        const DeepCollectionEquality().hash(emailAddressResetState)
+      ]);
 }

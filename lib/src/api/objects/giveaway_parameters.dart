@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Describes parameters of a giveaway
@@ -93,8 +94,34 @@ class GiveawayParameters extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is GiveawayParameters &&
+          const DeepCollectionEquality()
+              .equals(other.boostedChatId, boostedChatId) &&
+          const DeepCollectionEquality()
+              .equals(other.additionalChatIds, additionalChatIds) &&
+          const DeepCollectionEquality()
+              .equals(other.winnersSelectionDate, winnersSelectionDate) &&
+          const DeepCollectionEquality()
+              .equals(other.onlyNewMembers, onlyNewMembers) &&
+          const DeepCollectionEquality()
+              .equals(other.hasPublicWinners, hasPublicWinners) &&
+          const DeepCollectionEquality()
+              .equals(other.countryCodes, countryCodes) &&
+          const DeepCollectionEquality()
+              .equals(other.prizeDescription, prizeDescription));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(boostedChatId),
+        const DeepCollectionEquality().hash(additionalChatIds),
+        const DeepCollectionEquality().hash(winnersSelectionDate),
+        const DeepCollectionEquality().hash(onlyNewMembers),
+        const DeepCollectionEquality().hash(hasPublicWinners),
+        const DeepCollectionEquality().hash(countryCodes),
+        const DeepCollectionEquality().hash(prizeDescription)
+      ]);
 }

@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Describes a message to be replied in the same chat and forum topic
@@ -57,8 +58,23 @@ class InputMessageReplyToMessage extends InputMessageReplyTo {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is InputMessageReplyToMessage &&
+          const DeepCollectionEquality().equals(other.messageId, messageId) &&
+          const DeepCollectionEquality().equals(other.quote, quote) &&
+          const DeepCollectionEquality()
+              .equals(other.checklistTaskId, checklistTaskId) &&
+          const DeepCollectionEquality()
+              .equals(other.pollOptionId, pollOptionId));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(messageId),
+        const DeepCollectionEquality().hash(quote),
+        const DeepCollectionEquality().hash(checklistTaskId),
+        const DeepCollectionEquality().hash(pollOptionId)
+      ]);
 }

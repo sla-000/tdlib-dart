@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Contains the user's personal details
@@ -90,8 +91,38 @@ class PersonalDetails extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is PersonalDetails &&
+          const DeepCollectionEquality().equals(other.firstName, firstName) &&
+          const DeepCollectionEquality().equals(other.middleName, middleName) &&
+          const DeepCollectionEquality().equals(other.lastName, lastName) &&
+          const DeepCollectionEquality()
+              .equals(other.nativeFirstName, nativeFirstName) &&
+          const DeepCollectionEquality()
+              .equals(other.nativeMiddleName, nativeMiddleName) &&
+          const DeepCollectionEquality()
+              .equals(other.nativeLastName, nativeLastName) &&
+          const DeepCollectionEquality().equals(other.birthdate, birthdate) &&
+          const DeepCollectionEquality().equals(other.gender, gender) &&
+          const DeepCollectionEquality()
+              .equals(other.countryCode, countryCode) &&
+          const DeepCollectionEquality()
+              .equals(other.residenceCountryCode, residenceCountryCode));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(firstName),
+        const DeepCollectionEquality().hash(middleName),
+        const DeepCollectionEquality().hash(lastName),
+        const DeepCollectionEquality().hash(nativeFirstName),
+        const DeepCollectionEquality().hash(nativeMiddleName),
+        const DeepCollectionEquality().hash(nativeLastName),
+        const DeepCollectionEquality().hash(birthdate),
+        const DeepCollectionEquality().hash(gender),
+        const DeepCollectionEquality().hash(countryCode),
+        const DeepCollectionEquality().hash(residenceCountryCode)
+      ]);
 }

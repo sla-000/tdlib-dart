@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Contains a list of features available on a specific chat boost level
@@ -135,8 +136,59 @@ class ChatBoostLevelFeatures extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is ChatBoostLevelFeatures &&
+          const DeepCollectionEquality().equals(other.level, level) &&
+          const DeepCollectionEquality()
+              .equals(other.storyPerDayCount, storyPerDayCount) &&
+          const DeepCollectionEquality().equals(
+              other.customEmojiReactionCount, customEmojiReactionCount) &&
+          const DeepCollectionEquality()
+              .equals(other.titleColorCount, titleColorCount) &&
+          const DeepCollectionEquality()
+              .equals(other.profileAccentColorCount, profileAccentColorCount) &&
+          const DeepCollectionEquality().equals(
+              other.canSetProfileBackgroundCustomEmoji,
+              canSetProfileBackgroundCustomEmoji) &&
+          const DeepCollectionEquality()
+              .equals(other.accentColorCount, accentColorCount) &&
+          const DeepCollectionEquality().equals(
+              other.canSetBackgroundCustomEmoji, canSetBackgroundCustomEmoji) &&
+          const DeepCollectionEquality()
+              .equals(other.canSetEmojiStatus, canSetEmojiStatus) &&
+          const DeepCollectionEquality().equals(
+              other.chatThemeBackgroundCount, chatThemeBackgroundCount) &&
+          const DeepCollectionEquality()
+              .equals(other.canSetCustomBackground, canSetCustomBackground) &&
+          const DeepCollectionEquality().equals(
+              other.canSetCustomEmojiStickerSet, canSetCustomEmojiStickerSet) &&
+          const DeepCollectionEquality().equals(
+              other.canEnableAutomaticTranslation,
+              canEnableAutomaticTranslation) &&
+          const DeepCollectionEquality()
+              .equals(other.canRecognizeSpeech, canRecognizeSpeech) &&
+          const DeepCollectionEquality().equals(
+              other.canDisableSponsoredMessages, canDisableSponsoredMessages));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(level),
+        const DeepCollectionEquality().hash(storyPerDayCount),
+        const DeepCollectionEquality().hash(customEmojiReactionCount),
+        const DeepCollectionEquality().hash(titleColorCount),
+        const DeepCollectionEquality().hash(profileAccentColorCount),
+        const DeepCollectionEquality().hash(canSetProfileBackgroundCustomEmoji),
+        const DeepCollectionEquality().hash(accentColorCount),
+        const DeepCollectionEquality().hash(canSetBackgroundCustomEmoji),
+        const DeepCollectionEquality().hash(canSetEmojiStatus),
+        const DeepCollectionEquality().hash(chatThemeBackgroundCount),
+        const DeepCollectionEquality().hash(canSetCustomBackground),
+        const DeepCollectionEquality().hash(canSetCustomEmojiStickerSet),
+        const DeepCollectionEquality().hash(canEnableAutomaticTranslation),
+        const DeepCollectionEquality().hash(canRecognizeSpeech),
+        const DeepCollectionEquality().hash(canDisableSponsoredMessages)
+      ]);
 }

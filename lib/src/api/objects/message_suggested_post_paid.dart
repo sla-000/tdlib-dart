@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// A suggested post was published for
@@ -51,8 +52,20 @@ class MessageSuggestedPostPaid extends MessageContent {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is MessageSuggestedPostPaid &&
+          const DeepCollectionEquality()
+              .equals(other.suggestedPostMessageId, suggestedPostMessageId) &&
+          const DeepCollectionEquality().equals(other.starAmount, starAmount) &&
+          const DeepCollectionEquality().equals(other.gramAmount, gramAmount));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(suggestedPostMessageId),
+        const DeepCollectionEquality().hash(starAmount),
+        const DeepCollectionEquality().hash(gramAmount)
+      ]);
 }

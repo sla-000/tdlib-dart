@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Sends an offer to purchase an upgraded gift
@@ -51,8 +52,24 @@ class SendGiftPurchaseOffer extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is SendGiftPurchaseOffer &&
+          const DeepCollectionEquality().equals(other.ownerId, ownerId) &&
+          const DeepCollectionEquality().equals(other.giftName, giftName) &&
+          const DeepCollectionEquality().equals(other.price, price) &&
+          const DeepCollectionEquality().equals(other.duration, duration) &&
+          const DeepCollectionEquality()
+              .equals(other.paidMessageStarCount, paidMessageStarCount));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(ownerId),
+        const DeepCollectionEquality().hash(giftName),
+        const DeepCollectionEquality().hash(price),
+        const DeepCollectionEquality().hash(duration),
+        const DeepCollectionEquality().hash(paidMessageStarCount)
+      ]);
 }

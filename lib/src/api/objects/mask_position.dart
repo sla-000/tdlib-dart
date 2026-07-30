@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Position on a photo where a mask is placed
@@ -56,8 +57,21 @@ class MaskPosition extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is MaskPosition &&
+          const DeepCollectionEquality().equals(other.point, point) &&
+          const DeepCollectionEquality().equals(other.xShift, xShift) &&
+          const DeepCollectionEquality().equals(other.yShift, yShift) &&
+          const DeepCollectionEquality().equals(other.scale, scale));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(point),
+        const DeepCollectionEquality().hash(xShift),
+        const DeepCollectionEquality().hash(yShift),
+        const DeepCollectionEquality().hash(scale)
+      ]);
 }

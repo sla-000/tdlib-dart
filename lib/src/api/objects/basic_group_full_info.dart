@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Contains full information about a basic group
@@ -92,8 +93,34 @@ class BasicGroupFullInfo extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is BasicGroupFullInfo &&
+          const DeepCollectionEquality().equals(other.photo, photo) &&
+          const DeepCollectionEquality()
+              .equals(other.description, description) &&
+          const DeepCollectionEquality()
+              .equals(other.creatorUserId, creatorUserId) &&
+          const DeepCollectionEquality().equals(other.members, members) &&
+          const DeepCollectionEquality()
+              .equals(other.canHideMembers, canHideMembers) &&
+          const DeepCollectionEquality().equals(
+              other.canToggleAggressiveAntiSpam, canToggleAggressiveAntiSpam) &&
+          const DeepCollectionEquality().equals(other.inviteLink, inviteLink) &&
+          const DeepCollectionEquality()
+              .equals(other.botCommands, botCommands));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(photo),
+        const DeepCollectionEquality().hash(description),
+        const DeepCollectionEquality().hash(creatorUserId),
+        const DeepCollectionEquality().hash(members),
+        const DeepCollectionEquality().hash(canHideMembers),
+        const DeepCollectionEquality().hash(canToggleAggressiveAntiSpam),
+        const DeepCollectionEquality().hash(inviteLink),
+        const DeepCollectionEquality().hash(botCommands)
+      ]);
 }

@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Email address can be reset after the given period. Call
@@ -37,8 +38,13 @@ class EmailAddressResetStateAvailable extends EmailAddressResetState {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is EmailAddressResetStateAvailable &&
+          const DeepCollectionEquality().equals(other.waitPeriod, waitPeriod));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll(
+      [runtimeType, const DeepCollectionEquality().hash(waitPeriod)]);
 }

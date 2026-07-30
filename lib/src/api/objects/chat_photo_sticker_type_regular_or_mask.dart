@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Information about the sticker, which was used to create the chat photo
@@ -41,8 +42,18 @@ class ChatPhotoStickerTypeRegularOrMask extends ChatPhotoStickerType {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is ChatPhotoStickerTypeRegularOrMask &&
+          const DeepCollectionEquality()
+              .equals(other.stickerSetId, stickerSetId) &&
+          const DeepCollectionEquality().equals(other.stickerId, stickerId));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(stickerSetId),
+        const DeepCollectionEquality().hash(stickerId)
+      ]);
 }

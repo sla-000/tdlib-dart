@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Blocks an original sender of a message in the Replies chat
@@ -40,8 +41,23 @@ class BlockMessageSenderFromReplies extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is BlockMessageSenderFromReplies &&
+          const DeepCollectionEquality().equals(other.messageId, messageId) &&
+          const DeepCollectionEquality()
+              .equals(other.deleteMessage, deleteMessage) &&
+          const DeepCollectionEquality()
+              .equals(other.deleteAllMessages, deleteAllMessages) &&
+          const DeepCollectionEquality().equals(other.reportSpam, reportSpam));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(messageId),
+        const DeepCollectionEquality().hash(deleteMessage),
+        const DeepCollectionEquality().hash(deleteAllMessages),
+        const DeepCollectionEquality().hash(reportSpam)
+      ]);
 }

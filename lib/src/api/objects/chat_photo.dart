@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Describes a chat or user profile photo
@@ -79,8 +80,29 @@ class ChatPhoto extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is ChatPhoto &&
+          const DeepCollectionEquality().equals(other.id, id) &&
+          const DeepCollectionEquality().equals(other.addedDate, addedDate) &&
+          const DeepCollectionEquality()
+              .equals(other.minithumbnail, minithumbnail) &&
+          const DeepCollectionEquality().equals(other.sizes, sizes) &&
+          const DeepCollectionEquality().equals(other.animation, animation) &&
+          const DeepCollectionEquality()
+              .equals(other.smallAnimation, smallAnimation) &&
+          const DeepCollectionEquality().equals(other.sticker, sticker));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(id),
+        const DeepCollectionEquality().hash(addedDate),
+        const DeepCollectionEquality().hash(minithumbnail),
+        const DeepCollectionEquality().hash(sizes),
+        const DeepCollectionEquality().hash(animation),
+        const DeepCollectionEquality().hash(smallAnimation),
+        const DeepCollectionEquality().hash(sticker)
+      ]);
 }

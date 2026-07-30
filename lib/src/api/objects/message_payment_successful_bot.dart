@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// A payment has been received by the bot or the business account
@@ -92,8 +93,41 @@ class MessagePaymentSuccessfulBot extends MessageContent {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is MessagePaymentSuccessfulBot &&
+          const DeepCollectionEquality().equals(other.currency, currency) &&
+          const DeepCollectionEquality()
+              .equals(other.totalAmount, totalAmount) &&
+          const DeepCollectionEquality()
+              .equals(other.subscriptionUntilDate, subscriptionUntilDate) &&
+          const DeepCollectionEquality()
+              .equals(other.isRecurring, isRecurring) &&
+          const DeepCollectionEquality()
+              .equals(other.isFirstRecurring, isFirstRecurring) &&
+          const DeepCollectionEquality()
+              .equals(other.invoicePayload, invoicePayload) &&
+          const DeepCollectionEquality()
+              .equals(other.shippingOptionId, shippingOptionId) &&
+          const DeepCollectionEquality().equals(other.orderInfo, orderInfo) &&
+          const DeepCollectionEquality()
+              .equals(other.telegramPaymentChargeId, telegramPaymentChargeId) &&
+          const DeepCollectionEquality()
+              .equals(other.providerPaymentChargeId, providerPaymentChargeId));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(currency),
+        const DeepCollectionEquality().hash(totalAmount),
+        const DeepCollectionEquality().hash(subscriptionUntilDate),
+        const DeepCollectionEquality().hash(isRecurring),
+        const DeepCollectionEquality().hash(isFirstRecurring),
+        const DeepCollectionEquality().hash(invoicePayload),
+        const DeepCollectionEquality().hash(shippingOptionId),
+        const DeepCollectionEquality().hash(orderInfo),
+        const DeepCollectionEquality().hash(telegramPaymentChargeId),
+        const DeepCollectionEquality().hash(providerPaymentChargeId)
+      ]);
 }

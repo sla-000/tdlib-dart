@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Deletes all messages between the specified dates in a Saved Messages
@@ -37,8 +38,20 @@ class DeleteSavedMessagesTopicMessagesByDate extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is DeleteSavedMessagesTopicMessagesByDate &&
+          const DeepCollectionEquality()
+              .equals(other.savedMessagesTopicId, savedMessagesTopicId) &&
+          const DeepCollectionEquality().equals(other.minDate, minDate) &&
+          const DeepCollectionEquality().equals(other.maxDate, maxDate));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(savedMessagesTopicId),
+        const DeepCollectionEquality().hash(minDate),
+        const DeepCollectionEquality().hash(maxDate)
+      ]);
 }

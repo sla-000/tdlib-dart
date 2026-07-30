@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// The call is ready to use
@@ -86,8 +87,32 @@ class CallStateReady extends CallState {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is CallStateReady &&
+          const DeepCollectionEquality().equals(other.protocol, protocol) &&
+          const DeepCollectionEquality().equals(other.servers, servers) &&
+          const DeepCollectionEquality().equals(other.config, config) &&
+          const DeepCollectionEquality()
+              .equals(other.encryptionKey, encryptionKey) &&
+          const DeepCollectionEquality().equals(other.emojis, emojis) &&
+          const DeepCollectionEquality().equals(other.allowP2p, allowP2p) &&
+          const DeepCollectionEquality()
+              .equals(other.isGroupCallSupported, isGroupCallSupported) &&
+          const DeepCollectionEquality()
+              .equals(other.customParameters, customParameters));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(protocol),
+        const DeepCollectionEquality().hash(servers),
+        const DeepCollectionEquality().hash(config),
+        const DeepCollectionEquality().hash(encryptionKey),
+        const DeepCollectionEquality().hash(emojis),
+        const DeepCollectionEquality().hash(allowP2p),
+        const DeepCollectionEquality().hash(isGroupCallSupported),
+        const DeepCollectionEquality().hash(customParameters)
+      ]);
 }

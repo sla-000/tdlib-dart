@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Describes a venue
@@ -68,8 +69,25 @@ class Venue extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is Venue &&
+          const DeepCollectionEquality().equals(other.location, location) &&
+          const DeepCollectionEquality().equals(other.title, title) &&
+          const DeepCollectionEquality().equals(other.address, address) &&
+          const DeepCollectionEquality().equals(other.provider, provider) &&
+          const DeepCollectionEquality().equals(other.id, id) &&
+          const DeepCollectionEquality().equals(other.type, type));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(location),
+        const DeepCollectionEquality().hash(title),
+        const DeepCollectionEquality().hash(address),
+        const DeepCollectionEquality().hash(provider),
+        const DeepCollectionEquality().hash(id),
+        const DeepCollectionEquality().hash(type)
+      ]);
 }

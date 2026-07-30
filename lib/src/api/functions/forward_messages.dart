@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Forwards previously sent messages. Returns the forwarded messages in the
@@ -67,8 +68,28 @@ class ForwardMessages extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is ForwardMessages &&
+          const DeepCollectionEquality().equals(other.chatId, chatId) &&
+          const DeepCollectionEquality().equals(other.topicId, topicId) &&
+          const DeepCollectionEquality().equals(other.fromChatId, fromChatId) &&
+          const DeepCollectionEquality().equals(other.messageIds, messageIds) &&
+          const DeepCollectionEquality().equals(other.options, options) &&
+          const DeepCollectionEquality().equals(other.sendCopy, sendCopy) &&
+          const DeepCollectionEquality()
+              .equals(other.removeCaption, removeCaption));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(chatId),
+        const DeepCollectionEquality().hash(topicId),
+        const DeepCollectionEquality().hash(fromChatId),
+        const DeepCollectionEquality().hash(messageIds),
+        const DeepCollectionEquality().hash(options),
+        const DeepCollectionEquality().hash(sendCopy),
+        const DeepCollectionEquality().hash(removeCaption)
+      ]);
 }

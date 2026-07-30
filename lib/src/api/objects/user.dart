@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Represents a user
@@ -220,8 +221,85 @@ class User extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is User &&
+          const DeepCollectionEquality().equals(other.id, id) &&
+          const DeepCollectionEquality().equals(other.firstName, firstName) &&
+          const DeepCollectionEquality().equals(other.lastName, lastName) &&
+          const DeepCollectionEquality().equals(other.usernames, usernames) &&
+          const DeepCollectionEquality()
+              .equals(other.phoneNumber, phoneNumber) &&
+          const DeepCollectionEquality().equals(other.status, status) &&
+          const DeepCollectionEquality()
+              .equals(other.profilePhoto, profilePhoto) &&
+          const DeepCollectionEquality()
+              .equals(other.accentColorId, accentColorId) &&
+          const DeepCollectionEquality()
+              .equals(other.backgroundCustomEmojiId, backgroundCustomEmojiId) &&
+          const DeepCollectionEquality()
+              .equals(other.upgradedGiftColors, upgradedGiftColors) &&
+          const DeepCollectionEquality()
+              .equals(other.profileAccentColorId, profileAccentColorId) &&
+          const DeepCollectionEquality().equals(
+              other.profileBackgroundCustomEmojiId,
+              profileBackgroundCustomEmojiId) &&
+          const DeepCollectionEquality()
+              .equals(other.emojiStatus, emojiStatus) &&
+          const DeepCollectionEquality().equals(other.isContact, isContact) &&
+          const DeepCollectionEquality()
+              .equals(other.isMutualContact, isMutualContact) &&
+          const DeepCollectionEquality()
+              .equals(other.isCloseFriend, isCloseFriend) &&
+          const DeepCollectionEquality()
+              .equals(other.verificationStatus, verificationStatus) &&
+          const DeepCollectionEquality().equals(other.isPremium, isPremium) &&
+          const DeepCollectionEquality().equals(other.isSupport, isSupport) &&
+          const DeepCollectionEquality()
+              .equals(other.restrictionInfo, restrictionInfo) &&
+          const DeepCollectionEquality()
+              .equals(other.activeStoryState, activeStoryState) &&
+          const DeepCollectionEquality()
+              .equals(other.restrictsNewChats, restrictsNewChats) &&
+          const DeepCollectionEquality()
+              .equals(other.paidMessageStarCount, paidMessageStarCount) &&
+          const DeepCollectionEquality().equals(other.haveAccess, haveAccess) &&
+          const DeepCollectionEquality().equals(other.type, type) &&
+          const DeepCollectionEquality()
+              .equals(other.languageCode, languageCode) &&
+          const DeepCollectionEquality()
+              .equals(other.addedToAttachmentMenu, addedToAttachmentMenu));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(id),
+        const DeepCollectionEquality().hash(firstName),
+        const DeepCollectionEquality().hash(lastName),
+        const DeepCollectionEquality().hash(usernames),
+        const DeepCollectionEquality().hash(phoneNumber),
+        const DeepCollectionEquality().hash(status),
+        const DeepCollectionEquality().hash(profilePhoto),
+        const DeepCollectionEquality().hash(accentColorId),
+        const DeepCollectionEquality().hash(backgroundCustomEmojiId),
+        const DeepCollectionEquality().hash(upgradedGiftColors),
+        const DeepCollectionEquality().hash(profileAccentColorId),
+        const DeepCollectionEquality().hash(profileBackgroundCustomEmojiId),
+        const DeepCollectionEquality().hash(emojiStatus),
+        const DeepCollectionEquality().hash(isContact),
+        const DeepCollectionEquality().hash(isMutualContact),
+        const DeepCollectionEquality().hash(isCloseFriend),
+        const DeepCollectionEquality().hash(verificationStatus),
+        const DeepCollectionEquality().hash(isPremium),
+        const DeepCollectionEquality().hash(isSupport),
+        const DeepCollectionEquality().hash(restrictionInfo),
+        const DeepCollectionEquality().hash(activeStoryState),
+        const DeepCollectionEquality().hash(restrictsNewChats),
+        const DeepCollectionEquality().hash(paidMessageStarCount),
+        const DeepCollectionEquality().hash(haveAccess),
+        const DeepCollectionEquality().hash(type),
+        const DeepCollectionEquality().hash(languageCode),
+        const DeepCollectionEquality().hash(addedToAttachmentMenu)
+      ]);
 }

@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Adds or removes a bot to attachment and side menu. Bot can be added to the
@@ -38,8 +39,20 @@ class ToggleBotIsAddedToAttachmentMenu extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is ToggleBotIsAddedToAttachmentMenu &&
+          const DeepCollectionEquality().equals(other.botUserId, botUserId) &&
+          const DeepCollectionEquality().equals(other.isAdded, isAdded) &&
+          const DeepCollectionEquality()
+              .equals(other.allowWriteAccess, allowWriteAccess));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(botUserId),
+        const DeepCollectionEquality().hash(isAdded),
+        const DeepCollectionEquality().hash(allowWriteAccess)
+      ]);
 }

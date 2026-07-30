@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Sends log file for a call to Telegram servers
@@ -31,8 +32,17 @@ class SendCallLog extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is SendCallLog &&
+          const DeepCollectionEquality().equals(other.callId, callId) &&
+          const DeepCollectionEquality().equals(other.logFile, logFile));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(callId),
+        const DeepCollectionEquality().hash(logFile)
+      ]);
 }

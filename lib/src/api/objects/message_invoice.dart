@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// A message with an invoice from a bot. Use getInternalLink with
@@ -88,8 +89,37 @@ class MessageInvoice extends MessageContent {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is MessageInvoice &&
+          const DeepCollectionEquality()
+              .equals(other.productInfo, productInfo) &&
+          const DeepCollectionEquality().equals(other.currency, currency) &&
+          const DeepCollectionEquality()
+              .equals(other.totalAmount, totalAmount) &&
+          const DeepCollectionEquality()
+              .equals(other.startParameter, startParameter) &&
+          const DeepCollectionEquality().equals(other.isTest, isTest) &&
+          const DeepCollectionEquality()
+              .equals(other.needShippingAddress, needShippingAddress) &&
+          const DeepCollectionEquality()
+              .equals(other.receiptMessageId, receiptMessageId) &&
+          const DeepCollectionEquality().equals(other.paidMedia, paidMedia) &&
+          const DeepCollectionEquality()
+              .equals(other.paidMediaCaption, paidMediaCaption));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(productInfo),
+        const DeepCollectionEquality().hash(currency),
+        const DeepCollectionEquality().hash(totalAmount),
+        const DeepCollectionEquality().hash(startParameter),
+        const DeepCollectionEquality().hash(isTest),
+        const DeepCollectionEquality().hash(needShippingAddress),
+        const DeepCollectionEquality().hash(receiptMessageId),
+        const DeepCollectionEquality().hash(paidMedia),
+        const DeepCollectionEquality().hash(paidMediaCaption)
+      ]);
 }

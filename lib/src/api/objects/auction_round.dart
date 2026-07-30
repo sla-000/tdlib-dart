@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Describes a round of an auction
@@ -54,8 +55,22 @@ class AuctionRound extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is AuctionRound &&
+          const DeepCollectionEquality().equals(other.number, number) &&
+          const DeepCollectionEquality().equals(other.duration, duration) &&
+          const DeepCollectionEquality().equals(other.extendTime, extendTime) &&
+          const DeepCollectionEquality()
+              .equals(other.topWinnerCount, topWinnerCount));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(number),
+        const DeepCollectionEquality().hash(duration),
+        const DeepCollectionEquality().hash(extendTime),
+        const DeepCollectionEquality().hash(topWinnerCount)
+      ]);
 }

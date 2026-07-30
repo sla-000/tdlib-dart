@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Informs TDLib on a file generation progress
@@ -35,8 +36,22 @@ class SetFileGenerationProgress extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is SetFileGenerationProgress &&
+          const DeepCollectionEquality()
+              .equals(other.generationId, generationId) &&
+          const DeepCollectionEquality()
+              .equals(other.expectedSize, expectedSize) &&
+          const DeepCollectionEquality()
+              .equals(other.localPrefixSize, localPrefixSize));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(generationId),
+        const DeepCollectionEquality().hash(expectedSize),
+        const DeepCollectionEquality().hash(localPrefixSize)
+      ]);
 }

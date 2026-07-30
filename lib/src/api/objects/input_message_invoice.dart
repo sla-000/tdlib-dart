@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// A message with an invoice; can be used only by bots
@@ -114,8 +115,45 @@ class InputMessageInvoice extends InputMessageContent {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is InputMessageInvoice &&
+          const DeepCollectionEquality().equals(other.invoice, invoice) &&
+          const DeepCollectionEquality().equals(other.title, title) &&
+          const DeepCollectionEquality()
+              .equals(other.description, description) &&
+          const DeepCollectionEquality().equals(other.photoUrl, photoUrl) &&
+          const DeepCollectionEquality().equals(other.photoSize, photoSize) &&
+          const DeepCollectionEquality().equals(other.photoWidth, photoWidth) &&
+          const DeepCollectionEquality()
+              .equals(other.photoHeight, photoHeight) &&
+          const DeepCollectionEquality().equals(other.payload, payload) &&
+          const DeepCollectionEquality()
+              .equals(other.providerToken, providerToken) &&
+          const DeepCollectionEquality()
+              .equals(other.providerData, providerData) &&
+          const DeepCollectionEquality()
+              .equals(other.startParameter, startParameter) &&
+          const DeepCollectionEquality().equals(other.paidMedia, paidMedia) &&
+          const DeepCollectionEquality()
+              .equals(other.paidMediaCaption, paidMediaCaption));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(invoice),
+        const DeepCollectionEquality().hash(title),
+        const DeepCollectionEquality().hash(description),
+        const DeepCollectionEquality().hash(photoUrl),
+        const DeepCollectionEquality().hash(photoSize),
+        const DeepCollectionEquality().hash(photoWidth),
+        const DeepCollectionEquality().hash(photoHeight),
+        const DeepCollectionEquality().hash(payload),
+        const DeepCollectionEquality().hash(providerToken),
+        const DeepCollectionEquality().hash(providerData),
+        const DeepCollectionEquality().hash(startParameter),
+        const DeepCollectionEquality().hash(paidMedia),
+        const DeepCollectionEquality().hash(paidMediaCaption)
+      ]);
 }

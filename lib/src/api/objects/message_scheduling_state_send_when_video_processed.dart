@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// The message will be sent when the video in the message is converted and
@@ -39,8 +40,13 @@ class MessageSchedulingStateSendWhenVideoProcessed
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is MessageSchedulingStateSendWhenVideoProcessed &&
+          const DeepCollectionEquality().equals(other.sendDate, sendDate));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll(
+      [runtimeType, const DeepCollectionEquality().hash(sendDate)]);
 }

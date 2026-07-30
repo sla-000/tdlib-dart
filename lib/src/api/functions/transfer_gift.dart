@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Sends an upgraded gift to another user or channel chat
@@ -42,8 +43,23 @@ class TransferGift extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is TransferGift &&
+          const DeepCollectionEquality()
+              .equals(other.businessConnectionId, businessConnectionId) &&
+          const DeepCollectionEquality()
+              .equals(other.receivedGiftId, receivedGiftId) &&
+          const DeepCollectionEquality().equals(other.newOwnerId, newOwnerId) &&
+          const DeepCollectionEquality().equals(other.starCount, starCount));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(businessConnectionId),
+        const DeepCollectionEquality().hash(receivedGiftId),
+        const DeepCollectionEquality().hash(newOwnerId),
+        const DeepCollectionEquality().hash(starCount)
+      ]);
 }

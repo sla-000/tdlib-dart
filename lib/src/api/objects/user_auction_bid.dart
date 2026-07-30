@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Describes a bid of the current user in an auction
@@ -63,8 +64,25 @@ class UserAuctionBid extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is UserAuctionBid &&
+          const DeepCollectionEquality().equals(other.starCount, starCount) &&
+          const DeepCollectionEquality().equals(other.bidDate, bidDate) &&
+          const DeepCollectionEquality()
+              .equals(other.nextBidStarCount, nextBidStarCount) &&
+          const DeepCollectionEquality().equals(other.ownerId, ownerId) &&
+          const DeepCollectionEquality()
+              .equals(other.wasReturned, wasReturned));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(starCount),
+        const DeepCollectionEquality().hash(bidDate),
+        const DeepCollectionEquality().hash(nextBidStarCount),
+        const DeepCollectionEquality().hash(ownerId),
+        const DeepCollectionEquality().hash(wasReturned)
+      ]);
 }

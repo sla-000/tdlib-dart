@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// A video note message
@@ -49,8 +50,19 @@ class MessageVideoNote extends MessageContent {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is MessageVideoNote &&
+          const DeepCollectionEquality().equals(other.videoNote, videoNote) &&
+          const DeepCollectionEquality().equals(other.isViewed, isViewed) &&
+          const DeepCollectionEquality().equals(other.isSecret, isSecret));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(videoNote),
+        const DeepCollectionEquality().hash(isViewed),
+        const DeepCollectionEquality().hash(isSecret)
+      ]);
 }

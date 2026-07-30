@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Sends a filled-out payment form to the bot for final verification
@@ -52,8 +53,30 @@ class SendPaymentForm extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is SendPaymentForm &&
+          const DeepCollectionEquality()
+              .equals(other.inputInvoice, inputInvoice) &&
+          const DeepCollectionEquality()
+              .equals(other.paymentFormId, paymentFormId) &&
+          const DeepCollectionEquality()
+              .equals(other.orderInfoId, orderInfoId) &&
+          const DeepCollectionEquality()
+              .equals(other.shippingOptionId, shippingOptionId) &&
+          const DeepCollectionEquality()
+              .equals(other.credentials, credentials) &&
+          const DeepCollectionEquality().equals(other.tipAmount, tipAmount));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(inputInvoice),
+        const DeepCollectionEquality().hash(paymentFormId),
+        const DeepCollectionEquality().hash(orderInfoId),
+        const DeepCollectionEquality().hash(shippingOptionId),
+        const DeepCollectionEquality().hash(credentials),
+        const DeepCollectionEquality().hash(tipAmount)
+      ]);
 }

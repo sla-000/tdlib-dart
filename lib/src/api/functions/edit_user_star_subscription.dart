@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Cancels or re-enables Telegram Star subscription for a user; for bots only
@@ -36,8 +37,20 @@ class EditUserStarSubscription extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is EditUserStarSubscription &&
+          const DeepCollectionEquality().equals(other.userId, userId) &&
+          const DeepCollectionEquality()
+              .equals(other.telegramPaymentChargeId, telegramPaymentChargeId) &&
+          const DeepCollectionEquality().equals(other.isCanceled, isCanceled));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(userId),
+        const DeepCollectionEquality().hash(telegramPaymentChargeId),
+        const DeepCollectionEquality().hash(isCanceled)
+      ]);
 }

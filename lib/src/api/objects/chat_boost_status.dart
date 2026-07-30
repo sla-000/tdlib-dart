@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Describes current boost status of a chat
@@ -106,8 +107,40 @@ class ChatBoostStatus extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is ChatBoostStatus &&
+          const DeepCollectionEquality().equals(other.boostUrl, boostUrl) &&
+          const DeepCollectionEquality()
+              .equals(other.appliedSlotIds, appliedSlotIds) &&
+          const DeepCollectionEquality().equals(other.level, level) &&
+          const DeepCollectionEquality()
+              .equals(other.giftCodeBoostCount, giftCodeBoostCount) &&
+          const DeepCollectionEquality().equals(other.boostCount, boostCount) &&
+          const DeepCollectionEquality()
+              .equals(other.currentLevelBoostCount, currentLevelBoostCount) &&
+          const DeepCollectionEquality()
+              .equals(other.nextLevelBoostCount, nextLevelBoostCount) &&
+          const DeepCollectionEquality()
+              .equals(other.premiumMemberCount, premiumMemberCount) &&
+          const DeepCollectionEquality()
+              .equals(other.premiumMemberPercentage, premiumMemberPercentage) &&
+          const DeepCollectionEquality()
+              .equals(other.prepaidGiveaways, prepaidGiveaways));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(boostUrl),
+        const DeepCollectionEquality().hash(appliedSlotIds),
+        const DeepCollectionEquality().hash(level),
+        const DeepCollectionEquality().hash(giftCodeBoostCount),
+        const DeepCollectionEquality().hash(boostCount),
+        const DeepCollectionEquality().hash(currentLevelBoostCount),
+        const DeepCollectionEquality().hash(nextLevelBoostCount),
+        const DeepCollectionEquality().hash(premiumMemberCount),
+        const DeepCollectionEquality().hash(premiumMemberPercentage),
+        const DeepCollectionEquality().hash(prepaidGiveaways)
+      ]);
 }

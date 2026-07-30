@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// The chat accent color or background custom emoji were changed
@@ -55,8 +56,25 @@ class ChatEventAccentColorChanged extends ChatEventAction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is ChatEventAccentColorChanged &&
+          const DeepCollectionEquality()
+              .equals(other.oldAccentColorId, oldAccentColorId) &&
+          const DeepCollectionEquality().equals(
+              other.oldBackgroundCustomEmojiId, oldBackgroundCustomEmojiId) &&
+          const DeepCollectionEquality()
+              .equals(other.newAccentColorId, newAccentColorId) &&
+          const DeepCollectionEquality().equals(
+              other.newBackgroundCustomEmojiId, newBackgroundCustomEmojiId));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(oldAccentColorId),
+        const DeepCollectionEquality().hash(oldBackgroundCustomEmojiId),
+        const DeepCollectionEquality().hash(newAccentColorId),
+        const DeepCollectionEquality().hash(newBackgroundCustomEmojiId)
+      ]);
 }

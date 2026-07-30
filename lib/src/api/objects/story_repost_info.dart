@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Contains information about original story that was reposted
@@ -41,8 +42,18 @@ class StoryRepostInfo extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is StoryRepostInfo &&
+          const DeepCollectionEquality().equals(other.origin, origin) &&
+          const DeepCollectionEquality()
+              .equals(other.isContentModified, isContentModified));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(origin),
+        const DeepCollectionEquality().hash(isContentModified)
+      ]);
 }

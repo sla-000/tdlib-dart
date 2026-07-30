@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Answers a custom query; for bots only
@@ -30,8 +31,18 @@ class AnswerCustomQuery extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is AnswerCustomQuery &&
+          const DeepCollectionEquality()
+              .equals(other.customQueryId, customQueryId) &&
+          const DeepCollectionEquality().equals(other.data, data));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(customQueryId),
+        const DeepCollectionEquality().hash(data)
+      ]);
 }

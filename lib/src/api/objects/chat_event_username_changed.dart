@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// The chat editable username was changed
@@ -40,8 +41,19 @@ class ChatEventUsernameChanged extends ChatEventAction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is ChatEventUsernameChanged &&
+          const DeepCollectionEquality()
+              .equals(other.oldUsername, oldUsername) &&
+          const DeepCollectionEquality()
+              .equals(other.newUsername, newUsername));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(oldUsername),
+        const DeepCollectionEquality().hash(newUsername)
+      ]);
 }

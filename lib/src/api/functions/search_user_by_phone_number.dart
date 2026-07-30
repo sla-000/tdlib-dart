@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Searches a user by their phone number. Returns a 404 error if the user
@@ -32,8 +33,18 @@ class SearchUserByPhoneNumber extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is SearchUserByPhoneNumber &&
+          const DeepCollectionEquality()
+              .equals(other.phoneNumber, phoneNumber) &&
+          const DeepCollectionEquality().equals(other.onlyLocal, onlyLocal));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(phoneNumber),
+        const DeepCollectionEquality().hash(onlyLocal)
+      ]);
 }

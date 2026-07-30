@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Returns an invoice payment form. This method must be called when the user
@@ -32,8 +33,18 @@ class GetPaymentForm extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is GetPaymentForm &&
+          const DeepCollectionEquality()
+              .equals(other.inputInvoice, inputInvoice) &&
+          const DeepCollectionEquality().equals(other.theme, theme));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(inputInvoice),
+        const DeepCollectionEquality().hash(theme)
+      ]);
 }

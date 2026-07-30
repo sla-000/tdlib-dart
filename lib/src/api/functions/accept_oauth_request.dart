@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Accepts an OAuth authorization request. Returns an HTTP URL to open after
@@ -44,8 +45,23 @@ class AcceptOauthRequest extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is AcceptOauthRequest &&
+          const DeepCollectionEquality().equals(other.url, url) &&
+          const DeepCollectionEquality().equals(other.matchCode, matchCode) &&
+          const DeepCollectionEquality()
+              .equals(other.allowWriteAccess, allowWriteAccess) &&
+          const DeepCollectionEquality()
+              .equals(other.allowPhoneNumberAccess, allowPhoneNumberAccess));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(url),
+        const DeepCollectionEquality().hash(matchCode),
+        const DeepCollectionEquality().hash(allowWriteAccess),
+        const DeepCollectionEquality().hash(allowPhoneNumberAccess)
+      ]);
 }

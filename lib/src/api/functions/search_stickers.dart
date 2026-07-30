@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Searches for stickers from public sticker sets that correspond to any of
@@ -53,8 +54,27 @@ class SearchStickers extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is SearchStickers &&
+          const DeepCollectionEquality()
+              .equals(other.stickerType, stickerType) &&
+          const DeepCollectionEquality().equals(other.emojis, emojis) &&
+          const DeepCollectionEquality().equals(other.query, query) &&
+          const DeepCollectionEquality()
+              .equals(other.inputLanguageCodes, inputLanguageCodes) &&
+          const DeepCollectionEquality().equals(other.offset, offset) &&
+          const DeepCollectionEquality().equals(other.limit, limit));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(stickerType),
+        const DeepCollectionEquality().hash(emojis),
+        const DeepCollectionEquality().hash(query),
+        const DeepCollectionEquality().hash(inputLanguageCodes),
+        const DeepCollectionEquality().hash(offset),
+        const DeepCollectionEquality().hash(limit)
+      ]);
 }

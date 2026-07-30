@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Sends a message on behalf of a business account; for bots only. Returns
@@ -63,8 +64,34 @@ class SendBusinessMessage extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is SendBusinessMessage &&
+          const DeepCollectionEquality()
+              .equals(other.businessConnectionId, businessConnectionId) &&
+          const DeepCollectionEquality().equals(other.chatId, chatId) &&
+          const DeepCollectionEquality().equals(other.replyTo, replyTo) &&
+          const DeepCollectionEquality()
+              .equals(other.disableNotification, disableNotification) &&
+          const DeepCollectionEquality()
+              .equals(other.protectContent, protectContent) &&
+          const DeepCollectionEquality().equals(other.effectId, effectId) &&
+          const DeepCollectionEquality()
+              .equals(other.replyMarkup, replyMarkup) &&
+          const DeepCollectionEquality()
+              .equals(other.inputMessageContent, inputMessageContent));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(businessConnectionId),
+        const DeepCollectionEquality().hash(chatId),
+        const DeepCollectionEquality().hash(replyTo),
+        const DeepCollectionEquality().hash(disableNotification),
+        const DeepCollectionEquality().hash(protectContent),
+        const DeepCollectionEquality().hash(effectId),
+        const DeepCollectionEquality().hash(replyMarkup),
+        const DeepCollectionEquality().hash(inputMessageContent)
+      ]);
 }

@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Sets default administrator rights for adding the bot to basic group and
@@ -29,8 +30,17 @@ class SetDefaultGroupAdministratorRights extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is SetDefaultGroupAdministratorRights &&
+          const DeepCollectionEquality().equals(
+              other.defaultGroupAdministratorRights,
+              defaultGroupAdministratorRights));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(defaultGroupAdministratorRights)
+      ]);
 }

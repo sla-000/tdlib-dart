@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// The user can be messaged, but the messages are paid
@@ -39,8 +40,17 @@ class CanSendMessageToUserResultUserHasPaidMessages
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is CanSendMessageToUserResultUserHasPaidMessages &&
+          const DeepCollectionEquality().equals(
+              other.outgoingPaidMessageStarCount,
+              outgoingPaidMessageStarCount));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(outgoingPaidMessageStarCount)
+      ]);
 }

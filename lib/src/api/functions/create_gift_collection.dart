@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Creates a collection from gifts on the current user's or a channel's
@@ -42,8 +43,20 @@ class CreateGiftCollection extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is CreateGiftCollection &&
+          const DeepCollectionEquality().equals(other.ownerId, ownerId) &&
+          const DeepCollectionEquality().equals(other.name, name) &&
+          const DeepCollectionEquality()
+              .equals(other.receivedGiftIds, receivedGiftIds));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(ownerId),
+        const DeepCollectionEquality().hash(name),
+        const DeepCollectionEquality().hash(receivedGiftIds)
+      ]);
 }

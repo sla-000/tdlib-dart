@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Returns a file with a segment of a video chat or live story in a modified
@@ -50,8 +51,25 @@ class GetGroupCallStreamSegment extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is GetGroupCallStreamSegment &&
+          const DeepCollectionEquality()
+              .equals(other.groupCallId, groupCallId) &&
+          const DeepCollectionEquality().equals(other.timeOffset, timeOffset) &&
+          const DeepCollectionEquality().equals(other.scale, scale) &&
+          const DeepCollectionEquality().equals(other.channelId, channelId) &&
+          const DeepCollectionEquality()
+              .equals(other.videoQuality, videoQuality));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(groupCallId),
+        const DeepCollectionEquality().hash(timeOffset),
+        const DeepCollectionEquality().hash(scale),
+        const DeepCollectionEquality().hash(channelId),
+        const DeepCollectionEquality().hash(videoQuality)
+      ]);
 }

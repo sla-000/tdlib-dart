@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Contains information about a chat invite link
@@ -119,8 +120,47 @@ class ChatInviteLinkInfo extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is ChatInviteLinkInfo &&
+          const DeepCollectionEquality().equals(other.chatId, chatId) &&
+          const DeepCollectionEquality()
+              .equals(other.accessibleFor, accessibleFor) &&
+          const DeepCollectionEquality().equals(other.type, type) &&
+          const DeepCollectionEquality().equals(other.title, title) &&
+          const DeepCollectionEquality().equals(other.photo, photo) &&
+          const DeepCollectionEquality()
+              .equals(other.accentColorId, accentColorId) &&
+          const DeepCollectionEquality()
+              .equals(other.description, description) &&
+          const DeepCollectionEquality()
+              .equals(other.memberCount, memberCount) &&
+          const DeepCollectionEquality()
+              .equals(other.memberUserIds, memberUserIds) &&
+          const DeepCollectionEquality()
+              .equals(other.subscriptionInfo, subscriptionInfo) &&
+          const DeepCollectionEquality()
+              .equals(other.createsJoinRequest, createsJoinRequest) &&
+          const DeepCollectionEquality().equals(other.isPublic, isPublic) &&
+          const DeepCollectionEquality()
+              .equals(other.verificationStatus, verificationStatus));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(chatId),
+        const DeepCollectionEquality().hash(accessibleFor),
+        const DeepCollectionEquality().hash(type),
+        const DeepCollectionEquality().hash(title),
+        const DeepCollectionEquality().hash(photo),
+        const DeepCollectionEquality().hash(accentColorId),
+        const DeepCollectionEquality().hash(description),
+        const DeepCollectionEquality().hash(memberCount),
+        const DeepCollectionEquality().hash(memberUserIds),
+        const DeepCollectionEquality().hash(subscriptionInfo),
+        const DeepCollectionEquality().hash(createsJoinRequest),
+        const DeepCollectionEquality().hash(isPublic),
+        const DeepCollectionEquality().hash(verificationStatus)
+      ]);
 }

@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Returns outline of a sticker. This is an offline method. Returns a 404
@@ -37,8 +38,23 @@ class GetStickerOutline extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is GetStickerOutline &&
+          const DeepCollectionEquality()
+              .equals(other.stickerFileId, stickerFileId) &&
+          const DeepCollectionEquality()
+              .equals(other.forAnimatedEmoji, forAnimatedEmoji) &&
+          const DeepCollectionEquality().equals(
+              other.forClickedAnimatedEmojiMessage,
+              forClickedAnimatedEmojiMessage));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(stickerFileId),
+        const DeepCollectionEquality().hash(forAnimatedEmoji),
+        const DeepCollectionEquality().hash(forClickedAnimatedEmojiMessage)
+      ]);
 }

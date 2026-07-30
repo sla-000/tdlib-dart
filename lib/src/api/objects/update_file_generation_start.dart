@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// The file generation process needs to be started by the application. Use
@@ -59,8 +60,24 @@ class UpdateFileGenerationStart extends Update {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is UpdateFileGenerationStart &&
+          const DeepCollectionEquality()
+              .equals(other.generationId, generationId) &&
+          const DeepCollectionEquality()
+              .equals(other.originalPath, originalPath) &&
+          const DeepCollectionEquality()
+              .equals(other.destinationPath, destinationPath) &&
+          const DeepCollectionEquality().equals(other.conversion, conversion));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(generationId),
+        const DeepCollectionEquality().hash(originalPath),
+        const DeepCollectionEquality().hash(destinationPath),
+        const DeepCollectionEquality().hash(conversion)
+      ]);
 }

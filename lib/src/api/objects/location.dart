@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Describes a location on planet Earth
@@ -48,8 +49,20 @@ class Location extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is Location &&
+          const DeepCollectionEquality().equals(other.latitude, latitude) &&
+          const DeepCollectionEquality().equals(other.longitude, longitude) &&
+          const DeepCollectionEquality()
+              .equals(other.horizontalAccuracy, horizontalAccuracy));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(latitude),
+        const DeepCollectionEquality().hash(longitude),
+        const DeepCollectionEquality().hash(horizontalAccuracy)
+      ]);
 }

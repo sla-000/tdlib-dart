@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// The chat is a private chat with an administrator of a chat to which the
@@ -48,8 +49,20 @@ class ChatActionBarJoinRequest extends ChatActionBar {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is ChatActionBarJoinRequest &&
+          const DeepCollectionEquality().equals(other.title, title) &&
+          const DeepCollectionEquality().equals(other.isChannel, isChannel) &&
+          const DeepCollectionEquality()
+              .equals(other.requestDate, requestDate));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(title),
+        const DeepCollectionEquality().hash(isChannel),
+        const DeepCollectionEquality().hash(requestDate)
+      ]);
 }

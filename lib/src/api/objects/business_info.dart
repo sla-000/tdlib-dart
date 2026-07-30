@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Contains information about a Telegram Business account
@@ -94,8 +95,34 @@ class BusinessInfo extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is BusinessInfo &&
+          const DeepCollectionEquality().equals(other.location, location) &&
+          const DeepCollectionEquality()
+              .equals(other.openingHours, openingHours) &&
+          const DeepCollectionEquality()
+              .equals(other.localOpeningHours, localOpeningHours) &&
+          const DeepCollectionEquality().equals(other.nextOpenIn, nextOpenIn) &&
+          const DeepCollectionEquality()
+              .equals(other.nextCloseIn, nextCloseIn) &&
+          const DeepCollectionEquality()
+              .equals(other.greetingMessageSettings, greetingMessageSettings) &&
+          const DeepCollectionEquality()
+              .equals(other.awayMessageSettings, awayMessageSettings) &&
+          const DeepCollectionEquality().equals(other.startPage, startPage));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(location),
+        const DeepCollectionEquality().hash(openingHours),
+        const DeepCollectionEquality().hash(localOpeningHours),
+        const DeepCollectionEquality().hash(nextOpenIn),
+        const DeepCollectionEquality().hash(nextCloseIn),
+        const DeepCollectionEquality().hash(greetingMessageSettings),
+        const DeepCollectionEquality().hash(awayMessageSettings),
+        const DeepCollectionEquality().hash(startPage)
+      ]);
 }

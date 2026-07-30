@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Describes autosave settings
@@ -59,8 +60,24 @@ class AutosaveSettings extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is AutosaveSettings &&
+          const DeepCollectionEquality()
+              .equals(other.privateChatSettings, privateChatSettings) &&
+          const DeepCollectionEquality()
+              .equals(other.groupSettings, groupSettings) &&
+          const DeepCollectionEquality()
+              .equals(other.channelSettings, channelSettings) &&
+          const DeepCollectionEquality().equals(other.exceptions, exceptions));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(privateChatSettings),
+        const DeepCollectionEquality().hash(groupSettings),
+        const DeepCollectionEquality().hash(channelSettings),
+        const DeepCollectionEquality().hash(exceptions)
+      ]);
 }

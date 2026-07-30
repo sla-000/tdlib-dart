@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Confirms ownership of a phone number to prevent account deletion while
@@ -36,8 +37,13 @@ class PhoneNumberCodeTypeConfirmOwnership extends PhoneNumberCodeType {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is PhoneNumberCodeTypeConfirmOwnership &&
+          const DeepCollectionEquality().equals(other.hash, hash));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode =>
+      Object.hashAll([runtimeType, const DeepCollectionEquality().hash(hash)]);
 }

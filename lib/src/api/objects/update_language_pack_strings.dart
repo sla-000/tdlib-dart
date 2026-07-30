@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Some language pack strings have been updated
@@ -51,8 +52,21 @@ class UpdateLanguagePackStrings extends Update {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is UpdateLanguagePackStrings &&
+          const DeepCollectionEquality()
+              .equals(other.localizationTarget, localizationTarget) &&
+          const DeepCollectionEquality()
+              .equals(other.languagePackId, languagePackId) &&
+          const DeepCollectionEquality().equals(other.strings, strings));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(localizationTarget),
+        const DeepCollectionEquality().hash(languagePackId),
+        const DeepCollectionEquality().hash(strings)
+      ]);
 }

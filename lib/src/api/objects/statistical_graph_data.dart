@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// A graph data
@@ -41,8 +42,17 @@ class StatisticalGraphData extends StatisticalGraph {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is StatisticalGraphData &&
+          const DeepCollectionEquality().equals(other.jsonData, jsonData) &&
+          const DeepCollectionEquality().equals(other.zoomToken, zoomToken));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(jsonData),
+        const DeepCollectionEquality().hash(zoomToken)
+      ]);
 }

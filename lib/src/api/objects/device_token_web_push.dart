@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// A token for web Push API
@@ -48,8 +49,21 @@ class DeviceTokenWebPush extends DeviceToken {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is DeviceTokenWebPush &&
+          const DeepCollectionEquality().equals(other.endpoint, endpoint) &&
+          const DeepCollectionEquality()
+              .equals(other.p256dhBase64url, p256dhBase64url) &&
+          const DeepCollectionEquality()
+              .equals(other.authBase64url, authBase64url));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(endpoint),
+        const DeepCollectionEquality().hash(p256dhBase64url),
+        const DeepCollectionEquality().hash(authBase64url)
+      ]);
 }

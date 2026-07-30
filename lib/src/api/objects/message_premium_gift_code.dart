@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// A Telegram Premium gift code was created for the user
@@ -108,8 +109,41 @@ class MessagePremiumGiftCode extends MessageContent {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is MessagePremiumGiftCode &&
+          const DeepCollectionEquality().equals(other.creatorId, creatorId) &&
+          const DeepCollectionEquality().equals(other.text, text) &&
+          const DeepCollectionEquality()
+              .equals(other.isFromGiveaway, isFromGiveaway) &&
+          const DeepCollectionEquality()
+              .equals(other.isUnclaimed, isUnclaimed) &&
+          const DeepCollectionEquality().equals(other.currency, currency) &&
+          const DeepCollectionEquality().equals(other.amount, amount) &&
+          const DeepCollectionEquality()
+              .equals(other.cryptocurrency, cryptocurrency) &&
+          const DeepCollectionEquality()
+              .equals(other.cryptocurrencyAmount, cryptocurrencyAmount) &&
+          const DeepCollectionEquality().equals(other.monthCount, monthCount) &&
+          const DeepCollectionEquality().equals(other.dayCount, dayCount) &&
+          const DeepCollectionEquality().equals(other.sticker, sticker) &&
+          const DeepCollectionEquality().equals(other.code, code));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(creatorId),
+        const DeepCollectionEquality().hash(text),
+        const DeepCollectionEquality().hash(isFromGiveaway),
+        const DeepCollectionEquality().hash(isUnclaimed),
+        const DeepCollectionEquality().hash(currency),
+        const DeepCollectionEquality().hash(amount),
+        const DeepCollectionEquality().hash(cryptocurrency),
+        const DeepCollectionEquality().hash(cryptocurrencyAmount),
+        const DeepCollectionEquality().hash(monthCount),
+        const DeepCollectionEquality().hash(dayCount),
+        const DeepCollectionEquality().hash(sticker),
+        const DeepCollectionEquality().hash(code)
+      ]);
 }

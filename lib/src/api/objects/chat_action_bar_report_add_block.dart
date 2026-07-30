@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// The chat is a private or secret chat, which can be reported using the
@@ -50,8 +51,19 @@ class ChatActionBarReportAddBlock extends ChatActionBar {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is ChatActionBarReportAddBlock &&
+          const DeepCollectionEquality()
+              .equals(other.canUnarchive, canUnarchive) &&
+          const DeepCollectionEquality()
+              .equals(other.accountInfo, accountInfo));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(canUnarchive),
+        const DeepCollectionEquality().hash(accountInfo)
+      ]);
 }

@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// A detailed statistics about revenue earned from sponsored messages in a
@@ -57,8 +58,24 @@ class ChatRevenueStatistics extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is ChatRevenueStatistics &&
+          const DeepCollectionEquality()
+              .equals(other.revenueByHourGraph, revenueByHourGraph) &&
+          const DeepCollectionEquality()
+              .equals(other.revenueGraph, revenueGraph) &&
+          const DeepCollectionEquality()
+              .equals(other.revenueAmount, revenueAmount) &&
+          const DeepCollectionEquality().equals(other.usdRate, usdRate));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(revenueByHourGraph),
+        const DeepCollectionEquality().hash(revenueGraph),
+        const DeepCollectionEquality().hash(revenueAmount),
+        const DeepCollectionEquality().hash(usdRate)
+      ]);
 }

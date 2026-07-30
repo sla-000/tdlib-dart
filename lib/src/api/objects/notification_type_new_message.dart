@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// New message was received
@@ -40,8 +41,18 @@ class NotificationTypeNewMessage extends NotificationType {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is NotificationTypeNewMessage &&
+          const DeepCollectionEquality().equals(other.message, message) &&
+          const DeepCollectionEquality()
+              .equals(other.showPreview, showPreview));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(message),
+        const DeepCollectionEquality().hash(showPreview)
+      ]);
 }

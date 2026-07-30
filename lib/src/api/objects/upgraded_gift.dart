@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Describes an upgraded gift that can be transferred to another owner or
@@ -237,8 +238,86 @@ class UpgradedGift extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is UpgradedGift &&
+          const DeepCollectionEquality().equals(other.id, id) &&
+          const DeepCollectionEquality()
+              .equals(other.regularGiftId, regularGiftId) &&
+          const DeepCollectionEquality()
+              .equals(other.publisherChatId, publisherChatId) &&
+          const DeepCollectionEquality().equals(other.title, title) &&
+          const DeepCollectionEquality().equals(other.name, name) &&
+          const DeepCollectionEquality().equals(other.number, number) &&
+          const DeepCollectionEquality()
+              .equals(other.totalUpgradedCount, totalUpgradedCount) &&
+          const DeepCollectionEquality()
+              .equals(other.maxUpgradedCount, maxUpgradedCount) &&
+          const DeepCollectionEquality().equals(other.isBurned, isBurned) &&
+          const DeepCollectionEquality().equals(other.isCrafted, isCrafted) &&
+          const DeepCollectionEquality().equals(other.isPremium, isPremium) &&
+          const DeepCollectionEquality()
+              .equals(other.isThemeAvailable, isThemeAvailable) &&
+          const DeepCollectionEquality()
+              .equals(other.usedThemeChatId, usedThemeChatId) &&
+          const DeepCollectionEquality().equals(other.hostId, hostId) &&
+          const DeepCollectionEquality().equals(other.ownerId, ownerId) &&
+          const DeepCollectionEquality()
+              .equals(other.ownerAddress, ownerAddress) &&
+          const DeepCollectionEquality().equals(other.ownerName, ownerName) &&
+          const DeepCollectionEquality()
+              .equals(other.giftAddress, giftAddress) &&
+          const DeepCollectionEquality().equals(other.model, model) &&
+          const DeepCollectionEquality().equals(other.symbol, symbol) &&
+          const DeepCollectionEquality().equals(other.backdrop, backdrop) &&
+          const DeepCollectionEquality()
+              .equals(other.originalDetails, originalDetails) &&
+          const DeepCollectionEquality().equals(other.colors, colors) &&
+          const DeepCollectionEquality()
+              .equals(other.resaleParameters, resaleParameters) &&
+          const DeepCollectionEquality()
+              .equals(other.canSendPurchaseOffer, canSendPurchaseOffer) &&
+          const DeepCollectionEquality().equals(
+              other.craftProbabilityPerMille, craftProbabilityPerMille) &&
+          const DeepCollectionEquality()
+              .equals(other.valueCurrency, valueCurrency) &&
+          const DeepCollectionEquality()
+              .equals(other.valueAmount, valueAmount) &&
+          const DeepCollectionEquality()
+              .equals(other.valueUsdAmount, valueUsdAmount));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(id),
+        const DeepCollectionEquality().hash(regularGiftId),
+        const DeepCollectionEquality().hash(publisherChatId),
+        const DeepCollectionEquality().hash(title),
+        const DeepCollectionEquality().hash(name),
+        const DeepCollectionEquality().hash(number),
+        const DeepCollectionEquality().hash(totalUpgradedCount),
+        const DeepCollectionEquality().hash(maxUpgradedCount),
+        const DeepCollectionEquality().hash(isBurned),
+        const DeepCollectionEquality().hash(isCrafted),
+        const DeepCollectionEquality().hash(isPremium),
+        const DeepCollectionEquality().hash(isThemeAvailable),
+        const DeepCollectionEquality().hash(usedThemeChatId),
+        const DeepCollectionEquality().hash(hostId),
+        const DeepCollectionEquality().hash(ownerId),
+        const DeepCollectionEquality().hash(ownerAddress),
+        const DeepCollectionEquality().hash(ownerName),
+        const DeepCollectionEquality().hash(giftAddress),
+        const DeepCollectionEquality().hash(model),
+        const DeepCollectionEquality().hash(symbol),
+        const DeepCollectionEquality().hash(backdrop),
+        const DeepCollectionEquality().hash(originalDetails),
+        const DeepCollectionEquality().hash(colors),
+        const DeepCollectionEquality().hash(resaleParameters),
+        const DeepCollectionEquality().hash(canSendPurchaseOffer),
+        const DeepCollectionEquality().hash(craftProbabilityPerMille),
+        const DeepCollectionEquality().hash(valueCurrency),
+        const DeepCollectionEquality().hash(valueAmount),
+        const DeepCollectionEquality().hash(valueUsdAmount)
+      ]);
 }

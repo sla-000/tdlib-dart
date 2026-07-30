@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// The auto-delete or self-destruct timer for messages in the chat has been
@@ -44,8 +45,18 @@ class MessageChatSetMessageAutoDeleteTime extends MessageContent {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is MessageChatSetMessageAutoDeleteTime &&
+          const DeepCollectionEquality()
+              .equals(other.messageAutoDeleteTime, messageAutoDeleteTime) &&
+          const DeepCollectionEquality().equals(other.fromUserId, fromUserId));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(messageAutoDeleteTime),
+        const DeepCollectionEquality().hash(fromUserId)
+      ]);
 }

@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// The gift was obtained by upgrading of a previously received gift
@@ -35,8 +36,14 @@ class UpgradedGiftOriginUpgrade extends UpgradedGiftOrigin {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is UpgradedGiftOriginUpgrade &&
+          const DeepCollectionEquality()
+              .equals(other.giftMessageId, giftMessageId));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll(
+      [runtimeType, const DeepCollectionEquality().hash(giftMessageId)]);
 }

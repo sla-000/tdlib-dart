@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Represents a secret chat
@@ -74,8 +75,25 @@ class SecretChat extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is SecretChat &&
+          const DeepCollectionEquality().equals(other.id, id) &&
+          const DeepCollectionEquality().equals(other.userId, userId) &&
+          const DeepCollectionEquality().equals(other.state, state) &&
+          const DeepCollectionEquality().equals(other.isOutbound, isOutbound) &&
+          const DeepCollectionEquality().equals(other.keyHash, keyHash) &&
+          const DeepCollectionEquality().equals(other.layer, layer));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(id),
+        const DeepCollectionEquality().hash(userId),
+        const DeepCollectionEquality().hash(state),
+        const DeepCollectionEquality().hash(isOutbound),
+        const DeepCollectionEquality().hash(keyHash),
+        const DeepCollectionEquality().hash(layer)
+      ]);
 }

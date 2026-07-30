@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Reports a story to the Telegram moderators
@@ -42,8 +43,22 @@ class ReportStory extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is ReportStory &&
+          const DeepCollectionEquality()
+              .equals(other.storyPosterChatId, storyPosterChatId) &&
+          const DeepCollectionEquality().equals(other.storyId, storyId) &&
+          const DeepCollectionEquality().equals(other.optionId, optionId) &&
+          const DeepCollectionEquality().equals(other.text, text));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(storyPosterChatId),
+        const DeepCollectionEquality().hash(storyId),
+        const DeepCollectionEquality().hash(optionId),
+        const DeepCollectionEquality().hash(text)
+      ]);
 }

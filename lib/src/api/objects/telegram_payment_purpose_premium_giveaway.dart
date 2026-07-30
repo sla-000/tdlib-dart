@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// The user creating a Telegram Premium giveaway
@@ -62,8 +63,24 @@ class TelegramPaymentPurposePremiumGiveaway extends TelegramPaymentPurpose {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is TelegramPaymentPurposePremiumGiveaway &&
+          const DeepCollectionEquality().equals(other.parameters, parameters) &&
+          const DeepCollectionEquality().equals(other.currency, currency) &&
+          const DeepCollectionEquality().equals(other.amount, amount) &&
+          const DeepCollectionEquality()
+              .equals(other.winnerCount, winnerCount) &&
+          const DeepCollectionEquality().equals(other.monthCount, monthCount));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(parameters),
+        const DeepCollectionEquality().hash(currency),
+        const DeepCollectionEquality().hash(amount),
+        const DeepCollectionEquality().hash(winnerCount),
+        const DeepCollectionEquality().hash(monthCount)
+      ]);
 }

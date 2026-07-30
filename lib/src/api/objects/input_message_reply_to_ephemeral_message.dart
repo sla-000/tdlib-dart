@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Describes an ephemeral message to be replied; for bots only
@@ -35,8 +36,14 @@ class InputMessageReplyToEphemeralMessage extends InputMessageReplyTo {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is InputMessageReplyToEphemeralMessage &&
+          const DeepCollectionEquality()
+              .equals(other.ephemeralMessageId, ephemeralMessageId));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll(
+      [runtimeType, const DeepCollectionEquality().hash(ephemeralMessageId)]);
 }

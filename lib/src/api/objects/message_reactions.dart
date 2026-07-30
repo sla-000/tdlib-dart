@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Contains a list of reactions added to a message
@@ -60,8 +61,23 @@ class MessageReactions extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is MessageReactions &&
+          const DeepCollectionEquality().equals(other.reactions, reactions) &&
+          const DeepCollectionEquality().equals(other.areTags, areTags) &&
+          const DeepCollectionEquality()
+              .equals(other.paidReactors, paidReactors) &&
+          const DeepCollectionEquality()
+              .equals(other.canGetAddedReactions, canGetAddedReactions));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(reactions),
+        const DeepCollectionEquality().hash(areTags),
+        const DeepCollectionEquality().hash(paidReactors),
+        const DeepCollectionEquality().hash(canGetAddedReactions)
+      ]);
 }

@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Changes name of a quick reply shortcut
@@ -31,8 +32,17 @@ class SetQuickReplyShortcutName extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is SetQuickReplyShortcutName &&
+          const DeepCollectionEquality().equals(other.shortcutId, shortcutId) &&
+          const DeepCollectionEquality().equals(other.name, name));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(shortcutId),
+        const DeepCollectionEquality().hash(name)
+      ]);
 }

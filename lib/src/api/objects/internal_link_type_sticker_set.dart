@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// The link is a link to a sticker set. Call searchStickerSet with the given
@@ -44,8 +45,19 @@ class InternalLinkTypeStickerSet extends InternalLinkType {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is InternalLinkTypeStickerSet &&
+          const DeepCollectionEquality()
+              .equals(other.stickerSetName, stickerSetName) &&
+          const DeepCollectionEquality()
+              .equals(other.expectCustomEmoji, expectCustomEmoji));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(stickerSetName),
+        const DeepCollectionEquality().hash(expectCustomEmoji)
+      ]);
 }

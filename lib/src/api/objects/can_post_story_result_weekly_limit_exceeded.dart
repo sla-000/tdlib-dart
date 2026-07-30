@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// The weekly limit for the number of posted stories exceeded. The user needs
@@ -36,8 +37,13 @@ class CanPostStoryResultWeeklyLimitExceeded extends CanPostStoryResult {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is CanPostStoryResultWeeklyLimitExceeded &&
+          const DeepCollectionEquality().equals(other.retryAfter, retryAfter));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll(
+      [runtimeType, const DeepCollectionEquality().hash(retryAfter)]);
 }

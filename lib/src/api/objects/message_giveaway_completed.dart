@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// A giveaway without public winners has been completed for the chat
@@ -54,8 +55,25 @@ class MessageGiveawayCompleted extends MessageContent {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is MessageGiveawayCompleted &&
+          const DeepCollectionEquality()
+              .equals(other.giveawayMessageId, giveawayMessageId) &&
+          const DeepCollectionEquality()
+              .equals(other.winnerCount, winnerCount) &&
+          const DeepCollectionEquality()
+              .equals(other.isStarGiveaway, isStarGiveaway) &&
+          const DeepCollectionEquality()
+              .equals(other.unclaimedPrizeCount, unclaimedPrizeCount));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(giveawayMessageId),
+        const DeepCollectionEquality().hash(winnerCount),
+        const DeepCollectionEquality().hash(isStarGiveaway),
+        const DeepCollectionEquality().hash(unclaimedPrizeCount)
+      ]);
 }

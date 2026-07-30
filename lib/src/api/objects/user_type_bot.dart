@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// A bot (see https://core.telegram.org/bots)
@@ -131,8 +132,55 @@ class UserTypeBot extends UserType {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is UserTypeBot &&
+          const DeepCollectionEquality()
+              .equals(other.canBeEdited, canBeEdited) &&
+          const DeepCollectionEquality()
+              .equals(other.canJoinGroups, canJoinGroups) &&
+          const DeepCollectionEquality()
+              .equals(other.canReadAllGroupMessages, canReadAllGroupMessages) &&
+          const DeepCollectionEquality()
+              .equals(other.hasMainWebApp, hasMainWebApp) &&
+          const DeepCollectionEquality().equals(other.hasTopics, hasTopics) &&
+          const DeepCollectionEquality().equals(
+              other.allowsUsersToCreateTopics, allowsUsersToCreateTopics) &&
+          const DeepCollectionEquality()
+              .equals(other.canManageBots, canManageBots) &&
+          const DeepCollectionEquality().equals(other.isInline, isInline) &&
+          const DeepCollectionEquality()
+              .equals(other.inlineQueryPlaceholder, inlineQueryPlaceholder) &&
+          const DeepCollectionEquality()
+              .equals(other.supportsGuestQueries, supportsGuestQueries) &&
+          const DeepCollectionEquality().equals(other.isGuard, isGuard) &&
+          const DeepCollectionEquality()
+              .equals(other.needLocation, needLocation) &&
+          const DeepCollectionEquality()
+              .equals(other.canConnectToBusiness, canConnectToBusiness) &&
+          const DeepCollectionEquality().equals(
+              other.canBeAddedToAttachmentMenu, canBeAddedToAttachmentMenu) &&
+          const DeepCollectionEquality()
+              .equals(other.activeUserCount, activeUserCount));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(canBeEdited),
+        const DeepCollectionEquality().hash(canJoinGroups),
+        const DeepCollectionEquality().hash(canReadAllGroupMessages),
+        const DeepCollectionEquality().hash(hasMainWebApp),
+        const DeepCollectionEquality().hash(hasTopics),
+        const DeepCollectionEquality().hash(allowsUsersToCreateTopics),
+        const DeepCollectionEquality().hash(canManageBots),
+        const DeepCollectionEquality().hash(isInline),
+        const DeepCollectionEquality().hash(inlineQueryPlaceholder),
+        const DeepCollectionEquality().hash(supportsGuestQueries),
+        const DeepCollectionEquality().hash(isGuard),
+        const DeepCollectionEquality().hash(needLocation),
+        const DeepCollectionEquality().hash(canConnectToBusiness),
+        const DeepCollectionEquality().hash(canBeAddedToAttachmentMenu),
+        const DeepCollectionEquality().hash(activeUserCount)
+      ]);
 }

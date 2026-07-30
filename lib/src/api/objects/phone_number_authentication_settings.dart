@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Contains settings for the authentication of the user's phone number
@@ -86,8 +87,35 @@ class PhoneNumberAuthenticationSettings extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is PhoneNumberAuthenticationSettings &&
+          const DeepCollectionEquality()
+              .equals(other.allowFlashCall, allowFlashCall) &&
+          const DeepCollectionEquality()
+              .equals(other.allowMissedCall, allowMissedCall) &&
+          const DeepCollectionEquality()
+              .equals(other.isCurrentPhoneNumber, isCurrentPhoneNumber) &&
+          const DeepCollectionEquality()
+              .equals(other.hasUnknownPhoneNumber, hasUnknownPhoneNumber) &&
+          const DeepCollectionEquality()
+              .equals(other.allowSmsRetrieverApi, allowSmsRetrieverApi) &&
+          const DeepCollectionEquality().equals(
+              other.firebaseAuthenticationSettings,
+              firebaseAuthenticationSettings) &&
+          const DeepCollectionEquality()
+              .equals(other.authenticationTokens, authenticationTokens));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(allowFlashCall),
+        const DeepCollectionEquality().hash(allowMissedCall),
+        const DeepCollectionEquality().hash(isCurrentPhoneNumber),
+        const DeepCollectionEquality().hash(hasUnknownPhoneNumber),
+        const DeepCollectionEquality().hash(allowSmsRetrieverApi),
+        const DeepCollectionEquality().hash(firebaseAuthenticationSettings),
+        const DeepCollectionEquality().hash(authenticationTokens)
+      ]);
 }

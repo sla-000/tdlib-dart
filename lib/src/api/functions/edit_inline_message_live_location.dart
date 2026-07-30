@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Edits the content of a live location in an inline message sent via a bot;
@@ -39,8 +40,21 @@ class EditInlineMessageLiveLocation extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is EditInlineMessageLiveLocation &&
+          const DeepCollectionEquality()
+              .equals(other.inlineMessageId, inlineMessageId) &&
+          const DeepCollectionEquality()
+              .equals(other.replyMarkup, replyMarkup) &&
+          const DeepCollectionEquality().equals(other.location, location));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(inlineMessageId),
+        const DeepCollectionEquality().hash(replyMarkup),
+        const DeepCollectionEquality().hash(location)
+      ]);
 }

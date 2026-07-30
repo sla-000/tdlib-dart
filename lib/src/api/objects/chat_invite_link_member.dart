@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Describes a chat member joined a chat via an invite link
@@ -55,8 +56,24 @@ class ChatInviteLinkMember extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is ChatInviteLinkMember &&
+          const DeepCollectionEquality().equals(other.userId, userId) &&
+          const DeepCollectionEquality()
+              .equals(other.joinedChatDate, joinedChatDate) &&
+          const DeepCollectionEquality()
+              .equals(other.viaChatFolderInviteLink, viaChatFolderInviteLink) &&
+          const DeepCollectionEquality()
+              .equals(other.approverUserId, approverUserId));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(userId),
+        const DeepCollectionEquality().hash(joinedChatDate),
+        const DeepCollectionEquality().hash(viaChatFolderInviteLink),
+        const DeepCollectionEquality().hash(approverUserId)
+      ]);
 }

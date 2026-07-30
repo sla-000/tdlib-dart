@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// The log is written to a file
@@ -48,8 +49,21 @@ class LogStreamFile extends LogStream {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is LogStreamFile &&
+          const DeepCollectionEquality().equals(other.path, path) &&
+          const DeepCollectionEquality()
+              .equals(other.maxFileSize, maxFileSize) &&
+          const DeepCollectionEquality()
+              .equals(other.redirectStderr, redirectStderr));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(path),
+        const DeepCollectionEquality().hash(maxFileSize),
+        const DeepCollectionEquality().hash(redirectStderr)
+      ]);
 }

@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Deletes an invite link for a chat folder
@@ -30,8 +31,18 @@ class DeleteChatFolderInviteLink extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is DeleteChatFolderInviteLink &&
+          const DeepCollectionEquality()
+              .equals(other.chatFolderId, chatFolderId) &&
+          const DeepCollectionEquality().equals(other.inviteLink, inviteLink));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(chatFolderId),
+        const DeepCollectionEquality().hash(inviteLink)
+      ]);
 }

@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Changes chosen reaction on a story that has already been sent; not
@@ -44,8 +45,24 @@ class SetStoryReaction extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is SetStoryReaction &&
+          const DeepCollectionEquality()
+              .equals(other.storyPosterChatId, storyPosterChatId) &&
+          const DeepCollectionEquality().equals(other.storyId, storyId) &&
+          const DeepCollectionEquality()
+              .equals(other.reactionType, reactionType) &&
+          const DeepCollectionEquality()
+              .equals(other.updateRecentReactions, updateRecentReactions));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(storyPosterChatId),
+        const DeepCollectionEquality().hash(storyId),
+        const DeepCollectionEquality().hash(reactionType),
+        const DeepCollectionEquality().hash(updateRecentReactions)
+      ]);
 }

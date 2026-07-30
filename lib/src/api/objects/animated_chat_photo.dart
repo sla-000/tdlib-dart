@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Animated variant of a chat photo in MPEG4 format
@@ -46,8 +47,20 @@ class AnimatedChatPhoto extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is AnimatedChatPhoto &&
+          const DeepCollectionEquality().equals(other.length, length) &&
+          const DeepCollectionEquality().equals(other.file, file) &&
+          const DeepCollectionEquality()
+              .equals(other.mainFrameTimestamp, mainFrameTimestamp));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(length),
+        const DeepCollectionEquality().hash(file),
+        const DeepCollectionEquality().hash(mainFrameTimestamp)
+      ]);
 }

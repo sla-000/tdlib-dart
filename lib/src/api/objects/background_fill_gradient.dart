@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Describes a gradient fill of a background
@@ -47,8 +48,21 @@ class BackgroundFillGradient extends BackgroundFill {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is BackgroundFillGradient &&
+          const DeepCollectionEquality().equals(other.topColor, topColor) &&
+          const DeepCollectionEquality()
+              .equals(other.bottomColor, bottomColor) &&
+          const DeepCollectionEquality()
+              .equals(other.rotationAngle, rotationAngle));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(topColor),
+        const DeepCollectionEquality().hash(bottomColor),
+        const DeepCollectionEquality().hash(rotationAngle)
+      ]);
 }

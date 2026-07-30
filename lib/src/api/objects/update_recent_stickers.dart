@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// The list of recently used stickers was updated
@@ -44,8 +45,17 @@ class UpdateRecentStickers extends Update {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is UpdateRecentStickers &&
+          const DeepCollectionEquality().equals(other.isAttached, isAttached) &&
+          const DeepCollectionEquality().equals(other.stickerIds, stickerIds));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(isAttached),
+        const DeepCollectionEquality().hash(stickerIds)
+      ]);
 }

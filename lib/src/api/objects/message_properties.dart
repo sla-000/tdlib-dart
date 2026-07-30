@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Contains properties of a message and describes actions that can be done
@@ -312,8 +313,120 @@ class MessageProperties extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is MessageProperties &&
+          const DeepCollectionEquality()
+              .equals(other.canAddOffer, canAddOffer) &&
+          const DeepCollectionEquality()
+              .equals(other.canAddTasks, canAddTasks) &&
+          const DeepCollectionEquality()
+              .equals(other.canBeApproved, canBeApproved) &&
+          const DeepCollectionEquality()
+              .equals(other.canBeCopied, canBeCopied) &&
+          const DeepCollectionEquality()
+              .equals(other.canBeCopiedToSecretChat, canBeCopiedToSecretChat) &&
+          const DeepCollectionEquality()
+              .equals(other.canBeDeclined, canBeDeclined) &&
+          const DeepCollectionEquality()
+              .equals(other.canBeDeletedOnlyForSelf, canBeDeletedOnlyForSelf) &&
+          const DeepCollectionEquality()
+              .equals(other.canBeDeletedForAllUsers, canBeDeletedForAllUsers) &&
+          const DeepCollectionEquality()
+              .equals(other.canBeEdited, canBeEdited) &&
+          const DeepCollectionEquality()
+              .equals(other.canBeForwarded, canBeForwarded) &&
+          const DeepCollectionEquality().equals(other.canBePaid, canBePaid) &&
+          const DeepCollectionEquality()
+              .equals(other.canBePinned, canBePinned) &&
+          const DeepCollectionEquality()
+              .equals(other.canBeReplied, canBeReplied) &&
+          const DeepCollectionEquality().equals(
+              other.canBeRepliedInAnotherChat, canBeRepliedInAnotherChat) &&
+          const DeepCollectionEquality().equals(other.canBeSaved, canBeSaved) &&
+          const DeepCollectionEquality()
+              .equals(other.canBeSharedInStory, canBeSharedInStory) &&
+          const DeepCollectionEquality()
+              .equals(other.canDeleteReactions, canDeleteReactions) &&
+          const DeepCollectionEquality()
+              .equals(other.canEditMedia, canEditMedia) &&
+          const DeepCollectionEquality()
+              .equals(other.canEditSchedulingState, canEditSchedulingState) &&
+          const DeepCollectionEquality().equals(
+              other.canEditSuggestedPostInfo, canEditSuggestedPostInfo) &&
+          const DeepCollectionEquality()
+              .equals(other.canGetAuthor, canGetAuthor) &&
+          const DeepCollectionEquality()
+              .equals(other.canGetEmbeddingCode, canGetEmbeddingCode) &&
+          const DeepCollectionEquality().equals(other.canGetLink, canGetLink) &&
+          const DeepCollectionEquality().equals(
+              other.canGetMediaTimestampLinks, canGetMediaTimestampLinks) &&
+          const DeepCollectionEquality()
+              .equals(other.canGetMessageThread, canGetMessageThread) &&
+          const DeepCollectionEquality().equals(
+              other.canGetPollVoteStatistics, canGetPollVoteStatistics) &&
+          const DeepCollectionEquality()
+              .equals(other.canGetReadDate, canGetReadDate) &&
+          const DeepCollectionEquality()
+              .equals(other.canGetStatistics, canGetStatistics) &&
+          const DeepCollectionEquality().equals(
+              other.canGetVideoAdvertisements, canGetVideoAdvertisements) &&
+          const DeepCollectionEquality()
+              .equals(other.canGetViewers, canGetViewers) &&
+          const DeepCollectionEquality()
+              .equals(other.canMarkTasksAsDone, canMarkTasksAsDone) &&
+          const DeepCollectionEquality()
+              .equals(other.canRecognizeSpeech, canRecognizeSpeech) &&
+          const DeepCollectionEquality().equals(other.canReportChat, canReportChat) &&
+          const DeepCollectionEquality().equals(other.canReportReactions, canReportReactions) &&
+          const DeepCollectionEquality().equals(other.canReportSupergroupSpam, canReportSupergroupSpam) &&
+          const DeepCollectionEquality().equals(other.canSetFactCheck, canSetFactCheck) &&
+          const DeepCollectionEquality().equals(other.hasProtectedContentByCurrentUser, hasProtectedContentByCurrentUser) &&
+          const DeepCollectionEquality().equals(other.hasProtectedContentByOtherUser, hasProtectedContentByOtherUser) &&
+          const DeepCollectionEquality().equals(other.needShowStatistics, needShowStatistics));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(canAddOffer),
+        const DeepCollectionEquality().hash(canAddTasks),
+        const DeepCollectionEquality().hash(canBeApproved),
+        const DeepCollectionEquality().hash(canBeCopied),
+        const DeepCollectionEquality().hash(canBeCopiedToSecretChat),
+        const DeepCollectionEquality().hash(canBeDeclined),
+        const DeepCollectionEquality().hash(canBeDeletedOnlyForSelf),
+        const DeepCollectionEquality().hash(canBeDeletedForAllUsers),
+        const DeepCollectionEquality().hash(canBeEdited),
+        const DeepCollectionEquality().hash(canBeForwarded),
+        const DeepCollectionEquality().hash(canBePaid),
+        const DeepCollectionEquality().hash(canBePinned),
+        const DeepCollectionEquality().hash(canBeReplied),
+        const DeepCollectionEquality().hash(canBeRepliedInAnotherChat),
+        const DeepCollectionEquality().hash(canBeSaved),
+        const DeepCollectionEquality().hash(canBeSharedInStory),
+        const DeepCollectionEquality().hash(canDeleteReactions),
+        const DeepCollectionEquality().hash(canEditMedia),
+        const DeepCollectionEquality().hash(canEditSchedulingState),
+        const DeepCollectionEquality().hash(canEditSuggestedPostInfo),
+        const DeepCollectionEquality().hash(canGetAuthor),
+        const DeepCollectionEquality().hash(canGetEmbeddingCode),
+        const DeepCollectionEquality().hash(canGetLink),
+        const DeepCollectionEquality().hash(canGetMediaTimestampLinks),
+        const DeepCollectionEquality().hash(canGetMessageThread),
+        const DeepCollectionEquality().hash(canGetPollVoteStatistics),
+        const DeepCollectionEquality().hash(canGetReadDate),
+        const DeepCollectionEquality().hash(canGetStatistics),
+        const DeepCollectionEquality().hash(canGetVideoAdvertisements),
+        const DeepCollectionEquality().hash(canGetViewers),
+        const DeepCollectionEquality().hash(canMarkTasksAsDone),
+        const DeepCollectionEquality().hash(canRecognizeSpeech),
+        const DeepCollectionEquality().hash(canReportChat),
+        const DeepCollectionEquality().hash(canReportReactions),
+        const DeepCollectionEquality().hash(canReportSupergroupSpam),
+        const DeepCollectionEquality().hash(canSetFactCheck),
+        const DeepCollectionEquality().hash(hasProtectedContentByCurrentUser),
+        const DeepCollectionEquality().hash(hasProtectedContentByOtherUser),
+        const DeepCollectionEquality().hash(needShowStatistics)
+      ]);
 }

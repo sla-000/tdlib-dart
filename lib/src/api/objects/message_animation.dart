@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// An animation message (GIF-style).
@@ -63,8 +64,24 @@ class MessageAnimation extends MessageContent {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is MessageAnimation &&
+          const DeepCollectionEquality().equals(other.animation, animation) &&
+          const DeepCollectionEquality().equals(other.caption, caption) &&
+          const DeepCollectionEquality()
+              .equals(other.showCaptionAboveMedia, showCaptionAboveMedia) &&
+          const DeepCollectionEquality().equals(other.hasSpoiler, hasSpoiler) &&
+          const DeepCollectionEquality().equals(other.isSecret, isSecret));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(animation),
+        const DeepCollectionEquality().hash(caption),
+        const DeepCollectionEquality().hash(showCaptionAboveMedia),
+        const DeepCollectionEquality().hash(hasSpoiler),
+        const DeepCollectionEquality().hash(isSecret)
+      ]);
 }

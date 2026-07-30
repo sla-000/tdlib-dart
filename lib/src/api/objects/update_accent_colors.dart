@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// The list of supported accent colors has changed
@@ -54,8 +55,18 @@ class UpdateAccentColors extends Update {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is UpdateAccentColors &&
+          const DeepCollectionEquality().equals(other.colors, colors) &&
+          const DeepCollectionEquality()
+              .equals(other.availableAccentColorIds, availableAccentColorIds));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(colors),
+        const DeepCollectionEquality().hash(availableAccentColorIds)
+      ]);
 }

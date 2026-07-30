@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Describes a completed giveaway
@@ -84,8 +85,35 @@ class GiveawayInfoCompleted extends GiveawayInfo {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is GiveawayInfoCompleted &&
+          const DeepCollectionEquality()
+              .equals(other.creationDate, creationDate) &&
+          const DeepCollectionEquality().equals(
+              other.actualWinnersSelectionDate, actualWinnersSelectionDate) &&
+          const DeepCollectionEquality()
+              .equals(other.wasRefunded, wasRefunded) &&
+          const DeepCollectionEquality().equals(other.isWinner, isWinner) &&
+          const DeepCollectionEquality()
+              .equals(other.winnerCount, winnerCount) &&
+          const DeepCollectionEquality()
+              .equals(other.activationCount, activationCount) &&
+          const DeepCollectionEquality().equals(other.giftCode, giftCode) &&
+          const DeepCollectionEquality()
+              .equals(other.wonStarCount, wonStarCount));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(creationDate),
+        const DeepCollectionEquality().hash(actualWinnersSelectionDate),
+        const DeepCollectionEquality().hash(wasRefunded),
+        const DeepCollectionEquality().hash(isWinner),
+        const DeepCollectionEquality().hash(winnerCount),
+        const DeepCollectionEquality().hash(activationCount),
+        const DeepCollectionEquality().hash(giftCode),
+        const DeepCollectionEquality().hash(wonStarCount)
+      ]);
 }

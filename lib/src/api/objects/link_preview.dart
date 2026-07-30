@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Describes a link preview
@@ -115,8 +116,46 @@ class LinkPreview extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is LinkPreview &&
+          const DeepCollectionEquality().equals(other.url, url) &&
+          const DeepCollectionEquality().equals(other.displayUrl, displayUrl) &&
+          const DeepCollectionEquality().equals(other.siteName, siteName) &&
+          const DeepCollectionEquality().equals(other.title, title) &&
+          const DeepCollectionEquality()
+              .equals(other.description, description) &&
+          const DeepCollectionEquality().equals(other.author, author) &&
+          const DeepCollectionEquality().equals(other.type, type) &&
+          const DeepCollectionEquality()
+              .equals(other.hasLargeMedia, hasLargeMedia) &&
+          const DeepCollectionEquality()
+              .equals(other.showLargeMedia, showLargeMedia) &&
+          const DeepCollectionEquality().equals(
+              other.showMediaAboveDescription, showMediaAboveDescription) &&
+          const DeepCollectionEquality()
+              .equals(other.skipConfirmation, skipConfirmation) &&
+          const DeepCollectionEquality()
+              .equals(other.showAboveText, showAboveText) &&
+          const DeepCollectionEquality()
+              .equals(other.instantViewVersion, instantViewVersion));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(url),
+        const DeepCollectionEquality().hash(displayUrl),
+        const DeepCollectionEquality().hash(siteName),
+        const DeepCollectionEquality().hash(title),
+        const DeepCollectionEquality().hash(description),
+        const DeepCollectionEquality().hash(author),
+        const DeepCollectionEquality().hash(type),
+        const DeepCollectionEquality().hash(hasLargeMedia),
+        const DeepCollectionEquality().hash(showLargeMedia),
+        const DeepCollectionEquality().hash(showMediaAboveDescription),
+        const DeepCollectionEquality().hash(skipConfirmation),
+        const DeepCollectionEquality().hash(showAboveText),
+        const DeepCollectionEquality().hash(instantViewVersion)
+      ]);
 }

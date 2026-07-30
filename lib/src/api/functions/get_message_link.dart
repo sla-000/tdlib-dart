@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Returns an HTTPS link to a message in a chat. Available only if
@@ -63,8 +64,31 @@ class GetMessageLink extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is GetMessageLink &&
+          const DeepCollectionEquality().equals(other.chatId, chatId) &&
+          const DeepCollectionEquality().equals(other.messageId, messageId) &&
+          const DeepCollectionEquality()
+              .equals(other.mediaTimestamp, mediaTimestamp) &&
+          const DeepCollectionEquality()
+              .equals(other.checklistTaskId, checklistTaskId) &&
+          const DeepCollectionEquality()
+              .equals(other.pollOptionId, pollOptionId) &&
+          const DeepCollectionEquality().equals(other.forAlbum, forAlbum) &&
+          const DeepCollectionEquality()
+              .equals(other.inMessageThread, inMessageThread));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(chatId),
+        const DeepCollectionEquality().hash(messageId),
+        const DeepCollectionEquality().hash(mediaTimestamp),
+        const DeepCollectionEquality().hash(checklistTaskId),
+        const DeepCollectionEquality().hash(pollOptionId),
+        const DeepCollectionEquality().hash(forAlbum),
+        const DeepCollectionEquality().hash(inMessageThread)
+      ]);
 }

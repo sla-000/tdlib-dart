@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Represents the results of the inline query. Use
@@ -58,8 +59,22 @@ class InlineQueryResults extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is InlineQueryResults &&
+          const DeepCollectionEquality()
+              .equals(other.inlineQueryId, inlineQueryId) &&
+          const DeepCollectionEquality().equals(other.button, button) &&
+          const DeepCollectionEquality().equals(other.results, results) &&
+          const DeepCollectionEquality().equals(other.nextOffset, nextOffset));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(inlineQueryId),
+        const DeepCollectionEquality().hash(button),
+        const DeepCollectionEquality().hash(results),
+        const DeepCollectionEquality().hash(nextOffset)
+      ]);
 }

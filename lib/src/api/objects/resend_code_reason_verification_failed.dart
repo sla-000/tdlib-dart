@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// The code is re-sent, because device verification has failed
@@ -37,8 +38,14 @@ class ResendCodeReasonVerificationFailed extends ResendCodeReason {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is ResendCodeReasonVerificationFailed &&
+          const DeepCollectionEquality()
+              .equals(other.errorMessage, errorMessage));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll(
+      [runtimeType, const DeepCollectionEquality().hash(errorMessage)]);
 }

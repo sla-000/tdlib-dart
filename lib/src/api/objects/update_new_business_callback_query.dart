@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// A new incoming callback query from a business message; for bots only
@@ -68,8 +69,28 @@ class UpdateNewBusinessCallbackQuery extends Update {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is UpdateNewBusinessCallbackQuery &&
+          const DeepCollectionEquality().equals(other.id, id) &&
+          const DeepCollectionEquality()
+              .equals(other.senderUserId, senderUserId) &&
+          const DeepCollectionEquality()
+              .equals(other.connectionId, connectionId) &&
+          const DeepCollectionEquality().equals(other.message, message) &&
+          const DeepCollectionEquality()
+              .equals(other.chatInstance, chatInstance) &&
+          const DeepCollectionEquality().equals(other.payload, payload));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(id),
+        const DeepCollectionEquality().hash(senderUserId),
+        const DeepCollectionEquality().hash(connectionId),
+        const DeepCollectionEquality().hash(message),
+        const DeepCollectionEquality().hash(chatInstance),
+        const DeepCollectionEquality().hash(payload)
+      ]);
 }

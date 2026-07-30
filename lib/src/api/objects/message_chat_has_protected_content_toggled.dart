@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Chat has_protected_content setting was changed or request to change it was
@@ -49,8 +50,22 @@ class MessageChatHasProtectedContentToggled extends MessageContent {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is MessageChatHasProtectedContentToggled &&
+          const DeepCollectionEquality()
+              .equals(other.requestMessageId, requestMessageId) &&
+          const DeepCollectionEquality()
+              .equals(other.oldHasProtectedContent, oldHasProtectedContent) &&
+          const DeepCollectionEquality()
+              .equals(other.newHasProtectedContent, newHasProtectedContent));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(requestMessageId),
+        const DeepCollectionEquality().hash(oldHasProtectedContent),
+        const DeepCollectionEquality().hash(newHasProtectedContent)
+      ]);
 }

@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// The state of the file download list has changed
@@ -47,8 +48,20 @@ class UpdateFileDownloads extends Update {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is UpdateFileDownloads &&
+          const DeepCollectionEquality().equals(other.totalSize, totalSize) &&
+          const DeepCollectionEquality().equals(other.totalCount, totalCount) &&
+          const DeepCollectionEquality()
+              .equals(other.downloadedSize, downloadedSize));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(totalSize),
+        const DeepCollectionEquality().hash(totalCount),
+        const DeepCollectionEquality().hash(downloadedSize)
+      ]);
 }

@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Sets the result of interaction with a Web App and sends corresponding
@@ -32,8 +33,18 @@ class AnswerWebAppQuery extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is AnswerWebAppQuery &&
+          const DeepCollectionEquality()
+              .equals(other.webAppQueryId, webAppQueryId) &&
+          const DeepCollectionEquality().equals(other.result, result));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(webAppQueryId),
+        const DeepCollectionEquality().hash(result)
+      ]);
 }

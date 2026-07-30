@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Represents a gift received by a user or a chat
@@ -197,8 +198,74 @@ class ReceivedGift extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is ReceivedGift &&
+          const DeepCollectionEquality()
+              .equals(other.receivedGiftId, receivedGiftId) &&
+          const DeepCollectionEquality().equals(other.senderId, senderId) &&
+          const DeepCollectionEquality().equals(other.text, text) &&
+          const DeepCollectionEquality()
+              .equals(other.uniqueGiftNumber, uniqueGiftNumber) &&
+          const DeepCollectionEquality().equals(other.isPrivate, isPrivate) &&
+          const DeepCollectionEquality().equals(other.isSaved, isSaved) &&
+          const DeepCollectionEquality().equals(other.isPinned, isPinned) &&
+          const DeepCollectionEquality()
+              .equals(other.canBeUpgraded, canBeUpgraded) &&
+          const DeepCollectionEquality()
+              .equals(other.canBeTransferred, canBeTransferred) &&
+          const DeepCollectionEquality()
+              .equals(other.wasRefunded, wasRefunded) &&
+          const DeepCollectionEquality().equals(other.date, date) &&
+          const DeepCollectionEquality().equals(other.gift, gift) &&
+          const DeepCollectionEquality()
+              .equals(other.collectionIds, collectionIds) &&
+          const DeepCollectionEquality()
+              .equals(other.sellStarCount, sellStarCount) &&
+          const DeepCollectionEquality()
+              .equals(other.prepaidUpgradeStarCount, prepaidUpgradeStarCount) &&
+          const DeepCollectionEquality()
+              .equals(other.isUpgradeSeparate, isUpgradeSeparate) &&
+          const DeepCollectionEquality()
+              .equals(other.transferStarCount, transferStarCount) &&
+          const DeepCollectionEquality().equals(
+              other.dropOriginalDetailsStarCount,
+              dropOriginalDetailsStarCount) &&
+          const DeepCollectionEquality()
+              .equals(other.nextTransferDate, nextTransferDate) &&
+          const DeepCollectionEquality()
+              .equals(other.nextResaleDate, nextResaleDate) &&
+          const DeepCollectionEquality().equals(other.exportDate, exportDate) &&
+          const DeepCollectionEquality()
+              .equals(other.prepaidUpgradeHash, prepaidUpgradeHash) &&
+          const DeepCollectionEquality().equals(other.craftDate, craftDate));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(receivedGiftId),
+        const DeepCollectionEquality().hash(senderId),
+        const DeepCollectionEquality().hash(text),
+        const DeepCollectionEquality().hash(uniqueGiftNumber),
+        const DeepCollectionEquality().hash(isPrivate),
+        const DeepCollectionEquality().hash(isSaved),
+        const DeepCollectionEquality().hash(isPinned),
+        const DeepCollectionEquality().hash(canBeUpgraded),
+        const DeepCollectionEquality().hash(canBeTransferred),
+        const DeepCollectionEquality().hash(wasRefunded),
+        const DeepCollectionEquality().hash(date),
+        const DeepCollectionEquality().hash(gift),
+        const DeepCollectionEquality().hash(collectionIds),
+        const DeepCollectionEquality().hash(sellStarCount),
+        const DeepCollectionEquality().hash(prepaidUpgradeStarCount),
+        const DeepCollectionEquality().hash(isUpgradeSeparate),
+        const DeepCollectionEquality().hash(transferStarCount),
+        const DeepCollectionEquality().hash(dropOriginalDetailsStarCount),
+        const DeepCollectionEquality().hash(nextTransferDate),
+        const DeepCollectionEquality().hash(nextResaleDate),
+        const DeepCollectionEquality().hash(exportDate),
+        const DeepCollectionEquality().hash(prepaidUpgradeHash),
+        const DeepCollectionEquality().hash(craftDate)
+      ]);
 }

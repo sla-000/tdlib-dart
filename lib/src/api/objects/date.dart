@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Represents a date according to the Gregorian calendar
@@ -46,8 +47,19 @@ class Date extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is Date &&
+          const DeepCollectionEquality().equals(other.day, day) &&
+          const DeepCollectionEquality().equals(other.month, month) &&
+          const DeepCollectionEquality().equals(other.year, year));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(day),
+        const DeepCollectionEquality().hash(month),
+        const DeepCollectionEquality().hash(year)
+      ]);
 }

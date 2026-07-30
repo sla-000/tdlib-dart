@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Contains approximate storage usage statistics, excluding files of unknown
@@ -59,8 +60,25 @@ class StorageStatisticsFast extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is StorageStatisticsFast &&
+          const DeepCollectionEquality().equals(other.filesSize, filesSize) &&
+          const DeepCollectionEquality().equals(other.fileCount, fileCount) &&
+          const DeepCollectionEquality()
+              .equals(other.databaseSize, databaseSize) &&
+          const DeepCollectionEquality().equals(
+              other.languagePackDatabaseSize, languagePackDatabaseSize) &&
+          const DeepCollectionEquality().equals(other.logSize, logSize));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(filesSize),
+        const DeepCollectionEquality().hash(fileCount),
+        const DeepCollectionEquality().hash(databaseSize),
+        const DeepCollectionEquality().hash(languagePackDatabaseSize),
+        const DeepCollectionEquality().hash(logSize)
+      ]);
 }

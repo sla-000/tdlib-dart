@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Contains information about a finished auction
@@ -74,8 +75,32 @@ class AuctionStateFinished extends AuctionState {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is AuctionStateFinished &&
+          const DeepCollectionEquality().equals(other.startDate, startDate) &&
+          const DeepCollectionEquality().equals(other.endDate, endDate) &&
+          const DeepCollectionEquality()
+              .equals(other.averagePrice, averagePrice) &&
+          const DeepCollectionEquality()
+              .equals(other.acquiredItemCount, acquiredItemCount) &&
+          const DeepCollectionEquality()
+              .equals(other.telegramListedItemCount, telegramListedItemCount) &&
+          const DeepCollectionEquality()
+              .equals(other.fragmentListedItemCount, fragmentListedItemCount) &&
+          const DeepCollectionEquality()
+              .equals(other.fragmentUrl, fragmentUrl));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(startDate),
+        const DeepCollectionEquality().hash(endDate),
+        const DeepCollectionEquality().hash(averagePrice),
+        const DeepCollectionEquality().hash(acquiredItemCount),
+        const DeepCollectionEquality().hash(telegramListedItemCount),
+        const DeepCollectionEquality().hash(fragmentListedItemCount),
+        const DeepCollectionEquality().hash(fragmentUrl)
+      ]);
 }

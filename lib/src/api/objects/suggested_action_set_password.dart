@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Suggests the user to set a 2-step verification password to be able to log
@@ -37,8 +38,14 @@ class SuggestedActionSetPassword extends SuggestedAction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is SuggestedActionSetPassword &&
+          const DeepCollectionEquality()
+              .equals(other.authorizationDelay, authorizationDelay));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll(
+      [runtimeType, const DeepCollectionEquality().hash(authorizationDelay)]);
 }

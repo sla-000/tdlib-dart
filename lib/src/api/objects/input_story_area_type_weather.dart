@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// An area with information about weather
@@ -46,8 +47,21 @@ class InputStoryAreaTypeWeather extends InputStoryAreaType {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is InputStoryAreaTypeWeather &&
+          const DeepCollectionEquality()
+              .equals(other.temperature, temperature) &&
+          const DeepCollectionEquality().equals(other.emoji, emoji) &&
+          const DeepCollectionEquality()
+              .equals(other.backgroundColor, backgroundColor));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(temperature),
+        const DeepCollectionEquality().hash(emoji),
+        const DeepCollectionEquality().hash(backgroundColor)
+      ]);
 }

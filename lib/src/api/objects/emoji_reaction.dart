@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Contains information about an emoji reaction
@@ -96,8 +97,39 @@ class EmojiReaction extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is EmojiReaction &&
+          const DeepCollectionEquality().equals(other.emoji, emoji) &&
+          const DeepCollectionEquality().equals(other.title, title) &&
+          const DeepCollectionEquality().equals(other.isActive, isActive) &&
+          const DeepCollectionEquality().equals(other.staticIcon, staticIcon) &&
+          const DeepCollectionEquality()
+              .equals(other.appearAnimation, appearAnimation) &&
+          const DeepCollectionEquality()
+              .equals(other.selectAnimation, selectAnimation) &&
+          const DeepCollectionEquality()
+              .equals(other.activateAnimation, activateAnimation) &&
+          const DeepCollectionEquality()
+              .equals(other.effectAnimation, effectAnimation) &&
+          const DeepCollectionEquality()
+              .equals(other.aroundAnimation, aroundAnimation) &&
+          const DeepCollectionEquality()
+              .equals(other.centerAnimation, centerAnimation));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(emoji),
+        const DeepCollectionEquality().hash(title),
+        const DeepCollectionEquality().hash(isActive),
+        const DeepCollectionEquality().hash(staticIcon),
+        const DeepCollectionEquality().hash(appearAnimation),
+        const DeepCollectionEquality().hash(selectAnimation),
+        const DeepCollectionEquality().hash(activateAnimation),
+        const DeepCollectionEquality().hash(effectAnimation),
+        const DeepCollectionEquality().hash(aroundAnimation),
+        const DeepCollectionEquality().hash(centerAnimation)
+      ]);
 }

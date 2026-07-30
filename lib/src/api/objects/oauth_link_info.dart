@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Information about the OAuth authorization
@@ -124,8 +125,45 @@ class OauthLinkInfo extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is OauthLinkInfo &&
+          const DeepCollectionEquality().equals(other.userId, userId) &&
+          const DeepCollectionEquality().equals(other.url, url) &&
+          const DeepCollectionEquality().equals(other.domain, domain) &&
+          const DeepCollectionEquality().equals(other.fromApp, fromApp) &&
+          const DeepCollectionEquality()
+              .equals(other.verifiedAppName, verifiedAppName) &&
+          const DeepCollectionEquality().equals(other.botUserId, botUserId) &&
+          const DeepCollectionEquality()
+              .equals(other.requestWriteAccess, requestWriteAccess) &&
+          const DeepCollectionEquality().equals(
+              other.requestPhoneNumberAccess, requestPhoneNumberAccess) &&
+          const DeepCollectionEquality().equals(other.browser, browser) &&
+          const DeepCollectionEquality().equals(other.platform, platform) &&
+          const DeepCollectionEquality().equals(other.ipAddress, ipAddress) &&
+          const DeepCollectionEquality().equals(other.location, location) &&
+          const DeepCollectionEquality()
+              .equals(other.matchCodeFirst, matchCodeFirst) &&
+          const DeepCollectionEquality().equals(other.matchCodes, matchCodes));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(userId),
+        const DeepCollectionEquality().hash(url),
+        const DeepCollectionEquality().hash(domain),
+        const DeepCollectionEquality().hash(fromApp),
+        const DeepCollectionEquality().hash(verifiedAppName),
+        const DeepCollectionEquality().hash(botUserId),
+        const DeepCollectionEquality().hash(requestWriteAccess),
+        const DeepCollectionEquality().hash(requestPhoneNumberAccess),
+        const DeepCollectionEquality().hash(browser),
+        const DeepCollectionEquality().hash(platform),
+        const DeepCollectionEquality().hash(ipAddress),
+        const DeepCollectionEquality().hash(location),
+        const DeepCollectionEquality().hash(matchCodeFirst),
+        const DeepCollectionEquality().hash(matchCodes)
+      ]);
 }

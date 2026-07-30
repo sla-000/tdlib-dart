@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// New message was received through a push notification
@@ -63,8 +64,23 @@ class NotificationTypeNewPushMessage extends NotificationType {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is NotificationTypeNewPushMessage &&
+          const DeepCollectionEquality().equals(other.messageId, messageId) &&
+          const DeepCollectionEquality().equals(other.senderId, senderId) &&
+          const DeepCollectionEquality().equals(other.senderName, senderName) &&
+          const DeepCollectionEquality().equals(other.isOutgoing, isOutgoing) &&
+          const DeepCollectionEquality().equals(other.content, content));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(messageId),
+        const DeepCollectionEquality().hash(senderId),
+        const DeepCollectionEquality().hash(senderName),
+        const DeepCollectionEquality().hash(isOutgoing),
+        const DeepCollectionEquality().hash(content)
+      ]);
 }

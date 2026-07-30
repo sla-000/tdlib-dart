@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// A user sent a join request to a chat; for bots only
@@ -62,8 +63,23 @@ class UpdateNewChatJoinRequest extends Update {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is UpdateNewChatJoinRequest &&
+          const DeepCollectionEquality().equals(other.chatId, chatId) &&
+          const DeepCollectionEquality().equals(other.request, request) &&
+          const DeepCollectionEquality().equals(other.userChatId, userChatId) &&
+          const DeepCollectionEquality().equals(other.inviteLink, inviteLink) &&
+          const DeepCollectionEquality().equals(other.queryId, queryId));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(chatId),
+        const DeepCollectionEquality().hash(request),
+        const DeepCollectionEquality().hash(userChatId),
+        const DeepCollectionEquality().hash(inviteLink),
+        const DeepCollectionEquality().hash(queryId)
+      ]);
 }

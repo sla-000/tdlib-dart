@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Adds or changes a custom local language pack to the current localization
@@ -33,8 +34,17 @@ class SetCustomLanguagePack extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is SetCustomLanguagePack &&
+          const DeepCollectionEquality().equals(other.info, info) &&
+          const DeepCollectionEquality().equals(other.strings, strings));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(info),
+        const DeepCollectionEquality().hash(strings)
+      ]);
 }

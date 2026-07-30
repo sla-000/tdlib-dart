@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Contains an HTTPS link to boost a chat
@@ -40,8 +41,17 @@ class ChatBoostLink extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is ChatBoostLink &&
+          const DeepCollectionEquality().equals(other.link, link) &&
+          const DeepCollectionEquality().equals(other.isPublic, isPublic));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(link),
+        const DeepCollectionEquality().hash(isPublic)
+      ]);
 }

@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// The payment form is for a regular payment
@@ -88,8 +89,36 @@ class PaymentFormTypeRegular extends PaymentFormType {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is PaymentFormTypeRegular &&
+          const DeepCollectionEquality().equals(other.invoice, invoice) &&
+          const DeepCollectionEquality()
+              .equals(other.paymentProviderUserId, paymentProviderUserId) &&
+          const DeepCollectionEquality()
+              .equals(other.paymentProvider, paymentProvider) &&
+          const DeepCollectionEquality().equals(
+              other.additionalPaymentOptions, additionalPaymentOptions) &&
+          const DeepCollectionEquality()
+              .equals(other.savedOrderInfo, savedOrderInfo) &&
+          const DeepCollectionEquality()
+              .equals(other.savedCredentials, savedCredentials) &&
+          const DeepCollectionEquality()
+              .equals(other.canSaveCredentials, canSaveCredentials) &&
+          const DeepCollectionEquality()
+              .equals(other.needPassword, needPassword));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(invoice),
+        const DeepCollectionEquality().hash(paymentProviderUserId),
+        const DeepCollectionEquality().hash(paymentProvider),
+        const DeepCollectionEquality().hash(additionalPaymentOptions),
+        const DeepCollectionEquality().hash(savedOrderInfo),
+        const DeepCollectionEquality().hash(savedCredentials),
+        const DeepCollectionEquality().hash(canSaveCredentials),
+        const DeepCollectionEquality().hash(needPassword)
+      ]);
 }

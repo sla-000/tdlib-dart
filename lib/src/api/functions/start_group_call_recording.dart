@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Starts recording of an active group call; for video chats only. Requires
@@ -42,8 +43,24 @@ class StartGroupCallRecording extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is StartGroupCallRecording &&
+          const DeepCollectionEquality()
+              .equals(other.groupCallId, groupCallId) &&
+          const DeepCollectionEquality().equals(other.title, title) &&
+          const DeepCollectionEquality()
+              .equals(other.recordVideo, recordVideo) &&
+          const DeepCollectionEquality()
+              .equals(other.usePortraitOrientation, usePortraitOrientation));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(groupCallId),
+        const DeepCollectionEquality().hash(title),
+        const DeepCollectionEquality().hash(recordVideo),
+        const DeepCollectionEquality().hash(usePortraitOrientation)
+      ]);
 }

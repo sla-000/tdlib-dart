@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// The date and time must be shown as absolute timestamps
@@ -49,8 +50,22 @@ class DateTimeFormattingTypeAbsolute extends DateTimeFormattingType {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is DateTimeFormattingTypeAbsolute &&
+          const DeepCollectionEquality()
+              .equals(other.timePrecision, timePrecision) &&
+          const DeepCollectionEquality()
+              .equals(other.datePrecision, datePrecision) &&
+          const DeepCollectionEquality()
+              .equals(other.showDayOfWeek, showDayOfWeek));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(timePrecision),
+        const DeepCollectionEquality().hash(datePrecision),
+        const DeepCollectionEquality().hash(showDayOfWeek)
+      ]);
 }

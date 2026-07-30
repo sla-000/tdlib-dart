@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Contains the exact storage usage statistics split by chats and file type
@@ -49,8 +50,19 @@ class StorageStatistics extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is StorageStatistics &&
+          const DeepCollectionEquality().equals(other.size, size) &&
+          const DeepCollectionEquality().equals(other.count, count) &&
+          const DeepCollectionEquality().equals(other.byChat, byChat));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(size),
+        const DeepCollectionEquality().hash(count),
+        const DeepCollectionEquality().hash(byChat)
+      ]);
 }

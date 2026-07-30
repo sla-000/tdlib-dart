@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// An upgraded gift set as emoji status
@@ -68,8 +69,29 @@ class EmojiStatusTypeUpgradedGift extends EmojiStatusType {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is EmojiStatusTypeUpgradedGift &&
+          const DeepCollectionEquality()
+              .equals(other.upgradedGiftId, upgradedGiftId) &&
+          const DeepCollectionEquality().equals(other.giftTitle, giftTitle) &&
+          const DeepCollectionEquality().equals(other.giftName, giftName) &&
+          const DeepCollectionEquality()
+              .equals(other.modelCustomEmojiId, modelCustomEmojiId) &&
+          const DeepCollectionEquality()
+              .equals(other.symbolCustomEmojiId, symbolCustomEmojiId) &&
+          const DeepCollectionEquality()
+              .equals(other.backdropColors, backdropColors));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(upgradedGiftId),
+        const DeepCollectionEquality().hash(giftTitle),
+        const DeepCollectionEquality().hash(giftName),
+        const DeepCollectionEquality().hash(modelCustomEmojiId),
+        const DeepCollectionEquality().hash(symbolCustomEmojiId),
+        const DeepCollectionEquality().hash(backdropColors)
+      ]);
 }

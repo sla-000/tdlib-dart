@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Describes settings for greeting messages that are automatically sent by a
@@ -51,8 +52,20 @@ class BusinessGreetingMessageSettings extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is BusinessGreetingMessageSettings &&
+          const DeepCollectionEquality().equals(other.shortcutId, shortcutId) &&
+          const DeepCollectionEquality().equals(other.recipients, recipients) &&
+          const DeepCollectionEquality()
+              .equals(other.inactivityDays, inactivityDays));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(shortcutId),
+        const DeepCollectionEquality().hash(recipients),
+        const DeepCollectionEquality().hash(inactivityDays)
+      ]);
 }

@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Replaces existing sticker in a set. The function is equivalent to
@@ -41,8 +42,21 @@ class ReplaceStickerInSet extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is ReplaceStickerInSet &&
+          const DeepCollectionEquality().equals(other.userId, userId) &&
+          const DeepCollectionEquality().equals(other.name, name) &&
+          const DeepCollectionEquality().equals(other.oldSticker, oldSticker) &&
+          const DeepCollectionEquality().equals(other.newSticker, newSticker));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(userId),
+        const DeepCollectionEquality().hash(name),
+        const DeepCollectionEquality().hash(oldSticker),
+        const DeepCollectionEquality().hash(newSticker)
+      ]);
 }

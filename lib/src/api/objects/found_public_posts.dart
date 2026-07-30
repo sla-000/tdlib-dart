@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Contains a list of messages found by a public post search
@@ -61,8 +62,23 @@ class FoundPublicPosts extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is FoundPublicPosts &&
+          const DeepCollectionEquality().equals(other.messages, messages) &&
+          const DeepCollectionEquality().equals(other.nextOffset, nextOffset) &&
+          const DeepCollectionEquality()
+              .equals(other.searchLimits, searchLimits) &&
+          const DeepCollectionEquality()
+              .equals(other.areLimitsExceeded, areLimitsExceeded));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(messages),
+        const DeepCollectionEquality().hash(nextOffset),
+        const DeepCollectionEquality().hash(searchLimits),
+        const DeepCollectionEquality().hash(areLimitsExceeded)
+      ]);
 }

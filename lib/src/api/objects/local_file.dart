@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Represents a local file
@@ -82,8 +83,36 @@ class LocalFile extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is LocalFile &&
+          const DeepCollectionEquality().equals(other.path, path) &&
+          const DeepCollectionEquality()
+              .equals(other.canBeDownloaded, canBeDownloaded) &&
+          const DeepCollectionEquality()
+              .equals(other.canBeDeleted, canBeDeleted) &&
+          const DeepCollectionEquality()
+              .equals(other.isDownloadingActive, isDownloadingActive) &&
+          const DeepCollectionEquality()
+              .equals(other.isDownloadingCompleted, isDownloadingCompleted) &&
+          const DeepCollectionEquality()
+              .equals(other.downloadOffset, downloadOffset) &&
+          const DeepCollectionEquality()
+              .equals(other.downloadedPrefixSize, downloadedPrefixSize) &&
+          const DeepCollectionEquality()
+              .equals(other.downloadedSize, downloadedSize));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(path),
+        const DeepCollectionEquality().hash(canBeDownloaded),
+        const DeepCollectionEquality().hash(canBeDeleted),
+        const DeepCollectionEquality().hash(isDownloadingActive),
+        const DeepCollectionEquality().hash(isDownloadingCompleted),
+        const DeepCollectionEquality().hash(downloadOffset),
+        const DeepCollectionEquality().hash(downloadedPrefixSize),
+        const DeepCollectionEquality().hash(downloadedSize)
+      ]);
 }

@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Describes parameters used to join a group call
@@ -53,8 +54,23 @@ class GroupCallJoinParameters extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is GroupCallJoinParameters &&
+          const DeepCollectionEquality()
+              .equals(other.audioSourceId, audioSourceId) &&
+          const DeepCollectionEquality().equals(other.payload, payload) &&
+          const DeepCollectionEquality().equals(other.isMuted, isMuted) &&
+          const DeepCollectionEquality()
+              .equals(other.isMyVideoEnabled, isMyVideoEnabled));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(audioSourceId),
+        const DeepCollectionEquality().hash(payload),
+        const DeepCollectionEquality().hash(isMuted),
+        const DeepCollectionEquality().hash(isMyVideoEnabled)
+      ]);
 }

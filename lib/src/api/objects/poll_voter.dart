@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Represents a poll voter
@@ -41,8 +42,17 @@ class PollVoter extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is PollVoter &&
+          const DeepCollectionEquality().equals(other.voterId, voterId) &&
+          const DeepCollectionEquality().equals(other.date, date));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(voterId),
+        const DeepCollectionEquality().hash(date)
+      ]);
 }

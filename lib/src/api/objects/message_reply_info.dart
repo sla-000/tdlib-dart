@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Contains information about replies to a message
@@ -68,8 +69,27 @@ class MessageReplyInfo extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is MessageReplyInfo &&
+          const DeepCollectionEquality().equals(other.replyCount, replyCount) &&
+          const DeepCollectionEquality()
+              .equals(other.recentReplierIds, recentReplierIds) &&
+          const DeepCollectionEquality()
+              .equals(other.lastReadInboxMessageId, lastReadInboxMessageId) &&
+          const DeepCollectionEquality()
+              .equals(other.lastReadOutboxMessageId, lastReadOutboxMessageId) &&
+          const DeepCollectionEquality()
+              .equals(other.lastMessageId, lastMessageId));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(replyCount),
+        const DeepCollectionEquality().hash(recentReplierIds),
+        const DeepCollectionEquality().hash(lastReadInboxMessageId),
+        const DeepCollectionEquality().hash(lastReadOutboxMessageId),
+        const DeepCollectionEquality().hash(lastMessageId)
+      ]);
 }

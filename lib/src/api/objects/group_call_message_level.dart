@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Represents a level of features for a message sent in a live story group
@@ -76,8 +77,33 @@ class GroupCallMessageLevel extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is GroupCallMessageLevel &&
+          const DeepCollectionEquality()
+              .equals(other.minStarCount, minStarCount) &&
+          const DeepCollectionEquality()
+              .equals(other.pinDuration, pinDuration) &&
+          const DeepCollectionEquality()
+              .equals(other.maxTextLength, maxTextLength) &&
+          const DeepCollectionEquality()
+              .equals(other.maxCustomEmojiCount, maxCustomEmojiCount) &&
+          const DeepCollectionEquality().equals(other.firstColor, firstColor) &&
+          const DeepCollectionEquality()
+              .equals(other.secondColor, secondColor) &&
+          const DeepCollectionEquality()
+              .equals(other.backgroundColor, backgroundColor));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(minStarCount),
+        const DeepCollectionEquality().hash(pinDuration),
+        const DeepCollectionEquality().hash(maxTextLength),
+        const DeepCollectionEquality().hash(maxCustomEmojiCount),
+        const DeepCollectionEquality().hash(firstColor),
+        const DeepCollectionEquality().hash(secondColor),
+        const DeepCollectionEquality().hash(backgroundColor)
+      ]);
 }

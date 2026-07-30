@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// A video story
@@ -66,8 +67,26 @@ class InputStoryContentVideo extends InputStoryContent {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is InputStoryContentVideo &&
+          const DeepCollectionEquality().equals(other.video, video) &&
+          const DeepCollectionEquality()
+              .equals(other.addedStickerFileIds, addedStickerFileIds) &&
+          const DeepCollectionEquality().equals(other.duration, duration) &&
+          const DeepCollectionEquality()
+              .equals(other.coverFrameTimestamp, coverFrameTimestamp) &&
+          const DeepCollectionEquality()
+              .equals(other.isAnimation, isAnimation));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(video),
+        const DeepCollectionEquality().hash(addedStickerFileIds),
+        const DeepCollectionEquality().hash(duration),
+        const DeepCollectionEquality().hash(coverFrameTimestamp),
+        const DeepCollectionEquality().hash(isAnimation)
+      ]);
 }

@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Returns an existing chat corresponding to a known basic group
@@ -32,8 +33,18 @@ class CreateBasicGroupChat extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is CreateBasicGroupChat &&
+          const DeepCollectionEquality()
+              .equals(other.basicGroupId, basicGroupId) &&
+          const DeepCollectionEquality().equals(other.force, force));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(basicGroupId),
+        const DeepCollectionEquality().hash(force)
+      ]);
 }

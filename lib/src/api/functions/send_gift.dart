@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Sends a gift to another user or channel chat. May return an error with a
@@ -52,8 +53,24 @@ class SendGift extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is SendGift &&
+          const DeepCollectionEquality().equals(other.giftId, giftId) &&
+          const DeepCollectionEquality().equals(other.ownerId, ownerId) &&
+          const DeepCollectionEquality().equals(other.text, text) &&
+          const DeepCollectionEquality().equals(other.isPrivate, isPrivate) &&
+          const DeepCollectionEquality()
+              .equals(other.payForUpgrade, payForUpgrade));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(giftId),
+        const DeepCollectionEquality().hash(ownerId),
+        const DeepCollectionEquality().hash(text),
+        const DeepCollectionEquality().hash(isPrivate),
+        const DeepCollectionEquality().hash(payForUpgrade)
+      ]);
 }

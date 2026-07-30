@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Product invoice
@@ -141,8 +142,54 @@ class Invoice extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is Invoice &&
+          const DeepCollectionEquality().equals(other.currency, currency) &&
+          const DeepCollectionEquality().equals(other.priceParts, priceParts) &&
+          const DeepCollectionEquality()
+              .equals(other.subscriptionPeriod, subscriptionPeriod) &&
+          const DeepCollectionEquality()
+              .equals(other.maxTipAmount, maxTipAmount) &&
+          const DeepCollectionEquality()
+              .equals(other.suggestedTipAmounts, suggestedTipAmounts) &&
+          const DeepCollectionEquality().equals(
+              other.recurringPaymentTermsOfServiceUrl,
+              recurringPaymentTermsOfServiceUrl) &&
+          const DeepCollectionEquality()
+              .equals(other.termsOfServiceUrl, termsOfServiceUrl) &&
+          const DeepCollectionEquality().equals(other.isTest, isTest) &&
+          const DeepCollectionEquality().equals(other.needName, needName) &&
+          const DeepCollectionEquality()
+              .equals(other.needPhoneNumber, needPhoneNumber) &&
+          const DeepCollectionEquality()
+              .equals(other.needEmailAddress, needEmailAddress) &&
+          const DeepCollectionEquality()
+              .equals(other.needShippingAddress, needShippingAddress) &&
+          const DeepCollectionEquality().equals(
+              other.sendPhoneNumberToProvider, sendPhoneNumberToProvider) &&
+          const DeepCollectionEquality().equals(
+              other.sendEmailAddressToProvider, sendEmailAddressToProvider) &&
+          const DeepCollectionEquality().equals(other.isFlexible, isFlexible));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(currency),
+        const DeepCollectionEquality().hash(priceParts),
+        const DeepCollectionEquality().hash(subscriptionPeriod),
+        const DeepCollectionEquality().hash(maxTipAmount),
+        const DeepCollectionEquality().hash(suggestedTipAmounts),
+        const DeepCollectionEquality().hash(recurringPaymentTermsOfServiceUrl),
+        const DeepCollectionEquality().hash(termsOfServiceUrl),
+        const DeepCollectionEquality().hash(isTest),
+        const DeepCollectionEquality().hash(needName),
+        const DeepCollectionEquality().hash(needPhoneNumber),
+        const DeepCollectionEquality().hash(needEmailAddress),
+        const DeepCollectionEquality().hash(needShippingAddress),
+        const DeepCollectionEquality().hash(sendPhoneNumberToProvider),
+        const DeepCollectionEquality().hash(sendEmailAddressToProvider),
+        const DeepCollectionEquality().hash(isFlexible)
+      ]);
 }

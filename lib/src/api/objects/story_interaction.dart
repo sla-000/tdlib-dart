@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Represents interaction with a story
@@ -57,8 +58,22 @@ class StoryInteraction extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is StoryInteraction &&
+          const DeepCollectionEquality().equals(other.actorId, actorId) &&
+          const DeepCollectionEquality()
+              .equals(other.interactionDate, interactionDate) &&
+          const DeepCollectionEquality().equals(other.blockList, blockList) &&
+          const DeepCollectionEquality().equals(other.type, type));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(actorId),
+        const DeepCollectionEquality().hash(interactionDate),
+        const DeepCollectionEquality().hash(blockList),
+        const DeepCollectionEquality().hash(type)
+      ]);
 }

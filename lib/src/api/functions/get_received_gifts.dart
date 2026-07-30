@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Returns gifts received by the given user or chat
@@ -104,8 +105,52 @@ class GetReceivedGifts extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is GetReceivedGifts &&
+          const DeepCollectionEquality()
+              .equals(other.businessConnectionId, businessConnectionId) &&
+          const DeepCollectionEquality().equals(other.ownerId, ownerId) &&
+          const DeepCollectionEquality()
+              .equals(other.collectionId, collectionId) &&
+          const DeepCollectionEquality()
+              .equals(other.excludeUnsaved, excludeUnsaved) &&
+          const DeepCollectionEquality()
+              .equals(other.excludeSaved, excludeSaved) &&
+          const DeepCollectionEquality()
+              .equals(other.excludeUnlimited, excludeUnlimited) &&
+          const DeepCollectionEquality()
+              .equals(other.excludeUpgradable, excludeUpgradable) &&
+          const DeepCollectionEquality()
+              .equals(other.excludeNonUpgradable, excludeNonUpgradable) &&
+          const DeepCollectionEquality()
+              .equals(other.excludeUpgraded, excludeUpgraded) &&
+          const DeepCollectionEquality()
+              .equals(other.excludeWithoutColors, excludeWithoutColors) &&
+          const DeepCollectionEquality()
+              .equals(other.excludeHosted, excludeHosted) &&
+          const DeepCollectionEquality()
+              .equals(other.sortByPrice, sortByPrice) &&
+          const DeepCollectionEquality().equals(other.offset, offset) &&
+          const DeepCollectionEquality().equals(other.limit, limit));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(businessConnectionId),
+        const DeepCollectionEquality().hash(ownerId),
+        const DeepCollectionEquality().hash(collectionId),
+        const DeepCollectionEquality().hash(excludeUnsaved),
+        const DeepCollectionEquality().hash(excludeSaved),
+        const DeepCollectionEquality().hash(excludeUnlimited),
+        const DeepCollectionEquality().hash(excludeUpgradable),
+        const DeepCollectionEquality().hash(excludeNonUpgradable),
+        const DeepCollectionEquality().hash(excludeUpgraded),
+        const DeepCollectionEquality().hash(excludeWithoutColors),
+        const DeepCollectionEquality().hash(excludeHosted),
+        const DeepCollectionEquality().hash(sortByPrice),
+        const DeepCollectionEquality().hash(offset),
+        const DeepCollectionEquality().hash(limit)
+      ]);
 }

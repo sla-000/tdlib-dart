@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// The list of contacts that had birthdays recently or will have birthday
@@ -39,8 +40,14 @@ class UpdateContactCloseBirthdays extends Update {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is UpdateContactCloseBirthdays &&
+          const DeepCollectionEquality()
+              .equals(other.closeBirthdayUsers, closeBirthdayUsers));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll(
+      [runtimeType, const DeepCollectionEquality().hash(closeBirthdayUsers)]);
 }

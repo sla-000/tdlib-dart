@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Describes rights of the administrator in a community
@@ -64,8 +65,28 @@ class CommunityAdministratorRights extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is CommunityAdministratorRights &&
+          const DeepCollectionEquality()
+              .equals(other.canManageCommunity, canManageCommunity) &&
+          const DeepCollectionEquality()
+              .equals(other.canChangeInfo, canChangeInfo) &&
+          const DeepCollectionEquality()
+              .equals(other.canEditChatList, canEditChatList) &&
+          const DeepCollectionEquality()
+              .equals(other.canPromoteMembers, canPromoteMembers) &&
+          const DeepCollectionEquality()
+              .equals(other.canBanMembers, canBanMembers));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(canManageCommunity),
+        const DeepCollectionEquality().hash(canChangeInfo),
+        const DeepCollectionEquality().hash(canEditChatList),
+        const DeepCollectionEquality().hash(canPromoteMembers),
+        const DeepCollectionEquality().hash(canBanMembers)
+      ]);
 }

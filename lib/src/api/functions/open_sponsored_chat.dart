@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Informs TDLib that the user opened a sponsored chat
@@ -25,8 +26,16 @@ class OpenSponsoredChat extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is OpenSponsoredChat &&
+          const DeepCollectionEquality()
+              .equals(other.sponsoredChatUniqueId, sponsoredChatUniqueId));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(sponsoredChatUniqueId)
+      ]);
 }

@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Messages in a business account were deleted; for bots only
@@ -50,8 +51,20 @@ class UpdateBusinessMessagesDeleted extends Update {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is UpdateBusinessMessagesDeleted &&
+          const DeepCollectionEquality()
+              .equals(other.connectionId, connectionId) &&
+          const DeepCollectionEquality().equals(other.chatId, chatId) &&
+          const DeepCollectionEquality().equals(other.messageIds, messageIds));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(connectionId),
+        const DeepCollectionEquality().hash(chatId),
+        const DeepCollectionEquality().hash(messageIds)
+      ]);
 }

@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Describes a poll
@@ -162,8 +163,60 @@ class Poll extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is Poll &&
+          const DeepCollectionEquality().equals(other.id, id) &&
+          const DeepCollectionEquality().equals(other.question, question) &&
+          const DeepCollectionEquality().equals(other.options, options) &&
+          const DeepCollectionEquality()
+              .equals(other.totalVoterCount, totalVoterCount) &&
+          const DeepCollectionEquality()
+              .equals(other.recentVoterIds, recentVoterIds) &&
+          const DeepCollectionEquality()
+              .equals(other.canGetVoters, canGetVoters) &&
+          const DeepCollectionEquality()
+              .equals(other.canSeeResults, canSeeResults) &&
+          const DeepCollectionEquality()
+              .equals(other.isAnonymous, isAnonymous) &&
+          const DeepCollectionEquality()
+              .equals(other.allowsMultipleAnswers, allowsMultipleAnswers) &&
+          const DeepCollectionEquality()
+              .equals(other.allowsRevoting, allowsRevoting) &&
+          const DeepCollectionEquality()
+              .equals(other.membersOnly, membersOnly) &&
+          const DeepCollectionEquality()
+              .equals(other.countryCodes, countryCodes) &&
+          const DeepCollectionEquality()
+              .equals(other.optionOrder, optionOrder) &&
+          const DeepCollectionEquality().equals(other.type, type) &&
+          const DeepCollectionEquality().equals(other.openPeriod, openPeriod) &&
+          const DeepCollectionEquality().equals(other.closeDate, closeDate) &&
+          const DeepCollectionEquality().equals(other.isClosed, isClosed) &&
+          const DeepCollectionEquality()
+              .equals(other.voteRestrictionReason, voteRestrictionReason));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(id),
+        const DeepCollectionEquality().hash(question),
+        const DeepCollectionEquality().hash(options),
+        const DeepCollectionEquality().hash(totalVoterCount),
+        const DeepCollectionEquality().hash(recentVoterIds),
+        const DeepCollectionEquality().hash(canGetVoters),
+        const DeepCollectionEquality().hash(canSeeResults),
+        const DeepCollectionEquality().hash(isAnonymous),
+        const DeepCollectionEquality().hash(allowsMultipleAnswers),
+        const DeepCollectionEquality().hash(allowsRevoting),
+        const DeepCollectionEquality().hash(membersOnly),
+        const DeepCollectionEquality().hash(countryCodes),
+        const DeepCollectionEquality().hash(optionOrder),
+        const DeepCollectionEquality().hash(type),
+        const DeepCollectionEquality().hash(openPeriod),
+        const DeepCollectionEquality().hash(closeDate),
+        const DeepCollectionEquality().hash(isClosed),
+        const DeepCollectionEquality().hash(voteRestrictionReason)
+      ]);
 }

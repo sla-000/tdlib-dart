@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Related articles; instant view only
@@ -43,8 +44,17 @@ class PageBlockRelatedArticles extends PageBlock {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is PageBlockRelatedArticles &&
+          const DeepCollectionEquality().equals(other.header, header) &&
+          const DeepCollectionEquality().equals(other.articles, articles));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(header),
+        const DeepCollectionEquality().hash(articles)
+      ]);
 }

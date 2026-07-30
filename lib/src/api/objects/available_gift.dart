@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Describes a gift that is available for purchase
@@ -54,8 +55,23 @@ class AvailableGift extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is AvailableGift &&
+          const DeepCollectionEquality().equals(other.gift, gift) &&
+          const DeepCollectionEquality()
+              .equals(other.resaleCount, resaleCount) &&
+          const DeepCollectionEquality()
+              .equals(other.minResaleStarCount, minResaleStarCount) &&
+          const DeepCollectionEquality().equals(other.title, title));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(gift),
+        const DeepCollectionEquality().hash(resaleCount),
+        const DeepCollectionEquality().hash(minResaleStarCount),
+        const DeepCollectionEquality().hash(title)
+      ]);
 }

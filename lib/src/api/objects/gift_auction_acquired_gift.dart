@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Represents a gift that was acquired by the current user on an auction
@@ -81,8 +82,32 @@ class GiftAuctionAcquiredGift extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is GiftAuctionAcquiredGift &&
+          const DeepCollectionEquality().equals(other.receiverId, receiverId) &&
+          const DeepCollectionEquality().equals(other.date, date) &&
+          const DeepCollectionEquality().equals(other.starCount, starCount) &&
+          const DeepCollectionEquality()
+              .equals(other.auctionRoundNumber, auctionRoundNumber) &&
+          const DeepCollectionEquality()
+              .equals(other.auctionRoundPosition, auctionRoundPosition) &&
+          const DeepCollectionEquality()
+              .equals(other.uniqueGiftNumber, uniqueGiftNumber) &&
+          const DeepCollectionEquality().equals(other.text, text) &&
+          const DeepCollectionEquality().equals(other.isPrivate, isPrivate));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(receiverId),
+        const DeepCollectionEquality().hash(date),
+        const DeepCollectionEquality().hash(starCount),
+        const DeepCollectionEquality().hash(auctionRoundNumber),
+        const DeepCollectionEquality().hash(auctionRoundPosition),
+        const DeepCollectionEquality().hash(uniqueGiftNumber),
+        const DeepCollectionEquality().hash(text),
+        const DeepCollectionEquality().hash(isPrivate)
+      ]);
 }

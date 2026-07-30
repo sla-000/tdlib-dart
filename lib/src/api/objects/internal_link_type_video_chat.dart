@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// The link is a link to a video chat. Call searchPublicChat with the given
@@ -50,8 +51,21 @@ class InternalLinkTypeVideoChat extends InternalLinkType {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is InternalLinkTypeVideoChat &&
+          const DeepCollectionEquality()
+              .equals(other.chatUsername, chatUsername) &&
+          const DeepCollectionEquality().equals(other.inviteHash, inviteHash) &&
+          const DeepCollectionEquality()
+              .equals(other.isLiveStream, isLiveStream));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(chatUsername),
+        const DeepCollectionEquality().hash(inviteHash),
+        const DeepCollectionEquality().hash(isLiveStream)
+      ]);
 }

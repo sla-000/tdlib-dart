@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Contains state of Telegram Premium subscription and promotion videos for
@@ -66,8 +67,23 @@ class PremiumState extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is PremiumState &&
+          const DeepCollectionEquality().equals(other.state, state) &&
+          const DeepCollectionEquality()
+              .equals(other.paymentOptions, paymentOptions) &&
+          const DeepCollectionEquality().equals(other.animations, animations) &&
+          const DeepCollectionEquality()
+              .equals(other.businessAnimations, businessAnimations));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(state),
+        const DeepCollectionEquality().hash(paymentOptions),
+        const DeepCollectionEquality().hash(animations),
+        const DeepCollectionEquality().hash(businessAnimations)
+      ]);
 }

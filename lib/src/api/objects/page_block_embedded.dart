@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// An embedded web page; instant view only
@@ -78,8 +79,32 @@ class PageBlockEmbedded extends PageBlock {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is PageBlockEmbedded &&
+          const DeepCollectionEquality().equals(other.url, url) &&
+          const DeepCollectionEquality().equals(other.html, html) &&
+          const DeepCollectionEquality()
+              .equals(other.posterPhoto, posterPhoto) &&
+          const DeepCollectionEquality().equals(other.width, width) &&
+          const DeepCollectionEquality().equals(other.height, height) &&
+          const DeepCollectionEquality().equals(other.caption, caption) &&
+          const DeepCollectionEquality()
+              .equals(other.isFullWidth, isFullWidth) &&
+          const DeepCollectionEquality()
+              .equals(other.allowScrolling, allowScrolling));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(url),
+        const DeepCollectionEquality().hash(html),
+        const DeepCollectionEquality().hash(posterPhoto),
+        const DeepCollectionEquality().hash(width),
+        const DeepCollectionEquality().hash(height),
+        const DeepCollectionEquality().hash(caption),
+        const DeepCollectionEquality().hash(isFullWidth),
+        const DeepCollectionEquality().hash(allowScrolling)
+      ]);
 }

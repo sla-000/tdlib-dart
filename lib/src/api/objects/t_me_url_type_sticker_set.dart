@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// A URL linking to a sticker set
@@ -34,8 +35,14 @@ class TMeUrlTypeStickerSet extends TMeUrlType {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is TMeUrlTypeStickerSet &&
+          const DeepCollectionEquality()
+              .equals(other.stickerSetId, stickerSetId));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll(
+      [runtimeType, const DeepCollectionEquality().hash(stickerSetId)]);
 }

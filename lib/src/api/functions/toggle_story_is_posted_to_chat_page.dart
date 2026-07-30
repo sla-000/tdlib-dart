@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Toggles whether a story is accessible after expiration. Can be called only
@@ -37,8 +38,21 @@ class ToggleStoryIsPostedToChatPage extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is ToggleStoryIsPostedToChatPage &&
+          const DeepCollectionEquality()
+              .equals(other.storyPosterChatId, storyPosterChatId) &&
+          const DeepCollectionEquality().equals(other.storyId, storyId) &&
+          const DeepCollectionEquality()
+              .equals(other.isPostedToChatPage, isPostedToChatPage));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(storyPosterChatId),
+        const DeepCollectionEquality().hash(storyId),
+        const DeepCollectionEquality().hash(isPostedToChatPage)
+      ]);
 }

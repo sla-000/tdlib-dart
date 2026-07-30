@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Describes gift types that are accepted by a user
@@ -60,8 +61,28 @@ class AcceptedGiftTypes extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is AcceptedGiftTypes &&
+          const DeepCollectionEquality()
+              .equals(other.unlimitedGifts, unlimitedGifts) &&
+          const DeepCollectionEquality()
+              .equals(other.limitedGifts, limitedGifts) &&
+          const DeepCollectionEquality()
+              .equals(other.upgradedGifts, upgradedGifts) &&
+          const DeepCollectionEquality()
+              .equals(other.giftsFromChannels, giftsFromChannels) &&
+          const DeepCollectionEquality()
+              .equals(other.premiumSubscription, premiumSubscription));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(unlimitedGifts),
+        const DeepCollectionEquality().hash(limitedGifts),
+        const DeepCollectionEquality().hash(upgradedGifts),
+        const DeepCollectionEquality().hash(giftsFromChannels),
+        const DeepCollectionEquality().hash(premiumSubscription)
+      ]);
 }

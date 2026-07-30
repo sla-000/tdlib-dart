@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// The link is a link to a Web App. Call searchPublicChat with the given bot
@@ -62,8 +63,24 @@ class InternalLinkTypeWebApp extends InternalLinkType {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is InternalLinkTypeWebApp &&
+          const DeepCollectionEquality()
+              .equals(other.botUsername, botUsername) &&
+          const DeepCollectionEquality()
+              .equals(other.webAppShortName, webAppShortName) &&
+          const DeepCollectionEquality()
+              .equals(other.startParameter, startParameter) &&
+          const DeepCollectionEquality().equals(other.mode, mode));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(botUsername),
+        const DeepCollectionEquality().hash(webAppShortName),
+        const DeepCollectionEquality().hash(startParameter),
+        const DeepCollectionEquality().hash(mode)
+      ]);
 }

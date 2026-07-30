@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Describes a contact to import
@@ -55,8 +56,22 @@ class ImportedContact extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is ImportedContact &&
+          const DeepCollectionEquality()
+              .equals(other.phoneNumber, phoneNumber) &&
+          const DeepCollectionEquality().equals(other.firstName, firstName) &&
+          const DeepCollectionEquality().equals(other.lastName, lastName) &&
+          const DeepCollectionEquality().equals(other.note, note));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(phoneNumber),
+        const DeepCollectionEquality().hash(firstName),
+        const DeepCollectionEquality().hash(lastName),
+        const DeepCollectionEquality().hash(note)
+      ]);
 }

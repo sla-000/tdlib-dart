@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Represents a group call participant
@@ -154,8 +155,63 @@ class GroupCallParticipant extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is GroupCallParticipant &&
+          const DeepCollectionEquality()
+              .equals(other.participantId, participantId) &&
+          const DeepCollectionEquality()
+              .equals(other.audioSourceId, audioSourceId) &&
+          const DeepCollectionEquality().equals(
+              other.screenSharingAudioSourceId, screenSharingAudioSourceId) &&
+          const DeepCollectionEquality().equals(other.videoInfo, videoInfo) &&
+          const DeepCollectionEquality()
+              .equals(other.screenSharingVideoInfo, screenSharingVideoInfo) &&
+          const DeepCollectionEquality().equals(other.bio, bio) &&
+          const DeepCollectionEquality()
+              .equals(other.isCurrentUser, isCurrentUser) &&
+          const DeepCollectionEquality().equals(other.isSpeaking, isSpeaking) &&
+          const DeepCollectionEquality()
+              .equals(other.isHandRaised, isHandRaised) &&
+          const DeepCollectionEquality()
+              .equals(other.canBeMutedForAllUsers, canBeMutedForAllUsers) &&
+          const DeepCollectionEquality()
+              .equals(other.canBeUnmutedForAllUsers, canBeUnmutedForAllUsers) &&
+          const DeepCollectionEquality().equals(
+              other.canBeMutedForCurrentUser, canBeMutedForCurrentUser) &&
+          const DeepCollectionEquality().equals(
+              other.canBeUnmutedForCurrentUser, canBeUnmutedForCurrentUser) &&
+          const DeepCollectionEquality()
+              .equals(other.isMutedForAllUsers, isMutedForAllUsers) &&
+          const DeepCollectionEquality()
+              .equals(other.isMutedForCurrentUser, isMutedForCurrentUser) &&
+          const DeepCollectionEquality()
+              .equals(other.canUnmuteSelf, canUnmuteSelf) &&
+          const DeepCollectionEquality()
+              .equals(other.volumeLevel, volumeLevel) &&
+          const DeepCollectionEquality().equals(other.order, order));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(participantId),
+        const DeepCollectionEquality().hash(audioSourceId),
+        const DeepCollectionEquality().hash(screenSharingAudioSourceId),
+        const DeepCollectionEquality().hash(videoInfo),
+        const DeepCollectionEquality().hash(screenSharingVideoInfo),
+        const DeepCollectionEquality().hash(bio),
+        const DeepCollectionEquality().hash(isCurrentUser),
+        const DeepCollectionEquality().hash(isSpeaking),
+        const DeepCollectionEquality().hash(isHandRaised),
+        const DeepCollectionEquality().hash(canBeMutedForAllUsers),
+        const DeepCollectionEquality().hash(canBeUnmutedForAllUsers),
+        const DeepCollectionEquality().hash(canBeMutedForCurrentUser),
+        const DeepCollectionEquality().hash(canBeUnmutedForCurrentUser),
+        const DeepCollectionEquality().hash(isMutedForAllUsers),
+        const DeepCollectionEquality().hash(isMutedForCurrentUser),
+        const DeepCollectionEquality().hash(canUnmuteSelf),
+        const DeepCollectionEquality().hash(volumeLevel),
+        const DeepCollectionEquality().hash(order)
+      ]);
 }

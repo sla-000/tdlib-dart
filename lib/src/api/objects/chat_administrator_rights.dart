@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Describes rights of the administrator
@@ -155,8 +156,64 @@ class ChatAdministratorRights extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is ChatAdministratorRights &&
+          const DeepCollectionEquality()
+              .equals(other.canManageChat, canManageChat) &&
+          const DeepCollectionEquality()
+              .equals(other.canChangeInfo, canChangeInfo) &&
+          const DeepCollectionEquality()
+              .equals(other.canPostMessages, canPostMessages) &&
+          const DeepCollectionEquality()
+              .equals(other.canEditMessages, canEditMessages) &&
+          const DeepCollectionEquality()
+              .equals(other.canDeleteMessages, canDeleteMessages) &&
+          const DeepCollectionEquality()
+              .equals(other.canInviteUsers, canInviteUsers) &&
+          const DeepCollectionEquality()
+              .equals(other.canRestrictMembers, canRestrictMembers) &&
+          const DeepCollectionEquality()
+              .equals(other.canPinMessages, canPinMessages) &&
+          const DeepCollectionEquality()
+              .equals(other.canManageTopics, canManageTopics) &&
+          const DeepCollectionEquality()
+              .equals(other.canPromoteMembers, canPromoteMembers) &&
+          const DeepCollectionEquality()
+              .equals(other.canManageVideoChats, canManageVideoChats) &&
+          const DeepCollectionEquality()
+              .equals(other.canPostStories, canPostStories) &&
+          const DeepCollectionEquality()
+              .equals(other.canEditStories, canEditStories) &&
+          const DeepCollectionEquality()
+              .equals(other.canDeleteStories, canDeleteStories) &&
+          const DeepCollectionEquality()
+              .equals(other.canManageDirectMessages, canManageDirectMessages) &&
+          const DeepCollectionEquality()
+              .equals(other.canManageTags, canManageTags) &&
+          const DeepCollectionEquality()
+              .equals(other.isAnonymous, isAnonymous));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(canManageChat),
+        const DeepCollectionEquality().hash(canChangeInfo),
+        const DeepCollectionEquality().hash(canPostMessages),
+        const DeepCollectionEquality().hash(canEditMessages),
+        const DeepCollectionEquality().hash(canDeleteMessages),
+        const DeepCollectionEquality().hash(canInviteUsers),
+        const DeepCollectionEquality().hash(canRestrictMembers),
+        const DeepCollectionEquality().hash(canPinMessages),
+        const DeepCollectionEquality().hash(canManageTopics),
+        const DeepCollectionEquality().hash(canPromoteMembers),
+        const DeepCollectionEquality().hash(canManageVideoChats),
+        const DeepCollectionEquality().hash(canPostStories),
+        const DeepCollectionEquality().hash(canEditStories),
+        const DeepCollectionEquality().hash(canDeleteStories),
+        const DeepCollectionEquality().hash(canManageDirectMessages),
+        const DeepCollectionEquality().hash(canManageTags),
+        const DeepCollectionEquality().hash(isAnonymous)
+      ]);
 }

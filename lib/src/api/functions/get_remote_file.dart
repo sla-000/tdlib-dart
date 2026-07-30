@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Returns information about a file by its remote identifier. This is an
@@ -36,8 +37,18 @@ class GetRemoteFile extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is GetRemoteFile &&
+          const DeepCollectionEquality()
+              .equals(other.remoteFileId, remoteFileId) &&
+          const DeepCollectionEquality().equals(other.fileType, fileType));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(remoteFileId),
+        const DeepCollectionEquality().hash(fileType)
+      ]);
 }

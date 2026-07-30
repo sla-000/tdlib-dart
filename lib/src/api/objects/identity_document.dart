@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// An identity document
@@ -72,8 +73,28 @@ class IdentityDocument extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is IdentityDocument &&
+          const DeepCollectionEquality().equals(other.number, number) &&
+          const DeepCollectionEquality()
+              .equals(other.expirationDate, expirationDate) &&
+          const DeepCollectionEquality().equals(other.frontSide, frontSide) &&
+          const DeepCollectionEquality()
+              .equals(other.reverseSide, reverseSide) &&
+          const DeepCollectionEquality().equals(other.selfie, selfie) &&
+          const DeepCollectionEquality()
+              .equals(other.translation, translation));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(number),
+        const DeepCollectionEquality().hash(expirationDate),
+        const DeepCollectionEquality().hash(frontSide),
+        const DeepCollectionEquality().hash(reverseSide),
+        const DeepCollectionEquality().hash(selfie),
+        const DeepCollectionEquality().hash(translation)
+      ]);
 }

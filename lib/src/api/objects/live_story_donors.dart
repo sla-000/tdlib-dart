@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Contains a list of users and chats that spend most money on paid messages
@@ -44,8 +45,18 @@ class LiveStoryDonors extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is LiveStoryDonors &&
+          const DeepCollectionEquality()
+              .equals(other.totalStarCount, totalStarCount) &&
+          const DeepCollectionEquality().equals(other.topDonors, topDonors));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(totalStarCount),
+        const DeepCollectionEquality().hash(topDonors)
+      ]);
 }

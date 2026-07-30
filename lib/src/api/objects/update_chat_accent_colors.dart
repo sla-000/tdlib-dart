@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Chat accent colors have changed
@@ -73,8 +74,31 @@ class UpdateChatAccentColors extends Update {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is UpdateChatAccentColors &&
+          const DeepCollectionEquality().equals(other.chatId, chatId) &&
+          const DeepCollectionEquality()
+              .equals(other.accentColorId, accentColorId) &&
+          const DeepCollectionEquality()
+              .equals(other.backgroundCustomEmojiId, backgroundCustomEmojiId) &&
+          const DeepCollectionEquality()
+              .equals(other.upgradedGiftColors, upgradedGiftColors) &&
+          const DeepCollectionEquality()
+              .equals(other.profileAccentColorId, profileAccentColorId) &&
+          const DeepCollectionEquality().equals(
+              other.profileBackgroundCustomEmojiId,
+              profileBackgroundCustomEmojiId));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(chatId),
+        const DeepCollectionEquality().hash(accentColorId),
+        const DeepCollectionEquality().hash(backgroundCustomEmojiId),
+        const DeepCollectionEquality().hash(upgradedGiftColors),
+        const DeepCollectionEquality().hash(profileAccentColorId),
+        const DeepCollectionEquality().hash(profileBackgroundCustomEmojiId)
+      ]);
 }

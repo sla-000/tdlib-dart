@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Contains information about notification settings for a chat or a forum
@@ -147,8 +148,64 @@ class ChatNotificationSettings extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is ChatNotificationSettings &&
+          const DeepCollectionEquality()
+              .equals(other.useDefaultMuteFor, useDefaultMuteFor) &&
+          const DeepCollectionEquality().equals(other.muteFor, muteFor) &&
+          const DeepCollectionEquality()
+              .equals(other.useDefaultSound, useDefaultSound) &&
+          const DeepCollectionEquality().equals(other.soundId, soundId) &&
+          const DeepCollectionEquality()
+              .equals(other.useDefaultShowPreview, useDefaultShowPreview) &&
+          const DeepCollectionEquality()
+              .equals(other.showPreview, showPreview) &&
+          const DeepCollectionEquality()
+              .equals(other.useDefaultMuteStories, useDefaultMuteStories) &&
+          const DeepCollectionEquality()
+              .equals(other.muteStories, muteStories) &&
+          const DeepCollectionEquality()
+              .equals(other.useDefaultStorySound, useDefaultStorySound) &&
+          const DeepCollectionEquality()
+              .equals(other.storySoundId, storySoundId) &&
+          const DeepCollectionEquality().equals(
+              other.useDefaultShowStoryPoster, useDefaultShowStoryPoster) &&
+          const DeepCollectionEquality()
+              .equals(other.showStoryPoster, showStoryPoster) &&
+          const DeepCollectionEquality().equals(
+              other.useDefaultDisablePinnedMessageNotifications,
+              useDefaultDisablePinnedMessageNotifications) &&
+          const DeepCollectionEquality().equals(
+              other.disablePinnedMessageNotifications,
+              disablePinnedMessageNotifications) &&
+          const DeepCollectionEquality().equals(
+              other.useDefaultDisableMentionNotifications,
+              useDefaultDisableMentionNotifications) &&
+          const DeepCollectionEquality().equals(
+              other.disableMentionNotifications, disableMentionNotifications));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(useDefaultMuteFor),
+        const DeepCollectionEquality().hash(muteFor),
+        const DeepCollectionEquality().hash(useDefaultSound),
+        const DeepCollectionEquality().hash(soundId),
+        const DeepCollectionEquality().hash(useDefaultShowPreview),
+        const DeepCollectionEquality().hash(showPreview),
+        const DeepCollectionEquality().hash(useDefaultMuteStories),
+        const DeepCollectionEquality().hash(muteStories),
+        const DeepCollectionEquality().hash(useDefaultStorySound),
+        const DeepCollectionEquality().hash(storySoundId),
+        const DeepCollectionEquality().hash(useDefaultShowStoryPoster),
+        const DeepCollectionEquality().hash(showStoryPoster),
+        const DeepCollectionEquality()
+            .hash(useDefaultDisablePinnedMessageNotifications),
+        const DeepCollectionEquality().hash(disablePinnedMessageNotifications),
+        const DeepCollectionEquality()
+            .hash(useDefaultDisableMentionNotifications),
+        const DeepCollectionEquality().hash(disableMentionNotifications)
+      ]);
 }

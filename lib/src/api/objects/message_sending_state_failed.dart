@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// The message failed to be sent
@@ -78,8 +79,32 @@ class MessageSendingStateFailed extends MessageSendingState {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is MessageSendingStateFailed &&
+          const DeepCollectionEquality().equals(other.error, error) &&
+          const DeepCollectionEquality().equals(other.canRetry, canRetry) &&
+          const DeepCollectionEquality()
+              .equals(other.needAnotherSender, needAnotherSender) &&
+          const DeepCollectionEquality()
+              .equals(other.needAnotherReplyQuote, needAnotherReplyQuote) &&
+          const DeepCollectionEquality()
+              .equals(other.needDropReply, needDropReply) &&
+          const DeepCollectionEquality().equals(
+              other.requiredPaidMessageStarCount,
+              requiredPaidMessageStarCount) &&
+          const DeepCollectionEquality().equals(other.retryAfter, retryAfter));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(error),
+        const DeepCollectionEquality().hash(canRetry),
+        const DeepCollectionEquality().hash(needAnotherSender),
+        const DeepCollectionEquality().hash(needAnotherReplyQuote),
+        const DeepCollectionEquality().hash(needDropReply),
+        const DeepCollectionEquality().hash(requiredPaidMessageStarCount),
+        const DeepCollectionEquality().hash(retryAfter)
+      ]);
 }

@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Sends a custom request; for bots only
@@ -30,8 +31,17 @@ class SendCustomRequest extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is SendCustomRequest &&
+          const DeepCollectionEquality().equals(other.method, method) &&
+          const DeepCollectionEquality().equals(other.parameters, parameters));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(method),
+        const DeepCollectionEquality().hash(parameters)
+      ]);
 }

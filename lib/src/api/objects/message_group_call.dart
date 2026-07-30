@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// A message with information about a group call not bound to a chat. If the
@@ -75,8 +76,26 @@ class MessageGroupCall extends MessageContent {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is MessageGroupCall &&
+          const DeepCollectionEquality().equals(other.uniqueId, uniqueId) &&
+          const DeepCollectionEquality().equals(other.isActive, isActive) &&
+          const DeepCollectionEquality().equals(other.wasMissed, wasMissed) &&
+          const DeepCollectionEquality().equals(other.isVideo, isVideo) &&
+          const DeepCollectionEquality().equals(other.duration, duration) &&
+          const DeepCollectionEquality()
+              .equals(other.otherParticipantIds, otherParticipantIds));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(uniqueId),
+        const DeepCollectionEquality().hash(isActive),
+        const DeepCollectionEquality().hash(wasMissed),
+        const DeepCollectionEquality().hash(isVideo),
+        const DeepCollectionEquality().hash(duration),
+        const DeepCollectionEquality().hash(otherParticipantIds)
+      ]);
 }

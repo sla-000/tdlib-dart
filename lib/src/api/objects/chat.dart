@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// A chat. (Can be a private chat, basic group, supergroup, or secret chat)
@@ -340,8 +341,131 @@ class Chat extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is Chat &&
+          const DeepCollectionEquality().equals(other.id, id) &&
+          const DeepCollectionEquality().equals(other.type, type) &&
+          const DeepCollectionEquality().equals(other.title, title) &&
+          const DeepCollectionEquality().equals(other.photo, photo) &&
+          const DeepCollectionEquality()
+              .equals(other.accentColorId, accentColorId) &&
+          const DeepCollectionEquality()
+              .equals(other.backgroundCustomEmojiId, backgroundCustomEmojiId) &&
+          const DeepCollectionEquality()
+              .equals(other.upgradedGiftColors, upgradedGiftColors) &&
+          const DeepCollectionEquality()
+              .equals(other.profileAccentColorId, profileAccentColorId) &&
+          const DeepCollectionEquality().equals(
+              other.profileBackgroundCustomEmojiId,
+              profileBackgroundCustomEmojiId) &&
+          const DeepCollectionEquality()
+              .equals(other.permissions, permissions) &&
+          const DeepCollectionEquality()
+              .equals(other.lastMessage, lastMessage) &&
+          const DeepCollectionEquality().equals(other.positions, positions) &&
+          const DeepCollectionEquality().equals(other.chatLists, chatLists) &&
+          const DeepCollectionEquality()
+              .equals(other.messageSenderId, messageSenderId) &&
+          const DeepCollectionEquality().equals(other.blockList, blockList) &&
+          const DeepCollectionEquality()
+              .equals(other.hasProtectedContent, hasProtectedContent) &&
+          const DeepCollectionEquality()
+              .equals(other.isTranslatable, isTranslatable) &&
+          const DeepCollectionEquality()
+              .equals(other.isMarkedAsUnread, isMarkedAsUnread) &&
+          const DeepCollectionEquality()
+              .equals(other.viewAsTopics, viewAsTopics) &&
+          const DeepCollectionEquality()
+              .equals(other.hasScheduledMessages, hasScheduledMessages) &&
+          const DeepCollectionEquality()
+              .equals(other.canBeDeletedOnlyForSelf, canBeDeletedOnlyForSelf) &&
+          const DeepCollectionEquality()
+              .equals(other.canBeDeletedForAllUsers, canBeDeletedForAllUsers) &&
+          const DeepCollectionEquality()
+              .equals(other.canBeReported, canBeReported) &&
+          const DeepCollectionEquality().equals(
+              other.defaultDisableNotification, defaultDisableNotification) &&
+          const DeepCollectionEquality()
+              .equals(other.unreadCount, unreadCount) &&
+          const DeepCollectionEquality()
+              .equals(other.lastReadInboxMessageId, lastReadInboxMessageId) &&
+          const DeepCollectionEquality()
+              .equals(other.lastReadOutboxMessageId, lastReadOutboxMessageId) &&
+          const DeepCollectionEquality()
+              .equals(other.unreadMentionCount, unreadMentionCount) &&
+          const DeepCollectionEquality()
+              .equals(other.unreadReactionCount, unreadReactionCount) &&
+          const DeepCollectionEquality()
+              .equals(other.unreadPollVoteCount, unreadPollVoteCount) &&
+          const DeepCollectionEquality()
+              .equals(other.notificationSettings, notificationSettings) &&
+          const DeepCollectionEquality()
+              .equals(other.availableReactions, availableReactions) &&
+          const DeepCollectionEquality()
+              .equals(other.messageAutoDeleteTime, messageAutoDeleteTime) &&
+          const DeepCollectionEquality()
+              .equals(other.emojiStatus, emojiStatus) &&
+          const DeepCollectionEquality().equals(other.background, background) &&
+          const DeepCollectionEquality().equals(other.theme, theme) &&
+          const DeepCollectionEquality().equals(other.actionBar, actionBar) &&
+          const DeepCollectionEquality()
+              .equals(other.businessBotManageBar, businessBotManageBar) &&
+          const DeepCollectionEquality().equals(other.videoChat, videoChat) &&
+          const DeepCollectionEquality()
+              .equals(other.pendingJoinRequests, pendingJoinRequests) &&
+          const DeepCollectionEquality()
+              .equals(other.replyMarkupMessageId, replyMarkupMessageId) &&
+          const DeepCollectionEquality()
+              .equals(other.draftMessage, draftMessage) &&
+          const DeepCollectionEquality().equals(other.clientData, clientData));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(id),
+        const DeepCollectionEquality().hash(type),
+        const DeepCollectionEquality().hash(title),
+        const DeepCollectionEquality().hash(photo),
+        const DeepCollectionEquality().hash(accentColorId),
+        const DeepCollectionEquality().hash(backgroundCustomEmojiId),
+        const DeepCollectionEquality().hash(upgradedGiftColors),
+        const DeepCollectionEquality().hash(profileAccentColorId),
+        const DeepCollectionEquality().hash(profileBackgroundCustomEmojiId),
+        const DeepCollectionEquality().hash(permissions),
+        const DeepCollectionEquality().hash(lastMessage),
+        const DeepCollectionEquality().hash(positions),
+        const DeepCollectionEquality().hash(chatLists),
+        const DeepCollectionEquality().hash(messageSenderId),
+        const DeepCollectionEquality().hash(blockList),
+        const DeepCollectionEquality().hash(hasProtectedContent),
+        const DeepCollectionEquality().hash(isTranslatable),
+        const DeepCollectionEquality().hash(isMarkedAsUnread),
+        const DeepCollectionEquality().hash(viewAsTopics),
+        const DeepCollectionEquality().hash(hasScheduledMessages),
+        const DeepCollectionEquality().hash(canBeDeletedOnlyForSelf),
+        const DeepCollectionEquality().hash(canBeDeletedForAllUsers),
+        const DeepCollectionEquality().hash(canBeReported),
+        const DeepCollectionEquality().hash(defaultDisableNotification),
+        const DeepCollectionEquality().hash(unreadCount),
+        const DeepCollectionEquality().hash(lastReadInboxMessageId),
+        const DeepCollectionEquality().hash(lastReadOutboxMessageId),
+        const DeepCollectionEquality().hash(unreadMentionCount),
+        const DeepCollectionEquality().hash(unreadReactionCount),
+        const DeepCollectionEquality().hash(unreadPollVoteCount),
+        const DeepCollectionEquality().hash(notificationSettings),
+        const DeepCollectionEquality().hash(availableReactions),
+        const DeepCollectionEquality().hash(messageAutoDeleteTime),
+        const DeepCollectionEquality().hash(emojiStatus),
+        const DeepCollectionEquality().hash(background),
+        const DeepCollectionEquality().hash(theme),
+        const DeepCollectionEquality().hash(actionBar),
+        const DeepCollectionEquality().hash(businessBotManageBar),
+        const DeepCollectionEquality().hash(videoChat),
+        const DeepCollectionEquality().hash(pendingJoinRequests),
+        const DeepCollectionEquality().hash(replyMarkupMessageId),
+        const DeepCollectionEquality().hash(draftMessage),
+        const DeepCollectionEquality().hash(clientData)
+      ]);
 }

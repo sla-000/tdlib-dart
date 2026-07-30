@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Edits a custom text composition style that was created by the current user
@@ -48,8 +49,25 @@ class EditTextCompositionStyle extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is EditTextCompositionStyle &&
+          const DeepCollectionEquality().equals(other.name, name) &&
+          const DeepCollectionEquality().equals(other.title, title) &&
+          const DeepCollectionEquality()
+              .equals(other.customEmojiId, customEmojiId) &&
+          const DeepCollectionEquality().equals(other.prompt, prompt) &&
+          const DeepCollectionEquality()
+              .equals(other.showCreator, showCreator));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(name),
+        const DeepCollectionEquality().hash(title),
+        const DeepCollectionEquality().hash(customEmojiId),
+        const DeepCollectionEquality().hash(prompt),
+        const DeepCollectionEquality().hash(showCreator)
+      ]);
 }

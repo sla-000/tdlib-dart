@@ -1,4 +1,4 @@
-import 'package:tdlib/td_api.dart';
+import '../tdapi.dart';
 
 extension ConvertExtensions on Map<String, dynamic> {
 TdObject? toTdObject() {

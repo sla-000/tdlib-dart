@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Describes a group call
@@ -251,8 +252,101 @@ class GroupCall extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is GroupCall &&
+          const DeepCollectionEquality().equals(other.id, id) &&
+          const DeepCollectionEquality().equals(other.uniqueId, uniqueId) &&
+          const DeepCollectionEquality().equals(other.title, title) &&
+          const DeepCollectionEquality().equals(other.inviteLink, inviteLink) &&
+          const DeepCollectionEquality()
+              .equals(other.paidMessageStarCount, paidMessageStarCount) &&
+          const DeepCollectionEquality()
+              .equals(other.scheduledStartDate, scheduledStartDate) &&
+          const DeepCollectionEquality().equals(
+              other.enabledStartNotification, enabledStartNotification) &&
+          const DeepCollectionEquality().equals(other.isActive, isActive) &&
+          const DeepCollectionEquality()
+              .equals(other.isVideoChat, isVideoChat) &&
+          const DeepCollectionEquality()
+              .equals(other.isLiveStory, isLiveStory) &&
+          const DeepCollectionEquality()
+              .equals(other.isRtmpStream, isRtmpStream) &&
+          const DeepCollectionEquality().equals(other.isJoined, isJoined) &&
+          const DeepCollectionEquality().equals(other.needRejoin, needRejoin) &&
+          const DeepCollectionEquality().equals(other.isOwned, isOwned) &&
+          const DeepCollectionEquality()
+              .equals(other.canBeManaged, canBeManaged) &&
+          const DeepCollectionEquality()
+              .equals(other.participantCount, participantCount) &&
+          const DeepCollectionEquality()
+              .equals(other.hasHiddenListeners, hasHiddenListeners) &&
+          const DeepCollectionEquality()
+              .equals(other.loadedAllParticipants, loadedAllParticipants) &&
+          const DeepCollectionEquality()
+              .equals(other.messageSenderId, messageSenderId) &&
+          const DeepCollectionEquality()
+              .equals(other.recentSpeakers, recentSpeakers) &&
+          const DeepCollectionEquality()
+              .equals(other.isMyVideoEnabled, isMyVideoEnabled) &&
+          const DeepCollectionEquality()
+              .equals(other.isMyVideoPaused, isMyVideoPaused) &&
+          const DeepCollectionEquality()
+              .equals(other.canEnableVideo, canEnableVideo) &&
+          const DeepCollectionEquality()
+              .equals(other.muteNewParticipants, muteNewParticipants) &&
+          const DeepCollectionEquality().equals(
+              other.canToggleMuteNewParticipants,
+              canToggleMuteNewParticipants) &&
+          const DeepCollectionEquality()
+              .equals(other.canSendMessages, canSendMessages) &&
+          const DeepCollectionEquality()
+              .equals(other.areMessagesAllowed, areMessagesAllowed) &&
+          const DeepCollectionEquality().equals(
+              other.canToggleAreMessagesAllowed, canToggleAreMessagesAllowed) &&
+          const DeepCollectionEquality()
+              .equals(other.canDeleteMessages, canDeleteMessages) &&
+          const DeepCollectionEquality()
+              .equals(other.recordDuration, recordDuration) &&
+          const DeepCollectionEquality()
+              .equals(other.isVideoRecorded, isVideoRecorded) &&
+          const DeepCollectionEquality().equals(other.duration, duration));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(id),
+        const DeepCollectionEquality().hash(uniqueId),
+        const DeepCollectionEquality().hash(title),
+        const DeepCollectionEquality().hash(inviteLink),
+        const DeepCollectionEquality().hash(paidMessageStarCount),
+        const DeepCollectionEquality().hash(scheduledStartDate),
+        const DeepCollectionEquality().hash(enabledStartNotification),
+        const DeepCollectionEquality().hash(isActive),
+        const DeepCollectionEquality().hash(isVideoChat),
+        const DeepCollectionEquality().hash(isLiveStory),
+        const DeepCollectionEquality().hash(isRtmpStream),
+        const DeepCollectionEquality().hash(isJoined),
+        const DeepCollectionEquality().hash(needRejoin),
+        const DeepCollectionEquality().hash(isOwned),
+        const DeepCollectionEquality().hash(canBeManaged),
+        const DeepCollectionEquality().hash(participantCount),
+        const DeepCollectionEquality().hash(hasHiddenListeners),
+        const DeepCollectionEquality().hash(loadedAllParticipants),
+        const DeepCollectionEquality().hash(messageSenderId),
+        const DeepCollectionEquality().hash(recentSpeakers),
+        const DeepCollectionEquality().hash(isMyVideoEnabled),
+        const DeepCollectionEquality().hash(isMyVideoPaused),
+        const DeepCollectionEquality().hash(canEnableVideo),
+        const DeepCollectionEquality().hash(muteNewParticipants),
+        const DeepCollectionEquality().hash(canToggleMuteNewParticipants),
+        const DeepCollectionEquality().hash(canSendMessages),
+        const DeepCollectionEquality().hash(areMessagesAllowed),
+        const DeepCollectionEquality().hash(canToggleAreMessagesAllowed),
+        const DeepCollectionEquality().hash(canDeleteMessages),
+        const DeepCollectionEquality().hash(recordDuration),
+        const DeepCollectionEquality().hash(isVideoRecorded),
+        const DeepCollectionEquality().hash(duration)
+      ]);
 }

@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// A detailed statistics about a channel chat
@@ -200,8 +201,77 @@ class ChatStatisticsChannel extends ChatStatistics {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is ChatStatisticsChannel &&
+          const DeepCollectionEquality().equals(other.period, period) &&
+          const DeepCollectionEquality()
+              .equals(other.memberCount, memberCount) &&
+          const DeepCollectionEquality()
+              .equals(other.meanMessageViewCount, meanMessageViewCount) &&
+          const DeepCollectionEquality()
+              .equals(other.meanMessageShareCount, meanMessageShareCount) &&
+          const DeepCollectionEquality().equals(
+              other.meanMessageReactionCount, meanMessageReactionCount) &&
+          const DeepCollectionEquality()
+              .equals(other.meanStoryViewCount, meanStoryViewCount) &&
+          const DeepCollectionEquality()
+              .equals(other.meanStoryShareCount, meanStoryShareCount) &&
+          const DeepCollectionEquality()
+              .equals(other.meanStoryReactionCount, meanStoryReactionCount) &&
+          const DeepCollectionEquality().equals(
+              other.enabledNotificationsPercentage,
+              enabledNotificationsPercentage) &&
+          const DeepCollectionEquality()
+              .equals(other.memberCountGraph, memberCountGraph) &&
+          const DeepCollectionEquality().equals(other.joinGraph, joinGraph) &&
+          const DeepCollectionEquality().equals(other.muteGraph, muteGraph) &&
+          const DeepCollectionEquality()
+              .equals(other.viewCountByHourGraph, viewCountByHourGraph) &&
+          const DeepCollectionEquality()
+              .equals(other.viewCountBySourceGraph, viewCountBySourceGraph) &&
+          const DeepCollectionEquality()
+              .equals(other.joinBySourceGraph, joinBySourceGraph) &&
+          const DeepCollectionEquality()
+              .equals(other.languageGraph, languageGraph) &&
+          const DeepCollectionEquality()
+              .equals(other.messageInteractionGraph, messageInteractionGraph) &&
+          const DeepCollectionEquality()
+              .equals(other.messageReactionGraph, messageReactionGraph) &&
+          const DeepCollectionEquality()
+              .equals(other.storyInteractionGraph, storyInteractionGraph) &&
+          const DeepCollectionEquality()
+              .equals(other.storyReactionGraph, storyReactionGraph) &&
+          const DeepCollectionEquality().equals(
+              other.instantViewInteractionGraph, instantViewInteractionGraph) &&
+          const DeepCollectionEquality()
+              .equals(other.recentInteractions, recentInteractions));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(period),
+        const DeepCollectionEquality().hash(memberCount),
+        const DeepCollectionEquality().hash(meanMessageViewCount),
+        const DeepCollectionEquality().hash(meanMessageShareCount),
+        const DeepCollectionEquality().hash(meanMessageReactionCount),
+        const DeepCollectionEquality().hash(meanStoryViewCount),
+        const DeepCollectionEquality().hash(meanStoryShareCount),
+        const DeepCollectionEquality().hash(meanStoryReactionCount),
+        const DeepCollectionEquality().hash(enabledNotificationsPercentage),
+        const DeepCollectionEquality().hash(memberCountGraph),
+        const DeepCollectionEquality().hash(joinGraph),
+        const DeepCollectionEquality().hash(muteGraph),
+        const DeepCollectionEquality().hash(viewCountByHourGraph),
+        const DeepCollectionEquality().hash(viewCountBySourceGraph),
+        const DeepCollectionEquality().hash(joinBySourceGraph),
+        const DeepCollectionEquality().hash(languageGraph),
+        const DeepCollectionEquality().hash(messageInteractionGraph),
+        const DeepCollectionEquality().hash(messageReactionGraph),
+        const DeepCollectionEquality().hash(storyInteractionGraph),
+        const DeepCollectionEquality().hash(storyReactionGraph),
+        const DeepCollectionEquality().hash(instantViewInteractionGraph),
+        const DeepCollectionEquality().hash(recentInteractions)
+      ]);
 }

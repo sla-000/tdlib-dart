@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// A list of active notifications in a notification group has changed
@@ -91,8 +92,34 @@ class UpdateNotificationGroup extends Update {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is UpdateNotificationGroup &&
+          const DeepCollectionEquality()
+              .equals(other.notificationGroupId, notificationGroupId) &&
+          const DeepCollectionEquality().equals(other.type, type) &&
+          const DeepCollectionEquality().equals(other.chatId, chatId) &&
+          const DeepCollectionEquality().equals(
+              other.notificationSettingsChatId, notificationSettingsChatId) &&
+          const DeepCollectionEquality()
+              .equals(other.notificationSoundId, notificationSoundId) &&
+          const DeepCollectionEquality().equals(other.totalCount, totalCount) &&
+          const DeepCollectionEquality()
+              .equals(other.addedNotifications, addedNotifications) &&
+          const DeepCollectionEquality()
+              .equals(other.removedNotificationIds, removedNotificationIds));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(notificationGroupId),
+        const DeepCollectionEquality().hash(type),
+        const DeepCollectionEquality().hash(chatId),
+        const DeepCollectionEquality().hash(notificationSettingsChatId),
+        const DeepCollectionEquality().hash(notificationSoundId),
+        const DeepCollectionEquality().hash(totalCount),
+        const DeepCollectionEquality().hash(addedNotifications),
+        const DeepCollectionEquality().hash(removedNotificationIds)
+      ]);
 }

@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Represents a folder for user chats
@@ -140,8 +141,55 @@ class ChatFolder extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is ChatFolder &&
+          const DeepCollectionEquality().equals(other.name, name) &&
+          const DeepCollectionEquality().equals(other.icon, icon) &&
+          const DeepCollectionEquality().equals(other.colorId, colorId) &&
+          const DeepCollectionEquality()
+              .equals(other.isShareable, isShareable) &&
+          const DeepCollectionEquality()
+              .equals(other.pinnedChatIds, pinnedChatIds) &&
+          const DeepCollectionEquality()
+              .equals(other.includedChatIds, includedChatIds) &&
+          const DeepCollectionEquality()
+              .equals(other.excludedChatIds, excludedChatIds) &&
+          const DeepCollectionEquality()
+              .equals(other.excludeMuted, excludeMuted) &&
+          const DeepCollectionEquality()
+              .equals(other.excludeRead, excludeRead) &&
+          const DeepCollectionEquality()
+              .equals(other.excludeArchived, excludeArchived) &&
+          const DeepCollectionEquality()
+              .equals(other.includeContacts, includeContacts) &&
+          const DeepCollectionEquality()
+              .equals(other.includeNonContacts, includeNonContacts) &&
+          const DeepCollectionEquality()
+              .equals(other.includeBots, includeBots) &&
+          const DeepCollectionEquality()
+              .equals(other.includeGroups, includeGroups) &&
+          const DeepCollectionEquality()
+              .equals(other.includeChannels, includeChannels));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(name),
+        const DeepCollectionEquality().hash(icon),
+        const DeepCollectionEquality().hash(colorId),
+        const DeepCollectionEquality().hash(isShareable),
+        const DeepCollectionEquality().hash(pinnedChatIds),
+        const DeepCollectionEquality().hash(includedChatIds),
+        const DeepCollectionEquality().hash(excludedChatIds),
+        const DeepCollectionEquality().hash(excludeMuted),
+        const DeepCollectionEquality().hash(excludeRead),
+        const DeepCollectionEquality().hash(excludeArchived),
+        const DeepCollectionEquality().hash(includeContacts),
+        const DeepCollectionEquality().hash(includeNonContacts),
+        const DeepCollectionEquality().hash(includeBots),
+        const DeepCollectionEquality().hash(includeGroups),
+        const DeepCollectionEquality().hash(includeChannels)
+      ]);
 }

@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// The link is a link to a background. Link preview title and description are
@@ -43,8 +44,18 @@ class LinkPreviewTypeBackground extends LinkPreviewType {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is LinkPreviewTypeBackground &&
+          const DeepCollectionEquality().equals(other.document, document) &&
+          const DeepCollectionEquality()
+              .equals(other.backgroundType, backgroundType));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(document),
+        const DeepCollectionEquality().hash(backgroundType)
+      ]);
 }

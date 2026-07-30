@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Returns a string stored in the local database from the specified
@@ -44,8 +45,24 @@ class GetLanguagePackString extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is GetLanguagePackString &&
+          const DeepCollectionEquality().equals(
+              other.languagePackDatabasePath, languagePackDatabasePath) &&
+          const DeepCollectionEquality()
+              .equals(other.localizationTarget, localizationTarget) &&
+          const DeepCollectionEquality()
+              .equals(other.languagePackId, languagePackId) &&
+          const DeepCollectionEquality().equals(other.key, key));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(languagePackDatabasePath),
+        const DeepCollectionEquality().hash(localizationTarget),
+        const DeepCollectionEquality().hash(languagePackId),
+        const DeepCollectionEquality().hash(key)
+      ]);
 }

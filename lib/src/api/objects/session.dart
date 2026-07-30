@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Contains information about one session in a Telegram application used by
@@ -149,8 +150,59 @@ class Session extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is Session &&
+          const DeepCollectionEquality().equals(other.id, id) &&
+          const DeepCollectionEquality().equals(other.isCurrent, isCurrent) &&
+          const DeepCollectionEquality()
+              .equals(other.isPasswordPending, isPasswordPending) &&
+          const DeepCollectionEquality()
+              .equals(other.isUnconfirmed, isUnconfirmed) &&
+          const DeepCollectionEquality()
+              .equals(other.canAcceptSecretChats, canAcceptSecretChats) &&
+          const DeepCollectionEquality()
+              .equals(other.canAcceptCalls, canAcceptCalls) &&
+          const DeepCollectionEquality().equals(other.deviceType, deviceType) &&
+          const DeepCollectionEquality().equals(other.apiId, apiId) &&
+          const DeepCollectionEquality()
+              .equals(other.applicationName, applicationName) &&
+          const DeepCollectionEquality()
+              .equals(other.applicationVersion, applicationVersion) &&
+          const DeepCollectionEquality()
+              .equals(other.isOfficialApplication, isOfficialApplication) &&
+          const DeepCollectionEquality()
+              .equals(other.deviceModel, deviceModel) &&
+          const DeepCollectionEquality().equals(other.platform, platform) &&
+          const DeepCollectionEquality()
+              .equals(other.systemVersion, systemVersion) &&
+          const DeepCollectionEquality().equals(other.logInDate, logInDate) &&
+          const DeepCollectionEquality()
+              .equals(other.lastActiveDate, lastActiveDate) &&
+          const DeepCollectionEquality().equals(other.ipAddress, ipAddress) &&
+          const DeepCollectionEquality().equals(other.location, location));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(id),
+        const DeepCollectionEquality().hash(isCurrent),
+        const DeepCollectionEquality().hash(isPasswordPending),
+        const DeepCollectionEquality().hash(isUnconfirmed),
+        const DeepCollectionEquality().hash(canAcceptSecretChats),
+        const DeepCollectionEquality().hash(canAcceptCalls),
+        const DeepCollectionEquality().hash(deviceType),
+        const DeepCollectionEquality().hash(apiId),
+        const DeepCollectionEquality().hash(applicationName),
+        const DeepCollectionEquality().hash(applicationVersion),
+        const DeepCollectionEquality().hash(isOfficialApplication),
+        const DeepCollectionEquality().hash(deviceModel),
+        const DeepCollectionEquality().hash(platform),
+        const DeepCollectionEquality().hash(systemVersion),
+        const DeepCollectionEquality().hash(logInDate),
+        const DeepCollectionEquality().hash(lastActiveDate),
+        const DeepCollectionEquality().hash(ipAddress),
+        const DeepCollectionEquality().hash(location)
+      ]);
 }

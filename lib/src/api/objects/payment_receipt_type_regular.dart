@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// The payment was done using a third-party payment provider
@@ -67,8 +68,28 @@ class PaymentReceiptTypeRegular extends PaymentReceiptType {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is PaymentReceiptTypeRegular &&
+          const DeepCollectionEquality()
+              .equals(other.paymentProviderUserId, paymentProviderUserId) &&
+          const DeepCollectionEquality().equals(other.invoice, invoice) &&
+          const DeepCollectionEquality().equals(other.orderInfo, orderInfo) &&
+          const DeepCollectionEquality()
+              .equals(other.shippingOption, shippingOption) &&
+          const DeepCollectionEquality()
+              .equals(other.credentialsTitle, credentialsTitle) &&
+          const DeepCollectionEquality().equals(other.tipAmount, tipAmount));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(paymentProviderUserId),
+        const DeepCollectionEquality().hash(invoice),
+        const DeepCollectionEquality().hash(orderInfo),
+        const DeepCollectionEquality().hash(shippingOption),
+        const DeepCollectionEquality().hash(credentialsTitle),
+        const DeepCollectionEquality().hash(tipAmount)
+      ]);
 }

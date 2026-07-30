@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// User changed its reactions on a message with public reactions; for bots
@@ -74,8 +75,27 @@ class UpdateMessageReaction extends Update {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is UpdateMessageReaction &&
+          const DeepCollectionEquality().equals(other.chatId, chatId) &&
+          const DeepCollectionEquality().equals(other.messageId, messageId) &&
+          const DeepCollectionEquality().equals(other.actorId, actorId) &&
+          const DeepCollectionEquality().equals(other.date, date) &&
+          const DeepCollectionEquality()
+              .equals(other.oldReactionTypes, oldReactionTypes) &&
+          const DeepCollectionEquality()
+              .equals(other.newReactionTypes, newReactionTypes));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(chatId),
+        const DeepCollectionEquality().hash(messageId),
+        const DeepCollectionEquality().hash(actorId),
+        const DeepCollectionEquality().hash(date),
+        const DeepCollectionEquality().hash(oldReactionTypes),
+        const DeepCollectionEquality().hash(newReactionTypes)
+      ]);
 }

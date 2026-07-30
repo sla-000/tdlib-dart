@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Sends a simple network request to the Telegram servers via proxy; for
@@ -36,8 +37,19 @@ class TestProxy extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is TestProxy &&
+          const DeepCollectionEquality().equals(other.proxy, proxy) &&
+          const DeepCollectionEquality().equals(other.dcId, dcId) &&
+          const DeepCollectionEquality().equals(other.timeout, timeout));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(proxy),
+        const DeepCollectionEquality().hash(dcId),
+        const DeepCollectionEquality().hash(timeout)
+      ]);
 }

@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Contains statistics about administrator actions done by a user
@@ -53,8 +54,24 @@ class ChatStatisticsAdministratorActionsInfo extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is ChatStatisticsAdministratorActionsInfo &&
+          const DeepCollectionEquality().equals(other.userId, userId) &&
+          const DeepCollectionEquality()
+              .equals(other.deletedMessageCount, deletedMessageCount) &&
+          const DeepCollectionEquality()
+              .equals(other.bannedUserCount, bannedUserCount) &&
+          const DeepCollectionEquality()
+              .equals(other.restrictedUserCount, restrictedUserCount));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(userId),
+        const DeepCollectionEquality().hash(deletedMessageCount),
+        const DeepCollectionEquality().hash(bannedUserCount),
+        const DeepCollectionEquality().hash(restrictedUserCount)
+      ]);
 }

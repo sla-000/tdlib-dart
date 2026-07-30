@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Contains a list of features available on the first chat boost levels
@@ -117,8 +118,52 @@ class ChatBoostFeatures extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is ChatBoostFeatures &&
+          const DeepCollectionEquality().equals(other.features, features) &&
+          const DeepCollectionEquality().equals(
+              other.minProfileBackgroundCustomEmojiBoostLevel,
+              minProfileBackgroundCustomEmojiBoostLevel) &&
+          const DeepCollectionEquality().equals(
+              other.minBackgroundCustomEmojiBoostLevel,
+              minBackgroundCustomEmojiBoostLevel) &&
+          const DeepCollectionEquality().equals(
+              other.minEmojiStatusBoostLevel, minEmojiStatusBoostLevel) &&
+          const DeepCollectionEquality().equals(
+              other.minChatThemeBackgroundBoostLevel,
+              minChatThemeBackgroundBoostLevel) &&
+          const DeepCollectionEquality().equals(
+              other.minCustomBackgroundBoostLevel,
+              minCustomBackgroundBoostLevel) &&
+          const DeepCollectionEquality().equals(
+              other.minCustomEmojiStickerSetBoostLevel,
+              minCustomEmojiStickerSetBoostLevel) &&
+          const DeepCollectionEquality().equals(
+              other.minAutomaticTranslationBoostLevel,
+              minAutomaticTranslationBoostLevel) &&
+          const DeepCollectionEquality().equals(
+              other.minSpeechRecognitionBoostLevel,
+              minSpeechRecognitionBoostLevel) &&
+          const DeepCollectionEquality().equals(
+              other.minSponsoredMessageDisableBoostLevel,
+              minSponsoredMessageDisableBoostLevel));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(features),
+        const DeepCollectionEquality()
+            .hash(minProfileBackgroundCustomEmojiBoostLevel),
+        const DeepCollectionEquality().hash(minBackgroundCustomEmojiBoostLevel),
+        const DeepCollectionEquality().hash(minEmojiStatusBoostLevel),
+        const DeepCollectionEquality().hash(minChatThemeBackgroundBoostLevel),
+        const DeepCollectionEquality().hash(minCustomBackgroundBoostLevel),
+        const DeepCollectionEquality().hash(minCustomEmojiStickerSetBoostLevel),
+        const DeepCollectionEquality().hash(minAutomaticTranslationBoostLevel),
+        const DeepCollectionEquality().hash(minSpeechRecognitionBoostLevel),
+        const DeepCollectionEquality()
+            .hash(minSponsoredMessageDisableBoostLevel)
+      ]);
 }

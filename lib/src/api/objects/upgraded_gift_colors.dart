@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Contains information about color scheme for user's name, background of
@@ -81,8 +82,33 @@ class UpgradedGiftColors extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is UpgradedGiftColors &&
+          const DeepCollectionEquality().equals(other.id, id) &&
+          const DeepCollectionEquality()
+              .equals(other.modelCustomEmojiId, modelCustomEmojiId) &&
+          const DeepCollectionEquality()
+              .equals(other.symbolCustomEmojiId, symbolCustomEmojiId) &&
+          const DeepCollectionEquality()
+              .equals(other.lightThemeAccentColor, lightThemeAccentColor) &&
+          const DeepCollectionEquality()
+              .equals(other.lightThemeColors, lightThemeColors) &&
+          const DeepCollectionEquality()
+              .equals(other.darkThemeAccentColor, darkThemeAccentColor) &&
+          const DeepCollectionEquality()
+              .equals(other.darkThemeColors, darkThemeColors));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(id),
+        const DeepCollectionEquality().hash(modelCustomEmojiId),
+        const DeepCollectionEquality().hash(symbolCustomEmojiId),
+        const DeepCollectionEquality().hash(lightThemeAccentColor),
+        const DeepCollectionEquality().hash(lightThemeColors),
+        const DeepCollectionEquality().hash(darkThemeAccentColor),
+        const DeepCollectionEquality().hash(darkThemeColors)
+      ]);
 }

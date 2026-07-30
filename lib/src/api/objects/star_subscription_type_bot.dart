@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Describes a subscription in a bot or a business account
@@ -53,8 +54,23 @@ class StarSubscriptionTypeBot extends StarSubscriptionType {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is StarSubscriptionTypeBot &&
+          const DeepCollectionEquality()
+              .equals(other.isCanceledByBot, isCanceledByBot) &&
+          const DeepCollectionEquality().equals(other.title, title) &&
+          const DeepCollectionEquality().equals(other.photo, photo) &&
+          const DeepCollectionEquality()
+              .equals(other.invoiceLink, invoiceLink));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(isCanceledByBot),
+        const DeepCollectionEquality().hash(title),
+        const DeepCollectionEquality().hash(photo),
+        const DeepCollectionEquality().hash(invoiceLink)
+      ]);
 }

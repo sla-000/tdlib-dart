@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// A PNG or TGV (gzipped subset of SVG with MIME type
@@ -58,8 +59,21 @@ class BackgroundTypePattern extends BackgroundType {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is BackgroundTypePattern &&
+          const DeepCollectionEquality().equals(other.fill, fill) &&
+          const DeepCollectionEquality().equals(other.intensity, intensity) &&
+          const DeepCollectionEquality().equals(other.isInverted, isInverted) &&
+          const DeepCollectionEquality().equals(other.isMoving, isMoving));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(fill),
+        const DeepCollectionEquality().hash(intensity),
+        const DeepCollectionEquality().hash(isInverted),
+        const DeepCollectionEquality().hash(isMoving)
+      ]);
 }

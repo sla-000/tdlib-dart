@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// A stake dice message
@@ -50,8 +51,20 @@ class InputMessageStakeDice extends InputMessageContent {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is InputMessageStakeDice &&
+          const DeepCollectionEquality().equals(other.stateHash, stateHash) &&
+          const DeepCollectionEquality()
+              .equals(other.stakeGramAmount, stakeGramAmount) &&
+          const DeepCollectionEquality().equals(other.clearDraft, clearDraft));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(stateHash),
+        const DeepCollectionEquality().hash(stakeGramAmount),
+        const DeepCollectionEquality().hash(clearDraft)
+      ]);
 }

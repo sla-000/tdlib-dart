@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// User rights changed in a chat; for bots only
@@ -82,8 +83,34 @@ class UpdateChatMember extends Update {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is UpdateChatMember &&
+          const DeepCollectionEquality().equals(other.chatId, chatId) &&
+          const DeepCollectionEquality()
+              .equals(other.actorUserId, actorUserId) &&
+          const DeepCollectionEquality().equals(other.date, date) &&
+          const DeepCollectionEquality().equals(other.inviteLink, inviteLink) &&
+          const DeepCollectionEquality()
+              .equals(other.viaJoinRequest, viaJoinRequest) &&
+          const DeepCollectionEquality()
+              .equals(other.viaChatFolderInviteLink, viaChatFolderInviteLink) &&
+          const DeepCollectionEquality()
+              .equals(other.oldChatMember, oldChatMember) &&
+          const DeepCollectionEquality()
+              .equals(other.newChatMember, newChatMember));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(chatId),
+        const DeepCollectionEquality().hash(actorUserId),
+        const DeepCollectionEquality().hash(date),
+        const DeepCollectionEquality().hash(inviteLink),
+        const DeepCollectionEquality().hash(viaJoinRequest),
+        const DeepCollectionEquality().hash(viaChatFolderInviteLink),
+        const DeepCollectionEquality().hash(oldChatMember),
+        const DeepCollectionEquality().hash(newChatMember)
+      ]);
 }

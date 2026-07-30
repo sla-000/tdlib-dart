@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// The link is a link to a chat by its username. Call searchPublicChat with
@@ -51,8 +52,21 @@ class InternalLinkTypePublicChat extends InternalLinkType {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is InternalLinkTypePublicChat &&
+          const DeepCollectionEquality()
+              .equals(other.chatUsername, chatUsername) &&
+          const DeepCollectionEquality().equals(other.draftText, draftText) &&
+          const DeepCollectionEquality()
+              .equals(other.openProfile, openProfile));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(chatUsername),
+        const DeepCollectionEquality().hash(draftText),
+        const DeepCollectionEquality().hash(openProfile)
+      ]);
 }

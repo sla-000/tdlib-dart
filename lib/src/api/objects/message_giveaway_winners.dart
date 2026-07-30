@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// A giveaway with public winners has been completed for the chat
@@ -104,8 +105,45 @@ class MessageGiveawayWinners extends MessageContent {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is MessageGiveawayWinners &&
+          const DeepCollectionEquality()
+              .equals(other.boostedChatId, boostedChatId) &&
+          const DeepCollectionEquality()
+              .equals(other.giveawayMessageId, giveawayMessageId) &&
+          const DeepCollectionEquality()
+              .equals(other.additionalChatCount, additionalChatCount) &&
+          const DeepCollectionEquality().equals(
+              other.actualWinnersSelectionDate, actualWinnersSelectionDate) &&
+          const DeepCollectionEquality()
+              .equals(other.onlyNewMembers, onlyNewMembers) &&
+          const DeepCollectionEquality()
+              .equals(other.wasRefunded, wasRefunded) &&
+          const DeepCollectionEquality().equals(other.prize, prize) &&
+          const DeepCollectionEquality()
+              .equals(other.prizeDescription, prizeDescription) &&
+          const DeepCollectionEquality()
+              .equals(other.winnerCount, winnerCount) &&
+          const DeepCollectionEquality()
+              .equals(other.winnerUserIds, winnerUserIds) &&
+          const DeepCollectionEquality()
+              .equals(other.unclaimedPrizeCount, unclaimedPrizeCount));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(boostedChatId),
+        const DeepCollectionEquality().hash(giveawayMessageId),
+        const DeepCollectionEquality().hash(additionalChatCount),
+        const DeepCollectionEquality().hash(actualWinnersSelectionDate),
+        const DeepCollectionEquality().hash(onlyNewMembers),
+        const DeepCollectionEquality().hash(wasRefunded),
+        const DeepCollectionEquality().hash(prize),
+        const DeepCollectionEquality().hash(prizeDescription),
+        const DeepCollectionEquality().hash(winnerCount),
+        const DeepCollectionEquality().hash(winnerUserIds),
+        const DeepCollectionEquality().hash(unclaimedPrizeCount)
+      ]);
 }

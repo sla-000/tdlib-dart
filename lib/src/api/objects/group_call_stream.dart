@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Describes an available stream in a video chat or a live story
@@ -48,8 +49,19 @@ class GroupCallStream extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is GroupCallStream &&
+          const DeepCollectionEquality().equals(other.channelId, channelId) &&
+          const DeepCollectionEquality().equals(other.scale, scale) &&
+          const DeepCollectionEquality().equals(other.timeOffset, timeOffset));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(channelId),
+        const DeepCollectionEquality().hash(scale),
+        const DeepCollectionEquality().hash(timeOffset)
+      ]);
 }

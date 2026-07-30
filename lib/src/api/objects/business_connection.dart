@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Describes a connection of the bot with a business account
@@ -65,8 +66,25 @@ class BusinessConnection extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is BusinessConnection &&
+          const DeepCollectionEquality().equals(other.id, id) &&
+          const DeepCollectionEquality().equals(other.userId, userId) &&
+          const DeepCollectionEquality().equals(other.userChatId, userChatId) &&
+          const DeepCollectionEquality().equals(other.date, date) &&
+          const DeepCollectionEquality().equals(other.rights, rights) &&
+          const DeepCollectionEquality().equals(other.isEnabled, isEnabled));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(id),
+        const DeepCollectionEquality().hash(userId),
+        const DeepCollectionEquality().hash(userChatId),
+        const DeepCollectionEquality().hash(date),
+        const DeepCollectionEquality().hash(rights),
+        const DeepCollectionEquality().hash(isEnabled)
+      ]);
 }

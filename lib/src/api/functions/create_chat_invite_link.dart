@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Creates a new invite link for a chat. Available for basic groups,
@@ -51,8 +52,26 @@ class CreateChatInviteLink extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is CreateChatInviteLink &&
+          const DeepCollectionEquality().equals(other.chatId, chatId) &&
+          const DeepCollectionEquality().equals(other.name, name) &&
+          const DeepCollectionEquality()
+              .equals(other.expirationDate, expirationDate) &&
+          const DeepCollectionEquality()
+              .equals(other.memberLimit, memberLimit) &&
+          const DeepCollectionEquality()
+              .equals(other.createsJoinRequest, createsJoinRequest));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(chatId),
+        const DeepCollectionEquality().hash(name),
+        const DeepCollectionEquality().hash(expirationDate),
+        const DeepCollectionEquality().hash(memberLimit),
+        const DeepCollectionEquality().hash(createsJoinRequest)
+      ]);
 }

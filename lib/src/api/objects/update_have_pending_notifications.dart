@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Describes whether there are some pending notification updates. Can be used
@@ -45,8 +46,19 @@ class UpdateHavePendingNotifications extends Update {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is UpdateHavePendingNotifications &&
+          const DeepCollectionEquality().equals(
+              other.haveDelayedNotifications, haveDelayedNotifications) &&
+          const DeepCollectionEquality().equals(
+              other.haveUnreceivedNotifications, haveUnreceivedNotifications));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(haveDelayedNotifications),
+        const DeepCollectionEquality().hash(haveUnreceivedNotifications)
+      ]);
 }

@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Returns information about participants of a non-joined group call that is
@@ -31,8 +32,18 @@ class GetGroupCallParticipants extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is GetGroupCallParticipants &&
+          const DeepCollectionEquality()
+              .equals(other.inputGroupCall, inputGroupCall) &&
+          const DeepCollectionEquality().equals(other.limit, limit));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(inputGroupCall),
+        const DeepCollectionEquality().hash(limit)
+      ]);
 }

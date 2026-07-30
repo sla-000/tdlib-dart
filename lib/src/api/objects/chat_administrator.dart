@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Contains information about a chat administrator
@@ -53,8 +54,23 @@ class ChatAdministrator extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is ChatAdministrator &&
+          const DeepCollectionEquality().equals(other.userId, userId) &&
+          const DeepCollectionEquality()
+              .equals(other.customTitle, customTitle) &&
+          const DeepCollectionEquality().equals(other.isOwner, isOwner) &&
+          const DeepCollectionEquality()
+              .equals(other.canBeEdited, canBeEdited));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(userId),
+        const DeepCollectionEquality().hash(customTitle),
+        const DeepCollectionEquality().hash(isOwner),
+        const DeepCollectionEquality().hash(canBeEdited)
+      ]);
 }

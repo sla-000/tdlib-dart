@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Contains a custom keyboard layout to quickly reply to bots
@@ -77,8 +78,28 @@ class ReplyMarkupShowKeyboard extends ReplyMarkup {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is ReplyMarkupShowKeyboard &&
+          const DeepCollectionEquality().equals(other.rows, rows) &&
+          const DeepCollectionEquality()
+              .equals(other.isPersistent, isPersistent) &&
+          const DeepCollectionEquality()
+              .equals(other.resizeKeyboard, resizeKeyboard) &&
+          const DeepCollectionEquality().equals(other.oneTime, oneTime) &&
+          const DeepCollectionEquality().equals(other.isPersonal, isPersonal) &&
+          const DeepCollectionEquality()
+              .equals(other.inputFieldPlaceholder, inputFieldPlaceholder));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(rows),
+        const DeepCollectionEquality().hash(isPersistent),
+        const DeepCollectionEquality().hash(resizeKeyboard),
+        const DeepCollectionEquality().hash(oneTime),
+        const DeepCollectionEquality().hash(isPersonal),
+        const DeepCollectionEquality().hash(inputFieldPlaceholder)
+      ]);
 }

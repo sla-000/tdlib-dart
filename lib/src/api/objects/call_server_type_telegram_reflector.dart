@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// A Telegram call reflector
@@ -40,8 +41,17 @@ class CallServerTypeTelegramReflector extends CallServerType {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is CallServerTypeTelegramReflector &&
+          const DeepCollectionEquality().equals(other.peerTag, peerTag) &&
+          const DeepCollectionEquality().equals(other.isTcp, isTcp));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(peerTag),
+        const DeepCollectionEquality().hash(isTcp)
+      ]);
 }

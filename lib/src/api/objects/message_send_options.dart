@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Options to be used when a message is sent
@@ -113,8 +114,45 @@ class MessageSendOptions extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is MessageSendOptions &&
+          const DeepCollectionEquality()
+              .equals(other.suggestedPostInfo, suggestedPostInfo) &&
+          const DeepCollectionEquality()
+              .equals(other.disableNotification, disableNotification) &&
+          const DeepCollectionEquality()
+              .equals(other.fromBackground, fromBackground) &&
+          const DeepCollectionEquality()
+              .equals(other.protectContent, protectContent) &&
+          const DeepCollectionEquality()
+              .equals(other.allowPaidBroadcast, allowPaidBroadcast) &&
+          const DeepCollectionEquality()
+              .equals(other.paidMessageStarCount, paidMessageStarCount) &&
+          const DeepCollectionEquality().equals(
+              other.updateOrderOfInstalledStickerSets,
+              updateOrderOfInstalledStickerSets) &&
+          const DeepCollectionEquality()
+              .equals(other.schedulingState, schedulingState) &&
+          const DeepCollectionEquality().equals(other.effectId, effectId) &&
+          const DeepCollectionEquality().equals(other.sendingId, sendingId) &&
+          const DeepCollectionEquality()
+              .equals(other.onlyPreview, onlyPreview));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(suggestedPostInfo),
+        const DeepCollectionEquality().hash(disableNotification),
+        const DeepCollectionEquality().hash(fromBackground),
+        const DeepCollectionEquality().hash(protectContent),
+        const DeepCollectionEquality().hash(allowPaidBroadcast),
+        const DeepCollectionEquality().hash(paidMessageStarCount),
+        const DeepCollectionEquality().hash(updateOrderOfInstalledStickerSets),
+        const DeepCollectionEquality().hash(schedulingState),
+        const DeepCollectionEquality().hash(effectId),
+        const DeepCollectionEquality().hash(sendingId),
+        const DeepCollectionEquality().hash(onlyPreview)
+      ]);
 }

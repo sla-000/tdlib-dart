@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Contains information about subscription plan that must be paid by the user
@@ -51,8 +52,19 @@ class ChatInviteLinkSubscriptionInfo extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is ChatInviteLinkSubscriptionInfo &&
+          const DeepCollectionEquality().equals(other.pricing, pricing) &&
+          const DeepCollectionEquality().equals(other.canReuse, canReuse) &&
+          const DeepCollectionEquality().equals(other.formId, formId));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(pricing),
+        const DeepCollectionEquality().hash(canReuse),
+        const DeepCollectionEquality().hash(formId)
+      ]);
 }

@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Cancels or re-enables Telegram Star subscription
@@ -30,8 +31,18 @@ class EditStarSubscription extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is EditStarSubscription &&
+          const DeepCollectionEquality()
+              .equals(other.subscriptionId, subscriptionId) &&
+          const DeepCollectionEquality().equals(other.isCanceled, isCanceled));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(subscriptionId),
+        const DeepCollectionEquality().hash(isCanceled)
+      ]);
 }

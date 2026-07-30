@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// The link is a link to a dialog for creating of a managed bot. Call
@@ -54,8 +55,22 @@ class InternalLinkTypeRequestManagedBot extends InternalLinkType {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is InternalLinkTypeRequestManagedBot &&
+          const DeepCollectionEquality()
+              .equals(other.managerBotUsername, managerBotUsername) &&
+          const DeepCollectionEquality()
+              .equals(other.suggestedBotUsername, suggestedBotUsername) &&
+          const DeepCollectionEquality()
+              .equals(other.suggestedBotName, suggestedBotName));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(managerBotUsername),
+        const DeepCollectionEquality().hash(suggestedBotUsername),
+        const DeepCollectionEquality().hash(suggestedBotName)
+      ]);
 }

@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// A secret chat with a user
@@ -40,8 +41,18 @@ class ChatTypeSecret extends ChatType {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is ChatTypeSecret &&
+          const DeepCollectionEquality()
+              .equals(other.secretChatId, secretChatId) &&
+          const DeepCollectionEquality().equals(other.userId, userId));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(secretChatId),
+        const DeepCollectionEquality().hash(userId)
+      ]);
 }

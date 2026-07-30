@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Telegram Passport data has been received; for bots only
@@ -44,8 +45,18 @@ class MessagePassportDataReceived extends MessageContent {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is MessagePassportDataReceived &&
+          const DeepCollectionEquality().equals(other.elements, elements) &&
+          const DeepCollectionEquality()
+              .equals(other.credentials, credentials));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(elements),
+        const DeepCollectionEquality().hash(credentials)
+      ]);
 }

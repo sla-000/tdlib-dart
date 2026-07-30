@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// A new message was added to a business account; for bots only
@@ -41,8 +42,18 @@ class UpdateNewBusinessMessage extends Update {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is UpdateNewBusinessMessage &&
+          const DeepCollectionEquality()
+              .equals(other.connectionId, connectionId) &&
+          const DeepCollectionEquality().equals(other.message, message));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(connectionId),
+        const DeepCollectionEquality().hash(message)
+      ]);
 }

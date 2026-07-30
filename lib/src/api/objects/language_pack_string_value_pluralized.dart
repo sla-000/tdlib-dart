@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// A language pack string which has different forms based on the number of
@@ -68,8 +69,25 @@ class LanguagePackStringValuePluralized extends LanguagePackStringValue {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is LanguagePackStringValuePluralized &&
+          const DeepCollectionEquality().equals(other.zeroValue, zeroValue) &&
+          const DeepCollectionEquality().equals(other.oneValue, oneValue) &&
+          const DeepCollectionEquality().equals(other.twoValue, twoValue) &&
+          const DeepCollectionEquality().equals(other.fewValue, fewValue) &&
+          const DeepCollectionEquality().equals(other.manyValue, manyValue) &&
+          const DeepCollectionEquality().equals(other.otherValue, otherValue));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(zeroValue),
+        const DeepCollectionEquality().hash(oneValue),
+        const DeepCollectionEquality().hash(twoValue),
+        const DeepCollectionEquality().hash(fewValue),
+        const DeepCollectionEquality().hash(manyValue),
+        const DeepCollectionEquality().hash(otherValue)
+      ]);
 }

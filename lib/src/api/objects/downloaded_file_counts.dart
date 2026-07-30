@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Contains number of being downloaded and recently downloaded files found
@@ -46,8 +47,22 @@ class DownloadedFileCounts extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is DownloadedFileCounts &&
+          const DeepCollectionEquality()
+              .equals(other.activeCount, activeCount) &&
+          const DeepCollectionEquality()
+              .equals(other.pausedCount, pausedCount) &&
+          const DeepCollectionEquality()
+              .equals(other.completedCount, completedCount));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(activeCount),
+        const DeepCollectionEquality().hash(pausedCount),
+        const DeepCollectionEquality().hash(completedCount)
+      ]);
 }

@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Creates a bot which will be managed by another bot. Returns the created
@@ -47,8 +48,22 @@ class CreateBot extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is CreateBot &&
+          const DeepCollectionEquality()
+              .equals(other.managerBotUserId, managerBotUserId) &&
+          const DeepCollectionEquality().equals(other.name, name) &&
+          const DeepCollectionEquality().equals(other.username, username) &&
+          const DeepCollectionEquality().equals(other.viaLink, viaLink));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(managerBotUserId),
+        const DeepCollectionEquality().hash(name),
+        const DeepCollectionEquality().hash(username),
+        const DeepCollectionEquality().hash(viaLink)
+      ]);
 }

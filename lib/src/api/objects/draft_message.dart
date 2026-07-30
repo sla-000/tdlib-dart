@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Contains information about a message draft
@@ -64,8 +65,24 @@ class DraftMessage extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is DraftMessage &&
+          const DeepCollectionEquality().equals(other.replyTo, replyTo) &&
+          const DeepCollectionEquality().equals(other.date, date) &&
+          const DeepCollectionEquality().equals(other.content, content) &&
+          const DeepCollectionEquality().equals(other.effectId, effectId) &&
+          const DeepCollectionEquality()
+              .equals(other.suggestedPostInfo, suggestedPostInfo));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(replyTo),
+        const DeepCollectionEquality().hash(date),
+        const DeepCollectionEquality().hash(content),
+        const DeepCollectionEquality().hash(effectId),
+        const DeepCollectionEquality().hash(suggestedPostInfo)
+      ]);
 }

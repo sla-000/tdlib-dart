@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// A payment has been sent to a bot or a business account
@@ -80,8 +81,36 @@ class MessagePaymentSuccessful extends MessageContent {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is MessagePaymentSuccessful &&
+          const DeepCollectionEquality()
+              .equals(other.invoiceChatId, invoiceChatId) &&
+          const DeepCollectionEquality()
+              .equals(other.invoiceMessageId, invoiceMessageId) &&
+          const DeepCollectionEquality().equals(other.currency, currency) &&
+          const DeepCollectionEquality()
+              .equals(other.totalAmount, totalAmount) &&
+          const DeepCollectionEquality()
+              .equals(other.subscriptionUntilDate, subscriptionUntilDate) &&
+          const DeepCollectionEquality()
+              .equals(other.isRecurring, isRecurring) &&
+          const DeepCollectionEquality()
+              .equals(other.isFirstRecurring, isFirstRecurring) &&
+          const DeepCollectionEquality()
+              .equals(other.invoiceName, invoiceName));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(invoiceChatId),
+        const DeepCollectionEquality().hash(invoiceMessageId),
+        const DeepCollectionEquality().hash(currency),
+        const DeepCollectionEquality().hash(totalAmount),
+        const DeepCollectionEquality().hash(subscriptionUntilDate),
+        const DeepCollectionEquality().hash(isRecurring),
+        const DeepCollectionEquality().hash(isFirstRecurring),
+        const DeepCollectionEquality().hash(invoiceName)
+      ]);
 }

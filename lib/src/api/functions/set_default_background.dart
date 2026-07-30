@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Sets default background for chats; adds the background to the list of
@@ -38,8 +39,20 @@ class SetDefaultBackground extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is SetDefaultBackground &&
+          const DeepCollectionEquality().equals(other.background, background) &&
+          const DeepCollectionEquality().equals(other.type, type) &&
+          const DeepCollectionEquality()
+              .equals(other.forDarkTheme, forDarkTheme));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(background),
+        const DeepCollectionEquality().hash(type),
+        const DeepCollectionEquality().hash(forDarkTheme)
+      ]);
 }

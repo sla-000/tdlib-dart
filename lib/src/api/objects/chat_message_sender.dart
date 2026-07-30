@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Represents a message sender, which can be used to send messages in a chat
@@ -41,8 +42,18 @@ class ChatMessageSender extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is ChatMessageSender &&
+          const DeepCollectionEquality().equals(other.sender, sender) &&
+          const DeepCollectionEquality()
+              .equals(other.needsPremium, needsPremium));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(sender),
+        const DeepCollectionEquality().hash(needsPremium)
+      ]);
 }

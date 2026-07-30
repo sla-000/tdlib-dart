@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Returns a Telegram Passport authorization form for sharing data with a
@@ -41,8 +42,21 @@ class GetPassportAuthorizationForm extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is GetPassportAuthorizationForm &&
+          const DeepCollectionEquality().equals(other.botUserId, botUserId) &&
+          const DeepCollectionEquality().equals(other.scope, scope) &&
+          const DeepCollectionEquality().equals(other.publicKey, publicKey) &&
+          const DeepCollectionEquality().equals(other.nonce, nonce));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(botUserId),
+        const DeepCollectionEquality().hash(scope),
+        const DeepCollectionEquality().hash(publicKey),
+        const DeepCollectionEquality().hash(nonce)
+      ]);
 }

@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Changes a rich message using an AI model. May return an error with a
@@ -53,8 +54,25 @@ class ComposeRichMessageWithAi extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is ComposeRichMessageWithAi &&
+          const DeepCollectionEquality().equals(other.message, message) &&
+          const DeepCollectionEquality()
+              .equals(other.translateToLanguageCode, translateToLanguageCode) &&
+          const DeepCollectionEquality().equals(other.styleName, styleName) &&
+          const DeepCollectionEquality()
+              .equals(other.customPrompt, customPrompt) &&
+          const DeepCollectionEquality().equals(other.addEmojis, addEmojis));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(message),
+        const DeepCollectionEquality().hash(translateToLanguageCode),
+        const DeepCollectionEquality().hash(styleName),
+        const DeepCollectionEquality().hash(customPrompt),
+        const DeepCollectionEquality().hash(addEmojis)
+      ]);
 }

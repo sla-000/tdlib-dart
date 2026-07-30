@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Informs server about an in-store purchase of Telegram Premium before
@@ -50,8 +51,25 @@ class SetAuthenticationPremiumPurchaseTransaction extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is SetAuthenticationPremiumPurchaseTransaction &&
+          const DeepCollectionEquality()
+              .equals(other.transaction, transaction) &&
+          const DeepCollectionEquality().equals(other.isRestore, isRestore) &&
+          const DeepCollectionEquality()
+              .equals(other.premiumDayCount, premiumDayCount) &&
+          const DeepCollectionEquality().equals(other.currency, currency) &&
+          const DeepCollectionEquality().equals(other.amount, amount));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(transaction),
+        const DeepCollectionEquality().hash(isRestore),
+        const DeepCollectionEquality().hash(premiumDayCount),
+        const DeepCollectionEquality().hash(currency),
+        const DeepCollectionEquality().hash(amount)
+      ]);
 }

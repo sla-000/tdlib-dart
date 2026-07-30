@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Changes text using an AI model; must not be used in secret chats. May
@@ -46,8 +47,22 @@ class ComposeTextWithAi extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is ComposeTextWithAi &&
+          const DeepCollectionEquality().equals(other.text, text) &&
+          const DeepCollectionEquality()
+              .equals(other.translateToLanguageCode, translateToLanguageCode) &&
+          const DeepCollectionEquality().equals(other.styleName, styleName) &&
+          const DeepCollectionEquality().equals(other.addEmojis, addEmojis));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(text),
+        const DeepCollectionEquality().hash(translateToLanguageCode),
+        const DeepCollectionEquality().hash(styleName),
+        const DeepCollectionEquality().hash(addEmojis)
+      ]);
 }

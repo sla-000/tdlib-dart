@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Contains information about a topic in a channel direct messages chat
@@ -107,8 +108,45 @@ class DirectMessagesChatTopic extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is DirectMessagesChatTopic &&
+          const DeepCollectionEquality().equals(other.chatId, chatId) &&
+          const DeepCollectionEquality().equals(other.id, id) &&
+          const DeepCollectionEquality().equals(other.senderId, senderId) &&
+          const DeepCollectionEquality().equals(other.order, order) &&
+          const DeepCollectionEquality()
+              .equals(other.canSendUnpaidMessages, canSendUnpaidMessages) &&
+          const DeepCollectionEquality()
+              .equals(other.isMarkedAsUnread, isMarkedAsUnread) &&
+          const DeepCollectionEquality()
+              .equals(other.unreadCount, unreadCount) &&
+          const DeepCollectionEquality()
+              .equals(other.lastReadInboxMessageId, lastReadInboxMessageId) &&
+          const DeepCollectionEquality()
+              .equals(other.lastReadOutboxMessageId, lastReadOutboxMessageId) &&
+          const DeepCollectionEquality()
+              .equals(other.unreadReactionCount, unreadReactionCount) &&
+          const DeepCollectionEquality()
+              .equals(other.lastMessage, lastMessage) &&
+          const DeepCollectionEquality()
+              .equals(other.draftMessage, draftMessage));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(chatId),
+        const DeepCollectionEquality().hash(id),
+        const DeepCollectionEquality().hash(senderId),
+        const DeepCollectionEquality().hash(order),
+        const DeepCollectionEquality().hash(canSendUnpaidMessages),
+        const DeepCollectionEquality().hash(isMarkedAsUnread),
+        const DeepCollectionEquality().hash(unreadCount),
+        const DeepCollectionEquality().hash(lastReadInboxMessageId),
+        const DeepCollectionEquality().hash(lastReadOutboxMessageId),
+        const DeepCollectionEquality().hash(unreadReactionCount),
+        const DeepCollectionEquality().hash(lastMessage),
+        const DeepCollectionEquality().hash(draftMessage)
+      ]);
 }

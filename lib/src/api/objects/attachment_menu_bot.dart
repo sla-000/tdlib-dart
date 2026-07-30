@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Represents a bot, which can be added to attachment or side menu
@@ -194,8 +195,76 @@ class AttachmentMenuBot extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is AttachmentMenuBot &&
+          const DeepCollectionEquality().equals(other.botUserId, botUserId) &&
+          const DeepCollectionEquality()
+              .equals(other.supportsSelfChat, supportsSelfChat) &&
+          const DeepCollectionEquality()
+              .equals(other.supportsUserChats, supportsUserChats) &&
+          const DeepCollectionEquality()
+              .equals(other.supportsBotChats, supportsBotChats) &&
+          const DeepCollectionEquality()
+              .equals(other.supportsGroupChats, supportsGroupChats) &&
+          const DeepCollectionEquality()
+              .equals(other.supportsChannelChats, supportsChannelChats) &&
+          const DeepCollectionEquality()
+              .equals(other.requestWriteAccess, requestWriteAccess) &&
+          const DeepCollectionEquality().equals(other.isAdded, isAdded) &&
+          const DeepCollectionEquality()
+              .equals(other.showInAttachmentMenu, showInAttachmentMenu) &&
+          const DeepCollectionEquality()
+              .equals(other.showInSideMenu, showInSideMenu) &&
+          const DeepCollectionEquality().equals(
+              other.showDisclaimerInSideMenu, showDisclaimerInSideMenu) &&
+          const DeepCollectionEquality().equals(other.name, name) &&
+          const DeepCollectionEquality().equals(other.nameColor, nameColor) &&
+          const DeepCollectionEquality()
+              .equals(other.defaultIcon, defaultIcon) &&
+          const DeepCollectionEquality()
+              .equals(other.iosStaticIcon, iosStaticIcon) &&
+          const DeepCollectionEquality()
+              .equals(other.iosAnimatedIcon, iosAnimatedIcon) &&
+          const DeepCollectionEquality()
+              .equals(other.iosSideMenuIcon, iosSideMenuIcon) &&
+          const DeepCollectionEquality()
+              .equals(other.androidIcon, androidIcon) &&
+          const DeepCollectionEquality()
+              .equals(other.androidSideMenuIcon, androidSideMenuIcon) &&
+          const DeepCollectionEquality().equals(other.macosIcon, macosIcon) &&
+          const DeepCollectionEquality()
+              .equals(other.macosSideMenuIcon, macosSideMenuIcon) &&
+          const DeepCollectionEquality().equals(other.iconColor, iconColor) &&
+          const DeepCollectionEquality()
+              .equals(other.webAppPlaceholder, webAppPlaceholder));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(botUserId),
+        const DeepCollectionEquality().hash(supportsSelfChat),
+        const DeepCollectionEquality().hash(supportsUserChats),
+        const DeepCollectionEquality().hash(supportsBotChats),
+        const DeepCollectionEquality().hash(supportsGroupChats),
+        const DeepCollectionEquality().hash(supportsChannelChats),
+        const DeepCollectionEquality().hash(requestWriteAccess),
+        const DeepCollectionEquality().hash(isAdded),
+        const DeepCollectionEquality().hash(showInAttachmentMenu),
+        const DeepCollectionEquality().hash(showInSideMenu),
+        const DeepCollectionEquality().hash(showDisclaimerInSideMenu),
+        const DeepCollectionEquality().hash(name),
+        const DeepCollectionEquality().hash(nameColor),
+        const DeepCollectionEquality().hash(defaultIcon),
+        const DeepCollectionEquality().hash(iosStaticIcon),
+        const DeepCollectionEquality().hash(iosAnimatedIcon),
+        const DeepCollectionEquality().hash(iosSideMenuIcon),
+        const DeepCollectionEquality().hash(androidIcon),
+        const DeepCollectionEquality().hash(androidSideMenuIcon),
+        const DeepCollectionEquality().hash(macosIcon),
+        const DeepCollectionEquality().hash(macosSideMenuIcon),
+        const DeepCollectionEquality().hash(iconColor),
+        const DeepCollectionEquality().hash(webAppPlaceholder)
+      ]);
 }

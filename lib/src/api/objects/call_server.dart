@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Describes a server for relaying call data
@@ -58,8 +59,24 @@ class CallServer extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is CallServer &&
+          const DeepCollectionEquality().equals(other.id, id) &&
+          const DeepCollectionEquality().equals(other.ipAddress, ipAddress) &&
+          const DeepCollectionEquality()
+              .equals(other.ipv6Address, ipv6Address) &&
+          const DeepCollectionEquality().equals(other.port, port) &&
+          const DeepCollectionEquality().equals(other.type, type));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(id),
+        const DeepCollectionEquality().hash(ipAddress),
+        const DeepCollectionEquality().hash(ipv6Address),
+        const DeepCollectionEquality().hash(port),
+        const DeepCollectionEquality().hash(type)
+      ]);
 }

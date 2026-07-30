@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Contains information about features, available to Premium users
@@ -55,8 +56,20 @@ class PremiumFeatures extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is PremiumFeatures &&
+          const DeepCollectionEquality().equals(other.features, features) &&
+          const DeepCollectionEquality().equals(other.limits, limits) &&
+          const DeepCollectionEquality()
+              .equals(other.paymentLink, paymentLink));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(features),
+        const DeepCollectionEquality().hash(limits),
+        const DeepCollectionEquality().hash(paymentLink)
+      ]);
 }

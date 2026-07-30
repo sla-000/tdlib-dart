@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// The link must be opened in an Instant View. Call getWebPageInstantView
@@ -42,8 +43,18 @@ class InternalLinkTypeInstantView extends InternalLinkType {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is InternalLinkTypeInstantView &&
+          const DeepCollectionEquality().equals(other.url, url) &&
+          const DeepCollectionEquality()
+              .equals(other.fallbackUrl, fallbackUrl));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(url),
+        const DeepCollectionEquality().hash(fallbackUrl)
+      ]);
 }

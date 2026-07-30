@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// The user is the owner of the chat and has all the administrator privileges
@@ -41,8 +42,18 @@ class ChatMemberStatusCreator extends ChatMemberStatus {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is ChatMemberStatusCreator &&
+          const DeepCollectionEquality()
+              .equals(other.isAnonymous, isAnonymous) &&
+          const DeepCollectionEquality().equals(other.isMember, isMember));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(isAnonymous),
+        const DeepCollectionEquality().hash(isMember)
+      ]);
 }

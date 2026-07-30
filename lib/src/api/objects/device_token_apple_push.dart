@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// A token for Apple Push Notification service
@@ -40,8 +41,19 @@ class DeviceTokenApplePush extends DeviceToken {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is DeviceTokenApplePush &&
+          const DeepCollectionEquality()
+              .equals(other.deviceToken, deviceToken) &&
+          const DeepCollectionEquality()
+              .equals(other.isAppSandbox, isAppSandbox));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(deviceToken),
+        const DeepCollectionEquality().hash(isAppSandbox)
+      ]);
 }

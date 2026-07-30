@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Creates a new supergroup or channel and sends a corresponding
@@ -61,8 +62,29 @@ class CreateNewSupergroupChat extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is CreateNewSupergroupChat &&
+          const DeepCollectionEquality().equals(other.title, title) &&
+          const DeepCollectionEquality().equals(other.isForum, isForum) &&
+          const DeepCollectionEquality().equals(other.isChannel, isChannel) &&
+          const DeepCollectionEquality()
+              .equals(other.description, description) &&
+          const DeepCollectionEquality().equals(other.location, location) &&
+          const DeepCollectionEquality()
+              .equals(other.messageAutoDeleteTime, messageAutoDeleteTime) &&
+          const DeepCollectionEquality().equals(other.forImport, forImport));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(title),
+        const DeepCollectionEquality().hash(isForum),
+        const DeepCollectionEquality().hash(isChannel),
+        const DeepCollectionEquality().hash(description),
+        const DeepCollectionEquality().hash(location),
+        const DeepCollectionEquality().hash(messageAutoDeleteTime),
+        const DeepCollectionEquality().hash(forImport)
+      ]);
 }

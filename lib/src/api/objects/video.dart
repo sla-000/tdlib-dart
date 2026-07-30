@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Describes a video file
@@ -91,8 +92,36 @@ class Video extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is Video &&
+          const DeepCollectionEquality().equals(other.duration, duration) &&
+          const DeepCollectionEquality().equals(other.width, width) &&
+          const DeepCollectionEquality().equals(other.height, height) &&
+          const DeepCollectionEquality().equals(other.fileName, fileName) &&
+          const DeepCollectionEquality().equals(other.mimeType, mimeType) &&
+          const DeepCollectionEquality()
+              .equals(other.hasStickers, hasStickers) &&
+          const DeepCollectionEquality()
+              .equals(other.supportsStreaming, supportsStreaming) &&
+          const DeepCollectionEquality()
+              .equals(other.minithumbnail, minithumbnail) &&
+          const DeepCollectionEquality().equals(other.thumbnail, thumbnail) &&
+          const DeepCollectionEquality().equals(other.video, video));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(duration),
+        const DeepCollectionEquality().hash(width),
+        const DeepCollectionEquality().hash(height),
+        const DeepCollectionEquality().hash(fileName),
+        const DeepCollectionEquality().hash(mimeType),
+        const DeepCollectionEquality().hash(hasStickers),
+        const DeepCollectionEquality().hash(supportsStreaming),
+        const DeepCollectionEquality().hash(minithumbnail),
+        const DeepCollectionEquality().hash(thumbnail),
+        const DeepCollectionEquality().hash(video)
+      ]);
 }

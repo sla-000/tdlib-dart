@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Returns invite links for a chat created by specified administrator.
@@ -56,8 +57,27 @@ class GetChatInviteLinks extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is GetChatInviteLinks &&
+          const DeepCollectionEquality().equals(other.chatId, chatId) &&
+          const DeepCollectionEquality()
+              .equals(other.creatorUserId, creatorUserId) &&
+          const DeepCollectionEquality().equals(other.isRevoked, isRevoked) &&
+          const DeepCollectionEquality().equals(other.offsetDate, offsetDate) &&
+          const DeepCollectionEquality()
+              .equals(other.offsetInviteLink, offsetInviteLink) &&
+          const DeepCollectionEquality().equals(other.limit, limit));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(chatId),
+        const DeepCollectionEquality().hash(creatorUserId),
+        const DeepCollectionEquality().hash(isRevoked),
+        const DeepCollectionEquality().hash(offsetDate),
+        const DeepCollectionEquality().hash(offsetInviteLink),
+        const DeepCollectionEquality().hash(limit)
+      ]);
 }

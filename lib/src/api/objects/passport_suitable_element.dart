@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Contains information about a Telegram Passport element that was requested
@@ -57,8 +58,24 @@ class PassportSuitableElement extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is PassportSuitableElement &&
+          const DeepCollectionEquality().equals(other.type, type) &&
+          const DeepCollectionEquality()
+              .equals(other.isSelfieRequired, isSelfieRequired) &&
+          const DeepCollectionEquality()
+              .equals(other.isTranslationRequired, isTranslationRequired) &&
+          const DeepCollectionEquality()
+              .equals(other.isNativeNameRequired, isNativeNameRequired));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(type),
+        const DeepCollectionEquality().hash(isSelfieRequired),
+        const DeepCollectionEquality().hash(isTranslationRequired),
+        const DeepCollectionEquality().hash(isNativeNameRequired)
+      ]);
 }

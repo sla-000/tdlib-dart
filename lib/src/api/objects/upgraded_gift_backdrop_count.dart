@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Describes a backdrop of an upgraded gift
@@ -41,8 +42,17 @@ class UpgradedGiftBackdropCount extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is UpgradedGiftBackdropCount &&
+          const DeepCollectionEquality().equals(other.backdrop, backdrop) &&
+          const DeepCollectionEquality().equals(other.totalCount, totalCount));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(backdrop),
+        const DeepCollectionEquality().hash(totalCount)
+      ]);
 }

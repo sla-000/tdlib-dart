@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// A user changed the answer to a poll; for bots only
@@ -62,8 +63,22 @@ class UpdatePollAnswer extends Update {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is UpdatePollAnswer &&
+          const DeepCollectionEquality().equals(other.pollId, pollId) &&
+          const DeepCollectionEquality().equals(other.voterId, voterId) &&
+          const DeepCollectionEquality().equals(other.optionIds, optionIds) &&
+          const DeepCollectionEquality()
+              .equals(other.optionPositions, optionPositions));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(pollId),
+        const DeepCollectionEquality().hash(voterId),
+        const DeepCollectionEquality().hash(optionIds),
+        const DeepCollectionEquality().hash(optionPositions)
+      ]);
 }

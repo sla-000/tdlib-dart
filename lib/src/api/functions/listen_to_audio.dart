@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Informs TDLib that an audio was listened by the user
@@ -30,8 +31,18 @@ class ListenToAudio extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is ListenToAudio &&
+          const DeepCollectionEquality()
+              .equals(other.audioFileId, audioFileId) &&
+          const DeepCollectionEquality().equals(other.duration, duration));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(audioFileId),
+        const DeepCollectionEquality().hash(duration)
+      ]);
 }

@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Autosave settings for some type of chats were updated
@@ -43,8 +44,17 @@ class UpdateAutosaveSettings extends Update {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is UpdateAutosaveSettings &&
+          const DeepCollectionEquality().equals(other.scope, scope) &&
+          const DeepCollectionEquality().equals(other.settings, settings));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(scope),
+        const DeepCollectionEquality().hash(settings)
+      ]);
 }

@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// The supergroup sticker set with allowed custom emoji was changed
@@ -41,8 +42,19 @@ class ChatEventCustomEmojiStickerSetChanged extends ChatEventAction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is ChatEventCustomEmojiStickerSetChanged &&
+          const DeepCollectionEquality()
+              .equals(other.oldStickerSetId, oldStickerSetId) &&
+          const DeepCollectionEquality()
+              .equals(other.newStickerSetId, newStickerSetId));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(oldStickerSetId),
+        const DeepCollectionEquality().hash(newStickerSetId)
+      ]);
 }

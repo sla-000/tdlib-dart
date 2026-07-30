@@ -1,4 +1,4 @@
-import 'package:tdlib/td_api.dart';
+import '../tdapi.dart';
 extension TdErrorExtensions on TdError {
   TdError copyWith({
     int? code,

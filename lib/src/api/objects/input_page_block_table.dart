@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// A table
@@ -61,8 +62,21 @@ class InputPageBlockTable extends InputPageBlock {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is InputPageBlockTable &&
+          const DeepCollectionEquality().equals(other.caption, caption) &&
+          const DeepCollectionEquality().equals(other.cells, cells) &&
+          const DeepCollectionEquality().equals(other.isBordered, isBordered) &&
+          const DeepCollectionEquality().equals(other.isStriped, isStriped));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(caption),
+        const DeepCollectionEquality().hash(cells),
+        const DeepCollectionEquality().hash(isBordered),
+        const DeepCollectionEquality().hash(isStriped)
+      ]);
 }

@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Writes a part of a generated file. This method is intended to be used only
@@ -37,8 +38,20 @@ class WriteGeneratedFilePart extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is WriteGeneratedFilePart &&
+          const DeepCollectionEquality()
+              .equals(other.generationId, generationId) &&
+          const DeepCollectionEquality().equals(other.offset, offset) &&
+          const DeepCollectionEquality().equals(other.data, data));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(generationId),
+        const DeepCollectionEquality().hash(offset),
+        const DeepCollectionEquality().hash(data)
+      ]);
 }

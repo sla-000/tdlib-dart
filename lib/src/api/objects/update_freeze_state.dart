@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// The freeze state of the current user's account has changed
@@ -54,8 +55,23 @@ class UpdateFreezeState extends Update {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is UpdateFreezeState &&
+          const DeepCollectionEquality().equals(other.isFrozen, isFrozen) &&
+          const DeepCollectionEquality()
+              .equals(other.freezingDate, freezingDate) &&
+          const DeepCollectionEquality()
+              .equals(other.deletionDate, deletionDate) &&
+          const DeepCollectionEquality().equals(other.appealLink, appealLink));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(isFrozen),
+        const DeepCollectionEquality().hash(freezingDate),
+        const DeepCollectionEquality().hash(deletionDate),
+        const DeepCollectionEquality().hash(appealLink)
+      ]);
 }

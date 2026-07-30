@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Sets default administrator rights for adding the bot to channel chats; for
@@ -28,8 +29,17 @@ class SetDefaultChannelAdministratorRights extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is SetDefaultChannelAdministratorRights &&
+          const DeepCollectionEquality().equals(
+              other.defaultChannelAdministratorRights,
+              defaultChannelAdministratorRights));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(defaultChannelAdministratorRights)
+      ]);
 }

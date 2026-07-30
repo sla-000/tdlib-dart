@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// The parameters of speech recognition without Telegram Premium subscription
@@ -56,8 +57,24 @@ class UpdateSpeechRecognitionTrial extends Update {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is UpdateSpeechRecognitionTrial &&
+          const DeepCollectionEquality()
+              .equals(other.maxMediaDuration, maxMediaDuration) &&
+          const DeepCollectionEquality()
+              .equals(other.weeklyCount, weeklyCount) &&
+          const DeepCollectionEquality().equals(other.leftCount, leftCount) &&
+          const DeepCollectionEquality()
+              .equals(other.nextResetDate, nextResetDate));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(maxMediaDuration),
+        const DeepCollectionEquality().hash(weeklyCount),
+        const DeepCollectionEquality().hash(leftCount),
+        const DeepCollectionEquality().hash(nextResetDate)
+      ]);
 }

@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Contains information about an active affiliate program
@@ -52,8 +53,20 @@ class AffiliateProgramInfo extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is AffiliateProgramInfo &&
+          const DeepCollectionEquality().equals(other.parameters, parameters) &&
+          const DeepCollectionEquality().equals(other.endDate, endDate) &&
+          const DeepCollectionEquality().equals(
+              other.dailyRevenuePerUserAmount, dailyRevenuePerUserAmount));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(parameters),
+        const DeepCollectionEquality().hash(endDate),
+        const DeepCollectionEquality().hash(dailyRevenuePerUserAmount)
+      ]);
 }

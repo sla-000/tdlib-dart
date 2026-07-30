@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Contains basic information about another user who started a chat with the
@@ -64,8 +65,28 @@ class AccountInfo extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is AccountInfo &&
+          const DeepCollectionEquality()
+              .equals(other.registrationMonth, registrationMonth) &&
+          const DeepCollectionEquality()
+              .equals(other.registrationYear, registrationYear) &&
+          const DeepCollectionEquality()
+              .equals(other.phoneNumberCountryCode, phoneNumberCountryCode) &&
+          const DeepCollectionEquality()
+              .equals(other.lastNameChangeDate, lastNameChangeDate) &&
+          const DeepCollectionEquality()
+              .equals(other.lastPhotoChangeDate, lastPhotoChangeDate));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(registrationMonth),
+        const DeepCollectionEquality().hash(registrationYear),
+        const DeepCollectionEquality().hash(phoneNumberCountryCode),
+        const DeepCollectionEquality().hash(lastNameChangeDate),
+        const DeepCollectionEquality().hash(lastPhotoChangeDate)
+      ]);
 }

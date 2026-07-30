@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Describes a prepaid giveaway
@@ -59,8 +60,25 @@ class PrepaidGiveaway extends TdObject {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is PrepaidGiveaway &&
+          const DeepCollectionEquality().equals(other.id, id) &&
+          const DeepCollectionEquality()
+              .equals(other.winnerCount, winnerCount) &&
+          const DeepCollectionEquality().equals(other.prize, prize) &&
+          const DeepCollectionEquality().equals(other.boostCount, boostCount) &&
+          const DeepCollectionEquality()
+              .equals(other.paymentDate, paymentDate));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(id),
+        const DeepCollectionEquality().hash(winnerCount),
+        const DeepCollectionEquality().hash(prize),
+        const DeepCollectionEquality().hash(boostCount),
+        const DeepCollectionEquality().hash(paymentDate)
+      ]);
 }

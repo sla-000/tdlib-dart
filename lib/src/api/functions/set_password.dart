@@ -1,5 +1,6 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Changes the 2-step verification password for the current user. If a new
@@ -49,8 +50,27 @@ class SetPassword extends TdFunction {
       };
 
   @override
-  bool operator ==(Object other) => overriddenEquality(other);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is SetPassword &&
+          const DeepCollectionEquality()
+              .equals(other.oldPassword, oldPassword) &&
+          const DeepCollectionEquality()
+              .equals(other.newPassword, newPassword) &&
+          const DeepCollectionEquality().equals(other.newHint, newHint) &&
+          const DeepCollectionEquality()
+              .equals(other.setRecoveryEmailAddress, setRecoveryEmailAddress) &&
+          const DeepCollectionEquality()
+              .equals(other.newRecoveryEmailAddress, newRecoveryEmailAddress));
 
   @override
-  int get hashCode => overriddenHashCode;
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(oldPassword),
+        const DeepCollectionEquality().hash(newPassword),
+        const DeepCollectionEquality().hash(newHint),
+        const DeepCollectionEquality().hash(setRecoveryEmailAddress),
+        const DeepCollectionEquality().hash(newRecoveryEmailAddress)
+      ]);
 }
