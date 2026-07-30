@@ -1,0 +1,92 @@
+name: Auto Update TDLib
+
+on:
+  schedule:
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-tdlib:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Dart
+        uses: dart-lang/setup-dart@v1
+        with:
+          sdk: '3.12.2'
+
+      - name: Check TDLib version
+        id: check_version
+        run: |
+          CMAKE_CONTENT=$(curl -sSL https://raw.githubusercontent.com/tdlib/td/master/CMakeLists.txt)
+          LATEST_VERSION=$(echo "$CMAKE_CONTENT" | grep -i "project(TDLib VERSION" | sed -E 's/.*VERSION ([0-9]+\.[0-9]+\.[0-9]+).*/\1/')
+
+          if [ -z "$LATEST_VERSION" ]; then
+            echo "Error: Could not extract TDLib version from CMakeLists.txt"
+            exit 1
+          fi
+
+          CURRENT_VERSION=""
+          if [ -f TDLIB_VERSION.md ]; then
+            CURRENT_VERSION=$(tr -d '[:space:]' < TDLIB_VERSION.md)
+          fi
+
+          echo "Latest version in tdlib/td: ${LATEST_VERSION}"
+          echo "Current version in repo: ${CURRENT_VERSION}"
+
+          if [ "$LATEST_VERSION" = "$CURRENT_VERSION" ]; then
+            echo "Version is up to date (${CURRENT_VERSION}). Nothing to do."
+            echo "need_update=false" >> $GITHUB_OUTPUT
+          else
+            echo "New version available: ${LATEST_VERSION}"
+            echo "need_update=true" >> $GITHUB_OUTPUT
+            echo "latest_version=${LATEST_VERSION}" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Download TL Scheme and Update Version
+        if: steps.check_version.outputs.need_update == 'true'
+        run: |
+          NEW_VERSION="${{ steps.check_version.outputs.latest_version }}"
+          echo -n "$NEW_VERSION" > TDLIB_VERSION.md
+
+          curl -sSL https://raw.githubusercontent.com/tdlib/td/master/td/generate/scheme/td_api.tl -o data/td_api.tl
+
+      - name: Install dependencies and run code generator
+        if: steps.check_version.outputs.need_update == 'true'
+        run: |
+          dart pub get
+          if [ -d "generator" ]; then
+            (cd generator && dart pub get)
+          fi
+          dart run generator/lib/src/main.dart
+
+      - name: Run Dart analyze
+        if: steps.check_version.outputs.need_update == 'true'
+        run: dart analyze
+
+      - name: Run Dart format
+        if: steps.check_version.outputs.need_update == 'true'
+        run: dart format lib
+
+      - name: Commit and Push changes
+        if: steps.check_version.outputs.need_update == 'true'
+        run: |
+          NEW_VERSION="${{ steps.check_version.outputs.latest_version }}"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git add TDLIB_VERSION.md data/td_api.tl lib/
+
+          if ! git diff --cached --quiet; then
+            git commit -m "Update TDLib to v${NEW_VERSION}"
+            git tag "v${NEW_VERSION}"
+            git push origin master --tags
+          else
+            echo "No changes detected to commit."
+          fi
