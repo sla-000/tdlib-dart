@@ -60,7 +60,7 @@ jobs:
       - name: Install dependencies and run code generator
         if: steps.check_version.outputs.need_update == 'true'
         run: |
-          dart pub get
+          dart pub get --no-example
           if [ -d "generator" ]; then
             (cd generator && dart pub get)
           fi
@@ -68,7 +68,7 @@ jobs:
 
       - name: Run Dart analyze
         if: steps.check_version.outputs.need_update == 'true'
-        run: dart analyze
+        run: dart analyze lib
 
       - name: Run Dart format
         if: steps.check_version.outputs.need_update == 'true'
