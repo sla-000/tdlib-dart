@@ -45,7 +45,7 @@ class AutoDownloadSettings extends TdObject {
   /// while the user is listening to an audio file
   final bool preloadNextAudio;
 
-  /// [preloadStories] True, if stories needs to be preloaded
+  /// [preloadStories] True, if stories need to be preloaded
   final bool preloadStories;
 
   /// [useLessDataForCalls] True, if "use less data for calls" option needs to

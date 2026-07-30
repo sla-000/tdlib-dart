@@ -10,6 +10,7 @@ class UserFullInfo extends TdObject {
     this.personalPhoto,
     this.photo,
     this.publicPhoto,
+    this.communityId,
     this.blockList,
     required this.canBeCalled,
     required this.supportsVideoCalls,
@@ -60,6 +61,10 @@ class UserFullInfo extends TdObject {
   /// user.profile_photo and chat.photo. This photo isn't returned in the list
   /// of user photos
   final ChatPhoto? publicPhoto;
+
+  /// [communityId] Identifier of the community to which chat with the bot was
+  /// added; for bots only
+  final int? communityId;
 
   /// [blockList] Block list to which the user is added; may be null if none
   final BlockList? blockList;
@@ -179,6 +184,7 @@ class UserFullInfo extends TdObject {
       photo: ChatPhoto.fromJson(json['photo'] as Map<String, dynamic>?),
       publicPhoto:
           ChatPhoto.fromJson(json['public_photo'] as Map<String, dynamic>?),
+      communityId: json['community_id'] as int?,
       blockList:
           BlockList.fromJson(json['block_list'] as Map<String, dynamic>?),
       canBeCalled: json['can_be_called'] as bool,
@@ -230,6 +236,7 @@ class UserFullInfo extends TdObject {
         'personal_photo': personalPhoto?.toJson(),
         'photo': photo?.toJson(),
         'public_photo': publicPhoto?.toJson(),
+        'community_id': communityId,
         'block_list': blockList?.toJson(),
         'can_be_called': canBeCalled,
         'supports_video_calls': supportsVideoCalls,
@@ -272,6 +279,8 @@ class UserFullInfo extends TdObject {
           const DeepCollectionEquality().equals(other.photo, photo) &&
           const DeepCollectionEquality()
               .equals(other.publicPhoto, publicPhoto) &&
+          const DeepCollectionEquality()
+              .equals(other.communityId, communityId) &&
           const DeepCollectionEquality().equals(other.blockList, blockList) &&
           const DeepCollectionEquality()
               .equals(other.canBeCalled, canBeCalled) &&
@@ -332,6 +341,7 @@ class UserFullInfo extends TdObject {
         const DeepCollectionEquality().hash(personalPhoto),
         const DeepCollectionEquality().hash(photo),
         const DeepCollectionEquality().hash(publicPhoto),
+        const DeepCollectionEquality().hash(communityId),
         const DeepCollectionEquality().hash(blockList),
         const DeepCollectionEquality().hash(canBeCalled),
         const DeepCollectionEquality().hash(supportsVideoCalls),

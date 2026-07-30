@@ -8,6 +8,7 @@ import '../tdapi.dart';
 class SupergroupFullInfo extends TdObject {
   const SupergroupFullInfo({
     this.photo,
+    required this.communityId,
     required this.description,
     required this.memberCount,
     required this.administratorCount,
@@ -53,6 +54,10 @@ class SupergroupFullInfo extends TdObject {
   /// [photo] Chat photo; may be null if empty or unknown. If non-null, then it
   /// is the same photo as in chat.photo
   final ChatPhoto? photo;
+
+  /// [communityId] Identifier of the community to which the corresponding chat
+  /// was added
+  final int communityId;
 
   /// param_[description] Supergroup or channel description
   final String description;
@@ -228,6 +233,7 @@ class SupergroupFullInfo extends TdObject {
 
     return SupergroupFullInfo(
       photo: ChatPhoto.fromJson(json['photo'] as Map<String, dynamic>?),
+      communityId: json['community_id'] as int,
       description: json['description'] as String,
       memberCount: json['member_count'] as int,
       administratorCount: json['administrator_count'] as int,
@@ -290,6 +296,7 @@ class SupergroupFullInfo extends TdObject {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'photo': photo?.toJson(),
+        'community_id': communityId,
         'description': description,
         'member_count': memberCount,
         'administrator_count': administratorCount,
@@ -339,6 +346,8 @@ class SupergroupFullInfo extends TdObject {
       (other.runtimeType == runtimeType &&
           other is SupergroupFullInfo &&
           const DeepCollectionEquality().equals(other.photo, photo) &&
+          const DeepCollectionEquality()
+              .equals(other.communityId, communityId) &&
           const DeepCollectionEquality()
               .equals(other.description, description) &&
           const DeepCollectionEquality()
@@ -395,8 +404,7 @@ class SupergroupFullInfo extends TdObject {
           const DeepCollectionEquality().equals(other.giftCount, giftCount) &&
           const DeepCollectionEquality()
               .equals(other.myBoostCount, myBoostCount) &&
-          const DeepCollectionEquality()
-              .equals(other.unrestrictBoostCount, unrestrictBoostCount) &&
+          const DeepCollectionEquality().equals(other.unrestrictBoostCount, unrestrictBoostCount) &&
           const DeepCollectionEquality().equals(other.outgoingPaidMessageStarCount, outgoingPaidMessageStarCount) &&
           const DeepCollectionEquality().equals(other.stickerSetId, stickerSetId) &&
           const DeepCollectionEquality().equals(other.customEmojiStickerSetId, customEmojiStickerSetId) &&
@@ -413,6 +421,7 @@ class SupergroupFullInfo extends TdObject {
   int get hashCode => Object.hashAll([
         runtimeType,
         const DeepCollectionEquality().hash(photo),
+        const DeepCollectionEquality().hash(communityId),
         const DeepCollectionEquality().hash(description),
         const DeepCollectionEquality().hash(memberCount),
         const DeepCollectionEquality().hash(administratorCount),

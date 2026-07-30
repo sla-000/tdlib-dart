@@ -8,10 +8,14 @@ import '../tdapi.dart';
 class RichMessageSourceMarkdown extends RichMessageSource {
   const RichMessageSourceMarkdown({
     required this.text,
+    required this.media,
   });
 
   /// [text] Markdown-formatted text of the message
   final String text;
+
+  /// [media] Media used in the message
+  final List<InputRichMessageMedia> media;
 
   static const String constructor = 'richMessageSourceMarkdown';
 
@@ -22,6 +26,10 @@ class RichMessageSourceMarkdown extends RichMessageSource {
 
     return RichMessageSourceMarkdown(
       text: json['text'] as String,
+      media: List<InputRichMessageMedia>.from(
+          ((json['media'] as List<dynamic>?) ?? <dynamic>[])
+              .map((item) => InputRichMessageMedia.fromJson(item))
+              .toList()),
     );
   }
 
@@ -31,6 +39,7 @@ class RichMessageSourceMarkdown extends RichMessageSource {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'text': text,
+        'media': media.map((item) => item.toJson()).toList(),
         '@type': constructor,
       };
 
@@ -39,9 +48,13 @@ class RichMessageSourceMarkdown extends RichMessageSource {
       identical(this, other) ||
       (other.runtimeType == runtimeType &&
           other is RichMessageSourceMarkdown &&
-          const DeepCollectionEquality().equals(other.text, text));
+          const DeepCollectionEquality().equals(other.text, text) &&
+          const DeepCollectionEquality().equals(other.media, media));
 
   @override
-  int get hashCode =>
-      Object.hashAll([runtimeType, const DeepCollectionEquality().hash(text)]);
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(text),
+        const DeepCollectionEquality().hash(media)
+      ]);
 }

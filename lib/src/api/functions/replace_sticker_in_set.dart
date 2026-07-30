@@ -25,7 +25,7 @@ class ReplaceStickerInSet extends TdFunction {
   final InputFile oldSticker;
 
   /// [newSticker] Sticker to add to the set
-  final InputSticker newSticker;
+  final NewSticker newSticker;
 
   static const String constructor = 'replaceStickerInSet';
 

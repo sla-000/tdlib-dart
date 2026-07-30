@@ -3,8 +3,8 @@ import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
 import '../tdapi.dart';
 
-/// Approval of suggested post has failed, because the user which proposed the
-/// post had no enough funds
+/// Approval of suggested post has failed, because the user who proposed the
+/// post didn't have enough funds
 @immutable
 class MessageSuggestedPostApprovalFailed extends MessageContent {
   const MessageSuggestedPostApprovalFailed({

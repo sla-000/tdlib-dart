@@ -10,25 +10,10 @@ import '../tdapi.dart';
 class AddProfileAudio extends TdFunction {
   const AddProfileAudio({
     required this.audio,
-    required this.duration,
-    required this.title,
-    required this.performer,
   });
 
-  /// [audio] The audio file to be added
-  final InputFile audio;
-
-  /// [duration] Duration of the audio, in seconds; may be replaced by the
-  /// server; ignored for already uploaded files
-  final int duration;
-
-  /// [title] Title of the audio; 0-64 characters; may be replaced by the
-  /// server; ignored for already uploaded files
-  final String title;
-
-  /// [performer] Performer of the audio; 0-64 characters, may be replaced by
-  /// the server; ignored for already uploaded files
-  final String performer;
+  /// [audio] The audio to add
+  final InputAudio audio;
 
   static const String constructor = 'addProfileAudio';
 
@@ -38,9 +23,6 @@ class AddProfileAudio extends TdFunction {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'audio': audio.toJson(),
-        'duration': duration,
-        'title': title,
-        'performer': performer,
         '@type': constructor,
       };
 
@@ -49,17 +31,9 @@ class AddProfileAudio extends TdFunction {
       identical(this, other) ||
       (other.runtimeType == runtimeType &&
           other is AddProfileAudio &&
-          const DeepCollectionEquality().equals(other.audio, audio) &&
-          const DeepCollectionEquality().equals(other.duration, duration) &&
-          const DeepCollectionEquality().equals(other.title, title) &&
-          const DeepCollectionEquality().equals(other.performer, performer));
+          const DeepCollectionEquality().equals(other.audio, audio));
 
   @override
-  int get hashCode => Object.hashAll([
-        runtimeType,
-        const DeepCollectionEquality().hash(audio),
-        const DeepCollectionEquality().hash(duration),
-        const DeepCollectionEquality().hash(title),
-        const DeepCollectionEquality().hash(performer)
-      ]);
+  int get hashCode =>
+      Object.hashAll([runtimeType, const DeepCollectionEquality().hash(audio)]);
 }

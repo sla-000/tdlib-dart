@@ -8,22 +8,12 @@ import '../tdapi.dart';
 class InputMessageVoiceNote extends InputMessageContent {
   const InputMessageVoiceNote({
     required this.voiceNote,
-    required this.duration,
-    required this.waveform,
     this.caption,
     this.selfDestructType,
   });
 
-  /// [voiceNote] Voice note to be sent. The voice note must be encoded with the
-  /// Opus codec and stored inside an OGG container with a single audio channel,
-  /// or be in MP3 or M4A format as regular audio
-  final InputFile voiceNote;
-
-  /// [duration] Duration of the voice note, in seconds
-  final int duration;
-
-  /// [waveform] Waveform representation of the voice note in 5-bit format
-  final String waveform;
+  /// [voiceNote] Voice note to be sent
+  final InputVoiceNote voiceNote;
 
   /// [caption] Voice note caption; pass null to use an empty caption;
   /// 0-getOption("message_caption_length_max") characters
@@ -42,9 +32,7 @@ class InputMessageVoiceNote extends InputMessageContent {
 
     return InputMessageVoiceNote(
       voiceNote:
-          InputFile.fromJson(json['voice_note'] as Map<String, dynamic>?)!,
-      duration: json['duration'] as int,
-      waveform: json['waveform'] as String,
+          InputVoiceNote.fromJson(json['voice_note'] as Map<String, dynamic>?)!,
       caption: FormattedText.fromJson(json['caption'] as Map<String, dynamic>?),
       selfDestructType: MessageSelfDestructType.fromJson(
           json['self_destruct_type'] as Map<String, dynamic>?),
@@ -57,8 +45,6 @@ class InputMessageVoiceNote extends InputMessageContent {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'voice_note': voiceNote.toJson(),
-        'duration': duration,
-        'waveform': waveform,
         'caption': caption?.toJson(),
         'self_destruct_type': selfDestructType?.toJson(),
         '@type': constructor,
@@ -70,8 +56,6 @@ class InputMessageVoiceNote extends InputMessageContent {
       (other.runtimeType == runtimeType &&
           other is InputMessageVoiceNote &&
           const DeepCollectionEquality().equals(other.voiceNote, voiceNote) &&
-          const DeepCollectionEquality().equals(other.duration, duration) &&
-          const DeepCollectionEquality().equals(other.waveform, waveform) &&
           const DeepCollectionEquality().equals(other.caption, caption) &&
           const DeepCollectionEquality()
               .equals(other.selfDestructType, selfDestructType));
@@ -80,8 +64,6 @@ class InputMessageVoiceNote extends InputMessageContent {
   int get hashCode => Object.hashAll([
         runtimeType,
         const DeepCollectionEquality().hash(voiceNote),
-        const DeepCollectionEquality().hash(duration),
-        const DeepCollectionEquality().hash(waveform),
         const DeepCollectionEquality().hash(caption),
         const DeepCollectionEquality().hash(selfDestructType)
       ]);

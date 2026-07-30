@@ -73,7 +73,7 @@ class UpgradedGift extends TdObject {
   /// [isBurned] True, if the gift was used to craft another gift
   final bool isBurned;
 
-  /// [isCrafted] True, if the gift was craft from another gifts
+  /// [isCrafted] True, if the gift was crafted from other gifts
   final bool isCrafted;
 
   /// [isPremium] True, if the original gift could have been bought only by

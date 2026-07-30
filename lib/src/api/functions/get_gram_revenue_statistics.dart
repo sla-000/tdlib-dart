@@ -3,18 +3,18 @@ import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
 import '../tdapi.dart';
 
-/// Returns detailed Toncoin revenue statistics of the current user
-/// Returns [TonRevenueStatistics]
+/// Returns detailed TON Gram revenue statistics of the current user
+/// Returns [GramRevenueStatistics]
 @immutable
-class GetTonRevenueStatistics extends TdFunction {
-  const GetTonRevenueStatistics({
+class GetGramRevenueStatistics extends TdFunction {
+  const GetGramRevenueStatistics({
     required this.isDark,
   });
 
   /// [isDark] Pass true if a dark theme is used by the application
   final bool isDark;
 
-  static const String constructor = 'getTonRevenueStatistics';
+  static const String constructor = 'getGramRevenueStatistics';
 
   @override
   String getConstructor() => constructor;
@@ -29,7 +29,7 @@ class GetTonRevenueStatistics extends TdFunction {
   bool operator ==(Object other) =>
       identical(this, other) ||
       (other.runtimeType == runtimeType &&
-          other is GetTonRevenueStatistics &&
+          other is GetGramRevenueStatistics &&
           const DeepCollectionEquality().equals(other.isDark, isDark));
 
   @override

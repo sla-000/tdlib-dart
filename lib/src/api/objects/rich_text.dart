@@ -19,6 +19,7 @@ abstract class RichText extends TdObject {
   /// [RichTextCashtag]
   /// [RichTextCustomEmoji]
   /// [RichTextDateTime]
+  /// [RichTextDiff]
   /// [RichTextEmailAddress]
   /// [RichTextFixed]
   /// [RichTextHashtag]
@@ -61,6 +62,8 @@ abstract class RichText extends TdObject {
         return RichTextCustomEmoji.fromJson(json);
       case RichTextDateTime.constructor:
         return RichTextDateTime.fromJson(json);
+      case RichTextDiff.constructor:
+        return RichTextDiff.fromJson(json);
       case RichTextEmailAddress.constructor:
         return RichTextEmailAddress.fromJson(json);
       case RichTextFixed.constructor:

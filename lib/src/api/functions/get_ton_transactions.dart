@@ -3,7 +3,7 @@ import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
 import '../tdapi.dart';
 
-/// Returns the list of Toncoin transactions of the current user
+/// Returns the list of TON blockchain transactions of the current user
 /// Returns [TonTransactions]
 @immutable
 class GetTonTransactions extends TdFunction {

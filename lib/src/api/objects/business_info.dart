@@ -21,12 +21,12 @@ class BusinessInfo extends TdObject {
   final BusinessLocation? location;
 
   /// [openingHours] Opening hours of the business; may be null if none. The
-  /// hours are guaranteed to be valid and has already been split by week days
+  /// hours are guaranteed to be valid and have already been split by week days
   final BusinessOpeningHours? openingHours;
 
   /// [localOpeningHours] Opening hours of the business in the local time; may
-  /// be null if none. The hours are guaranteed to be valid and has already been
-  /// split by week days. Local time zone identifier will be empty. An
+  /// be null if none. The hours are guaranteed to be valid and have already
+  /// been split by week days. Local time zone identifier will be empty. An
   /// updateUserFullInfo update is not triggered when value of this field
   /// changes
   final BusinessOpeningHours? localOpeningHours;
