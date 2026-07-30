@@ -2,7 +2,7 @@ import 'package:meta/meta.dart';
 import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
-/// Describes a story sent by the chat
+/// Describes a story posted on behalf of the chat
 @immutable
 class ChatStatisticsObjectTypeStory extends ChatStatisticsObjectType {
   const ChatStatisticsObjectTypeStory({

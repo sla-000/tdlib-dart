@@ -2,12 +2,14 @@ import 'package:meta/meta.dart';
 import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
-/// Contains information about notification settings for reactions
+/// Contains information about notification settings for reactions and poll
+/// votes
 @immutable
 class ReactionNotificationSettings extends TdObject {
   const ReactionNotificationSettings({
     required this.messageReactionSource,
     required this.storyReactionSource,
+    required this.pollVoteSource,
     required this.soundId,
     required this.showPreview,
   });
@@ -20,8 +22,11 @@ class ReactionNotificationSettings extends TdObject {
   /// are shown
   final ReactionNotificationSource storyReactionSource;
 
+  /// [pollVoteSource] Source of poll votes for which notifications are shown
+  final ReactionNotificationSource pollVoteSource;
+
   /// [soundId] Identifier of the notification sound to be played; 0 if sound is
-  /// disabled
+  /// disabled; pass -1 to use the app-dependent default sound
   final int soundId;
 
   /// [showPreview] True, if reaction sender and emoji must be displayed in
@@ -40,6 +45,8 @@ class ReactionNotificationSettings extends TdObject {
           json['message_reaction_source'] as Map<String, dynamic>?)!,
       storyReactionSource: ReactionNotificationSource.fromJson(
           json['story_reaction_source'] as Map<String, dynamic>?)!,
+      pollVoteSource: ReactionNotificationSource.fromJson(
+          json['poll_vote_source'] as Map<String, dynamic>?)!,
       soundId: int.tryParse(json['sound_id']) ?? 0,
       showPreview: json['show_preview'] as bool,
     );
@@ -52,6 +59,7 @@ class ReactionNotificationSettings extends TdObject {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'message_reaction_source': messageReactionSource.toJson(),
         'story_reaction_source': storyReactionSource.toJson(),
+        'poll_vote_source': pollVoteSource.toJson(),
         'sound_id': soundId.toString(),
         'show_preview': showPreview,
         '@type': constructor,

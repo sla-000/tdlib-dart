@@ -8,12 +8,12 @@ import '../tdapi.dart';
 @immutable
 class PingProxy extends TdFunction {
   const PingProxy({
-    required this.proxyId,
+    this.proxy,
   });
 
-  /// [proxyId] Proxy identifier. Use 0 to ping a Telegram server without a
+  /// [proxy] The proxy to test; pass null to ping a Telegram server without a
   /// proxy
-  final int proxyId;
+  final Proxy? proxy;
 
   static const String constructor = 'pingProxy';
 
@@ -22,7 +22,7 @@ class PingProxy extends TdFunction {
 
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'proxy_id': proxyId,
+        'proxy': proxy?.toJson(),
         '@type': constructor,
       };
 

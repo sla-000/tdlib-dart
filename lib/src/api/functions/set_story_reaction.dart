@@ -2,19 +2,20 @@ import 'package:meta/meta.dart';
 import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
-/// Changes chosen reaction on a story that has already been sent
+/// Changes chosen reaction on a story that has already been sent; not
+/// supported for live stories
 /// Returns [Ok]
 @immutable
 class SetStoryReaction extends TdFunction {
   const SetStoryReaction({
-    required this.storySenderChatId,
+    required this.storyPosterChatId,
     required this.storyId,
     this.reactionType,
     required this.updateRecentReactions,
   });
 
-  /// [storySenderChatId] The identifier of the sender of the story
-  final int storySenderChatId;
+  /// [storyPosterChatId] The identifier of the poster of the story
+  final int storyPosterChatId;
 
   /// [storyId] The identifier of the story
   final int storyId;
@@ -35,7 +36,7 @@ class SetStoryReaction extends TdFunction {
 
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'story_sender_chat_id': storySenderChatId,
+        'story_poster_chat_id': storyPosterChatId,
         'story_id': storyId,
         'reaction_type': reactionType?.toJson(),
         'update_recent_reactions': updateRecentReactions,

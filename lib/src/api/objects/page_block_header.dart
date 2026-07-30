@@ -2,7 +2,7 @@ import 'package:meta/meta.dart';
 import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
-/// A header
+/// A header; instant view only
 @immutable
 class PageBlockHeader extends PageBlock {
   const PageBlockHeader({

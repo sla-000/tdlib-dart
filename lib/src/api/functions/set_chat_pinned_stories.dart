@@ -3,7 +3,7 @@ import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Changes the list of pinned stories on a chat page; requires
-/// can_edit_stories right in the chat
+/// can_edit_stories administrator right in the chat
 /// Returns [Ok]
 @immutable
 class SetChatPinnedStories extends TdFunction {

@@ -2,7 +2,7 @@ import 'package:meta/meta.dart';
 import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
-/// Returns information about a file; this is an offline request
+/// Returns information about a file. This is an offline method
 /// Returns [File]
 @immutable
 class GetFile extends TdFunction {

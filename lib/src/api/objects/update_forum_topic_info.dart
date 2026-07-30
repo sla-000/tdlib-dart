@@ -6,12 +6,8 @@ import '../tdapi.dart';
 @immutable
 class UpdateForumTopicInfo extends Update {
   const UpdateForumTopicInfo({
-    required this.chatId,
     required this.info,
   });
-
-  /// [chatId] Chat identifier
-  final int chatId;
 
   /// [info] New information about the topic
   final ForumTopicInfo info;
@@ -24,7 +20,6 @@ class UpdateForumTopicInfo extends Update {
     }
 
     return UpdateForumTopicInfo(
-      chatId: json['chat_id'] as int,
       info: ForumTopicInfo.fromJson(json['info'] as Map<String, dynamic>?)!,
     );
   }
@@ -34,7 +29,6 @@ class UpdateForumTopicInfo extends Update {
 
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'chat_id': chatId,
         'info': info.toJson(),
         '@type': constructor,
       };

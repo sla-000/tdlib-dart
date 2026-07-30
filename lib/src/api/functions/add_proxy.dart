@@ -4,27 +4,23 @@ import '../tdapi.dart';
 
 /// Adds a proxy server for network requests. Can be called before
 /// authorization
-/// Returns [Proxy]
+/// Returns [AddedProxy]
 @immutable
 class AddProxy extends TdFunction {
   const AddProxy({
-    required this.server,
-    required this.port,
+    required this.proxy,
     required this.enable,
-    required this.type,
+    required this.comment,
   });
 
-  /// [server] Proxy server domain or IP address
-  final String server;
-
-  /// [port] Proxy server port
-  final int port;
+  /// [proxy] The proxy to add
+  final Proxy proxy;
 
   /// [enable] Pass true to immediately enable the proxy
   final bool enable;
 
-  /// [type] Proxy type
-  final ProxyType type;
+  /// [comment] Comment to set for the proxy
+  final String comment;
 
   static const String constructor = 'addProxy';
 
@@ -33,10 +29,9 @@ class AddProxy extends TdFunction {
 
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'server': server,
-        'port': port,
+        'proxy': proxy.toJson(),
         'enable': enable,
-        'type': type.toJson(),
+        'comment': comment,
         '@type': constructor,
       };
 

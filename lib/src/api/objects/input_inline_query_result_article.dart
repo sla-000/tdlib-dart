@@ -8,7 +8,6 @@ class InputInlineQueryResultArticle extends InputInlineQueryResult {
   const InputInlineQueryResultArticle({
     required this.id,
     required this.url,
-    required this.hideUrl,
     required this.title,
     required this.description,
     required this.thumbnailUrl,
@@ -23,9 +22,6 @@ class InputInlineQueryResultArticle extends InputInlineQueryResult {
 
   /// [url] URL of the result, if it exists
   final String url;
-
-  /// [hideUrl] True, if the URL must be not shown
-  final bool hideUrl;
 
   /// [title] Title of the result
   final String title;
@@ -47,8 +43,9 @@ class InputInlineQueryResultArticle extends InputInlineQueryResult {
   final ReplyMarkup? replyMarkup;
 
   /// [inputMessageContent] The content of the message to be sent. Must be one
-  /// of the following types: inputMessageText, inputMessageInvoice,
-  /// inputMessageLocation, inputMessageVenue or inputMessageContact
+  /// of the following types: inputMessageText, inputMessageRichMessage,
+  /// inputMessageInvoice, inputMessageLiveLocation, inputMessageLocation,
+  /// inputMessageVenue or inputMessageContact
   final InputMessageContent inputMessageContent;
 
   static const String constructor = 'inputInlineQueryResultArticle';
@@ -61,7 +58,6 @@ class InputInlineQueryResultArticle extends InputInlineQueryResult {
     return InputInlineQueryResultArticle(
       id: json['id'] as String,
       url: json['url'] as String,
-      hideUrl: json['hide_url'] as bool,
       title: json['title'] as String,
       description: json['description'] as String,
       thumbnailUrl: json['thumbnail_url'] as String,
@@ -81,7 +77,6 @@ class InputInlineQueryResultArticle extends InputInlineQueryResult {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'id': id,
         'url': url,
-        'hide_url': hideUrl,
         'title': title,
         'description': description,
         'thumbnail_url': thumbnailUrl,

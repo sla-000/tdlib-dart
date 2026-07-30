@@ -3,8 +3,9 @@ import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Parses Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji,
-/// BlockQuote, ExpandableBlockQuote, Code, Pre, PreCode, TextUrl and
-/// MentionName entities from a marked-up text. Can be called synchronously
+/// BlockQuote, ExpandableBlockQuote, Code, Pre, PreCode, TextUrl,
+/// MentionName, and DateTime entities from a marked-up text. Can be called
+/// synchronously
 /// Returns [FormattedText]
 @immutable
 class ParseTextEntities extends TdFunction {

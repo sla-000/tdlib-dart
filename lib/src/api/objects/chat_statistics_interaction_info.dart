@@ -3,7 +3,7 @@ import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Contains statistics about interactions with a message sent in the chat or
-/// a story sent by the chat
+/// a story posted on behalf of the chat
 @immutable
 class ChatStatisticsInteractionInfo extends TdObject {
   const ChatStatisticsInteractionInfo({

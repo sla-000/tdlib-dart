@@ -6,11 +6,11 @@ import '../tdapi.dart';
 @immutable
 class UpdateOwnedStarCount extends Update {
   const UpdateOwnedStarCount({
-    required this.starCount,
+    required this.starAmount,
   });
 
-  /// [starCount] The new number of Telegram Stars owned
-  final int starCount;
+  /// [starAmount] The new amount of owned Telegram Stars
+  final StarAmount starAmount;
 
   static const String constructor = 'updateOwnedStarCount';
 
@@ -20,7 +20,8 @@ class UpdateOwnedStarCount extends Update {
     }
 
     return UpdateOwnedStarCount(
-      starCount: json['star_count'] as int,
+      starAmount:
+          StarAmount.fromJson(json['star_amount'] as Map<String, dynamic>?)!,
     );
   }
 
@@ -29,7 +30,7 @@ class UpdateOwnedStarCount extends Update {
 
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'star_count': starCount,
+        'star_amount': starAmount.toJson(),
         '@type': constructor,
       };
 

@@ -10,6 +10,7 @@ class ToggleSupergroupIsForum extends TdFunction {
   const ToggleSupergroupIsForum({
     required this.supergroupId,
     required this.isForum,
+    required this.hasForumTabs,
   });
 
   /// [supergroupId] Identifier of the supergroup
@@ -17,6 +18,9 @@ class ToggleSupergroupIsForum extends TdFunction {
 
   /// [isForum] New value of is_forum
   final bool isForum;
+
+  /// [hasForumTabs] New value of has_forum_tabs; ignored if is_forum is false
+  final bool hasForumTabs;
 
   static const String constructor = 'toggleSupergroupIsForum';
 
@@ -27,6 +31,7 @@ class ToggleSupergroupIsForum extends TdFunction {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'supergroup_id': supergroupId,
         'is_forum': isForum,
+        'has_forum_tabs': hasForumTabs,
         '@type': constructor,
       };
 

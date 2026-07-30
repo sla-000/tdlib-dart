@@ -10,16 +10,20 @@ abstract class SuggestedAction extends TdObject {
   static const String constructor = 'suggestedAction';
 
   /// Inherited by:
+  /// [SuggestedActionAddLoginPasskey]
   /// [SuggestedActionCheckPassword]
   /// [SuggestedActionCheckPhoneNumber]
   /// [SuggestedActionConvertToBroadcastGroup]
+  /// [SuggestedActionCustom]
   /// [SuggestedActionEnableArchiveAndMuteNewChats]
   /// [SuggestedActionExtendPremium]
   /// [SuggestedActionExtendStarSubscriptions]
   /// [SuggestedActionGiftPremiumForChristmas]
   /// [SuggestedActionRestorePremium]
   /// [SuggestedActionSetBirthdate]
+  /// [SuggestedActionSetLoginEmailAddress]
   /// [SuggestedActionSetPassword]
+  /// [SuggestedActionSetProfilePhoto]
   /// [SuggestedActionSubscribeToAnnualPremium]
   /// [SuggestedActionUpgradePremium]
   /// [SuggestedActionViewChecksHint]
@@ -29,12 +33,16 @@ abstract class SuggestedAction extends TdObject {
     }
 
     switch (json['@type']) {
+      case SuggestedActionAddLoginPasskey.constructor:
+        return SuggestedActionAddLoginPasskey.fromJson(json);
       case SuggestedActionCheckPassword.constructor:
         return SuggestedActionCheckPassword.fromJson(json);
       case SuggestedActionCheckPhoneNumber.constructor:
         return SuggestedActionCheckPhoneNumber.fromJson(json);
       case SuggestedActionConvertToBroadcastGroup.constructor:
         return SuggestedActionConvertToBroadcastGroup.fromJson(json);
+      case SuggestedActionCustom.constructor:
+        return SuggestedActionCustom.fromJson(json);
       case SuggestedActionEnableArchiveAndMuteNewChats.constructor:
         return SuggestedActionEnableArchiveAndMuteNewChats.fromJson(json);
       case SuggestedActionExtendPremium.constructor:
@@ -47,8 +55,12 @@ abstract class SuggestedAction extends TdObject {
         return SuggestedActionRestorePremium.fromJson(json);
       case SuggestedActionSetBirthdate.constructor:
         return SuggestedActionSetBirthdate.fromJson(json);
+      case SuggestedActionSetLoginEmailAddress.constructor:
+        return SuggestedActionSetLoginEmailAddress.fromJson(json);
       case SuggestedActionSetPassword.constructor:
         return SuggestedActionSetPassword.fromJson(json);
+      case SuggestedActionSetProfilePhoto.constructor:
+        return SuggestedActionSetProfilePhoto.fromJson(json);
       case SuggestedActionSubscribeToAnnualPremium.constructor:
         return SuggestedActionSubscribeToAnnualPremium.fromJson(json);
       case SuggestedActionUpgradePremium.constructor:

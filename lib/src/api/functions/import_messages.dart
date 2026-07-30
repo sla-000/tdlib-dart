@@ -2,7 +2,7 @@ import 'package:meta/meta.dart';
 import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
-/// Imports messages exported from another app
+/// Imports messages exported from another application
 /// Returns [Ok]
 @immutable
 class ImportMessages extends TdFunction {

@@ -2,8 +2,7 @@ import 'package:meta/meta.dart';
 import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
-/// Changes the user answer to a poll. A poll in quiz mode can be answered
-/// only once
+/// Changes the user answer to a poll
 /// Returns [Ok]
 @immutable
 class SetPollAnswer extends TdFunction {

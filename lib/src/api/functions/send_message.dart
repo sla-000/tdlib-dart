@@ -8,7 +8,7 @@ import '../tdapi.dart';
 class SendMessage extends TdFunction {
   const SendMessage({
     required this.chatId,
-    required this.messageThreadId,
+    this.topicId,
     this.replyTo,
     this.options,
     this.replyMarkup,
@@ -18,9 +18,8 @@ class SendMessage extends TdFunction {
   /// [chatId] Target chat
   final int chatId;
 
-  /// [messageThreadId] If not 0, the message thread identifier in which the
-  /// message will be sent
-  final int messageThreadId;
+  /// [topicId] Topic in which the message will be sent; pass null if none
+  final MessageTopic? topicId;
 
   /// [replyTo] Information about the message or story to be replied; pass null
   /// if none
@@ -45,7 +44,7 @@ class SendMessage extends TdFunction {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'chat_id': chatId,
-        'message_thread_id': messageThreadId,
+        'topic_id': topicId?.toJson(),
         'reply_to': replyTo?.toJson(),
         'options': options?.toJson(),
         'reply_markup': replyMarkup?.toJson(),

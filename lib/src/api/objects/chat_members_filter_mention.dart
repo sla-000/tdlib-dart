@@ -6,12 +6,12 @@ import '../tdapi.dart';
 @immutable
 class ChatMembersFilterMention extends ChatMembersFilter {
   const ChatMembersFilterMention({
-    required this.messageThreadId,
+    this.topicId,
   });
 
-  /// [messageThreadId] If non-zero, the identifier of the current message
-  /// thread
-  final int messageThreadId;
+  /// [topicId] Identifier of the topic in which the users will be mentioned;
+  /// pass null if none
+  final MessageTopic? topicId;
 
   static const String constructor = 'chatMembersFilterMention';
 
@@ -21,7 +21,7 @@ class ChatMembersFilterMention extends ChatMembersFilter {
     }
 
     return ChatMembersFilterMention(
-      messageThreadId: json['message_thread_id'] as int,
+      topicId: MessageTopic.fromJson(json['topic_id'] as Map<String, dynamic>?),
     );
   }
 
@@ -30,7 +30,7 @@ class ChatMembersFilterMention extends ChatMembersFilter {
 
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'message_thread_id': messageThreadId,
+        'topic_id': topicId?.toJson(),
         '@type': constructor,
       };
 

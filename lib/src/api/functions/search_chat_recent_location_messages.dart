@@ -2,8 +2,8 @@ import 'package:meta/meta.dart';
 import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
-/// Returns information about the recent locations of chat members that were
-/// sent to the chat. Returns up to 1 location message per user
+/// Returns information about the recent live locations of chat members that
+/// were sent to the chat. Returns at most one live location message per user
 /// Returns [Messages]
 @immutable
 class SearchChatRecentLocationMessages extends TdFunction {

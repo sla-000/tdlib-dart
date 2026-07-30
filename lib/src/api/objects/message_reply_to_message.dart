@@ -9,6 +9,8 @@ class MessageReplyToMessage extends MessageReplyTo {
     required this.chatId,
     required this.messageId,
     this.quote,
+    required this.checklistTaskId,
+    required this.pollOptionId,
     this.origin,
     required this.originSendDate,
     this.content,
@@ -25,6 +27,14 @@ class MessageReplyToMessage extends MessageReplyTo {
   /// [quote] Chosen quote from the replied message; may be null if none
   final TextQuote? quote;
 
+  /// [checklistTaskId] Identifier of the checklist task in the original message
+  /// that was replied; 0 if none
+  final int checklistTaskId;
+
+  /// [pollOptionId] Identifier of the poll option in the original message that
+  /// was replied; empty if none
+  final String pollOptionId;
+
   /// [origin] Information about origin of the message if the message was from
   /// another chat or topic; may be null for messages from the same chat
   final MessageOrigin? origin;
@@ -37,11 +47,12 @@ class MessageReplyToMessage extends MessageReplyTo {
   /// [content] Media content of the message if the message was from another
   /// chat or topic; may be null for messages from the same chat and messages
   /// without media. Can be only one of the following types: messageAnimation,
-  /// messageAudio, messageContact, messageDice, messageDocument, messageGame,
-  /// messageGiveaway, messageGiveawayWinners, messageInvoice, messageLocation,
-  /// messagePaidMedia, messagePhoto, messagePoll, messageSticker, messageStory,
-  /// messageText (for link preview), messageVenue, messageVideo,
-  /// messageVideoNote, or messageVoiceNote
+  /// messageAudio, messageChecklist, messageContact, messageDice,
+  /// messageDocument, messageGame, messageGiveaway, messageGiveawayWinners,
+  /// messageInvoice, messageLocation, messagePaidMedia, messagePhoto,
+  /// messagePoll, messageStakeDice, messageSticker, messageStory, messageText
+  /// (for link preview), messageVenue, messageVideo, messageVideoNote, or
+  /// messageVoiceNote
   final MessageContent? content;
 
   static const String constructor = 'messageReplyToMessage';
@@ -55,6 +66,8 @@ class MessageReplyToMessage extends MessageReplyTo {
       chatId: json['chat_id'] as int,
       messageId: json['message_id'] as int,
       quote: TextQuote.fromJson(json['quote'] as Map<String, dynamic>?),
+      checklistTaskId: json['checklist_task_id'] as int,
+      pollOptionId: json['poll_option_id'] as String,
       origin: MessageOrigin.fromJson(json['origin'] as Map<String, dynamic>?),
       originSendDate: json['origin_send_date'] as int,
       content:
@@ -70,6 +83,8 @@ class MessageReplyToMessage extends MessageReplyTo {
         'chat_id': chatId,
         'message_id': messageId,
         'quote': quote?.toJson(),
+        'checklist_task_id': checklistTaskId,
+        'poll_option_id': pollOptionId,
         'origin': origin?.toJson(),
         'origin_send_date': originSendDate,
         'content': content?.toJson(),

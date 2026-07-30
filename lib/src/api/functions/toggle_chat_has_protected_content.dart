@@ -3,8 +3,10 @@ import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Changes the ability of users to save, forward, or copy chat content.
-/// Supported only for basic groups, supergroups and channels. Requires owner
-/// privileges
+/// Requires owner privileges in basic groups, supergroups and channels.
+/// Requires Telegram Premium to enable protected content in private chats.
+/// Not available in Saved Messages and private chats with bots or support
+/// accounts
 /// Returns [Ok]
 @immutable
 class ToggleChatHasProtectedContent extends TdFunction {

@@ -2,7 +2,7 @@ import 'package:meta/meta.dart';
 import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
-/// Returns properties of a message; this is an offline request
+/// Returns properties of a message. This is an offline method
 /// Returns [MessageProperties]
 @immutable
 class GetMessageProperties extends TdFunction {

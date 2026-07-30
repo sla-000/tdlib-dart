@@ -2,7 +2,7 @@ import 'package:meta/meta.dart';
 import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
-/// Traverse all chats in a chat list and marks all messages in the chats as
+/// Traverses all chats in a chat list and marks all messages in the chats as
 /// read
 /// Returns [Ok]
 @immutable

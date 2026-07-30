@@ -4,7 +4,7 @@ import '../tdapi.dart';
 
 /// Returns the list of proxies that are currently set up. Can be called
 /// before authorization
-/// Returns [Proxies]
+/// Returns [AddedProxies]
 @immutable
 class GetProxies extends TdFunction {
   const GetProxies();

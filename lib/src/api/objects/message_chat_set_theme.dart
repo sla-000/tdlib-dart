@@ -6,12 +6,12 @@ import '../tdapi.dart';
 @immutable
 class MessageChatSetTheme extends MessageContent {
   const MessageChatSetTheme({
-    required this.themeName,
+    this.theme,
   });
 
-  /// [themeName] If non-empty, name of a new theme, set for the chat.
-  /// Otherwise, chat theme was reset to the default one
-  final String themeName;
+  /// [theme] New theme for the chat; may be null if chat theme was reset to the
+  /// default one
+  final ChatTheme? theme;
 
   static const String constructor = 'messageChatSetTheme';
 
@@ -21,7 +21,7 @@ class MessageChatSetTheme extends MessageContent {
     }
 
     return MessageChatSetTheme(
-      themeName: json['theme_name'] as String,
+      theme: ChatTheme.fromJson(json['theme'] as Map<String, dynamic>?),
     );
   }
 
@@ -30,7 +30,7 @@ class MessageChatSetTheme extends MessageContent {
 
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'theme_name': themeName,
+        'theme': theme?.toJson(),
         '@type': constructor,
       };
 

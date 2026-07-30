@@ -2,15 +2,15 @@ import 'package:meta/meta.dart';
 import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
-/// Contains a list of custom emoji identifiers for emoji statuses
+/// Contains a list of emoji statuses
 @immutable
 class EmojiStatuses extends TdObject {
   const EmojiStatuses({
-    required this.customEmojiIds,
+    required this.emojiStatuses,
   });
 
-  /// [customEmojiIds] The list of custom emoji identifiers
-  final List<int> customEmojiIds;
+  /// [emojiStatuses] The list of emoji statuses identifiers
+  final List<EmojiStatus> emojiStatuses;
 
   static const String constructor = 'emojiStatuses';
 
@@ -20,9 +20,9 @@ class EmojiStatuses extends TdObject {
     }
 
     return EmojiStatuses(
-      customEmojiIds: List<int>.from(
-          ((json['custom_emoji_ids'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => item)
+      emojiStatuses: List<EmojiStatus>.from(
+          ((json['emoji_statuses'] as List<dynamic>?) ?? <dynamic>[])
+              .map((item) => EmojiStatus.fromJson(item))
               .toList()),
     );
   }
@@ -32,7 +32,7 @@ class EmojiStatuses extends TdObject {
 
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'custom_emoji_ids': customEmojiIds.map((item) => item).toList(),
+        'emoji_statuses': emojiStatuses.map((item) => item.toJson()).toList(),
         '@type': constructor,
       };
 

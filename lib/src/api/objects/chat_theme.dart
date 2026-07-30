@@ -4,48 +4,31 @@ import '../tdapi.dart';
 
 /// Describes a chat theme
 @immutable
-class ChatTheme extends TdObject {
-  const ChatTheme({
-    required this.name,
-    required this.lightSettings,
-    required this.darkSettings,
-  });
-
-  /// [name] Theme name
-  final String name;
-
-  /// [lightSettings] Theme settings for a light chat theme
-  final ThemeSettings lightSettings;
-
-  /// [darkSettings] Theme settings for a dark chat theme
-  final ThemeSettings darkSettings;
+abstract class ChatTheme extends TdObject {
+  const ChatTheme();
 
   static const String constructor = 'chatTheme';
 
+  /// Inherited by:
+  /// [ChatThemeEmoji]
+  /// [ChatThemeGift]
   static ChatTheme? fromJson(Map<String, dynamic>? json) {
     if (json == null) {
       return null;
     }
 
-    return ChatTheme(
-      name: json['name'] as String,
-      lightSettings: ThemeSettings.fromJson(
-          json['light_settings'] as Map<String, dynamic>?)!,
-      darkSettings: ThemeSettings.fromJson(
-          json['dark_settings'] as Map<String, dynamic>?)!,
-    );
+    switch (json['@type']) {
+      case ChatThemeEmoji.constructor:
+        return ChatThemeEmoji.fromJson(json);
+      case ChatThemeGift.constructor:
+        return ChatThemeGift.fromJson(json);
+      default:
+        return null;
+    }
   }
 
   @override
   String getConstructor() => constructor;
-
-  @override
-  Map<String, dynamic> toJson() => <String, dynamic>{
-        'name': name,
-        'light_settings': lightSettings.toJson(),
-        'dark_settings': darkSettings.toJson(),
-        '@type': constructor,
-      };
 
   @override
   bool operator ==(Object other) => overriddenEquality(other);

@@ -10,8 +10,8 @@ class GetStarGiftPaymentOptions extends TdFunction {
     required this.userId,
   });
 
-  /// [userId] Identifier of the user that will receive Telegram Stars; pass 0
-  /// to get options for an unspecified user
+  /// [userId] Identifier of the user who will receive Telegram Stars; pass 0 to
+  /// get options for an unspecified user
   final int userId;
 
   static const String constructor = 'getStarGiftPaymentOptions';

@@ -28,8 +28,8 @@ class ViewMessages extends TdFunction {
   /// on chat open state
   final MessageSource? source;
 
-  /// [forceRead] Pass true to mark as read the specified messages even the chat
-  /// is closed
+  /// [forceRead] Pass true to mark as read the specified messages even if the
+  /// chat is closed
   final bool forceRead;
 
   static const String constructor = 'viewMessages';

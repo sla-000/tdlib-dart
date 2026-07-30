@@ -2,7 +2,7 @@ import 'package:meta/meta.dart';
 import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
-/// A kicker
+/// A kicker; instant view only
 @immutable
 class PageBlockKicker extends PageBlock {
   const PageBlockKicker({

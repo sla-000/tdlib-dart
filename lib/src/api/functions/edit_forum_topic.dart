@@ -2,15 +2,15 @@ import 'package:meta/meta.dart';
 import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
-/// Edits title and icon of a topic in a forum supergroup chat; requires
-/// can_manage_topics right in the supergroup unless the user is creator of
-/// the topic
+/// Edits title and icon of a topic in a forum supergroup chat or a chat with
+/// a bot with topics; for supergroup chats requires can_manage_topics
+/// administrator right unless the user is creator of the topic
 /// Returns [Ok]
 @immutable
 class EditForumTopic extends TdFunction {
   const EditForumTopic({
     required this.chatId,
-    required this.messageThreadId,
+    required this.forumTopicId,
     required this.name,
     required this.editIconCustomEmoji,
     required this.iconCustomEmojiId,
@@ -19,8 +19,8 @@ class EditForumTopic extends TdFunction {
   /// [chatId] Identifier of the chat
   final int chatId;
 
-  /// [messageThreadId] Message thread identifier of the forum topic
-  final int messageThreadId;
+  /// [forumTopicId] Forum topic identifier
+  final int forumTopicId;
 
   /// [name] New name of the topic; 0-128 characters. If empty, the previous
   /// topic name is kept
@@ -44,7 +44,7 @@ class EditForumTopic extends TdFunction {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'chat_id': chatId,
-        'message_thread_id': messageThreadId,
+        'forum_topic_id': forumTopicId,
         'name': name,
         'edit_icon_custom_emoji': editIconCustomEmoji,
         'icon_custom_emoji_id': iconCustomEmojiId,

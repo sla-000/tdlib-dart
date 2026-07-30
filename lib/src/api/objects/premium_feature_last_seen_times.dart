@@ -2,7 +2,7 @@ import 'package:meta/meta.dart';
 import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
-/// The ability to view last seen and read times of other users even they
+/// The ability to view last seen and read times of other users even if they
 /// can't view last seen or read time for the current user
 @immutable
 class PremiumFeatureLastSeenTimes extends PremiumFeature {

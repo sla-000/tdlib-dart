@@ -2,7 +2,8 @@ import 'package:meta/meta.dart';
 import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
-/// Suggests a profile photo to another regular user with common messages
+/// Suggests a profile photo to another regular user with common messages and
+/// allowing non-paid messages
 /// Returns [Ok]
 @immutable
 class SuggestUserProfilePhoto extends TdFunction {

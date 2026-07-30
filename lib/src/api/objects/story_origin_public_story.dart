@@ -2,7 +2,7 @@ import 'package:meta/meta.dart';
 import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
-/// The original story was a public story with known sender
+/// The original story was a public story that was posted by a known chat
 @immutable
 class StoryOriginPublicStory extends StoryOrigin {
   const StoryOriginPublicStory({

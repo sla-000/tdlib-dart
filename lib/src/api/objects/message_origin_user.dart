@@ -9,7 +9,7 @@ class MessageOriginUser extends MessageOrigin {
     required this.senderUserId,
   });
 
-  /// [senderUserId] Identifier of the user that originally sent the message
+  /// [senderUserId] Identifier of the user who originally sent the message
   final int senderUserId;
 
   static const String constructor = 'messageOriginUser';

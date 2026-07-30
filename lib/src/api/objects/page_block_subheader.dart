@@ -2,7 +2,7 @@ import 'package:meta/meta.dart';
 import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
-/// A subheader
+/// A subheader; instant view only
 @immutable
 class PageBlockSubheader extends PageBlock {
   const PageBlockSubheader({

@@ -18,6 +18,7 @@ class ChatBoostLevelFeatures extends TdObject {
     required this.chatThemeBackgroundCount,
     required this.canSetCustomBackground,
     required this.canSetCustomEmojiStickerSet,
+    required this.canEnableAutomaticTranslation,
     required this.canRecognizeSpeech,
     required this.canDisableSponsoredMessages,
   });
@@ -66,6 +67,10 @@ class ChatBoostLevelFeatures extends TdObject {
   /// for the chat
   final bool canSetCustomEmojiStickerSet;
 
+  /// [canEnableAutomaticTranslation] True, if automatic translation of messages
+  /// can be enabled in the chat
+  final bool canEnableAutomaticTranslation;
+
   /// [canRecognizeSpeech] True, if speech recognition can be used for video
   /// note and voice note messages by all users
   final bool canRecognizeSpeech;
@@ -97,6 +102,8 @@ class ChatBoostLevelFeatures extends TdObject {
       canSetCustomBackground: json['can_set_custom_background'] as bool,
       canSetCustomEmojiStickerSet:
           json['can_set_custom_emoji_sticker_set'] as bool,
+      canEnableAutomaticTranslation:
+          json['can_enable_automatic_translation'] as bool,
       canRecognizeSpeech: json['can_recognize_speech'] as bool,
       canDisableSponsoredMessages:
           json['can_disable_sponsored_messages'] as bool,
@@ -121,6 +128,7 @@ class ChatBoostLevelFeatures extends TdObject {
         'chat_theme_background_count': chatThemeBackgroundCount,
         'can_set_custom_background': canSetCustomBackground,
         'can_set_custom_emoji_sticker_set': canSetCustomEmojiStickerSet,
+        'can_enable_automatic_translation': canEnableAutomaticTranslation,
         'can_recognize_speech': canRecognizeSpeech,
         'can_disable_sponsored_messages': canDisableSponsoredMessages,
         '@type': constructor,

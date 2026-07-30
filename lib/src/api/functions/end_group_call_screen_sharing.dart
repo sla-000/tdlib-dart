@@ -2,7 +2,7 @@ import 'package:meta/meta.dart';
 import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
-/// Ends screen sharing in a joined group call
+/// Ends screen sharing in a joined group call; not supported in live stories
 /// Returns [Ok]
 @immutable
 class EndGroupCallScreenSharing extends TdFunction {

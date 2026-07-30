@@ -10,7 +10,7 @@ import '../tdapi.dart';
 class ForwardMessages extends TdFunction {
   const ForwardMessages({
     required this.chatId,
-    required this.messageThreadId,
+    this.topicId,
     required this.fromChatId,
     required this.messageIds,
     this.options,
@@ -21,9 +21,9 @@ class ForwardMessages extends TdFunction {
   /// [chatId] Identifier of the chat to which to forward messages
   final int chatId;
 
-  /// [messageThreadId] If not 0, the message thread identifier in which the
-  /// message will be sent; for forum threads only
-  final int messageThreadId;
+  /// [topicId] Topic in which the messages will be forwarded; message threads
+  /// aren't supported; pass null if none
+  final MessageTopic? topicId;
 
   /// [fromChatId] Identifier of the chat from which to forward messages
   final int fromChatId;
@@ -40,7 +40,7 @@ class ForwardMessages extends TdFunction {
 
   /// [sendCopy] Pass true to copy content of the messages without reference to
   /// the original sender. Always true if the messages are forwarded to a secret
-  /// chat or are local. Use messageProperties.can_be_saved and
+  /// chat or are local. Use messageProperties.can_be_copied and
   /// messageProperties.can_be_copied_to_secret_chat to check whether the
   /// message is suitable
   final bool sendCopy;
@@ -57,7 +57,7 @@ class ForwardMessages extends TdFunction {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'chat_id': chatId,
-        'message_thread_id': messageThreadId,
+        'topic_id': topicId?.toJson(),
         'from_chat_id': fromChatId,
         'message_ids': messageIds.map((item) => item).toList(),
         'options': options?.toJson(),

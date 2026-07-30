@@ -43,9 +43,9 @@ class GiveawayInfoCompleted extends GiveawayInfo {
   /// isn't a Telegram Premium giveaway
   final String giftCode;
 
-  /// [wonStarCount] The amount of Telegram Stars won by the current user; 0 if
-  /// the user isn't a winner in the giveaway or the giveaway isn't a Telegram
-  /// Star giveaway
+  /// [wonStarCount] The Telegram Star amount won by the current user; 0 if the
+  /// user isn't a winner in the giveaway or the giveaway isn't a Telegram Star
+  /// giveaway
   final int wonStarCount;
 
   static const String constructor = 'giveawayInfoCompleted';

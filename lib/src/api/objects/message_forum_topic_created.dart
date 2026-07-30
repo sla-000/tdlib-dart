@@ -7,11 +7,15 @@ import '../tdapi.dart';
 class MessageForumTopicCreated extends MessageContent {
   const MessageForumTopicCreated({
     required this.name,
+    required this.isNameImplicit,
     required this.icon,
   });
 
   /// [name] Name of the topic
   final String name;
+
+  /// [isNameImplicit] True, if the name of the topic wasn't added explicitly
+  final bool isNameImplicit;
 
   /// [icon] Icon of the topic
   final ForumTopicIcon icon;
@@ -25,6 +29,7 @@ class MessageForumTopicCreated extends MessageContent {
 
     return MessageForumTopicCreated(
       name: json['name'] as String,
+      isNameImplicit: json['is_name_implicit'] as bool,
       icon: ForumTopicIcon.fromJson(json['icon'] as Map<String, dynamic>?)!,
     );
   }
@@ -35,6 +40,7 @@ class MessageForumTopicCreated extends MessageContent {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'name': name,
+        'is_name_implicit': isNameImplicit,
         'icon': icon.toJson(),
         '@type': constructor,
       };

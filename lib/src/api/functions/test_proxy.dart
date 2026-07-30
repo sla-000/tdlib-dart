@@ -8,21 +8,13 @@ import '../tdapi.dart';
 @immutable
 class TestProxy extends TdFunction {
   const TestProxy({
-    required this.server,
-    required this.port,
-    required this.type,
+    required this.proxy,
     required this.dcId,
     required this.timeout,
   });
 
-  /// [server] Proxy server domain or IP address
-  final String server;
-
-  /// [port] Proxy server port
-  final int port;
-
-  /// [type] Proxy type
-  final ProxyType type;
+  /// [proxy] The proxy to test
+  final Proxy proxy;
 
   /// [dcId] Identifier of a datacenter with which to test connection
   final int dcId;
@@ -37,9 +29,7 @@ class TestProxy extends TdFunction {
 
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'server': server,
-        'port': port,
-        'type': type.toJson(),
+        'proxy': proxy.toJson(),
         'dc_id': dcId,
         'timeout': timeout,
         '@type': constructor,

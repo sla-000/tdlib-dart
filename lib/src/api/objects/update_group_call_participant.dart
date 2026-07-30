@@ -12,10 +12,10 @@ class UpdateGroupCallParticipant extends Update {
     required this.participant,
   });
 
-  /// [groupCallId] Identifier of group call
+  /// [groupCallId] Identifier of the group call
   final int groupCallId;
 
-  /// [participant] New data about a participant
+  /// [participant] New data about the participant
   final GroupCallParticipant participant;
 
   static const String constructor = 'updateGroupCallParticipant';

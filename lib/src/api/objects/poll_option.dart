@@ -6,23 +6,41 @@ import '../tdapi.dart';
 @immutable
 class PollOption extends TdObject {
   const PollOption({
+    required this.id,
     required this.text,
+    this.media,
     required this.voterCount,
     required this.votePercentage,
+    required this.recentVoterIds,
     required this.isChosen,
     required this.isBeingChosen,
+    this.author,
+    required this.additionDate,
   });
 
-  /// [text] Option text; 1-100 characters. Only custom emoji entities are
-  /// allowed
+  /// [id] Unique identifier of the option in the poll; may be empty if yet
+  /// unassigned
+  final String id;
+
+  /// [text] Option text; 1-100 characters; may contain only custom emoji
+  /// entities
   final FormattedText text;
 
+  /// [media] Option media; may be null if none. If present, currently, can be
+  /// only of the types pollMediaAnimation, pollMediaLink, pollMediaLocation,
+  /// pollMediaPhoto, pollMediaSticker, pollMediaVenue, or pollMediaVideo
+  final PollMedia? media;
+
   /// [voterCount] Number of voters for this option, available only for closed
-  /// or voted polls
+  /// or voted polls, or if the current user is the creator of the poll
   final int voterCount;
 
   /// [votePercentage] The percentage of votes for this option; 0-100
   final int votePercentage;
+
+  /// [recentVoterIds] Identifiers of recent voters for the option, if the poll
+  /// is non-anonymous and poll results are available
+  final List<MessageSender> recentVoterIds;
 
   /// [isChosen] True, if the option was chosen by the user
   final bool isChosen;
@@ -30,6 +48,14 @@ class PollOption extends TdObject {
   /// [isBeingChosen] True, if the option is being chosen by a pending
   /// setPollAnswer request
   final bool isBeingChosen;
+
+  /// [author] Identifier of the user or chat who added the option; may be null
+  /// if the option existed from creation of the poll
+  final MessageSender? author;
+
+  /// [additionDate] Point in time (Unix timestamp) when the option was added; 0
+  /// if the option existed from creation of the poll
+  final int additionDate;
 
   static const String constructor = 'pollOption';
 
@@ -39,11 +65,19 @@ class PollOption extends TdObject {
     }
 
     return PollOption(
+      id: json['id'] as String,
       text: FormattedText.fromJson(json['text'] as Map<String, dynamic>?)!,
+      media: PollMedia.fromJson(json['media'] as Map<String, dynamic>?),
       voterCount: json['voter_count'] as int,
       votePercentage: json['vote_percentage'] as int,
+      recentVoterIds: List<MessageSender>.from(
+          ((json['recent_voter_ids'] as List<dynamic>?) ?? <dynamic>[])
+              .map((item) => MessageSender.fromJson(item))
+              .toList()),
       isChosen: json['is_chosen'] as bool,
       isBeingChosen: json['is_being_chosen'] as bool,
+      author: MessageSender.fromJson(json['author'] as Map<String, dynamic>?),
+      additionDate: json['addition_date'] as int,
     );
   }
 
@@ -52,11 +86,17 @@ class PollOption extends TdObject {
 
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
+        'id': id,
         'text': text.toJson(),
+        'media': media?.toJson(),
         'voter_count': voterCount,
         'vote_percentage': votePercentage,
+        'recent_voter_ids':
+            recentVoterIds.map((item) => item.toJson()).toList(),
         'is_chosen': isChosen,
         'is_being_chosen': isBeingChosen,
+        'author': author?.toJson(),
+        'addition_date': additionDate,
         '@type': constructor,
       };
 

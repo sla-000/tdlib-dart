@@ -3,9 +3,8 @@ import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Adds the current user as a new member to a chat. Private and secret chats
-/// can't be joined using this method. May return an error with a message
-/// "INVITE_REQUEST_SENT" if only a join request was created
-/// Returns [Ok]
+/// can't be joined using this method
+/// Returns [ChatJoinResult]
 @immutable
 class JoinChat extends TdFunction {
   const JoinChat({

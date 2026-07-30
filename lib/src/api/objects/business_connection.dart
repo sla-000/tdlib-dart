@@ -10,14 +10,14 @@ class BusinessConnection extends TdObject {
     required this.userId,
     required this.userChatId,
     required this.date,
-    required this.canReply,
+    this.rights,
     required this.isEnabled,
   });
 
   /// [id] Unique identifier of the connection
   final String id;
 
-  /// [userId] Identifier of the business user that created the connection
+  /// [userId] Identifier of the business user who created the connection
   final int userId;
 
   /// [userChatId] Chat identifier of the private chat with the user
@@ -26,9 +26,8 @@ class BusinessConnection extends TdObject {
   /// [date] Point in time (Unix timestamp) when the connection was established
   final int date;
 
-  /// [canReply] True, if the bot can send messages to the connected user; false
-  /// otherwise
-  final bool canReply;
+  /// [rights] Rights of the bot; may be null if the connection was disabled
+  final BusinessBotRights? rights;
 
   /// [isEnabled] True, if the connection is enabled; false otherwise
   final bool isEnabled;
@@ -45,7 +44,8 @@ class BusinessConnection extends TdObject {
       userId: json['user_id'] as int,
       userChatId: json['user_chat_id'] as int,
       date: json['date'] as int,
-      canReply: json['can_reply'] as bool,
+      rights:
+          BusinessBotRights.fromJson(json['rights'] as Map<String, dynamic>?),
       isEnabled: json['is_enabled'] as bool,
     );
   }
@@ -59,7 +59,7 @@ class BusinessConnection extends TdObject {
         'user_id': userId,
         'user_chat_id': userChatId,
         'date': date,
-        'can_reply': canReply,
+        'rights': rights?.toJson(),
         'is_enabled': isEnabled,
         '@type': constructor,
       };

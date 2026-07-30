@@ -6,7 +6,8 @@ import '../tdapi.dart';
 @immutable
 class ForumTopicInfo extends TdObject {
   const ForumTopicInfo({
-    required this.messageThreadId,
+    required this.chatId,
+    required this.forumTopicId,
     required this.name,
     required this.icon,
     required this.creationDate,
@@ -15,10 +16,15 @@ class ForumTopicInfo extends TdObject {
     required this.isOutgoing,
     required this.isClosed,
     required this.isHidden,
+    required this.isNameImplicit,
   });
 
-  /// [messageThreadId] Message thread identifier of the topic
-  final int messageThreadId;
+  /// [chatId] Identifier of a forum supergroup chat or a chat with a bot to
+  /// which the topic belongs
+  final int chatId;
+
+  /// [forumTopicId] Forum topic identifier of the topic
+  final int forumTopicId;
 
   /// [name] Name of the topic
   final String name;
@@ -32,18 +38,23 @@ class ForumTopicInfo extends TdObject {
   /// [creatorId] Identifier of the creator of the topic
   final MessageSender creatorId;
 
-  /// [isGeneral] True, if the topic is the General topic list
+  /// [isGeneral] True, if the topic is the General topic
   final bool isGeneral;
 
   /// [isOutgoing] True, if the topic was created by the current user
   final bool isOutgoing;
 
-  /// [isClosed] True, if the topic is closed
+  /// [isClosed] True, if the topic is closed. If the topic is closed, then the
+  /// user must have can_manage_topics administrator right in the supergroup or
+  /// must be the creator of the topic to send messages there
   final bool isClosed;
 
   /// [isHidden] True, if the topic is hidden above the topic list and closed;
   /// for General topic only
   final bool isHidden;
+
+  /// [isNameImplicit] True, if the name of the topic wasn't added explicitly
+  final bool isNameImplicit;
 
   static const String constructor = 'forumTopicInfo';
 
@@ -53,7 +64,8 @@ class ForumTopicInfo extends TdObject {
     }
 
     return ForumTopicInfo(
-      messageThreadId: json['message_thread_id'] as int,
+      chatId: json['chat_id'] as int,
+      forumTopicId: json['forum_topic_id'] as int,
       name: json['name'] as String,
       icon: ForumTopicIcon.fromJson(json['icon'] as Map<String, dynamic>?)!,
       creationDate: json['creation_date'] as int,
@@ -63,6 +75,7 @@ class ForumTopicInfo extends TdObject {
       isOutgoing: json['is_outgoing'] as bool,
       isClosed: json['is_closed'] as bool,
       isHidden: json['is_hidden'] as bool,
+      isNameImplicit: json['is_name_implicit'] as bool,
     );
   }
 
@@ -71,7 +84,8 @@ class ForumTopicInfo extends TdObject {
 
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'message_thread_id': messageThreadId,
+        'chat_id': chatId,
+        'forum_topic_id': forumTopicId,
         'name': name,
         'icon': icon.toJson(),
         'creation_date': creationDate,
@@ -80,6 +94,7 @@ class ForumTopicInfo extends TdObject {
         'is_outgoing': isOutgoing,
         'is_closed': isClosed,
         'is_hidden': isHidden,
+        'is_name_implicit': isNameImplicit,
         '@type': constructor,
       };
 

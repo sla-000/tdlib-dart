@@ -2,9 +2,9 @@ import 'package:meta/meta.dart';
 import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
-/// Returns a file with a segment of a group call stream in a modified OGG
-/// format for audio or MPEG-4 format for video
-/// Returns [FilePart]
+/// Returns a file with a segment of a video chat or live story in a modified
+/// OGG format for audio or MPEG-4 format for video
+/// Returns [Data]
 @immutable
 class GetGroupCallStreamSegment extends TdFunction {
   const GetGroupCallStreamSegment({

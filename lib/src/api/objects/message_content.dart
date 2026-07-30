@@ -17,23 +17,33 @@ abstract class MessageContent extends TdObject {
   /// [MessageBotWriteAccessAllowed]
   /// [MessageCall]
   /// [MessageChatAddMembers]
+  /// [MessageChatAddedToCommunity]
   /// [MessageChatBoost]
   /// [MessageChatChangePhoto]
   /// [MessageChatChangeTitle]
   /// [MessageChatDeleteMember]
   /// [MessageChatDeletePhoto]
+  /// [MessageChatHasProtectedContentDisableRequested]
+  /// [MessageChatHasProtectedContentToggled]
   /// [MessageChatJoinByLink]
   /// [MessageChatJoinByRequest]
+  /// [MessageChatOwnerChanged]
+  /// [MessageChatOwnerLeft]
+  /// [MessageChatRemovedFromCommunity]
   /// [MessageChatSetBackground]
   /// [MessageChatSetMessageAutoDeleteTime]
   /// [MessageChatSetTheme]
   /// [MessageChatShared]
   /// [MessageChatUpgradeFrom]
   /// [MessageChatUpgradeTo]
+  /// [MessageChecklistTasksAdded]
+  /// [MessageChecklistTasksDone]
+  /// [MessageChecklist]
   /// [MessageContactRegistered]
   /// [MessageContact]
   /// [MessageCustomServiceAction]
   /// [MessageDice]
+  /// [MessageDirectMessagePriceChanged]
   /// [MessageDocument]
   /// [MessageExpiredPhoto]
   /// [MessageExpiredVideoNote]
@@ -48,15 +58,21 @@ abstract class MessageContent extends TdObject {
   /// [MessageGift]
   /// [MessageGiftedPremium]
   /// [MessageGiftedStars]
+  /// [MessageGiftedTon]
   /// [MessageGiveawayCompleted]
   /// [MessageGiveawayCreated]
   /// [MessageGiveawayPrizeStars]
   /// [MessageGiveawayWinners]
   /// [MessageGiveaway]
+  /// [MessageGroupCall]
   /// [MessageInviteVideoChatParticipants]
   /// [MessageInvoice]
+  /// [MessageLiveLocation]
   /// [MessageLocation]
+  /// [MessageManagedBotCreated]
   /// [MessagePaidMedia]
+  /// [MessagePaidMessagePriceChanged]
+  /// [MessagePaidMessagesRefunded]
   /// [MessagePassportDataReceived]
   /// [MessagePassportDataSent]
   /// [MessagePaymentRefunded]
@@ -64,16 +80,30 @@ abstract class MessageContent extends TdObject {
   /// [MessagePaymentSuccessful]
   /// [MessagePhoto]
   /// [MessagePinMessage]
+  /// [MessagePollOptionAdded]
+  /// [MessagePollOptionDeleted]
   /// [MessagePoll]
   /// [MessagePremiumGiftCode]
   /// [MessageProximityAlertTriggered]
+  /// [MessageRefundedUpgradedGift]
+  /// [MessageRichMessage]
   /// [MessageScreenshotTaken]
+  /// [MessageStakeDice]
   /// [MessageSticker]
   /// [MessageStory]
+  /// [MessageSuggestBirthdate]
   /// [MessageSuggestProfilePhoto]
+  /// [MessageSuggestedPostApprovalFailed]
+  /// [MessageSuggestedPostApproved]
+  /// [MessageSuggestedPostDeclined]
+  /// [MessageSuggestedPostPaid]
+  /// [MessageSuggestedPostRefunded]
   /// [MessageSupergroupChatCreate]
   /// [MessageText]
   /// [MessageUnsupported]
+  /// [MessageUpgradedGiftPurchaseOfferRejected]
+  /// [MessageUpgradedGiftPurchaseOffer]
+  /// [MessageUpgradedGift]
   /// [MessageUsersShared]
   /// [MessageVenue]
   /// [MessageVideoChatEnded]
@@ -104,6 +134,8 @@ abstract class MessageContent extends TdObject {
         return MessageCall.fromJson(json);
       case MessageChatAddMembers.constructor:
         return MessageChatAddMembers.fromJson(json);
+      case MessageChatAddedToCommunity.constructor:
+        return MessageChatAddedToCommunity.fromJson(json);
       case MessageChatBoost.constructor:
         return MessageChatBoost.fromJson(json);
       case MessageChatChangePhoto.constructor:
@@ -114,10 +146,20 @@ abstract class MessageContent extends TdObject {
         return MessageChatDeleteMember.fromJson(json);
       case MessageChatDeletePhoto.constructor:
         return MessageChatDeletePhoto.fromJson(json);
+      case MessageChatHasProtectedContentDisableRequested.constructor:
+        return MessageChatHasProtectedContentDisableRequested.fromJson(json);
+      case MessageChatHasProtectedContentToggled.constructor:
+        return MessageChatHasProtectedContentToggled.fromJson(json);
       case MessageChatJoinByLink.constructor:
         return MessageChatJoinByLink.fromJson(json);
       case MessageChatJoinByRequest.constructor:
         return MessageChatJoinByRequest.fromJson(json);
+      case MessageChatOwnerChanged.constructor:
+        return MessageChatOwnerChanged.fromJson(json);
+      case MessageChatOwnerLeft.constructor:
+        return MessageChatOwnerLeft.fromJson(json);
+      case MessageChatRemovedFromCommunity.constructor:
+        return MessageChatRemovedFromCommunity.fromJson(json);
       case MessageChatSetBackground.constructor:
         return MessageChatSetBackground.fromJson(json);
       case MessageChatSetMessageAutoDeleteTime.constructor:
@@ -130,6 +172,12 @@ abstract class MessageContent extends TdObject {
         return MessageChatUpgradeFrom.fromJson(json);
       case MessageChatUpgradeTo.constructor:
         return MessageChatUpgradeTo.fromJson(json);
+      case MessageChecklist.constructor:
+        return MessageChecklist.fromJson(json);
+      case MessageChecklistTasksAdded.constructor:
+        return MessageChecklistTasksAdded.fromJson(json);
+      case MessageChecklistTasksDone.constructor:
+        return MessageChecklistTasksDone.fromJson(json);
       case MessageContact.constructor:
         return MessageContact.fromJson(json);
       case MessageContactRegistered.constructor:
@@ -138,6 +186,8 @@ abstract class MessageContent extends TdObject {
         return MessageCustomServiceAction.fromJson(json);
       case MessageDice.constructor:
         return MessageDice.fromJson(json);
+      case MessageDirectMessagePriceChanged.constructor:
+        return MessageDirectMessagePriceChanged.fromJson(json);
       case MessageDocument.constructor:
         return MessageDocument.fromJson(json);
       case MessageExpiredPhoto.constructor:
@@ -166,6 +216,8 @@ abstract class MessageContent extends TdObject {
         return MessageGiftedPremium.fromJson(json);
       case MessageGiftedStars.constructor:
         return MessageGiftedStars.fromJson(json);
+      case MessageGiftedTon.constructor:
+        return MessageGiftedTon.fromJson(json);
       case MessageGiveaway.constructor:
         return MessageGiveaway.fromJson(json);
       case MessageGiveawayCompleted.constructor:
@@ -176,14 +228,24 @@ abstract class MessageContent extends TdObject {
         return MessageGiveawayPrizeStars.fromJson(json);
       case MessageGiveawayWinners.constructor:
         return MessageGiveawayWinners.fromJson(json);
+      case MessageGroupCall.constructor:
+        return MessageGroupCall.fromJson(json);
       case MessageInviteVideoChatParticipants.constructor:
         return MessageInviteVideoChatParticipants.fromJson(json);
       case MessageInvoice.constructor:
         return MessageInvoice.fromJson(json);
+      case MessageLiveLocation.constructor:
+        return MessageLiveLocation.fromJson(json);
       case MessageLocation.constructor:
         return MessageLocation.fromJson(json);
+      case MessageManagedBotCreated.constructor:
+        return MessageManagedBotCreated.fromJson(json);
       case MessagePaidMedia.constructor:
         return MessagePaidMedia.fromJson(json);
+      case MessagePaidMessagePriceChanged.constructor:
+        return MessagePaidMessagePriceChanged.fromJson(json);
+      case MessagePaidMessagesRefunded.constructor:
+        return MessagePaidMessagesRefunded.fromJson(json);
       case MessagePassportDataReceived.constructor:
         return MessagePassportDataReceived.fromJson(json);
       case MessagePassportDataSent.constructor:
@@ -200,24 +262,52 @@ abstract class MessageContent extends TdObject {
         return MessagePinMessage.fromJson(json);
       case MessagePoll.constructor:
         return MessagePoll.fromJson(json);
+      case MessagePollOptionAdded.constructor:
+        return MessagePollOptionAdded.fromJson(json);
+      case MessagePollOptionDeleted.constructor:
+        return MessagePollOptionDeleted.fromJson(json);
       case MessagePremiumGiftCode.constructor:
         return MessagePremiumGiftCode.fromJson(json);
       case MessageProximityAlertTriggered.constructor:
         return MessageProximityAlertTriggered.fromJson(json);
+      case MessageRefundedUpgradedGift.constructor:
+        return MessageRefundedUpgradedGift.fromJson(json);
+      case MessageRichMessage.constructor:
+        return MessageRichMessage.fromJson(json);
       case MessageScreenshotTaken.constructor:
         return MessageScreenshotTaken.fromJson(json);
+      case MessageStakeDice.constructor:
+        return MessageStakeDice.fromJson(json);
       case MessageSticker.constructor:
         return MessageSticker.fromJson(json);
       case MessageStory.constructor:
         return MessageStory.fromJson(json);
+      case MessageSuggestBirthdate.constructor:
+        return MessageSuggestBirthdate.fromJson(json);
       case MessageSuggestProfilePhoto.constructor:
         return MessageSuggestProfilePhoto.fromJson(json);
+      case MessageSuggestedPostApprovalFailed.constructor:
+        return MessageSuggestedPostApprovalFailed.fromJson(json);
+      case MessageSuggestedPostApproved.constructor:
+        return MessageSuggestedPostApproved.fromJson(json);
+      case MessageSuggestedPostDeclined.constructor:
+        return MessageSuggestedPostDeclined.fromJson(json);
+      case MessageSuggestedPostPaid.constructor:
+        return MessageSuggestedPostPaid.fromJson(json);
+      case MessageSuggestedPostRefunded.constructor:
+        return MessageSuggestedPostRefunded.fromJson(json);
       case MessageSupergroupChatCreate.constructor:
         return MessageSupergroupChatCreate.fromJson(json);
       case MessageText.constructor:
         return MessageText.fromJson(json);
       case MessageUnsupported.constructor:
         return MessageUnsupported.fromJson(json);
+      case MessageUpgradedGift.constructor:
+        return MessageUpgradedGift.fromJson(json);
+      case MessageUpgradedGiftPurchaseOffer.constructor:
+        return MessageUpgradedGiftPurchaseOffer.fromJson(json);
+      case MessageUpgradedGiftPurchaseOfferRejected.constructor:
+        return MessageUpgradedGiftPurchaseOfferRejected.fromJson(json);
       case MessageUsersShared.constructor:
         return MessageUsersShared.fromJson(json);
       case MessageVenue.constructor:

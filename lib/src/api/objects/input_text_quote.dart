@@ -11,8 +11,9 @@ class InputTextQuote extends TdObject {
   });
 
   /// [text] Text of the quote; 0-getOption("message_reply_quote_length_max")
-  /// characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, and
-  /// CustomEmoji entities are allowed to be kept and must be kept in the quote
+  /// characters. Only Bold, Italic, Underline, Strikethrough, Spoiler,
+  /// CustomEmoji, and DateTime entities are allowed to be kept and must be kept
+  /// in the quote
   final FormattedText text;
 
   /// [position] Quote position in the original message in UTF-16 code units

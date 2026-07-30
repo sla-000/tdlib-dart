@@ -2,8 +2,8 @@ import 'package:meta/meta.dart';
 import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
-/// Return emojis matching the keyword. Supported only if the file database is
-/// enabled. Order of results is unspecified
+/// Returns emojis matching the keyword. Supported only if the file database
+/// is enabled. Order of results is unspecified
 /// Returns [Emojis]
 @immutable
 class GetKeywordEmojis extends TdFunction {

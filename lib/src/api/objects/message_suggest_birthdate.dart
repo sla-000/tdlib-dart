@@ -1,0 +1,43 @@
+import 'package:meta/meta.dart';
+import '../extensions/data_class_extensions.dart';
+import '../tdapi.dart';
+
+/// A birthdate was suggested to be set
+@immutable
+class MessageSuggestBirthdate extends MessageContent {
+  const MessageSuggestBirthdate({
+    required this.birthdate,
+  });
+
+  /// [birthdate] The suggested birthdate. Use the method setBirthdate to apply
+  /// the birthdate
+  final Birthdate birthdate;
+
+  static const String constructor = 'messageSuggestBirthdate';
+
+  static MessageSuggestBirthdate? fromJson(Map<String, dynamic>? json) {
+    if (json == null) {
+      return null;
+    }
+
+    return MessageSuggestBirthdate(
+      birthdate:
+          Birthdate.fromJson(json['birthdate'] as Map<String, dynamic>?)!,
+    );
+  }
+
+  @override
+  String getConstructor() => constructor;
+
+  @override
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'birthdate': birthdate.toJson(),
+        '@type': constructor,
+      };
+
+  @override
+  bool operator ==(Object other) => overriddenEquality(other);
+
+  @override
+  int get hashCode => overriddenHashCode;
+}

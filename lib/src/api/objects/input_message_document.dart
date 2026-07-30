@@ -7,21 +7,11 @@ import '../tdapi.dart';
 class InputMessageDocument extends InputMessageContent {
   const InputMessageDocument({
     required this.document,
-    this.thumbnail,
-    required this.disableContentTypeDetection,
     this.caption,
   });
 
   /// [document] Document to be sent
-  final InputFile document;
-
-  /// [thumbnail] Document thumbnail; pass null to skip thumbnail uploading
-  final InputThumbnail? thumbnail;
-
-  /// [disableContentTypeDetection] Pass true to disable automatic file type
-  /// detection and send the document as a file. Always true for files sent to
-  /// secret chats
-  final bool disableContentTypeDetection;
+  final InputDocument document;
 
   /// [caption] Document caption; pass null to use an empty caption;
   /// 0-getOption("message_caption_length_max") characters
@@ -35,11 +25,8 @@ class InputMessageDocument extends InputMessageContent {
     }
 
     return InputMessageDocument(
-      document: InputFile.fromJson(json['document'] as Map<String, dynamic>?)!,
-      thumbnail:
-          InputThumbnail.fromJson(json['thumbnail'] as Map<String, dynamic>?),
-      disableContentTypeDetection:
-          json['disable_content_type_detection'] as bool,
+      document:
+          InputDocument.fromJson(json['document'] as Map<String, dynamic>?)!,
       caption: FormattedText.fromJson(json['caption'] as Map<String, dynamic>?),
     );
   }
@@ -50,8 +37,6 @@ class InputMessageDocument extends InputMessageContent {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'document': document.toJson(),
-        'thumbnail': thumbnail?.toJson(),
-        'disable_content_type_detection': disableContentTypeDetection,
         'caption': caption?.toJson(),
         '@type': constructor,
       };

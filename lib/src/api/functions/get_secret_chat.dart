@@ -3,7 +3,7 @@ import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Returns information about a secret chat by its identifier. This is an
-/// offline request
+/// offline method
 /// Returns [SecretChat]
 @immutable
 class GetSecretChat extends TdFunction {

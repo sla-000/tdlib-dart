@@ -9,7 +9,7 @@ class MessageSenderUser extends MessageSender {
     required this.userId,
   });
 
-  /// [userId] Identifier of the user that sent the message
+  /// [userId] Identifier of the user who sent the message
   final int userId;
 
   static const String constructor = 'messageSenderUser';

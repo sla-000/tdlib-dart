@@ -7,14 +7,14 @@ import '../tdapi.dart';
 class PageBlockVoiceNote extends PageBlock {
   const PageBlockVoiceNote({
     this.voiceNote,
-    required this.caption,
+    this.caption,
   });
 
   /// [voiceNote] Voice note; may be null
   final VoiceNote? voiceNote;
 
-  /// [caption] Voice note caption
-  final PageBlockCaption caption;
+  /// [caption] Voice note caption; may be null if none
+  final PageBlockCaption? caption;
 
   static const String constructor = 'pageBlockVoiceNote';
 
@@ -27,7 +27,7 @@ class PageBlockVoiceNote extends PageBlock {
       voiceNote:
           VoiceNote.fromJson(json['voice_note'] as Map<String, dynamic>?),
       caption:
-          PageBlockCaption.fromJson(json['caption'] as Map<String, dynamic>?)!,
+          PageBlockCaption.fromJson(json['caption'] as Map<String, dynamic>?),
     );
   }
 
@@ -37,7 +37,7 @@ class PageBlockVoiceNote extends PageBlock {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'voice_note': voiceNote?.toJson(),
-        'caption': caption.toJson(),
+        'caption': caption?.toJson(),
         '@type': constructor,
       };
 

@@ -2,8 +2,9 @@ import 'package:meta/meta.dart';
 import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
-/// Returns found forum topics in a forum chat. This is a temporary method for
-/// getting information about topic list from the server
+/// Returns found forum topics in a forum supergroup chat or a chat with a bot
+/// with topics. This is a temporary method for getting information about
+/// topic list from the server
 /// Returns [ForumTopics]
 @immutable
 class GetForumTopics extends TdFunction {
@@ -12,11 +13,11 @@ class GetForumTopics extends TdFunction {
     required this.query,
     required this.offsetDate,
     required this.offsetMessageId,
-    required this.offsetMessageThreadId,
+    required this.offsetForumTopicId,
     required this.limit,
   });
 
-  /// [chatId] Identifier of the forum chat
+  /// [chatId] Identifier of the chat
   final int chatId;
 
   /// [query] Query to search for in the forum topic's name
@@ -30,9 +31,9 @@ class GetForumTopics extends TdFunction {
   /// found topic, or 0 for the first request
   final int offsetMessageId;
 
-  /// [offsetMessageThreadId] The message thread identifier of the last found
-  /// topic, or 0 for the first request
-  final int offsetMessageThreadId;
+  /// [offsetForumTopicId] The forum topic identifier of the last found topic,
+  /// or 0 for the first request
+  final int offsetForumTopicId;
 
   /// [limit] The maximum number of forum topics to be returned; up to 100. For
   /// optimal performance, the number of returned forum topics is chosen by
@@ -50,7 +51,7 @@ class GetForumTopics extends TdFunction {
         'query': query,
         'offset_date': offsetDate,
         'offset_message_id': offsetMessageId,
-        'offset_message_thread_id': offsetMessageThreadId,
+        'offset_forum_topic_id': offsetForumTopicId,
         'limit': limit,
         '@type': constructor,
       };

@@ -2,22 +2,20 @@ import 'package:meta/meta.dart';
 import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
-/// The default chat reply markup was changed. Can occur because new messages
-/// with reply markup were received or because an old reply markup was hidden
-/// by the user
+/// The chat reply markup was changed
 @immutable
 class UpdateChatReplyMarkup extends Update {
   const UpdateChatReplyMarkup({
     required this.chatId,
-    required this.replyMarkupMessageId,
+    this.replyMarkupMessage,
   });
 
   /// [chatId] Chat identifier
   final int chatId;
 
-  /// [replyMarkupMessageId] Identifier of the message from which reply markup
-  /// needs to be used; 0 if there is no default custom reply markup in the chat
-  final int replyMarkupMessageId;
+  /// [replyMarkupMessage] The message from which the reply markup must be used;
+  /// may be null if there is no default reply markup in the chat
+  final Message? replyMarkupMessage;
 
   static const String constructor = 'updateChatReplyMarkup';
 
@@ -28,7 +26,8 @@ class UpdateChatReplyMarkup extends Update {
 
     return UpdateChatReplyMarkup(
       chatId: json['chat_id'] as int,
-      replyMarkupMessageId: json['reply_markup_message_id'] as int,
+      replyMarkupMessage: Message.fromJson(
+          json['reply_markup_message'] as Map<String, dynamic>?),
     );
   }
 
@@ -38,7 +37,7 @@ class UpdateChatReplyMarkup extends Update {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'chat_id': chatId,
-        'reply_markup_message_id': replyMarkupMessageId,
+        'reply_markup_message': replyMarkupMessage?.toJson(),
         '@type': constructor,
       };
 

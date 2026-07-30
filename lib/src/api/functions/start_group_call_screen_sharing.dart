@@ -2,8 +2,8 @@ import 'package:meta/meta.dart';
 import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
-/// Starts screen sharing in a joined group call. Returns join response
-/// payload for tgcalls
+/// Starts screen sharing in a joined group call; not supported in live
+/// stories. Returns join response payload for tgcalls
 /// Returns [Text]
 @immutable
 class StartGroupCallScreenSharing extends TdFunction {

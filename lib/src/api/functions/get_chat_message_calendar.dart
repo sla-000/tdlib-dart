@@ -11,28 +11,29 @@ import '../tdapi.dart';
 class GetChatMessageCalendar extends TdFunction {
   const GetChatMessageCalendar({
     required this.chatId,
+    this.topicId,
     required this.filter,
     required this.fromMessageId,
-    required this.savedMessagesTopicId,
   });
 
   /// [chatId] Identifier of the chat in which to return information about
   /// messages
   final int chatId;
 
+  /// [topicId] Pass topic identifier to get the result only in specific topic;
+  /// pass null to get the result in all topics; forum topics and message
+  /// threads aren't supported
+  final MessageTopic? topicId;
+
   /// [filter] Filter for message content. Filters searchMessagesFilterEmpty,
-  /// searchMessagesFilterMention, searchMessagesFilterUnreadMention, and
-  /// searchMessagesFilterUnreadReaction are unsupported in this function
+  /// searchMessagesFilterMention, searchMessagesFilterUnreadMention,
+  /// searchMessagesFilterUnreadReaction, and searchMessagesFilterUnreadPollVote
+  /// are unsupported in this function
   final SearchMessagesFilter filter;
 
   /// [fromMessageId] The message identifier from which to return information
   /// about messages; use 0 to get results from the last message
   final int fromMessageId;
-
-  /// [savedMessagesTopicId] If not0, only messages in the specified Saved
-  /// Messages topic will be considered; pass 0 to consider all messages, or for
-  /// chats other than Saved Messages
-  final int savedMessagesTopicId;
 
   static const String constructor = 'getChatMessageCalendar';
 
@@ -42,9 +43,9 @@ class GetChatMessageCalendar extends TdFunction {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'chat_id': chatId,
+        'topic_id': topicId?.toJson(),
         'filter': filter.toJson(),
         'from_message_id': fromMessageId,
-        'saved_messages_topic_id': savedMessagesTopicId,
         '@type': constructor,
       };
 

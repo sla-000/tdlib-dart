@@ -2,7 +2,9 @@ import 'package:meta/meta.dart';
 import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
-/// Terminates all other sessions of the current user
+/// Terminates all other sessions of the current user. Additionally, the user
+/// must be suggested to delete the connected business bot using
+/// deleteBusinessConnectedBot if there is any
 /// Returns [Ok]
 @immutable
 class TerminateAllOtherSessions extends TdFunction {

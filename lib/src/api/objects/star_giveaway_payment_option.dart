@@ -2,7 +2,7 @@ import 'package:meta/meta.dart';
 import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
-/// Describes an option for creating Telegram Star giveaway. Use
+/// Describes an option for creating of Telegram Star giveaway. Use
 /// telegramPaymentPurposeStarGiveaway for out-of-store payments
 @immutable
 class StarGiveawayPaymentOption extends TdObject {

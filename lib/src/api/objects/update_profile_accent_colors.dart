@@ -15,7 +15,7 @@ class UpdateProfileAccentColors extends Update {
 
   /// [availableAccentColorIds] The list of accent color identifiers, which can
   /// be set through setProfileAccentColor and setChatProfileAccentColor. The
-  /// colors must be shown in the specififed order
+  /// colors must be shown in the specified order
   final List<int> availableAccentColorIds;
 
   static const String constructor = 'updateProfileAccentColors';

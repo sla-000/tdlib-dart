@@ -2,7 +2,7 @@ import 'package:meta/meta.dart';
 import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
-/// A rich text email link
+/// A rich text email address
 @immutable
 class RichTextEmailAddress extends RichText {
   const RichTextEmailAddress({

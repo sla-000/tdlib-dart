@@ -4,7 +4,8 @@ import '../tdapi.dart';
 
 /// TDLib needs the user's phone number to authorize. Call
 /// setAuthenticationPhoneNumber to provide the phone number, or use
-/// requestQrCodeAuthentication or checkAuthenticationBotToken for other
+/// requestQrCodeAuthentication, getAuthenticationPasskeyParameters,
+/// checkAuthenticationWebToken, or checkAuthenticationBotToken for other
 /// authentication options
 @immutable
 class AuthorizationStateWaitPhoneNumber extends AuthorizationState {

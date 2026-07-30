@@ -12,7 +12,7 @@ class GetStarSubscriptions extends TdFunction {
   });
 
   /// [onlyExpiring] Pass true to receive only expiring subscriptions for which
-  /// there are no enough Telegram Stars to extend
+  /// there aren't enough Telegram Stars to extend
   final bool onlyExpiring;
 
   /// [offset] Offset of the first subscription to return as received from the

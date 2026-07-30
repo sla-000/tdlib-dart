@@ -2,7 +2,7 @@ import 'package:meta/meta.dart';
 import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
-/// Return information about a Telegram Premium gift code
+/// Returns information about a Telegram Premium gift code
 /// Returns [PremiumGiftCodeInfo]
 @immutable
 class CheckPremiumGiftCode extends TdFunction {

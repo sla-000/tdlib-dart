@@ -4,7 +4,7 @@ import '../tdapi.dart';
 
 /// Deletes all messages sent by the specified message sender in a chat.
 /// Supported only for supergroups; requires can_delete_messages administrator
-/// privileges
+/// right
 /// Returns [Ok]
 @immutable
 class DeleteChatMessagesBySender extends TdFunction {

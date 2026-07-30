@@ -2,7 +2,7 @@ import 'package:meta/meta.dart';
 import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
-/// Describes a user contact
+/// Describes a contact of a user
 @immutable
 class Contact extends TdObject {
   const Contact({
@@ -16,10 +16,10 @@ class Contact extends TdObject {
   /// [phoneNumber] Phone number of the user
   final String phoneNumber;
 
-  /// [firstName] First name of the user; 1-255 characters in length
+  /// [firstName] First name of the user; 1-64 characters
   final String firstName;
 
-  /// [lastName] Last name of the user
+  /// [lastName] Last name of the user; 0-64 characters
   final String lastName;
 
   /// [vcard] Additional data about the user in a form of vCard; 0-2048 bytes in

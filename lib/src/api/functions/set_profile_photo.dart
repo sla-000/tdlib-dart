@@ -14,8 +14,8 @@ class SetProfilePhoto extends TdFunction {
   /// [photo] Profile photo to set
   final InputChatPhoto photo;
 
-  /// [isPublic] Pass true to set a public photo, which will be visible even the
-  /// main photo is hidden by privacy settings
+  /// [isPublic] Pass true to set the public photo, which will be visible even
+  /// if the main photo is hidden by privacy settings
   final bool isPublic;
 
   static const String constructor = 'setProfilePhoto';

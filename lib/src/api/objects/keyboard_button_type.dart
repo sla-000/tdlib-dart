@@ -12,6 +12,7 @@ abstract class KeyboardButtonType extends TdObject {
   /// Inherited by:
   /// [KeyboardButtonTypeRequestChat]
   /// [KeyboardButtonTypeRequestLocation]
+  /// [KeyboardButtonTypeRequestManagedBot]
   /// [KeyboardButtonTypeRequestPhoneNumber]
   /// [KeyboardButtonTypeRequestPoll]
   /// [KeyboardButtonTypeRequestUsers]
@@ -27,6 +28,8 @@ abstract class KeyboardButtonType extends TdObject {
         return KeyboardButtonTypeRequestChat.fromJson(json);
       case KeyboardButtonTypeRequestLocation.constructor:
         return KeyboardButtonTypeRequestLocation.fromJson(json);
+      case KeyboardButtonTypeRequestManagedBot.constructor:
+        return KeyboardButtonTypeRequestManagedBot.fromJson(json);
       case KeyboardButtonTypeRequestPhoneNumber.constructor:
         return KeyboardButtonTypeRequestPhoneNumber.fromJson(json);
       case KeyboardButtonTypeRequestPoll.constructor:

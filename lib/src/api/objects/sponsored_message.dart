@@ -32,11 +32,12 @@ class SponsoredMessage extends TdObject {
 
   /// [content] Content of the message. Currently, can be only of the types
   /// messageText, messageAnimation, messagePhoto, or messageVideo. Video
-  /// messages can be viewed fullscreen
+  /// messages can be viewed fullscreen. The content must be fully downloaded
+  /// before the message is shown
   final MessageContent content;
 
   /// [sponsor] Information about the sponsor of the message
-  final MessageSponsor sponsor;
+  final AdvertisementSponsor sponsor;
 
   /// [title] Title of the sponsored message
   final String title;
@@ -69,8 +70,8 @@ class SponsoredMessage extends TdObject {
       canBeReported: json['can_be_reported'] as bool,
       content:
           MessageContent.fromJson(json['content'] as Map<String, dynamic>?)!,
-      sponsor:
-          MessageSponsor.fromJson(json['sponsor'] as Map<String, dynamic>?)!,
+      sponsor: AdvertisementSponsor.fromJson(
+          json['sponsor'] as Map<String, dynamic>?)!,
       title: json['title'] as String,
       buttonText: json['button_text'] as String,
       accentColorId: json['accent_color_id'] as int,

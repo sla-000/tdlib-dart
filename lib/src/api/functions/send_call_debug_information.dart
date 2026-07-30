@@ -12,7 +12,7 @@ class SendCallDebugInformation extends TdFunction {
   });
 
   /// [callId] Call identifier
-  final int callId;
+  final InputCall callId;
 
   /// [debugInformation] Debug information in application-specific format
   final String debugInformation;
@@ -24,7 +24,7 @@ class SendCallDebugInformation extends TdFunction {
 
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'call_id': callId,
+        'call_id': callId.toJson(),
         'debug_information': debugInformation,
         '@type': constructor,
       };

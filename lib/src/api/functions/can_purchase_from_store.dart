@@ -3,7 +3,7 @@ import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Checks whether an in-store purchase is possible. Must be called before any
-/// in-store purchase
+/// in-store purchase. For official applications only
 /// Returns [Ok]
 @immutable
 class CanPurchaseFromStore extends TdFunction {

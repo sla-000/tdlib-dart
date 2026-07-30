@@ -7,6 +7,7 @@ import '../tdapi.dart';
 class MessagePhoto extends MessageContent {
   const MessagePhoto({
     required this.photo,
+    this.video,
     required this.caption,
     required this.showCaptionAboveMedia,
     required this.hasSpoiler,
@@ -15,6 +16,10 @@ class MessagePhoto extends MessageContent {
 
   /// [photo] The photo
   final Photo photo;
+
+  /// [video] The video representing the live photo; may be null if the photo is
+  /// static
+  final Video? video;
 
   /// [caption] Photo caption
   final FormattedText caption;
@@ -40,6 +45,7 @@ class MessagePhoto extends MessageContent {
 
     return MessagePhoto(
       photo: Photo.fromJson(json['photo'] as Map<String, dynamic>?)!,
+      video: Video.fromJson(json['video'] as Map<String, dynamic>?),
       caption:
           FormattedText.fromJson(json['caption'] as Map<String, dynamic>?)!,
       showCaptionAboveMedia: json['show_caption_above_media'] as bool,
@@ -54,6 +60,7 @@ class MessagePhoto extends MessageContent {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'photo': photo.toJson(),
+        'video': video?.toJson(),
         'caption': caption.toJson(),
         'show_caption_above_media': showCaptionAboveMedia,
         'has_spoiler': hasSpoiler,

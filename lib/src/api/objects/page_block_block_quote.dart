@@ -6,15 +6,15 @@ import '../tdapi.dart';
 @immutable
 class PageBlockBlockQuote extends PageBlock {
   const PageBlockBlockQuote({
-    required this.text,
-    required this.credit,
+    required this.blocks,
+    this.credit,
   });
 
-  /// [text] Quote text
-  final RichText text;
+  /// [blocks] Quote blocks
+  final List<PageBlock> blocks;
 
-  /// [credit] Quote credit
-  final RichText credit;
+  /// [credit] Quote credit; may be null if none
+  final RichText? credit;
 
   static const String constructor = 'pageBlockBlockQuote';
 
@@ -24,8 +24,11 @@ class PageBlockBlockQuote extends PageBlock {
     }
 
     return PageBlockBlockQuote(
-      text: RichText.fromJson(json['text'] as Map<String, dynamic>?)!,
-      credit: RichText.fromJson(json['credit'] as Map<String, dynamic>?)!,
+      blocks: List<PageBlock>.from(
+          ((json['blocks'] as List<dynamic>?) ?? <dynamic>[])
+              .map((item) => PageBlock.fromJson(item))
+              .toList()),
+      credit: RichText.fromJson(json['credit'] as Map<String, dynamic>?),
     );
   }
 
@@ -34,8 +37,8 @@ class PageBlockBlockQuote extends PageBlock {
 
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'text': text.toJson(),
-        'credit': credit.toJson(),
+        'blocks': blocks.map((item) => item.toJson()).toList(),
+        'credit': credit?.toJson(),
         '@type': constructor,
       };
 

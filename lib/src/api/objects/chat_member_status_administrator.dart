@@ -3,21 +3,14 @@ import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// The user is a member of the chat and has some additional privileges. In
-/// basic groups, administrators can edit and delete messages sent by others,
-/// add new members, ban unprivileged members, and manage video chats. In
-/// supergroups and channels, there are more detailed options for
-/// administrator privileges
+/// basic groups, administrators have all applicable rights. In supergroups
+/// and channels, any subset of the rights can be chosen for an administrator
 @immutable
 class ChatMemberStatusAdministrator extends ChatMemberStatus {
   const ChatMemberStatusAdministrator({
-    required this.customTitle,
     required this.canBeEdited,
     required this.rights,
   });
-
-  /// [customTitle] A custom title of the administrator; 0-16 characters without
-  /// emoji; applicable to supergroups only
-  final String customTitle;
 
   /// [canBeEdited] True, if the current user can edit the administrator
   /// privileges for the called user
@@ -34,7 +27,6 @@ class ChatMemberStatusAdministrator extends ChatMemberStatus {
     }
 
     return ChatMemberStatusAdministrator(
-      customTitle: json['custom_title'] as String,
       canBeEdited: json['can_be_edited'] as bool,
       rights: ChatAdministratorRights.fromJson(
           json['rights'] as Map<String, dynamic>?)!,
@@ -46,7 +38,6 @@ class ChatMemberStatusAdministrator extends ChatMemberStatus {
 
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'custom_title': customTitle,
         'can_be_edited': canBeEdited,
         'rights': rights.toJson(),
         '@type': constructor,

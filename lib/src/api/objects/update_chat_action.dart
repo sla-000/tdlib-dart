@@ -7,7 +7,7 @@ import '../tdapi.dart';
 class UpdateChatAction extends Update {
   const UpdateChatAction({
     required this.chatId,
-    required this.messageThreadId,
+    this.topicId,
     required this.senderId,
     required this.action,
   });
@@ -15,9 +15,9 @@ class UpdateChatAction extends Update {
   /// [chatId] Chat identifier
   final int chatId;
 
-  /// [messageThreadId] If not 0, the message thread identifier in which the
-  /// action was performed
-  final int messageThreadId;
+  /// [topicId] Identifier of the specific topic in which the action was
+  /// performed; may be null if none
+  final MessageTopic? topicId;
 
   /// [senderId] Identifier of a message sender performing the action
   final MessageSender senderId;
@@ -34,7 +34,7 @@ class UpdateChatAction extends Update {
 
     return UpdateChatAction(
       chatId: json['chat_id'] as int,
-      messageThreadId: json['message_thread_id'] as int,
+      topicId: MessageTopic.fromJson(json['topic_id'] as Map<String, dynamic>?),
       senderId:
           MessageSender.fromJson(json['sender_id'] as Map<String, dynamic>?)!,
       action: ChatAction.fromJson(json['action'] as Map<String, dynamic>?)!,
@@ -47,7 +47,7 @@ class UpdateChatAction extends Update {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'chat_id': chatId,
-        'message_thread_id': messageThreadId,
+        'topic_id': topicId?.toJson(),
         'sender_id': senderId.toJson(),
         'action': action.toJson(),
         '@type': constructor,

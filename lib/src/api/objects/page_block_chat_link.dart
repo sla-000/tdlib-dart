@@ -2,7 +2,7 @@ import 'package:meta/meta.dart';
 import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
-/// A link to a chat
+/// A link to a chat; instant view only
 @immutable
 class PageBlockChatLink extends PageBlock {
   const PageBlockChatLink({

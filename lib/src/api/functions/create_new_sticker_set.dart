@@ -37,7 +37,7 @@ class CreateNewStickerSet extends TdFunction {
   /// [stickers] List of stickers to be added to the set; 1-200 stickers for
   /// custom emoji sticker sets, and 1-120 stickers otherwise. For TGS stickers,
   /// uploadStickerFile must be used before the sticker is shown
-  final List<InputSticker> stickers;
+  final List<NewSticker> stickers;
 
   /// [source] Source of the sticker set; may be empty if unknown
   final String source;

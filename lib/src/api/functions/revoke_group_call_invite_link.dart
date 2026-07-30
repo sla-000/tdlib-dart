@@ -3,7 +3,7 @@ import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Revokes invite link for a group call. Requires groupCall.can_be_managed
-/// group call flag
+/// right for video chats or groupCall.is_owned otherwise
 /// Returns [Ok]
 @immutable
 class RevokeGroupCallInviteLink extends TdFunction {

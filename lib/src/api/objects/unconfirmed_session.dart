@@ -6,17 +6,18 @@ import '../tdapi.dart';
 @immutable
 class UnconfirmedSession extends TdObject {
   const UnconfirmedSession({
-    required this.id,
-    required this.logInDate,
+    required this.type,
+    required this.date,
     required this.deviceModel,
     required this.location,
   });
 
-  /// [id] Session identifier
-  final int id;
+  /// [type] Session type
+  final SessionType type;
 
-  /// [logInDate] Point in time (Unix timestamp) when the user has logged in
-  final int logInDate;
+  /// [date] Point in time (Unix timestamp) when the user has logged in or the
+  /// business bot was connected
+  final int date;
 
   /// [deviceModel] Model of the device that was used for the session creation,
   /// as provided by the application
@@ -34,8 +35,8 @@ class UnconfirmedSession extends TdObject {
     }
 
     return UnconfirmedSession(
-      id: int.tryParse(json['id']) ?? 0,
-      logInDate: json['log_in_date'] as int,
+      type: SessionType.fromJson(json['type'] as Map<String, dynamic>?)!,
+      date: json['date'] as int,
       deviceModel: json['device_model'] as String,
       location: json['location'] as String,
     );
@@ -46,8 +47,8 @@ class UnconfirmedSession extends TdObject {
 
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'id': id.toString(),
-        'log_in_date': logInDate,
+        'type': type.toJson(),
+        'date': date,
         'device_model': deviceModel,
         'location': location,
         '@type': constructor,

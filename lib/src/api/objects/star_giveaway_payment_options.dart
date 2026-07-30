@@ -2,7 +2,7 @@ import 'package:meta/meta.dart';
 import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
-/// Contains a list of options for creating Telegram Star giveaway
+/// Contains a list of options for creating of Telegram Star giveaway
 @immutable
 class StarGiveawayPaymentOptions extends TdObject {
   const StarGiveawayPaymentOptions({

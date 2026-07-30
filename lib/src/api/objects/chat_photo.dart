@@ -32,7 +32,7 @@ class ChatPhoto extends TdObject {
   final AnimatedChatPhoto? animation;
 
   /// [smallAnimation] A small (160x160) animated variant of the photo in MPEG4
-  /// format; may be null even the big animation is available
+  /// format; may be null even if the big animation is available
   final AnimatedChatPhoto? smallAnimation;
 
   /// [sticker] Sticker-based version of the chat photo; may be null

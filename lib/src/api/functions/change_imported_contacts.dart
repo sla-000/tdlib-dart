@@ -14,9 +14,8 @@ class ChangeImportedContacts extends TdFunction {
     required this.contacts,
   });
 
-  /// [contacts] The new list of contacts, contact's vCard are ignored and are
-  /// not imported
-  final List<Contact> contacts;
+  /// [contacts] The new list of contacts to import
+  final List<ImportedContact> contacts;
 
   static const String constructor = 'changeImportedContacts';
 

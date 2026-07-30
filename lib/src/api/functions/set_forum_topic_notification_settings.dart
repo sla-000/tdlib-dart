@@ -2,21 +2,22 @@ import 'package:meta/meta.dart';
 import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
-/// Changes the notification settings of a forum topic
+/// Changes the notification settings of a forum topic in a forum supergroup
+/// chat or a chat with a bot with topics
 /// Returns [Ok]
 @immutable
 class SetForumTopicNotificationSettings extends TdFunction {
   const SetForumTopicNotificationSettings({
     required this.chatId,
-    required this.messageThreadId,
+    required this.forumTopicId,
     required this.notificationSettings,
   });
 
   /// [chatId] Chat identifier
   final int chatId;
 
-  /// [messageThreadId] Message thread identifier of the forum topic
-  final int messageThreadId;
+  /// [forumTopicId] Forum topic identifier
+  final int forumTopicId;
 
   /// [notificationSettings] New notification settings for the forum topic. If
   /// the topic is muted for more than 366 days, it is considered to be muted
@@ -31,7 +32,7 @@ class SetForumTopicNotificationSettings extends TdFunction {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'chat_id': chatId,
-        'message_thread_id': messageThreadId,
+        'forum_topic_id': forumTopicId,
         'notification_settings': notificationSettings.toJson(),
         '@type': constructor,
       };

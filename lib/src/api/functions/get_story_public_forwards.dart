@@ -10,14 +10,14 @@ import '../tdapi.dart';
 @immutable
 class GetStoryPublicForwards extends TdFunction {
   const GetStoryPublicForwards({
-    required this.storySenderChatId,
+    required this.storyPosterChatId,
     required this.storyId,
     required this.offset,
     required this.limit,
   });
 
-  /// [storySenderChatId] The identifier of the sender of the story
-  final int storySenderChatId;
+  /// [storyPosterChatId] The identifier of the poster of the story
+  final int storyPosterChatId;
 
   /// [storyId] The identifier of the story
   final int storyId;
@@ -39,7 +39,7 @@ class GetStoryPublicForwards extends TdFunction {
 
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'story_sender_chat_id': storySenderChatId,
+        'story_poster_chat_id': storyPosterChatId,
         'story_id': storyId,
         'offset': offset,
         'limit': limit,

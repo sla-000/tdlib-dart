@@ -7,22 +7,27 @@ import '../tdapi.dart';
 class PageBlockVideo extends PageBlock {
   const PageBlockVideo({
     this.video,
-    required this.caption,
+    this.caption,
     required this.needAutoplay,
     required this.isLooped,
+    required this.hasSpoiler,
   });
 
   /// [video] Video file; may be null
   final Video? video;
 
-  /// [caption] Video caption
-  final PageBlockCaption caption;
+  /// [caption] Video caption; may be null if none
+  final PageBlockCaption? caption;
 
   /// [needAutoplay] True, if the video must be played automatically
   final bool needAutoplay;
 
   /// [isLooped] True, if the video must be looped
   final bool isLooped;
+
+  /// [hasSpoiler] True, if the video preview must be covered by a spoiler
+  /// animation
+  final bool hasSpoiler;
 
   static const String constructor = 'pageBlockVideo';
 
@@ -34,9 +39,10 @@ class PageBlockVideo extends PageBlock {
     return PageBlockVideo(
       video: Video.fromJson(json['video'] as Map<String, dynamic>?),
       caption:
-          PageBlockCaption.fromJson(json['caption'] as Map<String, dynamic>?)!,
+          PageBlockCaption.fromJson(json['caption'] as Map<String, dynamic>?),
       needAutoplay: json['need_autoplay'] as bool,
       isLooped: json['is_looped'] as bool,
+      hasSpoiler: json['has_spoiler'] as bool,
     );
   }
 
@@ -46,9 +52,10 @@ class PageBlockVideo extends PageBlock {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'video': video?.toJson(),
-        'caption': caption.toJson(),
+        'caption': caption?.toJson(),
         'need_autoplay': needAutoplay,
         'is_looped': isLooped,
+        'has_spoiler': hasSpoiler,
         '@type': constructor,
       };
 

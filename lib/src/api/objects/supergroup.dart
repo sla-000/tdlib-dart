@@ -3,11 +3,7 @@ import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Represents a supergroup or channel with zero or more members (subscribers
-/// in the case of channels). From the point of view of the system, a channel
-/// is a special kind of a supergroup: only administrators can post and see
-/// the list of members, and posts from all administrators use the name and
-/// photo of the channel instead of individual names and profile photos.
-/// Unlike supergroups, channels can have an unlimited number of subscribers
+/// in the case of channels)
 @immutable
 class Supergroup extends TdObject {
   const Supergroup({
@@ -17,6 +13,7 @@ class Supergroup extends TdObject {
     required this.status,
     required this.memberCount,
     required this.boostLevel,
+    required this.hasAutomaticTranslation,
     required this.hasLinkedChat,
     required this.hasLocation,
     required this.signMessages,
@@ -27,13 +24,14 @@ class Supergroup extends TdObject {
     required this.isChannel,
     required this.isBroadcastGroup,
     required this.isForum,
-    required this.isVerified,
-    required this.hasSensitiveContent,
-    required this.restrictionReason,
-    required this.isScam,
-    required this.isFake,
-    required this.hasActiveStories,
-    required this.hasUnreadActiveStories,
+    required this.isDirectMessagesGroup,
+    required this.isAdministeredDirectMessagesGroup,
+    this.verificationStatus,
+    required this.hasDirectMessagesGroup,
+    required this.hasForumTabs,
+    this.restrictionInfo,
+    required this.paidMessageStarCount,
+    this.activeStoryState,
   });
 
   /// [id] Supergroup or channel identifier
@@ -47,13 +45,12 @@ class Supergroup extends TdObject {
   /// is not a member
   final int date;
 
-  /// [status] Status of the current user in the supergroup or channel; custom
-  /// title will always be empty
+  /// [status] Status of the current user in the supergroup or channel
   final ChatMemberStatus status;
 
   /// [memberCount] Number of members in the supergroup or channel; 0 if
   /// unknown. Currently, it is guaranteed to be known only if the supergroup or
-  /// channel was received through getChatSimilarChats, getChatsToSendStories,
+  /// channel was received through getChatSimilarChats, getChatsToPostStories,
   /// getCreatedPublicChats, getGroupsInCommon, getInactiveSupergroupChats,
   /// getRecommendedChats, getSuitableDiscussionChats,
   /// getUserPrivacySettingRules, getVideoChatAvailableParticipants,
@@ -64,6 +61,10 @@ class Supergroup extends TdObject {
 
   /// [boostLevel] Approximate boost level for the chat
   final int boostLevel;
+
+  /// [hasAutomaticTranslation] True, if automatic translation of messages is
+  /// enabled in the channel
+  final bool hasAutomaticTranslation;
 
   /// [hasLinkedChat] True, if the channel has a discussion group, or the
   /// supergroup is the designated discussion group for a channel
@@ -82,19 +83,20 @@ class Supergroup extends TdObject {
   final bool showMessageSender;
 
   /// [joinToSendMessages] True, if users need to join the supergroup before
-  /// they can send messages. Always true for channels and non-discussion
-  /// supergroups
+  /// they can send messages. May be false only for discussion supergroups and
+  /// channel direct messages groups
   final bool joinToSendMessages;
 
   /// [joinByRequest] True, if all users directly joining the supergroup need to
-  /// be approved by supergroup administrators. Always false for channels and
-  /// supergroups without username, location, or a linked chat
+  /// be approved by supergroup administrators
   final bool joinByRequest;
 
   /// [isSlowModeEnabled] True, if the slow mode is enabled in the supergroup
   final bool isSlowModeEnabled;
 
-  /// [isChannel] True, if the supergroup is a channel
+  /// [isChannel] True, if the supergroup is a channel, which can have an
+  /// unlimited number of subscribers, but only administrators can post there
+  /// and see the list of subscribers
   final bool isChannel;
 
   /// [isBroadcastGroup] True, if the supergroup is a broadcast group, i.e. only
@@ -105,31 +107,36 @@ class Supergroup extends TdObject {
   /// [isForum] True, if the supergroup is a forum with topics
   final bool isForum;
 
-  /// [isVerified] True, if the supergroup or channel is verified
-  final bool isVerified;
+  /// [isDirectMessagesGroup] True, if the supergroup is a direct message group
+  /// for a channel chat
+  final bool isDirectMessagesGroup;
 
-  /// [hasSensitiveContent] True, if content of media messages in the supergroup
-  /// or channel chat must be hidden with 18+ spoiler
-  final bool hasSensitiveContent;
+  /// [isAdministeredDirectMessagesGroup] True, if the supergroup is a direct
+  /// messages group for a channel chat that is administered by the current user
+  final bool isAdministeredDirectMessagesGroup;
 
-  /// [restrictionReason] If non-empty, contains a human-readable description of
-  /// the reason why access to this supergroup or channel must be restricted
-  final String restrictionReason;
+  /// [verificationStatus] Information about verification status of the
+  /// supergroup or channel; may be null if none
+  final VerificationStatus? verificationStatus;
 
-  /// [isScam] True, if many users reported this supergroup or channel as a scam
-  final bool isScam;
+  /// [hasDirectMessagesGroup] True, if the channel has direct messages group
+  final bool hasDirectMessagesGroup;
 
-  /// [isFake] True, if many users reported this supergroup or channel as a fake
-  /// account
-  final bool isFake;
+  /// [hasForumTabs] True, if the supergroup is a forum, which topics are shown
+  /// in the same way as in channel direct messages groups
+  final bool hasForumTabs;
 
-  /// [hasActiveStories] True, if the supergroup or channel has non-expired
-  /// stories available to the current user
-  final bool hasActiveStories;
+  /// [restrictionInfo] Information about the restrictions that must be applied
+  /// to the corresponding supergroup or channel chat; may be null if none
+  final RestrictionInfo? restrictionInfo;
 
-  /// [hasUnreadActiveStories] True, if the supergroup or channel has unread
-  /// non-expired stories available to the current user
-  final bool hasUnreadActiveStories;
+  /// [paidMessageStarCount] Number of Telegram Stars that must be paid by
+  /// non-administrator users of the supergroup chat for each sent message
+  final int paidMessageStarCount;
+
+  /// [activeStoryState] State of active stories of the supergroup or channel;
+  /// may be null if there are no active stories
+  final ActiveStoryState? activeStoryState;
 
   static const String constructor = 'supergroup';
 
@@ -146,6 +153,7 @@ class Supergroup extends TdObject {
           ChatMemberStatus.fromJson(json['status'] as Map<String, dynamic>?)!,
       memberCount: json['member_count'] as int,
       boostLevel: json['boost_level'] as int,
+      hasAutomaticTranslation: json['has_automatic_translation'] as bool,
       hasLinkedChat: json['has_linked_chat'] as bool,
       hasLocation: json['has_location'] as bool,
       signMessages: json['sign_messages'] as bool,
@@ -156,13 +164,18 @@ class Supergroup extends TdObject {
       isChannel: json['is_channel'] as bool,
       isBroadcastGroup: json['is_broadcast_group'] as bool,
       isForum: json['is_forum'] as bool,
-      isVerified: json['is_verified'] as bool,
-      hasSensitiveContent: json['has_sensitive_content'] as bool,
-      restrictionReason: json['restriction_reason'] as String,
-      isScam: json['is_scam'] as bool,
-      isFake: json['is_fake'] as bool,
-      hasActiveStories: json['has_active_stories'] as bool,
-      hasUnreadActiveStories: json['has_unread_active_stories'] as bool,
+      isDirectMessagesGroup: json['is_direct_messages_group'] as bool,
+      isAdministeredDirectMessagesGroup:
+          json['is_administered_direct_messages_group'] as bool,
+      verificationStatus: VerificationStatus.fromJson(
+          json['verification_status'] as Map<String, dynamic>?),
+      hasDirectMessagesGroup: json['has_direct_messages_group'] as bool,
+      hasForumTabs: json['has_forum_tabs'] as bool,
+      restrictionInfo: RestrictionInfo.fromJson(
+          json['restriction_info'] as Map<String, dynamic>?),
+      paidMessageStarCount: json['paid_message_star_count'] as int,
+      activeStoryState: ActiveStoryState.fromJson(
+          json['active_story_state'] as Map<String, dynamic>?),
     );
   }
 
@@ -177,6 +190,7 @@ class Supergroup extends TdObject {
         'status': status.toJson(),
         'member_count': memberCount,
         'boost_level': boostLevel,
+        'has_automatic_translation': hasAutomaticTranslation,
         'has_linked_chat': hasLinkedChat,
         'has_location': hasLocation,
         'sign_messages': signMessages,
@@ -187,13 +201,15 @@ class Supergroup extends TdObject {
         'is_channel': isChannel,
         'is_broadcast_group': isBroadcastGroup,
         'is_forum': isForum,
-        'is_verified': isVerified,
-        'has_sensitive_content': hasSensitiveContent,
-        'restriction_reason': restrictionReason,
-        'is_scam': isScam,
-        'is_fake': isFake,
-        'has_active_stories': hasActiveStories,
-        'has_unread_active_stories': hasUnreadActiveStories,
+        'is_direct_messages_group': isDirectMessagesGroup,
+        'is_administered_direct_messages_group':
+            isAdministeredDirectMessagesGroup,
+        'verification_status': verificationStatus?.toJson(),
+        'has_direct_messages_group': hasDirectMessagesGroup,
+        'has_forum_tabs': hasForumTabs,
+        'restriction_info': restrictionInfo?.toJson(),
+        'paid_message_star_count': paidMessageStarCount,
+        'active_story_state': activeStoryState?.toJson(),
         '@type': constructor,
       };
 

@@ -2,7 +2,7 @@ import 'package:meta/meta.dart';
 import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
-/// The subtitle of a page
+/// The subtitle of a page; instant view only
 @immutable
 class PageBlockSubtitle extends PageBlock {
   const PageBlockSubtitle({

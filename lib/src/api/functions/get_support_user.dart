@@ -2,7 +2,7 @@ import 'package:meta/meta.dart';
 import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
-/// Returns a user that can be contacted to get support
+/// Returns a user who can be contacted to get support
 /// Returns [User]
 @immutable
 class GetSupportUser extends TdFunction {

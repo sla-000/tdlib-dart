@@ -8,6 +8,7 @@ class Invoice extends TdObject {
   const Invoice({
     required this.currency,
     required this.priceParts,
+    required this.subscriptionPeriod,
     required this.maxTipAmount,
     required this.suggestedTipAmounts,
     required this.recurringPaymentTermsOfServiceUrl,
@@ -28,6 +29,11 @@ class Invoice extends TdObject {
   /// [priceParts] A list of objects used to calculate the total price of the
   /// product
   final List<LabeledPricePart> priceParts;
+
+  /// [subscriptionPeriod] The number of seconds between consecutive Telegram
+  /// Star debiting for subscription invoices; 0 if the invoice doesn't create
+  /// subscription
+  final int subscriptionPeriod;
 
   /// [maxTipAmount] The maximum allowed amount of tip in the smallest units of
   /// the currency
@@ -88,6 +94,7 @@ class Invoice extends TdObject {
           ((json['price_parts'] as List<dynamic>?) ?? <dynamic>[])
               .map((item) => LabeledPricePart.fromJson(item))
               .toList()),
+      subscriptionPeriod: json['subscription_period'] as int,
       maxTipAmount: json['max_tip_amount'] as int,
       suggestedTipAmounts: List<int>.from(
           ((json['suggested_tip_amounts'] as List<dynamic>?) ?? <dynamic>[])
@@ -115,6 +122,7 @@ class Invoice extends TdObject {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'currency': currency,
         'price_parts': priceParts.map((item) => item.toJson()).toList(),
+        'subscription_period': subscriptionPeriod,
         'max_tip_amount': maxTipAmount,
         'suggested_tip_amounts':
             suggestedTipAmounts.map((item) => item).toList(),

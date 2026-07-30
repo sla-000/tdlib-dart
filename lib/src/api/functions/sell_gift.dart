@@ -2,21 +2,22 @@ import 'package:meta/meta.dart';
 import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
-/// Sells a gift received by the current user for Telegram Stars
+/// Sells a gift for Telegram Stars; requires owner privileges for gifts owned
+/// by a chat
 /// Returns [Ok]
 @immutable
 class SellGift extends TdFunction {
   const SellGift({
-    required this.senderUserId,
-    required this.messageId,
+    this.businessConnectionId,
+    required this.receivedGiftId,
   });
 
-  /// [senderUserId] Identifier of the user that sent the gift
-  final int senderUserId;
+  /// [businessConnectionId] Unique identifier of business connection on behalf
+  /// of which to send the request; for bots only
+  final String? businessConnectionId;
 
-  /// [messageId] Identifier of the message with the gift in the chat with the
-  /// user
-  final int messageId;
+  /// [receivedGiftId] Identifier of the gift
+  final String receivedGiftId;
 
   static const String constructor = 'sellGift';
 
@@ -25,8 +26,8 @@ class SellGift extends TdFunction {
 
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'sender_user_id': senderUserId,
-        'message_id': messageId,
+        'business_connection_id': businessConnectionId,
+        'received_gift_id': receivedGiftId,
         '@type': constructor,
       };
 

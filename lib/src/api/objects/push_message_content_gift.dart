@@ -7,10 +7,15 @@ import '../tdapi.dart';
 class PushMessageContentGift extends PushMessageContent {
   const PushMessageContentGift({
     required this.starCount,
+    required this.isPrepaidUpgrade,
   });
 
   /// [starCount] Number of Telegram Stars that sender paid for the gift
   final int starCount;
+
+  /// [isPrepaidUpgrade] True, if the message is about prepaid upgrade of the
+  /// gift by another user instead of actual receiving of a new gift
+  final bool isPrepaidUpgrade;
 
   static const String constructor = 'pushMessageContentGift';
 
@@ -21,6 +26,7 @@ class PushMessageContentGift extends PushMessageContent {
 
     return PushMessageContentGift(
       starCount: json['star_count'] as int,
+      isPrepaidUpgrade: json['is_prepaid_upgrade'] as bool,
     );
   }
 
@@ -30,6 +36,7 @@ class PushMessageContentGift extends PushMessageContent {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'star_count': starCount,
+        'is_prepaid_upgrade': isPrepaidUpgrade,
         '@type': constructor,
       };
 

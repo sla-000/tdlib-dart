@@ -3,8 +3,8 @@ import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Changes privacy settings of a story. The method can be called only for
-/// stories posted on behalf of the current user and if story.can_be_edited ==
-/// true
+/// stories posted on behalf of the current user and if
+/// story.can_set_privacy_settings == true
 /// Returns [Ok]
 @immutable
 class SetStoryPrivacySettings extends TdFunction {
@@ -16,7 +16,7 @@ class SetStoryPrivacySettings extends TdFunction {
   /// [storyId] Identifier of the story
   final int storyId;
 
-  /// [privacySettings] The new privacy settigs for the story
+  /// [privacySettings] The new privacy settings for the story
   final StoryPrivacySettings privacySettings;
 
   static const String constructor = 'setStoryPrivacySettings';

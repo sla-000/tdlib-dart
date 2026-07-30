@@ -6,12 +6,16 @@ import '../tdapi.dart';
 @immutable
 class ThemeSettings extends TdObject {
   const ThemeSettings({
+    required this.baseTheme,
     required this.accentColor,
     this.background,
-    required this.outgoingMessageFill,
+    this.outgoingMessageFill,
     required this.animateOutgoingMessageFill,
     required this.outgoingMessageAccentColor,
   });
+
+  /// [baseTheme] Base theme for this theme
+  final BuiltInTheme baseTheme;
 
   /// [accentColor] Theme accent color in ARGB format
   final int accentColor;
@@ -20,8 +24,8 @@ class ThemeSettings extends TdObject {
   final Background? background;
 
   /// [outgoingMessageFill] The fill to be used as a background for outgoing
-  /// messages
-  final BackgroundFill outgoingMessageFill;
+  /// messages; may be null if the fill from the base theme must be used instead
+  final BackgroundFill? outgoingMessageFill;
 
   /// [animateOutgoingMessageFill] If true, the freeform gradient fill needs to
   /// be animated on every sent message
@@ -39,11 +43,13 @@ class ThemeSettings extends TdObject {
     }
 
     return ThemeSettings(
+      baseTheme:
+          BuiltInTheme.fromJson(json['base_theme'] as Map<String, dynamic>?)!,
       accentColor: json['accent_color'] as int,
       background:
           Background.fromJson(json['background'] as Map<String, dynamic>?),
       outgoingMessageFill: BackgroundFill.fromJson(
-          json['outgoing_message_fill'] as Map<String, dynamic>?)!,
+          json['outgoing_message_fill'] as Map<String, dynamic>?),
       animateOutgoingMessageFill: json['animate_outgoing_message_fill'] as bool,
       outgoingMessageAccentColor: json['outgoing_message_accent_color'] as int,
     );
@@ -54,9 +60,10 @@ class ThemeSettings extends TdObject {
 
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
+        'base_theme': baseTheme.toJson(),
         'accent_color': accentColor,
         'background': background?.toJson(),
-        'outgoing_message_fill': outgoingMessageFill.toJson(),
+        'outgoing_message_fill': outgoingMessageFill?.toJson(),
         'animate_outgoing_message_fill': animateOutgoingMessageFill,
         'outgoing_message_accent_color': outgoingMessageAccentColor,
         '@type': constructor,

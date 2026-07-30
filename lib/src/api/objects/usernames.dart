@@ -9,6 +9,7 @@ class Usernames extends TdObject {
     required this.activeUsernames,
     required this.disabledUsernames,
     required this.editableUsername,
+    required this.collectibleUsernames,
   });
 
   /// [activeUsernames] List of active usernames; the first one must be shown as
@@ -22,10 +23,14 @@ class Usernames extends TdObject {
   /// toggleSupergroupUsernameIsActive
   final List<String> disabledUsernames;
 
-  /// [editableUsername] The active username, which can be changed with
-  /// setUsername or setSupergroupUsername. Information about other active
-  /// usernames can be received using getCollectibleItemInfo
+  /// [editableUsername] Active or disabled username, which may be changed with
+  /// setUsername or setSupergroupUsername
   final String editableUsername;
+
+  /// [collectibleUsernames] Collectible usernames that were purchased at
+  /// https://fragment.com and can be passed to getCollectibleItemInfo for more
+  /// details
+  final List<String> collectibleUsernames;
 
   static const String constructor = 'usernames';
 
@@ -44,6 +49,10 @@ class Usernames extends TdObject {
               .map((item) => item)
               .toList()),
       editableUsername: json['editable_username'] as String,
+      collectibleUsernames: List<String>.from(
+          ((json['collectible_usernames'] as List<dynamic>?) ?? <dynamic>[])
+              .map((item) => item)
+              .toList()),
     );
   }
 
@@ -55,6 +64,8 @@ class Usernames extends TdObject {
         'active_usernames': activeUsernames.map((item) => item).toList(),
         'disabled_usernames': disabledUsernames.map((item) => item).toList(),
         'editable_username': editableUsername,
+        'collectible_usernames':
+            collectibleUsernames.map((item) => item).toList(),
         '@type': constructor,
       };
 

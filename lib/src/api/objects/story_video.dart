@@ -2,7 +2,7 @@ import 'package:meta/meta.dart';
 import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
-/// Describes a video file sent in a story
+/// Describes a video file posted as a story
 @immutable
 class StoryVideo extends TdObject {
   const StoryVideo({

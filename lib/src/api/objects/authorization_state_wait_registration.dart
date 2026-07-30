@@ -2,7 +2,7 @@ import 'package:meta/meta.dart';
 import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
-/// The user is unregistered and need to accept terms of service and enter
+/// The user is unregistered and needs to accept terms of service and enter
 /// their first name and last name to finish registration. Call registerUser
 /// to accept the terms of service and provide the data
 @immutable

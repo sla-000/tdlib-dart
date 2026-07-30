@@ -7,6 +7,7 @@ import '../tdapi.dart';
 class ChatMember extends TdObject {
   const ChatMember({
     required this.memberId,
+    required this.tag,
     required this.inviterUserId,
     required this.joinedChatDate,
     required this.status,
@@ -17,7 +18,12 @@ class ChatMember extends TdObject {
   /// Left or Banned members and these chats must be supergroups or channels
   final MessageSender memberId;
 
-  /// [inviterUserId] Identifier of a user that invited/promoted/banned this
+  /// [tag] Tag of the chat member or its custom title if the member is an
+  /// administrator of the chat; 0-16 characters without emoji; applicable to
+  /// basic groups and supergroups only
+  final String tag;
+
+  /// [inviterUserId] Identifier of a user who invited/promoted/banned this
   /// member in the chat; 0 if unknown
   final int inviterUserId;
 
@@ -38,6 +44,7 @@ class ChatMember extends TdObject {
     return ChatMember(
       memberId:
           MessageSender.fromJson(json['member_id'] as Map<String, dynamic>?)!,
+      tag: json['tag'] as String,
       inviterUserId: json['inviter_user_id'] as int,
       joinedChatDate: json['joined_chat_date'] as int,
       status:
@@ -51,6 +58,7 @@ class ChatMember extends TdObject {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'member_id': memberId.toJson(),
+        'tag': tag,
         'inviter_user_id': inviterUserId,
         'joined_chat_date': joinedChatDate,
         'status': status.toJson(),

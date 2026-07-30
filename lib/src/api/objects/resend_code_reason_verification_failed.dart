@@ -10,7 +10,8 @@ class ResendCodeReasonVerificationFailed extends ResendCodeReason {
   });
 
   /// [errorMessage] Cause of the verification failure, for example,
-  /// PLAY_SERVICES_NOT_AVAILABLE, APNS_RECEIVE_TIMEOUT, or APNS_INIT_FAILED
+  /// "PLAY_SERVICES_NOT_AVAILABLE", "APNS_RECEIVE_TIMEOUT", or
+  /// "APNS_INIT_FAILED"
   final String errorMessage;
 
   static const String constructor = 'resendCodeReasonVerificationFailed';

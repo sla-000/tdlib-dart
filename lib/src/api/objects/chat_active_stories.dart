@@ -9,6 +9,7 @@ class ChatActiveStories extends TdObject {
     required this.chatId,
     this.list,
     required this.order,
+    required this.canBeArchived,
     required this.maxReadStoryId,
     required this.stories,
   });
@@ -21,10 +22,17 @@ class ChatActiveStories extends TdObject {
   final StoryList? list;
 
   /// [order] A parameter used to determine order of the stories in the story
-  /// list; 0 if the stories doesn't need to be shown in the story list. Stories
-  /// must be sorted by the pair (order, story_sender_chat_id) in descending
+  /// list; 0 if the stories don't need to be shown in the story list. Stories
+  /// must be sorted by the pair (order, story_poster_chat_id) in descending
   /// order
   final int order;
+
+  /// [canBeArchived] True, if the stories are shown in the main story list and
+  /// can be archived; otherwise, the stories can be hidden from the main story
+  /// list only by calling removeTopChat with topChatCategoryUsers and the
+  /// chat_id. Stories of the current user can't be archived nor hidden using
+  /// removeTopChat
+  final bool canBeArchived;
 
   /// [maxReadStoryId] Identifier of the last read active story
   final int maxReadStoryId;
@@ -45,6 +53,7 @@ class ChatActiveStories extends TdObject {
       chatId: json['chat_id'] as int,
       list: StoryList.fromJson(json['list'] as Map<String, dynamic>?),
       order: json['order'] as int,
+      canBeArchived: json['can_be_archived'] as bool,
       maxReadStoryId: json['max_read_story_id'] as int,
       stories: List<StoryInfo>.from(
           ((json['stories'] as List<dynamic>?) ?? <dynamic>[])
@@ -61,6 +70,7 @@ class ChatActiveStories extends TdObject {
         'chat_id': chatId,
         'list': list?.toJson(),
         'order': order,
+        'can_be_archived': canBeArchived,
         'max_read_story_id': maxReadStoryId,
         'stories': stories.map((item) => item.toJson()).toList(),
         '@type': constructor,

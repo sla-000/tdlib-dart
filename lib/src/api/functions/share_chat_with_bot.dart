@@ -8,18 +8,14 @@ import '../tdapi.dart';
 @immutable
 class ShareChatWithBot extends TdFunction {
   const ShareChatWithBot({
-    required this.chatId,
-    required this.messageId,
+    required this.source,
     required this.buttonId,
     required this.sharedChatId,
     required this.onlyCheck,
   });
 
-  /// [chatId] Identifier of the chat with the bot
-  final int chatId;
-
-  /// [messageId] Identifier of the message with the button
-  final int messageId;
+  /// [source] Source of the button
+  final KeyboardButtonSource source;
 
   /// [buttonId] Identifier of the button
   final int buttonId;
@@ -45,8 +41,7 @@ class ShareChatWithBot extends TdFunction {
 
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'chat_id': chatId,
-        'message_id': messageId,
+        'source': source.toJson(),
         'button_id': buttonId,
         'shared_chat_id': sharedChatId,
         'only_check': onlyCheck,

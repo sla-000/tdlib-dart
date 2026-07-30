@@ -5,7 +5,7 @@ import '../tdapi.dart';
 /// Returns an HTTPS link to a message in a chat. Available only if
 /// messageProperties.can_get_link, or if
 /// messageProperties.can_get_media_timestamp_links and a media timestamp link
-/// is generated. This is an offline request
+/// is generated. This is an offline method
 /// Returns [MessageLink]
 @immutable
 class GetMessageLink extends TdFunction {
@@ -13,6 +13,8 @@ class GetMessageLink extends TdFunction {
     required this.chatId,
     required this.messageId,
     required this.mediaTimestamp,
+    required this.checklistTaskId,
+    required this.pollOptionId,
     required this.forAlbum,
     required this.inMessageThread,
   });
@@ -27,6 +29,14 @@ class GetMessageLink extends TdFunction {
   /// note/voice note/story playing must start, in seconds. The media can be in
   /// the message content or in its link preview
   final int mediaTimestamp;
+
+  /// [checklistTaskId] If not 0, identifier of the checklist task in the
+  /// message to be linked
+  final int checklistTaskId;
+
+  /// [pollOptionId] If not empty, identifier of the poll option in the message
+  /// to be linked
+  final String pollOptionId;
 
   /// [forAlbum] Pass true to create a link for the whole media album
   final bool forAlbum;
@@ -45,6 +55,8 @@ class GetMessageLink extends TdFunction {
         'chat_id': chatId,
         'message_id': messageId,
         'media_timestamp': mediaTimestamp,
+        'checklist_task_id': checklistTaskId,
+        'poll_option_id': pollOptionId,
         'for_album': forAlbum,
         'in_message_thread': inMessageThread,
         '@type': constructor,

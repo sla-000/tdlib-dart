@@ -2,7 +2,7 @@ import 'package:meta/meta.dart';
 import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
-/// Accepts Telegram terms of services
+/// Accepts Telegram terms of service
 /// Returns [Ok]
 @immutable
 class AcceptTermsOfService extends TdFunction {

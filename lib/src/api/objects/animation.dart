@@ -34,7 +34,7 @@ class Animation extends TdObject {
   final String mimeType;
 
   /// [hasStickers] True, if stickers were added to the animation. The list of
-  /// corresponding sticker set can be received using getAttachedStickerSets
+  /// corresponding sticker sets can be received using getAttachedStickerSets
   final bool hasStickers;
 
   /// [minithumbnail] Animation minithumbnail; may be null

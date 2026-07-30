@@ -6,14 +6,9 @@ import '../tdapi.dart';
 @immutable
 class ChatMemberStatusCreator extends ChatMemberStatus {
   const ChatMemberStatusCreator({
-    required this.customTitle,
     required this.isAnonymous,
     required this.isMember,
   });
-
-  /// [customTitle] A custom title of the owner; 0-16 characters without emoji;
-  /// applicable to supergroups only
-  final String customTitle;
 
   /// [isAnonymous] True, if the creator isn't shown in the chat member list and
   /// sends messages anonymously; applicable to supergroups only
@@ -30,7 +25,6 @@ class ChatMemberStatusCreator extends ChatMemberStatus {
     }
 
     return ChatMemberStatusCreator(
-      customTitle: json['custom_title'] as String,
       isAnonymous: json['is_anonymous'] as bool,
       isMember: json['is_member'] as bool,
     );
@@ -41,7 +35,6 @@ class ChatMemberStatusCreator extends ChatMemberStatus {
 
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'custom_title': customTitle,
         'is_anonymous': isAnonymous,
         'is_member': isMember,
         '@type': constructor,

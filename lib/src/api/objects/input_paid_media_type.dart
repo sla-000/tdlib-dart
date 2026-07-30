@@ -2,7 +2,7 @@ import 'package:meta/meta.dart';
 import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
-/// Describes type of paid media to sent
+/// Describes type of paid media to send
 @immutable
 abstract class InputPaidMediaType extends TdObject {
   const InputPaidMediaType();

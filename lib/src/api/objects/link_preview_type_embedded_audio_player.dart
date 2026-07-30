@@ -7,6 +7,7 @@ import '../tdapi.dart';
 class LinkPreviewTypeEmbeddedAudioPlayer extends LinkPreviewType {
   const LinkPreviewTypeEmbeddedAudioPlayer({
     required this.url,
+    this.audio,
     this.thumbnail,
     required this.duration,
     required this.width,
@@ -15,6 +16,9 @@ class LinkPreviewTypeEmbeddedAudioPlayer extends LinkPreviewType {
 
   /// [url] URL of the external audio player
   final String url;
+
+  /// [audio] The cached audio; may be null if unknown
+  final Audio? audio;
 
   /// [thumbnail] Thumbnail of the audio; may be null if unknown
   final Photo? thumbnail;
@@ -38,6 +42,7 @@ class LinkPreviewTypeEmbeddedAudioPlayer extends LinkPreviewType {
 
     return LinkPreviewTypeEmbeddedAudioPlayer(
       url: json['url'] as String,
+      audio: Audio.fromJson(json['audio'] as Map<String, dynamic>?),
       thumbnail: Photo.fromJson(json['thumbnail'] as Map<String, dynamic>?),
       duration: json['duration'] as int,
       width: json['width'] as int,
@@ -51,6 +56,7 @@ class LinkPreviewTypeEmbeddedAudioPlayer extends LinkPreviewType {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'url': url,
+        'audio': audio?.toJson(),
         'thumbnail': thumbnail?.toJson(),
         'duration': duration,
         'width': width,

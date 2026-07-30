@@ -10,7 +10,7 @@ class ForumTopics extends TdObject {
     required this.topics,
     required this.nextOffsetDate,
     required this.nextOffsetMessageId,
-    required this.nextOffsetMessageThreadId,
+    required this.nextOffsetForumTopicId,
   });
 
   /// [totalCount] Approximate total number of forum topics found
@@ -26,9 +26,9 @@ class ForumTopics extends TdObject {
   /// getForumTopics request
   final int nextOffsetMessageId;
 
-  /// [nextOffsetMessageThreadId] Offset message thread identifier for the next
+  /// [nextOffsetForumTopicId] Offset forum topic identifier for the next
   /// getForumTopics request
-  final int nextOffsetMessageThreadId;
+  final int nextOffsetForumTopicId;
 
   static const String constructor = 'forumTopics';
 
@@ -45,7 +45,7 @@ class ForumTopics extends TdObject {
               .toList()),
       nextOffsetDate: json['next_offset_date'] as int,
       nextOffsetMessageId: json['next_offset_message_id'] as int,
-      nextOffsetMessageThreadId: json['next_offset_message_thread_id'] as int,
+      nextOffsetForumTopicId: json['next_offset_forum_topic_id'] as int,
     );
   }
 
@@ -58,7 +58,7 @@ class ForumTopics extends TdObject {
         'topics': topics.map((item) => item.toJson()).toList(),
         'next_offset_date': nextOffsetDate,
         'next_offset_message_id': nextOffsetMessageId,
-        'next_offset_message_thread_id': nextOffsetMessageThreadId,
+        'next_offset_forum_topic_id': nextOffsetForumTopicId,
         '@type': constructor,
       };
 

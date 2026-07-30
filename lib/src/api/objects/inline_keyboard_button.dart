@@ -7,11 +7,20 @@ import '../tdapi.dart';
 class InlineKeyboardButton extends TdObject {
   const InlineKeyboardButton({
     required this.text,
+    required this.iconCustomEmojiId,
+    required this.style,
     required this.type,
   });
 
   /// [text] Text of the button
   final String text;
+
+  /// [iconCustomEmojiId] Identifier of the custom emoji that must be shown on
+  /// the button; 0 if none
+  final int iconCustomEmojiId;
+
+  /// [style] Style of the button
+  final ButtonStyle style;
 
   /// [type] Type of the button
   final InlineKeyboardButtonType type;
@@ -25,6 +34,8 @@ class InlineKeyboardButton extends TdObject {
 
     return InlineKeyboardButton(
       text: json['text'] as String,
+      iconCustomEmojiId: int.tryParse(json['icon_custom_emoji_id']) ?? 0,
+      style: ButtonStyle.fromJson(json['style'] as Map<String, dynamic>?)!,
       type: InlineKeyboardButtonType.fromJson(
           json['type'] as Map<String, dynamic>?)!,
     );
@@ -36,6 +47,8 @@ class InlineKeyboardButton extends TdObject {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'text': text,
+        'icon_custom_emoji_id': iconCustomEmojiId.toString(),
+        'style': style.toJson(),
         'type': type.toJson(),
         '@type': constructor,
       };

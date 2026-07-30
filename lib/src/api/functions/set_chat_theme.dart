@@ -8,15 +8,14 @@ import '../tdapi.dart';
 class SetChatTheme extends TdFunction {
   const SetChatTheme({
     required this.chatId,
-    required this.themeName,
+    this.theme,
   });
 
   /// [chatId] Chat identifier
   final int chatId;
 
-  /// [themeName] Name of the new chat theme; pass an empty string to return the
-  /// default theme
-  final String themeName;
+  /// [theme] New chat theme; pass null to return the default theme
+  final InputChatTheme? theme;
 
   static const String constructor = 'setChatTheme';
 
@@ -26,7 +25,7 @@ class SetChatTheme extends TdFunction {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'chat_id': chatId,
-        'theme_name': themeName,
+        'theme': theme?.toJson(),
         '@type': constructor,
       };
 

@@ -24,8 +24,7 @@ class AddQuickReplyShortcutMessage extends TdFunction {
   final int replyToMessageId;
 
   /// [inputMessageContent] The content of the message to be added;
-  /// inputMessagePoll, inputMessageForwarded and inputMessageLocation with
-  /// live_period aren't supported
+  /// inputMessagePaidMedia, inputMessageForwarded and inputMessageLiveLocation
   final InputMessageContent inputMessageContent;
 
   static const String constructor = 'addQuickReplyShortcutMessage';

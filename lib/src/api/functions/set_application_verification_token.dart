@@ -2,8 +2,8 @@ import 'package:meta/meta.dart';
 import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
-/// Application verification has been completed. Can be called before
-/// authorization
+/// Informs TDLib that application or reCAPTCHA verification has been
+/// completed. Can be called before authorization
 /// Returns [Ok]
 @immutable
 class SetApplicationVerificationToken extends TdFunction {
@@ -13,12 +13,15 @@ class SetApplicationVerificationToken extends TdFunction {
   });
 
   /// [verificationId] Unique identifier for the verification process as
-  /// received from updateApplicationVerificationRequired
+  /// received from updateApplicationVerificationRequired or
+  /// updateApplicationRecaptchaVerificationRequired
   final int verificationId;
 
   /// [token] Play Integrity API token for the Android application, or secret
-  /// from push notification for the iOS application; pass an empty string to
-  /// abort verification and receive error VERIFICATION_FAILED for the request
+  /// from push notification for the iOS application for application
+  /// verification, or reCAPTCHA token for reCAPTCHA verifications; pass an
+  /// empty string to abort verification and receive the error
+  /// "VERIFICATION_FAILED" for the request
   final String token;
 
   static const String constructor = 'setApplicationVerificationToken';

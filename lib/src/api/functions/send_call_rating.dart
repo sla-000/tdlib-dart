@@ -14,7 +14,7 @@ class SendCallRating extends TdFunction {
   });
 
   /// [callId] Call identifier
-  final int callId;
+  final InputCall callId;
 
   /// [rating] Call rating; 1-5
   final int rating;
@@ -33,7 +33,7 @@ class SendCallRating extends TdFunction {
 
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'call_id': callId,
+        'call_id': callId.toJson(),
         'rating': rating,
         'comment': comment,
         'problems': problems.map((item) => item.toJson()).toList(),

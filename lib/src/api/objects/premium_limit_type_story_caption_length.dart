@@ -2,7 +2,7 @@ import 'package:meta/meta.dart';
 import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
-/// The maximum length of captions of sent stories
+/// The maximum length of captions of posted stories
 @immutable
 class PremiumLimitTypeStoryCaptionLength extends PremiumLimitType {
   const PremiumLimitTypeStoryCaptionLength();

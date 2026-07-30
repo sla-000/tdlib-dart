@@ -13,6 +13,7 @@ class ChatBoostFeatures extends TdObject {
     required this.minChatThemeBackgroundBoostLevel,
     required this.minCustomBackgroundBoostLevel,
     required this.minCustomEmojiStickerSetBoostLevel,
+    required this.minAutomaticTranslationBoostLevel,
     required this.minSpeechRecognitionBoostLevel,
     required this.minSponsoredMessageDisableBoostLevel,
   });
@@ -44,6 +45,11 @@ class ChatBoostFeatures extends TdObject {
   /// [minCustomEmojiStickerSetBoostLevel] The minimum boost level required to
   /// set custom emoji sticker set for the chat; for supergroup chats only
   final int minCustomEmojiStickerSetBoostLevel;
+
+  /// [minAutomaticTranslationBoostLevel] The minimum boost level allowing to
+  /// enable automatic translation of messages for non-Premium users; for
+  /// channel chats only
+  final int minAutomaticTranslationBoostLevel;
 
   /// [minSpeechRecognitionBoostLevel] The minimum boost level allowing to
   /// recognize speech in video note and voice note messages for non-Premium
@@ -77,6 +83,8 @@ class ChatBoostFeatures extends TdObject {
           json['min_custom_background_boost_level'] as int,
       minCustomEmojiStickerSetBoostLevel:
           json['min_custom_emoji_sticker_set_boost_level'] as int,
+      minAutomaticTranslationBoostLevel:
+          json['min_automatic_translation_boost_level'] as int,
       minSpeechRecognitionBoostLevel:
           json['min_speech_recognition_boost_level'] as int,
       minSponsoredMessageDisableBoostLevel:
@@ -100,6 +108,8 @@ class ChatBoostFeatures extends TdObject {
         'min_custom_background_boost_level': minCustomBackgroundBoostLevel,
         'min_custom_emoji_sticker_set_boost_level':
             minCustomEmojiStickerSetBoostLevel,
+        'min_automatic_translation_boost_level':
+            minAutomaticTranslationBoostLevel,
         'min_speech_recognition_boost_level': minSpeechRecognitionBoostLevel,
         'min_sponsored_message_disable_boost_level':
             minSponsoredMessageDisableBoostLevel,

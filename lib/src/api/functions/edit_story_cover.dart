@@ -8,13 +8,13 @@ import '../tdapi.dart';
 @immutable
 class EditStoryCover extends TdFunction {
   const EditStoryCover({
-    required this.storySenderChatId,
+    required this.storyPosterChatId,
     required this.storyId,
     required this.coverFrameTimestamp,
   });
 
-  /// [storySenderChatId] Identifier of the chat that posted the story
-  final int storySenderChatId;
+  /// [storyPosterChatId] Identifier of the chat that posted the story
+  final int storyPosterChatId;
 
   /// [storyId] Identifier of the story to edit
   final int storyId;
@@ -30,7 +30,7 @@ class EditStoryCover extends TdFunction {
 
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'story_sender_chat_id': storySenderChatId,
+        'story_poster_chat_id': storyPosterChatId,
         'story_id': storyId,
         'cover_frame_timestamp': coverFrameTimestamp,
         '@type': constructor,

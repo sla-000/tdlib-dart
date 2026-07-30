@@ -4,9 +4,10 @@ import '../tdapi.dart';
 
 /// Asynchronously edits the text, media or caption of a quick reply message.
 /// Use quickReplyMessage.can_be_edited to check whether a message can be
-/// edited. Media message can be edited only to a media message. The type of
-/// message content in an album can't be changed with exception of replacing a
-/// photo with a video or vice versa
+/// edited. Media message can be edited only to a media message. Checklist
+/// messages can be edited only to a checklist message. The type of message
+/// content in an album can't be changed with exception of replacing a photo
+/// with a video or vice versa
 /// Returns [Ok]
 @immutable
 class EditQuickReplyMessage extends TdFunction {
@@ -24,9 +25,9 @@ class EditQuickReplyMessage extends TdFunction {
   final int messageId;
 
   /// [inputMessageContent] New content of the message. Must be one of the
-  /// following types: inputMessageText, inputMessageAnimation,
-  /// inputMessageAudio, inputMessageDocument, inputMessagePhoto or
-  /// inputMessageVideo
+  /// following types: inputMessageAnimation, inputMessageAudio,
+  /// inputMessageChecklist, inputMessageDocument, inputMessagePhoto,
+  /// inputMessageRichMessage, inputMessageText, or inputMessageVideo
   final InputMessageContent inputMessageContent;
 
   static const String constructor = 'editQuickReplyMessage';

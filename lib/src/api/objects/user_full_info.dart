@@ -9,6 +9,7 @@ class UserFullInfo extends TdObject {
     this.personalPhoto,
     this.photo,
     this.publicPhoto,
+    this.communityId,
     this.blockList,
     required this.canBeCalled,
     required this.supportsVideoCalls,
@@ -19,11 +20,22 @@ class UserFullInfo extends TdObject {
     required this.hasSponsoredMessagesEnabled,
     required this.needPhoneNumberPrivacyException,
     required this.setChatBackground,
+    required this.usesUnofficialApp,
     this.bio,
     this.birthdate,
     required this.personalChatId,
     required this.giftCount,
     required this.groupInCommonCount,
+    required this.incomingPaidMessageStarCount,
+    required this.outgoingPaidMessageStarCount,
+    required this.giftSettings,
+    this.botVerification,
+    this.mainProfileTab,
+    this.firstProfileAudio,
+    this.rating,
+    this.pendingRating,
+    required this.pendingRatingDate,
+    this.note,
     this.businessInfo,
     this.botInfo,
   });
@@ -48,6 +60,10 @@ class UserFullInfo extends TdObject {
   /// user.profile_photo and chat.photo. This photo isn't returned in the list
   /// of user photos
   final ChatPhoto? publicPhoto;
+
+  /// [communityId] Identifier of the community to which chat with the bot was
+  /// added; for bots only
+  final int? communityId;
 
   /// [blockList] Block list to which the user is added; may be null if none
   final BlockList? blockList;
@@ -87,6 +103,10 @@ class UserFullInfo extends TdObject {
   /// users and it wasn't reverted yet
   final bool setChatBackground;
 
+  /// [usesUnofficialApp] True, if the user uses an unofficial application that
+  /// poses a security risk
+  final bool usesUnofficialApp;
+
   /// [bio] A short user bio; may be null for bots
   final FormattedText? bio;
 
@@ -96,12 +116,51 @@ class UserFullInfo extends TdObject {
   /// [personalChatId] Identifier of the personal chat of the user; 0 if none
   final int personalChatId;
 
-  /// [giftCount] Number of gifts saved to profile by the user
+  /// [giftCount] Number of saved to profile gifts for other users or the total
+  /// number of received gifts for the current user
   final int giftCount;
 
   /// [groupInCommonCount] Number of group chats where both the other user and
   /// the current user are a member; 0 for the current user
   final int groupInCommonCount;
+
+  /// [incomingPaidMessageStarCount] Number of Telegram Stars that must be paid
+  /// by the user for each sent message to the current user
+  final int incomingPaidMessageStarCount;
+
+  /// [outgoingPaidMessageStarCount] Number of Telegram Stars that must be paid
+  /// by the current user for each sent message to the user
+  final int outgoingPaidMessageStarCount;
+
+  /// [giftSettings] Settings for gift receiving for the user
+  final GiftSettings giftSettings;
+
+  /// [botVerification] Information about verification status of the user
+  /// provided by a bot; may be null if none or unknown
+  final BotVerification? botVerification;
+
+  /// [mainProfileTab] The main tab chosen by the user; may be null if not
+  /// chosen manually
+  final ProfileTab? mainProfileTab;
+
+  /// [firstProfileAudio] The first audio file added to the user's profile; may
+  /// be null if none
+  final Audio? firstProfileAudio;
+
+  /// [rating] The current rating of the user; may be null if none
+  final UserRating? rating;
+
+  /// [pendingRating] The rating of the user after the next change; may be null
+  /// if the user isn't the current user or there are no pending rating changes
+  final UserRating? pendingRating;
+
+  /// [pendingRatingDate] Unix timestamp when rating of the user will change to
+  /// pending_rating; 0 if the user isn't the current user or there are no
+  /// pending rating changes
+  final int pendingRatingDate;
+
+  /// [note] Note added to the user's contact; may be null if none
+  final FormattedText? note;
 
   /// [businessInfo] Information about business settings for Telegram Business
   /// accounts; may be null if none
@@ -124,6 +183,7 @@ class UserFullInfo extends TdObject {
       photo: ChatPhoto.fromJson(json['photo'] as Map<String, dynamic>?),
       publicPhoto:
           ChatPhoto.fromJson(json['public_photo'] as Map<String, dynamic>?),
+      communityId: json['community_id'] as int?,
       blockList:
           BlockList.fromJson(json['block_list'] as Map<String, dynamic>?),
       canBeCalled: json['can_be_called'] as bool,
@@ -138,11 +198,29 @@ class UserFullInfo extends TdObject {
       needPhoneNumberPrivacyException:
           json['need_phone_number_privacy_exception'] as bool,
       setChatBackground: json['set_chat_background'] as bool,
+      usesUnofficialApp: json['uses_unofficial_app'] as bool,
       bio: FormattedText.fromJson(json['bio'] as Map<String, dynamic>?),
       birthdate: Birthdate.fromJson(json['birthdate'] as Map<String, dynamic>?),
       personalChatId: json['personal_chat_id'] as int,
       giftCount: json['gift_count'] as int,
       groupInCommonCount: json['group_in_common_count'] as int,
+      incomingPaidMessageStarCount:
+          json['incoming_paid_message_star_count'] as int,
+      outgoingPaidMessageStarCount:
+          json['outgoing_paid_message_star_count'] as int,
+      giftSettings: GiftSettings.fromJson(
+          json['gift_settings'] as Map<String, dynamic>?)!,
+      botVerification: BotVerification.fromJson(
+          json['bot_verification'] as Map<String, dynamic>?),
+      mainProfileTab: ProfileTab.fromJson(
+          json['main_profile_tab'] as Map<String, dynamic>?),
+      firstProfileAudio:
+          Audio.fromJson(json['first_profile_audio'] as Map<String, dynamic>?),
+      rating: UserRating.fromJson(json['rating'] as Map<String, dynamic>?),
+      pendingRating:
+          UserRating.fromJson(json['pending_rating'] as Map<String, dynamic>?),
+      pendingRatingDate: json['pending_rating_date'] as int,
+      note: FormattedText.fromJson(json['note'] as Map<String, dynamic>?),
       businessInfo:
           BusinessInfo.fromJson(json['business_info'] as Map<String, dynamic>?),
       botInfo: BotInfo.fromJson(json['bot_info'] as Map<String, dynamic>?),
@@ -157,6 +235,7 @@ class UserFullInfo extends TdObject {
         'personal_photo': personalPhoto?.toJson(),
         'photo': photo?.toJson(),
         'public_photo': publicPhoto?.toJson(),
+        'community_id': communityId,
         'block_list': blockList?.toJson(),
         'can_be_called': canBeCalled,
         'supports_video_calls': supportsVideoCalls,
@@ -168,11 +247,22 @@ class UserFullInfo extends TdObject {
         'has_sponsored_messages_enabled': hasSponsoredMessagesEnabled,
         'need_phone_number_privacy_exception': needPhoneNumberPrivacyException,
         'set_chat_background': setChatBackground,
+        'uses_unofficial_app': usesUnofficialApp,
         'bio': bio?.toJson(),
         'birthdate': birthdate?.toJson(),
         'personal_chat_id': personalChatId,
         'gift_count': giftCount,
         'group_in_common_count': groupInCommonCount,
+        'incoming_paid_message_star_count': incomingPaidMessageStarCount,
+        'outgoing_paid_message_star_count': outgoingPaidMessageStarCount,
+        'gift_settings': giftSettings.toJson(),
+        'bot_verification': botVerification?.toJson(),
+        'main_profile_tab': mainProfileTab?.toJson(),
+        'first_profile_audio': firstProfileAudio?.toJson(),
+        'rating': rating?.toJson(),
+        'pending_rating': pendingRating?.toJson(),
+        'pending_rating_date': pendingRatingDate,
+        'note': note?.toJson(),
         'business_info': businessInfo?.toJson(),
         'bot_info': botInfo?.toJson(),
         '@type': constructor,

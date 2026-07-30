@@ -2,7 +2,7 @@ import 'package:meta/meta.dart';
 import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
-/// The link is a link to a web site
+/// The link is a link to a website
 @immutable
 class LinkPreviewTypeArticle extends LinkPreviewType {
   const LinkPreviewTypeArticle({

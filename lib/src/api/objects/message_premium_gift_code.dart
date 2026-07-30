@@ -15,11 +15,12 @@ class MessagePremiumGiftCode extends MessageContent {
     required this.cryptocurrency,
     required this.cryptocurrencyAmount,
     required this.monthCount,
+    required this.dayCount,
     this.sticker,
     required this.code,
   });
 
-  /// [creatorId] Identifier of a chat or a user that created the gift code; may
+  /// [creatorId] Identifier of a chat or a user who created the gift code; may
   /// be null if unknown
   final MessageSender? creatorId;
 
@@ -49,8 +50,12 @@ class MessagePremiumGiftCode extends MessageContent {
   final int cryptocurrencyAmount;
 
   /// [monthCount] Number of months the Telegram Premium subscription will be
-  /// active after code activation
+  /// active after code activation; 0 if the number of months isn't integer
   final int monthCount;
+
+  /// [dayCount] Number of days the Telegram Premium subscription will be active
+  /// after code activation
+  final int dayCount;
 
   /// [sticker] A sticker to be shown in the message; may be null if unknown
   final Sticker? sticker;
@@ -76,6 +81,7 @@ class MessagePremiumGiftCode extends MessageContent {
       cryptocurrency: json['cryptocurrency'] as String,
       cryptocurrencyAmount: int.tryParse(json['cryptocurrency_amount']) ?? 0,
       monthCount: json['month_count'] as int,
+      dayCount: json['day_count'] as int,
       sticker: Sticker.fromJson(json['sticker'] as Map<String, dynamic>?),
       code: json['code'] as String,
     );
@@ -95,6 +101,7 @@ class MessagePremiumGiftCode extends MessageContent {
         'cryptocurrency': cryptocurrency,
         'cryptocurrency_amount': cryptocurrencyAmount.toString(),
         'month_count': monthCount,
+        'day_count': dayCount,
         'sticker': sticker?.toJson(),
         'code': code,
         '@type': constructor,

@@ -7,18 +7,24 @@ import '../tdapi.dart';
 class PageBlockPhoto extends PageBlock {
   const PageBlockPhoto({
     this.photo,
-    required this.caption,
+    this.caption,
     required this.url,
+    required this.hasSpoiler,
   });
 
   /// [photo] Photo file; may be null
   final Photo? photo;
 
-  /// [caption] Photo caption
-  final PageBlockCaption caption;
+  /// [caption] Photo caption; may be null if none
+  final PageBlockCaption? caption;
 
-  /// [url] URL that needs to be opened when the photo is clicked
+  /// [url] URL that needs to be opened when the photo is clicked; instant view
+  /// only
   final String url;
+
+  /// [hasSpoiler] True, if the photo preview must be covered by a spoiler
+  /// animation
+  final bool hasSpoiler;
 
   static const String constructor = 'pageBlockPhoto';
 
@@ -30,8 +36,9 @@ class PageBlockPhoto extends PageBlock {
     return PageBlockPhoto(
       photo: Photo.fromJson(json['photo'] as Map<String, dynamic>?),
       caption:
-          PageBlockCaption.fromJson(json['caption'] as Map<String, dynamic>?)!,
+          PageBlockCaption.fromJson(json['caption'] as Map<String, dynamic>?),
       url: json['url'] as String,
+      hasSpoiler: json['has_spoiler'] as bool,
     );
   }
 
@@ -41,8 +48,9 @@ class PageBlockPhoto extends PageBlock {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'photo': photo?.toJson(),
-        'caption': caption.toJson(),
+        'caption': caption?.toJson(),
         'url': url,
+        'has_spoiler': hasSpoiler,
         '@type': constructor,
       };
 

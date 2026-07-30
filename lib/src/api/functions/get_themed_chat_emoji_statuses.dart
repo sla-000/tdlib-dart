@@ -4,7 +4,7 @@ import '../tdapi.dart';
 
 /// Returns up to 8 emoji statuses, which must be shown in the emoji status
 /// list for chats
-/// Returns [EmojiStatuses]
+/// Returns [EmojiStatusCustomEmojis]
 @immutable
 class GetThemedChatEmojiStatuses extends TdFunction {
   const GetThemedChatEmojiStatuses();

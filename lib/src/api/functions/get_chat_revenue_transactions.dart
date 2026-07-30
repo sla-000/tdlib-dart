@@ -18,10 +18,11 @@ class GetChatRevenueTransactions extends TdFunction {
   /// [chatId] Chat identifier
   final int chatId;
 
-  /// [offset] Number of transactions to skip
-  final int offset;
+  /// [offset] Offset of the first transaction to return as received from the
+  /// previous request; use empty string to get the first chunk of results
+  final String offset;
 
-  /// [limit] The maximum number of transactions to be returned; up to 200
+  /// [limit] The maximum number of transactions to be returned; up to 100
   final int limit;
 
   static const String constructor = 'getChatRevenueTransactions';

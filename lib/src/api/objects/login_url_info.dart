@@ -3,7 +3,7 @@ import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Contains information about an inline button of type
-/// inlineKeyboardButtonTypeLoginUrl
+/// inlineKeyboardButtonTypeLoginUrl or an external link
 @immutable
 abstract class LoginUrlInfo extends TdObject {
   const LoginUrlInfo();

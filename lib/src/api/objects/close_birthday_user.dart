@@ -2,7 +2,7 @@ import 'package:meta/meta.dart';
 import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
-/// Describes a user that had or will have a birthday soon
+/// Describes a user who had or will have a birthday soon
 @immutable
 class CloseBirthdayUser extends TdObject {
   const CloseBirthdayUser({

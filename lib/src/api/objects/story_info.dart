@@ -9,9 +9,10 @@ class StoryInfo extends TdObject {
     required this.storyId,
     required this.date,
     required this.isForCloseFriends,
+    required this.isLive,
   });
 
-  /// [storyId] Unique story identifier among stories of the given sender
+  /// [storyId] Unique story identifier among stories of the chat
   final int storyId;
 
   /// [date] Point in time (Unix timestamp) when the story was published
@@ -19,6 +20,9 @@ class StoryInfo extends TdObject {
 
   /// [isForCloseFriends] True, if the story is available only to close friends
   final bool isForCloseFriends;
+
+  /// [isLive] True, if the story is a live story
+  final bool isLive;
 
   static const String constructor = 'storyInfo';
 
@@ -31,6 +35,7 @@ class StoryInfo extends TdObject {
       storyId: json['story_id'] as int,
       date: json['date'] as int,
       isForCloseFriends: json['is_for_close_friends'] as bool,
+      isLive: json['is_live'] as bool,
     );
   }
 
@@ -42,6 +47,7 @@ class StoryInfo extends TdObject {
         'story_id': storyId,
         'date': date,
         'is_for_close_friends': isForCloseFriends,
+        'is_live': isLive,
         '@type': constructor,
       };
 

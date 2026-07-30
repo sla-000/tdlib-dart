@@ -13,6 +13,7 @@ abstract class FileType extends TdObject {
   /// [FileTypeAnimation]
   /// [FileTypeAudio]
   /// [FileTypeDocument]
+  /// [FileTypeLivePhotoVideo]
   /// [FileTypeNone]
   /// [FileTypeNotificationSound]
   /// [FileTypePhotoStory]
@@ -21,6 +22,11 @@ abstract class FileType extends TdObject {
   /// [FileTypeSecretThumbnail]
   /// [FileTypeSecret]
   /// [FileTypeSecure]
+  /// [FileTypeSelfDestructingLivePhotoVideo]
+  /// [FileTypeSelfDestructingPhoto]
+  /// [FileTypeSelfDestructingVideoNote]
+  /// [FileTypeSelfDestructingVideo]
+  /// [FileTypeSelfDestructingVoiceNote]
   /// [FileTypeSticker]
   /// [FileTypeThumbnail]
   /// [FileTypeUnknown]
@@ -41,6 +47,8 @@ abstract class FileType extends TdObject {
         return FileTypeAudio.fromJson(json);
       case FileTypeDocument.constructor:
         return FileTypeDocument.fromJson(json);
+      case FileTypeLivePhotoVideo.constructor:
+        return FileTypeLivePhotoVideo.fromJson(json);
       case FileTypeNone.constructor:
         return FileTypeNone.fromJson(json);
       case FileTypeNotificationSound.constructor:
@@ -57,6 +65,16 @@ abstract class FileType extends TdObject {
         return FileTypeSecretThumbnail.fromJson(json);
       case FileTypeSecure.constructor:
         return FileTypeSecure.fromJson(json);
+      case FileTypeSelfDestructingLivePhotoVideo.constructor:
+        return FileTypeSelfDestructingLivePhotoVideo.fromJson(json);
+      case FileTypeSelfDestructingPhoto.constructor:
+        return FileTypeSelfDestructingPhoto.fromJson(json);
+      case FileTypeSelfDestructingVideo.constructor:
+        return FileTypeSelfDestructingVideo.fromJson(json);
+      case FileTypeSelfDestructingVideoNote.constructor:
+        return FileTypeSelfDestructingVideoNote.fromJson(json);
+      case FileTypeSelfDestructingVoiceNote.constructor:
+        return FileTypeSelfDestructingVoiceNote.fromJson(json);
       case FileTypeSticker.constructor:
         return FileTypeSticker.fromJson(json);
       case FileTypeThumbnail.constructor:

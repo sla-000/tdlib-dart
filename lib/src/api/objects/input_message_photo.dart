@@ -7,34 +7,14 @@ import '../tdapi.dart';
 class InputMessagePhoto extends InputMessageContent {
   const InputMessagePhoto({
     required this.photo,
-    this.thumbnail,
-    required this.addedStickerFileIds,
-    required this.width,
-    required this.height,
     this.caption,
     required this.showCaptionAboveMedia,
     this.selfDestructType,
     required this.hasSpoiler,
   });
 
-  /// [photo] Photo to send. The photo must be at most 10 MB in size. The
-  /// photo's width and height must not exceed 10000 in total. Width and height
-  /// ratio must be at most 20
-  final InputFile photo;
-
-  /// [thumbnail] Photo thumbnail to be sent; pass null to skip thumbnail
-  /// uploading. The thumbnail is sent to the other party only in secret chats
-  final InputThumbnail? thumbnail;
-
-  /// [addedStickerFileIds] File identifiers of the stickers added to the photo,
-  /// if applicable
-  final List<int> addedStickerFileIds;
-
-  /// [width] Photo width
-  final int width;
-
-  /// [height] Photo height
-  final int height;
+  /// [photo] Photo to be sent
+  final InputPhoto photo;
 
   /// [caption] Photo caption; pass null to use an empty caption;
   /// 0-getOption("message_caption_length_max") characters
@@ -61,15 +41,7 @@ class InputMessagePhoto extends InputMessageContent {
     }
 
     return InputMessagePhoto(
-      photo: InputFile.fromJson(json['photo'] as Map<String, dynamic>?)!,
-      thumbnail:
-          InputThumbnail.fromJson(json['thumbnail'] as Map<String, dynamic>?),
-      addedStickerFileIds: List<int>.from(
-          ((json['added_sticker_file_ids'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => item)
-              .toList()),
-      width: json['width'] as int,
-      height: json['height'] as int,
+      photo: InputPhoto.fromJson(json['photo'] as Map<String, dynamic>?)!,
       caption: FormattedText.fromJson(json['caption'] as Map<String, dynamic>?),
       showCaptionAboveMedia: json['show_caption_above_media'] as bool,
       selfDestructType: MessageSelfDestructType.fromJson(
@@ -84,11 +56,6 @@ class InputMessagePhoto extends InputMessageContent {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'photo': photo.toJson(),
-        'thumbnail': thumbnail?.toJson(),
-        'added_sticker_file_ids':
-            addedStickerFileIds.map((item) => item).toList(),
-        'width': width,
-        'height': height,
         'caption': caption?.toJson(),
         'show_caption_above_media': showCaptionAboveMedia,
         'self_destruct_type': selfDestructType?.toJson(),

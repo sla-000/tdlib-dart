@@ -7,19 +7,12 @@ import '../tdapi.dart';
 @immutable
 class InternalLinkTypeProxy extends InternalLinkType {
   const InternalLinkTypeProxy({
-    required this.server,
-    required this.port,
-    required this.type,
+    this.proxy,
   });
 
-  /// [server] Proxy server domain or IP address
-  final String server;
-
-  /// [port] Proxy server port
-  final int port;
-
-  /// [type] Type of the proxy
-  final ProxyType type;
+  /// [proxy] The proxy; may be null if the proxy is unsupported, in which case
+  /// an alert can be shown to the user
+  final Proxy? proxy;
 
   static const String constructor = 'internalLinkTypeProxy';
 
@@ -29,9 +22,7 @@ class InternalLinkTypeProxy extends InternalLinkType {
     }
 
     return InternalLinkTypeProxy(
-      server: json['server'] as String,
-      port: json['port'] as int,
-      type: ProxyType.fromJson(json['type'] as Map<String, dynamic>?)!,
+      proxy: Proxy.fromJson(json['proxy'] as Map<String, dynamic>?),
     );
   }
 
@@ -40,9 +31,7 @@ class InternalLinkTypeProxy extends InternalLinkType {
 
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'server': server,
-        'port': port,
-        'type': type.toJson(),
+        'proxy': proxy?.toJson(),
         '@type': constructor,
       };
 

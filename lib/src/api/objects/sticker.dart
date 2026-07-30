@@ -13,7 +13,6 @@ class Sticker extends TdObject {
     required this.emoji,
     required this.format,
     required this.fullType,
-    required this.outline,
     this.thumbnail,
     required this.sticker,
   });
@@ -31,7 +30,7 @@ class Sticker extends TdObject {
   /// [height] Sticker height; as defined by the sender
   final int height;
 
-  /// [emoji] Emoji corresponding to the sticker
+  /// [emoji] Emoji corresponding to the sticker; may be empty if unknown
   final String emoji;
 
   /// [format] Sticker format
@@ -39,10 +38,6 @@ class Sticker extends TdObject {
 
   /// [fullType] Sticker's full type
   final StickerFullType fullType;
-
-  /// [outline] Sticker's outline represented as a list of closed vector paths;
-  /// may be empty. The coordinate system origin is in the upper-left corner
-  final List<ClosedVectorPath> outline;
 
   /// [thumbnail] Sticker thumbnail in WEBP or JPEG format; may be null
   final Thumbnail? thumbnail;
@@ -66,10 +61,6 @@ class Sticker extends TdObject {
       format: StickerFormat.fromJson(json['format'] as Map<String, dynamic>?)!,
       fullType:
           StickerFullType.fromJson(json['full_type'] as Map<String, dynamic>?)!,
-      outline: List<ClosedVectorPath>.from(
-          ((json['outline'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => ClosedVectorPath.fromJson(item))
-              .toList()),
       thumbnail: Thumbnail.fromJson(json['thumbnail'] as Map<String, dynamic>?),
       sticker: File.fromJson(json['sticker'] as Map<String, dynamic>?)!,
     );
@@ -87,7 +78,6 @@ class Sticker extends TdObject {
         'emoji': emoji,
         'format': format.toJson(),
         'full_type': fullType.toJson(),
-        'outline': outline.map((item) => item.toJson()).toList(),
         'thumbnail': thumbnail?.toJson(),
         'sticker': sticker.toJson(),
         '@type': constructor,

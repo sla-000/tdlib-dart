@@ -7,15 +7,15 @@ import '../tdapi.dart';
 class UpdateChatTheme extends Update {
   const UpdateChatTheme({
     required this.chatId,
-    required this.themeName,
+    this.theme,
   });
 
   /// [chatId] Chat identifier
   final int chatId;
 
-  /// [themeName] The new name of the chat theme; may be empty if theme was
-  /// reset to default
-  final String themeName;
+  /// [theme] The new theme of the chat; may be null if theme was reset to
+  /// default
+  final ChatTheme? theme;
 
   static const String constructor = 'updateChatTheme';
 
@@ -26,7 +26,7 @@ class UpdateChatTheme extends Update {
 
     return UpdateChatTheme(
       chatId: json['chat_id'] as int,
-      themeName: json['theme_name'] as String,
+      theme: ChatTheme.fromJson(json['theme'] as Map<String, dynamic>?),
     );
   }
 
@@ -36,7 +36,7 @@ class UpdateChatTheme extends Update {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'chat_id': chatId,
-        'theme_name': themeName,
+        'theme': theme?.toJson(),
         '@type': constructor,
       };
 

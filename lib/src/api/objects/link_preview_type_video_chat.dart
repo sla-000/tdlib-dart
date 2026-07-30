@@ -8,6 +8,7 @@ class LinkPreviewTypeVideoChat extends LinkPreviewType {
   const LinkPreviewTypeVideoChat({
     this.photo,
     required this.isLiveStream,
+    required this.joinsAsSpeaker,
   });
 
   /// [photo] Photo of the chat with the video chat; may be null if none
@@ -16,6 +17,10 @@ class LinkPreviewTypeVideoChat extends LinkPreviewType {
   /// [isLiveStream] True, if the video chat is expected to be a live stream in
   /// a channel or a broadcast group
   final bool isLiveStream;
+
+  /// [joinsAsSpeaker] True, if the user can use the link to join the video chat
+  /// without being muted by administrators
+  final bool joinsAsSpeaker;
 
   static const String constructor = 'linkPreviewTypeVideoChat';
 
@@ -27,6 +32,7 @@ class LinkPreviewTypeVideoChat extends LinkPreviewType {
     return LinkPreviewTypeVideoChat(
       photo: ChatPhoto.fromJson(json['photo'] as Map<String, dynamic>?),
       isLiveStream: json['is_live_stream'] as bool,
+      joinsAsSpeaker: json['joins_as_speaker'] as bool,
     );
   }
 
@@ -37,6 +43,7 @@ class LinkPreviewTypeVideoChat extends LinkPreviewType {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'photo': photo?.toJson(),
         'is_live_stream': isLiveStream,
+        'joins_as_speaker': joinsAsSpeaker,
         '@type': constructor,
       };
 

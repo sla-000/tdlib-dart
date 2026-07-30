@@ -7,14 +7,33 @@ import '../tdapi.dart';
 class PageBlockListItem extends TdObject {
   const PageBlockListItem({
     required this.label,
-    required this.pageBlocks,
+    required this.blocks,
+    required this.hasCheckbox,
+    required this.isChecked,
+    required this.value,
+    required this.type,
   });
 
   /// [label] Item label
   final String label;
 
-  /// [pageBlocks] Item blocks
-  final List<PageBlock> pageBlocks;
+  /// [blocks] Item blocks
+  final List<PageBlock> blocks;
+
+  /// [hasCheckbox] True, if the item has a checkbox
+  final bool hasCheckbox;
+
+  /// [isChecked] True, if the item is checked
+  final bool isChecked;
+
+  /// [value] Value of the item; 0 for unordered lists
+  final int value;
+
+  /// [type] Type of the item numbering type; must be one of "a" for lowercase
+  /// letters, "A" for uppercase letters, "i" for lowercase Roman numerals, "I"
+  /// for uppercase Roman numerals, "1" for decimal numbers, or empty for
+  /// unordered lists
+  final String type;
 
   static const String constructor = 'pageBlockListItem';
 
@@ -25,10 +44,14 @@ class PageBlockListItem extends TdObject {
 
     return PageBlockListItem(
       label: json['label'] as String,
-      pageBlocks: List<PageBlock>.from(
-          ((json['page_blocks'] as List<dynamic>?) ?? <dynamic>[])
+      blocks: List<PageBlock>.from(
+          ((json['blocks'] as List<dynamic>?) ?? <dynamic>[])
               .map((item) => PageBlock.fromJson(item))
               .toList()),
+      hasCheckbox: json['has_checkbox'] as bool,
+      isChecked: json['is_checked'] as bool,
+      value: json['value'] as int,
+      type: json['type'] as String,
     );
   }
 
@@ -38,7 +61,11 @@ class PageBlockListItem extends TdObject {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'label': label,
-        'page_blocks': pageBlocks.map((item) => item.toJson()).toList(),
+        'blocks': blocks.map((item) => item.toJson()).toList(),
+        'has_checkbox': hasCheckbox,
+        'is_checked': isChecked,
+        'value': value,
+        'type': type,
         '@type': constructor,
       };
 

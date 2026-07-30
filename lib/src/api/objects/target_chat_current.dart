@@ -2,7 +2,7 @@ import 'package:meta/meta.dart';
 import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
-/// The currently opened chat needs to be kept
+/// The currently opened chat and forum topic must be kept
 @immutable
 class TargetChatCurrent extends TargetChat {
   const TargetChatCurrent();

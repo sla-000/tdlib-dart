@@ -2,7 +2,7 @@ import 'package:meta/meta.dart';
 import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
-/// Cancels or reenables Telegram Star subscription to a channel
+/// Cancels or re-enables Telegram Star subscription
 /// Returns [Ok]
 @immutable
 class EditStarSubscription extends TdFunction {

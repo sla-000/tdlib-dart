@@ -2,7 +2,8 @@ import 'package:meta/meta.dart';
 import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
-/// Returns RTMP URL for streaming to the chat; requires owner privileges
+/// Returns RTMP URL for streaming to the video chat of a chat; requires
+/// can_manage_video_chats administrator right
 /// Returns [RtmpUrl]
 @immutable
 class GetVideoChatRtmpUrl extends TdFunction {

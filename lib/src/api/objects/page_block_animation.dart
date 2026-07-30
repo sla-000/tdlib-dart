@@ -7,18 +7,23 @@ import '../tdapi.dart';
 class PageBlockAnimation extends PageBlock {
   const PageBlockAnimation({
     this.animation,
-    required this.caption,
+    this.caption,
     required this.needAutoplay,
+    required this.hasSpoiler,
   });
 
   /// [animation] Animation file; may be null
   final Animation? animation;
 
-  /// [caption] Animation caption
-  final PageBlockCaption caption;
+  /// [caption] Animation caption; may be null if none
+  final PageBlockCaption? caption;
 
   /// [needAutoplay] True, if the animation must be played automatically
   final bool needAutoplay;
+
+  /// [hasSpoiler] True, if the animation preview must be covered by a spoiler
+  /// animation
+  final bool hasSpoiler;
 
   static const String constructor = 'pageBlockAnimation';
 
@@ -30,8 +35,9 @@ class PageBlockAnimation extends PageBlock {
     return PageBlockAnimation(
       animation: Animation.fromJson(json['animation'] as Map<String, dynamic>?),
       caption:
-          PageBlockCaption.fromJson(json['caption'] as Map<String, dynamic>?)!,
+          PageBlockCaption.fromJson(json['caption'] as Map<String, dynamic>?),
       needAutoplay: json['need_autoplay'] as bool,
+      hasSpoiler: json['has_spoiler'] as bool,
     );
   }
 
@@ -41,8 +47,9 @@ class PageBlockAnimation extends PageBlock {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'animation': animation?.toJson(),
-        'caption': caption.toJson(),
+        'caption': caption?.toJson(),
         'need_autoplay': needAutoplay,
+        'has_spoiler': hasSpoiler,
         '@type': constructor,
       };
 

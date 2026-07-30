@@ -15,10 +15,13 @@ abstract class UserPrivacySetting extends TdObject {
   /// [UserPrivacySettingAllowFindingByPhoneNumber]
   /// [UserPrivacySettingAllowPeerToPeerCalls]
   /// [UserPrivacySettingAllowPrivateVoiceAndVideoNoteMessages]
+  /// [UserPrivacySettingAllowUnpaidMessages]
+  /// [UserPrivacySettingAutosaveGifts]
   /// [UserPrivacySettingShowBio]
   /// [UserPrivacySettingShowBirthdate]
   /// [UserPrivacySettingShowLinkInForwardedMessages]
   /// [UserPrivacySettingShowPhoneNumber]
+  /// [UserPrivacySettingShowProfileAudio]
   /// [UserPrivacySettingShowProfilePhoto]
   /// [UserPrivacySettingShowStatus]
   static UserPrivacySetting? fromJson(Map<String, dynamic>? json) {
@@ -38,6 +41,10 @@ abstract class UserPrivacySetting extends TdObject {
       case UserPrivacySettingAllowPrivateVoiceAndVideoNoteMessages.constructor:
         return UserPrivacySettingAllowPrivateVoiceAndVideoNoteMessages.fromJson(
             json);
+      case UserPrivacySettingAllowUnpaidMessages.constructor:
+        return UserPrivacySettingAllowUnpaidMessages.fromJson(json);
+      case UserPrivacySettingAutosaveGifts.constructor:
+        return UserPrivacySettingAutosaveGifts.fromJson(json);
       case UserPrivacySettingShowBio.constructor:
         return UserPrivacySettingShowBio.fromJson(json);
       case UserPrivacySettingShowBirthdate.constructor:
@@ -46,6 +53,8 @@ abstract class UserPrivacySetting extends TdObject {
         return UserPrivacySettingShowLinkInForwardedMessages.fromJson(json);
       case UserPrivacySettingShowPhoneNumber.constructor:
         return UserPrivacySettingShowPhoneNumber.fromJson(json);
+      case UserPrivacySettingShowProfileAudio.constructor:
+        return UserPrivacySettingShowProfileAudio.fromJson(json);
       case UserPrivacySettingShowProfilePhoto.constructor:
         return UserPrivacySettingShowProfilePhoto.fromJson(json);
       case UserPrivacySettingShowStatus.constructor:

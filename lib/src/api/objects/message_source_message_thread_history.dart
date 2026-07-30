@@ -2,7 +2,7 @@ import 'package:meta/meta.dart';
 import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
-/// The message is from a message thread history
+/// The message is from history of a message thread
 @immutable
 class MessageSourceMessageThreadHistory extends MessageSource {
   const MessageSourceMessageThreadHistory();

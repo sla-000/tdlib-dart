@@ -18,9 +18,7 @@ class ChatInviteLinkInfo extends TdObject {
     this.subscriptionInfo,
     required this.createsJoinRequest,
     required this.isPublic,
-    required this.isVerified,
-    required this.isScam,
-    required this.isFake,
+    this.verificationStatus,
   });
 
   /// [chatId] Chat identifier of the invite link; 0 if the user has no access
@@ -66,14 +64,9 @@ class ChatInviteLinkInfo extends TdObject {
   /// has a username or it is a location-based supergroup
   final bool isPublic;
 
-  /// [isVerified] True, if the chat is verified
-  final bool isVerified;
-
-  /// [isScam] True, if many users reported this chat as a scam
-  final bool isScam;
-
-  /// [isFake] True, if many users reported this chat as a fake account
-  final bool isFake;
+  /// [verificationStatus] Information about verification status of the chat;
+  /// may be null if none
+  final VerificationStatus? verificationStatus;
 
   static const String constructor = 'chatInviteLinkInfo';
 
@@ -99,9 +92,8 @@ class ChatInviteLinkInfo extends TdObject {
           json['subscription_info'] as Map<String, dynamic>?),
       createsJoinRequest: json['creates_join_request'] as bool,
       isPublic: json['is_public'] as bool,
-      isVerified: json['is_verified'] as bool,
-      isScam: json['is_scam'] as bool,
-      isFake: json['is_fake'] as bool,
+      verificationStatus: VerificationStatus.fromJson(
+          json['verification_status'] as Map<String, dynamic>?),
     );
   }
 
@@ -122,9 +114,7 @@ class ChatInviteLinkInfo extends TdObject {
         'subscription_info': subscriptionInfo?.toJson(),
         'creates_join_request': createsJoinRequest,
         'is_public': isPublic,
-        'is_verified': isVerified,
-        'is_scam': isScam,
-        'is_fake': isFake,
+        'verification_status': verificationStatus?.toJson(),
         '@type': constructor,
       };
 

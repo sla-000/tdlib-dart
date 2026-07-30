@@ -2,7 +2,7 @@ import 'package:meta/meta.dart';
 import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
-/// Contains information about a user that added paid reactions
+/// Contains information about a user who added paid reactions
 @immutable
 class PaidReactor extends TdObject {
   const PaidReactor({

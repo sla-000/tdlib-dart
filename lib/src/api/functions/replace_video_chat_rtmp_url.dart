@@ -2,8 +2,8 @@ import 'package:meta/meta.dart';
 import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
-/// Replaces the current RTMP URL for streaming to the chat; requires owner
-/// privileges
+/// Replaces the current RTMP URL for streaming to the video chat of a chat;
+/// requires owner privileges in the chat
 /// Returns [RtmpUrl]
 @immutable
 class ReplaceVideoChatRtmpUrl extends TdFunction {

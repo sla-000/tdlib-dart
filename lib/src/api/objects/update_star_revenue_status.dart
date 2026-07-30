@@ -2,7 +2,7 @@ import 'package:meta/meta.dart';
 import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
-/// The Telegram Star revenue earned by a bot or a chat has changed. If
+/// The Telegram Star revenue earned by a user or a chat has changed. If
 /// Telegram Star transaction screen of the chat is opened, then
 /// getStarTransactions may be called to fetch new transactions
 @immutable

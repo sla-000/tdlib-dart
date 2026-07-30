@@ -6,7 +6,7 @@ import '../tdapi.dart';
 @immutable
 class ChatFolder extends TdObject {
   const ChatFolder({
-    required this.title,
+    required this.name,
     this.icon,
     required this.colorId,
     required this.isShareable,
@@ -23,8 +23,8 @@ class ChatFolder extends TdObject {
     required this.includeChannels,
   });
 
-  /// [title] The title of the folder; 1-12 characters without line feeds
-  final String title;
+  /// [name] The name of the folder
+  final ChatFolderName name;
 
   /// [icon] The chosen icon for the chat folder; may be null. If null, use
   /// getChatFolderDefaultIconName to get default icon name for the folder
@@ -89,7 +89,7 @@ class ChatFolder extends TdObject {
     }
 
     return ChatFolder(
-      title: json['title'] as String,
+      name: ChatFolderName.fromJson(json['name'] as Map<String, dynamic>?)!,
       icon: ChatFolderIcon.fromJson(json['icon'] as Map<String, dynamic>?),
       colorId: json['color_id'] as int,
       isShareable: json['is_shareable'] as bool,
@@ -121,7 +121,7 @@ class ChatFolder extends TdObject {
 
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'title': title,
+        'name': name.toJson(),
         'icon': icon?.toJson(),
         'color_id': colorId,
         'is_shareable': isShareable,

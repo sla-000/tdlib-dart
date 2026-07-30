@@ -8,12 +8,14 @@ class ForumTopic extends TdObject {
   const ForumTopic({
     required this.info,
     this.lastMessage,
+    required this.order,
     required this.isPinned,
     required this.unreadCount,
     required this.lastReadInboxMessageId,
     required this.lastReadOutboxMessageId,
     required this.unreadMentionCount,
     required this.unreadReactionCount,
+    required this.unreadPollVoteCount,
     required this.notificationSettings,
     this.draftMessage,
   });
@@ -23,6 +25,10 @@ class ForumTopic extends TdObject {
 
   /// [lastMessage] Last message in the topic; may be null if unknown
   final Message? lastMessage;
+
+  /// [order] A parameter used to determine order of the topic in the topic
+  /// list. Topics must be sorted by the order in descending order
+  final int order;
 
   /// [isPinned] True, if the topic is pinned in the topic list
   final bool isPinned;
@@ -44,6 +50,10 @@ class ForumTopic extends TdObject {
   /// topic
   final int unreadReactionCount;
 
+  /// [unreadPollVoteCount] Number of messages with unread poll votes in the
+  /// topic
+  final int unreadPollVoteCount;
+
   /// [notificationSettings] Notification settings for the topic
   final ChatNotificationSettings notificationSettings;
 
@@ -61,12 +71,14 @@ class ForumTopic extends TdObject {
       info: ForumTopicInfo.fromJson(json['info'] as Map<String, dynamic>?)!,
       lastMessage:
           Message.fromJson(json['last_message'] as Map<String, dynamic>?),
+      order: int.tryParse(json['order']) ?? 0,
       isPinned: json['is_pinned'] as bool,
       unreadCount: json['unread_count'] as int,
       lastReadInboxMessageId: json['last_read_inbox_message_id'] as int,
       lastReadOutboxMessageId: json['last_read_outbox_message_id'] as int,
       unreadMentionCount: json['unread_mention_count'] as int,
       unreadReactionCount: json['unread_reaction_count'] as int,
+      unreadPollVoteCount: json['unread_poll_vote_count'] as int,
       notificationSettings: ChatNotificationSettings.fromJson(
           json['notification_settings'] as Map<String, dynamic>?)!,
       draftMessage:
@@ -81,12 +93,14 @@ class ForumTopic extends TdObject {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'info': info.toJson(),
         'last_message': lastMessage?.toJson(),
+        'order': order.toString(),
         'is_pinned': isPinned,
         'unread_count': unreadCount,
         'last_read_inbox_message_id': lastReadInboxMessageId,
         'last_read_outbox_message_id': lastReadOutboxMessageId,
         'unread_mention_count': unreadMentionCount,
         'unread_reaction_count': unreadReactionCount,
+        'unread_poll_vote_count': unreadPollVoteCount,
         'notification_settings': notificationSettings.toJson(),
         'draft_message': draftMessage?.toJson(),
         '@type': constructor,

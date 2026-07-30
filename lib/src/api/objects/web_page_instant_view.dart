@@ -6,7 +6,7 @@ import '../tdapi.dart';
 @immutable
 class WebPageInstantView extends TdObject {
   const WebPageInstantView({
-    required this.pageBlocks,
+    required this.blocks,
     required this.viewCount,
     required this.version,
     required this.isRtl,
@@ -14,8 +14,8 @@ class WebPageInstantView extends TdObject {
     required this.feedbackLink,
   });
 
-  /// [pageBlocks] Content of the instant view page
-  final List<PageBlock> pageBlocks;
+  /// [blocks] Content of the instant view page
+  final List<PageBlock> blocks;
 
   /// [viewCount] Number of the instant view views; 0 if unknown
   final int viewCount;
@@ -42,8 +42,8 @@ class WebPageInstantView extends TdObject {
     }
 
     return WebPageInstantView(
-      pageBlocks: List<PageBlock>.from(
-          ((json['page_blocks'] as List<dynamic>?) ?? <dynamic>[])
+      blocks: List<PageBlock>.from(
+          ((json['blocks'] as List<dynamic>?) ?? <dynamic>[])
               .map((item) => PageBlock.fromJson(item))
               .toList()),
       viewCount: json['view_count'] as int,
@@ -60,7 +60,7 @@ class WebPageInstantView extends TdObject {
 
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'page_blocks': pageBlocks.map((item) => item.toJson()).toList(),
+        'blocks': blocks.map((item) => item.toJson()).toList(),
         'view_count': viewCount,
         'version': version,
         'is_rtl': isRtl,

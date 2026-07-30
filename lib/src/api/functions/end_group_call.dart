@@ -2,7 +2,8 @@ import 'package:meta/meta.dart';
 import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
-/// Ends a group call. Requires groupCall.can_be_managed
+/// Ends a group call. Requires groupCall.can_be_managed right for video chats
+/// and live stories or groupCall.is_owned otherwise
 /// Returns [Ok]
 @immutable
 class EndGroupCall extends TdFunction {

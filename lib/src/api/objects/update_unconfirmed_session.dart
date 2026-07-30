@@ -7,10 +7,14 @@ import '../tdapi.dart';
 class UpdateUnconfirmedSession extends Update {
   const UpdateUnconfirmedSession({
     this.session,
+    required this.unconfirmedSessionCount,
   });
 
   /// [session] The unconfirmed session; may be null if none
   final UnconfirmedSession? session;
+
+  /// [unconfirmedSessionCount] The total number of unconfirmed sessions
+  final int unconfirmedSessionCount;
 
   static const String constructor = 'updateUnconfirmedSession';
 
@@ -22,6 +26,7 @@ class UpdateUnconfirmedSession extends Update {
     return UpdateUnconfirmedSession(
       session:
           UnconfirmedSession.fromJson(json['session'] as Map<String, dynamic>?),
+      unconfirmedSessionCount: json['unconfirmed_session_count'] as int,
     );
   }
 
@@ -31,6 +36,7 @@ class UpdateUnconfirmedSession extends Update {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'session': session?.toJson(),
+        'unconfirmed_session_count': unconfirmedSessionCount,
         '@type': constructor,
       };
 

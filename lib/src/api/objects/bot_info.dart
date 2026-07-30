@@ -10,12 +10,20 @@ class BotInfo extends TdObject {
     required this.description,
     this.photo,
     this.animation,
+    required this.managerBotUserId,
     this.menuButton,
     required this.commands,
     required this.privacyPolicyUrl,
     this.defaultGroupAdministratorRights,
     this.defaultChannelAdministratorRights,
+    this.affiliateProgram,
+    required this.webAppBackgroundLightColor,
+    required this.webAppBackgroundDarkColor,
+    required this.webAppHeaderLightColor,
+    required this.webAppHeaderDarkColor,
+    this.verificationParameters,
     required this.canGetRevenueStatistics,
+    required this.canManageEmojiStatus,
     required this.hasMediaPreviews,
     this.editCommandsLink,
     this.editDescriptionLink,
@@ -39,6 +47,10 @@ class BotInfo extends TdObject {
   /// may be null
   final Animation? animation;
 
+  /// [managerBotUserId] Identifier of the bot, which manages the bot; 0 if none
+  /// or unknown; for owner of the bot only
+  final int managerBotUserId;
+
   /// [menuButton] Information about a button to show instead of the bot
   /// commands menu button; may be null if ordinary bot commands menu must be
   /// shown
@@ -61,9 +73,38 @@ class BotInfo extends TdObject {
   /// adding the bot to channels; may be null
   final ChatAdministratorRights? defaultChannelAdministratorRights;
 
+  /// [affiliateProgram] Information about the affiliate program of the bot; may
+  /// be null if none
+  final AffiliateProgramInfo? affiliateProgram;
+
+  /// [webAppBackgroundLightColor] Default light background color for bot Web
+  /// Apps; -1 if not specified
+  final int webAppBackgroundLightColor;
+
+  /// [webAppBackgroundDarkColor] Default dark background color for bot Web
+  /// Apps; -1 if not specified
+  final int webAppBackgroundDarkColor;
+
+  /// [webAppHeaderLightColor] Default light header color for bot Web Apps; -1
+  /// if not specified
+  final int webAppHeaderLightColor;
+
+  /// [webAppHeaderDarkColor] Default dark header color for bot Web Apps; -1 if
+  /// not specified
+  final int webAppHeaderDarkColor;
+
+  /// [verificationParameters] Parameters of the verification that can be
+  /// provided by the bot; may be null if none or the current user isn't the
+  /// owner of the bot
+  final BotVerificationParameters? verificationParameters;
+
   /// [canGetRevenueStatistics] True, if the bot's revenue statistics are
-  /// available
+  /// available to the current user
   final bool canGetRevenueStatistics;
+
+  /// [canManageEmojiStatus] True, if the bot can manage emoji status of the
+  /// current user
+  final bool canManageEmojiStatus;
 
   /// [hasMediaPreviews] True, if the bot has media previews
   final bool hasMediaPreviews;
@@ -97,6 +138,7 @@ class BotInfo extends TdObject {
       description: json['description'] as String,
       photo: Photo.fromJson(json['photo'] as Map<String, dynamic>?),
       animation: Animation.fromJson(json['animation'] as Map<String, dynamic>?),
+      managerBotUserId: json['manager_bot_user_id'] as int,
       menuButton:
           BotMenuButton.fromJson(json['menu_button'] as Map<String, dynamic>?),
       commands: List<BotCommand>.from(
@@ -109,7 +151,16 @@ class BotInfo extends TdObject {
       defaultChannelAdministratorRights: ChatAdministratorRights.fromJson(
           json['default_channel_administrator_rights']
               as Map<String, dynamic>?),
+      affiliateProgram: AffiliateProgramInfo.fromJson(
+          json['affiliate_program'] as Map<String, dynamic>?),
+      webAppBackgroundLightColor: json['web_app_background_light_color'] as int,
+      webAppBackgroundDarkColor: json['web_app_background_dark_color'] as int,
+      webAppHeaderLightColor: json['web_app_header_light_color'] as int,
+      webAppHeaderDarkColor: json['web_app_header_dark_color'] as int,
+      verificationParameters: BotVerificationParameters.fromJson(
+          json['verification_parameters'] as Map<String, dynamic>?),
       canGetRevenueStatistics: json['can_get_revenue_statistics'] as bool,
+      canManageEmojiStatus: json['can_manage_emoji_status'] as bool,
       hasMediaPreviews: json['has_media_previews'] as bool,
       editCommandsLink: InternalLinkType.fromJson(
           json['edit_commands_link'] as Map<String, dynamic>?),
@@ -131,6 +182,7 @@ class BotInfo extends TdObject {
         'description': description,
         'photo': photo?.toJson(),
         'animation': animation?.toJson(),
+        'manager_bot_user_id': managerBotUserId,
         'menu_button': menuButton?.toJson(),
         'commands': commands.map((item) => item.toJson()).toList(),
         'privacy_policy_url': privacyPolicyUrl,
@@ -138,7 +190,14 @@ class BotInfo extends TdObject {
             defaultGroupAdministratorRights?.toJson(),
         'default_channel_administrator_rights':
             defaultChannelAdministratorRights?.toJson(),
+        'affiliate_program': affiliateProgram?.toJson(),
+        'web_app_background_light_color': webAppBackgroundLightColor,
+        'web_app_background_dark_color': webAppBackgroundDarkColor,
+        'web_app_header_light_color': webAppHeaderLightColor,
+        'web_app_header_dark_color': webAppHeaderDarkColor,
+        'verification_parameters': verificationParameters?.toJson(),
         'can_get_revenue_statistics': canGetRevenueStatistics,
+        'can_manage_emoji_status': canManageEmojiStatus,
         'has_media_previews': hasMediaPreviews,
         'edit_commands_link': editCommandsLink?.toJson(),
         'edit_description_link': editDescriptionLink?.toJson(),

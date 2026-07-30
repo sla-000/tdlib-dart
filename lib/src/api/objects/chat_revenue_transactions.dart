@@ -6,15 +6,21 @@ import '../tdapi.dart';
 @immutable
 class ChatRevenueTransactions extends TdObject {
   const ChatRevenueTransactions({
-    required this.totalCount,
+    required this.gramAmount,
     required this.transactions,
+    required this.nextOffset,
   });
 
-  /// [totalCount] Total number of transactions
-  final int totalCount;
+  /// [gramAmount] The amount of owned TON Grams; in the smallest units of the
+  /// cryptocurrency
+  final int gramAmount;
 
   /// [transactions] List of transactions
   final List<ChatRevenueTransaction> transactions;
+
+  /// [nextOffset] The offset for the next request. If empty, then there are no
+  /// more results
+  final String nextOffset;
 
   static const String constructor = 'chatRevenueTransactions';
 
@@ -24,11 +30,12 @@ class ChatRevenueTransactions extends TdObject {
     }
 
     return ChatRevenueTransactions(
-      totalCount: json['total_count'] as int,
+      gramAmount: json['gram_amount'] as int,
       transactions: List<ChatRevenueTransaction>.from(
           ((json['transactions'] as List<dynamic>?) ?? <dynamic>[])
               .map((item) => ChatRevenueTransaction.fromJson(item))
               .toList()),
+      nextOffset: json['next_offset'] as String,
     );
   }
 
@@ -37,8 +44,9 @@ class ChatRevenueTransactions extends TdObject {
 
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'total_count': totalCount,
+        'gram_amount': gramAmount,
         'transactions': transactions.map((item) => item.toJson()).toList(),
+        'next_offset': nextOffset,
         '@type': constructor,
       };
 

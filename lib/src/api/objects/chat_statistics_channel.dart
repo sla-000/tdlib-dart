@@ -48,16 +48,16 @@ class ChatStatisticsChannel extends ChatStatistics {
   /// the recently sent messages
   final StatisticalValue meanMessageReactionCount;
 
-  /// [meanStoryViewCount] Mean number of times the recently sent stories were
+  /// [meanStoryViewCount] Mean number of times the recently posted stories were
   /// viewed
   final StatisticalValue meanStoryViewCount;
 
-  /// [meanStoryShareCount] Mean number of times the recently sent stories were
-  /// shared
+  /// [meanStoryShareCount] Mean number of times the recently posted stories
+  /// were shared
   final StatisticalValue meanStoryShareCount;
 
   /// [meanStoryReactionCount] Mean number of times reactions were added to the
-  /// recently sent stories
+  /// recently posted stories
   final StatisticalValue meanStoryReactionCount;
 
   /// [enabledNotificationsPercentage] A percentage of users with enabled
@@ -109,7 +109,7 @@ class ChatStatisticsChannel extends ChatStatistics {
   final StatisticalGraph instantViewInteractionGraph;
 
   /// [recentInteractions] Detailed statistics about number of views and shares
-  /// of recently sent messages and stories
+  /// of recently sent messages and posted stories
   final List<ChatStatisticsInteractionInfo> recentInteractions;
 
   static const String constructor = 'chatStatisticsChannel';

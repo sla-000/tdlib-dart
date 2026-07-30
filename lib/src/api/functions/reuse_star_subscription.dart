@@ -2,7 +2,8 @@ import 'package:meta/meta.dart';
 import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
-/// Reuses an active subscription and joins the subscribed chat again
+/// Reuses an active Telegram Star subscription to a channel chat and joins
+/// the chat again
 /// Returns [Ok]
 @immutable
 class ReuseStarSubscription extends TdFunction {

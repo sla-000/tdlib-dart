@@ -7,15 +7,15 @@ import '../tdapi.dart';
 class PageBlockDetails extends PageBlock {
   const PageBlockDetails({
     required this.header,
-    required this.pageBlocks,
+    required this.blocks,
     required this.isOpen,
   });
 
   /// [header] Always visible heading for the block
   final RichText header;
 
-  /// [pageBlocks] Block contents
-  final List<PageBlock> pageBlocks;
+  /// [blocks] Block contents
+  final List<PageBlock> blocks;
 
   /// [isOpen] True, if the block is open by default
   final bool isOpen;
@@ -29,8 +29,8 @@ class PageBlockDetails extends PageBlock {
 
     return PageBlockDetails(
       header: RichText.fromJson(json['header'] as Map<String, dynamic>?)!,
-      pageBlocks: List<PageBlock>.from(
-          ((json['page_blocks'] as List<dynamic>?) ?? <dynamic>[])
+      blocks: List<PageBlock>.from(
+          ((json['blocks'] as List<dynamic>?) ?? <dynamic>[])
               .map((item) => PageBlock.fromJson(item))
               .toList()),
       isOpen: json['is_open'] as bool,
@@ -43,7 +43,7 @@ class PageBlockDetails extends PageBlock {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'header': header.toJson(),
-        'page_blocks': pageBlocks.map((item) => item.toJson()).toList(),
+        'blocks': blocks.map((item) => item.toJson()).toList(),
         'is_open': isOpen,
         '@type': constructor,
       };

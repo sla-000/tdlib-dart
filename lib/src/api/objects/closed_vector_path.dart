@@ -3,7 +3,7 @@ import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Represents a closed vector path. The path begins at the end point of the
-/// last command
+/// last command. The coordinate system origin is in the upper-left corner
 @immutable
 class ClosedVectorPath extends TdObject {
   const ClosedVectorPath({

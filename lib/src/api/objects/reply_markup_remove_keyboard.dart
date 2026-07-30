@@ -4,7 +4,8 @@ import '../tdapi.dart';
 
 /// Instructs application to remove the keyboard once this message has been
 /// received. This kind of keyboard can't be received in an incoming message;
-/// instead, updateChatReplyMarkup with message_id == 0 will be sent
+/// instead, updateChatReplyMarkup with reply_markup_message == null will be
+/// sent
 @immutable
 class ReplyMarkupRemoveKeyboard extends ReplyMarkup {
   const ReplyMarkupRemoveKeyboard({

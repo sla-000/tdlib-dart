@@ -3,7 +3,7 @@ import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// An area pointing to a suggested reaction. App needs to show a clickable
-/// reaction on the area and call setStoryReaction when the are is clicked
+/// reaction on the area and call setStoryReaction when the area is clicked
 @immutable
 class StoryAreaTypeSuggestedReaction extends StoryAreaType {
   const StoryAreaTypeSuggestedReaction({

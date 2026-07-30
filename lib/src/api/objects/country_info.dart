@@ -9,6 +9,7 @@ class CountryInfo extends TdObject {
     required this.countryCode,
     required this.name,
     required this.englishName,
+    required this.flagEmoji,
     required this.isHidden,
     required this.callingCodes,
   });
@@ -21,6 +22,9 @@ class CountryInfo extends TdObject {
 
   /// [englishName] English name of the country
   final String englishName;
+
+  /// [flagEmoji] An emoji for the flag of the country; may be empty if unknown
+  final String flagEmoji;
 
   /// [isHidden] True, if the country must be hidden from the list of all
   /// countries
@@ -40,6 +44,7 @@ class CountryInfo extends TdObject {
       countryCode: json['country_code'] as String,
       name: json['name'] as String,
       englishName: json['english_name'] as String,
+      flagEmoji: json['flag_emoji'] as String,
       isHidden: json['is_hidden'] as bool,
       callingCodes: List<String>.from(
           ((json['calling_codes'] as List<dynamic>?) ?? <dynamic>[])
@@ -56,6 +61,7 @@ class CountryInfo extends TdObject {
         'country_code': countryCode,
         'name': name,
         'english_name': englishName,
+        'flag_emoji': flagEmoji,
         'is_hidden': isHidden,
         'calling_codes': callingCodes.map((item) => item).toList(),
         '@type': constructor,

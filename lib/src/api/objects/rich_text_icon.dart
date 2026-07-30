@@ -2,7 +2,7 @@ import 'package:meta/meta.dart';
 import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
-/// A small image inside the text
+/// A small image inside the text; instant view only
 @immutable
 class RichTextIcon extends RichText {
   const RichTextIcon({

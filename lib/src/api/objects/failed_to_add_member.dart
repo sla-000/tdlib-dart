@@ -2,7 +2,7 @@ import 'package:meta/meta.dart';
 import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
-/// Contains information about a user that has failed to be added to a chat
+/// Contains information about a user who has failed to be added to a chat
 @immutable
 class FailedToAddMember extends TdObject {
   const FailedToAddMember({

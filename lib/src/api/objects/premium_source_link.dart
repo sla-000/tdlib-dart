@@ -2,7 +2,8 @@ import 'package:meta/meta.dart';
 import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
-/// A user opened an internal link of the type internalLinkTypePremiumFeatures
+/// A user opened an internal link of the type
+/// internalLinkTypePremiumFeaturesPage
 @immutable
 class PremiumSourceLink extends PremiumSource {
   const PremiumSourceLink({

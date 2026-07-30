@@ -4,7 +4,7 @@ import '../tdapi.dart';
 
 /// Returns information about a message, if it is available without sending
 /// network request. Returns a 404 error if message isn't available locally.
-/// This is an offline request
+/// This is an offline method
 /// Returns [Message]
 @immutable
 class GetMessageLocally extends TdFunction {

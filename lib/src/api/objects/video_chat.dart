@@ -2,7 +2,7 @@ import 'package:meta/meta.dart';
 import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
-/// Describes a video chat
+/// Describes a video chat, i.e. a group call bound to a chat
 @immutable
 class VideoChat extends TdObject {
   const VideoChat({

@@ -9,7 +9,7 @@ class UpdateGroupCall extends Update {
     required this.groupCall,
   });
 
-  /// [groupCall] New data about a group call
+  /// [groupCall] New data about the group call
   final GroupCall groupCall;
 
   static const String constructor = 'updateGroupCall';

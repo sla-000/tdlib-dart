@@ -21,6 +21,9 @@ abstract class PushMessageContent extends TdObject {
   /// [PushMessageContentChatJoinByRequest]
   /// [PushMessageContentChatSetBackground]
   /// [PushMessageContentChatSetTheme]
+  /// [PushMessageContentChecklistTasksAdded]
+  /// [PushMessageContentChecklistTasksDone]
+  /// [PushMessageContentChecklist]
   /// [PushMessageContentContactRegistered]
   /// [PushMessageContentContact]
   /// [PushMessageContentDocument]
@@ -29,20 +32,27 @@ abstract class PushMessageContent extends TdObject {
   /// [PushMessageContentGift]
   /// [PushMessageContentGiveaway]
   /// [PushMessageContentHidden]
+  /// [PushMessageContentInviteVideoChatParticipants]
   /// [PushMessageContentInvoice]
   /// [PushMessageContentLocation]
   /// [PushMessageContentMediaAlbum]
   /// [PushMessageContentMessageForwards]
   /// [PushMessageContentPaidMedia]
   /// [PushMessageContentPhoto]
+  /// [PushMessageContentPollOptionAdded]
   /// [PushMessageContentPoll]
   /// [PushMessageContentPremiumGiftCode]
+  /// [PushMessageContentProximityAlertTriggered]
   /// [PushMessageContentRecurringPayment]
   /// [PushMessageContentScreenshotTaken]
   /// [PushMessageContentSticker]
   /// [PushMessageContentStory]
+  /// [PushMessageContentSuggestBirthdate]
   /// [PushMessageContentSuggestProfilePhoto]
   /// [PushMessageContentText]
+  /// [PushMessageContentUpgradedGift]
+  /// [PushMessageContentVideoChatEnded]
+  /// [PushMessageContentVideoChatStarted]
   /// [PushMessageContentVideoNote]
   /// [PushMessageContentVideo]
   /// [PushMessageContentVoiceNote]
@@ -74,6 +84,12 @@ abstract class PushMessageContent extends TdObject {
         return PushMessageContentChatSetBackground.fromJson(json);
       case PushMessageContentChatSetTheme.constructor:
         return PushMessageContentChatSetTheme.fromJson(json);
+      case PushMessageContentChecklist.constructor:
+        return PushMessageContentChecklist.fromJson(json);
+      case PushMessageContentChecklistTasksAdded.constructor:
+        return PushMessageContentChecklistTasksAdded.fromJson(json);
+      case PushMessageContentChecklistTasksDone.constructor:
+        return PushMessageContentChecklistTasksDone.fromJson(json);
       case PushMessageContentContact.constructor:
         return PushMessageContentContact.fromJson(json);
       case PushMessageContentContactRegistered.constructor:
@@ -90,6 +106,8 @@ abstract class PushMessageContent extends TdObject {
         return PushMessageContentGiveaway.fromJson(json);
       case PushMessageContentHidden.constructor:
         return PushMessageContentHidden.fromJson(json);
+      case PushMessageContentInviteVideoChatParticipants.constructor:
+        return PushMessageContentInviteVideoChatParticipants.fromJson(json);
       case PushMessageContentInvoice.constructor:
         return PushMessageContentInvoice.fromJson(json);
       case PushMessageContentLocation.constructor:
@@ -104,8 +122,12 @@ abstract class PushMessageContent extends TdObject {
         return PushMessageContentPhoto.fromJson(json);
       case PushMessageContentPoll.constructor:
         return PushMessageContentPoll.fromJson(json);
+      case PushMessageContentPollOptionAdded.constructor:
+        return PushMessageContentPollOptionAdded.fromJson(json);
       case PushMessageContentPremiumGiftCode.constructor:
         return PushMessageContentPremiumGiftCode.fromJson(json);
+      case PushMessageContentProximityAlertTriggered.constructor:
+        return PushMessageContentProximityAlertTriggered.fromJson(json);
       case PushMessageContentRecurringPayment.constructor:
         return PushMessageContentRecurringPayment.fromJson(json);
       case PushMessageContentScreenshotTaken.constructor:
@@ -114,12 +136,20 @@ abstract class PushMessageContent extends TdObject {
         return PushMessageContentSticker.fromJson(json);
       case PushMessageContentStory.constructor:
         return PushMessageContentStory.fromJson(json);
+      case PushMessageContentSuggestBirthdate.constructor:
+        return PushMessageContentSuggestBirthdate.fromJson(json);
       case PushMessageContentSuggestProfilePhoto.constructor:
         return PushMessageContentSuggestProfilePhoto.fromJson(json);
       case PushMessageContentText.constructor:
         return PushMessageContentText.fromJson(json);
+      case PushMessageContentUpgradedGift.constructor:
+        return PushMessageContentUpgradedGift.fromJson(json);
       case PushMessageContentVideo.constructor:
         return PushMessageContentVideo.fromJson(json);
+      case PushMessageContentVideoChatEnded.constructor:
+        return PushMessageContentVideoChatEnded.fromJson(json);
+      case PushMessageContentVideoChatStarted.constructor:
+        return PushMessageContentVideoChatStarted.fromJson(json);
       case PushMessageContentVideoNote.constructor:
         return PushMessageContentVideoNote.fromJson(json);
       case PushMessageContentVoiceNote.constructor:

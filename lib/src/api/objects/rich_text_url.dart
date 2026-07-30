@@ -17,7 +17,8 @@ class RichTextUrl extends RichText {
   /// [url] URL
   final String url;
 
-  /// [isCached] True, if the URL has cached instant view server-side
+  /// [isCached] True, if the URL has cached instant view server-side; instant
+  /// view only
   final bool isCached;
 
   static const String constructor = 'richTextUrl';

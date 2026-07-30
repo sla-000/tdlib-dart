@@ -2,7 +2,7 @@ import 'package:meta/meta.dart';
 import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
-/// A Telegram Stars were received by the current user from a giveaway
+/// Telegram Stars were received by the current user from a giveaway
 @immutable
 class MessageGiveawayPrizeStars extends MessageContent {
   const MessageGiveawayPrizeStars({
@@ -25,7 +25,7 @@ class MessageGiveawayPrizeStars extends MessageContent {
   final int boostedChatId;
 
   /// [giveawayMessageId] Identifier of the message with the giveaway in the
-  /// boosted chat; can be 0 if the message was deleted
+  /// boosted chat; may be 0 or an identifier of a deleted message
   final int giveawayMessageId;
 
   /// [isUnclaimed] True, if the corresponding winner wasn't chosen and the

@@ -6,16 +6,23 @@ import '../tdapi.dart';
 @immutable
 class MessageSendOptions extends TdObject {
   const MessageSendOptions({
+    this.suggestedPostInfo,
     required this.disableNotification,
     required this.fromBackground,
     this.protectContent,
     this.allowPaidBroadcast,
+    required this.paidMessageStarCount,
     required this.updateOrderOfInstalledStickerSets,
     this.schedulingState,
     required this.effectId,
     required this.sendingId,
     required this.onlyPreview,
   });
+
+  /// [suggestedPostInfo] Information about the suggested post; pass null if
+  /// none. For messages to channel direct messages chat only. Applicable only
+  /// to sendMessage and addOffer
+  final InputSuggestedPostInfo? suggestedPostInfo;
 
   /// [disableNotification] Pass true to disable notification for the message
   final bool disableNotification;
@@ -31,18 +38,24 @@ class MessageSendOptions extends TdObject {
   /// broadcast limits for a small fee; for bots only
   final bool? allowPaidBroadcast;
 
+  /// [paidMessageStarCount] The number of Telegram Stars the user agreed to pay
+  /// to send the messages
+  final int paidMessageStarCount;
+
   /// [updateOrderOfInstalledStickerSets] Pass true if the user explicitly
   /// chosen a sticker or a custom emoji from an installed sticker set;
   /// applicable only to sendMessage and sendMessageAlbum
   final bool updateOrderOfInstalledStickerSets;
 
   /// [schedulingState] Message scheduling state; pass null to send message
-  /// immediately. Messages sent to a secret chat, live location messages and
+  /// immediately. Messages sent to a secret chat, to a chat with paid messages,
+  /// to a channel direct messages chat, live location messages and
   /// self-destructing messages can't be scheduled
   final MessageSchedulingState? schedulingState;
 
   /// [effectId] Identifier of the effect to apply to the message; pass 0 if
-  /// none; applicable only to sendMessage and sendMessageAlbum in private chats
+  /// none; applicable only to sendMessage, sendMessageAlbum in private chats
+  /// and forwardMessages with one message to private chats
   final int effectId;
 
   /// [sendingId] Non-persistent identifier, which will be returned back in
@@ -62,10 +75,13 @@ class MessageSendOptions extends TdObject {
     }
 
     return MessageSendOptions(
+      suggestedPostInfo: InputSuggestedPostInfo.fromJson(
+          json['suggested_post_info'] as Map<String, dynamic>?),
       disableNotification: json['disable_notification'] as bool,
       fromBackground: json['from_background'] as bool,
       protectContent: json['protect_content'] as bool?,
       allowPaidBroadcast: json['allow_paid_broadcast'] as bool?,
+      paidMessageStarCount: json['paid_message_star_count'] as int,
       updateOrderOfInstalledStickerSets:
           json['update_order_of_installed_sticker_sets'] as bool,
       schedulingState: MessageSchedulingState.fromJson(
@@ -81,10 +97,12 @@ class MessageSendOptions extends TdObject {
 
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
+        'suggested_post_info': suggestedPostInfo?.toJson(),
         'disable_notification': disableNotification,
         'from_background': fromBackground,
         'protect_content': protectContent,
         'allow_paid_broadcast': allowPaidBroadcast,
+        'paid_message_star_count': paidMessageStarCount,
         'update_order_of_installed_sticker_sets':
             updateOrderOfInstalledStickerSets,
         'scheduling_state': schedulingState?.toJson(),

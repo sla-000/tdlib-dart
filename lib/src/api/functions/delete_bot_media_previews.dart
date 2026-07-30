@@ -2,7 +2,7 @@ import 'package:meta/meta.dart';
 import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
-/// Delete media previews from the list of media previews of a bot
+/// Deletes media previews from the list of media previews of a bot
 /// Returns [Ok]
 @immutable
 class DeleteBotMediaPreviews extends TdFunction {

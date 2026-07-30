@@ -17,6 +17,7 @@ abstract class PremiumFeature extends TdObject {
   /// [PremiumFeatureBackgroundForBoth]
   /// [PremiumFeatureBusiness]
   /// [PremiumFeatureChatBoost]
+  /// [PremiumFeatureChecklists]
   /// [PremiumFeatureCustomEmoji]
   /// [PremiumFeatureDisabledAds]
   /// [PremiumFeatureEmojiStatus]
@@ -27,9 +28,13 @@ abstract class PremiumFeature extends TdObject {
   /// [PremiumFeatureLastSeenTimes]
   /// [PremiumFeatureMessageEffects]
   /// [PremiumFeatureMessagePrivacy]
+  /// [PremiumFeaturePaidMessages]
   /// [PremiumFeatureProfileBadge]
+  /// [PremiumFeatureProtectPrivateChatContent]
   /// [PremiumFeatureRealTimeChatTranslation]
+  /// [PremiumFeatureRichMessages]
   /// [PremiumFeatureSavedMessagesTags]
+  /// [PremiumFeatureTextComposition]
   /// [PremiumFeatureUniqueReactions]
   /// [PremiumFeatureUniqueStickers]
   /// [PremiumFeatureUpgradedStories]
@@ -54,6 +59,8 @@ abstract class PremiumFeature extends TdObject {
         return PremiumFeatureBusiness.fromJson(json);
       case PremiumFeatureChatBoost.constructor:
         return PremiumFeatureChatBoost.fromJson(json);
+      case PremiumFeatureChecklists.constructor:
+        return PremiumFeatureChecklists.fromJson(json);
       case PremiumFeatureCustomEmoji.constructor:
         return PremiumFeatureCustomEmoji.fromJson(json);
       case PremiumFeatureDisabledAds.constructor:
@@ -74,12 +81,20 @@ abstract class PremiumFeature extends TdObject {
         return PremiumFeatureMessageEffects.fromJson(json);
       case PremiumFeatureMessagePrivacy.constructor:
         return PremiumFeatureMessagePrivacy.fromJson(json);
+      case PremiumFeaturePaidMessages.constructor:
+        return PremiumFeaturePaidMessages.fromJson(json);
       case PremiumFeatureProfileBadge.constructor:
         return PremiumFeatureProfileBadge.fromJson(json);
+      case PremiumFeatureProtectPrivateChatContent.constructor:
+        return PremiumFeatureProtectPrivateChatContent.fromJson(json);
       case PremiumFeatureRealTimeChatTranslation.constructor:
         return PremiumFeatureRealTimeChatTranslation.fromJson(json);
+      case PremiumFeatureRichMessages.constructor:
+        return PremiumFeatureRichMessages.fromJson(json);
       case PremiumFeatureSavedMessagesTags.constructor:
         return PremiumFeatureSavedMessagesTags.fromJson(json);
+      case PremiumFeatureTextComposition.constructor:
+        return PremiumFeatureTextComposition.fromJson(json);
       case PremiumFeatureUniqueReactions.constructor:
         return PremiumFeatureUniqueReactions.fromJson(json);
       case PremiumFeatureUniqueStickers.constructor:

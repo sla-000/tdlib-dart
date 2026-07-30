@@ -2,8 +2,8 @@ import 'package:meta/meta.dart';
 import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
-/// Check whether the current user can message another user or try to create a
-/// chat with them
+/// Checks whether the current user can message another user or try to create
+/// a chat with them
 /// Returns [CanSendMessageToUserResult]
 @immutable
 class CanSendMessageToUser extends TdFunction {

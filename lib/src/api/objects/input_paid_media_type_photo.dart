@@ -7,7 +7,12 @@ import '../tdapi.dart';
 /// must be at most 20
 @immutable
 class InputPaidMediaTypePhoto extends InputPaidMediaType {
-  const InputPaidMediaTypePhoto();
+  const InputPaidMediaTypePhoto({
+    this.video,
+  });
+
+  /// [video] Video of the live photo; pass null if the photo isn't a live photo
+  final InputFile? video;
 
   static const String constructor = 'inputPaidMediaTypePhoto';
 
@@ -16,7 +21,9 @@ class InputPaidMediaTypePhoto extends InputPaidMediaType {
       return null;
     }
 
-    return const InputPaidMediaTypePhoto();
+    return InputPaidMediaTypePhoto(
+      video: InputFile.fromJson(json['video'] as Map<String, dynamic>?),
+    );
   }
 
   @override
@@ -24,6 +31,7 @@ class InputPaidMediaTypePhoto extends InputPaidMediaType {
 
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
+        'video': video?.toJson(),
         '@type': constructor,
       };
 

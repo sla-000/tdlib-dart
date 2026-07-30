@@ -13,7 +13,7 @@ class StarSubscriptionPricing extends TdObject {
   /// [period] The number of seconds between consecutive Telegram Star debiting
   final int period;
 
-  /// [starCount] The amount of Telegram Stars that must be paid for each period
+  /// [starCount] The Telegram Star amount that must be paid for each period
   final int starCount;
 
   static const String constructor = 'starSubscriptionPricing';

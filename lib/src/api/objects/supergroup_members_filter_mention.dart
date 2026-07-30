@@ -7,15 +7,15 @@ import '../tdapi.dart';
 class SupergroupMembersFilterMention extends SupergroupMembersFilter {
   const SupergroupMembersFilterMention({
     required this.query,
-    required this.messageThreadId,
+    this.topicId,
   });
 
   /// [query] Query to search for
   final String query;
 
-  /// [messageThreadId] If non-zero, the identifier of the current message
-  /// thread
-  final int messageThreadId;
+  /// [topicId] Identifier of the topic in which the users will be mentioned;
+  /// pass null if none
+  final MessageTopic? topicId;
 
   static const String constructor = 'supergroupMembersFilterMention';
 
@@ -26,7 +26,7 @@ class SupergroupMembersFilterMention extends SupergroupMembersFilter {
 
     return SupergroupMembersFilterMention(
       query: json['query'] as String,
-      messageThreadId: json['message_thread_id'] as int,
+      topicId: MessageTopic.fromJson(json['topic_id'] as Map<String, dynamic>?),
     );
   }
 
@@ -36,7 +36,7 @@ class SupergroupMembersFilterMention extends SupergroupMembersFilter {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'query': query,
-        'message_thread_id': messageThreadId,
+        'topic_id': topicId?.toJson(),
         '@type': constructor,
       };
 

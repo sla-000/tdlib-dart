@@ -9,6 +9,7 @@ class UpdateChatAccentColors extends Update {
     required this.chatId,
     required this.accentColorId,
     required this.backgroundCustomEmojiId,
+    this.upgradedGiftColors,
     required this.profileAccentColorId,
     required this.profileBackgroundCustomEmojiId,
   });
@@ -22,6 +23,11 @@ class UpdateChatAccentColors extends Update {
   /// [backgroundCustomEmojiId] The new identifier of a custom emoji to be shown
   /// on the reply header and link preview background; 0 if none
   final int backgroundCustomEmojiId;
+
+  /// [upgradedGiftColors] Color scheme based on an upgraded gift to be used for
+  /// the chat instead of accent_color_id and background_custom_emoji_id; may be
+  /// null if none
+  final UpgradedGiftColors? upgradedGiftColors;
 
   /// [profileAccentColorId] The new chat profile accent color identifier; -1 if
   /// none
@@ -43,6 +49,8 @@ class UpdateChatAccentColors extends Update {
       accentColorId: json['accent_color_id'] as int,
       backgroundCustomEmojiId:
           int.tryParse(json['background_custom_emoji_id']) ?? 0,
+      upgradedGiftColors: UpgradedGiftColors.fromJson(
+          json['upgraded_gift_colors'] as Map<String, dynamic>?),
       profileAccentColorId: json['profile_accent_color_id'] as int,
       profileBackgroundCustomEmojiId:
           int.tryParse(json['profile_background_custom_emoji_id']) ?? 0,
@@ -57,6 +65,7 @@ class UpdateChatAccentColors extends Update {
         'chat_id': chatId,
         'accent_color_id': accentColorId,
         'background_custom_emoji_id': backgroundCustomEmojiId.toString(),
+        'upgraded_gift_colors': upgradedGiftColors?.toJson(),
         'profile_accent_color_id': profileAccentColorId,
         'profile_background_custom_emoji_id':
             profileBackgroundCustomEmojiId.toString(),

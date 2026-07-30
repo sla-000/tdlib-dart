@@ -2,7 +2,8 @@ import 'package:meta/meta.dart';
 import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
-/// The user creating Telegram Premium gift codes for other users
+/// The user boosting a chat by creating Telegram Premium gift codes for other
+/// users
 @immutable
 class StorePaymentPurposePremiumGiftCodes extends StorePaymentPurpose {
   const StorePaymentPurposePremiumGiftCodes({
@@ -15,7 +16,7 @@ class StorePaymentPurposePremiumGiftCodes extends StorePaymentPurpose {
 
   /// [boostedChatId] Identifier of the supergroup or channel chat, which will
   /// be automatically boosted by the users for duration of the Premium
-  /// subscription and which is administered by the user; 0 if none
+  /// subscription and which is administered by the user
   final int boostedChatId;
 
   /// [currency] ISO 4217 currency code of the payment currency
@@ -29,7 +30,8 @@ class StorePaymentPurposePremiumGiftCodes extends StorePaymentPurpose {
 
   /// [text] Text to show along with the gift codes;
   /// 0-getOption("gift_text_length_max") characters. Only Bold, Italic,
-  /// Underline, Strikethrough, Spoiler, and CustomEmoji entities are allowed
+  /// Underline, Strikethrough, Spoiler, CustomEmoji, and DateTime entities are
+  /// allowed
   final FormattedText text;
 
   static const String constructor = 'storePaymentPurposePremiumGiftCodes';

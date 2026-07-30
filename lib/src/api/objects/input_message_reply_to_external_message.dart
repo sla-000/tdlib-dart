@@ -10,6 +10,8 @@ class InputMessageReplyToExternalMessage extends InputMessageReplyTo {
     required this.chatId,
     required this.messageId,
     this.quote,
+    required this.checklistTaskId,
+    required this.pollOptionId,
   });
 
   /// [chatId] The identifier of the chat to which the message to be replied
@@ -24,6 +26,14 @@ class InputMessageReplyToExternalMessage extends InputMessageReplyTo {
   /// [quote] Quote from the message to be replied; pass null if none
   final InputTextQuote? quote;
 
+  /// [checklistTaskId] Identifier of the checklist task in the message to be
+  /// replied; pass 0 to reply to the whole message
+  final int checklistTaskId;
+
+  /// [pollOptionId] Identifier of the poll option in the message to be replied;
+  /// pass an empty string if none
+  final String pollOptionId;
+
   static const String constructor = 'inputMessageReplyToExternalMessage';
 
   static InputMessageReplyToExternalMessage? fromJson(
@@ -36,6 +46,8 @@ class InputMessageReplyToExternalMessage extends InputMessageReplyTo {
       chatId: json['chat_id'] as int,
       messageId: json['message_id'] as int,
       quote: InputTextQuote.fromJson(json['quote'] as Map<String, dynamic>?),
+      checklistTaskId: json['checklist_task_id'] as int,
+      pollOptionId: json['poll_option_id'] as String,
     );
   }
 
@@ -47,6 +59,8 @@ class InputMessageReplyToExternalMessage extends InputMessageReplyTo {
         'chat_id': chatId,
         'message_id': messageId,
         'quote': quote?.toJson(),
+        'checklist_task_id': checklistTaskId,
+        'poll_option_id': pollOptionId,
         '@type': constructor,
       };
 

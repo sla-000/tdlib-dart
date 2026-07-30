@@ -7,15 +7,14 @@ import '../tdapi.dart';
 class MainWebApp extends TdObject {
   const MainWebApp({
     required this.url,
-    required this.isCompact,
+    required this.mode,
   });
 
   /// [url] URL of the Web App to open
-  final String url;
+  final WebAppUrl url;
 
-  /// [isCompact] True, if the Web App must always be opened in the compact mode
-  /// instead of the full-size mode
-  final bool isCompact;
+  /// [mode] The mode in which the Web App must be opened
+  final WebAppOpenMode mode;
 
   static const String constructor = 'mainWebApp';
 
@@ -25,8 +24,8 @@ class MainWebApp extends TdObject {
     }
 
     return MainWebApp(
-      url: json['url'] as String,
-      isCompact: json['is_compact'] as bool,
+      url: WebAppUrl.fromJson(json['url'] as Map<String, dynamic>?)!,
+      mode: WebAppOpenMode.fromJson(json['mode'] as Map<String, dynamic>?)!,
     );
   }
 
@@ -35,8 +34,8 @@ class MainWebApp extends TdObject {
 
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'url': url,
-        'is_compact': isCompact,
+        'url': url.toJson(),
+        'mode': mode.toJson(),
         '@type': constructor,
       };
 

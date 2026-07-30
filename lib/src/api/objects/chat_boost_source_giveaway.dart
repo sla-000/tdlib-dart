@@ -13,7 +13,7 @@ class ChatBoostSourceGiveaway extends ChatBoostSource {
     required this.isUnclaimed,
   });
 
-  /// [userId] Identifier of a user that won in the giveaway; 0 if none
+  /// [userId] Identifier of a user who won in the giveaway; 0 if none
   final int userId;
 
   /// [giftCode] The created Telegram Premium gift code if it was used by the

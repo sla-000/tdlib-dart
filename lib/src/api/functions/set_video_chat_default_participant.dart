@@ -16,7 +16,7 @@ class SetVideoChatDefaultParticipant extends TdFunction {
   final int chatId;
 
   /// [defaultParticipantId] Default group call participant identifier to join
-  /// the video chats
+  /// the video chats in the chat
   final MessageSender defaultParticipantId;
 
   static const String constructor = 'setVideoChatDefaultParticipant';

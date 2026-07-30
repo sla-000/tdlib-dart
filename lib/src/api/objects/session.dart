@@ -13,7 +13,7 @@ class Session extends TdObject {
     required this.isUnconfirmed,
     required this.canAcceptSecretChats,
     required this.canAcceptCalls,
-    required this.type,
+    required this.deviceType,
     required this.apiId,
     required this.applicationName,
     required this.applicationVersion,
@@ -47,9 +47,9 @@ class Session extends TdObject {
   /// [canAcceptCalls] True, if incoming calls can be accepted by the session
   final bool canAcceptCalls;
 
-  /// [type] Session type based on the system and application version, which can
-  /// be used to display a corresponding icon
-  final SessionType type;
+  /// [deviceType] Session device type based on the system and application
+  /// version, which can be used to display a corresponding icon
+  final SessionDeviceType deviceType;
 
   /// [apiId] Telegram API identifier, as provided by the application
   final int apiId;
@@ -106,7 +106,8 @@ class Session extends TdObject {
       isUnconfirmed: json['is_unconfirmed'] as bool,
       canAcceptSecretChats: json['can_accept_secret_chats'] as bool,
       canAcceptCalls: json['can_accept_calls'] as bool,
-      type: SessionType.fromJson(json['type'] as Map<String, dynamic>?)!,
+      deviceType: SessionDeviceType.fromJson(
+          json['device_type'] as Map<String, dynamic>?)!,
       apiId: json['api_id'] as int,
       applicationName: json['application_name'] as String,
       applicationVersion: json['application_version'] as String,
@@ -132,7 +133,7 @@ class Session extends TdObject {
         'is_unconfirmed': isUnconfirmed,
         'can_accept_secret_chats': canAcceptSecretChats,
         'can_accept_calls': canAcceptCalls,
-        'type': type.toJson(),
+        'device_type': deviceType.toJson(),
         'api_id': apiId,
         'application_name': applicationName,
         'application_version': applicationVersion,

@@ -18,23 +18,32 @@ abstract class LinkPreviewType extends TdObject {
   /// [LinkPreviewTypeBackground]
   /// [LinkPreviewTypeChannelBoost]
   /// [LinkPreviewTypeChat]
+  /// [LinkPreviewTypeDirectMessagesChat]
   /// [LinkPreviewTypeDocument]
   /// [LinkPreviewTypeEmbeddedAnimationPlayer]
   /// [LinkPreviewTypeEmbeddedAudioPlayer]
   /// [LinkPreviewTypeEmbeddedVideoPlayer]
   /// [LinkPreviewTypeExternalAudio]
   /// [LinkPreviewTypeExternalVideo]
+  /// [LinkPreviewTypeGiftAuction]
+  /// [LinkPreviewTypeGiftCollection]
+  /// [LinkPreviewTypeGroupCall]
   /// [LinkPreviewTypeInvoice]
+  /// [LinkPreviewTypeLiveStory]
   /// [LinkPreviewTypeMessage]
   /// [LinkPreviewTypePhoto]
   /// [LinkPreviewTypePremiumGiftCode]
+  /// [LinkPreviewTypeRequestManagedBot]
   /// [LinkPreviewTypeShareableChatFolder]
   /// [LinkPreviewTypeStickerSet]
   /// [LinkPreviewTypeSticker]
+  /// [LinkPreviewTypeStoryAlbum]
   /// [LinkPreviewTypeStory]
   /// [LinkPreviewTypeSupergroupBoost]
+  /// [LinkPreviewTypeTextCompositionStyle]
   /// [LinkPreviewTypeTheme]
   /// [LinkPreviewTypeUnsupported]
+  /// [LinkPreviewTypeUpgradedGift]
   /// [LinkPreviewTypeUser]
   /// [LinkPreviewTypeVideoChat]
   /// [LinkPreviewTypeVideoNote]
@@ -63,6 +72,8 @@ abstract class LinkPreviewType extends TdObject {
         return LinkPreviewTypeChannelBoost.fromJson(json);
       case LinkPreviewTypeChat.constructor:
         return LinkPreviewTypeChat.fromJson(json);
+      case LinkPreviewTypeDirectMessagesChat.constructor:
+        return LinkPreviewTypeDirectMessagesChat.fromJson(json);
       case LinkPreviewTypeDocument.constructor:
         return LinkPreviewTypeDocument.fromJson(json);
       case LinkPreviewTypeEmbeddedAnimationPlayer.constructor:
@@ -75,14 +86,24 @@ abstract class LinkPreviewType extends TdObject {
         return LinkPreviewTypeExternalAudio.fromJson(json);
       case LinkPreviewTypeExternalVideo.constructor:
         return LinkPreviewTypeExternalVideo.fromJson(json);
+      case LinkPreviewTypeGiftAuction.constructor:
+        return LinkPreviewTypeGiftAuction.fromJson(json);
+      case LinkPreviewTypeGiftCollection.constructor:
+        return LinkPreviewTypeGiftCollection.fromJson(json);
+      case LinkPreviewTypeGroupCall.constructor:
+        return LinkPreviewTypeGroupCall.fromJson(json);
       case LinkPreviewTypeInvoice.constructor:
         return LinkPreviewTypeInvoice.fromJson(json);
+      case LinkPreviewTypeLiveStory.constructor:
+        return LinkPreviewTypeLiveStory.fromJson(json);
       case LinkPreviewTypeMessage.constructor:
         return LinkPreviewTypeMessage.fromJson(json);
       case LinkPreviewTypePhoto.constructor:
         return LinkPreviewTypePhoto.fromJson(json);
       case LinkPreviewTypePremiumGiftCode.constructor:
         return LinkPreviewTypePremiumGiftCode.fromJson(json);
+      case LinkPreviewTypeRequestManagedBot.constructor:
+        return LinkPreviewTypeRequestManagedBot.fromJson(json);
       case LinkPreviewTypeShareableChatFolder.constructor:
         return LinkPreviewTypeShareableChatFolder.fromJson(json);
       case LinkPreviewTypeSticker.constructor:
@@ -91,12 +112,18 @@ abstract class LinkPreviewType extends TdObject {
         return LinkPreviewTypeStickerSet.fromJson(json);
       case LinkPreviewTypeStory.constructor:
         return LinkPreviewTypeStory.fromJson(json);
+      case LinkPreviewTypeStoryAlbum.constructor:
+        return LinkPreviewTypeStoryAlbum.fromJson(json);
       case LinkPreviewTypeSupergroupBoost.constructor:
         return LinkPreviewTypeSupergroupBoost.fromJson(json);
+      case LinkPreviewTypeTextCompositionStyle.constructor:
+        return LinkPreviewTypeTextCompositionStyle.fromJson(json);
       case LinkPreviewTypeTheme.constructor:
         return LinkPreviewTypeTheme.fromJson(json);
       case LinkPreviewTypeUnsupported.constructor:
         return LinkPreviewTypeUnsupported.fromJson(json);
+      case LinkPreviewTypeUpgradedGift.constructor:
+        return LinkPreviewTypeUpgradedGift.fromJson(json);
       case LinkPreviewTypeUser.constructor:
         return LinkPreviewTypeUser.fromJson(json);
       case LinkPreviewTypeVideo.constructor:

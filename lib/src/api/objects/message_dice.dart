@@ -26,8 +26,8 @@ class MessageDice extends MessageContent {
   /// [emoji] Emoji on which the dice throw animation is based
   final String emoji;
 
-  /// [value] The dice value. If the value is 0, the dice don't have final state
-  /// yet
+  /// [value] The dice value. If the value is 0, then the dice don't have final
+  /// state yet
   final int value;
 
   /// [successAnimationFrameNumber] Number of frame after which a success

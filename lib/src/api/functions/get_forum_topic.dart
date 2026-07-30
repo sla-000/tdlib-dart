@@ -2,20 +2,21 @@ import 'package:meta/meta.dart';
 import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
-/// Returns information about a forum topic
+/// Returns information about a topic in a forum supergroup chat or a chat
+/// with a bot with topics
 /// Returns [ForumTopic]
 @immutable
 class GetForumTopic extends TdFunction {
   const GetForumTopic({
     required this.chatId,
-    required this.messageThreadId,
+    required this.forumTopicId,
   });
 
   /// [chatId] Identifier of the chat
   final int chatId;
 
-  /// [messageThreadId] Message thread identifier of the forum topic
-  final int messageThreadId;
+  /// [forumTopicId] Forum topic identifier
+  final int forumTopicId;
 
   static const String constructor = 'getForumTopic';
 
@@ -25,7 +26,7 @@ class GetForumTopic extends TdFunction {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'chat_id': chatId,
-        'message_thread_id': messageThreadId,
+        'forum_topic_id': forumTopicId,
         '@type': constructor,
       };
 

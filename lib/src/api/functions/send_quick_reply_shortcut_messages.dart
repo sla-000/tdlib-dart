@@ -3,7 +3,7 @@ import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Sends messages from a quick reply shortcut. Requires Telegram Business
-/// subscription
+/// subscription. Can't be used to send paid messages
 /// Returns [Messages]
 @immutable
 class SendQuickReplyShortcutMessages extends TdFunction {

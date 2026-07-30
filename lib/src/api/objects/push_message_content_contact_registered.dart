@@ -5,7 +5,13 @@ import '../tdapi.dart';
 /// A contact has registered with Telegram
 @immutable
 class PushMessageContentContactRegistered extends PushMessageContent {
-  const PushMessageContentContactRegistered();
+  const PushMessageContentContactRegistered({
+    required this.asPremiumAccount,
+  });
+
+  /// [asPremiumAccount] True, if the user joined Telegram as a Telegram Premium
+  /// account
+  final bool asPremiumAccount;
 
   static const String constructor = 'pushMessageContentContactRegistered';
 
@@ -15,7 +21,9 @@ class PushMessageContentContactRegistered extends PushMessageContent {
       return null;
     }
 
-    return const PushMessageContentContactRegistered();
+    return PushMessageContentContactRegistered(
+      asPremiumAccount: json['as_premium_account'] as bool,
+    );
   }
 
   @override
@@ -23,6 +31,7 @@ class PushMessageContentContactRegistered extends PushMessageContent {
 
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
+        'as_premium_account': asPremiumAccount,
         '@type': constructor,
       };
 

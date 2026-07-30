@@ -2,8 +2,8 @@ import 'package:meta/meta.dart';
 import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
-/// Starts recording of an active group call. Requires
-/// groupCall.can_be_managed group call flag
+/// Starts recording of an active group call; for video chats only. Requires
+/// groupCall.can_be_managed right
 /// Returns [Ok]
 @immutable
 class StartGroupCallRecording extends TdFunction {

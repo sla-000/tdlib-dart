@@ -9,6 +9,7 @@ class UpdatePollAnswer extends Update {
     required this.pollId,
     required this.voterId,
     required this.optionIds,
+    required this.optionPositions,
   });
 
   /// [pollId] Unique poll identifier
@@ -18,8 +19,13 @@ class UpdatePollAnswer extends Update {
   /// poll
   final MessageSender voterId;
 
-  /// [optionIds] 0-based identifiers of answer options, chosen by the user
-  final List<int> optionIds;
+  /// [optionIds] Unique identifiers of answer options, that were chosen by the
+  /// user
+  final List<String> optionIds;
+
+  /// [optionPositions] 0-based identifiers of answer options, that were chosen
+  /// by the user
+  final List<int> optionPositions;
 
   static const String constructor = 'updatePollAnswer';
 
@@ -32,8 +38,12 @@ class UpdatePollAnswer extends Update {
       pollId: int.tryParse(json['poll_id']) ?? 0,
       voterId:
           MessageSender.fromJson(json['voter_id'] as Map<String, dynamic>?)!,
-      optionIds: List<int>.from(
+      optionIds: List<String>.from(
           ((json['option_ids'] as List<dynamic>?) ?? <dynamic>[])
+              .map((item) => item)
+              .toList()),
+      optionPositions: List<int>.from(
+          ((json['option_positions'] as List<dynamic>?) ?? <dynamic>[])
               .map((item) => item)
               .toList()),
     );
@@ -47,6 +57,7 @@ class UpdatePollAnswer extends Update {
         'poll_id': pollId.toString(),
         'voter_id': voterId.toJson(),
         'option_ids': optionIds.map((item) => item).toList(),
+        'option_positions': optionPositions.map((item) => item).toList(),
         '@type': constructor,
       };
 

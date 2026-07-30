@@ -2,8 +2,8 @@ import 'package:meta/meta.dart';
 import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
-/// Returns recently opened chats; this is an offline request. Returns chats
-/// in the order of last opening
+/// Returns recently opened chats. This is an offline method. Returns chats in
+/// the order of last opening
 /// Returns [Chats]
 @immutable
 class GetRecentlyOpenedChats extends TdFunction {

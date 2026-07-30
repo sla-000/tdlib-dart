@@ -20,7 +20,9 @@ abstract class SearchMessagesFilter extends TdObject {
   /// [SearchMessagesFilterPhotoAndVideo]
   /// [SearchMessagesFilterPhoto]
   /// [SearchMessagesFilterPinned]
+  /// [SearchMessagesFilterPoll]
   /// [SearchMessagesFilterUnreadMention]
+  /// [SearchMessagesFilterUnreadPollVote]
   /// [SearchMessagesFilterUnreadReaction]
   /// [SearchMessagesFilterUrl]
   /// [SearchMessagesFilterVideoNote]
@@ -53,8 +55,12 @@ abstract class SearchMessagesFilter extends TdObject {
         return SearchMessagesFilterPhotoAndVideo.fromJson(json);
       case SearchMessagesFilterPinned.constructor:
         return SearchMessagesFilterPinned.fromJson(json);
+      case SearchMessagesFilterPoll.constructor:
+        return SearchMessagesFilterPoll.fromJson(json);
       case SearchMessagesFilterUnreadMention.constructor:
         return SearchMessagesFilterUnreadMention.fromJson(json);
+      case SearchMessagesFilterUnreadPollVote.constructor:
+        return SearchMessagesFilterUnreadPollVote.fromJson(json);
       case SearchMessagesFilterUnreadReaction.constructor:
         return SearchMessagesFilterUnreadReaction.fromJson(json);
       case SearchMessagesFilterUrl.constructor:

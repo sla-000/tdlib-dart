@@ -8,13 +8,17 @@ import '../tdapi.dart';
 @immutable
 class AddContact extends TdFunction {
   const AddContact({
+    required this.userId,
     required this.contact,
     required this.sharePhoneNumber,
   });
 
+  /// [userId] Identifier of the user
+  final int userId;
+
   /// [contact] The contact to add or edit; phone number may be empty and needs
-  /// to be specified only if known, vCard is ignored
-  final Contact contact;
+  /// to be specified only if known
+  final ImportedContact contact;
 
   /// [sharePhoneNumber] Pass true to share the current user's phone number with
   /// the new contact. A corresponding rule to userPrivacySettingShowPhoneNumber
@@ -30,6 +34,7 @@ class AddContact extends TdFunction {
 
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
+        'user_id': userId,
         'contact': contact.toJson(),
         'share_phone_number': sharePhoneNumber,
         '@type': constructor,

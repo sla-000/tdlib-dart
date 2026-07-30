@@ -12,6 +12,7 @@ class CallStateReady extends CallState {
     required this.encryptionKey,
     required this.emojis,
     required this.allowP2p,
+    required this.isGroupCallSupported,
     required this.customParameters,
   });
 
@@ -33,6 +34,10 @@ class CallStateReady extends CallState {
   /// [allowP2p] True, if peer-to-peer connection is allowed by users privacy
   /// settings
   final bool allowP2p;
+
+  /// [isGroupCallSupported] True, if the other party supports upgrading of the
+  /// call to a group call
+  final bool isGroupCallSupported;
 
   /// [customParameters] Custom JSON-encoded call parameters to be passed to
   /// tgcalls
@@ -59,6 +64,7 @@ class CallStateReady extends CallState {
               .map((item) => item)
               .toList()),
       allowP2p: json['allow_p2p'] as bool,
+      isGroupCallSupported: json['is_group_call_supported'] as bool,
       customParameters: json['custom_parameters'] as String,
     );
   }
@@ -74,6 +80,7 @@ class CallStateReady extends CallState {
         'encryption_key': encryptionKey,
         'emojis': emojis.map((item) => item).toList(),
         'allow_p2p': allowP2p,
+        'is_group_call_supported': isGroupCallSupported,
         'custom_parameters': customParameters,
         '@type': constructor,
       };

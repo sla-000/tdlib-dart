@@ -2,7 +2,7 @@ import 'package:meta/meta.dart';
 import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
-/// Describes a user that sent a join request and waits for administrator
+/// Describes a user who sent a join request and waits for administrator
 /// approval
 @immutable
 class ChatJoinRequest extends TdObject {

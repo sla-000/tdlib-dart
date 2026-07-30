@@ -12,10 +12,13 @@ abstract class Update extends TdObject {
   /// Inherited by:
   /// [UpdateAccentColors]
   /// [UpdateActiveEmojiReactions]
+  /// [UpdateActiveGiftAuctions]
   /// [UpdateActiveLiveLocationMessages]
   /// [UpdateActiveNotifications]
+  /// [UpdateAgeVerificationParameters]
   /// [UpdateAnimatedEmojiMessageClicked]
   /// [UpdateAnimationSearchParameters]
+  /// [UpdateApplicationRecaptchaVerificationRequired]
   /// [UpdateApplicationVerificationRequired]
   /// [UpdateAttachmentMenuBots]
   /// [UpdateAuthorizationState]
@@ -45,6 +48,7 @@ abstract class Update extends TdObject {
   /// [UpdateChatHasScheduledMessages]
   /// [UpdateChatIsMarkedAsUnread]
   /// [UpdateChatIsTranslatable]
+  /// [UpdateChatJoinResult]
   /// [UpdateChatLastMessage]
   /// [UpdateChatMember]
   /// [UpdateChatMessageAutoDeleteTime]
@@ -61,18 +65,22 @@ abstract class Update extends TdObject {
   /// [UpdateChatReplyMarkup]
   /// [UpdateChatRevenueAmount]
   /// [UpdateChatTheme]
-  /// [UpdateChatThemes]
   /// [UpdateChatTitle]
   /// [UpdateChatUnreadMentionCount]
+  /// [UpdateChatUnreadPollVoteCount]
   /// [UpdateChatUnreadReactionCount]
   /// [UpdateChatVideoChat]
   /// [UpdateChatViewAsTopics]
+  /// [UpdateCommunity]
   /// [UpdateConnectionState]
   /// [UpdateContactCloseBirthdays]
   /// [UpdateDefaultBackground]
+  /// [UpdateDefaultPaidReactionType]
   /// [UpdateDefaultReactionType]
   /// [UpdateDeleteMessages]
   /// [UpdateDiceEmojis]
+  /// [UpdateDirectMessagesChatTopic]
+  /// [UpdateEmojiChatThemes]
   /// [UpdateFavoriteStickers]
   /// [UpdateFileAddedToDownloads]
   /// [UpdateFileDownload]
@@ -82,11 +90,23 @@ abstract class Update extends TdObject {
   /// [UpdateFileRemovedFromDownloads]
   /// [UpdateFile]
   /// [UpdateForumTopicInfo]
+  /// [UpdateForumTopic]
+  /// [UpdateFreezeState]
+  /// [UpdateGiftAuctionState]
+  /// [UpdateGramRevenueStatus]
+  /// [UpdateGroupCallMessageLevels]
+  /// [UpdateGroupCallMessageSendFailed]
+  /// [UpdateGroupCallMessagesDeleted]
   /// [UpdateGroupCallParticipant]
+  /// [UpdateGroupCallParticipants]
+  /// [UpdateGroupCallVerificationState]
   /// [UpdateGroupCall]
   /// [UpdateHavePendingNotifications]
   /// [UpdateInstalledStickerSets]
   /// [UpdateLanguagePackStrings]
+  /// [UpdateLiveStoryTopDonors]
+  /// [UpdateManagedBot]
+  /// [UpdateMessageContainsUnreadPollVotes]
   /// [UpdateMessageContentOpened]
   /// [UpdateMessageContent]
   /// [UpdateMessageEdited]
@@ -100,6 +120,7 @@ abstract class Update extends TdObject {
   /// [UpdateMessageSendAcknowledged]
   /// [UpdateMessageSendFailed]
   /// [UpdateMessageSendSucceeded]
+  /// [UpdateMessageSuggestedPostInfo]
   /// [UpdateMessageUnreadReactions]
   /// [UpdateNewBusinessCallbackQuery]
   /// [UpdateNewBusinessMessage]
@@ -110,16 +131,22 @@ abstract class Update extends TdObject {
   /// [UpdateNewChosenInlineResult]
   /// [UpdateNewCustomEvent]
   /// [UpdateNewCustomQuery]
+  /// [UpdateNewGroupCallMessage]
+  /// [UpdateNewGroupCallPaidReaction]
+  /// [UpdateNewGuestQuery]
   /// [UpdateNewInlineCallbackQuery]
   /// [UpdateNewInlineQuery]
   /// [UpdateNewMessage]
+  /// [UpdateNewOauthRequest]
   /// [UpdateNewPreCheckoutQuery]
   /// [UpdateNewShippingQuery]
   /// [UpdateNotificationGroup]
   /// [UpdateNotification]
   /// [UpdateOption]
+  /// [UpdateOwnedGramCount]
   /// [UpdateOwnedStarCount]
   /// [UpdatePaidMediaPurchased]
+  /// [UpdatePendingMessage]
   /// [UpdatePollAnswer]
   /// [UpdatePoll]
   /// [UpdateProfileAccentColors]
@@ -139,28 +166,34 @@ abstract class Update extends TdObject {
   /// [UpdateServiceNotification]
   /// [UpdateSpeechRecognitionTrial]
   /// [UpdateSpeedLimitNotification]
+  /// [UpdateStakeDiceState]
   /// [UpdateStarRevenueStatus]
   /// [UpdateStickerSet]
   /// [UpdateStoryDeleted]
   /// [UpdateStoryListChatCount]
-  /// [UpdateStorySendFailed]
-  /// [UpdateStorySendSucceeded]
+  /// [UpdateStoryPostFailed]
+  /// [UpdateStoryPostSucceeded]
   /// [UpdateStoryStealthMode]
   /// [UpdateStory]
   /// [UpdateSuggestedActions]
   /// [UpdateSupergroupFullInfo]
   /// [UpdateSupergroup]
   /// [UpdateTermsOfService]
+  /// [UpdateTextCompositionStyles]
+  /// [UpdateTopicMessageCount]
   /// [UpdateTrendingStickerSets]
+  /// [UpdateTrustedMiniAppBots]
   /// [UpdateUnconfirmedSession]
   /// [UpdateUnreadChatCount]
   /// [UpdateUnreadMessageCount]
   /// [UpdateUserFullInfo]
   /// [UpdateUserPrivacySettingRules]
   /// [UpdateUserStatus]
+  /// [UpdateUserSubscription]
   /// [UpdateUser]
   /// [UpdateVideoPublished]
   /// [UpdateWebAppMessageSent]
+  /// [UpdateWebBrowserSettings]
   static Update? fromJson(Map<String, dynamic>? json) {
     if (json == null) {
       return null;
@@ -171,14 +204,20 @@ abstract class Update extends TdObject {
         return UpdateAccentColors.fromJson(json);
       case UpdateActiveEmojiReactions.constructor:
         return UpdateActiveEmojiReactions.fromJson(json);
+      case UpdateActiveGiftAuctions.constructor:
+        return UpdateActiveGiftAuctions.fromJson(json);
       case UpdateActiveLiveLocationMessages.constructor:
         return UpdateActiveLiveLocationMessages.fromJson(json);
       case UpdateActiveNotifications.constructor:
         return UpdateActiveNotifications.fromJson(json);
+      case UpdateAgeVerificationParameters.constructor:
+        return UpdateAgeVerificationParameters.fromJson(json);
       case UpdateAnimatedEmojiMessageClicked.constructor:
         return UpdateAnimatedEmojiMessageClicked.fromJson(json);
       case UpdateAnimationSearchParameters.constructor:
         return UpdateAnimationSearchParameters.fromJson(json);
+      case UpdateApplicationRecaptchaVerificationRequired.constructor:
+        return UpdateApplicationRecaptchaVerificationRequired.fromJson(json);
       case UpdateApplicationVerificationRequired.constructor:
         return UpdateApplicationVerificationRequired.fromJson(json);
       case UpdateAttachmentMenuBots.constructor:
@@ -237,6 +276,8 @@ abstract class Update extends TdObject {
         return UpdateChatIsMarkedAsUnread.fromJson(json);
       case UpdateChatIsTranslatable.constructor:
         return UpdateChatIsTranslatable.fromJson(json);
+      case UpdateChatJoinResult.constructor:
+        return UpdateChatJoinResult.fromJson(json);
       case UpdateChatLastMessage.constructor:
         return UpdateChatLastMessage.fromJson(json);
       case UpdateChatMember.constructor:
@@ -269,30 +310,38 @@ abstract class Update extends TdObject {
         return UpdateChatRevenueAmount.fromJson(json);
       case UpdateChatTheme.constructor:
         return UpdateChatTheme.fromJson(json);
-      case UpdateChatThemes.constructor:
-        return UpdateChatThemes.fromJson(json);
       case UpdateChatTitle.constructor:
         return UpdateChatTitle.fromJson(json);
       case UpdateChatUnreadMentionCount.constructor:
         return UpdateChatUnreadMentionCount.fromJson(json);
+      case UpdateChatUnreadPollVoteCount.constructor:
+        return UpdateChatUnreadPollVoteCount.fromJson(json);
       case UpdateChatUnreadReactionCount.constructor:
         return UpdateChatUnreadReactionCount.fromJson(json);
       case UpdateChatVideoChat.constructor:
         return UpdateChatVideoChat.fromJson(json);
       case UpdateChatViewAsTopics.constructor:
         return UpdateChatViewAsTopics.fromJson(json);
+      case UpdateCommunity.constructor:
+        return UpdateCommunity.fromJson(json);
       case UpdateConnectionState.constructor:
         return UpdateConnectionState.fromJson(json);
       case UpdateContactCloseBirthdays.constructor:
         return UpdateContactCloseBirthdays.fromJson(json);
       case UpdateDefaultBackground.constructor:
         return UpdateDefaultBackground.fromJson(json);
+      case UpdateDefaultPaidReactionType.constructor:
+        return UpdateDefaultPaidReactionType.fromJson(json);
       case UpdateDefaultReactionType.constructor:
         return UpdateDefaultReactionType.fromJson(json);
       case UpdateDeleteMessages.constructor:
         return UpdateDeleteMessages.fromJson(json);
       case UpdateDiceEmojis.constructor:
         return UpdateDiceEmojis.fromJson(json);
+      case UpdateDirectMessagesChatTopic.constructor:
+        return UpdateDirectMessagesChatTopic.fromJson(json);
+      case UpdateEmojiChatThemes.constructor:
+        return UpdateEmojiChatThemes.fromJson(json);
       case UpdateFavoriteStickers.constructor:
         return UpdateFavoriteStickers.fromJson(json);
       case UpdateFile.constructor:
@@ -309,18 +358,42 @@ abstract class Update extends TdObject {
         return UpdateFileGenerationStop.fromJson(json);
       case UpdateFileRemovedFromDownloads.constructor:
         return UpdateFileRemovedFromDownloads.fromJson(json);
+      case UpdateForumTopic.constructor:
+        return UpdateForumTopic.fromJson(json);
       case UpdateForumTopicInfo.constructor:
         return UpdateForumTopicInfo.fromJson(json);
+      case UpdateFreezeState.constructor:
+        return UpdateFreezeState.fromJson(json);
+      case UpdateGiftAuctionState.constructor:
+        return UpdateGiftAuctionState.fromJson(json);
+      case UpdateGramRevenueStatus.constructor:
+        return UpdateGramRevenueStatus.fromJson(json);
       case UpdateGroupCall.constructor:
         return UpdateGroupCall.fromJson(json);
+      case UpdateGroupCallMessageLevels.constructor:
+        return UpdateGroupCallMessageLevels.fromJson(json);
+      case UpdateGroupCallMessageSendFailed.constructor:
+        return UpdateGroupCallMessageSendFailed.fromJson(json);
+      case UpdateGroupCallMessagesDeleted.constructor:
+        return UpdateGroupCallMessagesDeleted.fromJson(json);
       case UpdateGroupCallParticipant.constructor:
         return UpdateGroupCallParticipant.fromJson(json);
+      case UpdateGroupCallParticipants.constructor:
+        return UpdateGroupCallParticipants.fromJson(json);
+      case UpdateGroupCallVerificationState.constructor:
+        return UpdateGroupCallVerificationState.fromJson(json);
       case UpdateHavePendingNotifications.constructor:
         return UpdateHavePendingNotifications.fromJson(json);
       case UpdateInstalledStickerSets.constructor:
         return UpdateInstalledStickerSets.fromJson(json);
       case UpdateLanguagePackStrings.constructor:
         return UpdateLanguagePackStrings.fromJson(json);
+      case UpdateLiveStoryTopDonors.constructor:
+        return UpdateLiveStoryTopDonors.fromJson(json);
+      case UpdateManagedBot.constructor:
+        return UpdateManagedBot.fromJson(json);
+      case UpdateMessageContainsUnreadPollVotes.constructor:
+        return UpdateMessageContainsUnreadPollVotes.fromJson(json);
       case UpdateMessageContent.constructor:
         return UpdateMessageContent.fromJson(json);
       case UpdateMessageContentOpened.constructor:
@@ -347,6 +420,8 @@ abstract class Update extends TdObject {
         return UpdateMessageSendFailed.fromJson(json);
       case UpdateMessageSendSucceeded.constructor:
         return UpdateMessageSendSucceeded.fromJson(json);
+      case UpdateMessageSuggestedPostInfo.constructor:
+        return UpdateMessageSuggestedPostInfo.fromJson(json);
       case UpdateMessageUnreadReactions.constructor:
         return UpdateMessageUnreadReactions.fromJson(json);
       case UpdateNewBusinessCallbackQuery.constructor:
@@ -367,12 +442,20 @@ abstract class Update extends TdObject {
         return UpdateNewCustomEvent.fromJson(json);
       case UpdateNewCustomQuery.constructor:
         return UpdateNewCustomQuery.fromJson(json);
+      case UpdateNewGroupCallMessage.constructor:
+        return UpdateNewGroupCallMessage.fromJson(json);
+      case UpdateNewGroupCallPaidReaction.constructor:
+        return UpdateNewGroupCallPaidReaction.fromJson(json);
+      case UpdateNewGuestQuery.constructor:
+        return UpdateNewGuestQuery.fromJson(json);
       case UpdateNewInlineCallbackQuery.constructor:
         return UpdateNewInlineCallbackQuery.fromJson(json);
       case UpdateNewInlineQuery.constructor:
         return UpdateNewInlineQuery.fromJson(json);
       case UpdateNewMessage.constructor:
         return UpdateNewMessage.fromJson(json);
+      case UpdateNewOauthRequest.constructor:
+        return UpdateNewOauthRequest.fromJson(json);
       case UpdateNewPreCheckoutQuery.constructor:
         return UpdateNewPreCheckoutQuery.fromJson(json);
       case UpdateNewShippingQuery.constructor:
@@ -383,10 +466,14 @@ abstract class Update extends TdObject {
         return UpdateNotificationGroup.fromJson(json);
       case UpdateOption.constructor:
         return UpdateOption.fromJson(json);
+      case UpdateOwnedGramCount.constructor:
+        return UpdateOwnedGramCount.fromJson(json);
       case UpdateOwnedStarCount.constructor:
         return UpdateOwnedStarCount.fromJson(json);
       case UpdatePaidMediaPurchased.constructor:
         return UpdatePaidMediaPurchased.fromJson(json);
+      case UpdatePendingMessage.constructor:
+        return UpdatePendingMessage.fromJson(json);
       case UpdatePoll.constructor:
         return UpdatePoll.fromJson(json);
       case UpdatePollAnswer.constructor:
@@ -425,6 +512,8 @@ abstract class Update extends TdObject {
         return UpdateSpeechRecognitionTrial.fromJson(json);
       case UpdateSpeedLimitNotification.constructor:
         return UpdateSpeedLimitNotification.fromJson(json);
+      case UpdateStakeDiceState.constructor:
+        return UpdateStakeDiceState.fromJson(json);
       case UpdateStarRevenueStatus.constructor:
         return UpdateStarRevenueStatus.fromJson(json);
       case UpdateStickerSet.constructor:
@@ -435,10 +524,10 @@ abstract class Update extends TdObject {
         return UpdateStoryDeleted.fromJson(json);
       case UpdateStoryListChatCount.constructor:
         return UpdateStoryListChatCount.fromJson(json);
-      case UpdateStorySendFailed.constructor:
-        return UpdateStorySendFailed.fromJson(json);
-      case UpdateStorySendSucceeded.constructor:
-        return UpdateStorySendSucceeded.fromJson(json);
+      case UpdateStoryPostFailed.constructor:
+        return UpdateStoryPostFailed.fromJson(json);
+      case UpdateStoryPostSucceeded.constructor:
+        return UpdateStoryPostSucceeded.fromJson(json);
       case UpdateStoryStealthMode.constructor:
         return UpdateStoryStealthMode.fromJson(json);
       case UpdateSuggestedActions.constructor:
@@ -449,8 +538,14 @@ abstract class Update extends TdObject {
         return UpdateSupergroupFullInfo.fromJson(json);
       case UpdateTermsOfService.constructor:
         return UpdateTermsOfService.fromJson(json);
+      case UpdateTextCompositionStyles.constructor:
+        return UpdateTextCompositionStyles.fromJson(json);
+      case UpdateTopicMessageCount.constructor:
+        return UpdateTopicMessageCount.fromJson(json);
       case UpdateTrendingStickerSets.constructor:
         return UpdateTrendingStickerSets.fromJson(json);
+      case UpdateTrustedMiniAppBots.constructor:
+        return UpdateTrustedMiniAppBots.fromJson(json);
       case UpdateUnconfirmedSession.constructor:
         return UpdateUnconfirmedSession.fromJson(json);
       case UpdateUnreadChatCount.constructor:
@@ -465,10 +560,14 @@ abstract class Update extends TdObject {
         return UpdateUserPrivacySettingRules.fromJson(json);
       case UpdateUserStatus.constructor:
         return UpdateUserStatus.fromJson(json);
+      case UpdateUserSubscription.constructor:
+        return UpdateUserSubscription.fromJson(json);
       case UpdateVideoPublished.constructor:
         return UpdateVideoPublished.fromJson(json);
       case UpdateWebAppMessageSent.constructor:
         return UpdateWebAppMessageSent.fromJson(json);
+      case UpdateWebBrowserSettings.constructor:
+        return UpdateWebBrowserSettings.fromJson(json);
       default:
         return null;
     }

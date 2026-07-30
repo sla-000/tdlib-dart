@@ -8,9 +8,11 @@ class MessageLinkInfo extends TdObject {
   const MessageLinkInfo({
     required this.isPublic,
     required this.chatId,
-    required this.messageThreadId,
+    this.topicId,
     this.message,
     required this.mediaTimestamp,
+    required this.checklistTaskId,
+    required this.pollOptionId,
     required this.forAlbum,
   });
 
@@ -22,9 +24,9 @@ class MessageLinkInfo extends TdObject {
   /// otherwise
   final int chatId;
 
-  /// [messageThreadId] If found, identifier of the message thread in which to
-  /// open the message, or a forum topic to open if the message is missing
-  final int messageThreadId;
+  /// [topicId] Identifier of the specific topic in which the message must be
+  /// opened, or a topic to open if the message is missing; may be null if none
+  final MessageTopic? topicId;
 
   /// [message] If found, the linked message; may be null
   final Message? message;
@@ -33,6 +35,13 @@ class MessageLinkInfo extends TdObject {
   /// note/story playing must start, in seconds; 0 if not specified. The media
   /// can be in the message content or in its link preview
   final int mediaTimestamp;
+
+  /// [checklistTaskId] Identifier of the checklist task that is linked; 0 if
+  /// none
+  final int checklistTaskId;
+
+  /// [pollOptionId] Identifier of the poll option that is linked; empty if none
+  final String pollOptionId;
 
   /// [forAlbum] True, if the whole media album to which the message belongs is
   /// linked
@@ -48,9 +57,11 @@ class MessageLinkInfo extends TdObject {
     return MessageLinkInfo(
       isPublic: json['is_public'] as bool,
       chatId: json['chat_id'] as int,
-      messageThreadId: json['message_thread_id'] as int,
+      topicId: MessageTopic.fromJson(json['topic_id'] as Map<String, dynamic>?),
       message: Message.fromJson(json['message'] as Map<String, dynamic>?),
       mediaTimestamp: json['media_timestamp'] as int,
+      checklistTaskId: json['checklist_task_id'] as int,
+      pollOptionId: json['poll_option_id'] as String,
       forAlbum: json['for_album'] as bool,
     );
   }
@@ -62,9 +73,11 @@ class MessageLinkInfo extends TdObject {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'is_public': isPublic,
         'chat_id': chatId,
-        'message_thread_id': messageThreadId,
+        'topic_id': topicId?.toJson(),
         'message': message?.toJson(),
         'media_timestamp': mediaTimestamp,
+        'checklist_task_id': checklistTaskId,
+        'poll_option_id': pollOptionId,
         'for_album': forAlbum,
         '@type': constructor,
       };

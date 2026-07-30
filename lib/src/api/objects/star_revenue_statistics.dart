@@ -2,7 +2,7 @@ import 'package:meta/meta.dart';
 import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
-/// A detailed statistics about Telegram Stars earned by a bot or a chat
+/// A detailed statistics about Telegram Stars earned by a user or a chat
 @immutable
 class StarRevenueStatistics extends TdObject {
   const StarRevenueStatistics({

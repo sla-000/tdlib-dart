@@ -3,7 +3,7 @@ import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Reports a sponsored message to Telegram moderators
-/// Returns [ReportChatSponsoredMessageResult]
+/// Returns [ReportSponsoredResult]
 @immutable
 class ReportChatSponsoredMessage extends TdFunction {
   const ReportChatSponsoredMessage({

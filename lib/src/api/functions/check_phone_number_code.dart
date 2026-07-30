@@ -2,8 +2,8 @@ import 'package:meta/meta.dart';
 import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
-/// Check the authentication code and completes the request for which the code
-/// was sent if appropriate
+/// Checks the authentication code and completes the request for which the
+/// code was sent if appropriate
 /// Returns [Ok]
 @immutable
 class CheckPhoneNumberCode extends TdFunction {

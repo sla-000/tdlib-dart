@@ -2,7 +2,8 @@ import 'package:meta/meta.dart';
 import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
-/// Returns information about available group call streams
+/// Returns information about available streams in a video chat or a live
+/// story
 /// Returns [GroupCallStreams]
 @immutable
 class GetGroupCallStreams extends TdFunction {

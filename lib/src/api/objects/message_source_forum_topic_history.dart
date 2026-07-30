@@ -2,7 +2,7 @@ import 'package:meta/meta.dart';
 import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
-/// The message is from a forum topic history
+/// The message is from history of a forum topic
 @immutable
 class MessageSourceForumTopicHistory extends MessageSource {
   const MessageSourceForumTopicHistory();

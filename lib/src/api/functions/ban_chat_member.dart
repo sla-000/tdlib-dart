@@ -29,7 +29,7 @@ class BanChatMember extends TdFunction {
   final int bannedUntilDate;
 
   /// [revokeMessages] Pass true to delete all messages in the chat for the user
-  /// that is being removed. Always true for supergroups and channels
+  /// who is being removed. Always true for supergroups and channels
   final bool revokeMessages;
 
   static const String constructor = 'banChatMember';

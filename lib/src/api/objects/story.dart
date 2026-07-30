@@ -7,18 +7,20 @@ import '../tdapi.dart';
 class Story extends TdObject {
   const Story({
     required this.id,
-    required this.senderChatId,
-    this.senderId,
+    required this.posterChatId,
+    this.posterId,
     required this.date,
-    required this.isBeingSent,
+    required this.isBeingPosted,
     required this.isBeingEdited,
     required this.isEdited,
     required this.isPostedToChatPage,
     required this.isVisibleOnlyForSelf,
+    required this.canBeAddedToAlbum,
     required this.canBeDeleted,
     required this.canBeEdited,
     required this.canBeForwarded,
     required this.canBeReplied,
+    required this.canSetPrivacySettings,
     required this.canToggleIsPostedToChatPage,
     required this.canGetStatistics,
     required this.canGetInteractions,
@@ -30,23 +32,24 @@ class Story extends TdObject {
     required this.content,
     required this.areas,
     required this.caption,
+    required this.albumIds,
   });
 
-  /// [id] Unique story identifier among stories of the given sender
+  /// [id] Unique story identifier among stories posted by the given chat
   final int id;
 
-  /// [senderChatId] Identifier of the chat that posted the story
-  final int senderChatId;
+  /// [posterChatId] Identifier of the chat that posted the story
+  final int posterChatId;
 
-  /// [senderId] Identifier of the sender of the story; may be null if the story
-  /// is posted on behalf of the sender_chat_id
-  final MessageSender? senderId;
+  /// [posterId] Identifier of the user or chat that posted the story; may be
+  /// null if the story is posted on behalf of the poster_chat_id
+  final MessageSender? posterId;
 
   /// [date] Point in time (Unix timestamp) when the story was published
   final int date;
 
-  /// [isBeingSent] True, if the story is being sent by the current user
-  final bool isBeingSent;
+  /// [isBeingPosted] True, if the story is being posted by the current user
+  final bool isBeingPosted;
 
   /// [isBeingEdited] True, if the story is being edited by the current user
   final bool isBeingEdited;
@@ -54,13 +57,17 @@ class Story extends TdObject {
   /// [isEdited] True, if the story was edited
   final bool isEdited;
 
-  /// [isPostedToChatPage] True, if the story is saved in the sender's profile
-  /// and will be available there after expiration
+  /// [isPostedToChatPage] True, if the story is saved in the profile of the
+  /// chat that posted it and will be available there after expiration
   final bool isPostedToChatPage;
 
   /// [isVisibleOnlyForSelf] True, if the story is visible only for the current
   /// user
   final bool isVisibleOnlyForSelf;
+
+  /// [canBeAddedToAlbum] True, if the story can be added to an album using
+  /// createStoryAlbum and addStoryAlbumStories
+  final bool canBeAddedToAlbum;
 
   /// [canBeDeleted] True, if the story can be deleted
   final bool canBeDeleted;
@@ -68,14 +75,17 @@ class Story extends TdObject {
   /// [canBeEdited] True, if the story can be edited
   final bool canBeEdited;
 
-  /// [canBeForwarded] True, if the story can be forwarded as a message.
-  /// Otherwise, screenshots and saving of the story content must be also
-  /// forbidden
+  /// [canBeForwarded] True, if the story can be forwarded as a message or
+  /// reposted as a story. Otherwise, screenshotting and saving of the story
+  /// content must be also forbidden
   final bool canBeForwarded;
 
-  /// [canBeReplied] True, if the story can be replied in the chat with the
-  /// story sender
+  /// [canBeReplied] True, if the story can be replied in the chat with the user
+  /// who posted the story
   final bool canBeReplied;
+
+  /// [canSetPrivacySettings] True, if the story privacy settings can be changed
+  final bool canSetPrivacySettings;
 
   /// [canToggleIsPostedToChatPage] True, if the story's is_posted_to_chat_page
   /// value can be changed
@@ -89,7 +99,7 @@ class Story extends TdObject {
   /// through getStoryInteractions
   final bool canGetInteractions;
 
-  /// [hasExpiredViewers] True, if users viewed the story can't be received,
+  /// [hasExpiredViewers] True, if users who viewed the story can't be received,
   /// because the story has expired more than
   /// getOption("story_viewers_expiration_delay") seconds ago
   final bool hasExpiredViewers;
@@ -118,6 +128,10 @@ class Story extends TdObject {
   /// [caption] Caption of the story
   final FormattedText caption;
 
+  /// [albumIds] Identifiers of story albums to which the story is added; only
+  /// for manageable stories
+  final List<int> albumIds;
+
   static const String constructor = 'story';
 
   static Story? fromJson(Map<String, dynamic>? json) {
@@ -127,19 +141,21 @@ class Story extends TdObject {
 
     return Story(
       id: json['id'] as int,
-      senderChatId: json['sender_chat_id'] as int,
-      senderId:
-          MessageSender.fromJson(json['sender_id'] as Map<String, dynamic>?),
+      posterChatId: json['poster_chat_id'] as int,
+      posterId:
+          MessageSender.fromJson(json['poster_id'] as Map<String, dynamic>?),
       date: json['date'] as int,
-      isBeingSent: json['is_being_sent'] as bool,
+      isBeingPosted: json['is_being_posted'] as bool,
       isBeingEdited: json['is_being_edited'] as bool,
       isEdited: json['is_edited'] as bool,
       isPostedToChatPage: json['is_posted_to_chat_page'] as bool,
       isVisibleOnlyForSelf: json['is_visible_only_for_self'] as bool,
+      canBeAddedToAlbum: json['can_be_added_to_album'] as bool,
       canBeDeleted: json['can_be_deleted'] as bool,
       canBeEdited: json['can_be_edited'] as bool,
       canBeForwarded: json['can_be_forwarded'] as bool,
       canBeReplied: json['can_be_replied'] as bool,
+      canSetPrivacySettings: json['can_set_privacy_settings'] as bool,
       canToggleIsPostedToChatPage:
           json['can_toggle_is_posted_to_chat_page'] as bool,
       canGetStatistics: json['can_get_statistics'] as bool,
@@ -160,6 +176,10 @@ class Story extends TdObject {
               .toList()),
       caption:
           FormattedText.fromJson(json['caption'] as Map<String, dynamic>?)!,
+      albumIds: List<int>.from(
+          ((json['album_ids'] as List<dynamic>?) ?? <dynamic>[])
+              .map((item) => item)
+              .toList()),
     );
   }
 
@@ -169,18 +189,20 @@ class Story extends TdObject {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'id': id,
-        'sender_chat_id': senderChatId,
-        'sender_id': senderId?.toJson(),
+        'poster_chat_id': posterChatId,
+        'poster_id': posterId?.toJson(),
         'date': date,
-        'is_being_sent': isBeingSent,
+        'is_being_posted': isBeingPosted,
         'is_being_edited': isBeingEdited,
         'is_edited': isEdited,
         'is_posted_to_chat_page': isPostedToChatPage,
         'is_visible_only_for_self': isVisibleOnlyForSelf,
+        'can_be_added_to_album': canBeAddedToAlbum,
         'can_be_deleted': canBeDeleted,
         'can_be_edited': canBeEdited,
         'can_be_forwarded': canBeForwarded,
         'can_be_replied': canBeReplied,
+        'can_set_privacy_settings': canSetPrivacySettings,
         'can_toggle_is_posted_to_chat_page': canToggleIsPostedToChatPage,
         'can_get_statistics': canGetStatistics,
         'can_get_interactions': canGetInteractions,
@@ -192,6 +214,7 @@ class Story extends TdObject {
         'content': content.toJson(),
         'areas': areas.map((item) => item.toJson()).toList(),
         'caption': caption.toJson(),
+        'album_ids': albumIds.map((item) => item).toList(),
         '@type': constructor,
       };
 

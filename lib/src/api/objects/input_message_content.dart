@@ -12,16 +12,20 @@ abstract class InputMessageContent extends TdObject {
   /// Inherited by:
   /// [InputMessageAnimation]
   /// [InputMessageAudio]
+  /// [InputMessageChecklist]
   /// [InputMessageContact]
   /// [InputMessageDice]
   /// [InputMessageDocument]
   /// [InputMessageForwarded]
   /// [InputMessageGame]
   /// [InputMessageInvoice]
+  /// [InputMessageLiveLocation]
   /// [InputMessageLocation]
   /// [InputMessagePaidMedia]
   /// [InputMessagePhoto]
   /// [InputMessagePoll]
+  /// [InputMessageRichMessage]
+  /// [InputMessageStakeDice]
   /// [InputMessageSticker]
   /// [InputMessageStory]
   /// [InputMessageText]
@@ -39,6 +43,8 @@ abstract class InputMessageContent extends TdObject {
         return InputMessageAnimation.fromJson(json);
       case InputMessageAudio.constructor:
         return InputMessageAudio.fromJson(json);
+      case InputMessageChecklist.constructor:
+        return InputMessageChecklist.fromJson(json);
       case InputMessageContact.constructor:
         return InputMessageContact.fromJson(json);
       case InputMessageDice.constructor:
@@ -51,6 +57,8 @@ abstract class InputMessageContent extends TdObject {
         return InputMessageGame.fromJson(json);
       case InputMessageInvoice.constructor:
         return InputMessageInvoice.fromJson(json);
+      case InputMessageLiveLocation.constructor:
+        return InputMessageLiveLocation.fromJson(json);
       case InputMessageLocation.constructor:
         return InputMessageLocation.fromJson(json);
       case InputMessagePaidMedia.constructor:
@@ -59,6 +67,10 @@ abstract class InputMessageContent extends TdObject {
         return InputMessagePhoto.fromJson(json);
       case InputMessagePoll.constructor:
         return InputMessagePoll.fromJson(json);
+      case InputMessageRichMessage.constructor:
+        return InputMessageRichMessage.fromJson(json);
+      case InputMessageStakeDice.constructor:
+        return InputMessageStakeDice.fromJson(json);
       case InputMessageSticker.constructor:
         return InputMessageSticker.fromJson(json);
       case InputMessageStory.constructor:

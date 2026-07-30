@@ -3,7 +3,7 @@ import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Toggles whether a participant of an active group call is muted, unmuted,
-/// or allowed to unmute themselves
+/// or allowed to unmute themselves; not supported for live stories
 /// Returns [Ok]
 @immutable
 class ToggleGroupCallParticipantIsMuted extends TdFunction {

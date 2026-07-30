@@ -3,7 +3,7 @@ import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Returns sparse positions of messages of the specified type in the chat to
-/// be used for shared media scroll implementation. Returns the results in
+/// be used for Shared Media scroll implementation. Returns the results in
 /// reverse chronological order (i.e., in order of decreasing message_id).
 /// Cannot be used in secret chats or with searchMessagesFilterFailedToSend
 /// filter without an enabled message database
@@ -23,8 +23,9 @@ class GetChatSparseMessagePositions extends TdFunction {
   final int chatId;
 
   /// [filter] Filter for message content. Filters searchMessagesFilterEmpty,
-  /// searchMessagesFilterMention, searchMessagesFilterUnreadMention, and
-  /// searchMessagesFilterUnreadReaction are unsupported in this function
+  /// searchMessagesFilterMention, searchMessagesFilterUnreadMention,
+  /// searchMessagesFilterUnreadReaction, and searchMessagesFilterUnreadPollVote
+  /// are unsupported in this function
   final SearchMessagesFilter filter;
 
   /// [fromMessageId] The message identifier from which to return information

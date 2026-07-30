@@ -2,15 +2,15 @@ import 'package:meta/meta.dart';
 import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
-/// A background from a chat theme; can be used only as a chat background in
-/// channels
+/// A background from a chat theme based on an emoji; can be used only as a
+/// chat background in channels
 @immutable
 class BackgroundTypeChatTheme extends BackgroundType {
   const BackgroundTypeChatTheme({
     required this.themeName,
   });
 
-  /// [themeName] Name of the chat theme
+  /// [themeName] Name of the emoji chat theme
   final String themeName;
 
   static const String constructor = 'backgroundTypeChatTheme';

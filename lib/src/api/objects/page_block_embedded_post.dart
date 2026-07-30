@@ -2,7 +2,7 @@ import 'package:meta/meta.dart';
 import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
-/// An embedded post
+/// An embedded post; instant view only
 @immutable
 class PageBlockEmbeddedPost extends PageBlock {
   const PageBlockEmbeddedPost({
@@ -10,8 +10,8 @@ class PageBlockEmbeddedPost extends PageBlock {
     required this.author,
     this.authorPhoto,
     required this.date,
-    required this.pageBlocks,
-    required this.caption,
+    required this.blocks,
+    this.caption,
   });
 
   /// [url] URL of the embedded post
@@ -27,11 +27,11 @@ class PageBlockEmbeddedPost extends PageBlock {
   /// unknown
   final int date;
 
-  /// [pageBlocks] Post content
-  final List<PageBlock> pageBlocks;
+  /// [blocks] Post content
+  final List<PageBlock> blocks;
 
-  /// [caption] Post caption
-  final PageBlockCaption caption;
+  /// [caption] Post caption; may be null if none
+  final PageBlockCaption? caption;
 
   static const String constructor = 'pageBlockEmbeddedPost';
 
@@ -46,12 +46,12 @@ class PageBlockEmbeddedPost extends PageBlock {
       authorPhoto:
           Photo.fromJson(json['author_photo'] as Map<String, dynamic>?),
       date: json['date'] as int,
-      pageBlocks: List<PageBlock>.from(
-          ((json['page_blocks'] as List<dynamic>?) ?? <dynamic>[])
+      blocks: List<PageBlock>.from(
+          ((json['blocks'] as List<dynamic>?) ?? <dynamic>[])
               .map((item) => PageBlock.fromJson(item))
               .toList()),
       caption:
-          PageBlockCaption.fromJson(json['caption'] as Map<String, dynamic>?)!,
+          PageBlockCaption.fromJson(json['caption'] as Map<String, dynamic>?),
     );
   }
 
@@ -64,8 +64,8 @@ class PageBlockEmbeddedPost extends PageBlock {
         'author': author,
         'author_photo': authorPhoto?.toJson(),
         'date': date,
-        'page_blocks': pageBlocks.map((item) => item.toJson()).toList(),
-        'caption': caption.toJson(),
+        'blocks': blocks.map((item) => item.toJson()).toList(),
+        'caption': caption?.toJson(),
         '@type': constructor,
       };
 

@@ -14,7 +14,8 @@ class BotMediaPreview extends TdObject {
   /// changed last time
   final int date;
 
-  /// [content] Content of the preview
+  /// [content] Content of the preview; may only be of the types
+  /// storyContentPhoto, storyContentVideo, or storyContentUnsupported
   final StoryContent content;
 
   static const String constructor = 'botMediaPreview';

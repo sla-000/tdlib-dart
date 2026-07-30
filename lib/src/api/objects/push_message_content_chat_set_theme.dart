@@ -6,12 +6,12 @@ import '../tdapi.dart';
 @immutable
 class PushMessageContentChatSetTheme extends PushMessageContent {
   const PushMessageContentChatSetTheme({
-    required this.themeName,
+    required this.name,
   });
 
-  /// [themeName] If non-empty, name of a new theme, set for the chat.
-  /// Otherwise, the chat theme was reset to the default one
-  final String themeName;
+  /// [name] If non-empty, human-readable name of the new theme. Otherwise, the
+  /// chat theme was reset to the default one
+  final String name;
 
   static const String constructor = 'pushMessageContentChatSetTheme';
 
@@ -21,7 +21,7 @@ class PushMessageContentChatSetTheme extends PushMessageContent {
     }
 
     return PushMessageContentChatSetTheme(
-      themeName: json['theme_name'] as String,
+      name: json['name'] as String,
     );
   }
 
@@ -30,7 +30,7 @@ class PushMessageContentChatSetTheme extends PushMessageContent {
 
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'theme_name': themeName,
+        'name': name,
         '@type': constructor,
       };
 

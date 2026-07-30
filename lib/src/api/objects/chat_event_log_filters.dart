@@ -14,6 +14,7 @@ class ChatEventLogFilters extends TdObject {
     required this.memberInvites,
     required this.memberPromotions,
     required this.memberRestrictions,
+    required this.memberTagChanges,
     required this.infoChanges,
     required this.settingChanges,
     required this.inviteLinkChanges,
@@ -47,6 +48,10 @@ class ChatEventLogFilters extends TdObject {
   /// [memberRestrictions] True, if member
   /// restricted/unrestricted/banned/unbanned events need to be returned
   final bool memberRestrictions;
+
+  /// [memberTagChanges] True, if member tag and custom title change events need
+  /// to be returned
+  final bool memberTagChanges;
 
   /// [infoChanges] True, if changes in chat information need to be returned
   final bool infoChanges;
@@ -83,6 +88,7 @@ class ChatEventLogFilters extends TdObject {
       memberInvites: json['member_invites'] as bool,
       memberPromotions: json['member_promotions'] as bool,
       memberRestrictions: json['member_restrictions'] as bool,
+      memberTagChanges: json['member_tag_changes'] as bool,
       infoChanges: json['info_changes'] as bool,
       settingChanges: json['setting_changes'] as bool,
       inviteLinkChanges: json['invite_link_changes'] as bool,
@@ -105,6 +111,7 @@ class ChatEventLogFilters extends TdObject {
         'member_invites': memberInvites,
         'member_promotions': memberPromotions,
         'member_restrictions': memberRestrictions,
+        'member_tag_changes': memberTagChanges,
         'info_changes': infoChanges,
         'setting_changes': settingChanges,
         'invite_link_changes': inviteLinkChanges,

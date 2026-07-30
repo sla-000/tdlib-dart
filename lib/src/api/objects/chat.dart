@@ -12,6 +12,7 @@ class Chat extends TdObject {
     this.photo,
     required this.accentColorId,
     required this.backgroundCustomEmojiId,
+    this.upgradedGiftColors,
     required this.profileAccentColorId,
     required this.profileBackgroundCustomEmojiId,
     required this.permissions,
@@ -34,12 +35,13 @@ class Chat extends TdObject {
     required this.lastReadOutboxMessageId,
     required this.unreadMentionCount,
     required this.unreadReactionCount,
+    required this.unreadPollVoteCount,
     required this.notificationSettings,
     required this.availableReactions,
     required this.messageAutoDeleteTime,
     this.emojiStatus,
     this.background,
-    required this.themeName,
+    this.theme,
     this.actionBar,
     this.businessBotManageBar,
     required this.videoChat,
@@ -70,6 +72,11 @@ class Chat extends TdObject {
   /// if none
   final int backgroundCustomEmojiId;
 
+  /// [upgradedGiftColors] Color scheme based on an upgraded gift to be used for
+  /// the chat instead of accent_color_id and background_custom_emoji_id; may be
+  /// null if none
+  final UpgradedGiftColors? upgradedGiftColors;
+
   /// [profileAccentColorId] Identifier of the profile accent color for the
   /// chat's profile; -1 if none
   final int profileAccentColorId;
@@ -89,8 +96,9 @@ class Chat extends TdObject {
   final List<ChatPosition> positions;
 
   /// [chatLists] Chat lists to which the chat belongs. A chat can have a
-  /// non-zero position in a chat list even it doesn't belong to the chat list
-  /// and have no position in a chat list even it belongs to the chat list
+  /// non-zero position in a chat list even if it doesn't belong to the chat
+  /// list and have no position in a chat list even if it belongs to the chat
+  /// list
   final List<ChatList> chatLists;
 
   /// [messageSenderId] Identifier of a user or chat that is selected to send
@@ -151,6 +159,10 @@ class Chat extends TdObject {
   /// [unreadReactionCount] Number of messages with unread reactions in the chat
   final int unreadReactionCount;
 
+  /// [unreadPollVoteCount] Number of messages with unread poll votes in the
+  /// chat
+  final int unreadPollVoteCount;
+
   /// [notificationSettings] Notification settings for the chat
   final ChatNotificationSettings notificationSettings;
 
@@ -169,8 +181,8 @@ class Chat extends TdObject {
   /// [background] Background set for the chat; may be null if none
   final ChatBackground? background;
 
-  /// [themeName] If non-empty, name of a theme, set for the chat
-  final String themeName;
+  /// [theme] Theme set for the chat; may be null if none
+  final ChatTheme? theme;
 
   /// [actionBar] Information about actions which must be possible to do through
   /// the chat action bar; may be null if none
@@ -188,7 +200,7 @@ class Chat extends TdObject {
   final ChatJoinRequestsInfo? pendingJoinRequests;
 
   /// [replyMarkupMessageId] Identifier of the message from which reply markup
-  /// needs to be used; 0 if there is no default custom reply markup in the chat
+  /// needs to be used; 0 if there is no reply markup in the chat
   final int replyMarkupMessageId;
 
   /// [draftMessage] A draft of a message in the chat; may be null if none
@@ -214,6 +226,8 @@ class Chat extends TdObject {
       accentColorId: json['accent_color_id'] as int,
       backgroundCustomEmojiId:
           int.tryParse(json['background_custom_emoji_id']) ?? 0,
+      upgradedGiftColors: UpgradedGiftColors.fromJson(
+          json['upgraded_gift_colors'] as Map<String, dynamic>?),
       profileAccentColorId: json['profile_accent_color_id'] as int,
       profileBackgroundCustomEmojiId:
           int.tryParse(json['profile_background_custom_emoji_id']) ?? 0,
@@ -247,6 +261,7 @@ class Chat extends TdObject {
       lastReadOutboxMessageId: json['last_read_outbox_message_id'] as int,
       unreadMentionCount: json['unread_mention_count'] as int,
       unreadReactionCount: json['unread_reaction_count'] as int,
+      unreadPollVoteCount: json['unread_poll_vote_count'] as int,
       notificationSettings: ChatNotificationSettings.fromJson(
           json['notification_settings'] as Map<String, dynamic>?)!,
       availableReactions: ChatAvailableReactions.fromJson(
@@ -256,7 +271,7 @@ class Chat extends TdObject {
           EmojiStatus.fromJson(json['emoji_status'] as Map<String, dynamic>?),
       background:
           ChatBackground.fromJson(json['background'] as Map<String, dynamic>?),
-      themeName: json['theme_name'] as String,
+      theme: ChatTheme.fromJson(json['theme'] as Map<String, dynamic>?),
       actionBar:
           ChatActionBar.fromJson(json['action_bar'] as Map<String, dynamic>?),
       businessBotManageBar: BusinessBotManageBar.fromJson(
@@ -283,6 +298,7 @@ class Chat extends TdObject {
         'photo': photo?.toJson(),
         'accent_color_id': accentColorId,
         'background_custom_emoji_id': backgroundCustomEmojiId.toString(),
+        'upgraded_gift_colors': upgradedGiftColors?.toJson(),
         'profile_accent_color_id': profileAccentColorId,
         'profile_background_custom_emoji_id':
             profileBackgroundCustomEmojiId.toString(),
@@ -306,12 +322,13 @@ class Chat extends TdObject {
         'last_read_outbox_message_id': lastReadOutboxMessageId,
         'unread_mention_count': unreadMentionCount,
         'unread_reaction_count': unreadReactionCount,
+        'unread_poll_vote_count': unreadPollVoteCount,
         'notification_settings': notificationSettings.toJson(),
         'available_reactions': availableReactions.toJson(),
         'message_auto_delete_time': messageAutoDeleteTime,
         'emoji_status': emojiStatus?.toJson(),
         'background': background?.toJson(),
-        'theme_name': themeName,
+        'theme': theme?.toJson(),
         'action_bar': actionBar?.toJson(),
         'business_bot_manage_bar': businessBotManageBar?.toJson(),
         'video_chat': videoChat.toJson(),

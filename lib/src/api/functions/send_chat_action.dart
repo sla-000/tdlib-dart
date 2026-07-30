@@ -8,7 +8,7 @@ import '../tdapi.dart';
 class SendChatAction extends TdFunction {
   const SendChatAction({
     required this.chatId,
-    required this.messageThreadId,
+    this.topicId,
     this.businessConnectionId,
     this.action,
   });
@@ -16,9 +16,9 @@ class SendChatAction extends TdFunction {
   /// [chatId] Chat identifier
   final int chatId;
 
-  /// [messageThreadId] If not 0, the message thread identifier in which the
-  /// action was performed
-  final int messageThreadId;
+  /// [topicId] Identifier of the topic in which the action is performed; pass
+  /// null if none
+  final MessageTopic? topicId;
 
   /// [businessConnectionId] Unique identifier of business connection on behalf
   /// of which to send the request; for bots only
@@ -36,7 +36,7 @@ class SendChatAction extends TdFunction {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'chat_id': chatId,
-        'message_thread_id': messageThreadId,
+        'topic_id': topicId?.toJson(),
         'business_connection_id': businessConnectionId,
         'action': action?.toJson(),
         '@type': constructor,

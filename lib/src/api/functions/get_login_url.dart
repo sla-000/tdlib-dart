@@ -27,7 +27,7 @@ class GetLoginUrl extends TdFunction {
   final int buttonId;
 
   /// [allowWriteAccess] Pass true to allow the bot to send messages to the
-  /// current user
+  /// current user. Phone number access can't be requested using the button
   final bool allowWriteAccess;
 
   static const String constructor = 'getLoginUrl';

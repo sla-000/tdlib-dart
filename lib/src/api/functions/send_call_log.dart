@@ -12,7 +12,7 @@ class SendCallLog extends TdFunction {
   });
 
   /// [callId] Call identifier
-  final int callId;
+  final InputCall callId;
 
   /// [logFile] Call log file. Only inputFileLocal and inputFileGenerated are
   /// supported
@@ -25,7 +25,7 @@ class SendCallLog extends TdFunction {
 
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'call_id': callId,
+        'call_id': callId.toJson(),
         'log_file': logFile.toJson(),
         '@type': constructor,
       };

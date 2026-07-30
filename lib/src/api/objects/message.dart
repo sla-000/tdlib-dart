@@ -8,6 +8,7 @@ class Message extends TdObject {
   const Message({
     required this.id,
     required this.senderId,
+    this.receiverId,
     required this.chatId,
     this.sendingState,
     this.schedulingState,
@@ -17,8 +18,10 @@ class Message extends TdObject {
     required this.canBeSaved,
     required this.hasTimestampedMedia,
     required this.isChannelPost,
-    required this.isTopicMessage,
+    required this.isPaidStarSuggestedPost,
+    required this.isPaidGramSuggestedPost,
     required this.containsUnreadMention,
+    required this.containsUnreadPollVotes,
     required this.date,
     required this.editDate,
     this.forwardInfo,
@@ -26,22 +29,26 @@ class Message extends TdObject {
     this.interactionInfo,
     required this.unreadReactions,
     this.factCheck,
+    this.suggestedPostInfo,
     this.replyTo,
-    required this.messageThreadId,
-    required this.savedMessagesTopicId,
+    this.topicId,
     this.selfDestructType,
     required this.selfDestructIn,
     required this.autoDeleteIn,
     required this.viaBotUserId,
+    this.guestBotCallerId,
     required this.senderBusinessBotUserId,
     required this.senderBoostCount,
+    required this.senderTag,
+    required this.paidMessageStarCount,
     this.authorSignature,
     required this.mediaAlbumId,
     required this.effectId,
-    required this.hasSensitiveContent,
-    required this.restrictionReason,
+    this.restrictionInfo,
+    required this.summaryLanguageCode,
     required this.content,
     this.replyMarkup,
+    this.ephemeralMessageId,
   });
 
   /// [id] Message identifier; unique for the chat to which the message belongs
@@ -49,6 +56,10 @@ class Message extends TdObject {
 
   /// [senderId] Identifier of the sender of the message
   final MessageSender senderId;
+
+  /// [receiverId] Identifier of the user or the chat which received the
+  /// ephemeral message; may be null. Always null for non-ephemeral messages
+  final MessageSender? receiverId;
 
   /// [chatId] Chat identifier
   final int chatId;
@@ -72,8 +83,7 @@ class Message extends TdObject {
   /// message
   final bool isFromOffline;
 
-  /// [canBeSaved] True, if content of the message can be saved locally or
-  /// copied using inputMessageForwarded or forwardMessages with copy options
+  /// [canBeSaved] True, if content of the message can be saved locally
   final bool canBeSaved;
 
   /// [hasTimestampedMedia] True, if media timestamp entities refers to a media
@@ -84,19 +94,35 @@ class Message extends TdObject {
   /// channels are channel posts, all other messages are not channel posts
   final bool isChannelPost;
 
-  /// [isTopicMessage] True, if the message is a forum topic message
-  final bool isTopicMessage;
+  /// [isPaidStarSuggestedPost] True, if the message is a suggested channel post
+  /// which was paid in Telegram Stars; a warning must be shown if the message
+  /// is deleted in less than getOption("suggested_post_lifetime_min") seconds
+  /// after sending
+  final bool isPaidStarSuggestedPost;
+
+  /// [isPaidGramSuggestedPost] True, if the message is a suggested channel post
+  /// which was paid in TON Grams; a warning must be shown if the message is
+  /// deleted in less than getOption("suggested_post_lifetime_min") seconds
+  /// after sending
+  final bool isPaidGramSuggestedPost;
 
   /// [containsUnreadMention] True, if the message contains an unread mention
   /// for the current user
   final bool containsUnreadMention;
+
+  /// [containsUnreadPollVotes] True, if the message is a poll message with
+  /// unread votes
+  final bool containsUnreadPollVotes;
 
   /// [date] Point in time (Unix timestamp) when the message was sent; 0 for
   /// scheduled messages
   final int date;
 
   /// [editDate] Point in time (Unix timestamp) when the message was last
-  /// edited; 0 for scheduled messages
+  /// edited; 0 for scheduled messages. If
+  /// getOption("show_message_edit_date_by_default") is true, then the date must
+  /// be shown along with the message instead of the date when the message was
+  /// sent
   final int editDate;
 
   /// [forwardInfo] Information about the initial message sender; may be null if
@@ -118,17 +144,18 @@ class Message extends TdObject {
   /// if none
   final FactCheck? factCheck;
 
+  /// [suggestedPostInfo] Information about the suggested post; may be null if
+  /// the message isn't a suggested post
+  final SuggestedPostInfo? suggestedPostInfo;
+
   /// [replyTo] Information about the message or the story this message is
   /// replying to; may be null if none
   final MessageReplyTo? replyTo;
 
-  /// [messageThreadId] If non-zero, the identifier of the message thread the
-  /// message belongs to; unique within the chat to which the message belongs
-  final int messageThreadId;
-
-  /// [savedMessagesTopicId] Identifier of the Saved Messages topic for the
-  /// message; 0 for messages not from Saved Messages
-  final int savedMessagesTopicId;
+  /// [topicId] Identifier of the topic within the chat to which the message
+  /// belongs; may be null if none; may change when the chat is converted to a
+  /// forum or back
+  final MessageTopic? topicId;
 
   /// [selfDestructType] The message's self-destruct type; may be null if none
   final MessageSelfDestructType? selfDestructType;
@@ -145,6 +172,10 @@ class Message extends TdObject {
   /// which this message was sent
   final int viaBotUserId;
 
+  /// [guestBotCallerId] The identifier of the user or chat which used a guest
+  /// bot to send the message; may be null if none
+  final MessageSender? guestBotCallerId;
+
   /// [senderBusinessBotUserId] If non-zero, the user identifier of the business
   /// bot that sent this message
   final int senderBusinessBotUserId;
@@ -154,6 +185,16 @@ class Message extends TdObject {
   /// messages sent by the current user, supergroupFullInfo.my_boost_count must
   /// be used instead
   final int senderBoostCount;
+
+  /// [senderTag] Tag of the sender of the message in the supergroup at the time
+  /// the message was sent; may be empty if none or unknown. For messages sent
+  /// in basic groups or supergroup administrators, the current custom title or
+  /// tag must be used instead
+  final String senderTag;
+
+  /// [paidMessageStarCount] The number of Telegram Stars the sender paid to
+  /// send the message
+  final int paidMessageStarCount;
 
   /// [authorSignature] For channel posts and anonymous group messages, optional
   /// author signature
@@ -167,19 +208,23 @@ class Message extends TdObject {
   /// [effectId] Unique identifier of the effect added to the message; 0 if none
   final int effectId;
 
-  /// [hasSensitiveContent] True, if media content of the message must be hidden
-  /// with 18+ spoiler
-  final bool hasSensitiveContent;
+  /// [restrictionInfo] Information about the restrictions that must be applied
+  /// to the message content; may be null if none
+  final RestrictionInfo? restrictionInfo;
 
-  /// [restrictionReason] If non-empty, contains a human-readable description of
-  /// the reason why access to this message must be restricted
-  final String restrictionReason;
+  /// [summaryLanguageCode] IETF language tag of the message language on which
+  /// it can be summarized; empty if summary isn't available for the message
+  final String summaryLanguageCode;
 
   /// [content] Content of the message
   final MessageContent content;
 
   /// [replyMarkup] Reply markup for the message; may be null if none
   final ReplyMarkup? replyMarkup;
+
+  /// [ephemeralMessageId] Unique identifier of the ephemeral message if the
+  /// message is ephemeral; for bots only
+  final int? ephemeralMessageId;
 
   static const String constructor = 'message';
 
@@ -192,6 +237,8 @@ class Message extends TdObject {
       id: json['id'] as int,
       senderId:
           MessageSender.fromJson(json['sender_id'] as Map<String, dynamic>?)!,
+      receiverId:
+          MessageSender.fromJson(json['receiver_id'] as Map<String, dynamic>?),
       chatId: json['chat_id'] as int,
       sendingState: MessageSendingState.fromJson(
           json['sending_state'] as Map<String, dynamic>?),
@@ -203,8 +250,10 @@ class Message extends TdObject {
       canBeSaved: json['can_be_saved'] as bool,
       hasTimestampedMedia: json['has_timestamped_media'] as bool,
       isChannelPost: json['is_channel_post'] as bool,
-      isTopicMessage: json['is_topic_message'] as bool,
+      isPaidStarSuggestedPost: json['is_paid_star_suggested_post'] as bool,
+      isPaidGramSuggestedPost: json['is_paid_gram_suggested_post'] as bool,
       containsUnreadMention: json['contains_unread_mention'] as bool,
+      containsUnreadPollVotes: json['contains_unread_poll_votes'] as bool,
       date: json['date'] as int,
       editDate: json['edit_date'] as int,
       forwardInfo: MessageForwardInfo.fromJson(
@@ -219,26 +268,33 @@ class Message extends TdObject {
               .toList()),
       factCheck:
           FactCheck.fromJson(json['fact_check'] as Map<String, dynamic>?),
+      suggestedPostInfo: SuggestedPostInfo.fromJson(
+          json['suggested_post_info'] as Map<String, dynamic>?),
       replyTo:
           MessageReplyTo.fromJson(json['reply_to'] as Map<String, dynamic>?),
-      messageThreadId: json['message_thread_id'] as int,
-      savedMessagesTopicId: json['saved_messages_topic_id'] as int,
+      topicId: MessageTopic.fromJson(json['topic_id'] as Map<String, dynamic>?),
       selfDestructType: MessageSelfDestructType.fromJson(
           json['self_destruct_type'] as Map<String, dynamic>?),
       selfDestructIn: (json['self_destruct_in'] as num).toDouble(),
       autoDeleteIn: (json['auto_delete_in'] as num).toDouble(),
       viaBotUserId: json['via_bot_user_id'] as int,
+      guestBotCallerId: MessageSender.fromJson(
+          json['guest_bot_caller_id'] as Map<String, dynamic>?),
       senderBusinessBotUserId: json['sender_business_bot_user_id'] as int,
       senderBoostCount: json['sender_boost_count'] as int,
+      senderTag: json['sender_tag'] as String,
+      paidMessageStarCount: json['paid_message_star_count'] as int,
       authorSignature: json['author_signature'] as String?,
       mediaAlbumId: int.tryParse(json['media_album_id']) ?? 0,
       effectId: int.tryParse(json['effect_id']) ?? 0,
-      hasSensitiveContent: json['has_sensitive_content'] as bool,
-      restrictionReason: json['restriction_reason'] as String,
+      restrictionInfo: RestrictionInfo.fromJson(
+          json['restriction_info'] as Map<String, dynamic>?),
+      summaryLanguageCode: json['summary_language_code'] as String,
       content:
           MessageContent.fromJson(json['content'] as Map<String, dynamic>?)!,
       replyMarkup:
           ReplyMarkup.fromJson(json['reply_markup'] as Map<String, dynamic>?),
+      ephemeralMessageId: json['ephemeral_message_id'] as int?,
     );
   }
 
@@ -249,6 +305,7 @@ class Message extends TdObject {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'id': id,
         'sender_id': senderId.toJson(),
+        'receiver_id': receiverId?.toJson(),
         'chat_id': chatId,
         'sending_state': sendingState?.toJson(),
         'scheduling_state': schedulingState?.toJson(),
@@ -258,8 +315,10 @@ class Message extends TdObject {
         'can_be_saved': canBeSaved,
         'has_timestamped_media': hasTimestampedMedia,
         'is_channel_post': isChannelPost,
-        'is_topic_message': isTopicMessage,
+        'is_paid_star_suggested_post': isPaidStarSuggestedPost,
+        'is_paid_gram_suggested_post': isPaidGramSuggestedPost,
         'contains_unread_mention': containsUnreadMention,
+        'contains_unread_poll_votes': containsUnreadPollVotes,
         'date': date,
         'edit_date': editDate,
         'forward_info': forwardInfo?.toJson(),
@@ -268,22 +327,26 @@ class Message extends TdObject {
         'unread_reactions':
             unreadReactions.map((item) => item.toJson()).toList(),
         'fact_check': factCheck?.toJson(),
+        'suggested_post_info': suggestedPostInfo?.toJson(),
         'reply_to': replyTo?.toJson(),
-        'message_thread_id': messageThreadId,
-        'saved_messages_topic_id': savedMessagesTopicId,
+        'topic_id': topicId?.toJson(),
         'self_destruct_type': selfDestructType?.toJson(),
         'self_destruct_in': selfDestructIn,
         'auto_delete_in': autoDeleteIn,
         'via_bot_user_id': viaBotUserId,
+        'guest_bot_caller_id': guestBotCallerId?.toJson(),
         'sender_business_bot_user_id': senderBusinessBotUserId,
         'sender_boost_count': senderBoostCount,
+        'sender_tag': senderTag,
+        'paid_message_star_count': paidMessageStarCount,
         'author_signature': authorSignature,
         'media_album_id': mediaAlbumId.toString(),
         'effect_id': effectId.toString(),
-        'has_sensitive_content': hasSensitiveContent,
-        'restriction_reason': restrictionReason,
+        'restriction_info': restrictionInfo?.toJson(),
+        'summary_language_code': summaryLanguageCode,
         'content': content.toJson(),
         'reply_markup': replyMarkup?.toJson(),
+        'ephemeral_message_id': ephemeralMessageId,
         '@type': constructor,
       };
 

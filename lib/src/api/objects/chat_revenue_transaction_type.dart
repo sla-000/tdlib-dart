@@ -11,21 +11,28 @@ abstract class ChatRevenueTransactionType extends TdObject {
   static const String constructor = 'chatRevenueTransactionType';
 
   /// Inherited by:
-  /// [ChatRevenueTransactionTypeEarnings]
-  /// [ChatRevenueTransactionTypeRefund]
-  /// [ChatRevenueTransactionTypeWithdrawal]
+  /// [ChatRevenueTransactionTypeFragmentRefund]
+  /// [ChatRevenueTransactionTypeFragmentWithdrawal]
+  /// [ChatRevenueTransactionTypeSponsoredMessageEarnings]
+  /// [ChatRevenueTransactionTypeSuggestedPostEarnings]
+  /// [ChatRevenueTransactionTypeUnsupported]
   static ChatRevenueTransactionType? fromJson(Map<String, dynamic>? json) {
     if (json == null) {
       return null;
     }
 
     switch (json['@type']) {
-      case ChatRevenueTransactionTypeEarnings.constructor:
-        return ChatRevenueTransactionTypeEarnings.fromJson(json);
-      case ChatRevenueTransactionTypeRefund.constructor:
-        return ChatRevenueTransactionTypeRefund.fromJson(json);
-      case ChatRevenueTransactionTypeWithdrawal.constructor:
-        return ChatRevenueTransactionTypeWithdrawal.fromJson(json);
+      case ChatRevenueTransactionTypeFragmentRefund.constructor:
+        return ChatRevenueTransactionTypeFragmentRefund.fromJson(json);
+      case ChatRevenueTransactionTypeFragmentWithdrawal.constructor:
+        return ChatRevenueTransactionTypeFragmentWithdrawal.fromJson(json);
+      case ChatRevenueTransactionTypeSponsoredMessageEarnings.constructor:
+        return ChatRevenueTransactionTypeSponsoredMessageEarnings.fromJson(
+            json);
+      case ChatRevenueTransactionTypeSuggestedPostEarnings.constructor:
+        return ChatRevenueTransactionTypeSuggestedPostEarnings.fromJson(json);
+      case ChatRevenueTransactionTypeUnsupported.constructor:
+        return ChatRevenueTransactionTypeUnsupported.fromJson(json);
       default:
         return null;
     }

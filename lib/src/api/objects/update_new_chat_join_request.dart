@@ -10,6 +10,7 @@ class UpdateNewChatJoinRequest extends Update {
     required this.request,
     required this.userChatId,
     this.inviteLink,
+    required this.queryId,
   });
 
   /// [chatId] Chat identifier
@@ -25,6 +26,10 @@ class UpdateNewChatJoinRequest extends Update {
   /// null
   final ChatInviteLink? inviteLink;
 
+  /// [queryId] Identifier of the join request query, which can be used in
+  /// answerChatJoinRequestQuery; 0 if none
+  final int queryId;
+
   static const String constructor = 'updateNewChatJoinRequest';
 
   static UpdateNewChatJoinRequest? fromJson(Map<String, dynamic>? json) {
@@ -39,6 +44,7 @@ class UpdateNewChatJoinRequest extends Update {
       userChatId: json['user_chat_id'] as int,
       inviteLink:
           ChatInviteLink.fromJson(json['invite_link'] as Map<String, dynamic>?),
+      queryId: int.tryParse(json['query_id']) ?? 0,
     );
   }
 
@@ -51,6 +57,7 @@ class UpdateNewChatJoinRequest extends Update {
         'request': request.toJson(),
         'user_chat_id': userChatId,
         'invite_link': inviteLink?.toJson(),
+        'query_id': queryId.toString(),
         '@type': constructor,
       };
 

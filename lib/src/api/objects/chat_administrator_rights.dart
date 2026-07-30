@@ -20,21 +20,25 @@ class ChatAdministratorRights extends TdObject {
     required this.canPostStories,
     required this.canEditStories,
     required this.canDeleteStories,
+    required this.canManageDirectMessages,
+    required this.canManageTags,
     required this.isAnonymous,
   });
 
   /// [canManageChat] True, if the administrator can access the chat event log,
   /// get boost list, see hidden supergroup and channel members, report
-  /// supergroup spam messages and ignore slow mode. Implied by any other
-  /// privilege; applicable to supergroups and channels only
+  /// supergroup spam messages, ignore slow mode, and send messages to the chat
+  /// without paying Telegram Stars. Implied by any other privilege; applicable
+  /// to supergroups and channels only
   final bool canManageChat;
 
   /// [canChangeInfo] True, if the administrator can change the chat title,
   /// photo, and other settings
   final bool canChangeInfo;
 
-  /// [canPostMessages] True, if the administrator can create channel posts or
-  /// view channel statistics; applicable to channels only
+  /// [canPostMessages] True, if the administrator can create channel posts,
+  /// approve suggested channel posts, or view channel statistics; applicable to
+  /// channels only
   final bool canPostMessages;
 
   /// [canEditMessages] True, if the administrator can edit messages of other
@@ -50,7 +54,7 @@ class ChatAdministratorRights extends TdObject {
   final bool canInviteUsers;
 
   /// [canRestrictMembers] True, if the administrator can restrict, ban, or
-  /// unban chat members or view supergroup statistics; always true for channels
+  /// unban chat members or view supergroup statistics
   final bool canRestrictMembers;
 
   /// [canPinMessages] True, if the administrator can pin messages; applicable
@@ -64,7 +68,8 @@ class ChatAdministratorRights extends TdObject {
 
   /// [canPromoteMembers] True, if the administrator can add new administrators
   /// with a subset of their own privileges or demote administrators that were
-  /// directly or indirectly promoted by them
+  /// directly or indirectly promoted by them; applicable to supergroups and
+  /// channels only
   final bool canPromoteMembers;
 
   /// [canManageVideoChats] True, if the administrator can manage video chats
@@ -83,6 +88,14 @@ class ChatAdministratorRights extends TdObject {
   /// [canDeleteStories] True, if the administrator can delete stories posted by
   /// other users; applicable to supergroups and channels only
   final bool canDeleteStories;
+
+  /// [canManageDirectMessages] True, if the administrator can answer to channel
+  /// direct messages; applicable to channels only
+  final bool canManageDirectMessages;
+
+  /// [canManageTags] True, if the administrator can change tags of other users;
+  /// applicable to basic groups and supergroups only
+  final bool canManageTags;
 
   /// [isAnonymous] True, if the administrator isn't shown in the chat member
   /// list and sends messages anonymously; applicable to supergroups only
@@ -110,6 +123,8 @@ class ChatAdministratorRights extends TdObject {
       canPostStories: json['can_post_stories'] as bool,
       canEditStories: json['can_edit_stories'] as bool,
       canDeleteStories: json['can_delete_stories'] as bool,
+      canManageDirectMessages: json['can_manage_direct_messages'] as bool,
+      canManageTags: json['can_manage_tags'] as bool,
       isAnonymous: json['is_anonymous'] as bool,
     );
   }
@@ -133,6 +148,8 @@ class ChatAdministratorRights extends TdObject {
         'can_post_stories': canPostStories,
         'can_edit_stories': canEditStories,
         'can_delete_stories': canDeleteStories,
+        'can_manage_direct_messages': canManageDirectMessages,
+        'can_manage_tags': canManageTags,
         'is_anonymous': isAnonymous,
         '@type': constructor,
       };

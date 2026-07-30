@@ -3,7 +3,7 @@ import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// The parameters of speech recognition without Telegram Premium subscription
-/// has changed
+/// have changed
 @immutable
 class UpdateSpeechRecognitionTrial extends Update {
   const UpdateSpeechRecognitionTrial({

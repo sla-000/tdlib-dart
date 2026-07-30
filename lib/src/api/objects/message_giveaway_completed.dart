@@ -12,8 +12,8 @@ class MessageGiveawayCompleted extends MessageContent {
     required this.unclaimedPrizeCount,
   });
 
-  /// [giveawayMessageId] Identifier of the message with the giveaway; can be 0
-  /// if the message was deleted
+  /// [giveawayMessageId] Identifier of the message with the giveaway; may be 0
+  /// or an identifier of a deleted message
   final int giveawayMessageId;
 
   /// [winnerCount] Number of winners in the giveaway

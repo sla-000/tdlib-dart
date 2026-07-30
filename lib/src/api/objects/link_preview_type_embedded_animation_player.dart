@@ -7,6 +7,7 @@ import '../tdapi.dart';
 class LinkPreviewTypeEmbeddedAnimationPlayer extends LinkPreviewType {
   const LinkPreviewTypeEmbeddedAnimationPlayer({
     required this.url,
+    this.animation,
     this.thumbnail,
     required this.duration,
     required this.width,
@@ -15,6 +16,9 @@ class LinkPreviewTypeEmbeddedAnimationPlayer extends LinkPreviewType {
 
   /// [url] URL of the external animation player
   final String url;
+
+  /// [animation] The cached animation; may be null if unknown
+  final Animation? animation;
 
   /// [thumbnail] Thumbnail of the animation; may be null if unknown
   final Photo? thumbnail;
@@ -38,6 +42,7 @@ class LinkPreviewTypeEmbeddedAnimationPlayer extends LinkPreviewType {
 
     return LinkPreviewTypeEmbeddedAnimationPlayer(
       url: json['url'] as String,
+      animation: Animation.fromJson(json['animation'] as Map<String, dynamic>?),
       thumbnail: Photo.fromJson(json['thumbnail'] as Map<String, dynamic>?),
       duration: json['duration'] as int,
       width: json['width'] as int,
@@ -51,6 +56,7 @@ class LinkPreviewTypeEmbeddedAnimationPlayer extends LinkPreviewType {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'url': url,
+        'animation': animation?.toJson(),
         'thumbnail': thumbnail?.toJson(),
         'duration': duration,
         'width': width,

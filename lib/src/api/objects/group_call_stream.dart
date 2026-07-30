@@ -2,7 +2,7 @@ import 'package:meta/meta.dart';
 import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
-/// Describes an available stream in a group call
+/// Describes an available stream in a video chat or a live story
 @immutable
 class GroupCallStream extends TdObject {
   const GroupCallStream({

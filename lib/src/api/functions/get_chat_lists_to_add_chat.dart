@@ -3,7 +3,7 @@ import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Returns chat lists to which the chat can be added. This is an offline
-/// request
+/// method
 /// Returns [ChatLists]
 @immutable
 class GetChatListsToAddChat extends TdFunction {

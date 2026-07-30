@@ -13,15 +13,16 @@ class InputMessageText extends InputMessageContent {
 
   /// [text] Formatted text to be sent; 0-getOption("message_text_length_max")
   /// characters. Only Bold, Italic, Underline, Strikethrough, Spoiler,
-  /// CustomEmoji, BlockQuote, ExpandableBlockQuote, Code, Pre, PreCode, TextUrl
-  /// and MentionName entities are allowed to be specified manually
+  /// CustomEmoji, BlockQuote, ExpandableBlockQuote, Code, Pre, PreCode,
+  /// TextUrl, MentionName, and DateTime entities are allowed to be specified
+  /// manually
   final FormattedText text;
 
   /// [linkPreviewOptions] Options to be used for generation of a link preview;
   /// may be null if none; pass null to use default link preview options
   final LinkPreviewOptions? linkPreviewOptions;
 
-  /// [clearDraft] True, if a chat message draft must be deleted
+  /// [clearDraft] Pass true to delete message draft in the chat
   final bool clearDraft;
 
   static const String constructor = 'inputMessageText';

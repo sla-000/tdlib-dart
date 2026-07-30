@@ -15,7 +15,7 @@ class ProcessChatJoinRequest extends TdFunction {
   /// [chatId] Chat identifier
   final int chatId;
 
-  /// [userId] Identifier of the user that sent the request
+  /// [userId] Identifier of the user who sent the request
   final int userId;
 
   /// [approve] Pass true to approve the request; pass false to decline it

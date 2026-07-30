@@ -7,10 +7,15 @@ import '../tdapi.dart';
 class PaidMediaPhoto extends PaidMedia {
   const PaidMediaPhoto({
     required this.photo,
+    this.video,
   });
 
   /// [photo] The photo
   final Photo photo;
+
+  /// [video] The video representing the live photo; may be null if the photo is
+  /// static
+  final Video? video;
 
   static const String constructor = 'paidMediaPhoto';
 
@@ -21,6 +26,7 @@ class PaidMediaPhoto extends PaidMedia {
 
     return PaidMediaPhoto(
       photo: Photo.fromJson(json['photo'] as Map<String, dynamic>?)!,
+      video: Video.fromJson(json['video'] as Map<String, dynamic>?),
     );
   }
 
@@ -30,6 +36,7 @@ class PaidMediaPhoto extends PaidMedia {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'photo': photo.toJson(),
+        'video': video?.toJson(),
         '@type': constructor,
       };
 

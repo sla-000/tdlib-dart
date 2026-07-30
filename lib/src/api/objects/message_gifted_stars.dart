@@ -17,11 +17,11 @@ class MessageGiftedStars extends MessageContent {
     this.sticker,
   });
 
-  /// [gifterUserId] The identifier of a user that gifted Telegram Stars; 0 if
+  /// [gifterUserId] The identifier of a user who gifted Telegram Stars; 0 if
   /// the gift was anonymous or is outgoing
   final int gifterUserId;
 
-  /// [receiverUserId] The identifier of a user that received Telegram Stars; 0
+  /// [receiverUserId] The identifier of a user who received Telegram Stars; 0
   /// if the gift is incoming
   final int receiverUserId;
 

@@ -2,22 +2,22 @@ import 'package:meta/meta.dart';
 import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
-/// Changes the draft message in a chat
+/// Changes the draft message in a chat or a topic
 /// Returns [Ok]
 @immutable
 class SetChatDraftMessage extends TdFunction {
   const SetChatDraftMessage({
     required this.chatId,
-    required this.messageThreadId,
+    this.topicId,
     this.draftMessage,
   });
 
   /// [chatId] Chat identifier
   final int chatId;
 
-  /// [messageThreadId] If not 0, the message thread identifier in which the
-  /// draft was changed
-  final int messageThreadId;
+  /// [topicId] Topic in which the draft will be changed; pass null to change
+  /// the draft for the chat itself
+  final MessageTopic? topicId;
 
   /// [draftMessage] New draft message; pass null to remove the draft. All files
   /// in draft message content must be of the type inputFileLocal. Media
@@ -32,7 +32,7 @@ class SetChatDraftMessage extends TdFunction {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'chat_id': chatId,
-        'message_thread_id': messageThreadId,
+        'topic_id': topicId?.toJson(),
         'draft_message': draftMessage?.toJson(),
         '@type': constructor,
       };

@@ -18,7 +18,7 @@ class RichTextAnchorLink extends RichText {
   /// back to top
   final String anchorName;
 
-  /// [url] An HTTP URL, opening the anchor
+  /// [url] An HTTP URL that opens the anchor
   final String url;
 
   static const String constructor = 'richTextAnchorLink';

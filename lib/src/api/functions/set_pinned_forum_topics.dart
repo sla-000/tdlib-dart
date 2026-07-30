@@ -2,21 +2,22 @@ import 'package:meta/meta.dart';
 import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
-/// Changes the order of pinned forum topics; requires can_manage_topics right
-/// in the supergroup
+/// Changes the order of pinned topics in a forum supergroup chat or a chat
+/// with a bot with topics; requires can_manage_topics administrator right in
+/// the supergroup
 /// Returns [Ok]
 @immutable
 class SetPinnedForumTopics extends TdFunction {
   const SetPinnedForumTopics({
     required this.chatId,
-    required this.messageThreadIds,
+    required this.forumTopicIds,
   });
 
   /// [chatId] Chat identifier
   final int chatId;
 
-  /// [messageThreadIds] The new list of pinned forum topics
-  final List<int> messageThreadIds;
+  /// [forumTopicIds] The new list of identifiers of the pinned forum topics
+  final List<int> forumTopicIds;
 
   static const String constructor = 'setPinnedForumTopics';
 
@@ -26,7 +27,7 @@ class SetPinnedForumTopics extends TdFunction {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'chat_id': chatId,
-        'message_thread_ids': messageThreadIds.map((item) => item).toList(),
+        'forum_topic_ids': forumTopicIds.map((item) => item).toList(),
         '@type': constructor,
       };
 

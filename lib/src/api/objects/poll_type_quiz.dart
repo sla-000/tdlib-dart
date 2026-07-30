@@ -2,23 +2,29 @@ import 'package:meta/meta.dart';
 import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
-/// A poll in quiz mode, which has exactly one correct answer option and can
-/// be answered only once
+/// A poll in quiz mode, which has predefined correct answers
 @immutable
 class PollTypeQuiz extends PollType {
   const PollTypeQuiz({
-    required this.correctOptionId,
+    required this.correctOptionIds,
     required this.explanation,
+    this.explanationMedia,
   });
 
-  /// [correctOptionId] 0-based identifier of the correct answer option; -1 for
-  /// a yet unanswered poll
-  final int correctOptionId;
+  /// [correctOptionIds] Increasing list of 0-based identifiers of the correct
+  /// answer options; empty for a yet unanswered poll
+  final List<int> correctOptionIds;
 
   /// [explanation] Text that is shown when the user chooses an incorrect answer
-  /// or taps on the lamp icon; 0-200 characters with at most 2 line feeds;
-  /// empty for a yet unanswered poll
+  /// or taps on the lamp icon; empty for a yet unanswered poll
   final FormattedText explanation;
+
+  /// [explanationMedia] Media that is shown when the user chooses an incorrect
+  /// answer or taps on the lamp icon; may be null if none or the poll is
+  /// unanswered yet. If present, currently, can be only of the types
+  /// pollMediaAnimation, pollMediaAudio, pollMediaDocument, pollMediaLocation,
+  /// pollMediaPhoto, pollMediaVenue, or pollMediaVideo
+  final PollMedia? explanationMedia;
 
   static const String constructor = 'pollTypeQuiz';
 
@@ -28,9 +34,14 @@ class PollTypeQuiz extends PollType {
     }
 
     return PollTypeQuiz(
-      correctOptionId: json['correct_option_id'] as int,
+      correctOptionIds: List<int>.from(
+          ((json['correct_option_ids'] as List<dynamic>?) ?? <dynamic>[])
+              .map((item) => item)
+              .toList()),
       explanation:
           FormattedText.fromJson(json['explanation'] as Map<String, dynamic>?)!,
+      explanationMedia: PollMedia.fromJson(
+          json['explanation_media'] as Map<String, dynamic>?),
     );
   }
 
@@ -39,8 +50,9 @@ class PollTypeQuiz extends PollType {
 
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'correct_option_id': correctOptionId,
+        'correct_option_ids': correctOptionIds.map((item) => item).toList(),
         'explanation': explanation.toJson(),
+        'explanation_media': explanationMedia?.toJson(),
         '@type': constructor,
       };
 

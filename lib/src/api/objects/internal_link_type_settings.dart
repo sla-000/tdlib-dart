@@ -5,7 +5,12 @@ import '../tdapi.dart';
 /// The link is a link to application settings
 @immutable
 class InternalLinkTypeSettings extends InternalLinkType {
-  const InternalLinkTypeSettings();
+  const InternalLinkTypeSettings({
+    this.section,
+  });
+
+  /// [section] Section of the application settings to open; may be null if none
+  final SettingsSection? section;
 
   static const String constructor = 'internalLinkTypeSettings';
 
@@ -14,7 +19,10 @@ class InternalLinkTypeSettings extends InternalLinkType {
       return null;
     }
 
-    return const InternalLinkTypeSettings();
+    return InternalLinkTypeSettings(
+      section:
+          SettingsSection.fromJson(json['section'] as Map<String, dynamic>?),
+    );
   }
 
   @override
@@ -22,6 +30,7 @@ class InternalLinkTypeSettings extends InternalLinkType {
 
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
+        'section': section?.toJson(),
         '@type': constructor,
       };
 

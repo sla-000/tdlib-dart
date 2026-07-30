@@ -10,6 +10,7 @@ abstract class StoryContent extends TdObject {
   static const String constructor = 'storyContent';
 
   /// Inherited by:
+  /// [StoryContentLive]
   /// [StoryContentPhoto]
   /// [StoryContentUnsupported]
   /// [StoryContentVideo]
@@ -19,6 +20,8 @@ abstract class StoryContent extends TdObject {
     }
 
     switch (json['@type']) {
+      case StoryContentLive.constructor:
+        return StoryContentLive.fromJson(json);
       case StoryContentPhoto.constructor:
         return StoryContentPhoto.fromJson(json);
       case StoryContentUnsupported.constructor:

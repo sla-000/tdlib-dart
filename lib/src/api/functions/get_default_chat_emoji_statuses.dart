@@ -3,7 +3,7 @@ import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
 /// Returns default emoji statuses for chats
-/// Returns [EmojiStatuses]
+/// Returns [EmojiStatusCustomEmojis]
 @immutable
 class GetDefaultChatEmojiStatuses extends TdFunction {
   const GetDefaultChatEmojiStatuses();

@@ -12,6 +12,7 @@ abstract class ChatEventAction extends TdObject {
   /// Inherited by:
   /// [ChatEventAccentColorChanged]
   /// [ChatEventActiveUsernamesChanged]
+  /// [ChatEventAutomaticTranslationToggled]
   /// [ChatEventAvailableReactionsChanged]
   /// [ChatEventBackgroundChanged]
   /// [ChatEventCustomEmojiStickerSetChanged]
@@ -41,6 +42,7 @@ abstract class ChatEventAction extends TdObject {
   /// [ChatEventMemberPromoted]
   /// [ChatEventMemberRestricted]
   /// [ChatEventMemberSubscriptionExtended]
+  /// [ChatEventMemberTagChanged]
   /// [ChatEventMessageAutoDeleteTimeChanged]
   /// [ChatEventMessageDeleted]
   /// [ChatEventMessageEdited]
@@ -71,6 +73,8 @@ abstract class ChatEventAction extends TdObject {
         return ChatEventAccentColorChanged.fromJson(json);
       case ChatEventActiveUsernamesChanged.constructor:
         return ChatEventActiveUsernamesChanged.fromJson(json);
+      case ChatEventAutomaticTranslationToggled.constructor:
+        return ChatEventAutomaticTranslationToggled.fromJson(json);
       case ChatEventAvailableReactionsChanged.constructor:
         return ChatEventAvailableReactionsChanged.fromJson(json);
       case ChatEventBackgroundChanged.constructor:
@@ -129,6 +133,8 @@ abstract class ChatEventAction extends TdObject {
         return ChatEventMemberRestricted.fromJson(json);
       case ChatEventMemberSubscriptionExtended.constructor:
         return ChatEventMemberSubscriptionExtended.fromJson(json);
+      case ChatEventMemberTagChanged.constructor:
+        return ChatEventMemberTagChanged.fromJson(json);
       case ChatEventMessageAutoDeleteTimeChanged.constructor:
         return ChatEventMessageAutoDeleteTimeChanged.fromJson(json);
       case ChatEventMessageDeleted.constructor:

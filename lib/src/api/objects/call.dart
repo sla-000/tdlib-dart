@@ -7,6 +7,7 @@ import '../tdapi.dart';
 class Call extends TdObject {
   const Call({
     required this.id,
+    required this.uniqueId,
     required this.userId,
     required this.isOutgoing,
     required this.isVideo,
@@ -15,6 +16,10 @@ class Call extends TdObject {
 
   /// [id] Call identifier, not persistent
   final int id;
+
+  /// [uniqueId] Persistent unique call identifier; 0 if isn't assigned yet by
+  /// the server
+  final int uniqueId;
 
   /// [userId] User identifier of the other call participant
   final int userId;
@@ -37,6 +42,7 @@ class Call extends TdObject {
 
     return Call(
       id: json['id'] as int,
+      uniqueId: int.tryParse(json['unique_id']) ?? 0,
       userId: json['user_id'] as int,
       isOutgoing: json['is_outgoing'] as bool,
       isVideo: json['is_video'] as bool,
@@ -50,6 +56,7 @@ class Call extends TdObject {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'id': id,
+        'unique_id': uniqueId.toString(),
         'user_id': userId,
         'is_outgoing': isOutgoing,
         'is_video': isVideo,

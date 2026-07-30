@@ -2,24 +2,19 @@ import 'package:meta/meta.dart';
 import '../extensions/data_class_extensions.dart';
 import '../tdapi.dart';
 
-/// A reference to a richTexts object on the same page
+/// A reference
 @immutable
 class RichTextReference extends RichText {
   const RichTextReference({
+    required this.name,
     required this.text,
-    required this.anchorName,
-    required this.url,
   });
 
-  /// [text] The text
+  /// [name] Reference name
+  final String name;
+
+  /// [text] Text of the reference
   final RichText text;
-
-  /// [anchorName] The name of a richTextAnchor object, which is the first
-  /// element of the target richTexts object
-  final String anchorName;
-
-  /// [url] An HTTP URL, opening the reference
-  final String url;
 
   static const String constructor = 'richTextReference';
 
@@ -29,9 +24,8 @@ class RichTextReference extends RichText {
     }
 
     return RichTextReference(
+      name: json['name'] as String,
       text: RichText.fromJson(json['text'] as Map<String, dynamic>?)!,
-      anchorName: json['anchor_name'] as String,
-      url: json['url'] as String,
     );
   }
 
@@ -40,9 +34,8 @@ class RichTextReference extends RichText {
 
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
+        'name': name,
         'text': text.toJson(),
-        'anchor_name': anchorName,
-        'url': url,
         '@type': constructor,
       };
 

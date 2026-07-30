@@ -42,7 +42,7 @@ class PhoneNumberAuthenticationSettings extends TdObject {
 
   /// [authenticationTokens] List of up to 20 authentication tokens, recently
   /// received in updateOption("authentication_token") in previously logged out
-  /// sessions
+  /// sessions; for setAuthenticationPhoneNumber only
   final List<String> authenticationTokens;
 
   static const String constructor = 'phoneNumberAuthenticationSettings';

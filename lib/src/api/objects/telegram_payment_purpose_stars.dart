@@ -9,6 +9,7 @@ class TelegramPaymentPurposeStars extends TelegramPaymentPurpose {
     required this.currency,
     required this.amount,
     required this.starCount,
+    required this.chatId,
   });
 
   /// [currency] ISO 4217 currency code of the payment currency
@@ -19,6 +20,10 @@ class TelegramPaymentPurposeStars extends TelegramPaymentPurpose {
 
   /// [starCount] Number of bought Telegram Stars
   final int starCount;
+
+  /// [chatId] Identifier of the chat that is supposed to receive the Telegram
+  /// Stars; pass 0 if none
+  final int chatId;
 
   static const String constructor = 'telegramPaymentPurposeStars';
 
@@ -31,6 +36,7 @@ class TelegramPaymentPurposeStars extends TelegramPaymentPurpose {
       currency: json['currency'] as String,
       amount: json['amount'] as int,
       starCount: json['star_count'] as int,
+      chatId: json['chat_id'] as int,
     );
   }
 
@@ -42,6 +48,7 @@ class TelegramPaymentPurposeStars extends TelegramPaymentPurpose {
         'currency': currency,
         'amount': amount,
         'star_count': starCount,
+        'chat_id': chatId,
         '@type': constructor,
       };
 
