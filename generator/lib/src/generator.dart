@@ -92,7 +92,7 @@ class Generator {
     extensionsFile.create();
 
     final List<String> extenisonsLines = <String>[
-      "import 'package:tdlib/td_api.dart';"
+      "import '../tdapi.dart';"
     ];
 
     for (final Class tdClass in classes) {
@@ -128,7 +128,7 @@ class Generator {
     convertExtensionFile.create();
 
     final List<String> convertExtensionFileLines = <String>[
-      "import 'package:tdlib/td_api.dart';"
+      "import '../tdapi.dart';"
     ];
 
     convertExtensionFileLines.add('');
@@ -327,8 +327,8 @@ class Generator {
 
   cb.Class _createClass(Class c) {
     return cb.Class((cb.ClassBuilder b) {
+      b.docs.add("import 'package:collection/collection.dart';");
       b.docs.add("import 'package:meta/meta.dart';");
-      b.docs.add("import '../extensions/data_class_extensions.dart';");
       b.docs.add("import '../tdapi.dart';");
       b.docs.addAll(c.description.resolveDoc());
 
@@ -455,7 +455,15 @@ class Generator {
               parameterBuilder.name = 'other';
             }),
           );
-          methodBuilder.body = const cb.Code('overriddenEquality(other)');
+          if (c.variables.isEmpty) {
+            methodBuilder.body = cb.Code(
+              'identical(this, other) || (other.runtimeType == runtimeType && other is ${c.name})',
+            );
+          } else {
+            methodBuilder.body = cb.Code(
+              'identical(this, other) || (other.runtimeType == runtimeType && other is ${c.name} && ${c.variables.map((e) => 'const DeepCollectionEquality().equals(other.${e.name.toVariableName()}, ${e.name.toVariableName()})').join(' && ')})',
+            );
+          }
         }),
       );
 
@@ -467,7 +475,13 @@ class Generator {
           methodBuilder.returns = cb.refer('int');
           methodBuilder.lambda = true;
           methodBuilder.type = cb.MethodType.getter;
-          methodBuilder.body = const cb.Code('overriddenHashCode');
+          if (c.variables.isEmpty) {
+            methodBuilder.body = const cb.Code('runtimeType.hashCode');
+          } else {
+            methodBuilder.body = cb.Code(
+              'Object.hashAll([runtimeType, ${c.variables.map((e) => 'const DeepCollectionEquality().hash(${e.name.toVariableName()})').join(', ')}])',
+            );
+          }
         }),
       );
     });
