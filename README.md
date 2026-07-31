@@ -6,17 +6,9 @@ A Dart wrapper for [tdlib](https://github.com/tdlib/td). Contains generated ([ge
 
 The current scheme file is located at [`data/td_api.tl`](data/td_api.tl), and its version is specified in [`TDLIB_VERSION.md`](TDLIB_VERSION.md).
 
-### Code Generation
-
-To rebuild the generated Dart classes, run:
-
-```bash
-dart run generator/lib/src/main.dart && dart format lib
-```
-
 ### Last versions
 
-See [CHANGELOG.md](CHANGELOG.md)
+See [CHANGELOG.md](https://github.com/sla-000/tdlib-dart/blob/master/CHANGELOG.md)
 
 ### Legacy versions
 
@@ -42,7 +34,6 @@ See [CHANGELOG.md](CHANGELOG.md)
 
 ### Table of Contents
 
-- [Code Generation](#code-generation)
 - [Example](#example)
 - [Getting started with flutter example](#getting-started-with-flutter-example)
 - [Prebuilt binaries](#prebuilt-binaries)
@@ -51,6 +42,7 @@ See [CHANGELOG.md](CHANGELOG.md)
   - [Windows](#windows)
   - [Linux](#linux)
   - [Web](#web)
+- [Code Generation](#code-generation)
 
 ### Integration example
 As an example of use, you can see the project [telegram-flutter](https://github.com/ivk1800/telegram-flutter).
@@ -186,3 +178,18 @@ install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/tdlib/libtdjson.so" DESTINATION "${IN
 
 ### Web
 TBD
+
+### Code Generation
+
+If you need a specific version of TDLib that is not provided by this package, you can generate Dart classes for your required version:
+
+1. Fork this repository.
+2. Replace [`data/td_api.tl`](data/td_api.tl) with the `td_api.tl` file (located at [`td/generate/scheme/td_api.tl`](https://github.com/tdlib/td/blob/master/td/generate/scheme/td_api.tl)) for your desired version from the [TDLib repository](https://github.com/tdlib/td).
+   > **Note:** You can find the corresponding `td_api.tl` version in the [`CMakeLists.txt`](https://github.com/tdlib/td/blob/master/CMakeLists.txt) file of the TDLib repository.
+3. Rebuild the generated Dart classes by running:
+   ```bash
+   dart run generator/lib/src/main.dart && dart format lib
+   ```
+4. Ensure that the version of your native TDLib binary matches the version of `td_api.tl` used for generation.
+
+> **Note:** Unfortunately, as the package maintainer, it is not feasible for me to build and provide binaries for all TDLib versions across all target platforms. You will need to find or build the ready-made native binaries yourself. Some useful links are available in the [Prebuilt binaries](#prebuilt-binaries) section above.
