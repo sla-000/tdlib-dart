@@ -4,7 +4,7 @@ import 'package:meta/meta.dart';
 import '../tdapi.dart';
 
 /// Adds multiple new members to a chat; requires can_invite_users member
-/// right. Currently, this method is available only in supergroups and
+/// right. Currently, this method is only available for supergroups and
 /// channels. This method can't be used to join a chat. Members can't be added
 /// to a channel if it has more than 200 members. Returns information about
 /// members that weren't added

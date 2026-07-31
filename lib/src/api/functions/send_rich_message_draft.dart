@@ -24,7 +24,7 @@ class SendRichMessageDraft extends TdFunction {
   /// [draftId] Unique identifier of the draft
   final int draftId;
 
-  /// [message] Draft of the message; file upload isn't supported
+  /// [message] Draft of the message
   final InputRichMessage message;
 
   static const String constructor = 'sendRichMessageDraft';

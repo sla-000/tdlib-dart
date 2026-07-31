@@ -3,10 +3,10 @@ import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
 import '../tdapi.dart';
 
-/// A detailed statistics about TON Grams earned by the current user
+/// A detailed statistics about Toncoins earned by the current user
 @immutable
-class GramRevenueStatistics extends TdObject {
-  const GramRevenueStatistics({
+class TonRevenueStatistics extends TdObject {
+  const TonRevenueStatistics({
     required this.revenueByDayGraph,
     required this.status,
     required this.usdRate,
@@ -16,23 +16,23 @@ class GramRevenueStatistics extends TdObject {
   final StatisticalGraph revenueByDayGraph;
 
   /// [status] Amount of earned revenue
-  final GramRevenueStatus status;
+  final TonRevenueStatus status;
 
-  /// [usdRate] Current conversion rate of nanogram to USD cents
+  /// [usdRate] Current conversion rate of nanotoncoin to USD cents
   final double usdRate;
 
-  static const String constructor = 'gramRevenueStatistics';
+  static const String constructor = 'tonRevenueStatistics';
 
-  static GramRevenueStatistics? fromJson(Map<String, dynamic>? json) {
+  static TonRevenueStatistics? fromJson(Map<String, dynamic>? json) {
     if (json == null) {
       return null;
     }
 
-    return GramRevenueStatistics(
+    return TonRevenueStatistics(
       revenueByDayGraph: StatisticalGraph.fromJson(
           json['revenue_by_day_graph'] as Map<String, dynamic>?)!,
       status:
-          GramRevenueStatus.fromJson(json['status'] as Map<String, dynamic>?)!,
+          TonRevenueStatus.fromJson(json['status'] as Map<String, dynamic>?)!,
       usdRate: (json['usd_rate'] as num?)?.toDouble() ?? 0.0,
     );
   }
@@ -52,7 +52,7 @@ class GramRevenueStatistics extends TdObject {
   bool operator ==(Object other) =>
       identical(this, other) ||
       (other.runtimeType == runtimeType &&
-          other is GramRevenueStatistics &&
+          other is TonRevenueStatistics &&
           const DeepCollectionEquality()
               .equals(other.revenueByDayGraph, revenueByDayGraph) &&
           const DeepCollectionEquality().equals(other.status, status) &&

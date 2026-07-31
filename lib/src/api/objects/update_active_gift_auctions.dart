@@ -3,7 +3,7 @@ import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
 import '../tdapi.dart';
 
-/// The list of auctions in which the current user participates has changed
+/// The list of auctions in which participate the current user has changed
 @immutable
 class UpdateActiveGiftAuctions extends Update {
   const UpdateActiveGiftAuctions({

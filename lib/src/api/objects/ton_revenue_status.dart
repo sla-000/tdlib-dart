@@ -3,39 +3,39 @@ import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
 import '../tdapi.dart';
 
-/// Contains information about TON Grams earned by the current user
+/// Contains information about Toncoins earned by the current user
 @immutable
-class GramRevenueStatus extends TdObject {
-  const GramRevenueStatus({
+class TonRevenueStatus extends TdObject {
+  const TonRevenueStatus({
     required this.totalAmount,
     required this.balanceAmount,
     required this.availableAmount,
     required this.withdrawalEnabled,
   });
 
-  /// [totalAmount] Total Gram amount earned; in the smallest units of the
+  /// [totalAmount] Total Toncoin amount earned; in the smallest units of the
   /// cryptocurrency
   final int totalAmount;
 
-  /// [balanceAmount] The Gram amount that isn't withdrawn yet; in the smallest
-  /// units of the cryptocurrency
+  /// [balanceAmount] The Toncoin amount that isn't withdrawn yet; in the
+  /// smallest units of the cryptocurrency
   final int balanceAmount;
 
-  /// [availableAmount] The Gram amount that is available for withdrawal; in the
-  /// smallest units of the cryptocurrency
+  /// [availableAmount] The Toncoin amount that is available for withdrawal; in
+  /// the smallest units of the cryptocurrency
   final int availableAmount;
 
-  /// [withdrawalEnabled] True, if Grams can be withdrawn
+  /// [withdrawalEnabled] True, if Toncoins can be withdrawn
   final bool withdrawalEnabled;
 
-  static const String constructor = 'gramRevenueStatus';
+  static const String constructor = 'tonRevenueStatus';
 
-  static GramRevenueStatus? fromJson(Map<String, dynamic>? json) {
+  static TonRevenueStatus? fromJson(Map<String, dynamic>? json) {
     if (json == null) {
       return null;
     }
 
-    return GramRevenueStatus(
+    return TonRevenueStatus(
       totalAmount: (json['total_amount'] is int
               ? json['total_amount'] as int
               : int.tryParse(json['total_amount']?.toString() ?? '')) ??
@@ -68,7 +68,7 @@ class GramRevenueStatus extends TdObject {
   bool operator ==(Object other) =>
       identical(this, other) ||
       (other.runtimeType == runtimeType &&
-          other is GramRevenueStatus &&
+          other is TonRevenueStatus &&
           const DeepCollectionEquality()
               .equals(other.totalAmount, totalAmount) &&
           const DeepCollectionEquality()

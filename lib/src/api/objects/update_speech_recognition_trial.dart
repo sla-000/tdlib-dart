@@ -4,7 +4,7 @@ import 'package:meta/meta.dart';
 import '../tdapi.dart';
 
 /// The parameters of speech recognition without Telegram Premium subscription
-/// have changed
+/// has changed
 @immutable
 class UpdateSpeechRecognitionTrial extends Update {
   const UpdateSpeechRecognitionTrial({

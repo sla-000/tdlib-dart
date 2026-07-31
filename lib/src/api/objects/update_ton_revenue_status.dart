@@ -3,28 +3,28 @@ import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
 import '../tdapi.dart';
 
-/// The TON Gram revenue earned by the current user has changed. If Gram
+/// The Toncoin revenue earned by the current user has changed. If Toncoin
 /// transaction screen of the chat is opened, then getTonTransactions may be
 /// called to fetch new transactions
 @immutable
-class UpdateGramRevenueStatus extends Update {
-  const UpdateGramRevenueStatus({
+class UpdateTonRevenueStatus extends Update {
+  const UpdateTonRevenueStatus({
     required this.status,
   });
 
-  /// [status] New Gram revenue status
-  final GramRevenueStatus status;
+  /// [status] New Toncoin revenue status
+  final TonRevenueStatus status;
 
-  static const String constructor = 'updateGramRevenueStatus';
+  static const String constructor = 'updateTonRevenueStatus';
 
-  static UpdateGramRevenueStatus? fromJson(Map<String, dynamic>? json) {
+  static UpdateTonRevenueStatus? fromJson(Map<String, dynamic>? json) {
     if (json == null) {
       return null;
     }
 
-    return UpdateGramRevenueStatus(
+    return UpdateTonRevenueStatus(
       status:
-          GramRevenueStatus.fromJson(json['status'] as Map<String, dynamic>?)!,
+          TonRevenueStatus.fromJson(json['status'] as Map<String, dynamic>?)!,
     );
   }
 
@@ -41,7 +41,7 @@ class UpdateGramRevenueStatus extends Update {
   bool operator ==(Object other) =>
       identical(this, other) ||
       (other.runtimeType == runtimeType &&
-          other is UpdateGramRevenueStatus &&
+          other is UpdateTonRevenueStatus &&
           const DeepCollectionEquality().equals(other.status, status));
 
   @override

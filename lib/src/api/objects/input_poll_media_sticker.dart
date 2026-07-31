@@ -8,10 +8,22 @@ import '../tdapi.dart';
 class InputPollMediaSticker extends InputPollMedia {
   const InputPollMediaSticker({
     required this.sticker,
+    this.thumbnail,
+    required this.width,
+    required this.height,
   });
 
   /// [sticker] Sticker to be sent
-  final InputSticker sticker;
+  final InputFile sticker;
+
+  /// [thumbnail] Sticker thumbnail; pass null to skip thumbnail uploading
+  final InputThumbnail? thumbnail;
+
+  /// [width] Sticker width
+  final int width;
+
+  /// [height] Sticker height
+  final int height;
 
   static const String constructor = 'inputPollMediaSticker';
 
@@ -21,7 +33,11 @@ class InputPollMediaSticker extends InputPollMedia {
     }
 
     return InputPollMediaSticker(
-      sticker: InputSticker.fromJson(json['sticker'] as Map<String, dynamic>?)!,
+      sticker: InputFile.fromJson(json['sticker'] as Map<String, dynamic>?)!,
+      thumbnail:
+          InputThumbnail.fromJson(json['thumbnail'] as Map<String, dynamic>?),
+      width: (json['width'] as int?) ?? 0,
+      height: (json['height'] as int?) ?? 0,
     );
   }
 
@@ -31,6 +47,9 @@ class InputPollMediaSticker extends InputPollMedia {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'sticker': sticker.toJson(),
+        'thumbnail': thumbnail?.toJson(),
+        'width': width,
+        'height': height,
         '@type': constructor,
       };
 
@@ -39,9 +58,17 @@ class InputPollMediaSticker extends InputPollMedia {
       identical(this, other) ||
       (other.runtimeType == runtimeType &&
           other is InputPollMediaSticker &&
-          const DeepCollectionEquality().equals(other.sticker, sticker));
+          const DeepCollectionEquality().equals(other.sticker, sticker) &&
+          const DeepCollectionEquality().equals(other.thumbnail, thumbnail) &&
+          const DeepCollectionEquality().equals(other.width, width) &&
+          const DeepCollectionEquality().equals(other.height, height));
 
   @override
-  int get hashCode => Object.hashAll(
-      [runtimeType, const DeepCollectionEquality().hash(sticker)]);
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(sticker),
+        const DeepCollectionEquality().hash(thumbnail),
+        const DeepCollectionEquality().hash(width),
+        const DeepCollectionEquality().hash(height)
+      ]);
 }

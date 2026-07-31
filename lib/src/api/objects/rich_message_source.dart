@@ -11,7 +11,6 @@ abstract class RichMessageSource extends TdObject {
   static const String constructor = 'richMessageSource';
 
   /// Inherited by:
-  /// [RichMessageSourceBlocks]
   /// [RichMessageSourceHtml]
   /// [RichMessageSourceMarkdown]
   static RichMessageSource? fromJson(Map<String, dynamic>? json) {
@@ -20,8 +19,6 @@ abstract class RichMessageSource extends TdObject {
     }
 
     switch (json['@type']) {
-      case RichMessageSourceBlocks.constructor:
-        return RichMessageSourceBlocks.fromJson(json);
       case RichMessageSourceHtml.constructor:
         return RichMessageSourceHtml.fromJson(json);
       case RichMessageSourceMarkdown.constructor:
