@@ -68,6 +68,14 @@ jobs:
 
           echo "pkg_version=${NEW_PKG_VER}" >> $GITHUB_OUTPUT
 
+          TODAY=$(date -u +'%Y-%m-%d')
+          TEMP_CHANGELOG=$(mktemp)
+          printf "# %s - %s\n\n- Update tdlib to v%s\n\n" "${NEW_PKG_VER}" "${TODAY}" "${NEW_TDLIB_VERSION}" > "$TEMP_CHANGELOG"
+          if [ -f CHANGELOG.md ]; then
+            cat CHANGELOG.md >> "$TEMP_CHANGELOG"
+          fi
+          mv "$TEMP_CHANGELOG" CHANGELOG.md
+
           curl -sSL https://raw.githubusercontent.com/tdlib/td/master/td/generate/scheme/td_api.tl -o data/td_api.tl
 
       - name: Install dependencies and run code generator
@@ -95,7 +103,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          git add TDLIB_VERSION.md pubspec.yaml data/td_api.tl lib/
+          git add TDLIB_VERSION.md pubspec.yaml CHANGELOG.md data/td_api.tl lib/
 
           if ! git diff --cached --quiet; then
             git commit -m "Update TDLib to v${NEW_TDLIB_VERSION} (pkg v${NEW_PKG_VER})"
