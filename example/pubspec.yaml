@@ -9,5 +9,5 @@ dependencies:
   flutter:
     sdk: flutter
   path_provider: 2.0.9
-  tdlib:
+  tdlib_dart:
     path: ../

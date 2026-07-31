@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:rxdart/rxdart.dart';
-import 'package:tdlib/src/client/platform/platform.dart';
-import 'package:tdlib/td_api.dart';
+import 'package:tdlib_dart/src/client/platform/platform.dart';
+import 'package:tdlib_dart/td_api.dart';
 import 'td_error.dart' as client_error;
 import 'client.dart';
 import 'td_function_exception.dart';

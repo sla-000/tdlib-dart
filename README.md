@@ -51,8 +51,8 @@ As an example of use, you can see the project [telegram-flutter](https://github.
 
 ### Example
 ```dart
-import 'package:tdlib/td_client.dart';
-import 'package:tdlib/td_api.dart' as td;
+import 'package:tdlib_dart/td_client.dart';
+import 'package:tdlib_dart/td_api.dart' as td;
 
 Future<void> main() async {
   final Client client = Client.create();

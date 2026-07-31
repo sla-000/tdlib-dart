@@ -3,8 +3,8 @@ import 'dart:io';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:tdlib/td_api.dart' as td;
-import 'package:tdlib/td_client.dart';
+import 'package:tdlib_dart/td_api.dart' as td;
+import 'package:tdlib_dart/td_client.dart';
 
 Future<void> main() async {
   runApp(
