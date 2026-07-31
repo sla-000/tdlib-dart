@@ -7,6 +7,7 @@ on:
 
 permissions:
   contents: write
+  id-token: write
 
 jobs:
   update-tdlib:
@@ -52,9 +53,20 @@ jobs:
 
       - name: Download TL Scheme and Update Version
         if: steps.check_version.outputs.need_update == 'true'
+        id: update_version
         run: |
-          NEW_VERSION="${{ steps.check_version.outputs.latest_version }}"
-          echo -n "$NEW_VERSION" > TDLIB_VERSION.md
+          NEW_TDLIB_VERSION="${{ steps.check_version.outputs.latest_version }}"
+          echo -n "$NEW_TDLIB_VERSION" > TDLIB_VERSION.md
+
+          CURRENT_PKG_VER=$(grep -E '^version:' pubspec.yaml | awk '{print $2}')
+          IFS='.' read -r MAJOR MINOR PATCH <<< "$CURRENT_PKG_VER"
+          NEW_MINOR=$((MINOR + 1))
+          NEW_PKG_VER="${MAJOR}.${NEW_MINOR}.0"
+
+          echo "Package version incrementing: ${CURRENT_PKG_VER} -> ${NEW_PKG_VER}"
+          sed -i "s/^version: .*/version: ${NEW_PKG_VER}/" pubspec.yaml
+
+          echo "pkg_version=${NEW_PKG_VER}" >> $GITHUB_OUTPUT
 
           curl -sSL https://raw.githubusercontent.com/tdlib/td/master/td/generate/scheme/td_api.tl -o data/td_api.tl
 
@@ -78,16 +90,23 @@ jobs:
       - name: Commit and Push changes
         if: steps.check_version.outputs.need_update == 'true'
         run: |
-          NEW_VERSION="${{ steps.check_version.outputs.latest_version }}"
+          NEW_TDLIB_VERSION="${{ steps.check_version.outputs.latest_version }}"
+          NEW_PKG_VER="${{ steps.update_version.outputs.pkg_version }}"
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          git add TDLIB_VERSION.md data/td_api.tl lib/
+          git add TDLIB_VERSION.md pubspec.yaml data/td_api.tl lib/
 
           if ! git diff --cached --quiet; then
-            git commit -m "Update TDLib to v${NEW_VERSION}"
-            git tag "v${NEW_VERSION}"
+            git commit -m "Update TDLib to v${NEW_TDLIB_VERSION} (pkg v${NEW_PKG_VER})"
+            git tag "v${NEW_PKG_VER}"
+            git tag "tdlib-v${NEW_TDLIB_VERSION}"
             git push origin master --tags
           else
             echo "No changes detected to commit."
           fi
+
+      - name: Publish to pub.dev
+        if: steps.check_version.outputs.need_update == 'true'
+        run: dart pub publish --force
+
