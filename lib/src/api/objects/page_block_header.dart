@@ -3,7 +3,7 @@ import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
 import '../tdapi.dart';
 
-/// A header; instant view only
+/// A header
 @immutable
 class PageBlockHeader extends PageBlock {
   const PageBlockHeader({

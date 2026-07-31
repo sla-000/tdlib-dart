@@ -8,14 +8,14 @@ import '../tdapi.dart';
 class PageBlockPullQuote extends PageBlock {
   const PageBlockPullQuote({
     required this.text,
-    this.credit,
+    required this.credit,
   });
 
   /// [text] Quote text
   final RichText text;
 
-  /// [credit] Quote credit; may be null if none
-  final RichText? credit;
+  /// [credit] Quote credit
+  final RichText credit;
 
   static const String constructor = 'pageBlockPullQuote';
 
@@ -26,7 +26,7 @@ class PageBlockPullQuote extends PageBlock {
 
     return PageBlockPullQuote(
       text: RichText.fromJson(json['text'] as Map<String, dynamic>?)!,
-      credit: RichText.fromJson(json['credit'] as Map<String, dynamic>?),
+      credit: RichText.fromJson(json['credit'] as Map<String, dynamic>?)!,
     );
   }
 
@@ -36,7 +36,7 @@ class PageBlockPullQuote extends PageBlock {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'text': text.toJson(),
-        'credit': credit?.toJson(),
+        'credit': credit.toJson(),
         '@type': constructor,
       };
 

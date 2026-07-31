@@ -8,7 +8,6 @@ import '../tdapi.dart';
 class SupergroupFullInfo extends TdObject {
   const SupergroupFullInfo({
     this.photo,
-    required this.communityId,
     required this.description,
     required this.memberCount,
     required this.administratorCount,
@@ -43,7 +42,6 @@ class SupergroupFullInfo extends TdObject {
     required this.customEmojiStickerSetId,
     this.location,
     this.inviteLink,
-    required this.guardBotUserId,
     required this.botCommands,
     this.botVerification,
     this.mainProfileTab,
@@ -54,10 +52,6 @@ class SupergroupFullInfo extends TdObject {
   /// [photo] Chat photo; may be null if empty or unknown. If non-null, then it
   /// is the same photo as in chat.photo
   final ChatPhoto? photo;
-
-  /// [communityId] Identifier of the community to which the corresponding chat
-  /// was added
-  final int communityId;
 
   /// param_[description] Supergroup or channel description
   final String description;
@@ -201,10 +195,6 @@ class SupergroupFullInfo extends TdObject {
   /// administrators with can_invite_users right only
   final ChatInviteLink? inviteLink;
 
-  /// [guardBotUserId] User identifier of the guard bot in the group; for chat
-  /// administrators only
-  final int guardBotUserId;
-
   /// [botCommands] List of commands of bots in the group
   final List<BotCommands> botCommands;
 
@@ -233,7 +223,6 @@ class SupergroupFullInfo extends TdObject {
 
     return SupergroupFullInfo(
       photo: ChatPhoto.fromJson(json['photo'] as Map<String, dynamic>?),
-      communityId: (json['community_id'] as int?) ?? 0,
       description: (json['description'] as String?) ?? '',
       memberCount: (json['member_count'] as int?) ?? 0,
       administratorCount: (json['administrator_count'] as int?) ?? 0,
@@ -287,7 +276,6 @@ class SupergroupFullInfo extends TdObject {
           ChatLocation.fromJson(json['location'] as Map<String, dynamic>?),
       inviteLink:
           ChatInviteLink.fromJson(json['invite_link'] as Map<String, dynamic>?),
-      guardBotUserId: (json['guard_bot_user_id'] as int?) ?? 0,
       botCommands: List<BotCommands>.from(((json['bot_commands']
                   as List<dynamic>?) ??
               <dynamic>[])
@@ -310,7 +298,6 @@ class SupergroupFullInfo extends TdObject {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'photo': photo?.toJson(),
-        'community_id': communityId,
         'description': description,
         'member_count': memberCount,
         'administrator_count': administratorCount,
@@ -345,7 +332,6 @@ class SupergroupFullInfo extends TdObject {
         'custom_emoji_sticker_set_id': customEmojiStickerSetId.toString(),
         'location': location?.toJson(),
         'invite_link': inviteLink?.toJson(),
-        'guard_bot_user_id': guardBotUserId,
         'bot_commands': botCommands.map((item) => item.toJson()).toList(),
         'bot_verification': botVerification?.toJson(),
         'main_profile_tab': mainProfileTab?.toJson(),
@@ -360,8 +346,6 @@ class SupergroupFullInfo extends TdObject {
       (other.runtimeType == runtimeType &&
           other is SupergroupFullInfo &&
           const DeepCollectionEquality().equals(other.photo, photo) &&
-          const DeepCollectionEquality()
-              .equals(other.communityId, communityId) &&
           const DeepCollectionEquality()
               .equals(other.description, description) &&
           const DeepCollectionEquality()
@@ -418,13 +402,13 @@ class SupergroupFullInfo extends TdObject {
           const DeepCollectionEquality().equals(other.giftCount, giftCount) &&
           const DeepCollectionEquality()
               .equals(other.myBoostCount, myBoostCount) &&
-          const DeepCollectionEquality().equals(other.unrestrictBoostCount, unrestrictBoostCount) &&
+          const DeepCollectionEquality()
+              .equals(other.unrestrictBoostCount, unrestrictBoostCount) &&
           const DeepCollectionEquality().equals(other.outgoingPaidMessageStarCount, outgoingPaidMessageStarCount) &&
           const DeepCollectionEquality().equals(other.stickerSetId, stickerSetId) &&
           const DeepCollectionEquality().equals(other.customEmojiStickerSetId, customEmojiStickerSetId) &&
           const DeepCollectionEquality().equals(other.location, location) &&
           const DeepCollectionEquality().equals(other.inviteLink, inviteLink) &&
-          const DeepCollectionEquality().equals(other.guardBotUserId, guardBotUserId) &&
           const DeepCollectionEquality().equals(other.botCommands, botCommands) &&
           const DeepCollectionEquality().equals(other.botVerification, botVerification) &&
           const DeepCollectionEquality().equals(other.mainProfileTab, mainProfileTab) &&
@@ -435,7 +419,6 @@ class SupergroupFullInfo extends TdObject {
   int get hashCode => Object.hashAll([
         runtimeType,
         const DeepCollectionEquality().hash(photo),
-        const DeepCollectionEquality().hash(communityId),
         const DeepCollectionEquality().hash(description),
         const DeepCollectionEquality().hash(memberCount),
         const DeepCollectionEquality().hash(administratorCount),
@@ -470,7 +453,6 @@ class SupergroupFullInfo extends TdObject {
         const DeepCollectionEquality().hash(customEmojiStickerSetId),
         const DeepCollectionEquality().hash(location),
         const DeepCollectionEquality().hash(inviteLink),
-        const DeepCollectionEquality().hash(guardBotUserId),
         const DeepCollectionEquality().hash(botCommands),
         const DeepCollectionEquality().hash(botVerification),
         const DeepCollectionEquality().hash(mainProfileTab),

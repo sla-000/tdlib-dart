@@ -3,7 +3,7 @@ import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
 import '../tdapi.dart';
 
-/// The title of a page; instant view only
+/// The title of a page
 @immutable
 class PageBlockTitle extends PageBlock {
   const PageBlockTitle({

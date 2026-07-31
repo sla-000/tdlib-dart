@@ -18,9 +18,7 @@ abstract class PremiumLimitType extends TdObject {
   /// [PremiumLimitTypeChatFolderCount]
   /// [PremiumLimitTypeChatFolderInviteLinkCount]
   /// [PremiumLimitTypeCreatedPublicChatCount]
-  /// [PremiumLimitTypeCustomTextCompositionStyleCount]
   /// [PremiumLimitTypeFavoriteStickerCount]
-  /// [PremiumLimitTypeMessageTextLength]
   /// [PremiumLimitTypeMonthlyPostedStoryCount]
   /// [PremiumLimitTypeOwnedBotCount]
   /// [PremiumLimitTypePinnedArchivedChatCount]
@@ -53,12 +51,8 @@ abstract class PremiumLimitType extends TdObject {
         return PremiumLimitTypeChatFolderInviteLinkCount.fromJson(json);
       case PremiumLimitTypeCreatedPublicChatCount.constructor:
         return PremiumLimitTypeCreatedPublicChatCount.fromJson(json);
-      case PremiumLimitTypeCustomTextCompositionStyleCount.constructor:
-        return PremiumLimitTypeCustomTextCompositionStyleCount.fromJson(json);
       case PremiumLimitTypeFavoriteStickerCount.constructor:
         return PremiumLimitTypeFavoriteStickerCount.fromJson(json);
-      case PremiumLimitTypeMessageTextLength.constructor:
-        return PremiumLimitTypeMessageTextLength.fromJson(json);
       case PremiumLimitTypeMonthlyPostedStoryCount.constructor:
         return PremiumLimitTypeMonthlyPostedStoryCount.fromJson(json);
       case PremiumLimitTypeOwnedBotCount.constructor:

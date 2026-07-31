@@ -23,7 +23,7 @@ class InputMessageText extends InputMessageContent {
   /// may be null if none; pass null to use default link preview options
   final LinkPreviewOptions? linkPreviewOptions;
 
-  /// [clearDraft] Pass true to delete message draft in the chat
+  /// [clearDraft] True, if the chat message draft must be deleted
   final bool clearDraft;
 
   static const String constructor = 'inputMessageText';

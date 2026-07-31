@@ -14,7 +14,6 @@ abstract class ReactionUnavailabilityReason extends TdObject {
   /// Inherited by:
   /// [ReactionUnavailabilityReasonAnonymousAdministrator]
   /// [ReactionUnavailabilityReasonGuest]
-  /// [ReactionUnavailabilityReasonRestricted]
   static ReactionUnavailabilityReason? fromJson(Map<String, dynamic>? json) {
     if (json == null) {
       return null;
@@ -26,8 +25,6 @@ abstract class ReactionUnavailabilityReason extends TdObject {
             json);
       case ReactionUnavailabilityReasonGuest.constructor:
         return ReactionUnavailabilityReasonGuest.fromJson(json);
-      case ReactionUnavailabilityReasonRestricted.constructor:
-        return ReactionUnavailabilityReasonRestricted.fromJson(json);
       default:
         return null;
     }

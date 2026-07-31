@@ -17,7 +17,6 @@ class ChatPermissions extends TdObject {
     required this.canSendPolls,
     required this.canSendOtherMessages,
     required this.canAddLinkPreviews,
-    required this.canReactToMessages,
     required this.canEditTag,
     required this.canChangeInfo,
     required this.canInviteUsers,
@@ -25,9 +24,8 @@ class ChatPermissions extends TdObject {
     required this.canCreateTopics,
   });
 
-  /// [canSendBasicMessages] True, if the user can send text messages, rich
-  /// messages, contacts, giveaways, giveaway winners, invoices, locations, and
-  /// venues
+  /// [canSendBasicMessages] True, if the user can send text messages, contacts,
+  /// giveaways, giveaway winners, invoices, locations, and venues
   final bool canSendBasicMessages;
 
   /// [canSendAudios] True, if the user can send music files
@@ -58,9 +56,6 @@ class ChatPermissions extends TdObject {
   /// [canAddLinkPreviews] True, if the user may add a link preview to their
   /// messages
   final bool canAddLinkPreviews;
-
-  /// [canReactToMessages] True, if the user can react to messages
-  final bool canReactToMessages;
 
   /// [canEditTag] True, if the user may change the tag of self
   final bool canEditTag;
@@ -96,7 +91,6 @@ class ChatPermissions extends TdObject {
       canSendPolls: (json['can_send_polls'] as bool?) ?? false,
       canSendOtherMessages: (json['can_send_other_messages'] as bool?) ?? false,
       canAddLinkPreviews: (json['can_add_link_previews'] as bool?) ?? false,
-      canReactToMessages: (json['can_react_to_messages'] as bool?) ?? false,
       canEditTag: (json['can_edit_tag'] as bool?) ?? false,
       canChangeInfo: (json['can_change_info'] as bool?) ?? false,
       canInviteUsers: (json['can_invite_users'] as bool?) ?? false,
@@ -120,7 +114,6 @@ class ChatPermissions extends TdObject {
         'can_send_polls': canSendPolls,
         'can_send_other_messages': canSendOtherMessages,
         'can_add_link_previews': canAddLinkPreviews,
-        'can_react_to_messages': canReactToMessages,
         'can_edit_tag': canEditTag,
         'can_change_info': canChangeInfo,
         'can_invite_users': canInviteUsers,
@@ -154,8 +147,6 @@ class ChatPermissions extends TdObject {
               .equals(other.canSendOtherMessages, canSendOtherMessages) &&
           const DeepCollectionEquality()
               .equals(other.canAddLinkPreviews, canAddLinkPreviews) &&
-          const DeepCollectionEquality()
-              .equals(other.canReactToMessages, canReactToMessages) &&
           const DeepCollectionEquality().equals(other.canEditTag, canEditTag) &&
           const DeepCollectionEquality()
               .equals(other.canChangeInfo, canChangeInfo) &&
@@ -179,7 +170,6 @@ class ChatPermissions extends TdObject {
         const DeepCollectionEquality().hash(canSendPolls),
         const DeepCollectionEquality().hash(canSendOtherMessages),
         const DeepCollectionEquality().hash(canAddLinkPreviews),
-        const DeepCollectionEquality().hash(canReactToMessages),
         const DeepCollectionEquality().hash(canEditTag),
         const DeepCollectionEquality().hash(canChangeInfo),
         const DeepCollectionEquality().hash(canInviteUsers),

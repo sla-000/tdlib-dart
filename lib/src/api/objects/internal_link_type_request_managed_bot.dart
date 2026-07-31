@@ -20,8 +20,7 @@ class InternalLinkTypeRequestManagedBot extends InternalLinkType {
   /// [managerBotUsername] Username of the bot which will manage the new bot
   final String managerBotUsername;
 
-  /// [suggestedBotUsername] Suggested username for the bot; always ends with
-  /// "bot" case-insensitive
+  /// [suggestedBotUsername] Suggested username for the bot
   final String suggestedBotUsername;
 
   /// [suggestedBotName] Suggested name for the bot; may be empty if not

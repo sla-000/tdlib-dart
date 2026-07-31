@@ -18,7 +18,6 @@ abstract class MessageContent extends TdObject {
   /// [MessageBotWriteAccessAllowed]
   /// [MessageCall]
   /// [MessageChatAddMembers]
-  /// [MessageChatAddedToCommunity]
   /// [MessageChatBoost]
   /// [MessageChatChangePhoto]
   /// [MessageChatChangeTitle]
@@ -30,7 +29,6 @@ abstract class MessageContent extends TdObject {
   /// [MessageChatJoinByRequest]
   /// [MessageChatOwnerChanged]
   /// [MessageChatOwnerLeft]
-  /// [MessageChatRemovedFromCommunity]
   /// [MessageChatSetBackground]
   /// [MessageChatSetMessageAutoDeleteTime]
   /// [MessageChatSetTheme]
@@ -68,7 +66,6 @@ abstract class MessageContent extends TdObject {
   /// [MessageGroupCall]
   /// [MessageInviteVideoChatParticipants]
   /// [MessageInvoice]
-  /// [MessageLiveLocation]
   /// [MessageLocation]
   /// [MessageManagedBotCreated]
   /// [MessagePaidMedia]
@@ -87,7 +84,6 @@ abstract class MessageContent extends TdObject {
   /// [MessagePremiumGiftCode]
   /// [MessageProximityAlertTriggered]
   /// [MessageRefundedUpgradedGift]
-  /// [MessageRichMessage]
   /// [MessageScreenshotTaken]
   /// [MessageStakeDice]
   /// [MessageSticker]
@@ -135,8 +131,6 @@ abstract class MessageContent extends TdObject {
         return MessageCall.fromJson(json);
       case MessageChatAddMembers.constructor:
         return MessageChatAddMembers.fromJson(json);
-      case MessageChatAddedToCommunity.constructor:
-        return MessageChatAddedToCommunity.fromJson(json);
       case MessageChatBoost.constructor:
         return MessageChatBoost.fromJson(json);
       case MessageChatChangePhoto.constructor:
@@ -159,8 +153,6 @@ abstract class MessageContent extends TdObject {
         return MessageChatOwnerChanged.fromJson(json);
       case MessageChatOwnerLeft.constructor:
         return MessageChatOwnerLeft.fromJson(json);
-      case MessageChatRemovedFromCommunity.constructor:
-        return MessageChatRemovedFromCommunity.fromJson(json);
       case MessageChatSetBackground.constructor:
         return MessageChatSetBackground.fromJson(json);
       case MessageChatSetMessageAutoDeleteTime.constructor:
@@ -235,8 +227,6 @@ abstract class MessageContent extends TdObject {
         return MessageInviteVideoChatParticipants.fromJson(json);
       case MessageInvoice.constructor:
         return MessageInvoice.fromJson(json);
-      case MessageLiveLocation.constructor:
-        return MessageLiveLocation.fromJson(json);
       case MessageLocation.constructor:
         return MessageLocation.fromJson(json);
       case MessageManagedBotCreated.constructor:
@@ -273,8 +263,6 @@ abstract class MessageContent extends TdObject {
         return MessageProximityAlertTriggered.fromJson(json);
       case MessageRefundedUpgradedGift.constructor:
         return MessageRefundedUpgradedGift.fromJson(json);
-      case MessageRichMessage.constructor:
-        return MessageRichMessage.fromJson(json);
       case MessageScreenshotTaken.constructor:
         return MessageScreenshotTaken.fromJson(json);
       case MessageStakeDice.constructor:

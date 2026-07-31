@@ -6,7 +6,7 @@ import '../tdapi.dart';
 /// Returns the user who will become the owner of the chat after 7 days if the
 /// current user does not return to the supergroup or channel during that
 /// period or immediately for basic groups; requires owner privileges in the
-/// chat. Available only for basic groups, supergroups, and channel chats
+/// chat. Available only for supergroups and channel chats
 /// Returns [User]
 @immutable
 class GetChatOwnerAfterLeaving extends TdFunction {

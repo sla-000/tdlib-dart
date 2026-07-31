@@ -3,8 +3,8 @@ import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
 import '../tdapi.dart';
 
-/// Edits the text of an inline text or game message sent via the bot; for
-/// bots only
+/// Edits the text of an inline text or game message sent via a bot; for bots
+/// only
 /// Returns [Ok]
 @immutable
 class EditInlineMessageText extends TdFunction {
@@ -21,7 +21,7 @@ class EditInlineMessageText extends TdFunction {
   final ReplyMarkup? replyMarkup;
 
   /// [inputMessageContent] New text content of the message. Must be of type
-  /// inputMessageText or inputMessageRichMessage; file upload isn't supported
+  /// inputMessageText
   final InputMessageContent inputMessageContent;
 
   static const String constructor = 'editInlineMessageText';

@@ -12,12 +12,9 @@ class InputMessagePoll extends InputMessageContent {
     required this.question,
     required this.options,
     this.description,
-    this.media,
     required this.isAnonymous,
     required this.allowsMultipleAnswers,
     required this.allowsRevoting,
-    required this.membersOnly,
-    required this.countryCodes,
     required this.shuffleOptions,
     required this.hideResultsUntilCloses,
     required this.type,
@@ -32,18 +29,12 @@ class InputMessagePoll extends InputMessageContent {
   final FormattedText question;
 
   /// [options] List of poll answer options;
-  /// 1-getOption("poll_answer_count_max") options
+  /// 2-getOption("poll_answer_count_max") options
   final List<InputPollOption> options;
 
   /// param_[description] Poll description; pass null to use an empty
   /// description; 0-getOption("message_caption_length_max") characters
   final FormattedText? description;
-
-  /// [media] Media attached to the poll; pass null if none. Must be one of the
-  /// following types: inputPollMediaAnimation, inputPollMediaAudio,
-  /// inputPollMediaDocument, inputPollMediaLocation, inputPollMediaPhoto,
-  /// inputPollMediaVenue, or inputPollMediaVideo without caption
-  final InputPollMedia? media;
 
   /// [isAnonymous] True, if the poll voters are anonymous. Non-anonymous polls
   /// can't be sent or forwarded to channels
@@ -55,16 +46,6 @@ class InputMessagePoll extends InputMessageContent {
 
   /// [allowsRevoting] True, if the poll can be answered multiple times
   final bool allowsRevoting;
-
-  /// [membersOnly] True, if only the users that are members of the chat for
-  /// more than a day will be able to vote; for channel chats only
-  final bool membersOnly;
-
-  /// [countryCodes] The list of two-letter ISO 3166-1 alpha-2 codes of
-  /// countries, users from which will be able to vote; for channel chats only.
-  /// If empty, then all users can participate in the poll. There can be up to
-  /// getOption("poll_country_count_max") chosen countries
-  final List<String> countryCodes;
 
   /// [shuffleOptions] True, if poll options must be shown in a fixed random
   /// order
@@ -107,16 +88,10 @@ class InputMessagePoll extends InputMessageContent {
               .toList()),
       description:
           FormattedText.fromJson(json['description'] as Map<String, dynamic>?),
-      media: InputPollMedia.fromJson(json['media'] as Map<String, dynamic>?),
       isAnonymous: (json['is_anonymous'] as bool?) ?? false,
       allowsMultipleAnswers:
           (json['allows_multiple_answers'] as bool?) ?? false,
       allowsRevoting: (json['allows_revoting'] as bool?) ?? false,
-      membersOnly: (json['members_only'] as bool?) ?? false,
-      countryCodes: List<String>.from(
-          ((json['country_codes'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => item as String)
-              .toList()),
       shuffleOptions: (json['shuffle_options'] as bool?) ?? false,
       hideResultsUntilCloses:
           (json['hide_results_until_closes'] as bool?) ?? false,
@@ -135,12 +110,9 @@ class InputMessagePoll extends InputMessageContent {
         'question': question.toJson(),
         'options': options.map((item) => item.toJson()).toList(),
         'description': description?.toJson(),
-        'media': media?.toJson(),
         'is_anonymous': isAnonymous,
         'allows_multiple_answers': allowsMultipleAnswers,
         'allows_revoting': allowsRevoting,
-        'members_only': membersOnly,
-        'country_codes': countryCodes.map((item) => item).toList(),
         'shuffle_options': shuffleOptions,
         'hide_results_until_closes': hideResultsUntilCloses,
         'type': type.toJson(),
@@ -159,17 +131,12 @@ class InputMessagePoll extends InputMessageContent {
           const DeepCollectionEquality().equals(other.options, options) &&
           const DeepCollectionEquality()
               .equals(other.description, description) &&
-          const DeepCollectionEquality().equals(other.media, media) &&
           const DeepCollectionEquality()
               .equals(other.isAnonymous, isAnonymous) &&
           const DeepCollectionEquality()
               .equals(other.allowsMultipleAnswers, allowsMultipleAnswers) &&
           const DeepCollectionEquality()
               .equals(other.allowsRevoting, allowsRevoting) &&
-          const DeepCollectionEquality()
-              .equals(other.membersOnly, membersOnly) &&
-          const DeepCollectionEquality()
-              .equals(other.countryCodes, countryCodes) &&
           const DeepCollectionEquality()
               .equals(other.shuffleOptions, shuffleOptions) &&
           const DeepCollectionEquality()
@@ -185,12 +152,9 @@ class InputMessagePoll extends InputMessageContent {
         const DeepCollectionEquality().hash(question),
         const DeepCollectionEquality().hash(options),
         const DeepCollectionEquality().hash(description),
-        const DeepCollectionEquality().hash(media),
         const DeepCollectionEquality().hash(isAnonymous),
         const DeepCollectionEquality().hash(allowsMultipleAnswers),
         const DeepCollectionEquality().hash(allowsRevoting),
-        const DeepCollectionEquality().hash(membersOnly),
-        const DeepCollectionEquality().hash(countryCodes),
         const DeepCollectionEquality().hash(shuffleOptions),
         const DeepCollectionEquality().hash(hideResultsUntilCloses),
         const DeepCollectionEquality().hash(type),

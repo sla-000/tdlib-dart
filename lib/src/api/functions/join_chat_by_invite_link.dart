@@ -3,8 +3,10 @@ import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
 import '../tdapi.dart';
 
-/// Uses an invite link to add the current user to the chat if possible
-/// Returns [ChatJoinResult]
+/// Uses an invite link to add the current user to the chat if possible. May
+/// return an error with a message "INVITE_REQUEST_SENT" if only a join
+/// request was created
+/// Returns [Chat]
 @immutable
 class JoinChatByInviteLink extends TdFunction {
   const JoinChatByInviteLink({

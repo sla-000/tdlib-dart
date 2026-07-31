@@ -3,8 +3,7 @@ import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
 import '../tdapi.dart';
 
-/// Describes a block of an instant view for a web page or a block of a rich
-/// message
+/// Describes a block of an instant view for a web page
 @immutable
 abstract class PageBlock extends TdObject {
   const PageBlock();
@@ -29,18 +28,15 @@ abstract class PageBlock extends TdObject {
   /// [PageBlockKicker]
   /// [PageBlockList]
   /// [PageBlockMap]
-  /// [PageBlockMathematicalExpression]
   /// [PageBlockParagraph]
   /// [PageBlockPhoto]
   /// [PageBlockPreformatted]
   /// [PageBlockPullQuote]
   /// [PageBlockRelatedArticles]
-  /// [PageBlockSectionHeading]
   /// [PageBlockSlideshow]
   /// [PageBlockSubheader]
   /// [PageBlockSubtitle]
   /// [PageBlockTable]
-  /// [PageBlockThinking]
   /// [PageBlockTitle]
   /// [PageBlockVideo]
   /// [PageBlockVoiceNote]
@@ -84,8 +80,6 @@ abstract class PageBlock extends TdObject {
         return PageBlockList.fromJson(json);
       case PageBlockMap.constructor:
         return PageBlockMap.fromJson(json);
-      case PageBlockMathematicalExpression.constructor:
-        return PageBlockMathematicalExpression.fromJson(json);
       case PageBlockParagraph.constructor:
         return PageBlockParagraph.fromJson(json);
       case PageBlockPhoto.constructor:
@@ -96,8 +90,6 @@ abstract class PageBlock extends TdObject {
         return PageBlockPullQuote.fromJson(json);
       case PageBlockRelatedArticles.constructor:
         return PageBlockRelatedArticles.fromJson(json);
-      case PageBlockSectionHeading.constructor:
-        return PageBlockSectionHeading.fromJson(json);
       case PageBlockSlideshow.constructor:
         return PageBlockSlideshow.fromJson(json);
       case PageBlockSubheader.constructor:
@@ -106,8 +98,6 @@ abstract class PageBlock extends TdObject {
         return PageBlockSubtitle.fromJson(json);
       case PageBlockTable.constructor:
         return PageBlockTable.fromJson(json);
-      case PageBlockThinking.constructor:
-        return PageBlockThinking.fromJson(json);
       case PageBlockTitle.constructor:
         return PageBlockTitle.fromJson(json);
       case PageBlockVideo.constructor:

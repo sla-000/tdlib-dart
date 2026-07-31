@@ -7,7 +7,7 @@ import '../tdapi.dart';
 @immutable
 class WebPageInstantView extends TdObject {
   const WebPageInstantView({
-    required this.blocks,
+    required this.pageBlocks,
     required this.viewCount,
     required this.version,
     required this.isRtl,
@@ -15,8 +15,8 @@ class WebPageInstantView extends TdObject {
     required this.feedbackLink,
   });
 
-  /// [blocks] Content of the instant view page
-  final List<PageBlock> blocks;
+  /// [pageBlocks] Content of the instant view page
+  final List<PageBlock> pageBlocks;
 
   /// [viewCount] Number of the instant view views; 0 if unknown
   final int viewCount;
@@ -43,8 +43,8 @@ class WebPageInstantView extends TdObject {
     }
 
     return WebPageInstantView(
-      blocks: List<PageBlock>.from(
-          ((json['blocks'] as List<dynamic>?) ?? <dynamic>[])
+      pageBlocks: List<PageBlock>.from(
+          ((json['page_blocks'] as List<dynamic>?) ?? <dynamic>[])
               .map((item) => PageBlock.fromJson(item as Map<String, dynamic>?))
               .toList()),
       viewCount: (json['view_count'] as int?) ?? 0,
@@ -61,7 +61,7 @@ class WebPageInstantView extends TdObject {
 
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'blocks': blocks.map((item) => item.toJson()).toList(),
+        'page_blocks': pageBlocks.map((item) => item.toJson()).toList(),
         'view_count': viewCount,
         'version': version,
         'is_rtl': isRtl,
@@ -75,7 +75,7 @@ class WebPageInstantView extends TdObject {
       identical(this, other) ||
       (other.runtimeType == runtimeType &&
           other is WebPageInstantView &&
-          const DeepCollectionEquality().equals(other.blocks, blocks) &&
+          const DeepCollectionEquality().equals(other.pageBlocks, pageBlocks) &&
           const DeepCollectionEquality().equals(other.viewCount, viewCount) &&
           const DeepCollectionEquality().equals(other.version, version) &&
           const DeepCollectionEquality().equals(other.isRtl, isRtl) &&
@@ -86,7 +86,7 @@ class WebPageInstantView extends TdObject {
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
-        const DeepCollectionEquality().hash(blocks),
+        const DeepCollectionEquality().hash(pageBlocks),
         const DeepCollectionEquality().hash(viewCount),
         const DeepCollectionEquality().hash(version),
         const DeepCollectionEquality().hash(isRtl),

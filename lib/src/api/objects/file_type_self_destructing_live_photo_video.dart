@@ -3,7 +3,7 @@ import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
 import '../tdapi.dart';
 
-/// The file is a self-destructing video for a live photo in a private chat
+/// The file is a seld-destructing video for a live photo in a private chat
 @immutable
 class FileTypeSelfDestructingLivePhotoVideo extends FileType {
   const FileTypeSelfDestructingLivePhotoVideo();

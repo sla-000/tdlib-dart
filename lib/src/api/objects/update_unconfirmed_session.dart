@@ -8,14 +8,10 @@ import '../tdapi.dart';
 class UpdateUnconfirmedSession extends Update {
   const UpdateUnconfirmedSession({
     this.session,
-    required this.unconfirmedSessionCount,
   });
 
   /// [session] The unconfirmed session; may be null if none
   final UnconfirmedSession? session;
-
-  /// [unconfirmedSessionCount] The total number of unconfirmed sessions
-  final int unconfirmedSessionCount;
 
   static const String constructor = 'updateUnconfirmedSession';
 
@@ -27,7 +23,6 @@ class UpdateUnconfirmedSession extends Update {
     return UpdateUnconfirmedSession(
       session:
           UnconfirmedSession.fromJson(json['session'] as Map<String, dynamic>?),
-      unconfirmedSessionCount: (json['unconfirmed_session_count'] as int?) ?? 0,
     );
   }
 
@@ -37,7 +32,6 @@ class UpdateUnconfirmedSession extends Update {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'session': session?.toJson(),
-        'unconfirmed_session_count': unconfirmedSessionCount,
         '@type': constructor,
       };
 
@@ -46,14 +40,9 @@ class UpdateUnconfirmedSession extends Update {
       identical(this, other) ||
       (other.runtimeType == runtimeType &&
           other is UpdateUnconfirmedSession &&
-          const DeepCollectionEquality().equals(other.session, session) &&
-          const DeepCollectionEquality()
-              .equals(other.unconfirmedSessionCount, unconfirmedSessionCount));
+          const DeepCollectionEquality().equals(other.session, session));
 
   @override
-  int get hashCode => Object.hashAll([
-        runtimeType,
-        const DeepCollectionEquality().hash(session),
-        const DeepCollectionEquality().hash(unconfirmedSessionCount)
-      ]);
+  int get hashCode => Object.hashAll(
+      [runtimeType, const DeepCollectionEquality().hash(session)]);
 }

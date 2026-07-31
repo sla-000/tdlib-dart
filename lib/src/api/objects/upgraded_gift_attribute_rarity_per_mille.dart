@@ -3,7 +3,7 @@ import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
 import '../tdapi.dart';
 
-/// The rarity is represented as the numeric frequency of the model
+/// The rarity is represented as the numeric frequence of the model
 @immutable
 class UpgradedGiftAttributeRarityPerMille extends UpgradedGiftAttributeRarity {
   const UpgradedGiftAttributeRarityPerMille({

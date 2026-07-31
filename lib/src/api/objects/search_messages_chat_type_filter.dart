@@ -3,7 +3,7 @@ import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
 import '../tdapi.dart';
 
-/// Represents a filter for type of the chats in which to search for messages
+/// Represents a filter for type of the chats in which to search messages
 @immutable
 abstract class SearchMessagesChatTypeFilter extends TdObject {
   const SearchMessagesChatTypeFilter();

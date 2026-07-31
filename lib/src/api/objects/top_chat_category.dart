@@ -17,7 +17,6 @@ abstract class TopChatCategory extends TdObject {
   /// [TopChatCategoryChannels]
   /// [TopChatCategoryForwardChats]
   /// [TopChatCategoryGroups]
-  /// [TopChatCategoryGuestBots]
   /// [TopChatCategoryInlineBots]
   /// [TopChatCategoryUsers]
   /// [TopChatCategoryWebAppBots]
@@ -37,8 +36,6 @@ abstract class TopChatCategory extends TdObject {
         return TopChatCategoryForwardChats.fromJson(json);
       case TopChatCategoryGroups.constructor:
         return TopChatCategoryGroups.fromJson(json);
-      case TopChatCategoryGuestBots.constructor:
-        return TopChatCategoryGuestBots.fromJson(json);
       case TopChatCategoryInlineBots.constructor:
         return TopChatCategoryInlineBots.fromJson(json);
       case TopChatCategoryUsers.constructor:

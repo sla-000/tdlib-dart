@@ -14,7 +14,7 @@ class DiffText extends TdObject {
   /// [text] The text
   final String text;
 
-  /// [entities] Entities describing changes in the text. Entities don't
+  /// [entities] Entities describing changes in the text. Entities doesn't
   /// mutually intersect with each other
   final List<DiffEntity> entities;
 

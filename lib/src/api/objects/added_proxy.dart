@@ -10,7 +10,6 @@ class AddedProxy extends TdObject {
     required this.id,
     required this.lastUsedDate,
     required this.isEnabled,
-    required this.comment,
     required this.proxy,
   });
 
@@ -23,9 +22,6 @@ class AddedProxy extends TdObject {
 
   /// [isEnabled] True, if the proxy is enabled now
   final bool isEnabled;
-
-  /// [comment] Comment for the proxy added by the user
-  final String comment;
 
   /// [proxy] The proxy
   final Proxy proxy;
@@ -41,7 +37,6 @@ class AddedProxy extends TdObject {
       id: (json['id'] as int?) ?? 0,
       lastUsedDate: (json['last_used_date'] as int?) ?? 0,
       isEnabled: (json['is_enabled'] as bool?) ?? false,
-      comment: (json['comment'] as String?) ?? '',
       proxy: Proxy.fromJson(json['proxy'] as Map<String, dynamic>?)!,
     );
   }
@@ -54,7 +49,6 @@ class AddedProxy extends TdObject {
         'id': id,
         'last_used_date': lastUsedDate,
         'is_enabled': isEnabled,
-        'comment': comment,
         'proxy': proxy.toJson(),
         '@type': constructor,
       };
@@ -68,7 +62,6 @@ class AddedProxy extends TdObject {
           const DeepCollectionEquality()
               .equals(other.lastUsedDate, lastUsedDate) &&
           const DeepCollectionEquality().equals(other.isEnabled, isEnabled) &&
-          const DeepCollectionEquality().equals(other.comment, comment) &&
           const DeepCollectionEquality().equals(other.proxy, proxy));
 
   @override
@@ -77,7 +70,6 @@ class AddedProxy extends TdObject {
         const DeepCollectionEquality().hash(id),
         const DeepCollectionEquality().hash(lastUsedDate),
         const DeepCollectionEquality().hash(isEnabled),
-        const DeepCollectionEquality().hash(comment),
         const DeepCollectionEquality().hash(proxy)
       ]);
 }

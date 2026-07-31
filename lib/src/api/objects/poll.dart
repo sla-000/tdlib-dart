@@ -13,18 +13,14 @@ class Poll extends TdObject {
     required this.totalVoterCount,
     required this.recentVoterIds,
     required this.canGetVoters,
-    required this.canSeeResults,
     required this.isAnonymous,
     required this.allowsMultipleAnswers,
     required this.allowsRevoting,
-    required this.membersOnly,
-    required this.countryCodes,
     required this.optionOrder,
     required this.type,
     required this.openPeriod,
     required this.closeDate,
     required this.isClosed,
-    this.voteRestrictionReason,
   });
 
   /// [id] Unique poll identifier
@@ -44,12 +40,8 @@ class Poll extends TdObject {
   /// non-anonymous and poll results are available
   final List<MessageSender> recentVoterIds;
 
-  /// [canGetVoters] True, if the current user can get voters in the poll using
-  /// getPollVoters
+  /// [canGetVoters] True, if the current user can get voters in the poll
   final bool canGetVoters;
-
-  /// [canSeeResults] True, if the current user can see results of the poll
-  final bool canSeeResults;
 
   /// [isAnonymous] True, if the poll is anonymous
   final bool isAnonymous;
@@ -60,15 +52,6 @@ class Poll extends TdObject {
 
   /// [allowsRevoting] True, if the poll can be answered multiple times
   final bool allowsRevoting;
-
-  /// [membersOnly] True, if only the users that are members of the chat for
-  /// more than a day will be able to vote
-  final bool membersOnly;
-
-  /// [countryCodes] The list of two-letter ISO 3166-1 alpha-2 codes of
-  /// countries, users from which will be able to vote. If empty, then all users
-  /// can participate in the poll
-  final List<String> countryCodes;
 
   /// [optionOrder] The list of 0-based poll identifiers in which the options of
   /// the poll must be shown; empty if the order of options must not be changed
@@ -87,10 +70,6 @@ class Poll extends TdObject {
 
   /// [isClosed] True, if the poll is closed
   final bool isClosed;
-
-  /// [voteRestrictionReason] The reason describing, why the current user can't
-  /// vote in the poll; may be null if the user can vote in the poll
-  final PollVoteRestrictionReason? voteRestrictionReason;
 
   static const String constructor = 'poll';
 
@@ -117,16 +96,10 @@ class Poll extends TdObject {
           .map((item) => MessageSender.fromJson(item as Map<String, dynamic>?))
           .toList()),
       canGetVoters: (json['can_get_voters'] as bool?) ?? false,
-      canSeeResults: (json['can_see_results'] as bool?) ?? false,
       isAnonymous: (json['is_anonymous'] as bool?) ?? false,
       allowsMultipleAnswers:
           (json['allows_multiple_answers'] as bool?) ?? false,
       allowsRevoting: (json['allows_revoting'] as bool?) ?? false,
-      membersOnly: (json['members_only'] as bool?) ?? false,
-      countryCodes: List<String>.from(
-          ((json['country_codes'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => item as String)
-              .toList()),
       optionOrder: List<int>.from(
           ((json['option_order'] as List<dynamic>?) ?? <dynamic>[])
               .map((item) =>
@@ -136,8 +109,6 @@ class Poll extends TdObject {
       openPeriod: (json['open_period'] as int?) ?? 0,
       closeDate: (json['close_date'] as int?) ?? 0,
       isClosed: (json['is_closed'] as bool?) ?? false,
-      voteRestrictionReason: PollVoteRestrictionReason.fromJson(
-          json['vote_restriction_reason'] as Map<String, dynamic>?),
     );
   }
 
@@ -153,18 +124,14 @@ class Poll extends TdObject {
         'recent_voter_ids':
             recentVoterIds.map((item) => item.toJson()).toList(),
         'can_get_voters': canGetVoters,
-        'can_see_results': canSeeResults,
         'is_anonymous': isAnonymous,
         'allows_multiple_answers': allowsMultipleAnswers,
         'allows_revoting': allowsRevoting,
-        'members_only': membersOnly,
-        'country_codes': countryCodes.map((item) => item).toList(),
         'option_order': optionOrder.map((item) => item).toList(),
         'type': type.toJson(),
         'open_period': openPeriod,
         'close_date': closeDate,
         'is_closed': isClosed,
-        'vote_restriction_reason': voteRestrictionReason?.toJson(),
         '@type': constructor,
       };
 
@@ -183,25 +150,17 @@ class Poll extends TdObject {
           const DeepCollectionEquality()
               .equals(other.canGetVoters, canGetVoters) &&
           const DeepCollectionEquality()
-              .equals(other.canSeeResults, canSeeResults) &&
-          const DeepCollectionEquality()
               .equals(other.isAnonymous, isAnonymous) &&
           const DeepCollectionEquality()
               .equals(other.allowsMultipleAnswers, allowsMultipleAnswers) &&
           const DeepCollectionEquality()
               .equals(other.allowsRevoting, allowsRevoting) &&
           const DeepCollectionEquality()
-              .equals(other.membersOnly, membersOnly) &&
-          const DeepCollectionEquality()
-              .equals(other.countryCodes, countryCodes) &&
-          const DeepCollectionEquality()
               .equals(other.optionOrder, optionOrder) &&
           const DeepCollectionEquality().equals(other.type, type) &&
           const DeepCollectionEquality().equals(other.openPeriod, openPeriod) &&
           const DeepCollectionEquality().equals(other.closeDate, closeDate) &&
-          const DeepCollectionEquality().equals(other.isClosed, isClosed) &&
-          const DeepCollectionEquality()
-              .equals(other.voteRestrictionReason, voteRestrictionReason));
+          const DeepCollectionEquality().equals(other.isClosed, isClosed));
 
   @override
   int get hashCode => Object.hashAll([
@@ -212,17 +171,13 @@ class Poll extends TdObject {
         const DeepCollectionEquality().hash(totalVoterCount),
         const DeepCollectionEquality().hash(recentVoterIds),
         const DeepCollectionEquality().hash(canGetVoters),
-        const DeepCollectionEquality().hash(canSeeResults),
         const DeepCollectionEquality().hash(isAnonymous),
         const DeepCollectionEquality().hash(allowsMultipleAnswers),
         const DeepCollectionEquality().hash(allowsRevoting),
-        const DeepCollectionEquality().hash(membersOnly),
-        const DeepCollectionEquality().hash(countryCodes),
         const DeepCollectionEquality().hash(optionOrder),
         const DeepCollectionEquality().hash(type),
         const DeepCollectionEquality().hash(openPeriod),
         const DeepCollectionEquality().hash(closeDate),
-        const DeepCollectionEquality().hash(isClosed),
-        const DeepCollectionEquality().hash(voteRestrictionReason)
+        const DeepCollectionEquality().hash(isClosed)
       ]);
 }

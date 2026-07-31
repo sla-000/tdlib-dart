@@ -11,7 +11,6 @@ class UpdateNewChatJoinRequest extends Update {
     required this.request,
     required this.userChatId,
     this.inviteLink,
-    required this.queryId,
   });
 
   /// [chatId] Chat identifier
@@ -27,10 +26,6 @@ class UpdateNewChatJoinRequest extends Update {
   /// null
   final ChatInviteLink? inviteLink;
 
-  /// [queryId] Identifier of the join request query, which can be used in
-  /// answerChatJoinRequestQuery; 0 if none
-  final int queryId;
-
   static const String constructor = 'updateNewChatJoinRequest';
 
   static UpdateNewChatJoinRequest? fromJson(Map<String, dynamic>? json) {
@@ -45,10 +40,6 @@ class UpdateNewChatJoinRequest extends Update {
       userChatId: (json['user_chat_id'] as int?) ?? 0,
       inviteLink:
           ChatInviteLink.fromJson(json['invite_link'] as Map<String, dynamic>?),
-      queryId: (json['query_id'] is int
-              ? json['query_id'] as int
-              : int.tryParse(json['query_id']?.toString() ?? '')) ??
-          0,
     );
   }
 
@@ -61,7 +52,6 @@ class UpdateNewChatJoinRequest extends Update {
         'request': request.toJson(),
         'user_chat_id': userChatId,
         'invite_link': inviteLink?.toJson(),
-        'query_id': queryId.toString(),
         '@type': constructor,
       };
 
@@ -73,8 +63,7 @@ class UpdateNewChatJoinRequest extends Update {
           const DeepCollectionEquality().equals(other.chatId, chatId) &&
           const DeepCollectionEquality().equals(other.request, request) &&
           const DeepCollectionEquality().equals(other.userChatId, userChatId) &&
-          const DeepCollectionEquality().equals(other.inviteLink, inviteLink) &&
-          const DeepCollectionEquality().equals(other.queryId, queryId));
+          const DeepCollectionEquality().equals(other.inviteLink, inviteLink));
 
   @override
   int get hashCode => Object.hashAll([
@@ -82,7 +71,6 @@ class UpdateNewChatJoinRequest extends Update {
         const DeepCollectionEquality().hash(chatId),
         const DeepCollectionEquality().hash(request),
         const DeepCollectionEquality().hash(userChatId),
-        const DeepCollectionEquality().hash(inviteLink),
-        const DeepCollectionEquality().hash(queryId)
+        const DeepCollectionEquality().hash(inviteLink)
       ]);
 }

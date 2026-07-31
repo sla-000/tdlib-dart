@@ -24,7 +24,6 @@ class MessageProperties extends TdObject {
     required this.canBeRepliedInAnotherChat,
     required this.canBeSaved,
     required this.canBeSharedInStory,
-    required this.canDeleteReactions,
     required this.canEditMedia,
     required this.canEditSchedulingState,
     required this.canEditSuggestedPostInfo,
@@ -33,7 +32,6 @@ class MessageProperties extends TdObject {
     required this.canGetLink,
     required this.canGetMediaTimestampLinks,
     required this.canGetMessageThread,
-    required this.canGetPollVoteStatistics,
     required this.canGetReadDate,
     required this.canGetStatistics,
     required this.canGetVideoAdvertisements,
@@ -101,8 +99,7 @@ class MessageProperties extends TdObject {
   final bool canBePinned;
 
   /// [canBeReplied] True, if the message can be replied in the same chat and
-  /// forum topic using inputMessageReplyToMessage. Ephemeral messages can be
-  /// replied only by other ephemeral messages
+  /// forum topic using inputMessageReplyToMessage
   final bool canBeReplied;
 
   /// [canBeRepliedInAnotherChat] True, if the message can be replied in another
@@ -115,10 +112,6 @@ class MessageProperties extends TdObject {
   /// [canBeSharedInStory] True, if the message can be shared in a story using
   /// inputStoryAreaTypeMessage
   final bool canBeSharedInStory;
-
-  /// [canDeleteReactions] True, if the user can delete reactions of other users
-  /// in the message using the method deleteMessageReactionsFromSender
-  final bool canDeleteReactions;
 
   /// [canEditMedia] True, if the message can be edited using the method
   /// editMessageMedia
@@ -153,10 +146,6 @@ class MessageProperties extends TdObject {
   /// available through getMessageThread and getMessageThreadHistory
   final bool canGetMessageThread;
 
-  /// [canGetPollVoteStatistics] True, if the message is a poll and vote
-  /// statistics are available through getPollVoteStatistics
-  final bool canGetPollVoteStatistics;
-
   /// [canGetReadDate] True, if read date of the message can be received through
   /// getMessageReadDate
   final bool canGetReadDate;
@@ -167,7 +156,7 @@ class MessageProperties extends TdObject {
   final bool canGetStatistics;
 
   /// [canGetVideoAdvertisements] True, if advertisements for video of the
-  /// message can be received through getVideoMessageAdvertisements
+  /// message can be received though getVideoMessageAdvertisements
   final bool canGetVideoAdvertisements;
 
   /// [canGetViewers] True, if chat members already viewed the message can be
@@ -240,7 +229,6 @@ class MessageProperties extends TdObject {
           (json['can_be_replied_in_another_chat'] as bool?) ?? false,
       canBeSaved: (json['can_be_saved'] as bool?) ?? false,
       canBeSharedInStory: (json['can_be_shared_in_story'] as bool?) ?? false,
-      canDeleteReactions: (json['can_delete_reactions'] as bool?) ?? false,
       canEditMedia: (json['can_edit_media'] as bool?) ?? false,
       canEditSchedulingState:
           (json['can_edit_scheduling_state'] as bool?) ?? false,
@@ -252,8 +240,6 @@ class MessageProperties extends TdObject {
       canGetMediaTimestampLinks:
           (json['can_get_media_timestamp_links'] as bool?) ?? false,
       canGetMessageThread: (json['can_get_message_thread'] as bool?) ?? false,
-      canGetPollVoteStatistics:
-          (json['can_get_poll_vote_statistics'] as bool?) ?? false,
       canGetReadDate: (json['can_get_read_date'] as bool?) ?? false,
       canGetStatistics: (json['can_get_statistics'] as bool?) ?? false,
       canGetVideoAdvertisements:
@@ -295,7 +281,6 @@ class MessageProperties extends TdObject {
         'can_be_replied_in_another_chat': canBeRepliedInAnotherChat,
         'can_be_saved': canBeSaved,
         'can_be_shared_in_story': canBeSharedInStory,
-        'can_delete_reactions': canDeleteReactions,
         'can_edit_media': canEditMedia,
         'can_edit_scheduling_state': canEditSchedulingState,
         'can_edit_suggested_post_info': canEditSuggestedPostInfo,
@@ -304,7 +289,6 @@ class MessageProperties extends TdObject {
         'can_get_link': canGetLink,
         'can_get_media_timestamp_links': canGetMediaTimestampLinks,
         'can_get_message_thread': canGetMessageThread,
-        'can_get_poll_vote_statistics': canGetPollVoteStatistics,
         'can_get_read_date': canGetReadDate,
         'can_get_statistics': canGetStatistics,
         'can_get_video_advertisements': canGetVideoAdvertisements,
@@ -358,8 +342,6 @@ class MessageProperties extends TdObject {
           const DeepCollectionEquality()
               .equals(other.canBeSharedInStory, canBeSharedInStory) &&
           const DeepCollectionEquality()
-              .equals(other.canDeleteReactions, canDeleteReactions) &&
-          const DeepCollectionEquality()
               .equals(other.canEditMedia, canEditMedia) &&
           const DeepCollectionEquality()
               .equals(other.canEditSchedulingState, canEditSchedulingState) &&
@@ -374,8 +356,6 @@ class MessageProperties extends TdObject {
               other.canGetMediaTimestampLinks, canGetMediaTimestampLinks) &&
           const DeepCollectionEquality()
               .equals(other.canGetMessageThread, canGetMessageThread) &&
-          const DeepCollectionEquality().equals(
-              other.canGetPollVoteStatistics, canGetPollVoteStatistics) &&
           const DeepCollectionEquality()
               .equals(other.canGetReadDate, canGetReadDate) &&
           const DeepCollectionEquality()
@@ -388,9 +368,12 @@ class MessageProperties extends TdObject {
               .equals(other.canMarkTasksAsDone, canMarkTasksAsDone) &&
           const DeepCollectionEquality()
               .equals(other.canRecognizeSpeech, canRecognizeSpeech) &&
-          const DeepCollectionEquality().equals(other.canReportChat, canReportChat) &&
-          const DeepCollectionEquality().equals(other.canReportReactions, canReportReactions) &&
-          const DeepCollectionEquality().equals(other.canReportSupergroupSpam, canReportSupergroupSpam) &&
+          const DeepCollectionEquality()
+              .equals(other.canReportChat, canReportChat) &&
+          const DeepCollectionEquality()
+              .equals(other.canReportReactions, canReportReactions) &&
+          const DeepCollectionEquality()
+              .equals(other.canReportSupergroupSpam, canReportSupergroupSpam) &&
           const DeepCollectionEquality().equals(other.canSetFactCheck, canSetFactCheck) &&
           const DeepCollectionEquality().equals(other.hasProtectedContentByCurrentUser, hasProtectedContentByCurrentUser) &&
           const DeepCollectionEquality().equals(other.hasProtectedContentByOtherUser, hasProtectedContentByOtherUser) &&
@@ -415,7 +398,6 @@ class MessageProperties extends TdObject {
         const DeepCollectionEquality().hash(canBeRepliedInAnotherChat),
         const DeepCollectionEquality().hash(canBeSaved),
         const DeepCollectionEquality().hash(canBeSharedInStory),
-        const DeepCollectionEquality().hash(canDeleteReactions),
         const DeepCollectionEquality().hash(canEditMedia),
         const DeepCollectionEquality().hash(canEditSchedulingState),
         const DeepCollectionEquality().hash(canEditSuggestedPostInfo),
@@ -424,7 +406,6 @@ class MessageProperties extends TdObject {
         const DeepCollectionEquality().hash(canGetLink),
         const DeepCollectionEquality().hash(canGetMediaTimestampLinks),
         const DeepCollectionEquality().hash(canGetMessageThread),
-        const DeepCollectionEquality().hash(canGetPollVoteStatistics),
         const DeepCollectionEquality().hash(canGetReadDate),
         const DeepCollectionEquality().hash(canGetStatistics),
         const DeepCollectionEquality().hash(canGetVideoAdvertisements),

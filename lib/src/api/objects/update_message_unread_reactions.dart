@@ -22,8 +22,8 @@ class UpdateMessageUnreadReactions extends Update {
   /// [unreadReactions] The new list of unread reactions
   final List<UnreadReaction> unreadReactions;
 
-  /// [unreadReactionCount] The new number of messages with unread reactions in
-  /// the chat
+  /// [unreadReactionCount] The new number of messages with unread reactions
+  /// left in the chat
   final int unreadReactionCount;
 
   static const String constructor = 'updateMessageUnreadReactions';

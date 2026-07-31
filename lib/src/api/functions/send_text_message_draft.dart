@@ -11,7 +11,7 @@ class SendTextMessageDraft extends TdFunction {
     required this.chatId,
     required this.forumTopicId,
     required this.draftId,
-    this.text,
+    required this.text,
   });
 
   /// [chatId] Chat identifier
@@ -24,9 +24,8 @@ class SendTextMessageDraft extends TdFunction {
   /// [draftId] Unique identifier of the draft
   final int draftId;
 
-  /// [text] Draft text of the message; pass null to show a "Thinking..."
-  /// placeholder
-  final FormattedText? text;
+  /// [text] Draft text of the message
+  final FormattedText text;
 
   static const String constructor = 'sendTextMessageDraft';
 
@@ -38,7 +37,7 @@ class SendTextMessageDraft extends TdFunction {
         'chat_id': chatId,
         'forum_topic_id': forumTopicId,
         'draft_id': draftId.toString(),
-        'text': text?.toJson(),
+        'text': text.toJson(),
         '@type': constructor,
       };
 

@@ -12,7 +12,6 @@ class SetAuthenticationPremiumPurchaseTransaction extends TdFunction {
   const SetAuthenticationPremiumPurchaseTransaction({
     required this.transaction,
     required this.isRestore,
-    required this.premiumDayCount,
     required this.currency,
     required this.amount,
   });
@@ -23,10 +22,6 @@ class SetAuthenticationPremiumPurchaseTransaction extends TdFunction {
   /// [isRestore] Pass true if this is a restore of a Telegram Premium purchase;
   /// only for App Store
   final bool isRestore;
-
-  /// [premiumDayCount] The number of days for which the Telegram Premium
-  /// subscription will be granted
-  final int premiumDayCount;
 
   /// [currency] ISO 4217 currency code of the payment currency
   final String currency;
@@ -44,7 +39,6 @@ class SetAuthenticationPremiumPurchaseTransaction extends TdFunction {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'transaction': transaction.toJson(),
         'is_restore': isRestore,
-        'premium_day_count': premiumDayCount,
         'currency': currency,
         'amount': amount,
         '@type': constructor,
@@ -58,8 +52,6 @@ class SetAuthenticationPremiumPurchaseTransaction extends TdFunction {
           const DeepCollectionEquality()
               .equals(other.transaction, transaction) &&
           const DeepCollectionEquality().equals(other.isRestore, isRestore) &&
-          const DeepCollectionEquality()
-              .equals(other.premiumDayCount, premiumDayCount) &&
           const DeepCollectionEquality().equals(other.currency, currency) &&
           const DeepCollectionEquality().equals(other.amount, amount));
 
@@ -68,7 +60,6 @@ class SetAuthenticationPremiumPurchaseTransaction extends TdFunction {
         runtimeType,
         const DeepCollectionEquality().hash(transaction),
         const DeepCollectionEquality().hash(isRestore),
-        const DeepCollectionEquality().hash(premiumDayCount),
         const DeepCollectionEquality().hash(currency),
         const DeepCollectionEquality().hash(amount)
       ]);

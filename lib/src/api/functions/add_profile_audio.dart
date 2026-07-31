@@ -9,11 +9,12 @@ import '../tdapi.dart';
 @immutable
 class AddProfileAudio extends TdFunction {
   const AddProfileAudio({
-    required this.audio,
+    required this.fileId,
   });
 
-  /// [audio] The audio to add
-  final InputAudio audio;
+  /// [fileId] Identifier of the audio file to be added. The file must have been
+  /// uploaded to the server
+  final int fileId;
 
   static const String constructor = 'addProfileAudio';
 
@@ -22,7 +23,7 @@ class AddProfileAudio extends TdFunction {
 
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'audio': audio.toJson(),
+        'file_id': fileId,
         '@type': constructor,
       };
 
@@ -31,9 +32,9 @@ class AddProfileAudio extends TdFunction {
       identical(this, other) ||
       (other.runtimeType == runtimeType &&
           other is AddProfileAudio &&
-          const DeepCollectionEquality().equals(other.audio, audio));
+          const DeepCollectionEquality().equals(other.fileId, fileId));
 
   @override
-  int get hashCode =>
-      Object.hashAll([runtimeType, const DeepCollectionEquality().hash(audio)]);
+  int get hashCode => Object.hashAll(
+      [runtimeType, const DeepCollectionEquality().hash(fileId)]);
 }

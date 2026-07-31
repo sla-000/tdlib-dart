@@ -3,7 +3,7 @@ import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
 import '../tdapi.dart';
 
-/// A subheader; instant view only
+/// A subheader
 @immutable
 class PageBlockSubheader extends PageBlock {
   const PageBlockSubheader({

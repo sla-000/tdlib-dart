@@ -6,7 +6,7 @@ import '../tdapi.dart';
 /// Returns an HTTPS URL of a Web App to open from the side menu, a
 /// keyboardButtonTypeWebApp button, or an inlineQueryResultsButtonTypeWebApp
 /// button
-/// Returns [WebAppUrl]
+/// Returns [HttpUrl]
 @immutable
 class GetWebAppUrl extends TdFunction {
   const GetWebAppUrl({

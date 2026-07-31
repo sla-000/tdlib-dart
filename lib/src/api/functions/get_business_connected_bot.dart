@@ -3,9 +3,9 @@ import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
 import '../tdapi.dart';
 
-/// Returns information about the business bot that is connected to the
-/// current user account. Returns a 404 error if there is no connected bot
-/// Returns [BusinessConnectedBotInfo]
+/// Returns the business bot that is connected to the current user account.
+/// Returns a 404 error if there is no connected bot
+/// Returns [BusinessConnectedBot]
 @immutable
 class GetBusinessConnectedBot extends TdFunction {
   const GetBusinessConnectedBot();

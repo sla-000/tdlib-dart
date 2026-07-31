@@ -8,15 +8,15 @@ import '../tdapi.dart';
 class PageBlockDetails extends PageBlock {
   const PageBlockDetails({
     required this.header,
-    required this.blocks,
+    required this.pageBlocks,
     required this.isOpen,
   });
 
   /// [header] Always visible heading for the block
   final RichText header;
 
-  /// [blocks] Block contents
-  final List<PageBlock> blocks;
+  /// [pageBlocks] Block contents
+  final List<PageBlock> pageBlocks;
 
   /// [isOpen] True, if the block is open by default
   final bool isOpen;
@@ -30,8 +30,8 @@ class PageBlockDetails extends PageBlock {
 
     return PageBlockDetails(
       header: RichText.fromJson(json['header'] as Map<String, dynamic>?)!,
-      blocks: List<PageBlock>.from(
-          ((json['blocks'] as List<dynamic>?) ?? <dynamic>[])
+      pageBlocks: List<PageBlock>.from(
+          ((json['page_blocks'] as List<dynamic>?) ?? <dynamic>[])
               .map((item) => PageBlock.fromJson(item as Map<String, dynamic>?))
               .toList()),
       isOpen: (json['is_open'] as bool?) ?? false,
@@ -44,7 +44,7 @@ class PageBlockDetails extends PageBlock {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'header': header.toJson(),
-        'blocks': blocks.map((item) => item.toJson()).toList(),
+        'page_blocks': pageBlocks.map((item) => item.toJson()).toList(),
         'is_open': isOpen,
         '@type': constructor,
       };
@@ -55,14 +55,14 @@ class PageBlockDetails extends PageBlock {
       (other.runtimeType == runtimeType &&
           other is PageBlockDetails &&
           const DeepCollectionEquality().equals(other.header, header) &&
-          const DeepCollectionEquality().equals(other.blocks, blocks) &&
+          const DeepCollectionEquality().equals(other.pageBlocks, pageBlocks) &&
           const DeepCollectionEquality().equals(other.isOpen, isOpen));
 
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
         const DeepCollectionEquality().hash(header),
-        const DeepCollectionEquality().hash(blocks),
+        const DeepCollectionEquality().hash(pageBlocks),
         const DeepCollectionEquality().hash(isOpen)
       ]);
 }

@@ -3,7 +3,7 @@ import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
 import '../tdapi.dart';
 
-/// Describes an advertisement to be shown while a video from a message is
+/// Describes an advertisent to be shown while a video from a message is
 /// watched
 @immutable
 class VideoMessageAdvertisement extends TdObject {

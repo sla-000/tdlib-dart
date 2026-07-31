@@ -3,7 +3,7 @@ import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
 import '../tdapi.dart';
 
-/// Deletes an option from a poll
+/// Adds an option to a poll
 /// Returns [Ok]
 @immutable
 class DeletePollOption extends TdFunction {

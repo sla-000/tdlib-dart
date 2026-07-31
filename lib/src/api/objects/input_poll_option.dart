@@ -8,18 +8,11 @@ import '../tdapi.dart';
 class InputPollOption extends TdObject {
   const InputPollOption({
     required this.text,
-    this.media,
   });
 
   /// [text] Option text; 1-100 characters. Only custom emoji entities are
   /// allowed to be added and only by Premium users
   final FormattedText text;
-
-  /// [media] Option media; pass null if none; ignored in addPollOption. Must be
-  /// one of the following types: inputPollMediaAnimation, inputPollMediaLink,
-  /// inputPollMediaLocation, inputPollMediaPhoto, inputPollMediaSticker,
-  /// inputPollMediaVenue, or inputPollMediaVideo without caption
-  final InputPollMedia? media;
 
   static const String constructor = 'inputPollOption';
 
@@ -30,7 +23,6 @@ class InputPollOption extends TdObject {
 
     return InputPollOption(
       text: FormattedText.fromJson(json['text'] as Map<String, dynamic>?)!,
-      media: InputPollMedia.fromJson(json['media'] as Map<String, dynamic>?),
     );
   }
 
@@ -40,7 +32,6 @@ class InputPollOption extends TdObject {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'text': text.toJson(),
-        'media': media?.toJson(),
         '@type': constructor,
       };
 
@@ -49,13 +40,9 @@ class InputPollOption extends TdObject {
       identical(this, other) ||
       (other.runtimeType == runtimeType &&
           other is InputPollOption &&
-          const DeepCollectionEquality().equals(other.text, text) &&
-          const DeepCollectionEquality().equals(other.media, media));
+          const DeepCollectionEquality().equals(other.text, text));
 
   @override
-  int get hashCode => Object.hashAll([
-        runtimeType,
-        const DeepCollectionEquality().hash(text),
-        const DeepCollectionEquality().hash(media)
-      ]);
+  int get hashCode =>
+      Object.hashAll([runtimeType, const DeepCollectionEquality().hash(text)]);
 }

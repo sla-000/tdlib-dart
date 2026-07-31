@@ -22,10 +22,10 @@ class PollTypeQuiz extends PollType {
 
   /// [explanationMedia] Media that is shown when the user chooses an incorrect
   /// answer or taps on the lamp icon; may be null if none or the poll is
-  /// unanswered yet. If present, currently, can be only of the types
-  /// pollMediaAnimation, pollMediaAudio, pollMediaDocument, pollMediaLocation,
-  /// pollMediaPhoto, pollMediaVenue, or pollMediaVideo
-  final PollMedia? explanationMedia;
+  /// unanswered yet. Currently, can be only of the types messageAnimation,
+  /// messageAudio, messageDocument, messageLocation, messagePhoto,
+  /// messageVenue, or messageVideo without caption
+  final MessageContent? explanationMedia;
 
   static const String constructor = 'pollTypeQuiz';
 
@@ -42,7 +42,7 @@ class PollTypeQuiz extends PollType {
               .toList()),
       explanation:
           FormattedText.fromJson(json['explanation'] as Map<String, dynamic>?)!,
-      explanationMedia: PollMedia.fromJson(
+      explanationMedia: MessageContent.fromJson(
           json['explanation_media'] as Map<String, dynamic>?),
     );
   }

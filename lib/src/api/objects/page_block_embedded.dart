@@ -3,7 +3,7 @@ import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
 import '../tdapi.dart';
 
-/// An embedded web page; instant view only
+/// An embedded web page
 @immutable
 class PageBlockEmbedded extends PageBlock {
   const PageBlockEmbedded({
@@ -12,7 +12,7 @@ class PageBlockEmbedded extends PageBlock {
     this.posterPhoto,
     required this.width,
     required this.height,
-    this.caption,
+    required this.caption,
     required this.isFullWidth,
     required this.allowScrolling,
   });
@@ -32,8 +32,8 @@ class PageBlockEmbedded extends PageBlock {
   /// [height] Block height; 0 if unknown
   final int height;
 
-  /// [caption] Block caption; may be null if none
-  final PageBlockCaption? caption;
+  /// [caption] Block caption
+  final PageBlockCaption caption;
 
   /// [isFullWidth] True, if the block must be full width
   final bool isFullWidth;
@@ -56,7 +56,7 @@ class PageBlockEmbedded extends PageBlock {
       width: (json['width'] as int?) ?? 0,
       height: (json['height'] as int?) ?? 0,
       caption:
-          PageBlockCaption.fromJson(json['caption'] as Map<String, dynamic>?),
+          PageBlockCaption.fromJson(json['caption'] as Map<String, dynamic>?)!,
       isFullWidth: (json['is_full_width'] as bool?) ?? false,
       allowScrolling: (json['allow_scrolling'] as bool?) ?? false,
     );
@@ -72,7 +72,7 @@ class PageBlockEmbedded extends PageBlock {
         'poster_photo': posterPhoto?.toJson(),
         'width': width,
         'height': height,
-        'caption': caption?.toJson(),
+        'caption': caption.toJson(),
         'is_full_width': isFullWidth,
         'allow_scrolling': allowScrolling,
         '@type': constructor,

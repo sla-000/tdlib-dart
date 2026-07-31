@@ -8,11 +8,21 @@ import '../tdapi.dart';
 class InputMessageDocument extends InputMessageContent {
   const InputMessageDocument({
     required this.document,
+    this.thumbnail,
+    required this.disableContentTypeDetection,
     this.caption,
   });
 
   /// [document] Document to be sent
-  final InputDocument document;
+  final InputFile document;
+
+  /// [thumbnail] Document thumbnail; pass null to skip thumbnail uploading
+  final InputThumbnail? thumbnail;
+
+  /// [disableContentTypeDetection] Pass true to disable automatic file type
+  /// detection and send the document as a file. Always true for files sent to
+  /// secret chats
+  final bool disableContentTypeDetection;
 
   /// [caption] Document caption; pass null to use an empty caption;
   /// 0-getOption("message_caption_length_max") characters
@@ -26,8 +36,11 @@ class InputMessageDocument extends InputMessageContent {
     }
 
     return InputMessageDocument(
-      document:
-          InputDocument.fromJson(json['document'] as Map<String, dynamic>?)!,
+      document: InputFile.fromJson(json['document'] as Map<String, dynamic>?)!,
+      thumbnail:
+          InputThumbnail.fromJson(json['thumbnail'] as Map<String, dynamic>?),
+      disableContentTypeDetection:
+          (json['disable_content_type_detection'] as bool?) ?? false,
       caption: FormattedText.fromJson(json['caption'] as Map<String, dynamic>?),
     );
   }
@@ -38,6 +51,8 @@ class InputMessageDocument extends InputMessageContent {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'document': document.toJson(),
+        'thumbnail': thumbnail?.toJson(),
+        'disable_content_type_detection': disableContentTypeDetection,
         'caption': caption?.toJson(),
         '@type': constructor,
       };
@@ -48,12 +63,17 @@ class InputMessageDocument extends InputMessageContent {
       (other.runtimeType == runtimeType &&
           other is InputMessageDocument &&
           const DeepCollectionEquality().equals(other.document, document) &&
+          const DeepCollectionEquality().equals(other.thumbnail, thumbnail) &&
+          const DeepCollectionEquality().equals(
+              other.disableContentTypeDetection, disableContentTypeDetection) &&
           const DeepCollectionEquality().equals(other.caption, caption));
 
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
         const DeepCollectionEquality().hash(document),
+        const DeepCollectionEquality().hash(thumbnail),
+        const DeepCollectionEquality().hash(disableContentTypeDetection),
         const DeepCollectionEquality().hash(caption)
       ]);
 }

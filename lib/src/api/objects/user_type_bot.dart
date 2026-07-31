@@ -16,8 +16,6 @@ class UserTypeBot extends UserType {
     required this.canManageBots,
     required this.isInline,
     required this.inlineQueryPlaceholder,
-    required this.supportsGuestQueries,
-    required this.isGuard,
     required this.needLocation,
     required this.canConnectToBusiness,
     required this.canBeAddedToAttachmentMenu,
@@ -59,19 +57,12 @@ class UserTypeBot extends UserType {
   /// application input field)
   final String inlineQueryPlaceholder;
 
-  /// [supportsGuestQueries] True, if the bot can be queried by username from
-  /// any non-secret chat
-  final bool supportsGuestQueries;
-
-  /// [isGuard] True, if the bot can be set as a guard bot in supergroup chats
-  final bool isGuard;
-
   /// [needLocation] True, if the location of the user is expected to be sent
   /// with every inline query to this bot
   final bool needLocation;
 
-  /// [canConnectToBusiness] True, if the bot supports connection to user
-  /// accounts for chat automation
+  /// [canConnectToBusiness] True, if the bot supports connection to Telegram
+  /// Business accounts
   final bool canConnectToBusiness;
 
   /// [canBeAddedToAttachmentMenu] True, if the bot can be added to attachment
@@ -101,8 +92,6 @@ class UserTypeBot extends UserType {
       isInline: (json['is_inline'] as bool?) ?? false,
       inlineQueryPlaceholder:
           (json['inline_query_placeholder'] as String?) ?? '',
-      supportsGuestQueries: (json['supports_guest_queries'] as bool?) ?? false,
-      isGuard: (json['is_guard'] as bool?) ?? false,
       needLocation: (json['need_location'] as bool?) ?? false,
       canConnectToBusiness: (json['can_connect_to_business'] as bool?) ?? false,
       canBeAddedToAttachmentMenu:
@@ -125,8 +114,6 @@ class UserTypeBot extends UserType {
         'can_manage_bots': canManageBots,
         'is_inline': isInline,
         'inline_query_placeholder': inlineQueryPlaceholder,
-        'supports_guest_queries': supportsGuestQueries,
-        'is_guard': isGuard,
         'need_location': needLocation,
         'can_connect_to_business': canConnectToBusiness,
         'can_be_added_to_attachment_menu': canBeAddedToAttachmentMenu,
@@ -156,9 +143,6 @@ class UserTypeBot extends UserType {
           const DeepCollectionEquality()
               .equals(other.inlineQueryPlaceholder, inlineQueryPlaceholder) &&
           const DeepCollectionEquality()
-              .equals(other.supportsGuestQueries, supportsGuestQueries) &&
-          const DeepCollectionEquality().equals(other.isGuard, isGuard) &&
-          const DeepCollectionEquality()
               .equals(other.needLocation, needLocation) &&
           const DeepCollectionEquality()
               .equals(other.canConnectToBusiness, canConnectToBusiness) &&
@@ -179,8 +163,6 @@ class UserTypeBot extends UserType {
         const DeepCollectionEquality().hash(canManageBots),
         const DeepCollectionEquality().hash(isInline),
         const DeepCollectionEquality().hash(inlineQueryPlaceholder),
-        const DeepCollectionEquality().hash(supportsGuestQueries),
-        const DeepCollectionEquality().hash(isGuard),
         const DeepCollectionEquality().hash(needLocation),
         const DeepCollectionEquality().hash(canConnectToBusiness),
         const DeepCollectionEquality().hash(canBeAddedToAttachmentMenu),

@@ -10,17 +10,12 @@ import '../tdapi.dart';
 class AuthorizationStateWaitPremiumPurchase extends AuthorizationState {
   const AuthorizationStateWaitPremiumPurchase({
     required this.storeProductId,
-    required this.premiumDayCount,
     required this.supportEmailAddress,
     required this.supportEmailSubject,
   });
 
   /// [storeProductId] Identifier of the store product that must be bought
   final String storeProductId;
-
-  /// [premiumDayCount] Duration of the Telegram Premium subscription after the
-  /// purchase; may be 0 if Telegram Premium subscription will not be granted
-  final int premiumDayCount;
 
   /// [supportEmailAddress] Email address to use for support if the user has
   /// issues with Telegram Premium purchase
@@ -40,7 +35,6 @@ class AuthorizationStateWaitPremiumPurchase extends AuthorizationState {
 
     return AuthorizationStateWaitPremiumPurchase(
       storeProductId: (json['store_product_id'] as String?) ?? '',
-      premiumDayCount: (json['premium_day_count'] as int?) ?? 0,
       supportEmailAddress: (json['support_email_address'] as String?) ?? '',
       supportEmailSubject: (json['support_email_subject'] as String?) ?? '',
     );
@@ -52,7 +46,6 @@ class AuthorizationStateWaitPremiumPurchase extends AuthorizationState {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'store_product_id': storeProductId,
-        'premium_day_count': premiumDayCount,
         'support_email_address': supportEmailAddress,
         'support_email_subject': supportEmailSubject,
         '@type': constructor,
@@ -66,8 +59,6 @@ class AuthorizationStateWaitPremiumPurchase extends AuthorizationState {
           const DeepCollectionEquality()
               .equals(other.storeProductId, storeProductId) &&
           const DeepCollectionEquality()
-              .equals(other.premiumDayCount, premiumDayCount) &&
-          const DeepCollectionEquality()
               .equals(other.supportEmailAddress, supportEmailAddress) &&
           const DeepCollectionEquality()
               .equals(other.supportEmailSubject, supportEmailSubject));
@@ -76,7 +67,6 @@ class AuthorizationStateWaitPremiumPurchase extends AuthorizationState {
   int get hashCode => Object.hashAll([
         runtimeType,
         const DeepCollectionEquality().hash(storeProductId),
-        const DeepCollectionEquality().hash(premiumDayCount),
         const DeepCollectionEquality().hash(supportEmailAddress),
         const DeepCollectionEquality().hash(supportEmailSubject)
       ]);

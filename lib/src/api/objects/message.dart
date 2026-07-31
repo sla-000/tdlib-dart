@@ -9,7 +9,6 @@ class Message extends TdObject {
   const Message({
     required this.id,
     required this.senderId,
-    this.receiverId,
     required this.chatId,
     this.sendingState,
     this.schedulingState,
@@ -20,9 +19,8 @@ class Message extends TdObject {
     required this.hasTimestampedMedia,
     required this.isChannelPost,
     required this.isPaidStarSuggestedPost,
-    required this.isPaidGramSuggestedPost,
+    required this.isPaidTonSuggestedPost,
     required this.containsUnreadMention,
-    required this.containsUnreadPollVotes,
     required this.date,
     required this.editDate,
     this.forwardInfo,
@@ -37,7 +35,6 @@ class Message extends TdObject {
     required this.selfDestructIn,
     required this.autoDeleteIn,
     required this.viaBotUserId,
-    this.guestBotCallerId,
     required this.senderBusinessBotUserId,
     required this.senderBoostCount,
     required this.senderTag,
@@ -49,7 +46,6 @@ class Message extends TdObject {
     required this.summaryLanguageCode,
     required this.content,
     this.replyMarkup,
-    this.ephemeralMessageId,
   });
 
   /// [id] Message identifier; unique for the chat to which the message belongs
@@ -57,10 +53,6 @@ class Message extends TdObject {
 
   /// [senderId] Identifier of the sender of the message
   final MessageSender senderId;
-
-  /// [receiverId] Identifier of the user or the chat which received the
-  /// ephemeral message; may be null. Always null for non-ephemeral messages
-  final MessageSender? receiverId;
 
   /// [chatId] Chat identifier
   final int chatId;
@@ -101,29 +93,22 @@ class Message extends TdObject {
   /// after sending
   final bool isPaidStarSuggestedPost;
 
-  /// [isPaidGramSuggestedPost] True, if the message is a suggested channel post
-  /// which was paid in TON Grams; a warning must be shown if the message is
+  /// [isPaidTonSuggestedPost] True, if the message is a suggested channel post
+  /// which was paid in Toncoins; a warning must be shown if the message is
   /// deleted in less than getOption("suggested_post_lifetime_min") seconds
   /// after sending
-  final bool isPaidGramSuggestedPost;
+  final bool isPaidTonSuggestedPost;
 
   /// [containsUnreadMention] True, if the message contains an unread mention
   /// for the current user
   final bool containsUnreadMention;
-
-  /// [containsUnreadPollVotes] True, if the message is a poll message with
-  /// unread votes
-  final bool containsUnreadPollVotes;
 
   /// [date] Point in time (Unix timestamp) when the message was sent; 0 for
   /// scheduled messages
   final int date;
 
   /// [editDate] Point in time (Unix timestamp) when the message was last
-  /// edited; 0 for scheduled messages. If
-  /// getOption("show_message_edit_date_by_default") is true, then the date must
-  /// be shown along with the message instead of the date when the message was
-  /// sent
+  /// edited; 0 for scheduled messages
   final int editDate;
 
   /// [forwardInfo] Information about the initial message sender; may be null if
@@ -173,10 +158,6 @@ class Message extends TdObject {
   /// which this message was sent
   final int viaBotUserId;
 
-  /// [guestBotCallerId] The identifier of the user or chat which used a guest
-  /// bot to send the message; may be null if none
-  final MessageSender? guestBotCallerId;
-
   /// [senderBusinessBotUserId] If non-zero, the user identifier of the business
   /// bot that sent this message
   final int senderBusinessBotUserId;
@@ -223,10 +204,6 @@ class Message extends TdObject {
   /// [replyMarkup] Reply markup for the message; may be null if none
   final ReplyMarkup? replyMarkup;
 
-  /// [ephemeralMessageId] Unique identifier of the ephemeral message if the
-  /// message is ephemeral; for bots only
-  final int? ephemeralMessageId;
-
   static const String constructor = 'message';
 
   static Message? fromJson(Map<String, dynamic>? json) {
@@ -238,8 +215,6 @@ class Message extends TdObject {
       id: (json['id'] as int?) ?? 0,
       senderId:
           MessageSender.fromJson(json['sender_id'] as Map<String, dynamic>?)!,
-      receiverId:
-          MessageSender.fromJson(json['receiver_id'] as Map<String, dynamic>?),
       chatId: (json['chat_id'] as int?) ?? 0,
       sendingState: MessageSendingState.fromJson(
           json['sending_state'] as Map<String, dynamic>?),
@@ -253,12 +228,10 @@ class Message extends TdObject {
       isChannelPost: (json['is_channel_post'] as bool?) ?? false,
       isPaidStarSuggestedPost:
           (json['is_paid_star_suggested_post'] as bool?) ?? false,
-      isPaidGramSuggestedPost:
-          (json['is_paid_gram_suggested_post'] as bool?) ?? false,
+      isPaidTonSuggestedPost:
+          (json['is_paid_ton_suggested_post'] as bool?) ?? false,
       containsUnreadMention:
           (json['contains_unread_mention'] as bool?) ?? false,
-      containsUnreadPollVotes:
-          (json['contains_unread_poll_votes'] as bool?) ?? false,
       date: (json['date'] as int?) ?? 0,
       editDate: (json['edit_date'] as int?) ?? 0,
       forwardInfo: MessageForwardInfo.fromJson(
@@ -284,8 +257,6 @@ class Message extends TdObject {
       selfDestructIn: (json['self_destruct_in'] as num?)?.toDouble() ?? 0.0,
       autoDeleteIn: (json['auto_delete_in'] as num?)?.toDouble() ?? 0.0,
       viaBotUserId: (json['via_bot_user_id'] as int?) ?? 0,
-      guestBotCallerId: MessageSender.fromJson(
-          json['guest_bot_caller_id'] as Map<String, dynamic>?),
       senderBusinessBotUserId:
           (json['sender_business_bot_user_id'] as int?) ?? 0,
       senderBoostCount: (json['sender_boost_count'] as int?) ?? 0,
@@ -307,7 +278,6 @@ class Message extends TdObject {
           MessageContent.fromJson(json['content'] as Map<String, dynamic>?)!,
       replyMarkup:
           ReplyMarkup.fromJson(json['reply_markup'] as Map<String, dynamic>?),
-      ephemeralMessageId: json['ephemeral_message_id'] as int?,
     );
   }
 
@@ -318,7 +288,6 @@ class Message extends TdObject {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'id': id,
         'sender_id': senderId.toJson(),
-        'receiver_id': receiverId?.toJson(),
         'chat_id': chatId,
         'sending_state': sendingState?.toJson(),
         'scheduling_state': schedulingState?.toJson(),
@@ -329,9 +298,8 @@ class Message extends TdObject {
         'has_timestamped_media': hasTimestampedMedia,
         'is_channel_post': isChannelPost,
         'is_paid_star_suggested_post': isPaidStarSuggestedPost,
-        'is_paid_gram_suggested_post': isPaidGramSuggestedPost,
+        'is_paid_ton_suggested_post': isPaidTonSuggestedPost,
         'contains_unread_mention': containsUnreadMention,
-        'contains_unread_poll_votes': containsUnreadPollVotes,
         'date': date,
         'edit_date': editDate,
         'forward_info': forwardInfo?.toJson(),
@@ -347,7 +315,6 @@ class Message extends TdObject {
         'self_destruct_in': selfDestructIn,
         'auto_delete_in': autoDeleteIn,
         'via_bot_user_id': viaBotUserId,
-        'guest_bot_caller_id': guestBotCallerId?.toJson(),
         'sender_business_bot_user_id': senderBusinessBotUserId,
         'sender_boost_count': senderBoostCount,
         'sender_tag': senderTag,
@@ -359,7 +326,6 @@ class Message extends TdObject {
         'summary_language_code': summaryLanguageCode,
         'content': content.toJson(),
         'reply_markup': replyMarkup?.toJson(),
-        'ephemeral_message_id': ephemeralMessageId,
         '@type': constructor,
       };
 
@@ -370,7 +336,6 @@ class Message extends TdObject {
           other is Message &&
           const DeepCollectionEquality().equals(other.id, id) &&
           const DeepCollectionEquality().equals(other.senderId, senderId) &&
-          const DeepCollectionEquality().equals(other.receiverId, receiverId) &&
           const DeepCollectionEquality().equals(other.chatId, chatId) &&
           const DeepCollectionEquality()
               .equals(other.sendingState, sendingState) &&
@@ -388,11 +353,9 @@ class Message extends TdObject {
           const DeepCollectionEquality()
               .equals(other.isPaidStarSuggestedPost, isPaidStarSuggestedPost) &&
           const DeepCollectionEquality()
-              .equals(other.isPaidGramSuggestedPost, isPaidGramSuggestedPost) &&
+              .equals(other.isPaidTonSuggestedPost, isPaidTonSuggestedPost) &&
           const DeepCollectionEquality()
               .equals(other.containsUnreadMention, containsUnreadMention) &&
-          const DeepCollectionEquality()
-              .equals(other.containsUnreadPollVotes, containsUnreadPollVotes) &&
           const DeepCollectionEquality().equals(other.date, date) &&
           const DeepCollectionEquality().equals(other.editDate, editDate) &&
           const DeepCollectionEquality()
@@ -416,8 +379,6 @@ class Message extends TdObject {
           const DeepCollectionEquality()
               .equals(other.viaBotUserId, viaBotUserId) &&
           const DeepCollectionEquality()
-              .equals(other.guestBotCallerId, guestBotCallerId) &&
-          const DeepCollectionEquality()
               .equals(other.senderBusinessBotUserId, senderBusinessBotUserId) &&
           const DeepCollectionEquality()
               .equals(other.senderBoostCount, senderBoostCount) &&
@@ -435,16 +396,13 @@ class Message extends TdObject {
               .equals(other.summaryLanguageCode, summaryLanguageCode) &&
           const DeepCollectionEquality().equals(other.content, content) &&
           const DeepCollectionEquality()
-              .equals(other.replyMarkup, replyMarkup) &&
-          const DeepCollectionEquality()
-              .equals(other.ephemeralMessageId, ephemeralMessageId));
+              .equals(other.replyMarkup, replyMarkup));
 
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
         const DeepCollectionEquality().hash(id),
         const DeepCollectionEquality().hash(senderId),
-        const DeepCollectionEquality().hash(receiverId),
         const DeepCollectionEquality().hash(chatId),
         const DeepCollectionEquality().hash(sendingState),
         const DeepCollectionEquality().hash(schedulingState),
@@ -455,9 +413,8 @@ class Message extends TdObject {
         const DeepCollectionEquality().hash(hasTimestampedMedia),
         const DeepCollectionEquality().hash(isChannelPost),
         const DeepCollectionEquality().hash(isPaidStarSuggestedPost),
-        const DeepCollectionEquality().hash(isPaidGramSuggestedPost),
+        const DeepCollectionEquality().hash(isPaidTonSuggestedPost),
         const DeepCollectionEquality().hash(containsUnreadMention),
-        const DeepCollectionEquality().hash(containsUnreadPollVotes),
         const DeepCollectionEquality().hash(date),
         const DeepCollectionEquality().hash(editDate),
         const DeepCollectionEquality().hash(forwardInfo),
@@ -472,7 +429,6 @@ class Message extends TdObject {
         const DeepCollectionEquality().hash(selfDestructIn),
         const DeepCollectionEquality().hash(autoDeleteIn),
         const DeepCollectionEquality().hash(viaBotUserId),
-        const DeepCollectionEquality().hash(guestBotCallerId),
         const DeepCollectionEquality().hash(senderBusinessBotUserId),
         const DeepCollectionEquality().hash(senderBoostCount),
         const DeepCollectionEquality().hash(senderTag),
@@ -483,7 +439,6 @@ class Message extends TdObject {
         const DeepCollectionEquality().hash(restrictionInfo),
         const DeepCollectionEquality().hash(summaryLanguageCode),
         const DeepCollectionEquality().hash(content),
-        const DeepCollectionEquality().hash(replyMarkup),
-        const DeepCollectionEquality().hash(ephemeralMessageId)
+        const DeepCollectionEquality().hash(replyMarkup)
       ]);
 }

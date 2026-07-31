@@ -11,17 +11,12 @@ import '../tdapi.dart';
 class SearchChats extends TdFunction {
   const SearchChats({
     required this.query,
-    this.typeFilter,
     required this.limit,
   });
 
   /// [query] Query to search for. If the query is empty, returns up to 50
   /// recently found chats
   final String query;
-
-  /// [typeFilter] Additional filter for type of the chats to be returned; pass
-  /// null to search for chats of all types
-  final SearchChatTypeFilter? typeFilter;
 
   /// [limit] The maximum number of chats to be returned
   final int limit;
@@ -34,7 +29,6 @@ class SearchChats extends TdFunction {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'query': query,
-        'type_filter': typeFilter?.toJson(),
         'limit': limit,
         '@type': constructor,
       };
@@ -45,14 +39,12 @@ class SearchChats extends TdFunction {
       (other.runtimeType == runtimeType &&
           other is SearchChats &&
           const DeepCollectionEquality().equals(other.query, query) &&
-          const DeepCollectionEquality().equals(other.typeFilter, typeFilter) &&
           const DeepCollectionEquality().equals(other.limit, limit));
 
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
         const DeepCollectionEquality().hash(query),
-        const DeepCollectionEquality().hash(typeFilter),
         const DeepCollectionEquality().hash(limit)
       ]);
 }

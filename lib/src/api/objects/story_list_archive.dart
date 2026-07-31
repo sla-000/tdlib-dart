@@ -3,7 +3,7 @@ import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
 import '../tdapi.dart';
 
-/// The list of stories, shown in the Archive chat list
+/// The list of stories, shown in the Arvhive chat list
 @immutable
 class StoryListArchive extends StoryList {
   const StoryListArchive();

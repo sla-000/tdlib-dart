@@ -10,14 +10,9 @@ import '../tdapi.dart';
 @immutable
 class CheckAuthenticationPremiumPurchase extends TdFunction {
   const CheckAuthenticationPremiumPurchase({
-    required this.premiumDayCount,
     required this.currency,
     required this.amount,
   });
-
-  /// [premiumDayCount] The number of days for which the Telegram Premium
-  /// subscription will be granted
-  final int premiumDayCount;
 
   /// [currency] ISO 4217 currency code of the payment currency
   final String currency;
@@ -32,7 +27,6 @@ class CheckAuthenticationPremiumPurchase extends TdFunction {
 
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'premium_day_count': premiumDayCount,
         'currency': currency,
         'amount': amount,
         '@type': constructor,
@@ -43,15 +37,12 @@ class CheckAuthenticationPremiumPurchase extends TdFunction {
       identical(this, other) ||
       (other.runtimeType == runtimeType &&
           other is CheckAuthenticationPremiumPurchase &&
-          const DeepCollectionEquality()
-              .equals(other.premiumDayCount, premiumDayCount) &&
           const DeepCollectionEquality().equals(other.currency, currency) &&
           const DeepCollectionEquality().equals(other.amount, amount));
 
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
-        const DeepCollectionEquality().hash(premiumDayCount),
         const DeepCollectionEquality().hash(currency),
         const DeepCollectionEquality().hash(amount)
       ]);

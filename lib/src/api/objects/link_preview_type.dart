@@ -41,7 +41,6 @@ abstract class LinkPreviewType extends TdObject {
   /// [LinkPreviewTypeStoryAlbum]
   /// [LinkPreviewTypeStory]
   /// [LinkPreviewTypeSupergroupBoost]
-  /// [LinkPreviewTypeTextCompositionStyle]
   /// [LinkPreviewTypeTheme]
   /// [LinkPreviewTypeUnsupported]
   /// [LinkPreviewTypeUpgradedGift]
@@ -117,8 +116,6 @@ abstract class LinkPreviewType extends TdObject {
         return LinkPreviewTypeStoryAlbum.fromJson(json);
       case LinkPreviewTypeSupergroupBoost.constructor:
         return LinkPreviewTypeSupergroupBoost.fromJson(json);
-      case LinkPreviewTypeTextCompositionStyle.constructor:
-        return LinkPreviewTypeTextCompositionStyle.fromJson(json);
       case LinkPreviewTypeTheme.constructor:
         return LinkPreviewTypeTheme.fromJson(json);
       case LinkPreviewTypeUnsupported.constructor:

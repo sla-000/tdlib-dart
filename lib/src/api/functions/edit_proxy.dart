@@ -12,7 +12,6 @@ class EditProxy extends TdFunction {
     required this.proxyId,
     required this.proxy,
     required this.enable,
-    required this.comment,
   });
 
   /// [proxyId] Proxy identifier
@@ -24,9 +23,6 @@ class EditProxy extends TdFunction {
   /// [enable] Pass true to immediately enable the proxy
   final bool enable;
 
-  /// [comment] New comment for the proxy
-  final String comment;
-
   static const String constructor = 'editProxy';
 
   @override
@@ -37,7 +33,6 @@ class EditProxy extends TdFunction {
         'proxy_id': proxyId,
         'proxy': proxy.toJson(),
         'enable': enable,
-        'comment': comment,
         '@type': constructor,
       };
 
@@ -48,15 +43,13 @@ class EditProxy extends TdFunction {
           other is EditProxy &&
           const DeepCollectionEquality().equals(other.proxyId, proxyId) &&
           const DeepCollectionEquality().equals(other.proxy, proxy) &&
-          const DeepCollectionEquality().equals(other.enable, enable) &&
-          const DeepCollectionEquality().equals(other.comment, comment));
+          const DeepCollectionEquality().equals(other.enable, enable));
 
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
         const DeepCollectionEquality().hash(proxyId),
         const DeepCollectionEquality().hash(proxy),
-        const DeepCollectionEquality().hash(enable),
-        const DeepCollectionEquality().hash(comment)
+        const DeepCollectionEquality().hash(enable)
       ]);
 }

@@ -3,9 +3,7 @@ import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
 import '../tdapi.dart';
 
-/// Returns all active sessions of the current user. Additionally,
-/// getBusinessConnectedBot must be used to show the bot on top of active
-/// sessions
+/// Returns all active sessions of the current user
 /// Returns [Sessions]
 @immutable
 class GetActiveSessions extends TdFunction {

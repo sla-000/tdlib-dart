@@ -22,7 +22,7 @@ class ScopeNotificationSettings extends TdObject {
   final int muteFor;
 
   /// [soundId] Identifier of the notification sound to be played; 0 if sound is
-  /// disabled; pass -1 to use the app-dependent default sound
+  /// disabled
   final int soundId;
 
   /// [showPreview] True, if message content must be displayed in notifications
@@ -37,8 +37,7 @@ class ScopeNotificationSettings extends TdObject {
   final bool muteStories;
 
   /// [storySoundId] Identifier of the notification sound to be played for
-  /// stories; 0 if sound is disabled; pass -1 to use the app-dependent default
-  /// sound
+  /// stories; 0 if sound is disabled
   final int storySoundId;
 
   /// [showStoryPoster] True, if the chat that posted a story must be displayed

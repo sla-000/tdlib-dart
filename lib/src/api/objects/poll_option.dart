@@ -9,7 +9,7 @@ class PollOption extends TdObject {
   const PollOption({
     required this.id,
     required this.text,
-    this.media,
+    required this.media,
     required this.voterCount,
     required this.votePercentage,
     required this.recentVoterIds,
@@ -19,18 +19,17 @@ class PollOption extends TdObject {
     required this.additionDate,
   });
 
-  /// [id] Unique identifier of the option in the poll; may be empty if yet
-  /// unassigned
+  /// [id] Unique identifier of the option in the poll
   final String id;
 
   /// [text] Option text; 1-100 characters; may contain only custom emoji
   /// entities
   final FormattedText text;
 
-  /// [media] Option media; may be null if none. If present, currently, can be
-  /// only of the types pollMediaAnimation, pollMediaLink, pollMediaLocation,
-  /// pollMediaPhoto, pollMediaSticker, pollMediaVenue, or pollMediaVideo
-  final PollMedia? media;
+  /// [media] Option media. Currently, can be only of the types
+  /// messageAnimation, messageLocation, messagePhoto, messageSticker,
+  /// messageVenue, or messageVideo without caption
+  final MessageContent media;
 
   /// [voterCount] Number of voters for this option, available only for closed
   /// or voted polls, or if the current user is the creator of the poll
@@ -68,7 +67,7 @@ class PollOption extends TdObject {
     return PollOption(
       id: (json['id'] as String?) ?? '',
       text: FormattedText.fromJson(json['text'] as Map<String, dynamic>?)!,
-      media: PollMedia.fromJson(json['media'] as Map<String, dynamic>?),
+      media: MessageContent.fromJson(json['media'] as Map<String, dynamic>?)!,
       voterCount: (json['voter_count'] as int?) ?? 0,
       votePercentage: (json['vote_percentage'] as int?) ?? 0,
       recentVoterIds: List<MessageSender>.from(((json['recent_voter_ids']
@@ -90,7 +89,7 @@ class PollOption extends TdObject {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'id': id,
         'text': text.toJson(),
-        'media': media?.toJson(),
+        'media': media.toJson(),
         'voter_count': voterCount,
         'vote_percentage': votePercentage,
         'recent_voter_ids':

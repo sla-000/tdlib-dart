@@ -9,7 +9,6 @@ class InputPollTypeQuiz extends InputPollType {
   const InputPollTypeQuiz({
     required this.correctOptionIds,
     required this.explanation,
-    this.explanationMedia,
   });
 
   /// [correctOptionIds] Increasing list of 0-based identifiers of the correct
@@ -19,13 +18,6 @@ class InputPollTypeQuiz extends InputPollType {
   /// [explanation] Text that is shown when the user chooses an incorrect answer
   /// or taps on the lamp icon; 0-200 characters with at most 2 line feeds
   final FormattedText explanation;
-
-  /// [explanationMedia] Media that is shown when the user chooses an incorrect
-  /// answer or taps on the lamp icon; pass null if none. Must be one of the
-  /// following types: inputPollMediaAnimation, inputPollMediaAudio,
-  /// inputPollMediaDocument, inputPollMediaLocation, inputPollMediaPhoto,
-  /// inputPollMediaVenue, or inputPollMediaVideo without caption
-  final InputPollMedia? explanationMedia;
 
   static const String constructor = 'inputPollTypeQuiz';
 
@@ -42,8 +34,6 @@ class InputPollTypeQuiz extends InputPollType {
               .toList()),
       explanation:
           FormattedText.fromJson(json['explanation'] as Map<String, dynamic>?)!,
-      explanationMedia: InputPollMedia.fromJson(
-          json['explanation_media'] as Map<String, dynamic>?),
     );
   }
 
@@ -54,7 +44,6 @@ class InputPollTypeQuiz extends InputPollType {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'correct_option_ids': correctOptionIds.map((item) => item).toList(),
         'explanation': explanation.toJson(),
-        'explanation_media': explanationMedia?.toJson(),
         '@type': constructor,
       };
 
@@ -66,15 +55,12 @@ class InputPollTypeQuiz extends InputPollType {
           const DeepCollectionEquality()
               .equals(other.correctOptionIds, correctOptionIds) &&
           const DeepCollectionEquality()
-              .equals(other.explanation, explanation) &&
-          const DeepCollectionEquality()
-              .equals(other.explanationMedia, explanationMedia));
+              .equals(other.explanation, explanation));
 
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
         const DeepCollectionEquality().hash(correctOptionIds),
-        const DeepCollectionEquality().hash(explanation),
-        const DeepCollectionEquality().hash(explanationMedia)
+        const DeepCollectionEquality().hash(explanation)
       ]);
 }

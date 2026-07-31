@@ -7,14 +7,14 @@ import '../tdapi.dart';
 @immutable
 class ChatRevenueTransactions extends TdObject {
   const ChatRevenueTransactions({
-    required this.gramAmount,
+    required this.tonAmount,
     required this.transactions,
     required this.nextOffset,
   });
 
-  /// [gramAmount] The amount of owned TON Grams; in the smallest units of the
+  /// [tonAmount] The amount of owned Toncoins; in the smallest units of the
   /// cryptocurrency
-  final int gramAmount;
+  final int tonAmount;
 
   /// [transactions] List of transactions
   final List<ChatRevenueTransaction> transactions;
@@ -31,7 +31,7 @@ class ChatRevenueTransactions extends TdObject {
     }
 
     return ChatRevenueTransactions(
-      gramAmount: (json['gram_amount'] as int?) ?? 0,
+      tonAmount: (json['ton_amount'] as int?) ?? 0,
       transactions: List<ChatRevenueTransaction>.from(((json['transactions']
                   as List<dynamic>?) ??
               <dynamic>[])
@@ -47,7 +47,7 @@ class ChatRevenueTransactions extends TdObject {
 
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'gram_amount': gramAmount,
+        'ton_amount': tonAmount,
         'transactions': transactions.map((item) => item.toJson()).toList(),
         'next_offset': nextOffset,
         '@type': constructor,
@@ -58,7 +58,7 @@ class ChatRevenueTransactions extends TdObject {
       identical(this, other) ||
       (other.runtimeType == runtimeType &&
           other is ChatRevenueTransactions &&
-          const DeepCollectionEquality().equals(other.gramAmount, gramAmount) &&
+          const DeepCollectionEquality().equals(other.tonAmount, tonAmount) &&
           const DeepCollectionEquality()
               .equals(other.transactions, transactions) &&
           const DeepCollectionEquality().equals(other.nextOffset, nextOffset));
@@ -66,7 +66,7 @@ class ChatRevenueTransactions extends TdObject {
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
-        const DeepCollectionEquality().hash(gramAmount),
+        const DeepCollectionEquality().hash(tonAmount),
         const DeepCollectionEquality().hash(transactions),
         const DeepCollectionEquality().hash(nextOffset)
       ]);

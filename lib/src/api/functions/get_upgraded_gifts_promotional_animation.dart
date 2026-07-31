@@ -3,7 +3,7 @@ import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
 import '../tdapi.dart';
 
-/// Returns promotional animation for upgraded gifts
+/// Returns promotional anumation for upgraded gifts
 /// Returns [Animation]
 @immutable
 class GetUpgradedGiftsPromotionalAnimation extends TdFunction {

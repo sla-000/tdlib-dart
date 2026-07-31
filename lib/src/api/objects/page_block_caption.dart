@@ -8,14 +8,14 @@ import '../tdapi.dart';
 class PageBlockCaption extends TdObject {
   const PageBlockCaption({
     required this.text,
-    this.credit,
+    required this.credit,
   });
 
   /// [text] Content of the caption
   final RichText text;
 
-  /// [credit] Block credit (like HTML tag <cite>); may be null if none
-  final RichText? credit;
+  /// [credit] Block credit (like HTML tag <cite>)
+  final RichText credit;
 
   static const String constructor = 'pageBlockCaption';
 
@@ -26,7 +26,7 @@ class PageBlockCaption extends TdObject {
 
     return PageBlockCaption(
       text: RichText.fromJson(json['text'] as Map<String, dynamic>?)!,
-      credit: RichText.fromJson(json['credit'] as Map<String, dynamic>?),
+      credit: RichText.fromJson(json['credit'] as Map<String, dynamic>?)!,
     );
   }
 
@@ -36,7 +36,7 @@ class PageBlockCaption extends TdObject {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'text': text.toJson(),
-        'credit': credit?.toJson(),
+        'credit': credit.toJson(),
         '@type': constructor,
       };
 

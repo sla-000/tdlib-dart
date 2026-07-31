@@ -14,7 +14,7 @@ class InputMessageDice extends InputMessageContent {
   /// [emoji] Emoji on which the dice throw animation is based
   final String emoji;
 
-  /// [clearDraft] Pass true to delete message draft in the chat
+  /// [clearDraft] True, if the chat message draft must be deleted
   final bool clearDraft;
 
   static const String constructor = 'inputMessageDice';

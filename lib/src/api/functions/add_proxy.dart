@@ -11,7 +11,6 @@ class AddProxy extends TdFunction {
   const AddProxy({
     required this.proxy,
     required this.enable,
-    required this.comment,
   });
 
   /// [proxy] The proxy to add
@@ -19,9 +18,6 @@ class AddProxy extends TdFunction {
 
   /// [enable] Pass true to immediately enable the proxy
   final bool enable;
-
-  /// [comment] Comment to set for the proxy
-  final String comment;
 
   static const String constructor = 'addProxy';
 
@@ -32,7 +28,6 @@ class AddProxy extends TdFunction {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'proxy': proxy.toJson(),
         'enable': enable,
-        'comment': comment,
         '@type': constructor,
       };
 
@@ -42,14 +37,12 @@ class AddProxy extends TdFunction {
       (other.runtimeType == runtimeType &&
           other is AddProxy &&
           const DeepCollectionEquality().equals(other.proxy, proxy) &&
-          const DeepCollectionEquality().equals(other.enable, enable) &&
-          const DeepCollectionEquality().equals(other.comment, comment));
+          const DeepCollectionEquality().equals(other.enable, enable));
 
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
         const DeepCollectionEquality().hash(proxy),
-        const DeepCollectionEquality().hash(enable),
-        const DeepCollectionEquality().hash(comment)
+        const DeepCollectionEquality().hash(enable)
       ]);
 }
