@@ -16,7 +16,7 @@ class StarSubscriptionTypeChannel extends StarSubscriptionType {
   final bool canReuse;
 
   /// [inviteLink] The invite link that can be used to renew the subscription if
-  /// it has expired; may be empty if the link isn't available anymore
+  /// it has been expired; may be empty, if the link isn't available anymore
   final String inviteLink;
 
   static const String constructor = 'starSubscriptionTypeChannel';

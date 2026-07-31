@@ -3,20 +3,19 @@ import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
 import '../tdapi.dart';
 
-/// Represents a list of TON Gram transactions
+/// Represents a list of Toncoin transactions
 @immutable
 class TonTransactions extends TdObject {
   const TonTransactions({
-    required this.gramAmount,
+    required this.tonAmount,
     required this.transactions,
     required this.nextOffset,
   });
 
-  /// [gramAmount] The total amount of owned Grams, in the smallest units of the
-  /// cryptocurrency
-  final int gramAmount;
+  /// [tonAmount] The total amount of owned Toncoins
+  final int tonAmount;
 
-  /// [transactions] List of Gram transactions
+  /// [transactions] List of Toncoin transactions
   final List<TonTransaction> transactions;
 
   /// [nextOffset] The offset for the next request. If empty, then there are no
@@ -31,7 +30,7 @@ class TonTransactions extends TdObject {
     }
 
     return TonTransactions(
-      gramAmount: (json['gram_amount'] as int?) ?? 0,
+      tonAmount: (json['ton_amount'] as int?) ?? 0,
       transactions: List<TonTransaction>.from(((json['transactions']
                   as List<dynamic>?) ??
               <dynamic>[])
@@ -46,7 +45,7 @@ class TonTransactions extends TdObject {
 
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'gram_amount': gramAmount,
+        'ton_amount': tonAmount,
         'transactions': transactions.map((item) => item.toJson()).toList(),
         'next_offset': nextOffset,
         '@type': constructor,
@@ -57,7 +56,7 @@ class TonTransactions extends TdObject {
       identical(this, other) ||
       (other.runtimeType == runtimeType &&
           other is TonTransactions &&
-          const DeepCollectionEquality().equals(other.gramAmount, gramAmount) &&
+          const DeepCollectionEquality().equals(other.tonAmount, tonAmount) &&
           const DeepCollectionEquality()
               .equals(other.transactions, transactions) &&
           const DeepCollectionEquality().equals(other.nextOffset, nextOffset));
@@ -65,7 +64,7 @@ class TonTransactions extends TdObject {
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
-        const DeepCollectionEquality().hash(gramAmount),
+        const DeepCollectionEquality().hash(tonAmount),
         const DeepCollectionEquality().hash(transactions),
         const DeepCollectionEquality().hash(nextOffset)
       ]);

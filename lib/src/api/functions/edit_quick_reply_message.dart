@@ -28,7 +28,7 @@ class EditQuickReplyMessage extends TdFunction {
   /// [inputMessageContent] New content of the message. Must be one of the
   /// following types: inputMessageAnimation, inputMessageAudio,
   /// inputMessageChecklist, inputMessageDocument, inputMessagePhoto,
-  /// inputMessageRichMessage, inputMessageText, or inputMessageVideo
+  /// inputMessageText, or inputMessageVideo
   final InputMessageContent inputMessageContent;
 
   static const String constructor = 'editQuickReplyMessage';

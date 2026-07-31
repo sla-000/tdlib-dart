@@ -8,14 +8,14 @@ import '../tdapi.dart';
 class PageBlockAudio extends PageBlock {
   const PageBlockAudio({
     this.audio,
-    this.caption,
+    required this.caption,
   });
 
   /// [audio] Audio file; may be null
   final Audio? audio;
 
-  /// [caption] Audio file caption; may be null if none
-  final PageBlockCaption? caption;
+  /// [caption] Audio file caption
+  final PageBlockCaption caption;
 
   static const String constructor = 'pageBlockAudio';
 
@@ -27,7 +27,7 @@ class PageBlockAudio extends PageBlock {
     return PageBlockAudio(
       audio: Audio.fromJson(json['audio'] as Map<String, dynamic>?),
       caption:
-          PageBlockCaption.fromJson(json['caption'] as Map<String, dynamic>?),
+          PageBlockCaption.fromJson(json['caption'] as Map<String, dynamic>?)!,
     );
   }
 
@@ -37,7 +37,7 @@ class PageBlockAudio extends PageBlock {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'audio': audio?.toJson(),
-        'caption': caption?.toJson(),
+        'caption': caption.toJson(),
         '@type': constructor,
       };
 

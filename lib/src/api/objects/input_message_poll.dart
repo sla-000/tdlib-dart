@@ -40,10 +40,10 @@ class InputMessagePoll extends InputMessageContent {
   final FormattedText? description;
 
   /// [media] Media attached to the poll; pass null if none. Must be one of the
-  /// following types: inputPollMediaAnimation, inputPollMediaAudio,
-  /// inputPollMediaDocument, inputPollMediaLocation, inputPollMediaPhoto,
-  /// inputPollMediaVenue, or inputPollMediaVideo without caption
-  final InputPollMedia? media;
+  /// following types: inputMessageAnimation, inputMessageAudio,
+  /// inputMessageDocument, non-live inputMessageLocation, inputMessagePhoto,
+  /// inputMessageVenue, or inputMessageVideo without caption
+  final InputMessageContent? media;
 
   /// [isAnonymous] True, if the poll voters are anonymous. Non-anonymous polls
   /// can't be sent or forwarded to channels
@@ -107,7 +107,8 @@ class InputMessagePoll extends InputMessageContent {
               .toList()),
       description:
           FormattedText.fromJson(json['description'] as Map<String, dynamic>?),
-      media: InputPollMedia.fromJson(json['media'] as Map<String, dynamic>?),
+      media:
+          InputMessageContent.fromJson(json['media'] as Map<String, dynamic>?),
       isAnonymous: (json['is_anonymous'] as bool?) ?? false,
       allowsMultipleAnswers:
           (json['allows_multiple_answers'] as bool?) ?? false,

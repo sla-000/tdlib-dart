@@ -16,10 +16,10 @@ class InputPollOption extends TdObject {
   final FormattedText text;
 
   /// [media] Option media; pass null if none; ignored in addPollOption. Must be
-  /// one of the following types: inputPollMediaAnimation, inputPollMediaLink,
-  /// inputPollMediaLocation, inputPollMediaPhoto, inputPollMediaSticker,
-  /// inputPollMediaVenue, or inputPollMediaVideo without caption
-  final InputPollMedia? media;
+  /// one of the following types: inputMessageAnimation, non-live
+  /// inputMessageLocation, inputMessagePhoto, inputMessageSticker,
+  /// inputMessageVenue, or inputMessageVideo without caption
+  final InputMessageContent? media;
 
   static const String constructor = 'inputPollOption';
 
@@ -30,7 +30,8 @@ class InputPollOption extends TdObject {
 
     return InputPollOption(
       text: FormattedText.fromJson(json['text'] as Map<String, dynamic>?)!,
-      media: InputPollMedia.fromJson(json['media'] as Map<String, dynamic>?),
+      media:
+          InputMessageContent.fromJson(json['media'] as Map<String, dynamic>?),
     );
   }
 

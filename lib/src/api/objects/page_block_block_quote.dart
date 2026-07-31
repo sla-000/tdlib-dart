@@ -7,15 +7,15 @@ import '../tdapi.dart';
 @immutable
 class PageBlockBlockQuote extends PageBlock {
   const PageBlockBlockQuote({
-    required this.blocks,
-    this.credit,
+    required this.text,
+    required this.credit,
   });
 
-  /// [blocks] Quote blocks
-  final List<PageBlock> blocks;
+  /// [text] Quote text
+  final RichText text;
 
-  /// [credit] Quote credit; may be null if none
-  final RichText? credit;
+  /// [credit] Quote credit
+  final RichText credit;
 
   static const String constructor = 'pageBlockBlockQuote';
 
@@ -25,11 +25,8 @@ class PageBlockBlockQuote extends PageBlock {
     }
 
     return PageBlockBlockQuote(
-      blocks: List<PageBlock>.from(
-          ((json['blocks'] as List<dynamic>?) ?? <dynamic>[])
-              .map((item) => PageBlock.fromJson(item as Map<String, dynamic>?))
-              .toList()),
-      credit: RichText.fromJson(json['credit'] as Map<String, dynamic>?),
+      text: RichText.fromJson(json['text'] as Map<String, dynamic>?)!,
+      credit: RichText.fromJson(json['credit'] as Map<String, dynamic>?)!,
     );
   }
 
@@ -38,8 +35,8 @@ class PageBlockBlockQuote extends PageBlock {
 
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'blocks': blocks.map((item) => item.toJson()).toList(),
-        'credit': credit?.toJson(),
+        'text': text.toJson(),
+        'credit': credit.toJson(),
         '@type': constructor,
       };
 
@@ -48,13 +45,13 @@ class PageBlockBlockQuote extends PageBlock {
       identical(this, other) ||
       (other.runtimeType == runtimeType &&
           other is PageBlockBlockQuote &&
-          const DeepCollectionEquality().equals(other.blocks, blocks) &&
+          const DeepCollectionEquality().equals(other.text, text) &&
           const DeepCollectionEquality().equals(other.credit, credit));
 
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
-        const DeepCollectionEquality().hash(blocks),
+        const DeepCollectionEquality().hash(text),
         const DeepCollectionEquality().hash(credit)
       ]);
 }

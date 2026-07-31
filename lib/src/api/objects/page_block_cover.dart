@@ -3,7 +3,7 @@ import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
 import '../tdapi.dart';
 
-/// A page cover; instant view only
+/// A page cover
 @immutable
 class PageBlockCover extends PageBlock {
   const PageBlockCover({

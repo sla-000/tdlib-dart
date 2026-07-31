@@ -3,7 +3,7 @@ import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
 import '../tdapi.dart';
 
-/// Revokes invite link for a chat. Available in basic groups, supergroups,
+/// Revokes invite link for a chat. Available for basic groups, supergroups,
 /// and channels. Requires administrator privileges and can_invite_users right
 /// in the chat for own links and owner privileges for other links. If a
 /// primary link is revoked, then additionally to the revoked link returns new

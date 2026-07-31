@@ -14,7 +14,7 @@ class Session extends TdObject {
     required this.isUnconfirmed,
     required this.canAcceptSecretChats,
     required this.canAcceptCalls,
-    required this.deviceType,
+    required this.type,
     required this.apiId,
     required this.applicationName,
     required this.applicationVersion,
@@ -48,9 +48,9 @@ class Session extends TdObject {
   /// [canAcceptCalls] True, if incoming calls can be accepted by the session
   final bool canAcceptCalls;
 
-  /// [deviceType] Session device type based on the system and application
-  /// version, which can be used to display a corresponding icon
-  final SessionDeviceType deviceType;
+  /// [type] Session type based on the system and application version, which can
+  /// be used to display a corresponding icon
+  final SessionType type;
 
   /// [apiId] Telegram API identifier, as provided by the application
   final int apiId;
@@ -110,8 +110,7 @@ class Session extends TdObject {
       isUnconfirmed: (json['is_unconfirmed'] as bool?) ?? false,
       canAcceptSecretChats: (json['can_accept_secret_chats'] as bool?) ?? false,
       canAcceptCalls: (json['can_accept_calls'] as bool?) ?? false,
-      deviceType: SessionDeviceType.fromJson(
-          json['device_type'] as Map<String, dynamic>?)!,
+      type: SessionType.fromJson(json['type'] as Map<String, dynamic>?)!,
       apiId: (json['api_id'] as int?) ?? 0,
       applicationName: (json['application_name'] as String?) ?? '',
       applicationVersion: (json['application_version'] as String?) ?? '',
@@ -138,7 +137,7 @@ class Session extends TdObject {
         'is_unconfirmed': isUnconfirmed,
         'can_accept_secret_chats': canAcceptSecretChats,
         'can_accept_calls': canAcceptCalls,
-        'device_type': deviceType.toJson(),
+        'type': type.toJson(),
         'api_id': apiId,
         'application_name': applicationName,
         'application_version': applicationVersion,
@@ -168,7 +167,7 @@ class Session extends TdObject {
               .equals(other.canAcceptSecretChats, canAcceptSecretChats) &&
           const DeepCollectionEquality()
               .equals(other.canAcceptCalls, canAcceptCalls) &&
-          const DeepCollectionEquality().equals(other.deviceType, deviceType) &&
+          const DeepCollectionEquality().equals(other.type, type) &&
           const DeepCollectionEquality().equals(other.apiId, apiId) &&
           const DeepCollectionEquality()
               .equals(other.applicationName, applicationName) &&
@@ -196,7 +195,7 @@ class Session extends TdObject {
         const DeepCollectionEquality().hash(isUnconfirmed),
         const DeepCollectionEquality().hash(canAcceptSecretChats),
         const DeepCollectionEquality().hash(canAcceptCalls),
-        const DeepCollectionEquality().hash(deviceType),
+        const DeepCollectionEquality().hash(type),
         const DeepCollectionEquality().hash(apiId),
         const DeepCollectionEquality().hash(applicationName),
         const DeepCollectionEquality().hash(applicationVersion),

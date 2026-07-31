@@ -7,15 +7,15 @@ import '../tdapi.dart';
 @immutable
 class PageBlockSlideshow extends PageBlock {
   const PageBlockSlideshow({
-    required this.blocks,
-    this.caption,
+    required this.pageBlocks,
+    required this.caption,
   });
 
-  /// [blocks] Slideshow item contents
-  final List<PageBlock> blocks;
+  /// [pageBlocks] Slideshow item contents
+  final List<PageBlock> pageBlocks;
 
-  /// [caption] Block caption; may be null if none
-  final PageBlockCaption? caption;
+  /// [caption] Block caption
+  final PageBlockCaption caption;
 
   static const String constructor = 'pageBlockSlideshow';
 
@@ -25,12 +25,12 @@ class PageBlockSlideshow extends PageBlock {
     }
 
     return PageBlockSlideshow(
-      blocks: List<PageBlock>.from(
-          ((json['blocks'] as List<dynamic>?) ?? <dynamic>[])
+      pageBlocks: List<PageBlock>.from(
+          ((json['page_blocks'] as List<dynamic>?) ?? <dynamic>[])
               .map((item) => PageBlock.fromJson(item as Map<String, dynamic>?))
               .toList()),
       caption:
-          PageBlockCaption.fromJson(json['caption'] as Map<String, dynamic>?),
+          PageBlockCaption.fromJson(json['caption'] as Map<String, dynamic>?)!,
     );
   }
 
@@ -39,8 +39,8 @@ class PageBlockSlideshow extends PageBlock {
 
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'blocks': blocks.map((item) => item.toJson()).toList(),
-        'caption': caption?.toJson(),
+        'page_blocks': pageBlocks.map((item) => item.toJson()).toList(),
+        'caption': caption.toJson(),
         '@type': constructor,
       };
 
@@ -49,13 +49,13 @@ class PageBlockSlideshow extends PageBlock {
       identical(this, other) ||
       (other.runtimeType == runtimeType &&
           other is PageBlockSlideshow &&
-          const DeepCollectionEquality().equals(other.blocks, blocks) &&
+          const DeepCollectionEquality().equals(other.pageBlocks, pageBlocks) &&
           const DeepCollectionEquality().equals(other.caption, caption));
 
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
-        const DeepCollectionEquality().hash(blocks),
+        const DeepCollectionEquality().hash(pageBlocks),
         const DeepCollectionEquality().hash(caption)
       ]);
 }

@@ -3,7 +3,7 @@ import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
 import '../tdapi.dart';
 
-/// An embedded post; instant view only
+/// An embedded post
 @immutable
 class PageBlockEmbeddedPost extends PageBlock {
   const PageBlockEmbeddedPost({
@@ -11,8 +11,8 @@ class PageBlockEmbeddedPost extends PageBlock {
     required this.author,
     this.authorPhoto,
     required this.date,
-    required this.blocks,
-    this.caption,
+    required this.pageBlocks,
+    required this.caption,
   });
 
   /// [url] URL of the embedded post
@@ -28,11 +28,11 @@ class PageBlockEmbeddedPost extends PageBlock {
   /// unknown
   final int date;
 
-  /// [blocks] Post content
-  final List<PageBlock> blocks;
+  /// [pageBlocks] Post content
+  final List<PageBlock> pageBlocks;
 
-  /// [caption] Post caption; may be null if none
-  final PageBlockCaption? caption;
+  /// [caption] Post caption
+  final PageBlockCaption caption;
 
   static const String constructor = 'pageBlockEmbeddedPost';
 
@@ -47,12 +47,12 @@ class PageBlockEmbeddedPost extends PageBlock {
       authorPhoto:
           Photo.fromJson(json['author_photo'] as Map<String, dynamic>?),
       date: (json['date'] as int?) ?? 0,
-      blocks: List<PageBlock>.from(
-          ((json['blocks'] as List<dynamic>?) ?? <dynamic>[])
+      pageBlocks: List<PageBlock>.from(
+          ((json['page_blocks'] as List<dynamic>?) ?? <dynamic>[])
               .map((item) => PageBlock.fromJson(item as Map<String, dynamic>?))
               .toList()),
       caption:
-          PageBlockCaption.fromJson(json['caption'] as Map<String, dynamic>?),
+          PageBlockCaption.fromJson(json['caption'] as Map<String, dynamic>?)!,
     );
   }
 
@@ -65,8 +65,8 @@ class PageBlockEmbeddedPost extends PageBlock {
         'author': author,
         'author_photo': authorPhoto?.toJson(),
         'date': date,
-        'blocks': blocks.map((item) => item.toJson()).toList(),
-        'caption': caption?.toJson(),
+        'page_blocks': pageBlocks.map((item) => item.toJson()).toList(),
+        'caption': caption.toJson(),
         '@type': constructor,
       };
 
@@ -80,7 +80,7 @@ class PageBlockEmbeddedPost extends PageBlock {
           const DeepCollectionEquality()
               .equals(other.authorPhoto, authorPhoto) &&
           const DeepCollectionEquality().equals(other.date, date) &&
-          const DeepCollectionEquality().equals(other.blocks, blocks) &&
+          const DeepCollectionEquality().equals(other.pageBlocks, pageBlocks) &&
           const DeepCollectionEquality().equals(other.caption, caption));
 
   @override
@@ -90,7 +90,7 @@ class PageBlockEmbeddedPost extends PageBlock {
         const DeepCollectionEquality().hash(author),
         const DeepCollectionEquality().hash(authorPhoto),
         const DeepCollectionEquality().hash(date),
-        const DeepCollectionEquality().hash(blocks),
+        const DeepCollectionEquality().hash(pageBlocks),
         const DeepCollectionEquality().hash(caption)
       ]);
 }

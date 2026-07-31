@@ -13,7 +13,6 @@ class Poll extends TdObject {
     required this.totalVoterCount,
     required this.recentVoterIds,
     required this.canGetVoters,
-    required this.canSeeResults,
     required this.isAnonymous,
     required this.allowsMultipleAnswers,
     required this.allowsRevoting,
@@ -47,9 +46,6 @@ class Poll extends TdObject {
   /// [canGetVoters] True, if the current user can get voters in the poll using
   /// getPollVoters
   final bool canGetVoters;
-
-  /// [canSeeResults] True, if the current user can see results of the poll
-  final bool canSeeResults;
 
   /// [isAnonymous] True, if the poll is anonymous
   final bool isAnonymous;
@@ -117,7 +113,6 @@ class Poll extends TdObject {
           .map((item) => MessageSender.fromJson(item as Map<String, dynamic>?))
           .toList()),
       canGetVoters: (json['can_get_voters'] as bool?) ?? false,
-      canSeeResults: (json['can_see_results'] as bool?) ?? false,
       isAnonymous: (json['is_anonymous'] as bool?) ?? false,
       allowsMultipleAnswers:
           (json['allows_multiple_answers'] as bool?) ?? false,
@@ -153,7 +148,6 @@ class Poll extends TdObject {
         'recent_voter_ids':
             recentVoterIds.map((item) => item.toJson()).toList(),
         'can_get_voters': canGetVoters,
-        'can_see_results': canSeeResults,
         'is_anonymous': isAnonymous,
         'allows_multiple_answers': allowsMultipleAnswers,
         'allows_revoting': allowsRevoting,
@@ -183,8 +177,6 @@ class Poll extends TdObject {
           const DeepCollectionEquality()
               .equals(other.canGetVoters, canGetVoters) &&
           const DeepCollectionEquality()
-              .equals(other.canSeeResults, canSeeResults) &&
-          const DeepCollectionEquality()
               .equals(other.isAnonymous, isAnonymous) &&
           const DeepCollectionEquality()
               .equals(other.allowsMultipleAnswers, allowsMultipleAnswers) &&
@@ -212,7 +204,6 @@ class Poll extends TdObject {
         const DeepCollectionEquality().hash(totalVoterCount),
         const DeepCollectionEquality().hash(recentVoterIds),
         const DeepCollectionEquality().hash(canGetVoters),
-        const DeepCollectionEquality().hash(canSeeResults),
         const DeepCollectionEquality().hash(isAnonymous),
         const DeepCollectionEquality().hash(allowsMultipleAnswers),
         const DeepCollectionEquality().hash(allowsRevoting),

@@ -17,7 +17,6 @@ class UserTypeBot extends UserType {
     required this.isInline,
     required this.inlineQueryPlaceholder,
     required this.supportsGuestQueries,
-    required this.isGuard,
     required this.needLocation,
     required this.canConnectToBusiness,
     required this.canBeAddedToAttachmentMenu,
@@ -63,9 +62,6 @@ class UserTypeBot extends UserType {
   /// any non-secret chat
   final bool supportsGuestQueries;
 
-  /// [isGuard] True, if the bot can be set as a guard bot in supergroup chats
-  final bool isGuard;
-
   /// [needLocation] True, if the location of the user is expected to be sent
   /// with every inline query to this bot
   final bool needLocation;
@@ -102,7 +98,6 @@ class UserTypeBot extends UserType {
       inlineQueryPlaceholder:
           (json['inline_query_placeholder'] as String?) ?? '',
       supportsGuestQueries: (json['supports_guest_queries'] as bool?) ?? false,
-      isGuard: (json['is_guard'] as bool?) ?? false,
       needLocation: (json['need_location'] as bool?) ?? false,
       canConnectToBusiness: (json['can_connect_to_business'] as bool?) ?? false,
       canBeAddedToAttachmentMenu:
@@ -126,7 +121,6 @@ class UserTypeBot extends UserType {
         'is_inline': isInline,
         'inline_query_placeholder': inlineQueryPlaceholder,
         'supports_guest_queries': supportsGuestQueries,
-        'is_guard': isGuard,
         'need_location': needLocation,
         'can_connect_to_business': canConnectToBusiness,
         'can_be_added_to_attachment_menu': canBeAddedToAttachmentMenu,
@@ -157,7 +151,6 @@ class UserTypeBot extends UserType {
               .equals(other.inlineQueryPlaceholder, inlineQueryPlaceholder) &&
           const DeepCollectionEquality()
               .equals(other.supportsGuestQueries, supportsGuestQueries) &&
-          const DeepCollectionEquality().equals(other.isGuard, isGuard) &&
           const DeepCollectionEquality()
               .equals(other.needLocation, needLocation) &&
           const DeepCollectionEquality()
@@ -180,7 +173,6 @@ class UserTypeBot extends UserType {
         const DeepCollectionEquality().hash(isInline),
         const DeepCollectionEquality().hash(inlineQueryPlaceholder),
         const DeepCollectionEquality().hash(supportsGuestQueries),
-        const DeepCollectionEquality().hash(isGuard),
         const DeepCollectionEquality().hash(needLocation),
         const DeepCollectionEquality().hash(canConnectToBusiness),
         const DeepCollectionEquality().hash(canBeAddedToAttachmentMenu),

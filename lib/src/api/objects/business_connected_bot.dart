@@ -3,7 +3,7 @@ import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
 import '../tdapi.dart';
 
-/// Describes a business bot connected to an account
+/// Describes a bot connected to a business account
 @immutable
 class BusinessConnectedBot extends TdObject {
   const BusinessConnectedBot({

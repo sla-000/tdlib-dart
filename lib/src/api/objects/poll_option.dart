@@ -28,9 +28,9 @@ class PollOption extends TdObject {
   final FormattedText text;
 
   /// [media] Option media; may be null if none. If present, currently, can be
-  /// only of the types pollMediaAnimation, pollMediaLink, pollMediaLocation,
-  /// pollMediaPhoto, pollMediaSticker, pollMediaVenue, or pollMediaVideo
-  final PollMedia? media;
+  /// only of the types messageAnimation, messageLocation, messagePhoto,
+  /// messageSticker, messageVenue, or messageVideo without caption
+  final MessageContent? media;
 
   /// [voterCount] Number of voters for this option, available only for closed
   /// or voted polls, or if the current user is the creator of the poll
@@ -68,7 +68,7 @@ class PollOption extends TdObject {
     return PollOption(
       id: (json['id'] as String?) ?? '',
       text: FormattedText.fromJson(json['text'] as Map<String, dynamic>?)!,
-      media: PollMedia.fromJson(json['media'] as Map<String, dynamic>?),
+      media: MessageContent.fromJson(json['media'] as Map<String, dynamic>?),
       voterCount: (json['voter_count'] as int?) ?? 0,
       votePercentage: (json['vote_percentage'] as int?) ?? 0,
       recentVoterIds: List<MessageSender>.from(((json['recent_voter_ids']

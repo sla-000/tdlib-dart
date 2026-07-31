@@ -7,14 +7,14 @@ import '../tdapi.dart';
 @immutable
 class PageBlockTable extends PageBlock {
   const PageBlockTable({
-    this.caption,
+    required this.caption,
     required this.cells,
     required this.isBordered,
     required this.isStriped,
   });
 
-  /// [caption] Table caption; may be null if none
-  final RichText? caption;
+  /// [caption] Table caption
+  final RichText caption;
 
   /// [cells] Table cells
   final List<List<PageBlockTableCell>> cells;
@@ -33,7 +33,7 @@ class PageBlockTable extends PageBlock {
     }
 
     return PageBlockTable(
-      caption: RichText.fromJson(json['caption'] as Map<String, dynamic>?),
+      caption: RichText.fromJson(json['caption'] as Map<String, dynamic>?)!,
       cells: List<List<PageBlockTableCell>>.from(
           ((json['cells'] as List<dynamic>?) ?? <dynamic>[])
               .map((item) => List<PageBlockTableCell>.from(
@@ -52,7 +52,7 @@ class PageBlockTable extends PageBlock {
 
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'caption': caption?.toJson(),
+        'caption': caption.toJson(),
         'cells': cells
             .map((item) => item.map((item) => item.toJson()).toList())
             .toList(),

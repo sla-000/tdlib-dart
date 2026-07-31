@@ -14,8 +14,8 @@ class WebAppInfo extends TdObject {
   /// [launchId] Unique identifier for the Web App launch
   final int launchId;
 
-  /// [url] The Web App URL to open in a web view
-  final WebAppUrl url;
+  /// [url] A Web App URL to open in a web view
+  final String url;
 
   static const String constructor = 'webAppInfo';
 
@@ -29,7 +29,7 @@ class WebAppInfo extends TdObject {
               ? json['launch_id'] as int
               : int.tryParse(json['launch_id']?.toString() ?? '')) ??
           0,
-      url: WebAppUrl.fromJson(json['url'] as Map<String, dynamic>?)!,
+      url: (json['url'] as String?) ?? '',
     );
   }
 
@@ -39,7 +39,7 @@ class WebAppInfo extends TdObject {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'launch_id': launchId.toString(),
-        'url': url.toJson(),
+        'url': url,
         '@type': constructor,
       };
 

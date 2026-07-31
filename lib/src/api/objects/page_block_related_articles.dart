@@ -3,7 +3,7 @@ import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
 import '../tdapi.dart';
 
-/// Related articles; instant view only
+/// Related articles
 @immutable
 class PageBlockRelatedArticles extends PageBlock {
   const PageBlockRelatedArticles({

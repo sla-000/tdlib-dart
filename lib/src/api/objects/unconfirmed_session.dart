@@ -7,18 +7,17 @@ import '../tdapi.dart';
 @immutable
 class UnconfirmedSession extends TdObject {
   const UnconfirmedSession({
-    required this.type,
-    required this.date,
+    required this.id,
+    required this.logInDate,
     required this.deviceModel,
     required this.location,
   });
 
-  /// [type] Session type
-  final SessionType type;
+  /// [id] Session identifier
+  final int id;
 
-  /// [date] Point in time (Unix timestamp) when the user has logged in or the
-  /// business bot was connected
-  final int date;
+  /// [logInDate] Point in time (Unix timestamp) when the user has logged in
+  final int logInDate;
 
   /// [deviceModel] Model of the device that was used for the session creation,
   /// as provided by the application
@@ -36,8 +35,11 @@ class UnconfirmedSession extends TdObject {
     }
 
     return UnconfirmedSession(
-      type: SessionType.fromJson(json['type'] as Map<String, dynamic>?)!,
-      date: (json['date'] as int?) ?? 0,
+      id: (json['id'] is int
+              ? json['id'] as int
+              : int.tryParse(json['id']?.toString() ?? '')) ??
+          0,
+      logInDate: (json['log_in_date'] as int?) ?? 0,
       deviceModel: (json['device_model'] as String?) ?? '',
       location: (json['location'] as String?) ?? '',
     );
@@ -48,8 +50,8 @@ class UnconfirmedSession extends TdObject {
 
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'type': type.toJson(),
-        'date': date,
+        'id': id.toString(),
+        'log_in_date': logInDate,
         'device_model': deviceModel,
         'location': location,
         '@type': constructor,
@@ -60,8 +62,8 @@ class UnconfirmedSession extends TdObject {
       identical(this, other) ||
       (other.runtimeType == runtimeType &&
           other is UnconfirmedSession &&
-          const DeepCollectionEquality().equals(other.type, type) &&
-          const DeepCollectionEquality().equals(other.date, date) &&
+          const DeepCollectionEquality().equals(other.id, id) &&
+          const DeepCollectionEquality().equals(other.logInDate, logInDate) &&
           const DeepCollectionEquality()
               .equals(other.deviceModel, deviceModel) &&
           const DeepCollectionEquality().equals(other.location, location));
@@ -69,8 +71,8 @@ class UnconfirmedSession extends TdObject {
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
-        const DeepCollectionEquality().hash(type),
-        const DeepCollectionEquality().hash(date),
+        const DeepCollectionEquality().hash(id),
+        const DeepCollectionEquality().hash(logInDate),
         const DeepCollectionEquality().hash(deviceModel),
         const DeepCollectionEquality().hash(location)
       ]);

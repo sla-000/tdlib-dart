@@ -3,10 +3,10 @@ import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
 import '../tdapi.dart';
 
-/// Re-adds quick reply messages which failed to add. Can be called only for
+/// Readds quick reply messages which failed to add. Can be called only for
 /// messages for which messageSendingStateFailed.can_retry is true and after
 /// specified in messageSendingStateFailed.retry_after time passed. If a
-/// message is re-added, the corresponding failed to send message is deleted.
+/// message is readded, the corresponding failed to send message is deleted.
 /// Returns the sent messages in the same order as the message identifiers
 /// passed in message_ids. If a message can't be readded, null will be
 /// returned instead of the message
@@ -21,7 +21,7 @@ class ReaddQuickReplyShortcutMessages extends TdFunction {
   /// [shortcutName] Name of the target shortcut
   final String shortcutName;
 
-  /// [messageIds] Identifiers of the quick reply messages to re-add. Message
+  /// [messageIds] Identifiers of the quick reply messages to readd. Message
   /// identifiers must be in a strictly increasing order
   final List<int> messageIds;
 

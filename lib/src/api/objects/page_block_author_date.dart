@@ -3,7 +3,7 @@ import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
 import '../tdapi.dart';
 
-/// The author and publishing date of a page; instant view only
+/// The author and publishing date of a page
 @immutable
 class PageBlockAuthorDate extends PageBlock {
   const PageBlockAuthorDate({

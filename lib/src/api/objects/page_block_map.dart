@@ -11,7 +11,7 @@ class PageBlockMap extends PageBlock {
     required this.zoom,
     required this.width,
     required this.height,
-    this.caption,
+    required this.caption,
   });
 
   /// [location] Location of the map center
@@ -26,8 +26,8 @@ class PageBlockMap extends PageBlock {
   /// [height] Map height
   final int height;
 
-  /// [caption] Block caption; may be null if none
-  final PageBlockCaption? caption;
+  /// [caption] Block caption
+  final PageBlockCaption caption;
 
   static const String constructor = 'pageBlockMap';
 
@@ -42,7 +42,7 @@ class PageBlockMap extends PageBlock {
       width: (json['width'] as int?) ?? 0,
       height: (json['height'] as int?) ?? 0,
       caption:
-          PageBlockCaption.fromJson(json['caption'] as Map<String, dynamic>?),
+          PageBlockCaption.fromJson(json['caption'] as Map<String, dynamic>?)!,
     );
   }
 
@@ -55,7 +55,7 @@ class PageBlockMap extends PageBlock {
         'zoom': zoom,
         'width': width,
         'height': height,
-        'caption': caption?.toJson(),
+        'caption': caption.toJson(),
         '@type': constructor,
       };
 

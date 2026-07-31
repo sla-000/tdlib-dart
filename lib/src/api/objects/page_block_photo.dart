@@ -8,24 +8,18 @@ import '../tdapi.dart';
 class PageBlockPhoto extends PageBlock {
   const PageBlockPhoto({
     this.photo,
-    this.caption,
+    required this.caption,
     required this.url,
-    required this.hasSpoiler,
   });
 
   /// [photo] Photo file; may be null
   final Photo? photo;
 
-  /// [caption] Photo caption; may be null if none
-  final PageBlockCaption? caption;
+  /// [caption] Photo caption
+  final PageBlockCaption caption;
 
-  /// [url] URL that needs to be opened when the photo is clicked; instant view
-  /// only
+  /// [url] URL that needs to be opened when the photo is clicked
   final String url;
-
-  /// [hasSpoiler] True, if the photo preview must be covered by a spoiler
-  /// animation
-  final bool hasSpoiler;
 
   static const String constructor = 'pageBlockPhoto';
 
@@ -37,9 +31,8 @@ class PageBlockPhoto extends PageBlock {
     return PageBlockPhoto(
       photo: Photo.fromJson(json['photo'] as Map<String, dynamic>?),
       caption:
-          PageBlockCaption.fromJson(json['caption'] as Map<String, dynamic>?),
+          PageBlockCaption.fromJson(json['caption'] as Map<String, dynamic>?)!,
       url: (json['url'] as String?) ?? '',
-      hasSpoiler: (json['has_spoiler'] as bool?) ?? false,
     );
   }
 
@@ -49,9 +42,8 @@ class PageBlockPhoto extends PageBlock {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'photo': photo?.toJson(),
-        'caption': caption?.toJson(),
+        'caption': caption.toJson(),
         'url': url,
-        'has_spoiler': hasSpoiler,
         '@type': constructor,
       };
 
@@ -62,15 +54,13 @@ class PageBlockPhoto extends PageBlock {
           other is PageBlockPhoto &&
           const DeepCollectionEquality().equals(other.photo, photo) &&
           const DeepCollectionEquality().equals(other.caption, caption) &&
-          const DeepCollectionEquality().equals(other.url, url) &&
-          const DeepCollectionEquality().equals(other.hasSpoiler, hasSpoiler));
+          const DeepCollectionEquality().equals(other.url, url));
 
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
         const DeepCollectionEquality().hash(photo),
         const DeepCollectionEquality().hash(caption),
-        const DeepCollectionEquality().hash(url),
-        const DeepCollectionEquality().hash(hasSpoiler)
+        const DeepCollectionEquality().hash(url)
       ]);
 }

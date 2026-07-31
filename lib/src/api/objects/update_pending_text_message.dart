@@ -1,0 +1,82 @@
+// ignore: unused_import
+import 'package:collection/collection.dart';
+import 'package:meta/meta.dart';
+import '../tdapi.dart';
+
+/// A new pending text message was received in a chat with a bot. The message
+/// must be shown in the chat for at most
+/// getOption("pending_text_message_period") seconds, replace any other
+/// pending message with the same draft_id, and be deleted whenever any
+/// incoming message from the bot in the message thread is received
+@immutable
+class UpdatePendingTextMessage extends Update {
+  const UpdatePendingTextMessage({
+    required this.chatId,
+    required this.forumTopicId,
+    required this.draftId,
+    required this.text,
+  });
+
+  /// [chatId] Chat identifier
+  final int chatId;
+
+  /// [forumTopicId] The forum topic identifier in which the message will be
+  /// sent; 0 if none
+  final int forumTopicId;
+
+  /// [draftId] Unique identifier of the message draft within the message thread
+  final int draftId;
+
+  /// [text] Text of the pending message
+  final FormattedText text;
+
+  static const String constructor = 'updatePendingTextMessage';
+
+  static UpdatePendingTextMessage? fromJson(Map<String, dynamic>? json) {
+    if (json == null) {
+      return null;
+    }
+
+    return UpdatePendingTextMessage(
+      chatId: (json['chat_id'] as int?) ?? 0,
+      forumTopicId: (json['forum_topic_id'] as int?) ?? 0,
+      draftId: (json['draft_id'] is int
+              ? json['draft_id'] as int
+              : int.tryParse(json['draft_id']?.toString() ?? '')) ??
+          0,
+      text: FormattedText.fromJson(json['text'] as Map<String, dynamic>?)!,
+    );
+  }
+
+  @override
+  String getConstructor() => constructor;
+
+  @override
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'chat_id': chatId,
+        'forum_topic_id': forumTopicId,
+        'draft_id': draftId.toString(),
+        'text': text.toJson(),
+        '@type': constructor,
+      };
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other.runtimeType == runtimeType &&
+          other is UpdatePendingTextMessage &&
+          const DeepCollectionEquality().equals(other.chatId, chatId) &&
+          const DeepCollectionEquality()
+              .equals(other.forumTopicId, forumTopicId) &&
+          const DeepCollectionEquality().equals(other.draftId, draftId) &&
+          const DeepCollectionEquality().equals(other.text, text));
+
+  @override
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(chatId),
+        const DeepCollectionEquality().hash(forumTopicId),
+        const DeepCollectionEquality().hash(draftId),
+        const DeepCollectionEquality().hash(text)
+      ]);
+}

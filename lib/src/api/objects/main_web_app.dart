@@ -12,7 +12,7 @@ class MainWebApp extends TdObject {
   });
 
   /// [url] URL of the Web App to open
-  final WebAppUrl url;
+  final String url;
 
   /// [mode] The mode in which the Web App must be opened
   final WebAppOpenMode mode;
@@ -25,7 +25,7 @@ class MainWebApp extends TdObject {
     }
 
     return MainWebApp(
-      url: WebAppUrl.fromJson(json['url'] as Map<String, dynamic>?)!,
+      url: (json['url'] as String?) ?? '',
       mode: WebAppOpenMode.fromJson(json['mode'] as Map<String, dynamic>?)!,
     );
   }
@@ -35,7 +35,7 @@ class MainWebApp extends TdObject {
 
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'url': url.toJson(),
+        'url': url,
         'mode': mode.toJson(),
         '@type': constructor,
       };

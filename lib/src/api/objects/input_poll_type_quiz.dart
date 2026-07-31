@@ -22,10 +22,10 @@ class InputPollTypeQuiz extends InputPollType {
 
   /// [explanationMedia] Media that is shown when the user chooses an incorrect
   /// answer or taps on the lamp icon; pass null if none. Must be one of the
-  /// following types: inputPollMediaAnimation, inputPollMediaAudio,
-  /// inputPollMediaDocument, inputPollMediaLocation, inputPollMediaPhoto,
-  /// inputPollMediaVenue, or inputPollMediaVideo without caption
-  final InputPollMedia? explanationMedia;
+  /// following types: inputMessageAnimation, inputMessageAudio,
+  /// inputMessageDocument, non-live inputMessageLocation, inputMessagePhoto,
+  /// inputMessageVenue, or inputMessageVideo without caption
+  final InputMessageContent? explanationMedia;
 
   static const String constructor = 'inputPollTypeQuiz';
 
@@ -42,7 +42,7 @@ class InputPollTypeQuiz extends InputPollType {
               .toList()),
       explanation:
           FormattedText.fromJson(json['explanation'] as Map<String, dynamic>?)!,
-      explanationMedia: InputPollMedia.fromJson(
+      explanationMedia: InputMessageContent.fromJson(
           json['explanation_media'] as Map<String, dynamic>?),
     );
   }

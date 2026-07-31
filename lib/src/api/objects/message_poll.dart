@@ -20,10 +20,10 @@ class MessagePoll extends MessageContent {
   final FormattedText description;
 
   /// [media] Media attached to the poll; may be null if none. If present,
-  /// currently, can be only of the types pollMediaAnimation, pollMediaAudio,
-  /// pollMediaDocument, pollMediaLocation, pollMediaPhoto, pollMediaVenue, or
-  /// pollMediaVideo
-  final PollMedia? media;
+  /// currently, can be only of the types messageAnimation, messageAudio,
+  /// messageDocument, messageLocation, messagePhoto, messageVenue, or
+  /// messageVideo without caption
+  final MessageContent? media;
 
   /// [canAddOption] True, if an option can be added to the poll using
   /// addPollOption
@@ -40,7 +40,7 @@ class MessagePoll extends MessageContent {
       poll: Poll.fromJson(json['poll'] as Map<String, dynamic>?)!,
       description:
           FormattedText.fromJson(json['description'] as Map<String, dynamic>?)!,
-      media: PollMedia.fromJson(json['media'] as Map<String, dynamic>?),
+      media: MessageContent.fromJson(json['media'] as Map<String, dynamic>?),
       canAddOption: (json['can_add_option'] as bool?) ?? false,
     );
   }

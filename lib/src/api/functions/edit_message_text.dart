@@ -27,7 +27,7 @@ class EditMessageText extends TdFunction {
   final ReplyMarkup? replyMarkup;
 
   /// [inputMessageContent] New text content of the message. Must be of type
-  /// inputMessageText or inputMessageRichMessage
+  /// inputMessageText
   final InputMessageContent inputMessageContent;
 
   static const String constructor = 'editMessageText';

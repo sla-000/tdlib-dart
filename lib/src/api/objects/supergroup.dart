@@ -4,7 +4,11 @@ import 'package:meta/meta.dart';
 import '../tdapi.dart';
 
 /// Represents a supergroup or channel with zero or more members (subscribers
-/// in the case of channels)
+/// in the case of channels). From the point of view of the system, a channel
+/// is a special kind of a supergroup: only administrators can post and see
+/// the list of members, and posts from all administrators use the name and
+/// photo of the channel instead of individual names and profile photos.
+/// Unlike supergroups, channels can have an unlimited number of subscribers
 @immutable
 class Supergroup extends TdObject {
   const Supergroup({
@@ -89,15 +93,14 @@ class Supergroup extends TdObject {
   final bool joinToSendMessages;
 
   /// [joinByRequest] True, if all users directly joining the supergroup need to
-  /// be approved by supergroup administrators
+  /// be approved by supergroup administrators. May be true only for
+  /// non-broadcast supergroups with username, location, or a linked chat
   final bool joinByRequest;
 
   /// [isSlowModeEnabled] True, if the slow mode is enabled in the supergroup
   final bool isSlowModeEnabled;
 
-  /// [isChannel] True, if the supergroup is a channel, which can have an
-  /// unlimited number of subscribers, but only administrators can post there
-  /// and see the list of subscribers
+  /// [isChannel] True, if the supergroup is a channel
   final bool isChannel;
 
   /// [isBroadcastGroup] True, if the supergroup is a broadcast group, i.e. only
