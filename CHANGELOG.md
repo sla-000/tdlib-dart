@@ -1,3 +1,7 @@
+# 0.42.3
+
+- Docs update
+
 # 0.42.2
 
 - Docs update
@@ -21,3 +25,7 @@
 # 0.40.0
 
 - Update tdlib to v1.8.64
+
+# 0.39.0
+
+- Update tdlib to v1.8.63
