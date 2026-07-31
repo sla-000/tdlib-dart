@@ -1,4 +1,4 @@
-import 'package:tdlib_dart/td_api.dart';
+import 'package:tdlib_ex/td_api.dart';
 
 abstract class Platform {
   void send({required Map<String, dynamic> function});

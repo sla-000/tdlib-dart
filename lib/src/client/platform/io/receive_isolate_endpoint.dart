@@ -3,8 +3,8 @@ import 'dart:convert';
 import 'dart:ffi' as ffi;
 
 import 'package:ffi/ffi.dart';
-import 'package:tdlib_dart/src/client/platform/platform.dart';
-import 'package:tdlib_dart/td_api.dart';
+import 'package:tdlib_ex/src/client/platform/platform.dart';
+import 'package:tdlib_ex/td_api.dart';
 
 import 'json_bindings.dart';
 import 'receive_isolate_data.dart';

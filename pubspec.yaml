@@ -1,4 +1,4 @@
-name: tdlib_dart
+name: tdlib_ex
 description: A Dart wrapper and client for Telegram TDLib (tdjson) with generated API classes.
 version: 0.42.0
 repository: https://github.com/sla-000/tdlib-dart
