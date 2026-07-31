@@ -1,6 +1,6 @@
 > **Note:** The original author stopped maintaining this repository, so I fixed the code generation, set up a daily check against the latest Telegram protocol scheme, and automated source code updates.
 
-# tdlib-dart
+# tdlib_ex
 
 A Dart wrapper for [tdlib](https://github.com/tdlib/td). Contains generated ([generator](generator/)) schema classes of [td_api.tl](https://github.com/tdlib/td/blob/master/td/generate/scheme/td_api.tl) and a client that interacts with lib through [ffi](https://dart.dev/guides/libraries/c-interop).
 
@@ -13,6 +13,12 @@ To rebuild the generated Dart classes, run:
 ```bash
 dart run generator/lib/src/main.dart && dart format lib
 ```
+
+### Last versions
+
+See [CHANGELOG.md](CHANGELOG.md)
+
+### Legacy versions
 
 | Version |                         tdlib commit                          |                                                                 td_api.tl revision |
 |---------|:-------------------------------------------------------------:|-----------------------------------------------------------------------------------:|
