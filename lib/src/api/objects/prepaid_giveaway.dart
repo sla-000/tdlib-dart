@@ -17,7 +17,7 @@ class PrepaidGiveaway extends TdObject {
   /// [id] Unique identifier of the prepaid giveaway
   final int id;
 
-  /// [winnerCount] Number of users which will receive giveaway prize
+  /// [winnerCount] Number of users who will receive giveaway prize
   final int winnerCount;
 
   /// [prize] Prize of the giveaway

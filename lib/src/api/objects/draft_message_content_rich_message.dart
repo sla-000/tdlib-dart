@@ -10,8 +10,7 @@ class DraftMessageContentRichMessage extends DraftMessageContent {
     required this.message,
   });
 
-  /// [message] The rich message; the message must not have not yet uploaded
-  /// media
+  /// [message] The rich message
   final RichMessage message;
 
   static const String constructor = 'draftMessageContentRichMessage';

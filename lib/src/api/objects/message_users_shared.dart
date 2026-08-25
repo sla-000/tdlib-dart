@@ -3,7 +3,7 @@ import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
 import '../tdapi.dart';
 
-/// The current user shared users, which were requested by the bot
+/// The current user shared users who were requested by the bot
 @immutable
 class MessageUsersShared extends MessageContent {
   const MessageUsersShared({

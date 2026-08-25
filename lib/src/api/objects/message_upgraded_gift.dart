@@ -13,6 +13,8 @@ class MessageUpgradedGift extends MessageContent {
     required this.receiverId,
     required this.origin,
     required this.receivedGiftId,
+    required this.text,
+    required this.isPrivate,
     required this.isSaved,
     required this.canBeTransferred,
     required this.wasTransferred,
@@ -39,6 +41,13 @@ class MessageUpgradedGift extends MessageContent {
   /// [receivedGiftId] Unique identifier of the received gift for the current
   /// user; only for the receiver of the gift
   final String receivedGiftId;
+
+  /// [text] Message added to the gift
+  final FormattedText text;
+
+  /// [isPrivate] True, if the sender and gift text are shown only to the gift
+  /// receiver; otherwise, everyone will be able to see them
+  final bool isPrivate;
 
   /// [isSaved] True, if the gift is displayed on the user's or the channel's
   /// profile page; only for the receiver of the gift
@@ -97,6 +106,8 @@ class MessageUpgradedGift extends MessageContent {
       origin:
           UpgradedGiftOrigin.fromJson(json['origin'] as Map<String, dynamic>?)!,
       receivedGiftId: (json['received_gift_id'] as String?) ?? '',
+      text: FormattedText.fromJson(json['text'] as Map<String, dynamic>?)!,
+      isPrivate: (json['is_private'] as bool?) ?? false,
       isSaved: (json['is_saved'] as bool?) ?? false,
       canBeTransferred: (json['can_be_transferred'] as bool?) ?? false,
       wasTransferred: (json['was_transferred'] as bool?) ?? false,
@@ -120,6 +131,8 @@ class MessageUpgradedGift extends MessageContent {
         'receiver_id': receiverId.toJson(),
         'origin': origin.toJson(),
         'received_gift_id': receivedGiftId,
+        'text': text.toJson(),
+        'is_private': isPrivate,
         'is_saved': isSaved,
         'can_be_transferred': canBeTransferred,
         'was_transferred': wasTransferred,
@@ -143,6 +156,8 @@ class MessageUpgradedGift extends MessageContent {
           const DeepCollectionEquality().equals(other.origin, origin) &&
           const DeepCollectionEquality()
               .equals(other.receivedGiftId, receivedGiftId) &&
+          const DeepCollectionEquality().equals(other.text, text) &&
+          const DeepCollectionEquality().equals(other.isPrivate, isPrivate) &&
           const DeepCollectionEquality().equals(other.isSaved, isSaved) &&
           const DeepCollectionEquality()
               .equals(other.canBeTransferred, canBeTransferred) &&
@@ -168,6 +183,8 @@ class MessageUpgradedGift extends MessageContent {
         const DeepCollectionEquality().hash(receiverId),
         const DeepCollectionEquality().hash(origin),
         const DeepCollectionEquality().hash(receivedGiftId),
+        const DeepCollectionEquality().hash(text),
+        const DeepCollectionEquality().hash(isPrivate),
         const DeepCollectionEquality().hash(isSaved),
         const DeepCollectionEquality().hash(canBeTransferred),
         const DeepCollectionEquality().hash(wasTransferred),

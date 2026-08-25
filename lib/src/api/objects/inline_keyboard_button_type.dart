@@ -16,6 +16,7 @@ abstract class InlineKeyboardButtonType extends TdObject {
   /// [InlineKeyboardButtonTypeCallbackWithPassword]
   /// [InlineKeyboardButtonTypeCallback]
   /// [InlineKeyboardButtonTypeCopyText]
+  /// [InlineKeyboardButtonTypeDisabled]
   /// [InlineKeyboardButtonTypeLoginUrl]
   /// [InlineKeyboardButtonTypeSwitchInline]
   /// [InlineKeyboardButtonTypeUrl]
@@ -37,6 +38,8 @@ abstract class InlineKeyboardButtonType extends TdObject {
         return InlineKeyboardButtonTypeCallbackWithPassword.fromJson(json);
       case InlineKeyboardButtonTypeCopyText.constructor:
         return InlineKeyboardButtonTypeCopyText.fromJson(json);
+      case InlineKeyboardButtonTypeDisabled.constructor:
+        return InlineKeyboardButtonTypeDisabled.fromJson(json);
       case InlineKeyboardButtonTypeLoginUrl.constructor:
         return InlineKeyboardButtonTypeLoginUrl.fromJson(json);
       case InlineKeyboardButtonTypeSwitchInline.constructor:

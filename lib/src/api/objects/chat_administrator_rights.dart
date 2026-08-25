@@ -23,6 +23,7 @@ class ChatAdministratorRights extends TdObject {
     required this.canDeleteStories,
     required this.canManageDirectMessages,
     required this.canManageTags,
+    required this.canSendWelcomeMessages,
     required this.isAnonymous,
   });
 
@@ -98,6 +99,10 @@ class ChatAdministratorRights extends TdObject {
   /// applicable to basic groups and supergroups only
   final bool canManageTags;
 
+  /// [canSendWelcomeMessages] True, if the administrator can manage and send
+  /// welcome messages
+  final bool canSendWelcomeMessages;
+
   /// [isAnonymous] True, if the administrator isn't shown in the chat member
   /// list and sends messages anonymously; applicable to supergroups only
   final bool isAnonymous;
@@ -127,6 +132,8 @@ class ChatAdministratorRights extends TdObject {
       canManageDirectMessages:
           (json['can_manage_direct_messages'] as bool?) ?? false,
       canManageTags: (json['can_manage_tags'] as bool?) ?? false,
+      canSendWelcomeMessages:
+          (json['can_send_welcome_messages'] as bool?) ?? false,
       isAnonymous: (json['is_anonymous'] as bool?) ?? false,
     );
   }
@@ -152,6 +159,7 @@ class ChatAdministratorRights extends TdObject {
         'can_delete_stories': canDeleteStories,
         'can_manage_direct_messages': canManageDirectMessages,
         'can_manage_tags': canManageTags,
+        'can_send_welcome_messages': canSendWelcomeMessages,
         'is_anonymous': isAnonymous,
         '@type': constructor,
       };
@@ -194,6 +202,8 @@ class ChatAdministratorRights extends TdObject {
           const DeepCollectionEquality()
               .equals(other.canManageTags, canManageTags) &&
           const DeepCollectionEquality()
+              .equals(other.canSendWelcomeMessages, canSendWelcomeMessages) &&
+          const DeepCollectionEquality()
               .equals(other.isAnonymous, isAnonymous));
 
   @override
@@ -215,6 +225,7 @@ class ChatAdministratorRights extends TdObject {
         const DeepCollectionEquality().hash(canDeleteStories),
         const DeepCollectionEquality().hash(canManageDirectMessages),
         const DeepCollectionEquality().hash(canManageTags),
+        const DeepCollectionEquality().hash(canSendWelcomeMessages),
         const DeepCollectionEquality().hash(isAnonymous)
       ]);
 }

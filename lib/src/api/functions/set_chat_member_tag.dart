@@ -18,7 +18,7 @@ class SetChatMemberTag extends TdFunction {
   /// [chatId] Chat identifier
   final int chatId;
 
-  /// [userId] Identifier of the user, which tag is changed. Chats can't have
+  /// [userId] Identifier of the user whose tag is changed. Chats can't have
   /// member tags
   final int userId;
 

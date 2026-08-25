@@ -12,7 +12,7 @@ class PushMessageContentGiveaway extends PushMessageContent {
     required this.isPinned,
   });
 
-  /// [winnerCount] Number of users which will receive giveaway prizes; 0 for
+  /// [winnerCount] Number of users who will receive giveaway prizes; 0 for
   /// pinned message
   final int winnerCount;
 

@@ -8,7 +8,7 @@ import '../tdapi.dart';
 /// specified in messageSendingStateFailed.retry_after time passed. If a
 /// message is re-added, the corresponding failed to send message is deleted.
 /// Returns the sent messages in the same order as the message identifiers
-/// passed in message_ids. If a message can't be readded, null will be
+/// passed in message_ids. If a message can't be re-added, null will be
 /// returned instead of the message
 /// Returns [QuickReplyMessages]
 @immutable

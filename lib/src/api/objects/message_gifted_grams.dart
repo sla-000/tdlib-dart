@@ -5,8 +5,8 @@ import '../tdapi.dart';
 
 /// TON Grams were gifted to a user
 @immutable
-class MessageGiftedTon extends MessageContent {
-  const MessageGiftedTon({
+class MessageGiftedGrams extends MessageContent {
+  const MessageGiftedGrams({
     required this.gifterUserId,
     required this.receiverUserId,
     required this.gramAmount,
@@ -33,14 +33,14 @@ class MessageGiftedTon extends MessageContent {
   /// [sticker] A sticker to be shown in the message; may be null if unknown
   final Sticker? sticker;
 
-  static const String constructor = 'messageGiftedTon';
+  static const String constructor = 'messageGiftedGrams';
 
-  static MessageGiftedTon? fromJson(Map<String, dynamic>? json) {
+  static MessageGiftedGrams? fromJson(Map<String, dynamic>? json) {
     if (json == null) {
       return null;
     }
 
-    return MessageGiftedTon(
+    return MessageGiftedGrams(
       gifterUserId: (json['gifter_user_id'] as int?) ?? 0,
       receiverUserId: (json['receiver_user_id'] as int?) ?? 0,
       gramAmount: (json['gram_amount'] as int?) ?? 0,
@@ -66,7 +66,7 @@ class MessageGiftedTon extends MessageContent {
   bool operator ==(Object other) =>
       identical(this, other) ||
       (other.runtimeType == runtimeType &&
-          other is MessageGiftedTon &&
+          other is MessageGiftedGrams &&
           const DeepCollectionEquality()
               .equals(other.gifterUserId, gifterUserId) &&
           const DeepCollectionEquality()

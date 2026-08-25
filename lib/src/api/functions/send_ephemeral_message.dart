@@ -16,7 +16,9 @@ class SendEphemeralMessage extends TdFunction {
     this.topicId,
     required this.receiverUserId,
     this.callbackQueryId,
+    this.replaceCallbackQueryMessage,
     this.replyTo,
+    this.protectContent,
     required this.sendingId,
     required this.onlyPreview,
     this.replyMarkup,
@@ -36,9 +38,18 @@ class SendEphemeralMessage extends TdFunction {
   /// message; for bots only
   final int? callbackQueryId;
 
+  /// [replaceCallbackQueryMessage] Pass true if the ephemeral message must
+  /// replace the message from which the callback query originated; for bots
+  /// only
+  final bool? replaceCallbackQueryMessage;
+
   /// [replyTo] Information about the message to be replied; pass null if none.
   /// The message can be an incoming ephemeral message
   final InputMessageReplyTo? replyTo;
+
+  /// [protectContent] Pass true if the content of the message must be protected
+  /// from forwarding and saving; for bots only
+  final bool? protectContent;
 
   /// [sendingId] Non-persistent identifier, which will be returned back in
   /// messageSendingStatePending object and can be used to match sent messages
@@ -56,9 +67,9 @@ class SendEphemeralMessage extends TdFunction {
   /// [inputMessageContent] The content of the message to be sent. Must be one
   /// of the following types: inputMessageText, inputMessageAnimation,
   /// inputMessageAudio, inputMessageDocument, inputMessagePhoto,
-  /// inputMessageSticker, inputMessageVideo, inputMessageVideoNote,
-  /// inputMessageVoiceNote, inputMessageLocation, inputMessageVenue,
-  /// inputMessageContact
+  /// inputMessageRichMessage, inputMessageSticker, inputMessageVideo,
+  /// inputMessageVideoNote, inputMessageVoiceNote, inputMessageLocation,
+  /// inputMessageVenue, inputMessageContact
   final InputMessageContent inputMessageContent;
 
   static const String constructor = 'sendEphemeralMessage';
@@ -72,7 +83,9 @@ class SendEphemeralMessage extends TdFunction {
         'topic_id': topicId?.toJson(),
         'receiver_user_id': receiverUserId,
         'callback_query_id': callbackQueryId.toString(),
+        'replace_callback_query_message': replaceCallbackQueryMessage,
         'reply_to': replyTo?.toJson(),
+        'protect_content': protectContent,
         'sending_id': sendingId,
         'only_preview': onlyPreview,
         'reply_markup': replyMarkup?.toJson(),
@@ -91,7 +104,11 @@ class SendEphemeralMessage extends TdFunction {
               .equals(other.receiverUserId, receiverUserId) &&
           const DeepCollectionEquality()
               .equals(other.callbackQueryId, callbackQueryId) &&
+          const DeepCollectionEquality().equals(
+              other.replaceCallbackQueryMessage, replaceCallbackQueryMessage) &&
           const DeepCollectionEquality().equals(other.replyTo, replyTo) &&
+          const DeepCollectionEquality()
+              .equals(other.protectContent, protectContent) &&
           const DeepCollectionEquality().equals(other.sendingId, sendingId) &&
           const DeepCollectionEquality()
               .equals(other.onlyPreview, onlyPreview) &&
@@ -107,7 +124,9 @@ class SendEphemeralMessage extends TdFunction {
         const DeepCollectionEquality().hash(topicId),
         const DeepCollectionEquality().hash(receiverUserId),
         const DeepCollectionEquality().hash(callbackQueryId),
+        const DeepCollectionEquality().hash(replaceCallbackQueryMessage),
         const DeepCollectionEquality().hash(replyTo),
+        const DeepCollectionEquality().hash(protectContent),
         const DeepCollectionEquality().hash(sendingId),
         const DeepCollectionEquality().hash(onlyPreview),
         const DeepCollectionEquality().hash(replyMarkup),

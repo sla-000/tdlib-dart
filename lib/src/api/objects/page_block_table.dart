@@ -11,6 +11,7 @@ class PageBlockTable extends PageBlock {
     required this.cells,
     required this.isBordered,
     required this.isStriped,
+    required this.isCompact,
   });
 
   /// [caption] Table caption; may be null if none
@@ -24,6 +25,9 @@ class PageBlockTable extends PageBlock {
 
   /// [isStriped] True, if the table is striped
   final bool isStriped;
+
+  /// [isCompact] True, if table cells must have smaller indents
+  final bool isCompact;
 
   static const String constructor = 'pageBlockTable';
 
@@ -44,6 +48,7 @@ class PageBlockTable extends PageBlock {
               .toList()),
       isBordered: (json['is_bordered'] as bool?) ?? false,
       isStriped: (json['is_striped'] as bool?) ?? false,
+      isCompact: (json['is_compact'] as bool?) ?? false,
     );
   }
 
@@ -58,6 +63,7 @@ class PageBlockTable extends PageBlock {
             .toList(),
         'is_bordered': isBordered,
         'is_striped': isStriped,
+        'is_compact': isCompact,
         '@type': constructor,
       };
 
@@ -69,7 +75,8 @@ class PageBlockTable extends PageBlock {
           const DeepCollectionEquality().equals(other.caption, caption) &&
           const DeepCollectionEquality().equals(other.cells, cells) &&
           const DeepCollectionEquality().equals(other.isBordered, isBordered) &&
-          const DeepCollectionEquality().equals(other.isStriped, isStriped));
+          const DeepCollectionEquality().equals(other.isStriped, isStriped) &&
+          const DeepCollectionEquality().equals(other.isCompact, isCompact));
 
   @override
   int get hashCode => Object.hashAll([
@@ -77,6 +84,7 @@ class PageBlockTable extends PageBlock {
         const DeepCollectionEquality().hash(caption),
         const DeepCollectionEquality().hash(cells),
         const DeepCollectionEquality().hash(isBordered),
-        const DeepCollectionEquality().hash(isStriped)
+        const DeepCollectionEquality().hash(isStriped),
+        const DeepCollectionEquality().hash(isCompact)
       ]);
 }

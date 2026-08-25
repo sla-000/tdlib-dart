@@ -28,7 +28,7 @@ class Passkey extends TdObject {
   final int lastUsageDate;
 
   /// [softwareIconCustomEmojiId] Identifier of the custom emoji that is used as
-  /// the icon of the software, which created the passkey; 0 if unknown
+  /// the icon of the software that created the passkey; 0 if unknown
   final int softwareIconCustomEmojiId;
 
   static const String constructor = 'passkey';

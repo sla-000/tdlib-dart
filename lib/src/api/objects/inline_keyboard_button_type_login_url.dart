@@ -4,7 +4,8 @@ import 'package:meta/meta.dart';
 import '../tdapi.dart';
 
 /// A button that opens a specified URL and automatically authorize the
-/// current user by calling getLoginUrlInfo
+/// current user by calling getLoginUrlInfo; not supported in ephemeral
+/// messages
 @immutable
 class InlineKeyboardButtonTypeLoginUrl extends InlineKeyboardButtonType {
   const InlineKeyboardButtonTypeLoginUrl({

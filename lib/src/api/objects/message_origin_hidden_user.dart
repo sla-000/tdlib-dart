@@ -3,8 +3,8 @@ import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
 import '../tdapi.dart';
 
-/// The message was originally sent by a user, which is hidden by their
-/// privacy settings
+/// The message was originally sent by a user who is hidden by their privacy
+/// settings
 @immutable
 class MessageOriginHiddenUser extends MessageOrigin {
   const MessageOriginHiddenUser({

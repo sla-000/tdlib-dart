@@ -47,6 +47,7 @@ abstract class Update extends TdObject {
   /// [UpdateChatFolders]
   /// [UpdateChatHasProtectedContent]
   /// [UpdateChatHasScheduledMessages]
+  /// [UpdateChatHasWelcomeMessages]
   /// [UpdateChatIsMarkedAsUnread]
   /// [UpdateChatIsTranslatable]
   /// [UpdateChatJoinResult]
@@ -72,6 +73,8 @@ abstract class Update extends TdObject {
   /// [UpdateChatUnreadReactionCount]
   /// [UpdateChatVideoChat]
   /// [UpdateChatViewAsTopics]
+  /// [UpdateChatWelcomeMessages]
+  /// [UpdateCommunityFullInfo]
   /// [UpdateCommunity]
   /// [UpdateConnectionState]
   /// [UpdateContactCloseBirthdays]
@@ -111,6 +114,7 @@ abstract class Update extends TdObject {
   /// [UpdateMessageContentOpened]
   /// [UpdateMessageContent]
   /// [UpdateMessageEdited]
+  /// [UpdateMessageEphemeralContent]
   /// [UpdateMessageFactCheck]
   /// [UpdateMessageInteractionInfo]
   /// [UpdateMessageIsPinned]
@@ -170,6 +174,7 @@ abstract class Update extends TdObject {
   /// [UpdateStakeDiceState]
   /// [UpdateStarRevenueStatus]
   /// [UpdateStickerSet]
+  /// [UpdateStopMessageDraft]
   /// [UpdateStoryDeleted]
   /// [UpdateStoryListChatCount]
   /// [UpdateStoryPostFailed]
@@ -273,6 +278,8 @@ abstract class Update extends TdObject {
         return UpdateChatHasProtectedContent.fromJson(json);
       case UpdateChatHasScheduledMessages.constructor:
         return UpdateChatHasScheduledMessages.fromJson(json);
+      case UpdateChatHasWelcomeMessages.constructor:
+        return UpdateChatHasWelcomeMessages.fromJson(json);
       case UpdateChatIsMarkedAsUnread.constructor:
         return UpdateChatIsMarkedAsUnread.fromJson(json);
       case UpdateChatIsTranslatable.constructor:
@@ -323,8 +330,12 @@ abstract class Update extends TdObject {
         return UpdateChatVideoChat.fromJson(json);
       case UpdateChatViewAsTopics.constructor:
         return UpdateChatViewAsTopics.fromJson(json);
+      case UpdateChatWelcomeMessages.constructor:
+        return UpdateChatWelcomeMessages.fromJson(json);
       case UpdateCommunity.constructor:
         return UpdateCommunity.fromJson(json);
+      case UpdateCommunityFullInfo.constructor:
+        return UpdateCommunityFullInfo.fromJson(json);
       case UpdateConnectionState.constructor:
         return UpdateConnectionState.fromJson(json);
       case UpdateContactCloseBirthdays.constructor:
@@ -401,6 +412,8 @@ abstract class Update extends TdObject {
         return UpdateMessageContentOpened.fromJson(json);
       case UpdateMessageEdited.constructor:
         return UpdateMessageEdited.fromJson(json);
+      case UpdateMessageEphemeralContent.constructor:
+        return UpdateMessageEphemeralContent.fromJson(json);
       case UpdateMessageFactCheck.constructor:
         return UpdateMessageFactCheck.fromJson(json);
       case UpdateMessageInteractionInfo.constructor:
@@ -519,6 +532,8 @@ abstract class Update extends TdObject {
         return UpdateStarRevenueStatus.fromJson(json);
       case UpdateStickerSet.constructor:
         return UpdateStickerSet.fromJson(json);
+      case UpdateStopMessageDraft.constructor:
+        return UpdateStopMessageDraft.fromJson(json);
       case UpdateStory.constructor:
         return UpdateStory.fromJson(json);
       case UpdateStoryDeleted.constructor:

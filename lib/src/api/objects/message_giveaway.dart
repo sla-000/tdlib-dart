@@ -16,7 +16,7 @@ class MessageGiveaway extends MessageContent {
   /// [parameters] Giveaway parameters
   final GiveawayParameters parameters;
 
-  /// [winnerCount] Number of users which will receive Telegram Premium
+  /// [winnerCount] Number of users who will receive Telegram Premium
   /// subscription gift codes
   final int winnerCount;
 

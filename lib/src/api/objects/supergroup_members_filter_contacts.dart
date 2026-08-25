@@ -3,7 +3,7 @@ import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
 import '../tdapi.dart';
 
-/// Returns contacts of the user, which are members of the supergroup or
+/// Returns contacts of the current user who are members of the supergroup or
 /// channel
 @immutable
 class SupergroupMembersFilterContacts extends SupergroupMembersFilter {

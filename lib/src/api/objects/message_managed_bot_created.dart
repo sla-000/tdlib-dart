@@ -8,10 +8,14 @@ import '../tdapi.dart';
 class MessageManagedBotCreated extends MessageContent {
   const MessageManagedBotCreated({
     required this.botUserId,
+    required this.managerBotUserId,
   });
 
   /// [botUserId] User identifier of the created bot
   final int botUserId;
+
+  /// [managerBotUserId] Identifier of the bot which will manage the new bot
+  final int managerBotUserId;
 
   static const String constructor = 'messageManagedBotCreated';
 
@@ -22,6 +26,7 @@ class MessageManagedBotCreated extends MessageContent {
 
     return MessageManagedBotCreated(
       botUserId: (json['bot_user_id'] as int?) ?? 0,
+      managerBotUserId: (json['manager_bot_user_id'] as int?) ?? 0,
     );
   }
 
@@ -31,6 +36,7 @@ class MessageManagedBotCreated extends MessageContent {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'bot_user_id': botUserId,
+        'manager_bot_user_id': managerBotUserId,
         '@type': constructor,
       };
 
@@ -39,9 +45,14 @@ class MessageManagedBotCreated extends MessageContent {
       identical(this, other) ||
       (other.runtimeType == runtimeType &&
           other is MessageManagedBotCreated &&
-          const DeepCollectionEquality().equals(other.botUserId, botUserId));
+          const DeepCollectionEquality().equals(other.botUserId, botUserId) &&
+          const DeepCollectionEquality()
+              .equals(other.managerBotUserId, managerBotUserId));
 
   @override
-  int get hashCode => Object.hashAll(
-      [runtimeType, const DeepCollectionEquality().hash(botUserId)]);
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(botUserId),
+        const DeepCollectionEquality().hash(managerBotUserId)
+      ]);
 }

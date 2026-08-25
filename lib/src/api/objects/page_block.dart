@@ -17,13 +17,16 @@ abstract class PageBlock extends TdObject {
   /// [PageBlockAudio]
   /// [PageBlockAuthorDate]
   /// [PageBlockBlockQuote]
+  /// [PageBlockButtonRow]
   /// [PageBlockChatLink]
   /// [PageBlockCollage]
   /// [PageBlockCover]
   /// [PageBlockDetails]
   /// [PageBlockDivider]
+  /// [PageBlockDocument]
   /// [PageBlockEmbeddedPost]
   /// [PageBlockEmbedded]
+  /// [PageBlockExpandableBlockQuote]
   /// [PageBlockFooter]
   /// [PageBlockHeader]
   /// [PageBlockKicker]
@@ -42,6 +45,7 @@ abstract class PageBlock extends TdObject {
   /// [PageBlockTable]
   /// [PageBlockThinking]
   /// [PageBlockTitle]
+  /// [PageBlockUnsupported]
   /// [PageBlockVideo]
   /// [PageBlockVoiceNote]
   static PageBlock? fromJson(Map<String, dynamic>? json) {
@@ -60,6 +64,8 @@ abstract class PageBlock extends TdObject {
         return PageBlockAuthorDate.fromJson(json);
       case PageBlockBlockQuote.constructor:
         return PageBlockBlockQuote.fromJson(json);
+      case PageBlockButtonRow.constructor:
+        return PageBlockButtonRow.fromJson(json);
       case PageBlockChatLink.constructor:
         return PageBlockChatLink.fromJson(json);
       case PageBlockCollage.constructor:
@@ -70,10 +76,14 @@ abstract class PageBlock extends TdObject {
         return PageBlockDetails.fromJson(json);
       case PageBlockDivider.constructor:
         return PageBlockDivider.fromJson(json);
+      case PageBlockDocument.constructor:
+        return PageBlockDocument.fromJson(json);
       case PageBlockEmbedded.constructor:
         return PageBlockEmbedded.fromJson(json);
       case PageBlockEmbeddedPost.constructor:
         return PageBlockEmbeddedPost.fromJson(json);
+      case PageBlockExpandableBlockQuote.constructor:
+        return PageBlockExpandableBlockQuote.fromJson(json);
       case PageBlockFooter.constructor:
         return PageBlockFooter.fromJson(json);
       case PageBlockHeader.constructor:
@@ -110,6 +120,8 @@ abstract class PageBlock extends TdObject {
         return PageBlockThinking.fromJson(json);
       case PageBlockTitle.constructor:
         return PageBlockTitle.fromJson(json);
+      case PageBlockUnsupported.constructor:
+        return PageBlockUnsupported.fromJson(json);
       case PageBlockVideo.constructor:
         return PageBlockVideo.fromJson(json);
       case PageBlockVoiceNote.constructor:

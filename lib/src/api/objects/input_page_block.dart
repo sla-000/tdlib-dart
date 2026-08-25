@@ -15,9 +15,12 @@ abstract class InputPageBlock extends TdObject {
   /// [InputPageBlockAnimation]
   /// [InputPageBlockAudio]
   /// [InputPageBlockBlockQuote]
+  /// [InputPageBlockButtonRow]
   /// [InputPageBlockCollage]
   /// [InputPageBlockDetails]
   /// [InputPageBlockDivider]
+  /// [InputPageBlockDocument]
+  /// [InputPageBlockExpandableBlockQuote]
   /// [InputPageBlockFooter]
   /// [InputPageBlockList]
   /// [InputPageBlockMap]
@@ -46,12 +49,18 @@ abstract class InputPageBlock extends TdObject {
         return InputPageBlockAudio.fromJson(json);
       case InputPageBlockBlockQuote.constructor:
         return InputPageBlockBlockQuote.fromJson(json);
+      case InputPageBlockButtonRow.constructor:
+        return InputPageBlockButtonRow.fromJson(json);
       case InputPageBlockCollage.constructor:
         return InputPageBlockCollage.fromJson(json);
       case InputPageBlockDetails.constructor:
         return InputPageBlockDetails.fromJson(json);
       case InputPageBlockDivider.constructor:
         return InputPageBlockDivider.fromJson(json);
+      case InputPageBlockDocument.constructor:
+        return InputPageBlockDocument.fromJson(json);
+      case InputPageBlockExpandableBlockQuote.constructor:
+        return InputPageBlockExpandableBlockQuote.fromJson(json);
       case InputPageBlockFooter.constructor:
         return InputPageBlockFooter.fromJson(json);
       case InputPageBlockList.constructor:

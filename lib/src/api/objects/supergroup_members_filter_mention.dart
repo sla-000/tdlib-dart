@@ -3,7 +3,7 @@ import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
 import '../tdapi.dart';
 
-/// Returns users which can be mentioned in the supergroup
+/// Returns users who can be mentioned in the supergroup
 @immutable
 class SupergroupMembersFilterMention extends SupergroupMembersFilter {
   const SupergroupMembersFilterMention({

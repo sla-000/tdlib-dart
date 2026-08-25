@@ -12,6 +12,7 @@ class ReplyMarkupShowKeyboard extends ReplyMarkup {
     required this.resizeKeyboard,
     required this.oneTime,
     required this.isPersonal,
+    required this.forceReply,
     required this.inputFieldPlaceholder,
   });
 
@@ -33,6 +34,10 @@ class ReplyMarkupShowKeyboard extends ReplyMarkup {
   /// current user. For outgoing messages, specify true to show the keyboard
   /// only for the mentioned users and for the target user of a reply
   final bool isPersonal;
+
+  /// [forceReply] True, if the keyboard must force reply to the message with
+  /// the keyboard
+  final bool forceReply;
 
   /// [inputFieldPlaceholder] If non-empty, the placeholder to be shown in the
   /// input field when the keyboard is active; 0-64 characters
@@ -58,6 +63,7 @@ class ReplyMarkupShowKeyboard extends ReplyMarkup {
       resizeKeyboard: (json['resize_keyboard'] as bool?) ?? false,
       oneTime: (json['one_time'] as bool?) ?? false,
       isPersonal: (json['is_personal'] as bool?) ?? false,
+      forceReply: (json['force_reply'] as bool?) ?? false,
       inputFieldPlaceholder: (json['input_field_placeholder'] as String?) ?? '',
     );
   }
@@ -74,6 +80,7 @@ class ReplyMarkupShowKeyboard extends ReplyMarkup {
         'resize_keyboard': resizeKeyboard,
         'one_time': oneTime,
         'is_personal': isPersonal,
+        'force_reply': forceReply,
         'input_field_placeholder': inputFieldPlaceholder,
         '@type': constructor,
       };
@@ -90,6 +97,7 @@ class ReplyMarkupShowKeyboard extends ReplyMarkup {
               .equals(other.resizeKeyboard, resizeKeyboard) &&
           const DeepCollectionEquality().equals(other.oneTime, oneTime) &&
           const DeepCollectionEquality().equals(other.isPersonal, isPersonal) &&
+          const DeepCollectionEquality().equals(other.forceReply, forceReply) &&
           const DeepCollectionEquality()
               .equals(other.inputFieldPlaceholder, inputFieldPlaceholder));
 
@@ -101,6 +109,7 @@ class ReplyMarkupShowKeyboard extends ReplyMarkup {
         const DeepCollectionEquality().hash(resizeKeyboard),
         const DeepCollectionEquality().hash(oneTime),
         const DeepCollectionEquality().hash(isPersonal),
+        const DeepCollectionEquality().hash(forceReply),
         const DeepCollectionEquality().hash(inputFieldPlaceholder)
       ]);
 }

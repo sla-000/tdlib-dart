@@ -26,7 +26,7 @@ class StorePaymentPurposePremiumGiftCodes extends StorePaymentPurpose {
   /// [amount] Paid amount, in the smallest units of the currency
   final int amount;
 
-  /// [userIds] Identifiers of the users which can activate the gift codes
+  /// [userIds] Identifiers of the users who can activate the gift codes
   final List<int> userIds;
 
   /// [text] Text to show along with the gift codes;

@@ -15,8 +15,8 @@ class InputPollOption extends TdObject {
   /// allowed to be added and only by Premium users
   final FormattedText text;
 
-  /// [media] Option media; pass null if none; ignored in addPollOption. Must be
-  /// one of the following types: inputPollMediaAnimation, inputPollMediaLink,
+  /// [media] Option media; pass null if none. Must be one of the following
+  /// types: inputPollMediaAnimation, inputPollMediaLink,
   /// inputPollMediaLocation, inputPollMediaPhoto, inputPollMediaSticker,
   /// inputPollMediaVenue, or inputPollMediaVideo without caption
   final InputPollMedia? media;

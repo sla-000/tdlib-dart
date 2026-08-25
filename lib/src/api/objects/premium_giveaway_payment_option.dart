@@ -24,8 +24,7 @@ class PremiumGiveawayPaymentOption extends TdObject {
   /// [amount] The amount to pay, in the smallest units of the currency
   final int amount;
 
-  /// [winnerCount] Number of users which will be able to activate the gift
-  /// codes
+  /// [winnerCount] Number of users who will be able to activate the gift codes
   final int winnerCount;
 
   /// [monthCount] Number of months the Telegram Premium subscription will be

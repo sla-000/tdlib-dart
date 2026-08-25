@@ -27,6 +27,7 @@ class Chat extends TdObject {
     required this.isMarkedAsUnread,
     required this.viewAsTopics,
     required this.hasScheduledMessages,
+    required this.hasWelcomeMessages,
     required this.canBeDeletedOnlyForSelf,
     required this.canBeDeletedForAllUsers,
     required this.canBeReported,
@@ -127,6 +128,10 @@ class Chat extends TdObject {
 
   /// [hasScheduledMessages] True, if the chat has scheduled messages
   final bool hasScheduledMessages;
+
+  /// [hasWelcomeMessages] True, if the chat has welcome messages; for chat
+  /// administrators with can_change_info administrator right only
+  final bool hasWelcomeMessages;
 
   /// [canBeDeletedOnlyForSelf] True, if the chat messages can be deleted only
   /// for the current user while other users will continue to see the messages
@@ -262,6 +267,7 @@ class Chat extends TdObject {
       isMarkedAsUnread: (json['is_marked_as_unread'] as bool?) ?? false,
       viewAsTopics: (json['view_as_topics'] as bool?) ?? false,
       hasScheduledMessages: (json['has_scheduled_messages'] as bool?) ?? false,
+      hasWelcomeMessages: (json['has_welcome_messages'] as bool?) ?? false,
       canBeDeletedOnlyForSelf:
           (json['can_be_deleted_only_for_self'] as bool?) ?? false,
       canBeDeletedForAllUsers:
@@ -327,6 +333,7 @@ class Chat extends TdObject {
         'is_marked_as_unread': isMarkedAsUnread,
         'view_as_topics': viewAsTopics,
         'has_scheduled_messages': hasScheduledMessages,
+        'has_welcome_messages': hasWelcomeMessages,
         'can_be_deleted_only_for_self': canBeDeletedOnlyForSelf,
         'can_be_deleted_for_all_users': canBeDeletedForAllUsers,
         'can_be_reported': canBeReported,
@@ -393,6 +400,8 @@ class Chat extends TdObject {
           const DeepCollectionEquality()
               .equals(other.hasScheduledMessages, hasScheduledMessages) &&
           const DeepCollectionEquality()
+              .equals(other.hasWelcomeMessages, hasWelcomeMessages) &&
+          const DeepCollectionEquality()
               .equals(other.canBeDeletedOnlyForSelf, canBeDeletedOnlyForSelf) &&
           const DeepCollectionEquality()
               .equals(other.canBeDeletedForAllUsers, canBeDeletedForAllUsers) &&
@@ -430,8 +439,7 @@ class Chat extends TdObject {
               .equals(other.pendingJoinRequests, pendingJoinRequests) &&
           const DeepCollectionEquality()
               .equals(other.replyMarkupMessageId, replyMarkupMessageId) &&
-          const DeepCollectionEquality()
-              .equals(other.draftMessage, draftMessage) &&
+          const DeepCollectionEquality().equals(other.draftMessage, draftMessage) &&
           const DeepCollectionEquality().equals(other.clientData, clientData));
 
   @override
@@ -457,6 +465,7 @@ class Chat extends TdObject {
         const DeepCollectionEquality().hash(isMarkedAsUnread),
         const DeepCollectionEquality().hash(viewAsTopics),
         const DeepCollectionEquality().hash(hasScheduledMessages),
+        const DeepCollectionEquality().hash(hasWelcomeMessages),
         const DeepCollectionEquality().hash(canBeDeletedOnlyForSelf),
         const DeepCollectionEquality().hash(canBeDeletedForAllUsers),
         const DeepCollectionEquality().hash(canBeReported),

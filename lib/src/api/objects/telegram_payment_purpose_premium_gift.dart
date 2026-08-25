@@ -21,7 +21,7 @@ class TelegramPaymentPurposePremiumGift extends TelegramPaymentPurpose {
   /// [amount] Paid amount, in the smallest units of the currency
   final int amount;
 
-  /// [userId] Identifier of the user which will receive Telegram Premium
+  /// [userId] Identifier of the user who will receive Telegram Premium
   final int userId;
 
   /// [monthCount] Number of months the Telegram Premium subscription will be

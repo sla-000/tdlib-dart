@@ -12,6 +12,7 @@ abstract class SearchMessagesChatTypeFilter extends TdObject {
 
   /// Inherited by:
   /// [SearchMessagesChatTypeFilterChannel]
+  /// [SearchMessagesChatTypeFilterCommunity]
   /// [SearchMessagesChatTypeFilterGroup]
   /// [SearchMessagesChatTypeFilterPrivate]
   static SearchMessagesChatTypeFilter? fromJson(Map<String, dynamic>? json) {
@@ -22,6 +23,8 @@ abstract class SearchMessagesChatTypeFilter extends TdObject {
     switch (json['@type']) {
       case SearchMessagesChatTypeFilterChannel.constructor:
         return SearchMessagesChatTypeFilterChannel.fromJson(json);
+      case SearchMessagesChatTypeFilterCommunity.constructor:
+        return SearchMessagesChatTypeFilterCommunity.fromJson(json);
       case SearchMessagesChatTypeFilterGroup.constructor:
         return SearchMessagesChatTypeFilterGroup.fromJson(json);
       case SearchMessagesChatTypeFilterPrivate.constructor:

@@ -3,8 +3,8 @@ import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
 import '../tdapi.dart';
 
-/// Edits the text, caption or reply markup of an ephemeral message sent by
-/// the bot; for bots only
+/// Edits the text, media, or reply markup of an ephemeral message sent by the
+/// bot; for bots only
 /// Returns [Ok]
 @immutable
 class EditEphemeralMessage extends TdFunction {
@@ -31,8 +31,8 @@ class EditEphemeralMessage extends TdFunction {
   /// [inputMessageContent] New content of the message; pass null to edit only
   /// reply markup. Must be one of the following types: inputMessageText,
   /// inputMessageAnimation, inputMessageAudio, inputMessageDocument,
-  /// inputMessagePhoto, inputMessageSticker, inputMessageVideo,
-  /// inputMessageVideoNote, inputMessageVoiceNote
+  /// inputMessagePhoto, inputMessageRichMessage, inputMessageSticker,
+  /// inputMessageVideo, inputMessageVideoNote, inputMessageVoiceNote
   final InputMessageContent? inputMessageContent;
 
   static const String constructor = 'editEphemeralMessage';

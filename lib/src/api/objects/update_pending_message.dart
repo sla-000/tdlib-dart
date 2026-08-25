@@ -6,14 +6,17 @@ import '../tdapi.dart';
 /// A new pending text or rich message was received in a chat with a bot. The
 /// message must be shown in the chat for at most
 /// getOption("pending_text_message_period") seconds, replace any other
-/// pending message with the same draft_id, and be deleted whenever any
-/// incoming message from the bot in the message thread is received
+/// pending message with the same draft_id with animation, and be deleted
+/// whenever any incoming message or a pending message with another draft_id
+/// is received in the message thread
 @immutable
 class UpdatePendingMessage extends Update {
   const UpdatePendingMessage({
     required this.chatId,
     required this.forumTopicId,
     required this.draftId,
+    required this.canStop,
+    required this.keepOnStop,
     required this.content,
   });
 
@@ -26,6 +29,14 @@ class UpdatePendingMessage extends Update {
 
   /// [draftId] Unique identifier of the message draft within the message thread
   final int draftId;
+
+  /// [canStop] True, if a button that calls stopPendingMessage to stop further
+  /// message generation must be shown
+  final bool canStop;
+
+  /// [keepOnStop] True, if the pending message must not be automatically
+  /// deleted when the user presses the Stop button
+  final bool keepOnStop;
 
   /// [content] Content of the message; always of the type messageText or
   /// messageRichMessage
@@ -45,6 +56,8 @@ class UpdatePendingMessage extends Update {
               ? json['draft_id'] as int
               : int.tryParse(json['draft_id']?.toString() ?? '')) ??
           0,
+      canStop: (json['can_stop'] as bool?) ?? false,
+      keepOnStop: (json['keep_on_stop'] as bool?) ?? false,
       content:
           MessageContent.fromJson(json['content'] as Map<String, dynamic>?)!,
     );
@@ -58,6 +71,8 @@ class UpdatePendingMessage extends Update {
         'chat_id': chatId,
         'forum_topic_id': forumTopicId,
         'draft_id': draftId.toString(),
+        'can_stop': canStop,
+        'keep_on_stop': keepOnStop,
         'content': content.toJson(),
         '@type': constructor,
       };
@@ -71,6 +86,8 @@ class UpdatePendingMessage extends Update {
           const DeepCollectionEquality()
               .equals(other.forumTopicId, forumTopicId) &&
           const DeepCollectionEquality().equals(other.draftId, draftId) &&
+          const DeepCollectionEquality().equals(other.canStop, canStop) &&
+          const DeepCollectionEquality().equals(other.keepOnStop, keepOnStop) &&
           const DeepCollectionEquality().equals(other.content, content));
 
   @override
@@ -79,6 +96,8 @@ class UpdatePendingMessage extends Update {
         const DeepCollectionEquality().hash(chatId),
         const DeepCollectionEquality().hash(forumTopicId),
         const DeepCollectionEquality().hash(draftId),
+        const DeepCollectionEquality().hash(canStop),
+        const DeepCollectionEquality().hash(keepOnStop),
         const DeepCollectionEquality().hash(content)
       ]);
 }

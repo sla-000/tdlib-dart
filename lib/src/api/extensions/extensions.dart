@@ -3200,6 +3200,7 @@ extension ChatAdministratorRightsExtensions on ChatAdministratorRights {
     bool? canDeleteStories,
     bool? canManageDirectMessages,
     bool? canManageTags,
+    bool? canSendWelcomeMessages,
     bool? isAnonymous,
   }) =>
       ChatAdministratorRights(
@@ -3220,6 +3221,8 @@ extension ChatAdministratorRightsExtensions on ChatAdministratorRights {
         canManageDirectMessages:
             canManageDirectMessages ?? this.canManageDirectMessages,
         canManageTags: canManageTags ?? this.canManageTags,
+        canSendWelcomeMessages:
+            canSendWelcomeMessages ?? this.canSendWelcomeMessages,
         isAnonymous: isAnonymous ?? this.isAnonymous,
       );
 }
@@ -7149,6 +7152,15 @@ extension ProfileAccentColorExtensions on ProfileAccentColor {
       );
 }
 
+extension CommunityIdExtensions on CommunityId {
+  CommunityId copyWith({
+    int? id,
+  }) =>
+      CommunityId(
+        id: id ?? this.id,
+      );
+}
+
 extension CommunityPermissionsExtensions on CommunityPermissions {
   CommunityPermissions copyWith({
     bool? canEditChatList,
@@ -7269,6 +7281,36 @@ extension CommunityExtensions on Community {
         date: date ?? this.date,
         status: status ?? this.status,
         permissions: permissions ?? this.permissions,
+      );
+}
+
+extension CommunityChatExtensions on CommunityChat {
+  CommunityChat copyWith({
+    int? chatId,
+    bool? canViewHistory,
+    bool? isHidden,
+  }) =>
+      CommunityChat(
+        chatId: chatId ?? this.chatId,
+        canViewHistory: canViewHistory ?? this.canViewHistory,
+        isHidden: isHidden ?? this.isHidden,
+      );
+}
+
+extension CommunityFullInfoExtensions on CommunityFullInfo {
+  CommunityFullInfo copyWith({
+    ChatPhoto? photo,
+    List<CommunityChat>? chats,
+    int? administratorCount,
+    int? bannedCount,
+    int? addChatRequestCount,
+  }) =>
+      CommunityFullInfo(
+        photo: photo ?? this.photo,
+        chats: chats ?? this.chats,
+        administratorCount: administratorCount ?? this.administratorCount,
+        bannedCount: bannedCount ?? this.bannedCount,
+        addChatRequestCount: addChatRequestCount ?? this.addChatRequestCount,
       );
 }
 
@@ -9699,6 +9741,21 @@ extension FactCheckExtensions on FactCheck {
       );
 }
 
+extension EphemeralMessageContentExtensions on EphemeralMessageContent {
+  EphemeralMessageContent copyWith({
+    bool? canBeSaved,
+    bool? hasTimestampedMedia,
+    MessageContent? content,
+    ReplyMarkup? replyMarkup,
+  }) =>
+      EphemeralMessageContent(
+        canBeSaved: canBeSaved ?? this.canBeSaved,
+        hasTimestampedMedia: hasTimestampedMedia ?? this.hasTimestampedMedia,
+        content: content ?? this.content,
+        replyMarkup: replyMarkup ?? this.replyMarkup,
+      );
+}
+
 extension MessageExtensions on Message {
   Message copyWith({
     int? id,
@@ -9742,8 +9799,10 @@ extension MessageExtensions on Message {
     RestrictionInfo? restrictionInfo,
     String? summaryLanguageCode,
     MessageContent? content,
+    EphemeralMessageContent? ephemeralContent,
     ReplyMarkup? replyMarkup,
     int? ephemeralMessageId,
+    int? chatInstance,
   }) =>
       Message(
         id: id ?? this.id,
@@ -9792,8 +9851,10 @@ extension MessageExtensions on Message {
         restrictionInfo: restrictionInfo ?? this.restrictionInfo,
         summaryLanguageCode: summaryLanguageCode ?? this.summaryLanguageCode,
         content: content ?? this.content,
+        ephemeralContent: ephemeralContent ?? this.ephemeralContent,
         replyMarkup: replyMarkup ?? this.replyMarkup,
         ephemeralMessageId: ephemeralMessageId ?? this.ephemeralMessageId,
+        chatInstance: chatInstance ?? this.chatInstance,
       );
 }
 
@@ -10479,6 +10540,8 @@ extension DraftMessageContentExtensions on DraftMessageContent {
   TResult map<TResult extends Object?>({
     required TResult Function(DraftMessageContentText value) text,
     required TResult Function(DraftMessageContentRichMessage value) richMessage,
+    required TResult Function(DraftMessageContentInputRichMessage value)
+        inputRichMessage,
     required TResult Function(DraftMessageContentVideoNote value) videoNote,
     required TResult Function(DraftMessageContentVoiceNote value) voiceNote,
   }) {
@@ -10487,6 +10550,9 @@ extension DraftMessageContentExtensions on DraftMessageContent {
         return text.call(this as DraftMessageContentText);
       case DraftMessageContentRichMessage.constructor:
         return richMessage.call(this as DraftMessageContentRichMessage);
+      case DraftMessageContentInputRichMessage.constructor:
+        return inputRichMessage
+            .call(this as DraftMessageContentInputRichMessage);
       case DraftMessageContentVideoNote.constructor:
         return videoNote.call(this as DraftMessageContentVideoNote);
       case DraftMessageContentVoiceNote.constructor:
@@ -10498,6 +10564,8 @@ extension DraftMessageContentExtensions on DraftMessageContent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(DraftMessageContentText value)? text,
     TResult Function(DraftMessageContentRichMessage value)? richMessage,
+    TResult Function(DraftMessageContentInputRichMessage value)?
+        inputRichMessage,
     TResult Function(DraftMessageContentVideoNote value)? videoNote,
     TResult Function(DraftMessageContentVoiceNote value)? voiceNote,
     required TResult Function() orElse,
@@ -10511,6 +10579,12 @@ extension DraftMessageContentExtensions on DraftMessageContent {
       case DraftMessageContentRichMessage.constructor:
         if (richMessage != null) {
           return richMessage.call(this as DraftMessageContentRichMessage);
+        }
+        break;
+      case DraftMessageContentInputRichMessage.constructor:
+        if (inputRichMessage != null) {
+          return inputRichMessage
+              .call(this as DraftMessageContentInputRichMessage);
         }
         break;
       case DraftMessageContentVideoNote.constructor:
@@ -10545,6 +10619,16 @@ extension DraftMessageContentRichMessageExtensions
     RichMessage? message,
   }) =>
       DraftMessageContentRichMessage(
+        message: message ?? this.message,
+      );
+}
+
+extension DraftMessageContentInputRichMessageExtensions
+    on DraftMessageContentInputRichMessage {
+  DraftMessageContentInputRichMessage copyWith({
+    InputRichMessage? message,
+  }) =>
+      DraftMessageContentInputRichMessage(
         message: message ?? this.message,
       );
 }
@@ -11094,6 +11178,7 @@ extension ChatExtensions on Chat {
     bool? isMarkedAsUnread,
     bool? viewAsTopics,
     bool? hasScheduledMessages,
+    bool? hasWelcomeMessages,
     bool? canBeDeletedOnlyForSelf,
     bool? canBeDeletedForAllUsers,
     bool? canBeReported,
@@ -11141,6 +11226,7 @@ extension ChatExtensions on Chat {
         isMarkedAsUnread: isMarkedAsUnread ?? this.isMarkedAsUnread,
         viewAsTopics: viewAsTopics ?? this.viewAsTopics,
         hasScheduledMessages: hasScheduledMessages ?? this.hasScheduledMessages,
+        hasWelcomeMessages: hasWelcomeMessages ?? this.hasWelcomeMessages,
         canBeDeletedOnlyForSelf:
             canBeDeletedOnlyForSelf ?? this.canBeDeletedOnlyForSelf,
         canBeDeletedForAllUsers:
@@ -11384,6 +11470,7 @@ extension ButtonStyleExtensions on ButtonStyle {
     required TResult Function(ButtonStylePrimary value) primary,
     required TResult Function(ButtonStyleDanger value) danger,
     required TResult Function(ButtonStyleSuccess value) success,
+    required TResult Function(ButtonStyleLink value) link,
   }) {
     switch (getConstructor()) {
       case ButtonStyleDefault.constructor:
@@ -11394,6 +11481,8 @@ extension ButtonStyleExtensions on ButtonStyle {
         return danger.call(this as ButtonStyleDanger);
       case ButtonStyleSuccess.constructor:
         return success.call(this as ButtonStyleSuccess);
+      case ButtonStyleLink.constructor:
+        return link.call(this as ButtonStyleLink);
     }
     throw StateError('not handled type Generator');
   }
@@ -11403,6 +11492,7 @@ extension ButtonStyleExtensions on ButtonStyle {
     TResult Function(ButtonStylePrimary value)? primary,
     TResult Function(ButtonStyleDanger value)? danger,
     TResult Function(ButtonStyleSuccess value)? success,
+    TResult Function(ButtonStyleLink value)? link,
     required TResult Function() orElse,
   }) {
     switch (getConstructor()) {
@@ -11424,6 +11514,11 @@ extension ButtonStyleExtensions on ButtonStyle {
       case ButtonStyleSuccess.constructor:
         if (success != null) {
           return success.call(this as ButtonStyleSuccess);
+        }
+        break;
+      case ButtonStyleLink.constructor:
+        if (link != null) {
+          return link.call(this as ButtonStyleLink);
         }
         break;
     }
@@ -11661,6 +11756,7 @@ extension InlineKeyboardButtonTypeExtensions on InlineKeyboardButtonType {
     required TResult Function(InlineKeyboardButtonTypeBuy value) buy,
     required TResult Function(InlineKeyboardButtonTypeUser value) user,
     required TResult Function(InlineKeyboardButtonTypeCopyText value) copyText,
+    required TResult Function(InlineKeyboardButtonTypeDisabled value) disabled,
   }) {
     switch (getConstructor()) {
       case InlineKeyboardButtonTypeUrl.constructor:
@@ -11684,6 +11780,8 @@ extension InlineKeyboardButtonTypeExtensions on InlineKeyboardButtonType {
         return user.call(this as InlineKeyboardButtonTypeUser);
       case InlineKeyboardButtonTypeCopyText.constructor:
         return copyText.call(this as InlineKeyboardButtonTypeCopyText);
+      case InlineKeyboardButtonTypeDisabled.constructor:
+        return disabled.call(this as InlineKeyboardButtonTypeDisabled);
     }
     throw StateError('not handled type Generator');
   }
@@ -11700,6 +11798,7 @@ extension InlineKeyboardButtonTypeExtensions on InlineKeyboardButtonType {
     TResult Function(InlineKeyboardButtonTypeBuy value)? buy,
     TResult Function(InlineKeyboardButtonTypeUser value)? user,
     TResult Function(InlineKeyboardButtonTypeCopyText value)? copyText,
+    TResult Function(InlineKeyboardButtonTypeDisabled value)? disabled,
     required TResult Function() orElse,
   }) {
     switch (getConstructor()) {
@@ -11754,6 +11853,11 @@ extension InlineKeyboardButtonTypeExtensions on InlineKeyboardButtonType {
       case InlineKeyboardButtonTypeCopyText.constructor:
         if (copyText != null) {
           return copyText.call(this as InlineKeyboardButtonTypeCopyText);
+        }
+        break;
+      case InlineKeyboardButtonTypeDisabled.constructor:
+        if (disabled != null) {
+          return disabled.call(this as InlineKeyboardButtonTypeDisabled);
         }
         break;
     }
@@ -11999,6 +12103,7 @@ extension ReplyMarkupShowKeyboardExtensions on ReplyMarkupShowKeyboard {
     bool? resizeKeyboard,
     bool? oneTime,
     bool? isPersonal,
+    bool? forceReply,
     String? inputFieldPlaceholder,
   }) =>
       ReplyMarkupShowKeyboard(
@@ -12007,6 +12112,7 @@ extension ReplyMarkupShowKeyboardExtensions on ReplyMarkupShowKeyboard {
         resizeKeyboard: resizeKeyboard ?? this.resizeKeyboard,
         oneTime: oneTime ?? this.oneTime,
         isPersonal: isPersonal ?? this.isPersonal,
+        forceReply: forceReply ?? this.forceReply,
         inputFieldPlaceholder:
             inputFieldPlaceholder ?? this.inputFieldPlaceholder,
       );
@@ -12015,9 +12121,11 @@ extension ReplyMarkupShowKeyboardExtensions on ReplyMarkupShowKeyboard {
 extension ReplyMarkupInlineKeyboardExtensions on ReplyMarkupInlineKeyboard {
   ReplyMarkupInlineKeyboard copyWith({
     List<List<InlineKeyboardButton>>? rows,
+    bool? forceReply,
   }) =>
       ReplyMarkupInlineKeyboard(
         rows: rows ?? this.rows,
+        forceReply: forceReply ?? this.forceReply,
       );
 }
 
@@ -12458,6 +12566,19 @@ extension ThemeSettingsExtensions on ThemeSettings {
       );
 }
 
+extension InlineButtonExtensions on InlineButton {
+  InlineButton copyWith({
+    RichText? text,
+    ButtonStyle? style,
+    InlineKeyboardButtonType? type,
+  }) =>
+      InlineButton(
+        text: text ?? this.text,
+        style: style ?? this.style,
+        type: type ?? this.type,
+      );
+}
+
 extension RichTextExtensions on RichText {
   TResult map<TResult extends Object?>({
     required TResult Function(RichTextPlain value) plain,
@@ -12484,6 +12605,7 @@ extension RichTextExtensions on RichText {
     required TResult Function(RichTextIcon value) icon,
     required TResult Function(RichTextMathematicalExpression value)
         mathematicalExpression,
+    required TResult Function(RichTextButton value) button,
     required TResult Function(RichTextDiff value) diff,
     required TResult Function(RichTextReference value) reference,
     required TResult Function(RichTextReferenceLink value) referenceLink,
@@ -12539,6 +12661,8 @@ extension RichTextExtensions on RichText {
       case RichTextMathematicalExpression.constructor:
         return mathematicalExpression
             .call(this as RichTextMathematicalExpression);
+      case RichTextButton.constructor:
+        return button.call(this as RichTextButton);
       case RichTextDiff.constructor:
         return diff.call(this as RichTextDiff);
       case RichTextReference.constructor:
@@ -12580,6 +12704,7 @@ extension RichTextExtensions on RichText {
     TResult Function(RichTextIcon value)? icon,
     TResult Function(RichTextMathematicalExpression value)?
         mathematicalExpression,
+    TResult Function(RichTextButton value)? button,
     TResult Function(RichTextDiff value)? diff,
     TResult Function(RichTextReference value)? reference,
     TResult Function(RichTextReferenceLink value)? referenceLink,
@@ -12703,6 +12828,11 @@ extension RichTextExtensions on RichText {
         if (mathematicalExpression != null) {
           return mathematicalExpression
               .call(this as RichTextMathematicalExpression);
+        }
+        break;
+      case RichTextButton.constructor:
+        if (button != null) {
+          return button.call(this as RichTextButton);
         }
         break;
       case RichTextDiff.constructor:
@@ -12978,6 +13108,15 @@ extension RichTextMathematicalExpressionExtensions
       );
 }
 
+extension RichTextButtonExtensions on RichTextButton {
+  RichTextButton copyWith({
+    InlineButton? button,
+  }) =>
+      RichTextButton(
+        button: button ?? this.button,
+      );
+}
+
 extension RichTextDiffExtensions on RichTextDiff {
   RichTextDiff copyWith({
     RichText? text,
@@ -13237,9 +13376,12 @@ extension PageBlockExtensions on PageBlock {
     required TResult Function(PageBlockAnchor value) anchor,
     required TResult Function(PageBlockList value) list,
     required TResult Function(PageBlockBlockQuote value) blockQuote,
+    required TResult Function(PageBlockExpandableBlockQuote value)
+        expandableBlockQuote,
     required TResult Function(PageBlockPullQuote value) pullQuote,
     required TResult Function(PageBlockAnimation value) animation,
     required TResult Function(PageBlockAudio value) audio,
+    required TResult Function(PageBlockDocument value) document,
     required TResult Function(PageBlockPhoto value) photo,
     required TResult Function(PageBlockVideo value) video,
     required TResult Function(PageBlockVoiceNote value) voiceNote,
@@ -13253,6 +13395,8 @@ extension PageBlockExtensions on PageBlock {
     required TResult Function(PageBlockDetails value) details,
     required TResult Function(PageBlockRelatedArticles value) relatedArticles,
     required TResult Function(PageBlockMap value) map,
+    required TResult Function(PageBlockButtonRow value) buttonRow,
+    required TResult Function(PageBlockUnsupported value) unsupported,
   }) {
     switch (getConstructor()) {
       case PageBlockTitle.constructor:
@@ -13288,12 +13432,16 @@ extension PageBlockExtensions on PageBlock {
         return list.call(this as PageBlockList);
       case PageBlockBlockQuote.constructor:
         return blockQuote.call(this as PageBlockBlockQuote);
+      case PageBlockExpandableBlockQuote.constructor:
+        return expandableBlockQuote.call(this as PageBlockExpandableBlockQuote);
       case PageBlockPullQuote.constructor:
         return pullQuote.call(this as PageBlockPullQuote);
       case PageBlockAnimation.constructor:
         return animation.call(this as PageBlockAnimation);
       case PageBlockAudio.constructor:
         return audio.call(this as PageBlockAudio);
+      case PageBlockDocument.constructor:
+        return document.call(this as PageBlockDocument);
       case PageBlockPhoto.constructor:
         return photo.call(this as PageBlockPhoto);
       case PageBlockVideo.constructor:
@@ -13320,6 +13468,10 @@ extension PageBlockExtensions on PageBlock {
         return relatedArticles.call(this as PageBlockRelatedArticles);
       case PageBlockMap.constructor:
         return map.call(this as PageBlockMap);
+      case PageBlockButtonRow.constructor:
+        return buttonRow.call(this as PageBlockButtonRow);
+      case PageBlockUnsupported.constructor:
+        return unsupported.call(this as PageBlockUnsupported);
     }
     throw StateError('not handled type Generator');
   }
@@ -13342,9 +13494,11 @@ extension PageBlockExtensions on PageBlock {
     TResult Function(PageBlockAnchor value)? anchor,
     TResult Function(PageBlockList value)? list,
     TResult Function(PageBlockBlockQuote value)? blockQuote,
+    TResult Function(PageBlockExpandableBlockQuote value)? expandableBlockQuote,
     TResult Function(PageBlockPullQuote value)? pullQuote,
     TResult Function(PageBlockAnimation value)? animation,
     TResult Function(PageBlockAudio value)? audio,
+    TResult Function(PageBlockDocument value)? document,
     TResult Function(PageBlockPhoto value)? photo,
     TResult Function(PageBlockVideo value)? video,
     TResult Function(PageBlockVoiceNote value)? voiceNote,
@@ -13358,6 +13512,8 @@ extension PageBlockExtensions on PageBlock {
     TResult Function(PageBlockDetails value)? details,
     TResult Function(PageBlockRelatedArticles value)? relatedArticles,
     TResult Function(PageBlockMap value)? map,
+    TResult Function(PageBlockButtonRow value)? buttonRow,
+    TResult Function(PageBlockUnsupported value)? unsupported,
     required TResult Function() orElse,
   }) {
     switch (getConstructor()) {
@@ -13442,6 +13598,12 @@ extension PageBlockExtensions on PageBlock {
           return blockQuote.call(this as PageBlockBlockQuote);
         }
         break;
+      case PageBlockExpandableBlockQuote.constructor:
+        if (expandableBlockQuote != null) {
+          return expandableBlockQuote
+              .call(this as PageBlockExpandableBlockQuote);
+        }
+        break;
       case PageBlockPullQuote.constructor:
         if (pullQuote != null) {
           return pullQuote.call(this as PageBlockPullQuote);
@@ -13455,6 +13617,11 @@ extension PageBlockExtensions on PageBlock {
       case PageBlockAudio.constructor:
         if (audio != null) {
           return audio.call(this as PageBlockAudio);
+        }
+        break;
+      case PageBlockDocument.constructor:
+        if (document != null) {
+          return document.call(this as PageBlockDocument);
         }
         break;
       case PageBlockPhoto.constructor:
@@ -13520,6 +13687,16 @@ extension PageBlockExtensions on PageBlock {
       case PageBlockMap.constructor:
         if (map != null) {
           return map.call(this as PageBlockMap);
+        }
+        break;
+      case PageBlockButtonRow.constructor:
+        if (buttonRow != null) {
+          return buttonRow.call(this as PageBlockButtonRow);
+        }
+        break;
+      case PageBlockUnsupported.constructor:
+        if (unsupported != null) {
+          return unsupported.call(this as PageBlockUnsupported);
         }
         break;
     }
@@ -13671,6 +13848,18 @@ extension PageBlockBlockQuoteExtensions on PageBlockBlockQuote {
       );
 }
 
+extension PageBlockExpandableBlockQuoteExtensions
+    on PageBlockExpandableBlockQuote {
+  PageBlockExpandableBlockQuote copyWith({
+    RichText? text,
+    RichText? credit,
+  }) =>
+      PageBlockExpandableBlockQuote(
+        text: text ?? this.text,
+        credit: credit ?? this.credit,
+      );
+}
+
 extension PageBlockPullQuoteExtensions on PageBlockPullQuote {
   PageBlockPullQuote copyWith({
     RichText? text,
@@ -13704,6 +13893,17 @@ extension PageBlockAudioExtensions on PageBlockAudio {
   }) =>
       PageBlockAudio(
         audio: audio ?? this.audio,
+        caption: caption ?? this.caption,
+      );
+}
+
+extension PageBlockDocumentExtensions on PageBlockDocument {
+  PageBlockDocument copyWith({
+    Document? document,
+    PageBlockCaption? caption,
+  }) =>
+      PageBlockDocument(
+        document: document ?? this.document,
         caption: caption ?? this.caption,
       );
 }
@@ -13845,12 +14045,14 @@ extension PageBlockTableExtensions on PageBlockTable {
     List<List<PageBlockTableCell>>? cells,
     bool? isBordered,
     bool? isStriped,
+    bool? isCompact,
   }) =>
       PageBlockTable(
         caption: caption ?? this.caption,
         cells: cells ?? this.cells,
         isBordered: isBordered ?? this.isBordered,
         isStriped: isStriped ?? this.isStriped,
+        isCompact: isCompact ?? this.isCompact,
       );
 }
 
@@ -13892,6 +14094,17 @@ extension PageBlockMapExtensions on PageBlockMap {
         width: width ?? this.width,
         height: height ?? this.height,
         caption: caption ?? this.caption,
+      );
+}
+
+extension PageBlockButtonRowExtensions on PageBlockButtonRow {
+  PageBlockButtonRow copyWith({
+    List<InlineButton>? buttons,
+    PageBlockHorizontalAlignment? align,
+  }) =>
+      PageBlockButtonRow(
+        buttons: buttons ?? this.buttons,
+        align: align ?? this.align,
       );
 }
 
@@ -17182,6 +17395,8 @@ extension MessageContentExtensions on MessageContent {
         messageChatJoinByLink,
     required TResult Function(MessageChatJoinByRequest value)
         messageChatJoinByRequest,
+    required TResult Function(MessageChatJoinFromCommunity value)
+        messageChatJoinFromCommunity,
     required TResult Function(MessageChatDeleteMember value)
         messageChatDeleteMember,
     required TResult Function(MessageChatAddedToCommunity value)
@@ -17234,7 +17449,7 @@ extension MessageContentExtensions on MessageContent {
     required TResult Function(MessageGiveawayWinners value)
         messageGiveawayWinners,
     required TResult Function(MessageGiftedStars value) messageGiftedStars,
-    required TResult Function(MessageGiftedTon value) messageGiftedTon,
+    required TResult Function(MessageGiftedGrams value) messageGiftedGrams,
     required TResult Function(MessageGiveawayPrizeStars value)
         messageGiveawayPrizeStars,
     required TResult Function(MessageGift value) messageGift,
@@ -17384,6 +17599,9 @@ extension MessageContentExtensions on MessageContent {
         return messageChatJoinByLink.call(this as MessageChatJoinByLink);
       case MessageChatJoinByRequest.constructor:
         return messageChatJoinByRequest.call(this as MessageChatJoinByRequest);
+      case MessageChatJoinFromCommunity.constructor:
+        return messageChatJoinFromCommunity
+            .call(this as MessageChatJoinFromCommunity);
       case MessageChatDeleteMember.constructor:
         return messageChatDeleteMember.call(this as MessageChatDeleteMember);
       case MessageChatAddedToCommunity.constructor:
@@ -17452,8 +17670,8 @@ extension MessageContentExtensions on MessageContent {
         return messageGiveawayWinners.call(this as MessageGiveawayWinners);
       case MessageGiftedStars.constructor:
         return messageGiftedStars.call(this as MessageGiftedStars);
-      case MessageGiftedTon.constructor:
-        return messageGiftedTon.call(this as MessageGiftedTon);
+      case MessageGiftedGrams.constructor:
+        return messageGiftedGrams.call(this as MessageGiftedGrams);
       case MessageGiveawayPrizeStars.constructor:
         return messageGiveawayPrizeStars
             .call(this as MessageGiveawayPrizeStars);
@@ -17581,6 +17799,8 @@ extension MessageContentExtensions on MessageContent {
     TResult Function(MessageChatAddMembers value)? messageChatAddMembers,
     TResult Function(MessageChatJoinByLink value)? messageChatJoinByLink,
     TResult Function(MessageChatJoinByRequest value)? messageChatJoinByRequest,
+    TResult Function(MessageChatJoinFromCommunity value)?
+        messageChatJoinFromCommunity,
     TResult Function(MessageChatDeleteMember value)? messageChatDeleteMember,
     TResult Function(MessageChatAddedToCommunity value)?
         messageChatAddedToCommunity,
@@ -17619,7 +17839,7 @@ extension MessageContentExtensions on MessageContent {
     TResult Function(MessageGiveawayCompleted value)? messageGiveawayCompleted,
     TResult Function(MessageGiveawayWinners value)? messageGiveawayWinners,
     TResult Function(MessageGiftedStars value)? messageGiftedStars,
-    TResult Function(MessageGiftedTon value)? messageGiftedTon,
+    TResult Function(MessageGiftedGrams value)? messageGiftedGrams,
     TResult Function(MessageGiveawayPrizeStars value)?
         messageGiveawayPrizeStars,
     TResult Function(MessageGift value)? messageGift,
@@ -17909,6 +18129,12 @@ extension MessageContentExtensions on MessageContent {
               .call(this as MessageChatJoinByRequest);
         }
         break;
+      case MessageChatJoinFromCommunity.constructor:
+        if (messageChatJoinFromCommunity != null) {
+          return messageChatJoinFromCommunity
+              .call(this as MessageChatJoinFromCommunity);
+        }
+        break;
       case MessageChatDeleteMember.constructor:
         if (messageChatDeleteMember != null) {
           return messageChatDeleteMember.call(this as MessageChatDeleteMember);
@@ -18072,9 +18298,9 @@ extension MessageContentExtensions on MessageContent {
           return messageGiftedStars.call(this as MessageGiftedStars);
         }
         break;
-      case MessageGiftedTon.constructor:
-        if (messageGiftedTon != null) {
-          return messageGiftedTon.call(this as MessageGiftedTon);
+      case MessageGiftedGrams.constructor:
+        if (messageGiftedGrams != null) {
+          return messageGiftedGrams.call(this as MessageGiftedGrams);
         }
         break;
       case MessageGiveawayPrizeStars.constructor:
@@ -18739,6 +18965,16 @@ extension MessageChatAddMembersExtensions on MessageChatAddMembers {
       );
 }
 
+extension MessageChatJoinFromCommunityExtensions
+    on MessageChatJoinFromCommunity {
+  MessageChatJoinFromCommunity copyWith({
+    int? communityId,
+  }) =>
+      MessageChatJoinFromCommunity(
+        communityId: communityId ?? this.communityId,
+      );
+}
+
 extension MessageChatDeleteMemberExtensions on MessageChatDeleteMember {
   MessageChatDeleteMember copyWith({
     int? userId,
@@ -18921,9 +19157,11 @@ extension MessageGameScoreExtensions on MessageGameScore {
 extension MessageManagedBotCreatedExtensions on MessageManagedBotCreated {
   MessageManagedBotCreated copyWith({
     int? botUserId,
+    int? managerBotUserId,
   }) =>
       MessageManagedBotCreated(
         botUserId: botUserId ?? this.botUserId,
+        managerBotUserId: managerBotUserId ?? this.managerBotUserId,
       );
 }
 
@@ -19154,15 +19392,15 @@ extension MessageGiftedStarsExtensions on MessageGiftedStars {
       );
 }
 
-extension MessageGiftedTonExtensions on MessageGiftedTon {
-  MessageGiftedTon copyWith({
+extension MessageGiftedGramsExtensions on MessageGiftedGrams {
+  MessageGiftedGrams copyWith({
     int? gifterUserId,
     int? receiverUserId,
     int? gramAmount,
     String? transactionId,
     Sticker? sticker,
   }) =>
-      MessageGiftedTon(
+      MessageGiftedGrams(
         gifterUserId: gifterUserId ?? this.gifterUserId,
         receiverUserId: receiverUserId ?? this.receiverUserId,
         gramAmount: gramAmount ?? this.gramAmount,
@@ -19244,6 +19482,8 @@ extension MessageUpgradedGiftExtensions on MessageUpgradedGift {
     MessageSender? receiverId,
     UpgradedGiftOrigin? origin,
     String? receivedGiftId,
+    FormattedText? text,
+    bool? isPrivate,
     bool? isSaved,
     bool? canBeTransferred,
     bool? wasTransferred,
@@ -19260,6 +19500,8 @@ extension MessageUpgradedGiftExtensions on MessageUpgradedGift {
         receiverId: receiverId ?? this.receiverId,
         origin: origin ?? this.origin,
         receivedGiftId: receivedGiftId ?? this.receivedGiftId,
+        text: text ?? this.text,
+        isPrivate: isPrivate ?? this.isPrivate,
         isSaved: isSaved ?? this.isSaved,
         canBeTransferred: canBeTransferred ?? this.canBeTransferred,
         wasTransferred: wasTransferred ?? this.wasTransferred,
@@ -20554,9 +20796,12 @@ extension InputPageBlockExtensions on InputPageBlock {
     required TResult Function(InputPageBlockAnchor value) anchor,
     required TResult Function(InputPageBlockList value) list,
     required TResult Function(InputPageBlockBlockQuote value) blockQuote,
+    required TResult Function(InputPageBlockExpandableBlockQuote value)
+        expandableBlockQuote,
     required TResult Function(InputPageBlockPullQuote value) pullQuote,
     required TResult Function(InputPageBlockAnimation value) animation,
     required TResult Function(InputPageBlockAudio value) audio,
+    required TResult Function(InputPageBlockDocument value) document,
     required TResult Function(InputPageBlockPhoto value) photo,
     required TResult Function(InputPageBlockVideo value) video,
     required TResult Function(InputPageBlockVoiceNote value) voiceNote,
@@ -20565,6 +20810,7 @@ extension InputPageBlockExtensions on InputPageBlock {
     required TResult Function(InputPageBlockTable value) table,
     required TResult Function(InputPageBlockDetails value) details,
     required TResult Function(InputPageBlockMap value) map,
+    required TResult Function(InputPageBlockButtonRow value) buttonRow,
   }) {
     switch (getConstructor()) {
       case InputPageBlockSectionHeading.constructor:
@@ -20588,12 +20834,17 @@ extension InputPageBlockExtensions on InputPageBlock {
         return list.call(this as InputPageBlockList);
       case InputPageBlockBlockQuote.constructor:
         return blockQuote.call(this as InputPageBlockBlockQuote);
+      case InputPageBlockExpandableBlockQuote.constructor:
+        return expandableBlockQuote
+            .call(this as InputPageBlockExpandableBlockQuote);
       case InputPageBlockPullQuote.constructor:
         return pullQuote.call(this as InputPageBlockPullQuote);
       case InputPageBlockAnimation.constructor:
         return animation.call(this as InputPageBlockAnimation);
       case InputPageBlockAudio.constructor:
         return audio.call(this as InputPageBlockAudio);
+      case InputPageBlockDocument.constructor:
+        return document.call(this as InputPageBlockDocument);
       case InputPageBlockPhoto.constructor:
         return photo.call(this as InputPageBlockPhoto);
       case InputPageBlockVideo.constructor:
@@ -20610,6 +20861,8 @@ extension InputPageBlockExtensions on InputPageBlock {
         return details.call(this as InputPageBlockDetails);
       case InputPageBlockMap.constructor:
         return map.call(this as InputPageBlockMap);
+      case InputPageBlockButtonRow.constructor:
+        return buttonRow.call(this as InputPageBlockButtonRow);
     }
     throw StateError('not handled type Generator');
   }
@@ -20626,9 +20879,12 @@ extension InputPageBlockExtensions on InputPageBlock {
     TResult Function(InputPageBlockAnchor value)? anchor,
     TResult Function(InputPageBlockList value)? list,
     TResult Function(InputPageBlockBlockQuote value)? blockQuote,
+    TResult Function(InputPageBlockExpandableBlockQuote value)?
+        expandableBlockQuote,
     TResult Function(InputPageBlockPullQuote value)? pullQuote,
     TResult Function(InputPageBlockAnimation value)? animation,
     TResult Function(InputPageBlockAudio value)? audio,
+    TResult Function(InputPageBlockDocument value)? document,
     TResult Function(InputPageBlockPhoto value)? photo,
     TResult Function(InputPageBlockVideo value)? video,
     TResult Function(InputPageBlockVoiceNote value)? voiceNote,
@@ -20637,6 +20893,7 @@ extension InputPageBlockExtensions on InputPageBlock {
     TResult Function(InputPageBlockTable value)? table,
     TResult Function(InputPageBlockDetails value)? details,
     TResult Function(InputPageBlockMap value)? map,
+    TResult Function(InputPageBlockButtonRow value)? buttonRow,
     required TResult Function() orElse,
   }) {
     switch (getConstructor()) {
@@ -20691,6 +20948,12 @@ extension InputPageBlockExtensions on InputPageBlock {
           return blockQuote.call(this as InputPageBlockBlockQuote);
         }
         break;
+      case InputPageBlockExpandableBlockQuote.constructor:
+        if (expandableBlockQuote != null) {
+          return expandableBlockQuote
+              .call(this as InputPageBlockExpandableBlockQuote);
+        }
+        break;
       case InputPageBlockPullQuote.constructor:
         if (pullQuote != null) {
           return pullQuote.call(this as InputPageBlockPullQuote);
@@ -20704,6 +20967,11 @@ extension InputPageBlockExtensions on InputPageBlock {
       case InputPageBlockAudio.constructor:
         if (audio != null) {
           return audio.call(this as InputPageBlockAudio);
+        }
+        break;
+      case InputPageBlockDocument.constructor:
+        if (document != null) {
+          return document.call(this as InputPageBlockDocument);
         }
         break;
       case InputPageBlockPhoto.constructor:
@@ -20744,6 +21012,11 @@ extension InputPageBlockExtensions on InputPageBlock {
       case InputPageBlockMap.constructor:
         if (map != null) {
           return map.call(this as InputPageBlockMap);
+        }
+        break;
+      case InputPageBlockButtonRow.constructor:
+        if (buttonRow != null) {
+          return buttonRow.call(this as InputPageBlockButtonRow);
         }
         break;
     }
@@ -20840,6 +21113,18 @@ extension InputPageBlockBlockQuoteExtensions on InputPageBlockBlockQuote {
       );
 }
 
+extension InputPageBlockExpandableBlockQuoteExtensions
+    on InputPageBlockExpandableBlockQuote {
+  InputPageBlockExpandableBlockQuote copyWith({
+    RichText? text,
+    RichText? credit,
+  }) =>
+      InputPageBlockExpandableBlockQuote(
+        text: text ?? this.text,
+        credit: credit ?? this.credit,
+      );
+}
+
 extension InputPageBlockPullQuoteExtensions on InputPageBlockPullQuote {
   InputPageBlockPullQuote copyWith({
     RichText? text,
@@ -20871,6 +21156,17 @@ extension InputPageBlockAudioExtensions on InputPageBlockAudio {
   }) =>
       InputPageBlockAudio(
         audio: audio ?? this.audio,
+        caption: caption ?? this.caption,
+      );
+}
+
+extension InputPageBlockDocumentExtensions on InputPageBlockDocument {
+  InputPageBlockDocument copyWith({
+    InputDocument? document,
+    PageBlockCaption? caption,
+  }) =>
+      InputPageBlockDocument(
+        document: document ?? this.document,
         caption: caption ?? this.caption,
       );
 }
@@ -20940,12 +21236,14 @@ extension InputPageBlockTableExtensions on InputPageBlockTable {
     List<List<PageBlockTableCell>>? cells,
     bool? isBordered,
     bool? isStriped,
+    bool? isCompact,
   }) =>
       InputPageBlockTable(
         caption: caption ?? this.caption,
         cells: cells ?? this.cells,
         isBordered: isBordered ?? this.isBordered,
         isStriped: isStriped ?? this.isStriped,
+        isCompact: isCompact ?? this.isCompact,
       );
 }
 
@@ -20976,6 +21274,17 @@ extension InputPageBlockMapExtensions on InputPageBlockMap {
         width: width ?? this.width,
         height: height ?? this.height,
         caption: caption ?? this.caption,
+      );
+}
+
+extension InputPageBlockButtonRowExtensions on InputPageBlockButtonRow {
+  InputPageBlockButtonRow copyWith({
+    List<InlineButton>? buttons,
+    PageBlockHorizontalAlignment? align,
+  }) =>
+      InputPageBlockButtonRow(
+        buttons: buttons ?? this.buttons,
+        align: align ?? this.align,
       );
 }
 
@@ -21868,6 +22177,8 @@ extension SearchMessagesChatTypeFilterExtensions
     required TResult Function(SearchMessagesChatTypeFilterGroup value) group,
     required TResult Function(SearchMessagesChatTypeFilterChannel value)
         channel,
+    required TResult Function(SearchMessagesChatTypeFilterCommunity value)
+        community,
   }) {
     switch (getConstructor()) {
       case SearchMessagesChatTypeFilterPrivate.constructor:
@@ -21876,6 +22187,8 @@ extension SearchMessagesChatTypeFilterExtensions
         return group.call(this as SearchMessagesChatTypeFilterGroup);
       case SearchMessagesChatTypeFilterChannel.constructor:
         return channel.call(this as SearchMessagesChatTypeFilterChannel);
+      case SearchMessagesChatTypeFilterCommunity.constructor:
+        return community.call(this as SearchMessagesChatTypeFilterCommunity);
     }
     throw StateError('not handled type Generator');
   }
@@ -21884,6 +22197,7 @@ extension SearchMessagesChatTypeFilterExtensions
     TResult Function(SearchMessagesChatTypeFilterPrivate value)? private,
     TResult Function(SearchMessagesChatTypeFilterGroup value)? group,
     TResult Function(SearchMessagesChatTypeFilterChannel value)? channel,
+    TResult Function(SearchMessagesChatTypeFilterCommunity value)? community,
     required TResult Function() orElse,
   }) {
     switch (getConstructor()) {
@@ -21902,9 +22216,24 @@ extension SearchMessagesChatTypeFilterExtensions
           return channel.call(this as SearchMessagesChatTypeFilterChannel);
         }
         break;
+      case SearchMessagesChatTypeFilterCommunity.constructor:
+        if (community != null) {
+          return community.call(this as SearchMessagesChatTypeFilterCommunity);
+        }
+        break;
     }
     return orElse.call();
   }
+}
+
+extension SearchMessagesChatTypeFilterCommunityExtensions
+    on SearchMessagesChatTypeFilterCommunity {
+  SearchMessagesChatTypeFilterCommunity copyWith({
+    int? communityId,
+  }) =>
+      SearchMessagesChatTypeFilterCommunity(
+        communityId: communityId ?? this.communityId,
+      );
 }
 
 extension SearchChatTypeFilterExtensions on SearchChatTypeFilter {
@@ -23591,6 +23920,17 @@ extension QuickReplyShortcutExtensions on QuickReplyShortcut {
         name: name ?? this.name,
         firstMessage: firstMessage ?? this.firstMessage,
         messageCount: messageCount ?? this.messageCount,
+      );
+}
+
+extension WelcomeMessageExtensions on WelcomeMessage {
+  WelcomeMessage copyWith({
+    int? id,
+    MessageContent? content,
+  }) =>
+      WelcomeMessage(
+        id: id ?? this.id,
+        content: content ?? this.content,
       );
 }
 
@@ -37170,6 +37510,8 @@ extension UpdateExtensions on Update {
         messageSendSucceeded,
     required TResult Function(UpdateMessageSendFailed value) messageSendFailed,
     required TResult Function(UpdateMessageContent value) messageContent,
+    required TResult Function(UpdateMessageEphemeralContent value)
+        messageEphemeralContent,
     required TResult Function(UpdateMessageEdited value) messageEdited,
     required TResult Function(UpdateMessageIsPinned value) messageIsPinned,
     required TResult Function(UpdateMessageInteractionInfo value)
@@ -37236,6 +37578,8 @@ extension UpdateExtensions on Update {
     required TResult Function(UpdateChatBlockList value) chatBlockList,
     required TResult Function(UpdateChatHasScheduledMessages value)
         chatHasScheduledMessages,
+    required TResult Function(UpdateChatHasWelcomeMessages value)
+        chatHasWelcomeMessages,
     required TResult Function(UpdateChatFolders value) chatFolders,
     required TResult Function(UpdateChatOnlineMemberCount value)
         chatOnlineMemberCount,
@@ -37254,6 +37598,8 @@ extension UpdateExtensions on Update {
         quickReplyShortcuts,
     required TResult Function(UpdateQuickReplyShortcutMessages value)
         quickReplyShortcutMessages,
+    required TResult Function(UpdateChatWelcomeMessages value)
+        chatWelcomeMessages,
     required TResult Function(UpdateForumTopicInfo value) forumTopicInfo,
     required TResult Function(UpdateForumTopic value) forumTopic,
     required TResult Function(UpdateScopeNotificationSettings value)
@@ -37269,6 +37615,7 @@ extension UpdateExtensions on Update {
     required TResult Function(UpdateDeleteMessages value) deleteMessages,
     required TResult Function(UpdateChatAction value) chatAction,
     required TResult Function(UpdatePendingMessage value) pendingMessage,
+    required TResult Function(UpdateStopMessageDraft value) stopMessageDraft,
     required TResult Function(UpdateCommunity value) community,
     required TResult Function(UpdateUserStatus value) userStatus,
     required TResult Function(UpdateUser value) user,
@@ -37280,6 +37627,7 @@ extension UpdateExtensions on Update {
         basicGroupFullInfo,
     required TResult Function(UpdateSupergroupFullInfo value)
         supergroupFullInfo,
+    required TResult Function(UpdateCommunityFullInfo value) communityFullInfo,
     required TResult Function(UpdateServiceNotification value)
         serviceNotification,
     required TResult Function(UpdateNewOauthRequest value) newOauthRequest,
@@ -37452,6 +37800,9 @@ extension UpdateExtensions on Update {
         return messageSendFailed.call(this as UpdateMessageSendFailed);
       case UpdateMessageContent.constructor:
         return messageContent.call(this as UpdateMessageContent);
+      case UpdateMessageEphemeralContent.constructor:
+        return messageEphemeralContent
+            .call(this as UpdateMessageEphemeralContent);
       case UpdateMessageEdited.constructor:
         return messageEdited.call(this as UpdateMessageEdited);
       case UpdateMessageIsPinned.constructor:
@@ -37558,6 +37909,9 @@ extension UpdateExtensions on Update {
       case UpdateChatHasScheduledMessages.constructor:
         return chatHasScheduledMessages
             .call(this as UpdateChatHasScheduledMessages);
+      case UpdateChatHasWelcomeMessages.constructor:
+        return chatHasWelcomeMessages
+            .call(this as UpdateChatHasWelcomeMessages);
       case UpdateChatFolders.constructor:
         return chatFolders.call(this as UpdateChatFolders);
       case UpdateChatOnlineMemberCount.constructor:
@@ -37582,6 +37936,8 @@ extension UpdateExtensions on Update {
       case UpdateQuickReplyShortcutMessages.constructor:
         return quickReplyShortcutMessages
             .call(this as UpdateQuickReplyShortcutMessages);
+      case UpdateChatWelcomeMessages.constructor:
+        return chatWelcomeMessages.call(this as UpdateChatWelcomeMessages);
       case UpdateForumTopicInfo.constructor:
         return forumTopicInfo.call(this as UpdateForumTopicInfo);
       case UpdateForumTopic.constructor:
@@ -37607,6 +37963,8 @@ extension UpdateExtensions on Update {
         return chatAction.call(this as UpdateChatAction);
       case UpdatePendingMessage.constructor:
         return pendingMessage.call(this as UpdatePendingMessage);
+      case UpdateStopMessageDraft.constructor:
+        return stopMessageDraft.call(this as UpdateStopMessageDraft);
       case UpdateCommunity.constructor:
         return community.call(this as UpdateCommunity);
       case UpdateUserStatus.constructor:
@@ -37625,6 +37983,8 @@ extension UpdateExtensions on Update {
         return basicGroupFullInfo.call(this as UpdateBasicGroupFullInfo);
       case UpdateSupergroupFullInfo.constructor:
         return supergroupFullInfo.call(this as UpdateSupergroupFullInfo);
+      case UpdateCommunityFullInfo.constructor:
+        return communityFullInfo.call(this as UpdateCommunityFullInfo);
       case UpdateServiceNotification.constructor:
         return serviceNotification.call(this as UpdateServiceNotification);
       case UpdateNewOauthRequest.constructor:
@@ -37864,6 +38224,8 @@ extension UpdateExtensions on Update {
     TResult Function(UpdateMessageSendSucceeded value)? messageSendSucceeded,
     TResult Function(UpdateMessageSendFailed value)? messageSendFailed,
     TResult Function(UpdateMessageContent value)? messageContent,
+    TResult Function(UpdateMessageEphemeralContent value)?
+        messageEphemeralContent,
     TResult Function(UpdateMessageEdited value)? messageEdited,
     TResult Function(UpdateMessageIsPinned value)? messageIsPinned,
     TResult Function(UpdateMessageInteractionInfo value)?
@@ -37925,6 +38287,8 @@ extension UpdateExtensions on Update {
     TResult Function(UpdateChatBlockList value)? chatBlockList,
     TResult Function(UpdateChatHasScheduledMessages value)?
         chatHasScheduledMessages,
+    TResult Function(UpdateChatHasWelcomeMessages value)?
+        chatHasWelcomeMessages,
     TResult Function(UpdateChatFolders value)? chatFolders,
     TResult Function(UpdateChatOnlineMemberCount value)? chatOnlineMemberCount,
     TResult Function(UpdateSavedMessagesTopic value)? savedMessagesTopic,
@@ -37939,6 +38303,7 @@ extension UpdateExtensions on Update {
     TResult Function(UpdateQuickReplyShortcuts value)? quickReplyShortcuts,
     TResult Function(UpdateQuickReplyShortcutMessages value)?
         quickReplyShortcutMessages,
+    TResult Function(UpdateChatWelcomeMessages value)? chatWelcomeMessages,
     TResult Function(UpdateForumTopicInfo value)? forumTopicInfo,
     TResult Function(UpdateForumTopic value)? forumTopic,
     TResult Function(UpdateScopeNotificationSettings value)?
@@ -37953,6 +38318,7 @@ extension UpdateExtensions on Update {
     TResult Function(UpdateDeleteMessages value)? deleteMessages,
     TResult Function(UpdateChatAction value)? chatAction,
     TResult Function(UpdatePendingMessage value)? pendingMessage,
+    TResult Function(UpdateStopMessageDraft value)? stopMessageDraft,
     TResult Function(UpdateCommunity value)? community,
     TResult Function(UpdateUserStatus value)? userStatus,
     TResult Function(UpdateUser value)? user,
@@ -37962,6 +38328,7 @@ extension UpdateExtensions on Update {
     TResult Function(UpdateUserFullInfo value)? userFullInfo,
     TResult Function(UpdateBasicGroupFullInfo value)? basicGroupFullInfo,
     TResult Function(UpdateSupergroupFullInfo value)? supergroupFullInfo,
+    TResult Function(UpdateCommunityFullInfo value)? communityFullInfo,
     TResult Function(UpdateServiceNotification value)? serviceNotification,
     TResult Function(UpdateNewOauthRequest value)? newOauthRequest,
     TResult Function(UpdateFile value)? file,
@@ -38118,6 +38485,12 @@ extension UpdateExtensions on Update {
       case UpdateMessageContent.constructor:
         if (messageContent != null) {
           return messageContent.call(this as UpdateMessageContent);
+        }
+        break;
+      case UpdateMessageEphemeralContent.constructor:
+        if (messageEphemeralContent != null) {
+          return messageEphemeralContent
+              .call(this as UpdateMessageEphemeralContent);
         }
         break;
       case UpdateMessageEdited.constructor:
@@ -38361,6 +38734,12 @@ extension UpdateExtensions on Update {
               .call(this as UpdateChatHasScheduledMessages);
         }
         break;
+      case UpdateChatHasWelcomeMessages.constructor:
+        if (chatHasWelcomeMessages != null) {
+          return chatHasWelcomeMessages
+              .call(this as UpdateChatHasWelcomeMessages);
+        }
+        break;
       case UpdateChatFolders.constructor:
         if (chatFolders != null) {
           return chatFolders.call(this as UpdateChatFolders);
@@ -38414,6 +38793,11 @@ extension UpdateExtensions on Update {
         if (quickReplyShortcutMessages != null) {
           return quickReplyShortcutMessages
               .call(this as UpdateQuickReplyShortcutMessages);
+        }
+        break;
+      case UpdateChatWelcomeMessages.constructor:
+        if (chatWelcomeMessages != null) {
+          return chatWelcomeMessages.call(this as UpdateChatWelcomeMessages);
         }
         break;
       case UpdateForumTopicInfo.constructor:
@@ -38474,6 +38858,11 @@ extension UpdateExtensions on Update {
           return pendingMessage.call(this as UpdatePendingMessage);
         }
         break;
+      case UpdateStopMessageDraft.constructor:
+        if (stopMessageDraft != null) {
+          return stopMessageDraft.call(this as UpdateStopMessageDraft);
+        }
+        break;
       case UpdateCommunity.constructor:
         if (community != null) {
           return community.call(this as UpdateCommunity);
@@ -38517,6 +38906,11 @@ extension UpdateExtensions on Update {
       case UpdateSupergroupFullInfo.constructor:
         if (supergroupFullInfo != null) {
           return supergroupFullInfo.call(this as UpdateSupergroupFullInfo);
+        }
+        break;
+      case UpdateCommunityFullInfo.constructor:
+        if (communityFullInfo != null) {
+          return communityFullInfo.call(this as UpdateCommunityFullInfo);
         }
         break;
       case UpdateServiceNotification.constructor:
@@ -39132,6 +39526,20 @@ extension UpdateMessageContentExtensions on UpdateMessageContent {
       );
 }
 
+extension UpdateMessageEphemeralContentExtensions
+    on UpdateMessageEphemeralContent {
+  UpdateMessageEphemeralContent copyWith({
+    int? chatId,
+    int? messageId,
+    EphemeralMessageContent? ephemeralContent,
+  }) =>
+      UpdateMessageEphemeralContent(
+        chatId: chatId ?? this.chatId,
+        messageId: messageId ?? this.messageId,
+        ephemeralContent: ephemeralContent ?? this.ephemeralContent,
+      );
+}
+
 extension UpdateMessageEditedExtensions on UpdateMessageEdited {
   UpdateMessageEdited copyWith({
     int? chatId,
@@ -39684,6 +40092,18 @@ extension UpdateChatHasScheduledMessagesExtensions
       );
 }
 
+extension UpdateChatHasWelcomeMessagesExtensions
+    on UpdateChatHasWelcomeMessages {
+  UpdateChatHasWelcomeMessages copyWith({
+    int? chatId,
+    bool? hasWelcomeMessages,
+  }) =>
+      UpdateChatHasWelcomeMessages(
+        chatId: chatId ?? this.chatId,
+        hasWelcomeMessages: hasWelcomeMessages ?? this.hasWelcomeMessages,
+      );
+}
+
 extension UpdateChatFoldersExtensions on UpdateChatFolders {
   UpdateChatFolders copyWith({
     List<ChatFolderInfo>? chatFolders,
@@ -39786,6 +40206,17 @@ extension UpdateQuickReplyShortcutMessagesExtensions
   }) =>
       UpdateQuickReplyShortcutMessages(
         shortcutId: shortcutId ?? this.shortcutId,
+        messages: messages ?? this.messages,
+      );
+}
+
+extension UpdateChatWelcomeMessagesExtensions on UpdateChatWelcomeMessages {
+  UpdateChatWelcomeMessages copyWith({
+    int? chatId,
+    List<WelcomeMessage>? messages,
+  }) =>
+      UpdateChatWelcomeMessages(
+        chatId: chatId ?? this.chatId,
         messages: messages ?? this.messages,
       );
 }
@@ -39944,13 +40375,30 @@ extension UpdatePendingMessageExtensions on UpdatePendingMessage {
     int? chatId,
     int? forumTopicId,
     int? draftId,
+    bool? canStop,
+    bool? keepOnStop,
     MessageContent? content,
   }) =>
       UpdatePendingMessage(
         chatId: chatId ?? this.chatId,
         forumTopicId: forumTopicId ?? this.forumTopicId,
         draftId: draftId ?? this.draftId,
+        canStop: canStop ?? this.canStop,
+        keepOnStop: keepOnStop ?? this.keepOnStop,
         content: content ?? this.content,
+      );
+}
+
+extension UpdateStopMessageDraftExtensions on UpdateStopMessageDraft {
+  UpdateStopMessageDraft copyWith({
+    int? chatId,
+    int? forumTopicId,
+    int? draftId,
+  }) =>
+      UpdateStopMessageDraft(
+        chatId: chatId ?? this.chatId,
+        forumTopicId: forumTopicId ?? this.forumTopicId,
+        draftId: draftId ?? this.draftId,
       );
 }
 
@@ -40040,6 +40488,17 @@ extension UpdateSupergroupFullInfoExtensions on UpdateSupergroupFullInfo {
       UpdateSupergroupFullInfo(
         supergroupId: supergroupId ?? this.supergroupId,
         supergroupFullInfo: supergroupFullInfo ?? this.supergroupFullInfo,
+      );
+}
+
+extension UpdateCommunityFullInfoExtensions on UpdateCommunityFullInfo {
+  UpdateCommunityFullInfo copyWith({
+    int? communityId,
+    CommunityFullInfo? communityFullInfo,
+  }) =>
+      UpdateCommunityFullInfo(
+        communityId: communityId ?? this.communityId,
+        communityFullInfo: communityFullInfo ?? this.communityFullInfo,
       );
 }
 
@@ -42478,6 +42937,39 @@ extension SetPinnedSavedMessagesTopicsExtensions
       );
 }
 
+extension LoadCommunityFullInfoExtensions on LoadCommunityFullInfo {
+  LoadCommunityFullInfo copyWith({
+    int? communityId,
+  }) =>
+      LoadCommunityFullInfo(
+        communityId: communityId ?? this.communityId,
+      );
+}
+
+extension CreateCommunityExtensions on CreateCommunity {
+  CreateCommunity copyWith({
+    String? name,
+    int? chatId,
+    bool? isChatHidden,
+  }) =>
+      CreateCommunity(
+        name: name ?? this.name,
+        chatId: chatId ?? this.chatId,
+        isChatHidden: isChatHidden ?? this.isChatHidden,
+      );
+}
+
+extension SetCommunityNameExtensions on SetCommunityName {
+  SetCommunityName copyWith({
+    int? communityId,
+    String? name,
+  }) =>
+      SetCommunityName(
+        communityId: communityId ?? this.communityId,
+        name: name ?? this.name,
+      );
+}
+
 extension GetGroupsInCommonExtensions on GetGroupsInCommon {
   GetGroupsInCommon copyWith({
     int? userId,
@@ -43447,7 +43939,9 @@ extension SendEphemeralMessageExtensions on SendEphemeralMessage {
     MessageTopic? topicId,
     int? receiverUserId,
     int? callbackQueryId,
+    bool? replaceCallbackQueryMessage,
     InputMessageReplyTo? replyTo,
+    bool? protectContent,
     int? sendingId,
     bool? onlyPreview,
     ReplyMarkup? replyMarkup,
@@ -43458,7 +43952,10 @@ extension SendEphemeralMessageExtensions on SendEphemeralMessage {
         topicId: topicId ?? this.topicId,
         receiverUserId: receiverUserId ?? this.receiverUserId,
         callbackQueryId: callbackQueryId ?? this.callbackQueryId,
+        replaceCallbackQueryMessage:
+            replaceCallbackQueryMessage ?? this.replaceCallbackQueryMessage,
         replyTo: replyTo ?? this.replyTo,
+        protectContent: protectContent ?? this.protectContent,
         sendingId: sendingId ?? this.sendingId,
         onlyPreview: onlyPreview ?? this.onlyPreview,
         replyMarkup: replyMarkup ?? this.replyMarkup,
@@ -43711,6 +44208,41 @@ extension EditEphemeralMessageExtensions on EditEphemeralMessage {
       );
 }
 
+extension EditEphemeralMessageCaptionExtensions on EditEphemeralMessageCaption {
+  EditEphemeralMessageCaption copyWith({
+    int? chatId,
+    int? receiverUserId,
+    int? ephemeralMessageId,
+    ReplyMarkup? replyMarkup,
+    FormattedText? caption,
+    bool? showCaptionAboveMedia,
+  }) =>
+      EditEphemeralMessageCaption(
+        chatId: chatId ?? this.chatId,
+        receiverUserId: receiverUserId ?? this.receiverUserId,
+        ephemeralMessageId: ephemeralMessageId ?? this.ephemeralMessageId,
+        replyMarkup: replyMarkup ?? this.replyMarkup,
+        caption: caption ?? this.caption,
+        showCaptionAboveMedia:
+            showCaptionAboveMedia ?? this.showCaptionAboveMedia,
+      );
+}
+
+extension EditCallbackQueryMessageExtensions on EditCallbackQueryMessage {
+  EditCallbackQueryMessage copyWith({
+    int? callbackQueryId,
+    bool? protectContent,
+    ReplyMarkup? replyMarkup,
+    InputMessageContent? inputMessageContent,
+  }) =>
+      EditCallbackQueryMessage(
+        callbackQueryId: callbackQueryId ?? this.callbackQueryId,
+        protectContent: protectContent ?? this.protectContent,
+        replyMarkup: replyMarkup ?? this.replyMarkup,
+        inputMessageContent: inputMessageContent ?? this.inputMessageContent,
+      );
+}
+
 extension EditMessageSchedulingStateExtensions on EditMessageSchedulingState {
   EditMessageSchedulingState copyWith({
     int? chatId,
@@ -43721,6 +44253,18 @@ extension EditMessageSchedulingStateExtensions on EditMessageSchedulingState {
         chatId: chatId ?? this.chatId,
         messageId: messageId ?? this.messageId,
         schedulingState: schedulingState ?? this.schedulingState,
+      );
+}
+
+extension DeleteMessageEphemeralContentExtensions
+    on DeleteMessageEphemeralContent {
+  DeleteMessageEphemeralContent copyWith({
+    int? chatId,
+    int? messageId,
+  }) =>
+      DeleteMessageEphemeralContent(
+        chatId: chatId ?? this.chatId,
+        messageId: messageId ?? this.messageId,
       );
 }
 
@@ -44182,6 +44726,60 @@ extension EditQuickReplyMessageExtensions on EditQuickReplyMessage {
         shortcutId: shortcutId ?? this.shortcutId,
         messageId: messageId ?? this.messageId,
         inputMessageContent: inputMessageContent ?? this.inputMessageContent,
+      );
+}
+
+extension LoadChatWelcomeMessagesExtensions on LoadChatWelcomeMessages {
+  LoadChatWelcomeMessages copyWith({
+    int? chatId,
+  }) =>
+      LoadChatWelcomeMessages(
+        chatId: chatId ?? this.chatId,
+      );
+}
+
+extension AddChatWelcomeMessageExtensions on AddChatWelcomeMessage {
+  AddChatWelcomeMessage copyWith({
+    int? chatId,
+    InputMessageContent? inputMessageContent,
+  }) =>
+      AddChatWelcomeMessage(
+        chatId: chatId ?? this.chatId,
+        inputMessageContent: inputMessageContent ?? this.inputMessageContent,
+      );
+}
+
+extension EditChatWelcomeMessageExtensions on EditChatWelcomeMessage {
+  EditChatWelcomeMessage copyWith({
+    int? chatId,
+    int? welcomeMessageId,
+    InputMessageContent? inputMessageContent,
+  }) =>
+      EditChatWelcomeMessage(
+        chatId: chatId ?? this.chatId,
+        welcomeMessageId: welcomeMessageId ?? this.welcomeMessageId,
+        inputMessageContent: inputMessageContent ?? this.inputMessageContent,
+      );
+}
+
+extension DeleteChatWelcomeMessageExtensions on DeleteChatWelcomeMessage {
+  DeleteChatWelcomeMessage copyWith({
+    int? chatId,
+    int? welcomeMessageId,
+  }) =>
+      DeleteChatWelcomeMessage(
+        chatId: chatId ?? this.chatId,
+        welcomeMessageId: welcomeMessageId ?? this.welcomeMessageId,
+      );
+}
+
+extension DeleteAllChatWelcomeMessagesExtensions
+    on DeleteAllChatWelcomeMessages {
+  DeleteAllChatWelcomeMessages copyWith({
+    int? chatId,
+  }) =>
+      DeleteAllChatWelcomeMessages(
+        chatId: chatId ?? this.chatId,
       );
 }
 
@@ -45349,12 +45947,16 @@ extension SendTextMessageDraftExtensions on SendTextMessageDraft {
     int? chatId,
     int? forumTopicId,
     int? draftId,
+    bool? canStop,
+    bool? keepOnStop,
     FormattedText? text,
   }) =>
       SendTextMessageDraft(
         chatId: chatId ?? this.chatId,
         forumTopicId: forumTopicId ?? this.forumTopicId,
         draftId: draftId ?? this.draftId,
+        canStop: canStop ?? this.canStop,
+        keepOnStop: keepOnStop ?? this.keepOnStop,
         text: text ?? this.text,
       );
 }
@@ -45364,13 +45966,30 @@ extension SendRichMessageDraftExtensions on SendRichMessageDraft {
     int? chatId,
     int? forumTopicId,
     int? draftId,
+    bool? canStop,
+    bool? keepOnStop,
     InputRichMessage? message,
   }) =>
       SendRichMessageDraft(
         chatId: chatId ?? this.chatId,
         forumTopicId: forumTopicId ?? this.forumTopicId,
         draftId: draftId ?? this.draftId,
+        canStop: canStop ?? this.canStop,
+        keepOnStop: keepOnStop ?? this.keepOnStop,
         message: message ?? this.message,
+      );
+}
+
+extension StopPendingMessageExtensions on StopPendingMessage {
+  StopPendingMessage copyWith({
+    int? chatId,
+    MessageTopic? topicId,
+    int? draftId,
+  }) =>
+      StopPendingMessage(
+        chatId: chatId ?? this.chatId,
+        topicId: topicId ?? this.topicId,
+        draftId: draftId ?? this.draftId,
       );
 }
 
@@ -50268,11 +50887,15 @@ extension SendResoldGiftExtensions on SendResoldGift {
     String? giftName,
     MessageSender? ownerId,
     GiftResalePrice? price,
+    FormattedText? text,
+    bool? isPrivate,
   }) =>
       SendResoldGift(
         giftName: giftName ?? this.giftName,
         ownerId: ownerId ?? this.ownerId,
         price: price ?? this.price,
+        text: text ?? this.text,
+        isPrivate: isPrivate ?? this.isPrivate,
       );
 }
 

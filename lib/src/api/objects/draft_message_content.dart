@@ -11,6 +11,7 @@ abstract class DraftMessageContent extends TdObject {
   static const String constructor = 'draftMessageContent';
 
   /// Inherited by:
+  /// [DraftMessageContentInputRichMessage]
   /// [DraftMessageContentRichMessage]
   /// [DraftMessageContentText]
   /// [DraftMessageContentVideoNote]
@@ -21,6 +22,8 @@ abstract class DraftMessageContent extends TdObject {
     }
 
     switch (json['@type']) {
+      case DraftMessageContentInputRichMessage.constructor:
+        return DraftMessageContentInputRichMessage.fromJson(json);
       case DraftMessageContentRichMessage.constructor:
         return DraftMessageContentRichMessage.fromJson(json);
       case DraftMessageContentText.constructor:

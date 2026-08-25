@@ -13,6 +13,7 @@ abstract class ButtonStyle extends TdObject {
   /// Inherited by:
   /// [ButtonStyleDanger]
   /// [ButtonStyleDefault]
+  /// [ButtonStyleLink]
   /// [ButtonStylePrimary]
   /// [ButtonStyleSuccess]
   static ButtonStyle? fromJson(Map<String, dynamic>? json) {
@@ -25,6 +26,8 @@ abstract class ButtonStyle extends TdObject {
         return ButtonStyleDanger.fromJson(json);
       case ButtonStyleDefault.constructor:
         return ButtonStyleDefault.fromJson(json);
+      case ButtonStyleLink.constructor:
+        return ButtonStyleLink.fromJson(json);
       case ButtonStylePrimary.constructor:
         return ButtonStylePrimary.fromJson(json);
       case ButtonStyleSuccess.constructor:

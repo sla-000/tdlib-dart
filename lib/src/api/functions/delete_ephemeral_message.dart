@@ -19,7 +19,7 @@ class DeleteEphemeralMessage extends TdFunction {
   /// [receiverUserId] Identifier of the user who received the message
   final int receiverUserId;
 
-  /// [ephemeralMessageId] Identifiers of the message to be deleted
+  /// [ephemeralMessageId] Identifier of the message to be deleted
   final int ephemeralMessageId;
 
   static const String constructor = 'deleteEphemeralMessage';

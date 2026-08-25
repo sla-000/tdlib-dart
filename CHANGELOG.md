@@ -1,3 +1,7 @@
+# 0.43.0 - 2026-08-25
+
+- Update tdlib to v1.8.67
+
 # 0.42.3
 
 - Docs update

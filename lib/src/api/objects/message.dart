@@ -48,8 +48,10 @@ class Message extends TdObject {
     this.restrictionInfo,
     required this.summaryLanguageCode,
     required this.content,
+    this.ephemeralContent,
     this.replyMarkup,
     this.ephemeralMessageId,
+    this.chatInstance,
   });
 
   /// [id] Message identifier; unique for the chat to which the message belongs
@@ -220,12 +222,21 @@ class Message extends TdObject {
   /// [content] Content of the message
   final MessageContent content;
 
+  /// [ephemeralContent] Content of the message, which is visible only to the
+  /// current user and must be shown instead of the regular content; may be null
+  /// if none
+  final EphemeralMessageContent? ephemeralContent;
+
   /// [replyMarkup] Reply markup for the message; may be null if none
   final ReplyMarkup? replyMarkup;
 
   /// [ephemeralMessageId] Unique identifier of the ephemeral message if the
   /// message is ephemeral; for bots only
   final int? ephemeralMessageId;
+
+  /// [chatInstance] Identifier that uniquely corresponds to the chat to which
+  /// the message was sent; for bots only
+  final int? chatInstance;
 
   static const String constructor = 'message';
 
@@ -305,9 +316,14 @@ class Message extends TdObject {
       summaryLanguageCode: (json['summary_language_code'] as String?) ?? '',
       content:
           MessageContent.fromJson(json['content'] as Map<String, dynamic>?)!,
+      ephemeralContent: EphemeralMessageContent.fromJson(
+          json['ephemeral_content'] as Map<String, dynamic>?),
       replyMarkup:
           ReplyMarkup.fromJson(json['reply_markup'] as Map<String, dynamic>?),
       ephemeralMessageId: json['ephemeral_message_id'] as int?,
+      chatInstance: (json['chat_instance'] is int
+          ? json['chat_instance'] as int
+          : int.tryParse(json['chat_instance']?.toString() ?? '')),
     );
   }
 
@@ -358,8 +374,10 @@ class Message extends TdObject {
         'restriction_info': restrictionInfo?.toJson(),
         'summary_language_code': summaryLanguageCode,
         'content': content.toJson(),
+        'ephemeral_content': ephemeralContent?.toJson(),
         'reply_markup': replyMarkup?.toJson(),
         'ephemeral_message_id': ephemeralMessageId,
+        'chat_instance': chatInstance.toString(),
         '@type': constructor,
       };
 
@@ -435,9 +453,13 @@ class Message extends TdObject {
               .equals(other.summaryLanguageCode, summaryLanguageCode) &&
           const DeepCollectionEquality().equals(other.content, content) &&
           const DeepCollectionEquality()
+              .equals(other.ephemeralContent, ephemeralContent) &&
+          const DeepCollectionEquality()
               .equals(other.replyMarkup, replyMarkup) &&
           const DeepCollectionEquality()
-              .equals(other.ephemeralMessageId, ephemeralMessageId));
+              .equals(other.ephemeralMessageId, ephemeralMessageId) &&
+          const DeepCollectionEquality()
+              .equals(other.chatInstance, chatInstance));
 
   @override
   int get hashCode => Object.hashAll([
@@ -483,7 +505,9 @@ class Message extends TdObject {
         const DeepCollectionEquality().hash(restrictionInfo),
         const DeepCollectionEquality().hash(summaryLanguageCode),
         const DeepCollectionEquality().hash(content),
+        const DeepCollectionEquality().hash(ephemeralContent),
         const DeepCollectionEquality().hash(replyMarkup),
-        const DeepCollectionEquality().hash(ephemeralMessageId)
+        const DeepCollectionEquality().hash(ephemeralMessageId),
+        const DeepCollectionEquality().hash(chatInstance)
       ]);
 }

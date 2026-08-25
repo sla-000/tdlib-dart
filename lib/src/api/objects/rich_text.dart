@@ -16,6 +16,7 @@ abstract class RichText extends TdObject {
   /// [RichTextBankCardNumber]
   /// [RichTextBold]
   /// [RichTextBotCommand]
+  /// [RichTextButton]
   /// [RichTextCashtag]
   /// [RichTextCustomEmoji]
   /// [RichTextDateTime]
@@ -56,6 +57,8 @@ abstract class RichText extends TdObject {
         return RichTextBold.fromJson(json);
       case RichTextBotCommand.constructor:
         return RichTextBotCommand.fromJson(json);
+      case RichTextButton.constructor:
+        return RichTextButton.fromJson(json);
       case RichTextCashtag.constructor:
         return RichTextCashtag.fromJson(json);
       case RichTextCustomEmoji.constructor:

@@ -26,7 +26,7 @@ class UpdateFileGenerationStart extends Update {
   /// access to the path, it can use writeGeneratedFilePart to generate the file
   final String destinationPath;
 
-  /// [conversion] If the conversion is "#url#" than original_path contains an
+  /// [conversion] If the conversion is "#url#", then original_path contains an
   /// HTTP/HTTPS URL of a file that must be downloaded by the application.
   /// Otherwise, this is the conversion specified by the application in
   /// inputFileGenerated

@@ -11,6 +11,8 @@ class SendTextMessageDraft extends TdFunction {
     required this.chatId,
     required this.forumTopicId,
     required this.draftId,
+    required this.canStop,
+    required this.keepOnStop,
     this.text,
   });
 
@@ -23,6 +25,13 @@ class SendTextMessageDraft extends TdFunction {
 
   /// [draftId] Unique identifier of the draft
   final int draftId;
+
+  /// [canStop] Pass true to show the user a button to stop further drafts
+  final bool canStop;
+
+  /// [keepOnStop] Pass true to keep the current draft when the user stops
+  /// further generation
+  final bool keepOnStop;
 
   /// [text] Draft text of the message; pass null to show a "Thinking..."
   /// placeholder
@@ -38,6 +47,8 @@ class SendTextMessageDraft extends TdFunction {
         'chat_id': chatId,
         'forum_topic_id': forumTopicId,
         'draft_id': draftId.toString(),
+        'can_stop': canStop,
+        'keep_on_stop': keepOnStop,
         'text': text?.toJson(),
         '@type': constructor,
       };
@@ -51,6 +62,8 @@ class SendTextMessageDraft extends TdFunction {
           const DeepCollectionEquality()
               .equals(other.forumTopicId, forumTopicId) &&
           const DeepCollectionEquality().equals(other.draftId, draftId) &&
+          const DeepCollectionEquality().equals(other.canStop, canStop) &&
+          const DeepCollectionEquality().equals(other.keepOnStop, keepOnStop) &&
           const DeepCollectionEquality().equals(other.text, text));
 
   @override
@@ -59,6 +72,8 @@ class SendTextMessageDraft extends TdFunction {
         const DeepCollectionEquality().hash(chatId),
         const DeepCollectionEquality().hash(forumTopicId),
         const DeepCollectionEquality().hash(draftId),
+        const DeepCollectionEquality().hash(canStop),
+        const DeepCollectionEquality().hash(keepOnStop),
         const DeepCollectionEquality().hash(text)
       ]);
 }

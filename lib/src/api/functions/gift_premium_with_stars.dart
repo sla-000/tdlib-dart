@@ -15,7 +15,7 @@ class GiftPremiumWithStars extends TdFunction {
     required this.text,
   });
 
-  /// [userId] Identifier of the user which will receive Telegram Premium
+  /// [userId] Identifier of the user who will receive Telegram Premium
   final int userId;
 
   /// [starCount] The number of Telegram Stars to pay for subscription

@@ -28,6 +28,7 @@ abstract class MessageContent extends TdObject {
   /// [MessageChatHasProtectedContentToggled]
   /// [MessageChatJoinByLink]
   /// [MessageChatJoinByRequest]
+  /// [MessageChatJoinFromCommunity]
   /// [MessageChatOwnerChanged]
   /// [MessageChatOwnerLeft]
   /// [MessageChatRemovedFromCommunity]
@@ -57,9 +58,9 @@ abstract class MessageContent extends TdObject {
   /// [MessageGameScore]
   /// [MessageGame]
   /// [MessageGift]
+  /// [MessageGiftedGrams]
   /// [MessageGiftedPremium]
   /// [MessageGiftedStars]
-  /// [MessageGiftedTon]
   /// [MessageGiveawayCompleted]
   /// [MessageGiveawayCreated]
   /// [MessageGiveawayPrizeStars]
@@ -155,6 +156,8 @@ abstract class MessageContent extends TdObject {
         return MessageChatJoinByLink.fromJson(json);
       case MessageChatJoinByRequest.constructor:
         return MessageChatJoinByRequest.fromJson(json);
+      case MessageChatJoinFromCommunity.constructor:
+        return MessageChatJoinFromCommunity.fromJson(json);
       case MessageChatOwnerChanged.constructor:
         return MessageChatOwnerChanged.fromJson(json);
       case MessageChatOwnerLeft.constructor:
@@ -213,12 +216,12 @@ abstract class MessageContent extends TdObject {
         return MessageGameScore.fromJson(json);
       case MessageGift.constructor:
         return MessageGift.fromJson(json);
+      case MessageGiftedGrams.constructor:
+        return MessageGiftedGrams.fromJson(json);
       case MessageGiftedPremium.constructor:
         return MessageGiftedPremium.fromJson(json);
       case MessageGiftedStars.constructor:
         return MessageGiftedStars.fromJson(json);
-      case MessageGiftedTon.constructor:
-        return MessageGiftedTon.fromJson(json);
       case MessageGiveaway.constructor:
         return MessageGiveaway.fromJson(json);
       case MessageGiveawayCompleted.constructor:

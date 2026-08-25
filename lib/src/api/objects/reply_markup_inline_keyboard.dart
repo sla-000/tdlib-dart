@@ -8,10 +8,15 @@ import '../tdapi.dart';
 class ReplyMarkupInlineKeyboard extends ReplyMarkup {
   const ReplyMarkupInlineKeyboard({
     required this.rows,
+    required this.forceReply,
   });
 
   /// [rows] A list of rows of inline keyboard buttons
   final List<List<InlineKeyboardButton>> rows;
+
+  /// [forceReply] True, if a reply to the message must be forced when the
+  /// message is received
+  final bool forceReply;
 
   static const String constructor = 'replyMarkupInlineKeyboard';
 
@@ -29,6 +34,7 @@ class ReplyMarkupInlineKeyboard extends ReplyMarkup {
                           item as Map<String, dynamic>?))
                       .toList()))
               .toList()),
+      forceReply: (json['force_reply'] as bool?) ?? false,
     );
   }
 
@@ -40,6 +46,7 @@ class ReplyMarkupInlineKeyboard extends ReplyMarkup {
         'rows': rows
             .map((item) => item.map((item) => item.toJson()).toList())
             .toList(),
+        'force_reply': forceReply,
         '@type': constructor,
       };
 
@@ -48,9 +55,13 @@ class ReplyMarkupInlineKeyboard extends ReplyMarkup {
       identical(this, other) ||
       (other.runtimeType == runtimeType &&
           other is ReplyMarkupInlineKeyboard &&
-          const DeepCollectionEquality().equals(other.rows, rows));
+          const DeepCollectionEquality().equals(other.rows, rows) &&
+          const DeepCollectionEquality().equals(other.forceReply, forceReply));
 
   @override
-  int get hashCode =>
-      Object.hashAll([runtimeType, const DeepCollectionEquality().hash(rows)]);
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(rows),
+        const DeepCollectionEquality().hash(forceReply)
+      ]);
 }
