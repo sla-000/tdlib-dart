@@ -7,7 +7,6 @@ on:
 
 permissions:
   contents: write
-  id-token: write
 
 jobs:
   update-tdlib:
@@ -16,6 +15,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.PAT_TOKEN || secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
 
       - name: Check TDLib version
         id: check_version
@@ -113,8 +115,4 @@ jobs:
           else
             echo "No changes detected to commit."
           fi
-
-      - name: Publish to pub.dev
-        if: steps.check_version.outputs.need_update == 'true'
-        run: dart pub publish --force
 
